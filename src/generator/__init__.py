@@ -1,9 +1,27 @@
 import random
 
 
+def load_lines(cls, filename):
+    lines = []
+    with open(filename, "r") as f:
+        lines = [line.strip() for line in f]
+    return lines
+
+
 class Generated():
     def __init__(self):
         self.generated_text = ""
+
+
+class GeneratorTemplate():
+    text_format = "%s %s"
+
+    @classmethod
+    def generate(cls, filenames):
+        return cls.text_format % (
+            random.choice(load_lines(filenames[0])),
+            random.choice(load_lines(filenames[1])),
+        )
 
 
 class DataGenerator():

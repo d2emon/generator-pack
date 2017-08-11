@@ -15,16 +15,16 @@ class ArtConceptGenerator(ParamGenerator):
 
     @classmethod
     def generate_place(cls):
-        return "%s %s" % (
-            random.choice(cls.art_names2[0]),
-            random.choice(cls.art_names2[1]),
+        return GeneratorTemplate.generate(
+            "data/art-concept/place1.txt",
+            "data/art-concept/place2.txt",
         )
 
     @classmethod
     def generate_being(cls):
-        return "%s %s" % (
-            random.choice(cls.art_names1[0]),
-            random.choice(cls.art_names2[1]),
+        return GeneratorTemplate.generate(
+            "data/art-concept/being1.txt",
+            "data/art-concept/being2.txt",
         )
 
     @classmethod
