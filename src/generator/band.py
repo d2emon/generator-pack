@@ -10,29 +10,27 @@ class Band(Generated):
 
 class BandGenerator(DataGenerator):
     generated_class = Band
-    band_names1 = names1
-    band_names2 = names2
-    band_names3 = names3
-    band_names4 = names4
-    band_names5 = names5
+    band_names1 = [names1, names2]
+    band_names2 = names5
+    band_names3 = [names3, names4]
 
     @classmethod
     def generate1(cls):
-        return " ".join([
-            random.choice(cls.band_names1),
-            random.choice(cls.band_names2),
-        ])
+        return "%s %s" % (
+            random.choice(cls.band_names1[0]),
+            random.choice(cls.band_names1[1]),
+        )
 
     @classmethod
     def generate2(cls):
-        return random.choice(cls.band_names5)
+        return random.choice(cls.band_names2)
 
     @classmethod
     def generate3(cls):
-        return " of ".join([
-            random.choice(cls.band_names3),
-            random.choice(cls.band_names4),
-        ])
+        return "%s of %s" % (
+            random.choice(cls.band_names3[0]),
+            random.choice(cls.band_names3[1]),
+        )
 
     @classmethod
     def generate_text(cls):
@@ -40,6 +38,6 @@ class BandGenerator(DataGenerator):
         if chance < 30:
             return cls.generate1()
         elif chance < 70:
-            return cls.generate1()
+            return cls.generate2()
         else:
-            return cls.generate1()
+            return cls.generate3()

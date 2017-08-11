@@ -1,5 +1,4 @@
-import random
-from . import Generated, DataGenerator
+from . import Generated, ListGenerator
 from .data.motivation import names
 
 
@@ -8,10 +7,7 @@ class Motivation(Generated):
         return "Motivation: \"%s\"" % (self.generated_text)
 
 
-class MotivationGenerator(DataGenerator):
+class MotivationGenerator(ListGenerator):
     generated_class = Motivation
-    motivations = names
-
-    @classmethod
-    def generate_text(cls):
-        return random.choice(cls.motivations) + "."
+    data_list = names
+    text_format = "%s."

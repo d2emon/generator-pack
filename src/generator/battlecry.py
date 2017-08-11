@@ -1,5 +1,4 @@
-import random
-from . import Generated, DataGenerator
+from . import Generated, ListGenerator
 from .data.battlecry import names
 
 
@@ -8,10 +7,7 @@ class BattleCry(Generated):
         return "BattleCry: \"%s\"" % (self.generated_text)
 
 
-class BattleCryGenerator(DataGenerator):
+class BattleCryGenerator(ListGenerator):
     generated_class = BattleCry
-    cries = names
-
-    @classmethod
-    def generate_text(cls):
-        return random.choice(cls.cries) + "!"
+    data_list = names
+    text_format = "%s!"

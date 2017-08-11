@@ -34,12 +34,12 @@ def main(args):
     print("Art concept (being)")
     print("-" * 80)
     for i in range(10):
-        print(artConcept.ArtConceptGenerator.generate(True))
+        print(artConcept.ArtConceptGenerator.generate(being=True))
     print("-" * 80)
     print("Art concept (place)")
     print("-" * 80)
     for i in range(10):
-        print(artConcept.ArtConceptGenerator.generate(False))
+        print(artConcept.ArtConceptGenerator.generate(being=False))
     print("-" * 80)
 
 

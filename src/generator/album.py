@@ -1,5 +1,5 @@
 import random
-from . import Generated, DataGenerator
+from . import Generated, ListGenerator
 from .data.album import names
 
 
@@ -8,10 +8,6 @@ class Album(Generated):
         return "Album: \"%s\"" % (self.generated_text)
 
 
-class AlbumGenerator(DataGenerator):
+class AlbumGenerator(ListGenerator):
     generated_class = Album
-    album_names = names
-
-    @classmethod
-    def generate_text(cls):
-        return random.choice(cls.album_names)
+    data_list = names

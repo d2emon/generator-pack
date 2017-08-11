@@ -1,5 +1,5 @@
 import random
-from . import Generated, DataGenerator
+from . import Generated, ParamGenerator
 from .data.artConcept import names1, names2, names3, names4
 
 
@@ -8,26 +8,24 @@ class ArtConcept(Generated):
         return "ArtConcept: \"%s\"" % (self.generated_text)
 
 
-class ArtConceptGenerator(DataGenerator):
+class ArtConceptGenerator(ParamGenerator):
     generated_class = ArtConcept
-    art_names1 = names1
-    art_names2 = names2
-    art_names3 = names3
-    art_names4 = names4
+    art_names1 = [names1, names2]
+    art_names2 = [names3, names4]
 
     @classmethod
     def generate_place(cls):
-        return " ".join([
-            random.choice(cls.art_names3),
-            random.choice(cls.art_names4),
-        ])
+        return "%s %s" % (
+            random.choice(cls.art_names2[0]),
+            random.choice(cls.art_names2[1]),
+        )
 
     @classmethod
     def generate_being(cls):
-        return " ".join([
-            random.choice(cls.art_names1),
-            random.choice(cls.art_names2),
-        ])
+        return "%s %s" % (
+            random.choice(cls.art_names1[0]),
+            random.choice(cls.art_names2[1]),
+        )
 
     @classmethod
     def generate_text(cls, being):
@@ -35,9 +33,3 @@ class ArtConceptGenerator(DataGenerator):
             return cls.generate_being()
         else:
             return cls.generate_place()
-
-    @classmethod
-    def generate(cls, being=True):
-        generated = cls.generated_class()
-        generated.generated_text = cls.generate_text(being)
-        return generated
