@@ -3,8 +3,9 @@ import random
 
 
 class MediaItem():
-    def __init__(self, name="Unnamed", openweekend=1000000):
+    def __init__(self, name="Unnamed", author="Unknown", openweekend=1000000):
         self.name = name
+        self.author = author
         self.openweekend = openweekend
         self.weeks = [0, openweekend]
 
