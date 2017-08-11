@@ -3,6 +3,7 @@ import sys
 from generator import album, band, battlecry, motivation
 from generator.concept import ArtConceptGenerator, StoryConceptGenerator
 from generator.demonym import DemonymGenerator, makeDemonym
+from generator.haiku import HaikuGenerator
 
 
 def main(args):
@@ -61,6 +62,12 @@ def main(args):
         d = DemonymGenerator.generate()
         print(d, "%s from %s" % (d.demonym, d.base))
         print(makeDemonym("Lugansk"))
+    print("-" * 80)
+
+    print("Haiku")
+    print("-" * 80)
+    for i in range(5):
+        print(HaikuGenerator.generate())
     print("-" * 80)
 
 
