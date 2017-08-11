@@ -1,7 +1,17 @@
 import random
-from .utils import generate_count
+from . import Generated, DataGenerator
 from .data.album import names
 
 
-def generate(count=1):
-    return generate_count(lambda: random.choice(names), count)
+class Album(Generated):
+    def __repr__(self):
+        return "Album: \"%s\"" % (self.generated_text)
+
+
+class AlbumGenerator(DataGenerator):
+    generated_class = Album
+    album_names = names
+
+    @classmethod
+    def generate_text(cls):
+        return random.choice(cls.album_names)

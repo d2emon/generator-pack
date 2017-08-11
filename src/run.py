@@ -10,36 +10,36 @@ def main(args):
     print("Albums")
     print("-" * 80)
     for i in range(10):
-        print(album.generate())
+        print(album.AlbumGenerator.generate())
     print("-" * 80)
 
     print("Bands")
     print("-" * 80)
     for i in range(10):
-        print(band.generate())
+        print(band.BandGenerator.generate())
     print("-" * 80)
 
     print("Battlecry")
     print("-" * 80)
     for i in range(10):
-        print(battlecry.generate())
+        print(battlecry.BattleCryGenerator.generate())
     print("-" * 80)
 
     print("Character goal")
     print("-" * 80)
     for i in range(10):
-        print(motivation.generate())
+        print(motivation.MotivationGenerator.generate())
     print("-" * 80)
 
     print("Art concept (being)")
     print("-" * 80)
     for i in range(10):
-        print(artConcept.generate(1, True))
+        print(artConcept.ArtConceptGenerator.generate(True))
     print("-" * 80)
     print("Art concept (place)")
     print("-" * 80)
     for i in range(10):
-        print(artConcept.generate(1, False))
+        print(artConcept.ArtConceptGenerator.generate(False))
     print("-" * 80)
 
 

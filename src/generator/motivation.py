@@ -1,7 +1,17 @@
 import random
-from .utils import generate_count
+from . import Generated, DataGenerator
 from .data.motivation import names
 
 
-def generate(count=1):
-    return generate_count(lambda: random.choice(names) + ".", count)
+class Motivation(Generated):
+    def __repr__(self):
+        return "Motivation: \"%s\"" % (self.generated_text)
+
+
+class MotivationGenerator(DataGenerator):
+    generated_class = Motivation
+    motivations = names
+
+    @classmethod
+    def generate_text(cls):
+        return random.choice(cls.motivations) + "."
