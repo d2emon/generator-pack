@@ -1,2 +1,2 @@
 # generator-pack
-Generators pacck for RPG
+Generators pack for RPG
