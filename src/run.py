@@ -2,6 +2,7 @@
 import sys
 from generator import album, band, battlecry, motivation
 from generator.concept import ArtConceptGenerator, StoryConceptGenerator
+from generator.demonym import DemonymGenerator, makeDemonym
 
 
 def main(args):
@@ -52,6 +53,14 @@ def main(args):
     print("-" * 80)
     for i in range(10):
         print(StoryConceptGenerator.generate(character=True))
+    print("-" * 80)
+
+    print("Demonymes")
+    print("-" * 80)
+    for i in range(10):
+        d = DemonymGenerator.generate()
+        print(d, "%s from %s" % (d.demonym, d.base))
+        print(makeDemonym("Lugansk"))
     print("-" * 80)
 
 
