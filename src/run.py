@@ -1,6 +1,6 @@
 #! /usr/bin/python
 import sys
-from generator import album, band, battlecry
+from generator import album, band, battlecry, motivation, artConcept
 
 
 def main(args):
@@ -24,6 +24,24 @@ def main(args):
     for i in range(10):
         print(battlecry.generate())
     print("-" * 80)
+
+    print("Character goal")
+    print("-" * 80)
+    for i in range(10):
+        print(motivation.generate())
+    print("-" * 80)
+
+    print("Art concept (being)")
+    print("-" * 80)
+    for i in range(10):
+        print(artConcept.generate(1, True))
+    print("-" * 80)
+    print("Art concept (place)")
+    print("-" * 80)
+    for i in range(10):
+        print(artConcept.generate(1, False))
+    print("-" * 80)
+
 
 if __name__ == "__main__":
     main(sys.argv[1:])
