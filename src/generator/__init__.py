@@ -1,7 +1,7 @@
 import random
 
 
-def load_lines(cls, filename):
+def load_lines(filename):
     lines = []
     with open(filename, "r") as f:
         lines = [line.strip() for line in f]

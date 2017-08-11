@@ -1,7 +1,7 @@
 #! /usr/bin/python
 import sys
-from generator import album, band, battlecry, motivation, artConcept
-from generator.concept import StoryConceptGenerator
+from generator import album, band, battlecry, motivation
+from generator.concept import ArtConceptGenerator, StoryConceptGenerator
 
 
 def main(args):
@@ -35,12 +35,12 @@ def main(args):
     print("Art concept (being)")
     print("-" * 80)
     for i in range(10):
-        print(artConcept.ArtConceptGenerator.generate(being=True))
+        print(ArtConceptGenerator.generate(being=True))
     print("-" * 80)
     print("Art concept (place)")
     print("-" * 80)
     for i in range(10):
-        print(artConcept.ArtConceptGenerator.generate(being=False))
+        print(ArtConceptGenerator.generate(being=False))
     print("-" * 80)
 
     print("Story concept (event)")
