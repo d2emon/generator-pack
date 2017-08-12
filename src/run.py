@@ -12,6 +12,8 @@ from generator.prayer import PrayerGenerator
 from generator.riddle import RiddleGenerator
 from generator.schoolSubject import SchoolSubjectGenerator
 from generator.slogan import SloganGenerator
+from generator.swear import SwearGenerator
+from generator.wisdom import WisdomQuoteGenerator
 
 
 def gen_other():
@@ -24,6 +26,8 @@ def gen_other():
         "Riddle": RiddleGenerator,
         "SchoolSubject": SchoolSubjectGenerator,
         "Slogan": SloganGenerator,
+        "Swear": SwearGenerator,
+        "Wisdom quote": WisdomQuoteGenerator,
     }
     for title, g in generators.items():
         print("=" * 80)
