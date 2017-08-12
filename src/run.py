@@ -10,6 +10,8 @@ from generator.idiom import IdiomGenerator
 from generator.motto import MottoGenerator
 from generator.prayer import PrayerGenerator
 from generator.riddle import RiddleGenerator
+from generator.schoolSubject import SchoolSubjectGenerator
+from generator.slogan import SloganGenerator
 
 
 def gen_other():
@@ -20,6 +22,8 @@ def gen_other():
         "Idiom": IdiomGenerator,
         "Motto": MottoGenerator,
         "Riddle": RiddleGenerator,
+        "SchoolSubject": SchoolSubjectGenerator,
+        "Slogan": SloganGenerator,
     }
     for title, g in generators.items():
         print("=" * 80)
