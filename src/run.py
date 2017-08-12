@@ -8,6 +8,7 @@ from generator.demonym import DemonymGenerator, makeDemonym
 from generator.haiku import HaikuGenerator
 from generator.idiom import IdiomGenerator
 from generator.motto import MottoGenerator
+from generator.prayer import PrayerGenerator
 
 
 def gen_other():
@@ -54,6 +55,17 @@ def gen_other():
         d = DemonymGenerator.generate()
         print(d, "%s from %s" % (d.demonym, d.base))
         print(makeDemonym("Lugansk"))
+    print("-" * 80)
+
+    print("Prayer (aid)")
+    print("-" * 80)
+    for i in range(5):
+        print(PrayerGenerator.generate(forgive=False))
+    print("-" * 80)
+    print("Prayer (forgiveness)")
+    print("-" * 80)
+    for i in range(10):
+        print(PrayerGenerator.generate(forgive=True))
     print("-" * 80)
 
 
