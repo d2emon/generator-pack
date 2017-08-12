@@ -51,6 +51,16 @@ class ListGenerator(DataGenerator):
         return random.choice(cls.data_list)
 
 
+class FileGenerator(ListGenerator):
+    data_file = ""
+
+    @classmethod
+    def generate_text(cls):
+        if len(cls.data_list) < 1:
+            cls.data_list = load_lines(cls.data_file)
+        return random.choice(cls.data_list)
+
+
 class ParamGenerator(DataGenerator):
     @classmethod
     def generate(cls, **kwargs):

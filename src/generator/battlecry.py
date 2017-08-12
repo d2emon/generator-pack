@@ -1,5 +1,4 @@
-from . import Generated, ListGenerator
-from .data.battlecry import names
+from . import Generated, FileGenerator
 
 
 class BattleCry(Generated):
@@ -7,7 +6,7 @@ class BattleCry(Generated):
         return "BattleCry: \"%s\"" % (self.generated_text)
 
 
-class BattleCryGenerator(ListGenerator):
+class BattleCryGenerator(FileGenerator):
     generated_class = BattleCry
-    data_list = names
+    data_file = "data/battlecry.txt"
     text_format = "%s!"

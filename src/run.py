@@ -4,6 +4,7 @@ from generator import album, band, battlecry, motivation
 from generator.concept import ArtConceptGenerator, StoryConceptGenerator
 from generator.demonym import DemonymGenerator, makeDemonym
 from generator.haiku import HaikuGenerator
+from generator.idiom import IdiomGenerator
 
 
 def main(args):
@@ -68,6 +69,12 @@ def main(args):
     print("-" * 80)
     for i in range(5):
         print(HaikuGenerator.generate())
+    print("-" * 80)
+
+    print("Idiom")
+    print("-" * 80)
+    for i in range(5):
+        print(IdiomGenerator.generate())
     print("-" * 80)
 
 

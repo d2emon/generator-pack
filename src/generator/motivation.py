@@ -1,5 +1,4 @@
-from . import Generated, ListGenerator
-from .data.motivation import names
+from . import Generated, FileGenerator
 
 
 class Motivation(Generated):
@@ -7,7 +6,7 @@ class Motivation(Generated):
         return "Motivation: \"%s\"" % (self.generated_text)
 
 
-class MotivationGenerator(ListGenerator):
+class MotivationGenerator(FileGenerator):
     generated_class = Motivation
-    data_list = names
+    data_file = "data/motivation.txt"
     text_format = "%s."

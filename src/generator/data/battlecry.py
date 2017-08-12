@@ -1,8 +1,0 @@
-names = [
-    "At last",
-    "Awake, warriors",
-    "Bathe in their blood",
-    "Behold our power",
-    "Blood for the blood god",
-    "Blood for the empreror",
-]
