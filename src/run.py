@@ -1,39 +1,28 @@
 #! /usr/bin/python
 import sys
-from generator import album, band, battlecry, motivation
+from generator import album, band
+from generator.battlecry import BattleCryGenerator
+from generator.motivation import MotivationGenerator
 from generator.concept import ArtConceptGenerator, StoryConceptGenerator
 from generator.demonym import DemonymGenerator, makeDemonym
 from generator.haiku import HaikuGenerator
 from generator.idiom import IdiomGenerator
 
 
-def main(args):
-    print("Hello!")
-    print("args:", args)
-
-    print("Albums")
-    print("-" * 80)
-    for i in range(10):
-        print(album.AlbumGenerator.generate())
-    print("-" * 80)
-
-    print("Bands")
-    print("-" * 80)
-    for i in range(10):
-        print(band.BandGenerator.generate())
-    print("-" * 80)
-
-    print("Battlecry")
-    print("-" * 80)
-    for i in range(10):
-        print(battlecry.BattleCryGenerator.generate())
-    print("-" * 80)
-
-    print("Character goal")
-    print("-" * 80)
-    for i in range(10):
-        print(motivation.MotivationGenerator.generate())
-    print("-" * 80)
+def gen_other():
+    generators = {
+        "Battlecry": BattleCryGenerator,
+        "Motivation": MotivationGenerator,
+        "Haiku": HaikuGenerator,
+        "Idiom": IdiomGenerator,
+    }
+    for title, g in generators.items():
+        print("=" * 80)
+        print("%s:" % (title))
+        print("-" * 80)
+        for i in range(10):
+            print(g.generate())
+    print("=" * 80)
 
     print("Art concept (being)")
     print("-" * 80)
@@ -65,17 +54,24 @@ def main(args):
         print(makeDemonym("Lugansk"))
     print("-" * 80)
 
-    print("Haiku")
+
+def main(args):
+    print("Hello!")
+    print("args:", args)
+
+    print("Albums")
     print("-" * 80)
-    for i in range(5):
-        print(HaikuGenerator.generate())
+    for i in range(10):
+        print(album.AlbumGenerator.generate())
     print("-" * 80)
 
-    print("Idiom")
+    print("Bands")
     print("-" * 80)
-    for i in range(5):
-        print(IdiomGenerator.generate())
+    for i in range(10):
+        print(band.BandGenerator.generate())
     print("-" * 80)
+
+    gen_other()
 
 
 if __name__ == "__main__":
