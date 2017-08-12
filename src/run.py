@@ -7,6 +7,7 @@ from generator.concept import ArtConceptGenerator, StoryConceptGenerator
 from generator.demonym import DemonymGenerator, makeDemonym
 from generator.haiku import HaikuGenerator
 from generator.idiom import IdiomGenerator
+from generator.motto import MottoGenerator
 
 
 def gen_other():
@@ -15,6 +16,7 @@ def gen_other():
         "Motivation": MotivationGenerator,
         "Haiku": HaikuGenerator,
         "Idiom": IdiomGenerator,
+        "Motto": MottoGenerator,
     }
     for title, g in generators.items():
         print("=" * 80)
