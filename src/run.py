@@ -15,6 +15,8 @@ from generator.slogan import SloganGenerator
 from generator.swear import SwearGenerator
 from generator.wisdom import WisdomQuoteGenerator
 
+from generator.space.galaxy import GalaxyGenerator
+
 
 def gen_other():
     generators = {
@@ -28,6 +30,7 @@ def gen_other():
         "Slogan": SloganGenerator,
         "Swear": SwearGenerator,
         "Wisdom quote": WisdomQuoteGenerator,
+        "Galaxy": GalaxyGenerator,
     }
     for title, g in generators.items():
         print("=" * 80)
