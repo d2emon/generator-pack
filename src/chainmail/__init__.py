@@ -4,7 +4,7 @@ class Opponent():
 
     def roll(self):
         import random
-        roll = random.randrange(6)
+        roll = random.randint(1, 6)
         print("%s rolls a die (%d)" % (self.title, roll))
         return roll
 
@@ -21,6 +21,15 @@ class PlayerStack():
     @property
     def players(self):
         return self.__players
+
+    def roll_order(self):
+        rolls = dict()
+        while len(rolls) < len(self.__players):
+            if len(rolls):
+                print("Reroll")
+            rolls = {p.roll(): p for p in self.__players}
+        order = sorted(rolls, reverse=True)
+        return [rolls[r] for r in order]
 
 
 class Battle():
