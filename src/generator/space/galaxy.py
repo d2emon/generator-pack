@@ -8,53 +8,38 @@ class Galaxy(Generated):
 
 
 class GalaxyTemplate(GeneratorTemplate):
-    letters = [chr(c) for c in range(ord("A"), ord("Z") + 1)]
-    numbers = range(0, 9)
-
-    @classmethod
-    def generate4(cls):
-        return "%s%s-%d%d" % (
-            random.choice(cls.letters),
-            random.choice(cls.letters),
-            random.choice(cls.numbers),
-            random.choice(cls.numbers),
-        )
-
-    @classmethod
-    def generate5(cls):
-        return "%s%s%s %d%d%s" % (
-            random.choice(cls.letters),
-            random.choice(cls.letters),
-            random.choice(cls.letters),
-            random.choice(cls.numbers),
-            random.choice(cls.numbers),
-            random.choice(cls.letters),
-        )
-
-
-class GalaxyGenerator(DataGenerator):
-    generated_class = Galaxy
-
     @classmethod
     def generate1(cls):
-        return GalaxyTemplate.generate([
+        return cls.generate([
             "data/galaxy/galaxy1.txt",
             "data/galaxy/galaxy2.txt",
         ])
 
     @classmethod
     def generate2(cls):
-        return GalaxyTemplate.generate([
+        return cls.generate([
             "data/galaxy/galaxy2.txt",
             "data/galaxy/galaxy-type.txt",
         ])
 
     @classmethod
     def generate3(cls):
-        return GalaxyTemplate.generate([
+        return cls.generate([
             "data/galaxy/galaxy3.txt",
             "data/galaxy/galaxy-type.txt",
         ])
+
+    @classmethod
+    def generate4(cls):
+        return cls.pregenerate("{c}{c}-{n}{n}")
+
+    @classmethod
+    def generate5(cls):
+        return cls.pregenerate("{c}{c}{c} {n}{n}{c}")
+
+
+class GalaxyGenerator(DataGenerator):
+    generated_class = Galaxy
 
     @classmethod
     def generate4(cls):
@@ -67,11 +52,11 @@ class GalaxyGenerator(DataGenerator):
     @classmethod
     def generate_text(cls):
         methods = {
-            30: cls.generate1,
-            50: cls.generate2,
-            80: cls.generate3,
-            90: cls.generate4,
-            100: cls.generate5,
+            30: GalaxyTemplate.generate1,
+            50: GalaxyTemplate.generate2,
+            80: GalaxyTemplate.generate3,
+            90: GalaxyTemplate.generate4,
+            100: GalaxyTemplate.generate5,
         }
         chance = random.randint(0, 100)
         for c in sorted(methods):
