@@ -1,0 +1,9 @@
+an ocean
+a gas dwarf
+a gas giant
+a rogue
+an iron
+an ice
+an ice giant
+a desert
+a terrestial

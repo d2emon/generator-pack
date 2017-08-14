@@ -1,0 +1,5 @@
+a red
+a blue
+a white
+a yellow
+an orange

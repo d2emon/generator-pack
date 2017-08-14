@@ -2,6 +2,7 @@
 from menu import Menu
 from menu_utils import MenuHandler
 from generator.space.galaxy import GalaxyGenerator
+from generator.space.planet import PlanetGenerator
 
 
 galaxies = []
@@ -18,7 +19,7 @@ class GalaxyHandler(MenuHandler):
     def handle(self):
         planets = []
         for i in range(10):
-            planets.append(GalaxyHandler(GalaxyGenerator.generate()).menuOption)
+            planets.append(GalaxyHandler(PlanetGenerator.generate()).menuOption)
         menu = Menu(
             title=self.text,
             options=planets + [

@@ -1,0 +1,6 @@
+a circular orbit
+an almost perfectly circular orbit
+a slightly elliptic orbit
+a wide, elliptic orbit
+an elliptic orbit
+a fairly circular orbit
