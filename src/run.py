@@ -1,4 +1,4 @@
-#! /usr/bin/python
+#! /usr/bin/env python
 import sys
 from generator import album, band
 from generator.battlecry import BattleCryGenerator
@@ -16,6 +16,7 @@ from generator.swear import SwearGenerator
 from generator.wisdom import WisdomQuoteGenerator
 
 from generator.space.galaxy import GalaxyGenerator
+from generator.markov import MarkovChain, MarkovGenerator
 
 
 def gen_other():
@@ -80,6 +81,39 @@ def gen_other():
     for i in range(10):
         print(PrayerGenerator.generate(forgive=True))
     print("-" * 80)
+
+    street_mc = MarkovChain(data_list=[
+        "Оборонная",
+        "Советская",
+        "Бетховена",
+        "Щербакова",
+        "Студенческая",
+        "Качалова",
+        "Баумана",
+        "Комбайная",
+        "Фестивальная",
+        "Ватутина",
+        "Буденного",
+        "Жданова",
+        "Феликса",
+        "Учебная",
+        "Тухачевского",
+        "30 лет Победы",
+        "Якира",
+        "Молодежная",
+        "Дружбы",
+        "50 лет Октября",
+        "Дзержинского",
+        "60 лет образования СССР",
+        "Гагарина",
+        "Солнечная",
+        "Жукова",
+        "Левченко",
+        "Комарова",
+        "Волкова",
+    ], length=3)
+    street_mg = MarkovGenerator(street_mc)
+    print("ул. %s" % (street_mg.generate_chain(32)))
 
 
 def main(args):
