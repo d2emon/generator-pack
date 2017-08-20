@@ -24,6 +24,23 @@ class StarSystemType():
             return 29
 
 
+class PlanetSubtype():
+    def __init__(self, subtype_id, title="", planet_type=None):
+        self.subtype_id = subtype_id
+        self.title = title
+        self.planet_type = planet_type
+
+    @property
+    def is_empty(self):
+        return self.subtype_id < 3
+
+    @property
+    def has_continents(self):
+        if not self.is_empty:
+            return True
+        return self.planet_type.has_continents
+
+
 class PlanetType():
     def __init__(
         self,
@@ -32,12 +49,14 @@ class PlanetType():
         names=[],
         orbit_types=[],
         has_continents=False,
+        title=""
     ):
         self.type_id = type_id
         self.life_type = life_type
-        self.names = names
         self.orbit_types = load_lines("data/planet/orbit-type.txt") + orbit_types
         self.has_continents = has_continents
+        self.subtypes = [PlanetSubtype(i, t, self) for i, t in enumerate(names)]
+        self.title = title
 
 
 class PlanetSize():
@@ -201,12 +220,15 @@ class LifeType():
         load_lines("data/planet/plant4.txt"),
     ]
 
-    def __init__(self, has_plants=True, plant_types=[], life_list=None):
+    def __init__(self, description="", has_plants=True, plant_types=[], life_list=None):
+        self.description = description
         self.has_plants = has_plants
         self.plant_types = plant_types
         self.life_list = life_list
 
     def plant_list(self, id):
+        if not self.has_plants:
+            return []
         print(id, self.plant_list)
         if id < 0:
             return self.plant_lists[0]
@@ -236,17 +258,21 @@ class PlanetGenerator(ParamGenerator):
     generated_class = Planet
     life_types = [
         LifeType(
+            description="Безжизненная",
             has_plants=False,
         ),
         LifeType(
+            description="Слабо развитая",
             plant_types=[2, 4],
             life_list=load_lines("data/planet/life1.txt"),
         ),
         LifeType(
+            description="Жизненная",
             plant_types=[1, 3],
             life_list=load_lines("data/planet/life2.txt"),
         ),
         LifeType(
+            description="Жизненная",
             plant_types=[1, 3],
             life_list=load_lines("data/planet/life3.txt"),
         ),
@@ -285,35 +311,32 @@ class PlanetGenerator(ParamGenerator):
                 0,
                 names=load_lines("data/planet/planet-type0.txt"),
                 has_continents=True,
+                title="Continented",
             ),
             PlanetType(
                 1,
                 life_type=cls.life_types[0],
                 names=load_lines("data/planet/planet-type1.txt"),
                 orbit_types=load_lines("data/planet/orbit-type2.txt"),
+                title="Uninhabited1 strange orbit",
             ),
             PlanetType(
                 2,
                 life_type=cls.life_types[0],
                 names=load_lines("data/planet/planet-type2.txt"),
+                title="Uninhabited2",
             ),
         ]
 
         star_system = StarSystemGenerator.generate()
         size = random.choice(cls.planet_sizes)
 
-        life_type_id = random.randrange(4)
-        planet_type_id = random.randrange(3)
-
         if living:
             planet_type = planet_types[0]
-            if life_type_id < 1:
-                life_type_id = 1
+            allowed_life_types = cls.life_types[1:]
         else:
-            planet_type = planet_types[planet_type_id]
-
-        if planet_type.life_type is None:
-            planet_type.life_type = cls.life_types[life_type_id]
+            planet_type = random.choice(planet_types)
+            allowed_life_types = cls.life_types
 
         intelligent = random.random()
         basic_life = random.random()
@@ -321,12 +344,16 @@ class PlanetGenerator(ParamGenerator):
         names_origin = load_lines("data/planet/planet-name-origin.txt")
         if intelligent > 0.5:
             names_origin += load_lines("data/planet/planet-name-origin2.txt")
+            planet_type = planet_types[0]
+            allowed_life_types = cls.life_types[1:]
 
-        rnd3 = random.randrange(len(planet_type.names))
+        if planet_type.life_type is None:
+            planet_type.life_type = random.choice(allowed_life_types)
 
         planet_name = random.choice(load_lines("data/planet/planet-name.txt"))
         planet_name_origin = random.choice(names_origin)
-        planet_type_text = planet_type.names[rnd3]
+        planet_subtype = random.choice(planet_type.subtypes)
+        planet_type_text = planet_subtype.title
         planet_size = size.random_size()
         planet_gravity = size.random_grav()
         planet_day = size.random_day()
@@ -338,13 +365,15 @@ class PlanetGenerator(ParamGenerator):
 
         names21 = load_lines("data/planet/plant.txt")
 
-        if rnd3 < 3:
+        if not planet_subtype.has_continents:
+            planet_continents = 0
+            planet_landmass = 0
+
+        if planet_subtype.is_empty:
             life_list = load_lines("data/planet/life5.txt")
-            if not planet_type.has_continents:
-                names10 = 0
-                names11 = 0
         else:
             life_list = load_lines("data/planet/life4.txt")
+
         if planet_type.life_type.life_list is None:
             planet_type.life_type.life_list = life_list
 
@@ -374,6 +403,9 @@ class PlanetGenerator(ParamGenerator):
                 random.choice(planet_type.life_type.plant_list(1)),
                 random.choice(planet_type.life_type.life_list),
             ])
+        # generated += "\n"
+        # generated += str(planet_type.type_id) + planet_type.title + "\n"
+        # generated += str(planet_subtype.subtype_id) + planet_subtype.title + "\n"
         # generated.name = planet_name
         # generated.name_origin = planet_name_origin
         # generated.system = star_system
