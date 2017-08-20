@@ -1,6 +1,6 @@
-a circular orbit
-an almost perfectly circular orbit
-a slightly elliptic orbit
-a wide, elliptic orbit
-an elliptic orbit
-a fairly circular orbit
+круговой орбите
+почти идеальной круговой орбите
+слегка эллиптической орбите
+широкой эллиптической орбите
+эллиптической орбите
+довольно круговой орбите

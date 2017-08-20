@@ -1,6 +1,6 @@
-a terrestial
-a carbon
-a desert
-an earth-like
-an iron
-an ice
+земной
+углеродной
+пустынной
+землеподобной
+железной
+ледяной
