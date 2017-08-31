@@ -191,8 +191,6 @@ def charGen():
 
     race = random.choice(races)
 
-    face1 = random.choice(race.faces)
-    face2 = random.choice(race.faces2)
     eyes_style = random.choice(race.eye.styles)
     eyes_color = random.choice(race.eye.colors)
     eyes_depth = random.choice(race.eye.depths)
