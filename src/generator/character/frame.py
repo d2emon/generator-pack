@@ -3,8 +3,8 @@ from generator import Generated, ListGenerator
 
 class Frame(Generated):
     def __init__(self):
-        self.height = "A scar"
-        self.frame = "stretching from just under the right eye"
+        self.height = "tall among"
+        self.frame = "thin"
 
     def __repr__(self):
         return "He stands %s others, despite his %s frame." % (

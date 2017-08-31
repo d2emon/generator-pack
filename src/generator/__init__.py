@@ -81,9 +81,12 @@ class ListGenerator(DataGenerator):
     data_list = []
 
     @classmethod
-    def generate_value(cls, data_list=None):
+    def generate_value(cls, data_list=None, count=1):
         if data_list is None:
             data_list = cls.data_list
+        if count > 1:
+            random.shuffle(data_list)
+            return data_list[0:count]
         return random.choice(data_list)
 
 
