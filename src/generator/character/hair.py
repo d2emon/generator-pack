@@ -68,33 +68,3 @@ class HairGenerator(ListGenerator):
         generated.hairtype = cls.generate_value(cls.hairtypes)
         generated.hairstyle = cls.generate_value(cls.hairstyles)
         return generated
-
-
-class ElfHairGenerator(HairGenerator):
-    colors = [
-        "Elf",
-    ]  # 1
-    hairtypes = [
-        "Elf",
-    ]  # 2
-
-
-class GnomeHairGenerator(HairGenerator):
-    colors = [
-        "Gnome",
-    ]  # 1
-    hairtypes = [
-        "Gnome",
-    ]  # 2
-
-
-class GoblinHairGenerator(HairGenerator):
-    hairtypes = [
-        "Goblin",
-    ]  # 2
-
-
-class GiantHairGenerator(HairGenerator):
-    hairtypes = [
-        "Giant",
-    ]  # 2

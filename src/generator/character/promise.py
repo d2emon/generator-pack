@@ -86,15 +86,3 @@ class PromiseGenerator(ListGenerator):
         generated.settlement = cls.generate_value(cls.settlements)
         generated.promisetype = cls.generate_value(cls.promisetypes)
         return generated
-
-
-class ElfPromiseGenerator(PromiseGenerator):
-    settlements = [
-        "elf",
-    ]
-
-
-class GoblinPromiseGenerator(PromiseGenerator):
-    settlements = [
-        "goblin",
-    ]

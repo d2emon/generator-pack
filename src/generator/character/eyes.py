@@ -94,9 +94,3 @@ class EyesGenerator(ListGenerator):
         generated.depth = cls.generate_value(cls.depths)
         generated.sight = cls.generate_value(cls.sights)
         return generated
-
-
-class ElfEyesGenerator(EyesGenerator):
-    colors = [
-        "Elf",
-    ]

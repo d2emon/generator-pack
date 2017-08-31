@@ -55,27 +55,3 @@ class FaceGenerator(ListGenerator):
         generated.facetype = cls.generate_value(cls.facetypes)
         generated.expression = cls.generate_value(cls.expressions)
         return generated
-
-
-class ElfFaceGenerator(FaceGenerator):
-    facetypes = [
-        "elf",
-    ]
-
-
-class GnomeFaceGenerator(FaceGenerator):
-    facetypes = [
-        "gnome",
-    ]
-
-
-class GoblinFaceGenerator(FaceGenerator):
-    facetypes = [
-        "goblin",
-    ]
-
-
-class GiantFaceGenerator(FaceGenerator):
-    facetypes = [
-        "giant",
-    ]
