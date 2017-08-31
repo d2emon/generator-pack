@@ -1,5 +1,6 @@
 from generator.character.hair import *
 from generator.character.face import *
+from generator.character.eyes import *
 import random
 
 
@@ -7,16 +8,6 @@ class Sware():
     adjectives = []  # 9
     towns = []  # 10
     objects = []  # 11
-
-
-class Eyes():
-    styles = []  # 6
-    colors = []  # 7
-    depths = []  # 8
-
-
-class ElvishEyes(Eyes):
-    colors = []  # 7
 
 
 class ElvishSware(Sware):
@@ -30,7 +21,7 @@ class GoblinishSware(Sware):
 class Race():
     hair_generator = hair.HairGenerator
     face_generator = face.FaceGenerator
-    eyes_class = Eyes
+    eyes_generator = eyes.EyesGenerator
     sware_class = Sware
     faces = []
     faces2 = []
@@ -45,7 +36,7 @@ class Race():
         self.race_id = race_id
         self.hair = self.hair_generator.generate()
         self.face = self.face_generator.generate()
-        self.eyes = self.eyes_class()
+        self.eyes = self.eyes_generator.generate()
         self.sware = self.sware_class()
 
 
@@ -56,9 +47,8 @@ class Human(Race):
 class Elf(Race):
     hair_generator = hair.ElfHairGenerator
     face_generator = face.ElfFaceGenerator
-    eyes_class = ElvishEyes
+    eyes_generator = eyes.ElfEyesGenerator
     sware_class = ElvishSware
-    faces = []
     # 5
     # 6
     names7 = []
@@ -72,7 +62,6 @@ class Elf(Race):
 class Gnome(Race):
     hair_generator = hair.GnomeHairGenerator
     face_generator = face.GnomeFaceGenerator
-    faces = []
     first_names = []
     last_names = []
 
@@ -81,7 +70,6 @@ class Goblinoid(Race):
     hair_generator = hair.GoblinHairGenerator
     face_generator = face.GoblinFaceGenerator
     sware_class = GoblinishSware
-    faces = []
 
 
 class Troll(Goblinoid):
@@ -191,9 +179,6 @@ def charGen():
 
     race = random.choice(races)
 
-    eyes_style = random.choice(race.eye.styles)
-    eyes_color = random.choice(race.eye.colors)
-    eyes_depth = random.choice(race.eye.depths)
     random9 = random.choice(names9)
     sware_adjective = random.choice(race.sware.adjectives)
     sware_town = random.choice(race.sware.towns)
@@ -219,10 +204,8 @@ def charGen():
     random28 = random.choice(names28)
 
     head = "%s a %s." % (race.hair, race.face)
-    eyes = "%s %s eyes, set %s within their sockets, watch %s over the %s they've %s for so long." % (
-        eyes_style,
-        eyes_color,
-        eyes_depth,
+    eyes = "%s, watch %s over the %s they've %s for so long." % (
+        race.eyes,
         sware_adjective,
         sware_town,
         sware_object,
