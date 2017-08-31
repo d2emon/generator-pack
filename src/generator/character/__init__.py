@@ -1,10 +1,37 @@
 from .special import SpecialSignGenerator
-from .race import Race
+from .name import NameGenerator
+import generator.character.race
+import random
+
+
+races = [
+    race.Human,
+    race.Human,
+    race.Human,
+    race.Human,
+    race.Elf,
+    race.NightElf,
+    race.BloodElf,
+    race.HighElf,
+    race.WoodElf,
+    race.DarkElf,
+    race.Gnome,
+    race.Troll,
+    race.Orc,
+    race.Goblin,
+    race.Dwarf,
+    race.Giant,
+    race.Halfling,
+    race.Vampire,
+    race.Werewolf,
+]
 
 
 class Character():
-    def __init__(self):
-        self.race = Race
+    def __init__(self, race=None):
+        if race is None:
+            race = Race
+        self.race = race
 
     def generate(self):
         self.hair = self.race.hair_generator.generate()
@@ -12,6 +39,7 @@ class Character():
         self.eyes = self.race.eyes_generator.generate()
         self.promise = self.race.promise_generator.generate()
         self.special= SpecialSignGenerator.generate()
+        self.name= NameGenerator.generate()
 
     @property
     def description(self):
@@ -21,15 +49,12 @@ class Character():
             self.eyes,
             self.promise,
         )
-        # name3 = "This is the face of %s %s, a true %s among %s. He stands %s others, despite his %s frame." % (
-        #     first_name,
-        #     last_name,
-        #     random20,
-        #     race,
-        #
-        #     random22,
-        #     random23,
-        # )
+        title = "This is the face of %s among %s. He stands %s others, despite his %s frame." % (
+            self.name,
+            self.race.plural,
+            "random22",
+            "random23",
+        )
         # name4 = "There's something %s about him, perhaps it's %s or perhaps it's simply %s. But nonetheless, people tend to %s, while %s." % (
         #     random24,
         #     random25,
@@ -42,6 +67,15 @@ class Character():
         return "\n".join([
             head,
             str(self.special),
-            # name3,
+            title,
             # name4,
         ])
+
+
+def random_character(racelist=None):
+    if racelist is None:
+        racelist = races
+    c = Character(race=random.choice(racelist))
+    c.generate()
+    return c
+

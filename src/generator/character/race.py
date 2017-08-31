@@ -6,6 +6,7 @@ from generator.character.promise import PromiseGenerator
 
 class Race():
     name = "Race"
+    plural = "races"
 
     hair_generator = HairGenerator
     face_generator = FaceGenerator
@@ -18,6 +19,7 @@ class Race():
 
 class Human(Race):
     name = "Human"
+    plural = "humans"
 
 
 class ElfHairGenerator(HairGenerator):
@@ -49,6 +51,7 @@ class ElfPromiseGenerator(PromiseGenerator):
 
 class Elf(Race):
     name = "Elf"
+    plural = "elves"
 
     hair_generator = ElfHairGenerator
     face_generator = ElfFaceGenerator
@@ -58,6 +61,29 @@ class Elf(Race):
     first_names = []
     last_names = []
 
+class NightElf(Elf):
+    name = "Night Elf"
+    plural = "night elves"
+
+
+class BloodElf(Elf):
+    name = "Blood Elf"
+    plural = "blood elves"
+
+
+class HighElf(Elf):
+    name = "High Elf"
+    plural = "high elves"
+
+
+class WoodElf(Elf):
+    name = "Wood Elf"
+    plural = "wood elves"
+
+
+class DarkElf(Elf):
+    name = "Dark Elf"
+    plural = "dark elves"
 
 class GnomeHairGenerator(HairGenerator):
     colors = [
@@ -76,6 +102,7 @@ class GnomeFaceGenerator(FaceGenerator):
 
 class Gnome(Race):
     name = "Gnome"
+    plural = "gnomes"
 
     hair_generator = GnomeHairGenerator
     face_generator = GnomeFaceGenerator
@@ -102,7 +129,8 @@ class GoblinPromiseGenerator(PromiseGenerator):
 
 
 class Goblinoid(Race):
-    name = "Goblinioid"
+    name = "Goblinoid"
+    plural = "goblinoids"
 
     hair_generator = GoblinHairGenerator
     face_generator = GoblinFaceGenerator
@@ -111,6 +139,7 @@ class Goblinoid(Race):
 
 class Troll(Goblinoid):
     name = "Troll"
+    plural = "trolls"
 
     first_names = []
     last_names = []
@@ -118,6 +147,7 @@ class Troll(Goblinoid):
 
 class Orc(Goblinoid):
     name = "Orc"
+    plural = "orcs"
 
     first_names = []
     last_names = []
@@ -125,6 +155,7 @@ class Orc(Goblinoid):
 
 class Goblin(Goblinoid):
     name = "Goblin"
+    plural = "goblins"
 
     first_names = []
     last_names = []
@@ -144,6 +175,7 @@ class GiantFaceGenerator(FaceGenerator):
 
 class Giant(Race):
     name = "Giant"
+    plural = "giants"
 
     hair_generator = GiantHairGenerator
     face_generator = GiantFaceGenerator
@@ -151,6 +183,22 @@ class Giant(Race):
 
 class Dwarf(Giant):
     name = "Dwarf"
+    plural = "dvarves"
 
     first_names = []
     last_names = []
+
+
+class Halfling(Race):
+    name = "Halfling"
+    plural = "halflings"
+
+
+class Vampire(Race):
+    name = "Vampire"
+    plural = "vampires"
+
+
+class Werewolf(Race):
+    name = "Werewolf"
+    plural = "werewolves"
