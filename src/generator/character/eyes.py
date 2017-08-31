@@ -6,7 +6,7 @@ class Eyes(Generated):
         self.style = "Beady"
         self.color = "blue"
         self.depth = "deep"
-        self.sight = ""
+        self.sight = "wearily"
 
     def __repr__(self):
         return "%s %s eyes, set %s within their sockets, watch %s" % (
@@ -85,6 +85,45 @@ class EyesGenerator(ListGenerator):
         "wickedly",
     ]
     sights = [
+        "wearily",
+        "delightfully",
+        "cheerfully",
+        "gratefully",
+        "heartily",
+        "warmly",
+        "eagerly",
+        "delightedly",
+        "merrily",
+        "lovingly",
+        "enthusiastically",
+        "readily",
+        "hungrily",
+        "intently",
+        "energetically",
+        "impatiently",
+        "longingly",
+        "vigorously",
+        "rapidly",
+        "admiringly",
+        "affectionately",
+        "fondly",
+        "thoughtfully",
+        "devotedly",
+        "yearningly",
+        "loyally",
+        "cautiously",
+        "slowly",
+        "carefully",
+        "guardedly",
+        "discreetly",
+        "anxiously",
+        "attentively",
+        "meticulously",
+        "honorably",
+        "vigilantly",
+        "watchfully",
+        "delicately",
+        "faithfully",
     ]
 
     @classmethod

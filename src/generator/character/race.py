@@ -54,11 +54,6 @@ class Elf(Race):
     face_generator = ElfFaceGenerator
     eyes_generator = ElfEyesGenerator
     promise_generator = ElfPromiseGenerator
-    # 5
-    # 6
-    names7 = []
-    # 8
-    # 9
 
     first_names = []
     last_names = []

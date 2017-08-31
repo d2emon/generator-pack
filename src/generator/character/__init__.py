@@ -1,3 +1,4 @@
+from .special import SpecialSignGenerator
 from .race import Race
 
 
@@ -10,6 +11,7 @@ class Character():
         self.face = self.race.face_generator.generate()
         self.eyes = self.race.eyes_generator.generate()
         self.promise = self.race.promise_generator.generate()
+        self.special= SpecialSignGenerator.generate()
 
     @property
     def description(self):
@@ -19,14 +21,6 @@ class Character():
             self.eyes,
             self.promise,
         )
-        # name2 = "%s %s %s %s leaves %s of %s." % (
-        #     mark,
-        #     mark_from,
-        #     mark_through,
-        #     mark_to,
-        #     memory_type,
-        #     memory_of,
-        # )
         # name3 = "This is the face of %s %s, a true %s among %s. He stands %s others, despite his %s frame." % (
         #     first_name,
         #     last_name,
@@ -47,7 +41,7 @@ class Character():
 
         return "\n".join([
             head,
-            # name2,
+            str(self.special),
             # name3,
             # name4,
         ])
