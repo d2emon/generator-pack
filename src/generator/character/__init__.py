@@ -1,5 +1,6 @@
 from .special import SpecialSignGenerator
 from .name import NameGenerator
+from .frame import FrameGenerator
 import generator.character.race
 import random
 
@@ -40,6 +41,7 @@ class Character():
         self.promise = self.race.promise_generator.generate()
         self.special= SpecialSignGenerator.generate()
         self.name= NameGenerator.generate()
+        self.frame = FrameGenerator.generate()
 
     @property
     def description(self):
@@ -49,11 +51,10 @@ class Character():
             self.eyes,
             self.promise,
         )
-        title = "This is the face of %s among %s. He stands %s others, despite his %s frame." % (
+        title = "This is the face of %s among %s. %s" % (
             self.name,
             self.race.plural,
-            "random22",
-            "random23",
+            self.frame,
         )
         # name4 = "There's something %s about him, perhaps it's %s or perhaps it's simply %s. But nonetheless, people tend to %s, while %s." % (
         #     random24,
