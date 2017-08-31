@@ -1,33 +1,15 @@
 from generator.character.hair import *
 from generator.character.face import *
 from generator.character.eyes import *
+from generator.character.promise import *
 import random
-
-
-class Sware():
-    adjectives = []  # 9
-    towns = []  # 10
-    objects = []  # 11
-
-
-class ElvishSware(Sware):
-    towns = []
-
-
-class GoblinishSware(Sware):
-    towns = []
 
 
 class Race():
     hair_generator = hair.HairGenerator
     face_generator = face.FaceGenerator
     eyes_generator = eyes.EyesGenerator
-    sware_class = Sware
-    faces = []
-    faces2 = []
-    # 5
-    # 8
-    # 9
+    promise_generator = promise.PromiseGenerator
 
     first_names = []
     last_names = []
@@ -37,7 +19,7 @@ class Race():
         self.hair = self.hair_generator.generate()
         self.face = self.face_generator.generate()
         self.eyes = self.eyes_generator.generate()
-        self.sware = self.sware_class()
+        self.promise = self.promise_generator.generate()
 
 
 class Human(Race):
@@ -48,7 +30,7 @@ class Elf(Race):
     hair_generator = hair.ElfHairGenerator
     face_generator = face.ElfFaceGenerator
     eyes_generator = eyes.ElfEyesGenerator
-    sware_class = ElvishSware
+    promise_generator = promise.ElfPromiseGenerator
     # 5
     # 6
     names7 = []
@@ -69,7 +51,7 @@ class Gnome(Race):
 class Goblinoid(Race):
     hair_generator = hair.GoblinHairGenerator
     face_generator = face.GoblinFaceGenerator
-    sware_class = GoblinishSware
+    promise_generator = promise.GoblinPromiseGenerator
 
 
 class Troll(Goblinoid):
@@ -150,11 +132,6 @@ class SoftSkin(Mark):
 
 
 def charGen():
-    names6 = []
-    names8 = []
-    names9 = []
-    names11 = []
-
     marks = [Scar(i) for i in range(6)] + \
         [Birthmark(i) for i in range(6, 9)] + \
         [Moles(9), Frecles(10), SmoothSkin(11), ] + \
@@ -179,11 +156,6 @@ def charGen():
 
     race = random.choice(races)
 
-    random9 = random.choice(names9)
-    sware_adjective = random.choice(race.sware.adjectives)
-    sware_town = random.choice(race.sware.towns)
-
-    sware_object = random.choice(race.sware.objects)
     mark = random.choice(marks)
     mark_from = random.choice(mark.places_form)
     mark_through = random.choice(mark.places_through)
@@ -203,17 +175,12 @@ def charGen():
     random27 = random.choice(names27)
     random28 = random.choice(names28)
 
-    head = "%s a %s." % (race.hair, race.face)
-    eyes = "%s, watch %s over the %s they've %s for so long." % (
+    head = "%s a %s. %s over %s" % (
+        race.hair,
+        race.face,
         race.eyes,
-        sware_adjective,
-        sware_town,
-        sware_object,
+        race.promise,
     )
-    name1 = " ".join([
-        head,
-        eyes,
-    ])
     name2 = "%s %s %s %s leaves %s of %s." % (
         mark,
         mark_from,
@@ -241,7 +208,7 @@ def charGen():
     )
 
     return "\n".join([
-        name1,
+        head,
         name2,
         name3,
         name4,

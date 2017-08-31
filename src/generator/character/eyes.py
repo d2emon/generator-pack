@@ -6,12 +6,14 @@ class Eyes(Generated):
         self.style = "Beady"
         self.color = "blue"
         self.depth = "deep"
+        self.sight = ""
 
     def __repr__(self):
-        return "%s %s eyes, set %s within their sockets" % (
+        return "%s %s eyes, set %s within their sockets, watch %s" % (
             self.style,
             self.color,
             self.depth,
+            self.sight,
         )
 
 
@@ -82,12 +84,15 @@ class EyesGenerator(ListGenerator):
         "dreadfully",
         "wickedly",
     ]
+    sights = [
+    ]
 
     @classmethod
     def fill_generated(cls, generated):
         generated.style = cls.generate_value(cls.styles)
         generated.color = cls.generate_value(cls.colors)
         generated.depth = cls.generate_value(cls.depths)
+        generated.sight = cls.generate_value(cls.sights)
         return generated
 
 
