@@ -1,4 +1,5 @@
 from generator.character.hair import *
+from generator.character.face import *
 import random
 
 
@@ -28,6 +29,7 @@ class GoblinishSware(Sware):
 
 class Race():
     hair_generator = hair.HairGenerator
+    face_generator = face.FaceGenerator
     eyes_class = Eyes
     sware_class = Sware
     faces = []
@@ -42,6 +44,7 @@ class Race():
     def __init__(self, race_id):
         self.race_id = race_id
         self.hair = self.hair_generator.generate()
+        self.face = self.face_generator.generate()
         self.eyes = self.eyes_class()
         self.sware = self.sware_class()
 
@@ -52,6 +55,7 @@ class Human(Race):
 
 class Elf(Race):
     hair_generator = hair.ElfHairGenerator
+    face_generator = face.ElfFaceGenerator
     eyes_class = ElvishEyes
     sware_class = ElvishSware
     faces = []
@@ -67,6 +71,7 @@ class Elf(Race):
 
 class Gnome(Race):
     hair_generator = hair.GnomeHairGenerator
+    face_generator = face.GnomeFaceGenerator
     faces = []
     first_names = []
     last_names = []
@@ -74,6 +79,7 @@ class Gnome(Race):
 
 class Goblinoid(Race):
     hair_generator = hair.GoblinHairGenerator
+    face_generator = face.GoblinFaceGenerator
     sware_class = GoblinishSware
     faces = []
 
@@ -95,7 +101,7 @@ class Goblin(Goblinoid):
 
 class Giant(Race):
     hair_generator = hair.GiantHairGenerator
-    faces = []
+    face_generator = face.GiantFaceGenerator
 
 
 class Dwarf(Giant):
@@ -214,11 +220,8 @@ def charGen():
     random27 = random.choice(names27)
     random28 = random.choice(names28)
 
-    name1 = "%s a %s, %s face. %s %s eyes, set %s within their sockets, watch %s over the %s they've %s for so long." % (
-        race.hair,
-        face1,
-        face2,
-
+    head = "%s a %s." % (race.hair, race.face)
+    eyes = "%s %s eyes, set %s within their sockets, watch %s over the %s they've %s for so long." % (
         eyes_style,
         eyes_color,
         eyes_depth,
@@ -226,6 +229,10 @@ def charGen():
         sware_town,
         sware_object,
     )
+    name1 = " ".join([
+        head,
+        eyes,
+    ])
     name2 = "%s %s %s %s leaves %s of %s." % (
         mark,
         mark_from,

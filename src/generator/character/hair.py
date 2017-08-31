@@ -5,7 +5,7 @@ class Hair(Generated):
     def __init__(self):
         self.color = "Black"
         self.hairtype = "short hair"
-        self.hairstyle = ""
+        self.hairstyle = "hangs over"
 
     def __repr__(self):
         return "%s, %s %s" % (self.color, self.hairtype, self.hairstyle)
