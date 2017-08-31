@@ -2,6 +2,7 @@ from .special import SpecialSignGenerator
 from .name import NameGenerator
 from .frame import FrameGenerator
 from .strange import StrangeGenerator
+from .attitude import AttitudeGenerator
 import generator.character.race
 import random
 
@@ -44,6 +45,7 @@ class Character():
         self.name= NameGenerator.generate()
         self.frame = FrameGenerator.generate()
         self.strange = StrangeGenerator.generate()
+        self.attitude = AttitudeGenerator.generate()
 
     @property
     def description(self):
@@ -58,10 +60,9 @@ class Character():
             self.race.plural,
             self.frame,
         )
-        personality = "%s But nonetheless, people tend to %s, while %s." % (
+        personality = "%s But nonetheless, %s." % (
             self.strange,
-            "random27",
-            "random28",
+            self.attitude,
         )
 
         return "\n".join([
