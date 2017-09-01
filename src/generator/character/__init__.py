@@ -1,5 +1,6 @@
 from generator import Generated, DataGenerator
-from .special import SpecialSignGenerator
+# from .special import SpecialSignGenerator, ScarGenerator, TattooGenerator
+from . import special as s
 from .frame import FrameGenerator
 from .strange import StrangeGenerator
 from .attitude import AttitudeGenerator
@@ -32,6 +33,29 @@ races = [
     Vampire,
     Werewolf,
 ]
+signs = [
+    s.ScarGenerator,
+    s.ScarsGenerator,
+    s.SwordMarkGenerator,
+    s.GunshotMarkGenerator,
+    s.DebryMarkGenerator,
+    s.FireMarkGenerator,
+    s.BirthmarkGenerator,
+    s.OldTattooGenerator,
+    s.TattooGenerator,
+    s.TribalMarkGenerator,
+    s.MolesGenerator,
+    s.FrecklesGenerator,
+    s.SmoothSkinGenerator,
+    s.SoftSkinGenerator,
+    s.FairSkinGenerator,
+    s.BeardGenerator,
+    s.LargeBeardGenerator,
+    s.DarkStubbleGenerator,
+    s.MoustacheGenerator,
+    s.GoateeGenerator,
+    s.MoustacheAndGoateeGenerator,
+]
 
 
 class Character(Generated):
@@ -43,7 +67,7 @@ class Character(Generated):
         self.face = self.race.face_generator.generate()
         self.eyes = self.race.eyes_generator.generate()
         self.promise = self.race.promise_generator.generate()
-        self.special = SpecialSignGenerator.generate()
+        self.special = None
         self.name = self.race.name_generator.generate()
         self.frame = FrameGenerator.generate()
         self.strange = StrangeGenerator.generate()
@@ -78,6 +102,7 @@ class Character(Generated):
 class CharacterGenerator(DataGenerator):
     generated_class = Character
     races = races
+    specials = signs
 
     @classmethod
     def generate(cls, races=None):
@@ -89,11 +114,12 @@ class CharacterGenerator(DataGenerator):
     @classmethod
     def fill_generated(cls, generated):
         race = generated.race
+        special_generator = random.choice(cls.specials)
         generated.hair = race.hair_generator.generate()
         generated.face = race.face_generator.generate()
         generated.eyes = race.eyes_generator.generate()
         generated.promise = race.promise_generator.generate()
-        generated.special = SpecialSignGenerator.generate()
+        generated.special = special_generator.generate()
         generated.name = race.name_generator.generate()
         generated.frame = FrameGenerator.generate()
         generated.strange = StrangeGenerator.generate()
