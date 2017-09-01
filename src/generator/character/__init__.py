@@ -1,48 +1,47 @@
+from generator import Generated, DataGenerator
 from .special import SpecialSignGenerator
 from .name import NameGenerator
 from .frame import FrameGenerator
 from .strange import StrangeGenerator
 from .attitude import AttitudeGenerator
-import generator.character.race
+from . import race as r
 import random
 
 
 races = [
-    race.Human,
-    race.Human,
-    race.Human,
-    race.Human,
-    race.Elf,
-    race.NightElf,
-    race.BloodElf,
-    race.HighElf,
-    race.WoodElf,
-    race.DarkElf,
-    race.Gnome,
-    race.Troll,
-    race.Orc,
-    race.Goblin,
-    race.Dwarf,
-    race.Giant,
-    race.Halfling,
-    race.Vampire,
-    race.Werewolf,
+    r.Human,
+    r.Human,
+    r.Human,
+    r.Human,
+    r.Elf,
+    r.NightElf,
+    r.BloodElf,
+    r.HighElf,
+    r.WoodElf,
+    r.DarkElf,
+    r.Gnome,
+    r.Troll,
+    r.Orc,
+    r.Goblin,
+    r.Dwarf,
+    r.Giant,
+    r.Halfling,
+    r.Vampire,
+    r.Werewolf,
 ]
 
 
-class Character():
+class Character(Generated):
     def __init__(self, race=None):
         if race is None:
-            race = Race
+            race = r.Race
         self.race = race
-
-    def generate(self):
         self.hair = self.race.hair_generator.generate()
         self.face = self.race.face_generator.generate()
         self.eyes = self.race.eyes_generator.generate()
         self.promise = self.race.promise_generator.generate()
-        self.special= SpecialSignGenerator.generate()
-        self.name= NameGenerator.generate()
+        self.special = SpecialSignGenerator.generate()
+        self.name = NameGenerator.generate()
         self.frame = FrameGenerator.generate()
         self.strange = StrangeGenerator.generate()
         self.attitude = AttitudeGenerator.generate()
@@ -73,10 +72,27 @@ class Character():
         ])
 
 
-def random_character(racelist=None):
-    if racelist is None:
-        racelist = races
-    c = Character(race=random.choice(racelist))
-    c.generate()
-    return c
+class CharacterGenerator(DataGenerator):
+    generated_class = Character
+    races = races
 
+    @classmethod
+    def generate(cls, races=None):
+        if races is None:
+            races = cls.races
+        generated = cls.generated(race=random.choice(races))
+        return cls.fill_generated(generated)
+
+    @classmethod
+    def fill_generated(cls, generated):
+        race = generated.race
+        generated.hair = race.hair_generator.generate()
+        generated.face = race.face_generator.generate()
+        generated.eyes = race.eyes_generator.generate()
+        generated.promise = race.promise_generator.generate()
+        generated.special = SpecialSignGenerator.generate()
+        generated.name = NameGenerator.generate()
+        generated.frame = FrameGenerator.generate()
+        generated.strange = StrangeGenerator.generate()
+        generated.attitude = AttitudeGenerator.generate()
+        return generated

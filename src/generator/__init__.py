@@ -45,8 +45,8 @@ class DataGenerator():
     generated_class = Generated
 
     @classmethod
-    def generated(cls):
-        return cls.generated_class()
+    def generated(cls, *args, **kwargs):
+        return cls.generated_class(*args, **kwargs)
 
     @classmethod
     def generate_value(cls):
