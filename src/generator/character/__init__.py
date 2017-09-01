@@ -3,7 +3,6 @@ from generator import Generated, DataGenerator
 from . import special as s
 from .frame import FrameGenerator
 from .strange import StrangeGenerator
-from .attitude import AttitudeGenerator
 from .race import Race, Human, Vampire, Werewolf
 from .race.elf import Elf, NightElf, BloodElf, HighElf, WoodElf, DarkElf
 from .race.gnome import Gnome
@@ -33,7 +32,7 @@ races = [
     Vampire,
     Werewolf,
 ]
-woman_signs = [
+male_specials = [
     s.ScarGenerator,
     s.ScarsGenerator,
     s.SwordMarkGenerator,
@@ -42,21 +41,36 @@ woman_signs = [
     s.FireMarkGenerator,
     s.BirthmarkGenerator,
     s.OldTattooGenerator,
-    s.TattooGenerator,
+    s.MaleTattooGenerator,
     s.TribalMarkGenerator,
     s.MolesGenerator,
     s.FrecklesGenerator,
     s.SmoothSkinGenerator,
     s.SoftSkinGenerator,
     s.FairSkinGenerator,
-]
-man_signs = woman_signs + [
     s.BeardGenerator,
     s.LargeBeardGenerator,
     s.DarkStubbleGenerator,
     s.MoustacheGenerator,
     s.GoateeGenerator,
     s.MoustacheAndGoateeGenerator,
+]
+female_specials = [
+    s.ScarGenerator,
+    s.ScarsGenerator,
+    s.SwordMarkGenerator,
+    s.GunshotMarkGenerator,
+    s.DebryMarkGenerator,
+    s.FireMarkGenerator,
+    s.BirthmarkGenerator,
+    s.OldTattooGenerator,
+    s.FemaleTattooGenerator,
+    s.TribalMarkGenerator,
+    s.MolesGenerator,
+    s.FrecklesGenerator,
+    s.SmoothSkinGenerator,
+    s.SoftSkinGenerator,
+    s.FairSkinGenerator,
 ]
 
 
@@ -66,15 +80,25 @@ class Character(Generated):
             race = Race
         self.sex = sex
         self.race = race
-        self.hair = self.race.hair_generator(sex).generate()
-        self.face = self.race.face_generator.generate()
-        self.eyes = self.race.eyes_generator.generate()
-        self.promise = self.race.promise_generator.generate()
-        self.special = None
-        self.name = self.race.name_generator(sex).generate()
+        self.generate()
+
+    def generate(self):
+        if self.sex == 1:
+            specials = female_specials
+        else:
+            specials = male_specials
+        special_generator = random.choice(specials)
+
+        g = self.race.generators(self.sex)
+        self.hair = g.hair.generate()
+        self.face = g.face.generate()
+        self.eyes = g.eyes.generate()
+        self.promise = g.promise.generate()
+        self.special = special_generator.generate()
+        self.name = g.name.generate()
         self.frame = FrameGenerator.generate()
         self.strange = StrangeGenerator.generate()
-        self.attitude = AttitudeGenerator.generate()
+        self.attitude = g.attitude.generate()
 
     @property
     def description(self):
@@ -121,7 +145,8 @@ class Character(Generated):
 class CharacterGenerator(DataGenerator):
     generated_class = Character
     races = races
-    specials = man_signs
+    male_specials = male_specials
+    female_specials = female_specials
 
     @classmethod
     def generate(cls, races=None, sex=None):
@@ -134,17 +159,5 @@ class CharacterGenerator(DataGenerator):
 
     @classmethod
     def fill_generated(cls, generated):
-        race = generated.race
-        sex = generated.sex
-        special_generator = random.choice(cls.specials)
-
-        generated.hair = race.hair_generator(sex).generate()
-        generated.face = race.face_generator.generate()
-        generated.eyes = race.eyes_generator.generate()
-        generated.promise = race.promise_generator.generate()
-        generated.special = special_generator.generate()
-        generated.name = race.name_generator(sex).generate()
-        generated.frame = FrameGenerator.generate()
-        generated.strange = StrangeGenerator.generate()
-        generated.attitude = AttitudeGenerator.generate()
+        generated.generate()
         return generated

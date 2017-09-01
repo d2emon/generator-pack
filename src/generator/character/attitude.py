@@ -13,7 +13,7 @@ class Attitude(Generated):
         )
 
 
-class AttitudeGenerator(ListGenerator):
+class MaleAttitudeGenerator(ListGenerator):
     generated_class = Attitude
     attitudes = [
         "keep their distance",
@@ -49,7 +49,6 @@ class AttitudeGenerator(ListGenerator):
         "share local gossip with {{him}}",
         "be curious about {{him}}",
         "treat {{him}} like family",
-        # "hopelessly try to seduce her",
     ]
     attitudes2 = [
         "trying to subtlely stare",
@@ -75,8 +74,8 @@ class AttitudeGenerator(ListGenerator):
         "spreading rumors about {{him}} behind {{his}} back",
         "spreading stories about {{him}}",
         "making up bigger stories about {{him}}",
-        "training with {{him}} whenever he's available",
-        "treating {{him}} to a good meal when he's around",
+        "training with {{him}} whenever {{he}}'s available",
+        "treating {{him}} to a good meal when {{he}}'s around",
     ]
 
     @classmethod
@@ -84,3 +83,42 @@ class AttitudeGenerator(ListGenerator):
         generated.attitude = cls.generate_value(cls.attitudes)
         generated.attitude2 = cls.generate_value(cls.attitudes2)
         return generated
+
+
+class FemaleAttitudeGenerator(MaleAttitudeGenerator):
+    attitudes = [
+        "keep their distance",
+        "flock towards {{him}}",
+        "worship {{him}}",
+        "befriend {{him}}",
+        "assist {{him}}",
+        "follow {{him}}",
+        "welcome {{him}}",
+        "welcome {{him}} with open arms",
+        "invite {{him}} into their homes",
+        "hit it off with {{him}}",
+        "ask {{him}} for favors",
+        "shower {{him}} with gifts",
+        "subtly ignore {{him}}",
+        "pretend to be {{his}} friend",
+        "pretend to be {{his}} best friend",
+        "lie about knowing {{him}} to brag",
+        "brag about knowing {{him}}",
+        "take pride in knowing {{him}}",
+        "take pride in knowing {{him}} as a friend",
+        "wish to get to know {{him}} better",
+        "become {{his}} friend",
+        "socialize with {{him}}",
+        "try to get {{him}} to marry their off-spring",
+        "buy {{him}} a drink",
+        "salute {{him}} in the streets",
+        "stay on {{his}} good side",
+        "thank {{him}} for {{his}} service",
+        "ask {{him}} to tell stories",
+        "ask {{him}} about {{his}} adventures",
+        "ask {{him}} about {{his}} latest victory",
+        "share local gossip with {{him}}",
+        "be curious about {{him}}",
+        "treat {{him}} like family",
+        "hopelessly try to seduce her",
+    ]

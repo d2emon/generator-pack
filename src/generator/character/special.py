@@ -43,7 +43,7 @@ class Tattoo(SpecialSign):
         SpecialSign.__init__(self)
         self.form = "resembling a shield"
         self.visibility = "is almost hidden"
-        self.placement = "on the right side of his neck"
+        self.placement = "on the right side of {{his}} neck"
 
     @property
     def description(self):
@@ -59,8 +59,8 @@ class TribalMark(SpecialSign):
     def __init__(self):
         SpecialSign.__init__(self)
         self.signtype = "Tribal marks"
-        self.form = "in the form of 1 stripe under his right eye"
-        self.meaning = "marks his heritage"
+        self.form = "in the form of 1 stripe under {{his}} right eye"
+        self.meaning = "marks {{his}} heritage"
 
     @property
     def description(self):
@@ -76,7 +76,7 @@ class Moles(SpecialSign):
         SpecialSign.__init__(self)
         self.signtype = "Several moles"
         self.style = "charmingly"
-        self.placement = "on his left cheek and"
+        self.placement = "on {{his}} left cheek and"
 
     @property
     def description(self):
@@ -101,7 +101,7 @@ class Beard(SpecialSign):
 
     @property
     def description(self):
-        return "%s %s compliments his %s" % (
+        return "%s %s compliments {{his}} %s" % (
             self.signtype,
             self.style,
             self.placement,
@@ -268,6 +268,41 @@ class ScarGenerator(SpecialSignGenerator):
 class TattooGenerator(SpecialSignGenerator):
     generated_class = Tattoo
     signtype = "A tattoo"
+    forms = []
+    visibilities = [
+        "is almost hidden",
+        "is displayed",
+        "is subtly placed",
+        "is prominently featured",
+        "is proudly worn"
+    ]
+    placements = [
+        "on the right side of {{his}} neck",
+        "on the left side of {{his}} neck",
+        "just below {{his}} right eye",
+        "just below {{his}} left eye",
+        "on the side of {{his}} right cheekbone",
+        "on the side of {{his}} left cheekbone",
+        "on the side of the left eye",
+        "on the side of {{his}} right eye",
+        "just above the side of {{his}} left eye",
+        "just above the side of {{his}} right eye",
+        "just above the right side of {{his}} right eyebrow",
+        "just above the left side of {{his}} left eyebrow"
+    ]
+
+    @classmethod
+    def fill_generated(cls, generated):
+        generated.signtype = cls.signtype
+        generated.form = cls.generate_value(cls.forms)
+        generated.visibility = cls.generate_value(cls.visibilities)
+        generated.placement = cls.generate_value(cls.placements)
+        generated.memory = cls.generate_value(cls.memories)
+        generated.origin = cls.generate_value(cls.origins)
+        return generated
+
+
+class MaleTattooGenerator(TattooGenerator):
     forms = [
         "resembling a shield",
         "resembling a sword",
@@ -308,37 +343,52 @@ class TattooGenerator(SpecialSignGenerator):
         "resembling a dagger",
         "resembling a wolf paw",
     ]
-    visibilities = [
-        "is almost hidden",
-        "is displayed",
-        "is subtly placed",
-        "is prominently featured",
-        "is proudly worn"
-    ]
-    placements = [
-        "on the right side of his neck",
-        "on the left side of his neck",
-        "just below his right eye",
-        "just below his left eye",
-        "on the side of his right cheekbone",
-        "on the side of his left cheekbone",
-        "on the side of the left eye",
-        "on the side of his right eye",
-        "just above the side of his left eye",
-        "just above the side of his right eye",
-        "just above the right side of his right eyebrow",
-        "just above the left side of his left eyebrow"
-    ]
 
-    @classmethod
-    def fill_generated(cls, generated):
-        generated.signtype = cls.signtype
-        generated.form = cls.generate_value(cls.forms)
-        generated.visibility = cls.generate_value(cls.visibilities)
-        generated.placement = cls.generate_value(cls.placements)
-        generated.memory = cls.generate_value(cls.memories)
-        generated.origin = cls.generate_value(cls.origins)
-        return generated
+
+class FemaleTattooGenerator(TattooGenerator):
+    forms = [
+        "resembling a rose",
+        "resembling a petal",
+        "of a heart",
+        "resembling a shield",
+        "resembling a sword",
+        "resembling a skull",
+        "resembling a flag",
+        "resembling a tear",
+        "of a small dragon",
+        "of a small cross",
+        "of a small star",
+        "of a small eagle",
+        "of a small swallow",
+        "of a small lion",
+        "of a small wolf",
+        "of a small bear",
+        "of a bear paw",
+        "of a lion paw",
+        "of an eagle claw",
+        "of a talon",
+        "of a dagger",
+        "of a wolf paw",
+        "of a shield",
+        "of a sword",
+        "of a skull",
+        "of a flag",
+        "of a tear",
+        "resembling a small dragon",
+        "resembling a small cross",
+        "resembling a small star",
+        "resembling a small eagle",
+        "resembling a small swallow",
+        "resembling a small lion",
+        "resembling a small wolf",
+        "resembling a small bear",
+        "resembling a bear paw",
+        "resembling a lion paw",
+        "resembling an eagle claw",
+        "resembling a talon",
+        "resembling a dagger",
+        "resembling a wolf paw",
+    ]
 
 
 class TribalMarkGenerator(SpecialSignGenerator):
@@ -347,40 +397,40 @@ class TribalMarkGenerator(SpecialSignGenerator):
     forms = [
         "in the form of 2 stripes running from above the eyes to the bottom of the cheeks",
         "in the form of 2 stripes on each side of the face, running from just above the eyes to the bottom of the cheeks",
-        "in the form of 1 stripe under his right eye",
-        "in the form of 1 stripe under his left eye",
-        "in the form of 2 stripes under his right eye",
-        "in the form of 2 stripes under his left eye",
+        "in the form of 1 stripe under {{his}} right eye",
+        "in the form of 1 stripe under {{his}} left eye",
+        "in the form of 2 stripes under {{his}} right eye",
+        "in the form of 2 stripes under {{his}} left eye",
         "in the form of 1 stripe under each eye",
         "in the form of 1 stripe under each eye",
         "in the form of 2 stripes under each eye",
         "in the form of 2 stripes under each eye",
-        "in the form of a stripe above and below his right eye",
-        "in the form of a stripe above and below his left eye",
-        "in the form of a stripe above and below both his eyes",
-        "in the form of 1 stripe above and 2 stripes below his right eye",
-        "in the form of 1 stripe above and 2 stripes below his left eye",
-        "in the form of 1 stripe above and 2 stripes below both his eyes",
-        "in the form of a diagonal line across his right eye",
-        "in the form of a diagonal line across his left eye",
-        "resembling a lightning bolt under his right eye",
-        "resembling a lightning bolt under his left eye",
-        "resembling a horizontal lightning bolt under his right eye",
-        "resembling a horizontal lightning bolt under his left eye",
-        "resembling two large lightning bolts on each side of his face",
+        "in the form of a stripe above and below {{his}} right eye",
+        "in the form of a stripe above and below {{his}} left eye",
+        "in the form of a stripe above and below both {{his}} eyes",
+        "in the form of 1 stripe above and 2 stripes below {{his}} right eye",
+        "in the form of 1 stripe above and 2 stripes below {{his}} left eye",
+        "in the form of 1 stripe above and 2 stripes below both {{his}} eyes",
+        "in the form of a diagonal line across {{his}} right eye",
+        "in the form of a diagonal line across {{his}} left eye",
+        "resembling a lightning bolt under {{his}} right eye",
+        "resembling a lightning bolt under {{his}} left eye",
+        "resembling a horizontal lightning bolt under {{his}} right eye",
+        "resembling a horizontal lightning bolt under {{his}} left eye",
+        "resembling two large lightning bolts on each side of {{his}} face",
     ]
     meanings = [
-        "marks his heritage",
-        "marks his ancestry",
-        "marks his skills in combat",
-        "marks his rank",
-        "marks his upbringing",
-        "marks his legacy",
-        "marks his birthright",
-        "marks his heirship",
-        "marks his descent",
-        "marks his lineage",
-        "marks his blood relation",
+        "marks {{his}} heritage",
+        "marks {{his}} ancestry",
+        "marks {{his}} skills in combat",
+        "marks {{his}} rank",
+        "marks {{his}} upbringing",
+        "marks {{his}} legacy",
+        "marks {{his}} birthright",
+        "marks {{his}} heirship",
+        "marks {{his}} descent",
+        "marks {{his}} lineage",
+        "marks {{his}} blood relation",
     ]
 
     @classmethod
@@ -415,12 +465,12 @@ class MolesGenerator(SpecialSignGenerator):
         "peculiarly",
     ]
     placements = [
-        "on his left cheek and",
-        "on his right cheek and",
-        "across his whole face and",
-        "across his forehead and",
-        "around his nose and",
-        "on his neck and",
+        "on {{his}} left cheek and",
+        "on {{his}} right cheek and",
+        "across {{his}} whole face and",
+        "across {{his}} forehead and",
+        "around {{his}} nose and",
+        "on {{his}} neck and",
     ]
     memories = [
         "a pleasant memory",
@@ -491,11 +541,11 @@ class FrecklesGenerator(MolesGenerator):
         "neatly",
     ]
     placements = [
-        "around his cheeks and",
-        "across his whole face and",
-        "across his cheeks and",
-        "across his cheeks and forehead and",
-        "around his nose and cheekbones and",
+        "around {{his}} cheeks and",
+        "across {{his}} whole face and",
+        "across {{his}} cheeks and",
+        "across {{his}} cheeks and forehead and",
+        "around {{his}} nose and cheekbones and",
     ]
     memories = [
         "a pleasant memory",
