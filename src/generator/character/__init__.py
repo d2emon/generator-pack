@@ -1,47 +1,50 @@
 from generator import Generated, DataGenerator
 from .special import SpecialSignGenerator
-from .name import NameGenerator
 from .frame import FrameGenerator
 from .strange import StrangeGenerator
 from .attitude import AttitudeGenerator
-from . import race as r
+from .race import Race, Human, Vampire, Werewolf
+from .race.elf import Elf, NightElf, BloodElf, HighElf, WoodElf, DarkElf
+from .race.gnome import Gnome
+from .race.goblin import Troll, Orc, Goblin
+from .race.dwarf import Dwarf, Giant, Halfling
 import random
 
 
 races = [
-    r.Human,
-    r.Human,
-    r.Human,
-    r.Human,
-    r.Elf,
-    r.NightElf,
-    r.BloodElf,
-    r.HighElf,
-    r.WoodElf,
-    r.DarkElf,
-    r.Gnome,
-    r.Troll,
-    r.Orc,
-    r.Goblin,
-    r.Dwarf,
-    r.Giant,
-    r.Halfling,
-    r.Vampire,
-    r.Werewolf,
+    Human,
+    Human,
+    Human,
+    Human,
+    Elf,
+    NightElf,
+    BloodElf,
+    HighElf,
+    WoodElf,
+    DarkElf,
+    Gnome,
+    Troll,
+    Orc,
+    Goblin,
+    Dwarf,
+    Giant,
+    Halfling,
+    Vampire,
+    Werewolf,
 ]
 
 
 class Character(Generated):
     def __init__(self, race=None):
         if race is None:
-            race = r.Race
+            race = Race
         self.race = race
         self.hair = self.race.hair_generator.generate()
         self.face = self.race.face_generator.generate()
         self.eyes = self.race.eyes_generator.generate()
         self.promise = self.race.promise_generator.generate()
         self.special = SpecialSignGenerator.generate()
-        self.name = NameGenerator.generate()
+        self.name = self.race.name_generator.generate()
         self.frame = FrameGenerator.generate()
         self.strange = StrangeGenerator.generate()
         self.attitude = AttitudeGenerator.generate()
@@ -91,7 +94,7 @@ class CharacterGenerator(DataGenerator):
         generated.eyes = race.eyes_generator.generate()
         generated.promise = race.promise_generator.generate()
         generated.special = SpecialSignGenerator.generate()
-        generated.name = NameGenerator.generate()
+        generated.name = race.name_generator.generate()
         generated.frame = FrameGenerator.generate()
         generated.strange = StrangeGenerator.generate()
         generated.attitude = AttitudeGenerator.generate()
