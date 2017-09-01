@@ -1,31 +1,38 @@
-from generator.character.hair import HairGenerator
+from generator.character.hair import MaleHairGenerator, FemaleHairGenerator
 from generator.character.face import FaceGenerator
 from generator.character.promise import PromiseGenerator
 from generator.character.name import NameGenerator
 from generator.character.race import Race
 
 
-class GoblinHairGenerator(HairGenerator):
-    hairtypes = [
-        "short hair",
-        "short hair",
-        "short hair",
-        # "perfectly groomed hair",
-        # "well groomed hair",
-        # "sleek hair",
-        "long hair",
-        "curly hair",
-        "straight hair",
-        # "flowing hair",
-        # "wavy hair",
-        "coily hair",
-        "shaggy hair",
-        "greasy hair",
-        "oily hair",
-        "frizzy hair",
-        "shoulder-length hair",
-        "dreadlocks",
-    ]  # 2
+goblin_hairtypes = [
+    "short hair",
+    "short hair",
+    "short hair",
+    # "perfectly groomed hair",
+    # "well groomed hair",
+    # "sleek hair",
+    "long hair",
+    "curly hair",
+    "straight hair",
+    # "flowing hair",
+    # "wavy hair",
+    "coily hair",
+    "shaggy hair",
+    "greasy hair",
+    "oily hair",
+    "frizzy hair",
+    "shoulder-length hair",
+    "dreadlocks",
+]  # 2
+
+
+class GoblinMaleHairGenerator(MaleHairGenerator):
+    hairtypes = goblin_hairtypes
+
+
+class GoblinFemaleHairGenerator(FemaleHairGenerator):
+    hairtypes = goblin_hairtypes
 
 
 class GoblinFaceGenerator(FaceGenerator):
@@ -71,8 +78,8 @@ class GoblinPromiseGenerator(PromiseGenerator):
         "rivers",
         "river",
         "sea",
-        "woods",
-        "woodlands",
+        # "woods",
+        # "woodlands",
         "clan",
         "folk",
         "tribe",
@@ -85,7 +92,7 @@ class GoblinPromiseGenerator(PromiseGenerator):
     ]
 
 
-class TrollNameGenerator(NameGenerator):
+class TrollMaleNameGenerator(NameGenerator):
     firstnames = [
         "Ekon",
         "Erasto",
@@ -124,7 +131,22 @@ class TrollNameGenerator(NameGenerator):
     ]
 
 
-class OrcNameGenerator(NameGenerator):
+class TrollFemaleNameGenerator(TrollMaleNameGenerator):
+    firstnames = [
+        "Gir'Enji",
+        "Yahuja",
+        "Feyini",
+        "Ziruja",
+        "Zeyra",
+        "Zuladur",
+        "Zujula",
+        "Sonayo",
+        "Vulino",
+        "Yaonji",
+    ]
+
+
+class OrcMaleNameGenerator(NameGenerator):
     firstnames = [
         "Gnarg",
         "Gnarlug",
@@ -159,7 +181,22 @@ class OrcNameGenerator(NameGenerator):
     ]
 
 
-class GoblinNameGenerator(NameGenerator):
+class OrcFemaleNameGenerator(OrcMaleNameGenerator):
+    firstnames = [
+        "Umoda",
+        "Zonkaja",
+        "Goredo",
+        "Umakuma",
+        "Groanu",
+        "Zunala",
+        "Gredula",
+        "Sheeda",
+        "Greras",
+        "Elgudo",
+    ]
+
+
+class GoblinMaleNameGenerator(NameGenerator):
     firstnames = [
         "Karax",
         "Baxeek",
@@ -186,11 +223,28 @@ class GoblinNameGenerator(NameGenerator):
     ]
 
 
+class GoblinFemaleNameGenerator(GoblinMaleNameGenerator):
+    firstnames = [
+        "Amizenee",
+        "Nexlee",
+        "Pybilope",
+        "Nalleex",
+        "Glelee",
+        "Glyxi",
+        "Linxie",
+        "Minzi",
+        "Glebizee",
+        "Fluxinky",
+    ]
+
+
 class Goblinoid(Race):
     name = "Goblinoid"
     plural = "goblinoids"
 
-    hair_generator = GoblinHairGenerator
+    male_hair_generator = GoblinMaleHairGenerator
+    female_hair_generator = GoblinFemaleHairGenerator
+
     face_generator = GoblinFaceGenerator
     promise_generator = GoblinPromiseGenerator
 
@@ -199,18 +253,21 @@ class Troll(Goblinoid):
     name = "Troll"
     plural = "trolls"
 
-    name_generator = TrollNameGenerator
+    male_name_generator = TrollMaleNameGenerator
+    female_name_generator = TrollFemaleNameGenerator
 
 
 class Orc(Goblinoid):
     name = "Orc"
     plural = "orcs"
 
-    name_generator = OrcNameGenerator
+    male_name_generator = OrcMaleNameGenerator
+    female_name_generator = OrcFemaleNameGenerator
 
 
 class Goblin(Goblinoid):
     name = "Goblin"
     plural = "goblins"
 
-    name_generator = GoblinNameGenerator
+    male_name_generator = GoblinMaleNameGenerator
+    female_name_generator = GoblinFemaleNameGenerator

@@ -33,7 +33,7 @@ races = [
     Vampire,
     Werewolf,
 ]
-signs = [
+woman_signs = [
     s.ScarGenerator,
     s.ScarsGenerator,
     s.SwordMarkGenerator,
@@ -49,6 +49,8 @@ signs = [
     s.SmoothSkinGenerator,
     s.SoftSkinGenerator,
     s.FairSkinGenerator,
+]
+man_signs = woman_signs + [
     s.BeardGenerator,
     s.LargeBeardGenerator,
     s.DarkStubbleGenerator,
@@ -59,16 +61,17 @@ signs = [
 
 
 class Character(Generated):
-    def __init__(self, race=None):
+    def __init__(self, race=None, sex=0):
         if race is None:
             race = Race
+        self.sex = sex
         self.race = race
-        self.hair = self.race.hair_generator.generate()
+        self.hair = self.race.hair_generator(sex).generate()
         self.face = self.race.face_generator.generate()
         self.eyes = self.race.eyes_generator.generate()
         self.promise = self.race.promise_generator.generate()
         self.special = None
-        self.name = self.race.name_generator.generate()
+        self.name = self.race.name_generator(sex).generate()
         self.frame = FrameGenerator.generate()
         self.strange = StrangeGenerator.generate()
         self.attitude = AttitudeGenerator.generate()
@@ -91,36 +94,56 @@ class Character(Generated):
             self.attitude,
         )
 
-        return "\n".join([
+        description = "\n".join([
             head,
             str(self.special),
             title,
             personality,
         ])
 
+        replaces = {
+            "{{He}}": "He",
+            "{{he}}": "he",
+            "{{him}}": "him",
+            "{{his}}": "his",
+        }
+        if self.sex == 1:
+            replaces["{{He}}"] = "She"
+            replaces["{{he}}"] = "she"
+            replaces["{{him}}"] = "her"
+            replaces["{{his}}"] = "her"
+
+        for k, v in replaces.items():
+            description = description.replace(k, v)
+        return description
+
 
 class CharacterGenerator(DataGenerator):
     generated_class = Character
     races = races
-    specials = signs
+    specials = man_signs
 
     @classmethod
-    def generate(cls, races=None):
+    def generate(cls, races=None, sex=None):
         if races is None:
             races = cls.races
-        generated = cls.generated(race=random.choice(races))
+        if sex is None:
+            sex = random.choice([0, 1])
+        generated = cls.generated(race=random.choice(races), sex=sex)
         return cls.fill_generated(generated)
 
     @classmethod
     def fill_generated(cls, generated):
         race = generated.race
+        sex = generated.sex
         special_generator = random.choice(cls.specials)
-        generated.hair = race.hair_generator.generate()
+
+        generated.hair = race.hair_generator(sex).generate()
         generated.face = race.face_generator.generate()
         generated.eyes = race.eyes_generator.generate()
         generated.promise = race.promise_generator.generate()
         generated.special = special_generator.generate()
-        generated.name = race.name_generator.generate()
+        generated.name = race.name_generator(sex).generate()
         generated.frame = FrameGenerator.generate()
         generated.strange = StrangeGenerator.generate()
         generated.attitude = AttitudeGenerator.generate()

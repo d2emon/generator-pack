@@ -1,31 +1,37 @@
-from generator.character.hair import HairGenerator
+from generator.character.hair import MaleHairGenerator, FemaleHairGenerator
 from generator.character.face import FaceGenerator
 from generator.character.name import NameGenerator
 from generator.character.race import Race
 
 
-class DwarfHairGenerator(HairGenerator):
-    hairtypes = [
-        "short hair",
-        "short hair",
-        "short hair",
-        # "perfectly groomed hair",
-        # "well groomed hair",
-        # "sleek hair",
-        "long hair",
-        "curly hair",
-        # "straight hair",
-        # "flowing hair",
-        # "wavy hair",
-        # "sleek hair",
-        "coily hair",
-        "greasy hair",
-        "shaggy hair",
-        "oily hair",
-        "frizzy hair",
-        # "shaggy hair",
-        "shoulder-length hair",
-    ]  # 2
+dwarf_hairtypes = [
+    "short hair",
+    "short hair",
+    "short hair",
+    # "perfectly groomed hair",
+    # "well groomed hair",
+    # "sleek hair",
+    "long hair",
+    "curly hair",
+    # "straight hair",
+    # "flowing hair",
+    # "wavy hair",
+    # "sleek hair",
+    "coily hair",
+    "greasy hair",
+    "shaggy hair",
+    "oily hair",
+    "frizzy hair",
+    # "shaggy hair",
+    "shoulder-length hair",
+]
+
+class DwarfMaleHairGenerator(MaleHairGenerator):
+    hairtypes = dwarf_hairtypes
+
+
+class DwarfFemaleHairGenerator(FemaleHairGenerator):
+    hairtypes = dwarf_hairtypes
 
 
 class DwarfFaceGenerator(FaceGenerator):
@@ -49,7 +55,7 @@ class DwarfFaceGenerator(FaceGenerator):
     ]
 
 
-class DwarfNameGenerator(NameGenerator):
+class DwarfMaleNameGenerator(NameGenerator):
     firstnames = [
         "Bengahdar",
         "Banbrek",
@@ -76,13 +82,32 @@ class DwarfNameGenerator(NameGenerator):
     ]
 
 
+class DwarfFemaleNameGenerator(DwarfMaleNameGenerator):
+    firstnames = [
+        "Belianyss",
+        "Daerahniss",
+        "Dearirwyn",
+        "Brenunwyn",
+        "Gwenirnys",
+        "Bretianura",
+        "Einormyl",
+        "Breteodiel",
+        "Bellores",
+        "Brylilen",
+    ]
+
+
 class Dwarf(Race):
     name = "Dwarf"
     plural = "dwarves"
 
-    hair_generator = DwarfHairGenerator
+    male_hair_generator = DwarfMaleHairGenerator
+    female_hair_generator = DwarfFemaleHairGenerator
+
     face_generator = DwarfFaceGenerator
-    name_generator = DwarfNameGenerator
+
+    male_name_generator = DwarfMaleNameGenerator
+    female_name_generator = DwarfFemaleNameGenerator
 
 
 class Giant(Dwarf):

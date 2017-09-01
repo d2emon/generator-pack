@@ -1,52 +1,61 @@
-from generator.character.hair import HairGenerator
+from generator.character.hair import MaleHairGenerator, FemaleHairGenerator
 from generator.character.face import FaceGenerator
 from generator.character.name import NameGenerator
 from generator.character.race import Race
 
 
-class GnomeHairGenerator(HairGenerator):
-    colors = [
-        "Purple",
-        "Blue",
-        "Green",
-        "Red",
-        "White",
-        # "Blonde",
-        "Brown",
-        "Light blue",
-        "Light green",
-        # "Pink",
-        "Orange",
-        "Silver",
-        "Golden",
-        "Yellow",
-        "Black",
-        "Blue",
-        "Brown",
-        "Hazel",
-        "Black",
-        "Green",
-        "Amber",
-        "Gray",
-    ]  # 1
-    hairtypes = [
-        "short hair",
-        "short hair",
-        "short hair",
-        # "perfectly groomed hair",
-        # "well groomed hair",
-        # "sleek hair",
-        "long hair",
-        "curly hair",
-        "straight hair",
-        # "flowing hair",
-        # "wavy hair",
-        "sleek hair",
-        "frizzy hair",
-        "shaggy hair",
-        "shoulder-length hair",
+gnome_hair_colors = [
+    "Purple",
+    "Blue",
+    "Green",
+    "Red",
+    "White",
+    # "Blonde",
+    "Brown",
+    "Light blue",
+    "Light green",
+    # "Pink",
+    "Orange",
+    "Silver",
+    "Golden",
+    "Yellow",
+    "Black",
+    "Blue",
+    "Brown",
+    "Hazel",
+    "Black",
+    "Green",
+    "Amber",
+    "Gray",
+]  # 1
 
-    ]  # 2
+gnome_hairtypes = [
+    "short hair",
+    "short hair",
+    "short hair",
+    # "perfectly groomed hair",
+    # "well groomed hair",
+    # "sleek hair",
+    "long hair",
+    "curly hair",
+    "straight hair",
+    # "flowing hair",
+    # "wavy hair",
+    "sleek hair",
+    "frizzy hair",
+    "shaggy hair",
+    "shoulder-length hair",
+]  # 2
+
+
+class GnomeMaleHairGenerator(MaleHairGenerator):
+    colors = gnome_hair_colors
+    hairtypes = gnome_hairtypes
+
+
+class GnomeFemaleHairGenerator(FemaleHairGenerator):
+    colors = gnome_hair_colors
+    hairtypes = gnome_hairtypes
 
 
 class GnomeFaceGenerator(FaceGenerator):
@@ -70,7 +79,7 @@ class GnomeFaceGenerator(FaceGenerator):
     ]
 
 
-class GnomeNameGenerator(NameGenerator):
+class GnomeMaleNameGenerator(NameGenerator):
     firstnames = [
         "Glinoflonk",
         "Bonlebick",
@@ -97,10 +106,29 @@ class GnomeNameGenerator(NameGenerator):
     ]
 
 
+class GnomeFemaleNameGenerator(GnomeMaleNameGenerator):
+    firstnames = [
+        "Glinkeefonk",
+        "Binfink",
+        "Tolikink",
+        "Katbrick",
+        "Tiltinkle",
+        "Tinkeeflonk",
+        "Bonfinkle",
+        "Tyntinkle",
+        "Mittlefink",
+        "Talmink",
+    ]
+
+
 class Gnome(Race):
     name = "Gnome"
     plural = "gnomes"
 
-    hair_generator = GnomeHairGenerator
+    male_hair_generator = GnomeMaleHairGenerator
+    female_hair_generator = GnomeFemaleHairGenerator
+
     face_generator = GnomeFaceGenerator
-    name_generator = GnomeNameGenerator
+
+    male_name_generator = GnomeMaleNameGenerator
+    female_name_generator = GnomeFemaleNameGenerator

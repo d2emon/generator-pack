@@ -7,6 +7,7 @@ class Promise(Generated):
         self.promisetype = "protected"
 
     def __repr__(self):
+        # "the " + names10[random10] + " they've " + names11[random11] + " for so long.";
         return "the %s they've %s for so long" % (
             self.settlement,
             self.promisetype,

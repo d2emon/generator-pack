@@ -1,4 +1,4 @@
-from generator.character.hair import HairGenerator
+from generator.character.hair import MaleHairGenerator, FemaleHairGenerator
 from generator.character.face import FaceGenerator
 from generator.character.eyes import EyesGenerator
 from generator.character.promise import PromiseGenerator
@@ -6,21 +6,23 @@ from generator.character.name import NameGenerator
 from generator.character.race import Race
 
 
-class ElfHairGenerator(HairGenerator):
-    colors = [
-        "Purple",
-        "Blue",
-        "Green",
-        "Red",
-        "White",
-        "Blonde",
-        "Brown",
-        "Light blue",
-        "Light green",
-        "Pink",
-        "Silver",
-        "Golden",
-    ]  # 1
+elf_hair_colors = [
+    "Purple",
+    "Blue",
+    "Green",
+    "Red",
+    "White",
+    "Blonde",
+    "Brown",
+    "Light blue",
+    "Light green",
+    "Pink",
+    "Silver",
+    "Golden",
+]  # 1
+
+class ElfMaleHairGenerator(MaleHairGenerator):
+    colors = elf_hair_colors
     hairtypes = [
         "perfectly groomed hair",
         "well groomed hair",
@@ -32,6 +34,24 @@ class ElfHairGenerator(HairGenerator):
         "wavy hair",
         "shoulder-length hair",
     ]  # 2
+
+
+class ElfFemaleHairGenerator(FemaleHairGenerator):
+    colors = elf_hair_colors
+    hairtypes = [
+        "perfectly groomed hair",
+        "well groomed hair",
+        "long wavy hair",
+        "long layed hair",
+        "layered hair",
+        "sleek hair",
+        "long hair",
+        "curly hair",
+        "straight hair",
+        "flowing hair",
+        "wavy hair",
+        "shoulder-length hair",
+    ]
 
 
 class ElfFaceGenerator(FaceGenerator):
@@ -100,7 +120,7 @@ class ElfPromiseGenerator(PromiseGenerator):
     ]
 
 
-class ElfNameGenerator(NameGenerator):
+class ElfMaleNameGenerator(NameGenerator):
     firstnames = [
         "Wyninn",
         "Ninleyn",
@@ -135,15 +155,34 @@ class ElfNameGenerator(NameGenerator):
     ]
 
 
+class ElfFemaleNameGenerator(ElfMaleNameGenerator):
+    firstnames = [
+        "Ylsysea",
+        "Nilerea",
+        "Lelselea",
+        "Lelarea",
+        "Nafareath",
+        "Felerai",
+        "Sillaesa",
+        "Leadrieth",
+        "Yneasia",
+        "Iyohara"
+    ]
+
+
 class Elf(Race):
     name = "Elf"
     plural = "elves"
 
-    hair_generator = ElfHairGenerator
+    male_hair_generator = ElfMaleHairGenerator
+    female_hair_generator = ElfFemaleHairGenerator
+
     face_generator = ElfFaceGenerator
     eyes_generator = ElfEyesGenerator
     promise_generator = ElfPromiseGenerator
-    name_generator = ElfNameGenerator
+
+    male_name_generator = ElfMaleNameGenerator
+    female_name_generator = ElfFemaleNameGenerator
 
 
 class NightElf(Elf):

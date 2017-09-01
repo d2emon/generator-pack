@@ -8,6 +8,7 @@ class Name(Generated):
         self.title = ""
 
     def __repr__(self):
+        # names18[random18] + " " + names19[random19] + ", a true " + names20[random20]
         return "%s %s, a true %s" % (
             self.firstname,
             self.lastname,
@@ -17,6 +18,60 @@ class Name(Generated):
 
 class NameGenerator(ListGenerator):
     generated_class = Name
+    firstnames = []
+    lastnames = []
+    titles = [
+        "hero",
+        "friend",
+        "leader",
+        "pioneer",
+        "romancer",
+        "fortune-hunter",
+        "explorer",
+        "daredevil",
+        "globetrotter",
+        "mercenary",
+        "dreamer",
+        "visionary",
+        "idealist",
+        "genius",
+        "champion",
+        "master",
+        "prodigy",
+        "spectacle",
+        "guardian",
+        "angel",
+        "paladin",
+        "warrior",
+        "hunter",
+        "warden",
+        "defender",
+        "sentinel",
+        "victor",
+        "winner",
+        "challenger",
+        "ally",
+        "protector",
+        "vanquisher",
+        "vindicator",
+        "romanticist",
+        "stargazer",
+        "nobleman",
+        "utopian",
+        "adventurer",
+        "opportunist",
+        "pioneer",
+    ]
+
+    @classmethod
+    def fill_generated(cls, generated):
+        generated.firstname = cls.generate_value(cls.firstnames)
+        generated.lastname = cls.generate_value(cls.lastnames)
+        generated.title = cls.generate_value(cls.titles)
+        return generated
+
+
+class MaleNameGenerator(NameGenerator):
     firstnames = [
         "Adam",
         "Adan",
@@ -88,52 +143,25 @@ class NameGenerator(ListGenerator):
         "Wakeley",
         "Wakelin",
     ]
-    titles = [
-        "hero",
-        "friend",
-        "leader",
-        "pioneer",
-        "romancer",
-        "fortune-hunter",
-        "explorer",
-        "daredevil",
-        "globetrotter",
-        "mercenary",
-        "dreamer",
-        "visionary",
-        "idealist",
-        "genius",
-        "champion",
-        "master",
-        "prodigy",
-        "spectacle",
-        "guardian",
-        "angel",
-        "paladin",
-        "warrior",
-        "hunter",
-        "warden",
-        "defender",
-        "sentinel",
-        "victor",
-        "winner",
-        "challenger",
-        "ally",
-        "protector",
-        "vanquisher",
-        "vindicator",
-        "romanticist",
-        "stargazer",
-        "nobleman",
-        "utopian",
-        "adventurer",
-        "opportunist",
-        "pioneer",
-    ]
 
-    @classmethod
-    def fill_generated(cls, generated):
-        generated.firstname = cls.generate_value(cls.firstnames)
-        generated.lastname = cls.generate_value(cls.lastnames)
-        generated.title = cls.generate_value(cls.titles)
-        return generated
+
+class FemaleNameGenerator(MaleNameGenerator):
+    firstnames = [
+        "Allyson",
+        "Allyssa",
+        "Camille",
+        "Camryn",
+        "Daphne",
+        "Elyse",
+        "Elyssa",
+        "Emily",
+        "Faith",
+        "Jayde",
+        "Julie",
+        "Juliet",
+        "Kylee",
+        "Melinda",
+        "Melissa",
+        "Sarina",
+        "Sasha",
+    ]

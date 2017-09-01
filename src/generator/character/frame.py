@@ -7,7 +7,7 @@ class Frame(Generated):
         self.frame = "thin"
 
     def __repr__(self):
-        return "He stands %s others, despite his %s frame." % (
+        return "{{He}} stands %s others, despite {{his}} %s frame." % (
             self.height,
             self.frame,
         )

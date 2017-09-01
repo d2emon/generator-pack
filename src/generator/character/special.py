@@ -9,9 +9,11 @@ class SpecialSign(Generated):
 
     @property
     def description(self):
+        # names12[random12] + " " + names13[random13] + " " + names14[random14] + " " + names15[random15]
         return self.signtype
 
     def __repr__(self):
+        # " leaves " + names16[random16] + " of " + names17[random17] + "."
         return "%s leaves %s of %s." % (
             self.description,
             self.memory,
@@ -24,7 +26,7 @@ class Scar(SpecialSign):
         SpecialSign.__init__(self)
         self.place_from = "stretching from just under the right eye"
         self.place_through = ", running across the nose"
-        self.place_to = "and ending on his left cheek"
+        self.place_to = "and ending on {{his}} left cheek"
 
     @property
     def description(self):
@@ -159,20 +161,20 @@ class SpecialSignGenerator(ListGenerator):
         "fortunate adventures",
         "heroic liberations",
         "hidden talents",
-        "his adventurous love life",
-        "his ex-love",
-        "his former lover",
-        "his fortunate destiny",
-        "his fortunate past",
-        "his fortunate survival",
-        "his fortunate upbringing",
-        "his love",
-        "his luck in battles",
-        "his luck in love",
-        "his luck",
-        "his reckless luck",
-        "his unfortunate past",
-        "his unfortunate upbringing",
+        "{{his}} adventurous love life",
+        "{{his}} ex-love",
+        "{{his}} former lover",
+        "{{his}} fortunate destiny",
+        "{{his}} fortunate past",
+        "{{his}} fortunate survival",
+        "{{his}} fortunate upbringing",
+        "{{his}} love",
+        "{{his}} luck in battles",
+        "{{his}} luck in love",
+        "{{his}} luck",
+        "{{his}} reckless luck",
+        "{{his}} unfortunate past",
+        "{{his}} unfortunate upbringing",
         "innocence long lost",
         "lands long forgotten",
         "liberated love",
@@ -228,28 +230,28 @@ class ScarGenerator(SpecialSignGenerator):
         ", running across the nose",
         ", running towards the other eye",
         ", first running towards thin lips",
-        ", first running towards his fairly big lips",
-        ", running towards the right side of his lips",
-        ", running towards the left side of his lips",
+        ", first running towards {{his}} fairly big lips",
+        ", running towards the right side of {{his}} lips",
+        ", running towards the left side of {{his}} lips",
         ", running towards the tip of the nose",
-        ", running towards his left nostril",
-        ", running towards his right nostril",
-        ", running towards his upper lip",
+        ", running towards {{his}} left nostril",
+        ", running towards {{his}} right nostril",
+        ", running towards {{his}} upper lip",
     ]
     places_to = [
-        "and ending on his left cheek",
-        "and ending on his left cheekbone",
-        "and ending on his right cheek",
-        "and ending on his right cheekbone",
-        "and ending on his upper lip",
-        "and ending on his chin",
-        "and ending on his forehead",
-        "and ending on his right nostril",
-        "and ending on his left nostril",
-        "and ending under his left eye",
-        "and ending under his right eye",
-        "and ending above his right eye",
-        "and ending above his left eye",
+        "and ending on {{his}} left cheek",
+        "and ending on {{his}} left cheekbone",
+        "and ending on {{his}} right cheek",
+        "and ending on {{his}} right cheekbone",
+        "and ending on {{his}} upper lip",
+        "and ending on {{his}} chin",
+        "and ending on {{his}} forehead",
+        "and ending on {{his}} right nostril",
+        "and ending on {{his}} left nostril",
+        "and ending under {{his}} left eye",
+        "and ending under {{his}} right eye",
+        "and ending above {{his}} right eye",
+        "and ending above {{his}} left eye",
     ]
 
     @classmethod
@@ -441,24 +443,24 @@ class MolesGenerator(SpecialSignGenerator):
         "a compelling memory",
     ]
     origins = [
-        "his past",
-        "his upbringing",
-        "his fortunate upbringing",
-        "his former lovers",
-        "his fortunate looks",
-        "his fortunate survival",
-        "his luck",
-        "his luck in battles",
-        "his luck in love",
-        "his fortunate destiny",
-        "his adventurous love life",
-        "his reckless luck",
-        "his fortunate adventures",
-        "his unfortunate upbringing",
-        "his unfortunate looks",
-        "his lack of luck in love",
-        "his unadventurous love life",
-        "his unfortunate adventures",
+        "{{his}} past",
+        "{{his}} upbringing",
+        "{{his}} fortunate upbringing",
+        "{{his}} former lovers",
+        "{{his}} fortunate looks",
+        "{{his}} fortunate survival",
+        "{{his}} luck",
+        "{{his}} luck in battles",
+        "{{his}} luck in love",
+        "{{his}} fortunate destiny",
+        "{{his}} adventurous love life",
+        "{{his}} reckless luck",
+        "{{his}} fortunate adventures",
+        "{{his}} unfortunate upbringing",
+        "{{his}} unfortunate looks",
+        "{{his}} lack of luck in love",
+        "{{his}} unadventurous love life",
+        "{{his}} unfortunate adventures",
     ]
 
     @classmethod
@@ -511,19 +513,19 @@ class FrecklesGenerator(MolesGenerator):
         "a compelling memory",
     ]
     origins = [
-        "his past",
-        "his upbringing",
-        "his fortunate upbringing",
-        "his former lovers",
-        "his fortunate looks",
-        "his fortunate survival",
-        "his luck",
-        "his luck in battles",
-        "his luck in love",
-        "his fortunate destiny",
-        "his adventurous love life",
-        "his reckless luck",
-        "his fortunate adventures",
+        "{{his}} past",
+        "{{his}} upbringing",
+        "{{his}} fortunate upbringing",
+        "{{his}} former lovers",
+        "{{his}} fortunate looks",
+        "{{his}} fortunate survival",
+        "{{his}} luck",
+        "{{his}} luck in battles",
+        "{{his}} luck in love",
+        "{{his}} fortunate destiny",
+        "{{his}} adventurous love life",
+        "{{his}} reckless luck",
+        "{{his}} fortunate adventures",
     ]
 
     @classmethod
@@ -580,19 +582,19 @@ class BeardGenerator(SpecialSignGenerator):
         "a compelling memory",
     ]
     origins = [
-        "his past",
-        "his upbringing",
-        "his fortunate upbringing",
-        "his former lovers",
-        "his fortunate looks",
-        "his fortunate survival",
-        "his luck",
-        "his luck in battles",
-        "his luck in love",
-        "his fortunate destiny",
-        "his adventurous love life",
-        "his reckless luck",
-        "his fortunate adventures",
+        "{{his}} past",
+        "{{his}} upbringing",
+        "{{his}} fortunate upbringing",
+        "{{his}} former lovers",
+        "{{his}} fortunate looks",
+        "{{his}} fortunate survival",
+        "{{his}} luck",
+        "{{his}} luck in battles",
+        "{{his}} luck in love",
+        "{{his}} fortunate destiny",
+        "{{his}} adventurous love life",
+        "{{his}} reckless luck",
+        "{{his}} fortunate adventures",
     ]
 
     @classmethod
