@@ -69,3 +69,73 @@ class BeltGenerator(ListGenerator):
         generated.buckle = cls.generate_value(cls.buckles)
         generated.decoration = cls.generate_value(cls.decorations)
         return generated
+
+
+class FemaleBelt(Belt):
+    def __repr__(self):
+        return " ".join([
+           self.size,
+            self.name,
+        ])
+
+
+class FemaleBeltGenerator(BeltGenerator):
+    generated_class = FemaleBelt
+    sizes = [
+        "thin",
+        "thick",
+        "simple",
+        "slender",
+        "light",
+        "dark",
+        "large",
+        "long",
+        "wide",
+        "small",
+    ]
+    names = [
+        "leather belt",
+        "ribbon",
+        "cloth belt",
+        "rope belt",
+        "cloth band",
+    ]
+    decorations = [
+        "fairly high",
+        "quite high",
+        "low",
+        "high",
+        "fairly low",
+        "quite low",
+    ]
+
+
+class SleeveBand(Belt):
+    def __repr__(self):
+        return "%s, %s %s" % (
+            self.size,
+            self.decoration,
+            self.name,
+        )
+
+
+class SleeveBandGenerator(FemaleBeltGenerator):
+    generated_class = SleeveBand
+    names = [
+        "bands",
+    ]
+    decorations = [
+        "decorative",
+        "elegant",
+        "ornamental",
+        "cosmetic",
+        "embellishing",
+        "ornate",
+        "delicate",
+        "graceful",
+        "luxurious",
+        "simple",
+        "modest",
+        "refined",
+        "stylish",
+    ]
