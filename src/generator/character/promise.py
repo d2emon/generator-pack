@@ -8,7 +8,11 @@ class Promise(Generated):
 
     def __repr__(self):
         # "the " + names10[random10] + " they've " + names11[random11] + " for so long.";
-        return "the %s they've %s for so long" % (
+        if "%s" in self.promisetype:
+            return self.promisetype % (
+                self.settlement,
+            )
+        return "the %s tey've %s for so long" % (
             self.settlement,
             self.promisetype,
         )
@@ -81,6 +85,12 @@ class PromiseGenerator(ListGenerator):
         "been seperated from",
         "been isolated from",
     ]
+
+    def __init__(self, settlements=None, promisetypes=None):
+        if settlements is not None:
+            self.__class__.settlements = settlements
+        if promisetypes is not None:
+            self.__class__.promisetypes = promisetypes
 
     @classmethod
     def fill_generated(cls, generated):

@@ -10,7 +10,7 @@ class Eyes(Generated):
 
     def __repr__(self):
         # names6[random6] + " " + names7[random7] + " eyes, set " + names8[random8] + " within their sockets, watch " + names9[random9]
-        return "%s %s eyes, set %s within their sockets, watch %s" % (
+        return "%s %s eyes, set %s within their sockets, %s" % (
             self.style,
             self.color,
             self.depth,
@@ -126,6 +126,16 @@ class EyesGenerator(ListGenerator):
         "delicately",
         "faithfully",
     ]
+
+    # def __init__(self, styles=None, colors=None, depths=None, sights=None):
+    #     if styles is not None:
+    #         self.__class__.styles = styles
+    #     if colors is not None:
+    #         self.__class__.colors = colors
+    #     if depths is not None:
+    #         self.__class__.colors = colors
+    #     if sights is not None:
+    #         self.__class__.colors = colors
 
     @classmethod
     def fill_generated(cls, generated):

@@ -2,10 +2,15 @@ from generator import Generated, ListGenerator
 
 
 class Hair(Generated):
-    def __init__(self):
-        self.color = "Black"
-        self.hairtype = "short hair"
-        self.hairstyle = "hangs over"
+    def __init__(
+        self,
+        color="Black",
+        hairtype="short hair",
+        hairstyle="hangs over"
+    ):
+        self.color = color
+        self.hairtype = hairtype
+        self.hairstyle = hairstyle
 
     def __repr__(self):
         # names1[random1] + ", " + names2[random2] + " " + names3[random3]
