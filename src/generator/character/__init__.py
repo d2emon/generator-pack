@@ -9,6 +9,7 @@ from .race.elf import Elf, NightElf, BloodElf, HighElf, WoodElf, DarkElf
 from .race.gnome import Gnome
 from .race.goblin import Troll, Orc, Goblin
 from .race.dwarf import Dwarf, Giant, Halfling
+from ..clothing import ClothingGenerator
 import random
 
 
@@ -103,6 +104,7 @@ class Character(Generated):
         self.frame = self.frame_generator.generate()
         self.strange = self.strange_generator.generate()
         self.attitude = g.attitude.generate()
+        self.clothing = ClothingGenerator.generate(self.sex)
 
     @property
     def description(self):
@@ -129,19 +131,7 @@ class Character(Generated):
             personality,
         ])
 
-        replaces = {
-            "{{He}}": "He",
-            "{{he}}": "he",
-            "{{him}}": "him",
-            "{{his}}": "his",
-        }
-        if self.sex.id == 1:
-            replaces["{{He}}"] = "She"
-            replaces["{{he}}"] = "she"
-            replaces["{{him}}"] = "her"
-            replaces["{{his}}"] = "her"
-
-        for k, v in replaces.items():
+        for k, v in self.sex.replaces.items():
             description = description.replace(k, v)
         return description
 
