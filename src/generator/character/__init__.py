@@ -1,6 +1,7 @@
 from generator import Generated, DataGenerator
 # from .special import SpecialSignGenerator, ScarGenerator, TattooGenerator
 from . import special as s
+from .sex import Male, Female
 from .frame import FrameGenerator
 from .strange import StrangeGenerator
 from .race import Race, Human, Vampire, Werewolf
@@ -78,7 +79,7 @@ class Character(Generated):
     frame_generator = FrameGenerator
     strange_generator = StrangeGenerator
 
-    def __init__(self, race=None, sex=0):
+    def __init__(self, race=None, sex=Male):
         if race is None:
             race = Race
         self.sex = sex
@@ -86,13 +87,13 @@ class Character(Generated):
         self.generate()
 
     def generate(self):
-        if self.sex == 1:
+        if self.sex.id == 1:
             specials = female_specials
         else:
             specials = male_specials
         special_generator = random.choice(specials)
 
-        g = self.race.generators(self.sex)
+        g = self.race.generators(self.sex.id)
         self.hair = g.hair.generate()
         self.face = g.face.generate()
         self.eyes = g.eyes.generate()
@@ -134,7 +135,7 @@ class Character(Generated):
             "{{him}}": "him",
             "{{his}}": "his",
         }
-        if self.sex == 1:
+        if self.sex.id == 1:
             replaces["{{He}}"] = "She"
             replaces["{{he}}"] = "she"
             replaces["{{him}}"] = "her"
@@ -156,7 +157,7 @@ class CharacterGenerator(DataGenerator):
         if races is None:
             races = cls.races
         if sex is None:
-            sex = random.choice([0, 1])
+            sex = random.choice([Male, Female])
         generated = cls.generated(race=random.choice(races), sex=sex)
         return cls.fill_generated(generated)
 
