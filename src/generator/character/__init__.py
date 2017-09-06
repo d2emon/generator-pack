@@ -75,6 +75,9 @@ female_specials = [
 
 
 class Character(Generated):
+    frame_generator = FrameGenerator
+    strange_generator = StrangeGenerator
+
     def __init__(self, race=None, sex=0):
         if race is None:
             race = Race
@@ -96,8 +99,8 @@ class Character(Generated):
         self.promise = g.promise.generate()
         self.special = special_generator.generate()
         self.name = g.name.generate()
-        self.frame = FrameGenerator.generate()
-        self.strange = StrangeGenerator.generate()
+        self.frame = self.frame_generator.generate()
+        self.strange = self.strange_generator.generate()
         self.attitude = g.attitude.generate()
 
     @property

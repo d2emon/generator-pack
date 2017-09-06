@@ -4,7 +4,7 @@ from generator import Generated, ListGenerator
 class Face(Generated):
     def __init__(self):
         self.facetype = "thin"
-        self.expreession = "time-worn"
+        self.expression = "time-worn"
 
     def __repr__(self):
         # names4[random4] + ", " + names5[random5] + " face. "

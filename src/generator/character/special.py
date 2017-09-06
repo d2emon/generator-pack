@@ -681,11 +681,11 @@ class BirthmarkGenerator(ScarGenerator):
     signtype = "A birthmark"
 
 
-class FemaleOldTattooGenerator(FemaleTattooGenerator):
+class MaleOldTattooGenerator(MaleTattooGenerator):
     signtype = "An old tattoo"
 
 
-class MaleOldTattooGenerator(MaleTattooGenerator):
+class FemaleOldTattooGenerator(FemaleTattooGenerator):
     signtype = "An old tattoo"
 
 

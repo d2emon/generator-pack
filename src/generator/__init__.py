@@ -3,8 +3,8 @@ from utils import load_lines
 
 
 class Generated():
-    def __init__(self):
-        self.generated_value = ""
+    def __init__(self, value=""):
+        self.generated_value = value
 
 
 class GeneratorTemplate():

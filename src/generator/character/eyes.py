@@ -127,6 +127,16 @@ class EyesGenerator(ListGenerator):
         "faithfully",
     ]
 
+    # def __init__(self, styles=None, colors=None, depths=None, sights=None):
+    #     if styles is not None:
+    #         self.__class__.styles = styles
+    #     if colors is not None:
+    #         self.__class__.colors = colors
+    #     if depths is not None:
+    #         self.__class__.colors = colors
+    #     if sights is not None:
+    #         self.__class__.colors = colors
+
     @classmethod
     def fill_generated(cls, generated):
         generated.style = cls.generate_value(cls.styles)
