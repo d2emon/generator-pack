@@ -10,7 +10,7 @@ class Eyes(Generated):
 
     def __repr__(self):
         # names6[random6] + " " + names7[random7] + " eyes, set " + names8[random8] + " within their sockets, watch " + names9[random9]
-        return "%s %s eyes, set %s within their sockets, %s" % (
+        return "%s %s eyes, set %s within their sockets, watch %s" % (
             self.style,
             self.color,
             self.depth,
