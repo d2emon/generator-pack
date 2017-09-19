@@ -82,6 +82,7 @@ setup(
     packages=find_packages('./src', exclude=['tests']),
     py_modules=[
         "generator",
+        "utils",
     ],
     install_requires=requirements,
 
