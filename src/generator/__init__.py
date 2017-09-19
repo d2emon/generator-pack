@@ -1,16 +1,10 @@
 import random
-
-
-def load_lines(filename):
-    lines = []
-    with open(filename, "r") as f:
-        lines = [line.strip() for line in f]
-    return lines
+from utils import load_lines
 
 
 class Generated():
-    def __init__(self):
-        self.generated_text = ""
+    def __init__(self, value=""):
+        self.generated_value = value
 
 
 class GeneratorTemplate():
@@ -49,16 +43,23 @@ class GeneratorTemplate():
 
 class DataGenerator():
     generated_class = Generated
-    text_format = "%s"
 
     @classmethod
-    def generate_text(cls):
-        raise AttributeError("No text to generate")
+    def generated(cls, *args, **kwargs):
+        return cls.generated_class(*args, **kwargs)
+
+    @classmethod
+    def generate_value(cls):
+        raise AttributeError("No value to generate")
 
     @classmethod
     def generate(cls):
-        generated = cls.generated_class()
-        generated.generated_text = cls.text_format % (cls.generate_text())
+        generated = cls.generated()
+        return cls.fill_generated(generated)
+
+    @classmethod
+    def fill_generated(cls, generated):
+        generated.generated_value = cls.generate_value()
         return generated
 
     @classmethod
@@ -66,19 +67,34 @@ class DataGenerator():
         return [cls.generate() for c in count]
 
 
+class TextGenerator(DataGenerator):
+    text_format = "%s"
+
+    @classmethod
+    def generate(cls):
+        generated = cls.generated()
+        generated.generated_value = cls.text_format % (cls.generate_value())
+        return generated
+
+
 class ListGenerator(DataGenerator):
     data_list = []
 
     @classmethod
-    def generate_text(cls):
-        return random.choice(cls.data_list)
+    def generate_value(cls, data_list=None, count=1):
+        if data_list is None:
+            data_list = cls.data_list
+        if count > 1:
+            random.shuffle(data_list)
+            return data_list[0:count]
+        return random.choice(data_list)
 
 
 class FileGenerator(ListGenerator):
     data_file = ""
 
     @classmethod
-    def generate_text(cls):
+    def generate_value(cls):
         if len(cls.data_list) < 1:
             cls.data_list = load_lines(cls.data_file)
         return random.choice(cls.data_list)
@@ -87,6 +103,6 @@ class FileGenerator(ListGenerator):
 class ParamGenerator(DataGenerator):
     @classmethod
     def generate(cls, **kwargs):
-        generated = cls.generated_class()
-        generated.generated_text = cls.generate_text(**kwargs)
+        generated = cls.generated()
+        generated.generated_text = cls.generate_value(**kwargs)
         return generated
