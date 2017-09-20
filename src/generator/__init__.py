@@ -43,6 +43,7 @@ class GeneratorTemplate():
 
 class DataGenerator():
     generated_class = Generated
+    default_value = "UNGENERATED"
 
     @classmethod
     def generated(cls, *args, **kwargs):
@@ -106,3 +107,30 @@ class ParamGenerator(DataGenerator):
         generated = cls.generated()
         generated.generated_text = cls.generate_value(**kwargs)
         return generated
+
+
+class PercentedGenerator(DataGenerator):
+    subgenerators = dict()
+    
+    @classmethod
+    def generator_by_chance(cls, chance=0):
+        for c in sorted(cls.subgenerators):
+            if c >= chance:
+                return cls.subgenerators[c]
+        return None
+
+    @classmethod
+    def generate_value(cls):
+        chance = random.randint(0, 100)
+        g = cls.generator_by_chance(chance)
+        if g is None:
+            return cls.default_value
+        return g.generate_value()
+    
+    
+class TemplatedGenerator(DataGenerator):
+    template = "{c}{n}"
+
+    @classmethod
+    def generate_value(cls):
+        return GeneratorTemplate.pregenerate(cls.template)    
