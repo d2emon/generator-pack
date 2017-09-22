@@ -1,3 +1,7 @@
+from .star_type import SunType
+from .planet_subs import PlanetAtmosphere, EarthPlanet, LayerPlanet, TerPlanet, MoonPlanet, GasPlanet
+
+
 galaxy_names = [
     [
         "Alpha",
@@ -214,3 +218,48 @@ galaxy_names = [
         "Star System",
     ],
 ]
+
+suns = [SunType("sun%d" % (i + 1), i > 29) for i in range(40)]
+
+environments = [
+    "Hospitable",
+    "Gentle",
+    "Moderate",
+    "Fairly gentle",
+    "Fairly hospitable",
+    "Unknown",
+    "Quite hostile",
+    "Hostile",
+    "Very hostile",
+    "Dangerous",
+    "Very dangerous",
+    "Deadly",
+    "Unsafe",
+    "Treacherous",
+    "Unstable"
+]
+maps = [
+    "Yes",
+    "No",
+    "Outdated version"
+]
+atmospheres = [
+    PlanetAtmosphere("None", False),
+    PlanetAtmosphere("Thick", True),
+    PlanetAtmosphere("Thin", True),
+    PlanetAtmosphere("Unknown", True),
+    PlanetAtmosphere("Fairly thick", True),
+    PlanetAtmosphere("Fairly thin", True),
+    PlanetAtmosphere("Very thick", True),
+    PlanetAtmosphere("Very thin", True)
+]
+
+    
+earthPlanets = [EarthPlanet(i + 1) for i in range(40)]
+layerPlanets = [LayerPlanet(i + 1) for i in range(40)]
+terplanets = [TerPlanet(i + 1) for i in range(40)]
+moonPlanets = [MoonPlanet(i + 1) for i in range(40)]
+gasPlanets = [GasPlanet(i + 1) for i in range(40)]    
+
+non_earthPlanets = (layerPlanets * 2) + terplanets + moonPlanets + gasPlanets
+allPlanets = earthPlanets + non_earthPlanets
