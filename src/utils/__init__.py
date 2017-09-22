@@ -1,6 +1,6 @@
 def load_lines(filename):
     lines = []
-    with open(filename, "r") as f:
+    with open(filename, "r", encoding='utf-8') as f:
         lines = [line.strip() for line in f]
     return lines
 
