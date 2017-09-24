@@ -244,14 +244,14 @@ maps = [
     "Outdated version"
 ]
 atmospheres = [
-    PlanetAtmosphere("None", False),
-    PlanetAtmosphere("Thick", True),
-    PlanetAtmosphere("Thin", True),
-    PlanetAtmosphere("Unknown", True),
-    PlanetAtmosphere("Fairly thick", True),
-    PlanetAtmosphere("Fairly thin", True),
-    PlanetAtmosphere("Very thick", True),
-    PlanetAtmosphere("Very thin", True)
+    None,
+    PlanetAtmosphere("Thick"),
+    PlanetAtmosphere("Thin"),
+    PlanetAtmosphere("Unknown"),
+    PlanetAtmosphere("Fairly thick"),
+    PlanetAtmosphere("Fairly thin"),
+    PlanetAtmosphere("Very thick"),
+    PlanetAtmosphere("Very thin")
 ]
 
     

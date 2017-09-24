@@ -481,9 +481,9 @@ class PlanetGenerator1():
             atmospheres=cls.atmospheres
 
         if dayType == 1:
-            hours = random.randrange(43) + 8
+            hours = random.randrange(8, 51)
         else:
-            hours = random.randrange(4001) + 2000
+            hours = random.randrange(2000, 6001)
 
         if orbitType == 1:
             days = ((random.random() * 2.8) + 0.2)
@@ -493,7 +493,7 @@ class PlanetGenerator1():
         return Planet1(
             planet_type=planet_type,
             margin_left=rnMargin,
-            width=random.randrange(51) + 20,
+            width=random.randrange(20, 71),
             environment=random.choice(cls.environment),
             surface_map=random.choice(cls.map),
             atmosphere=random.choice(atmospheres),
@@ -501,5 +501,5 @@ class PlanetGenerator1():
             days=days,
             gravity=((random.random() * 4.8) + 0.2),
             moons=random.randint(1, planet_type.max_moons),
-            tilt=random.random() * 180
+            tilt=random.randrange(18000) * 0.01
         )
