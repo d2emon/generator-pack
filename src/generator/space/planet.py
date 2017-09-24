@@ -88,7 +88,7 @@ class PlanetSize():
         return random.randrange(1, 6)
 
 
-class Planet(Generated):
+class Planet1(Generated):
     def __init__(self):
         Generated.__init__(self)
         self.name = "Unnamed"
@@ -254,8 +254,8 @@ class StarSystemGenerator(DataGenerator):
         return generated
 
 
-class PlanetGenerator(ParamGenerator):
-    generated_class = Planet
+class PlanetGenerator1(ParamGenerator):
+    generated_class = Planet1
     life_types = [
         LifeType(
             description="Безжизненная",
@@ -416,7 +416,7 @@ class PlanetGenerator(ParamGenerator):
 from .fixtures import atmospheres, environments, maps, non_earthPlanets, allPlanets
 
 
-class Planet1(Generated):
+class Planet(Generated):
     """
     <div class=\"planClose\" style=\"background-image: url('../images/planets/" + planet + ".png');\"></div>\
     <div class=\"planDetails\">\
@@ -445,7 +445,7 @@ class Planet1(Generated):
         self.width = kwargs.get('width')
 
 
-class PlanetGenerator1(ListGenerator):
+class PlanetGenerator(ListGenerator):
     generated_class = Planet1
     
     margin = 5.4
