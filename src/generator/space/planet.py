@@ -1,5 +1,5 @@
 import random
-from .. import Generated, DataGenerator, ParamGenerator, GeneratorTemplate, load_lines
+from .. import Generated, DataGenerator, ParamGenerator, ListGenerator, GeneratorTemplate, load_lines
 
 
 class StarSystemType():
@@ -416,7 +416,7 @@ class PlanetGenerator(ParamGenerator):
 from .fixtures import atmospheres, environments, maps, non_earthPlanets, allPlanets
 
 
-class Planet1():
+class Planet1(Generated):
     """
     <div class=\"planClose\" style=\"background-image: url('../images/planets/" + planet + ".png');\"></div>\
     <div class=\"planDetails\">\
@@ -445,7 +445,9 @@ class Planet1():
         self.width = kwargs.get('width')
 
 
-class PlanetGenerator1():
+class PlanetGenerator1(ListGenerator):
+    generated_class = Planet1
+    
     margin = 5.4
     atmospheres = atmospheres
     environments = environments
@@ -455,21 +457,25 @@ class PlanetGenerator1():
 
     @classmethod
     def generate(cls, near=False, earth=False):
-        import random
-
-        rnMargin = (random.random() * cls.margin - 0.9 + 1) + 0.9
-        # if i < 6:
         if near:
             if not earth:
-                planet_type = random.choice(cls.combPlanets)
+                planet_type = cls.generate_value(cls.combPlanets)
                 # combPlanets.splice(ranPlanet, 1);
             else:
-                planet_type = random.choice(cls.noEarthPlanets)
+                planet_type = cls.generate_value(cls.noEarthPlanets)
                 # combPlanets.splice(ranPlanet, 1);
         else:
-            planet_type = random.choice(cls.noEarthPlanets)
+            planet_type = cls.generate_value(cls.noEarthPlanets)
             
-        if planet_type.earth:
+        generated = cls.generated()
+        generated.planet_type = planet_type
+        return cls.fill_generated(generated)
+        
+    @classmethod
+    def fill_generated(cls, generated):
+        generated.margin_left = (random.random() * cls.margin - 0.9 + 1) + 0.9
+            
+        if generated.planet_type.earth:
             dayType = 1
             orbitType = 1
             atmospheres=cls.atmospheres[1:]
@@ -479,25 +485,21 @@ class PlanetGenerator1():
             atmospheres=cls.atmospheres
 
         if dayType == 1:
-            hours = random.randrange(8, 51)
+            generated.hours = random.randrange(8, 51)
         else:
-            hours = random.randrange(2000, 6001)
+            generated.hours = random.randrange(2000, 6001)
 
         if orbitType == 1:
-            days = ((random.random() * 2.8) + 0.2)
+            generated.days = ((random.random() * 2.8) + 0.2)
         else:
-            days = ((random.random() * 191) + 10)
+            generated.days = ((random.random() * 191) + 10)
+
+        generated.width = random.randrange(20, 71),
+        generated.environment = cls.generate_value(cls.environments),
+        generated.surface_map = cls.generate_value(cls.maps),
+        generated.atmosphere = cls.generate_value(atmospheres),
+        generated.gravity = ((random.random() * 4.8) + 0.2),
+        generated.moons = random.randint(1, generated.planet_type.max_moons),
+        generated.tilt = random.randrange(18000) * 0.01
             
-        return Planet1(
-            planet_type=planet_type,
-            margin_left=rnMargin,
-            width=random.randrange(20, 71),
-            environment=random.choice(cls.environments),
-            surface_map=random.choice(cls.maps),
-            atmosphere=random.choice(atmospheres),
-            hours=hours,
-            days=days,
-            gravity=((random.random() * 4.8) + 0.2),
-            moons=random.randint(1, planet_type.max_moons),
-            tilt=random.randrange(18000) * 0.01
-        )
+        return generated
