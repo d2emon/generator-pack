@@ -2,7 +2,7 @@ from generator import ListGenerator
 
 
 from .fixtures import suns
-from .planet import PlanetGenerator1
+from .planet import PlanetGenerator
 
 
 class Star():
@@ -23,7 +23,7 @@ class StarGenerator(ListGenerator):
     def generate(cls, planets=0, blue_sun=False, only_blue=False, sun=None):
         generated = cls.generated()
         return cls.fill_generated(generated, planets=planets, blue_sun=blue_sun, only_blue=only_blue, sun=sun)
-        
+
     @classmethod
     def fill_generated(cls, generated, planets=0, blue_sun=False, only_blue=False, sun=None):
         import random
@@ -45,9 +45,9 @@ class StarGenerator(ListGenerator):
 
         earth = False
         for i in range(planets):
-            planet = PlanetGenerator1.generate(i < 6, earth)
+            planet = PlanetGenerator.generate(i < 6, earth)
             # curPlanet = planet.slice(0, -2)
             if planet.planet_type.earth:
                 earth = True
             generated.planets.append(planet)
-        return generated    
+        return generated
