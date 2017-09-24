@@ -448,28 +448,26 @@ class Planet1():
 class PlanetGenerator1():
     margin = 5.4
     atmospheres = atmospheres
-    environment = environments
-    map = maps
+    environments = environments
+    maps = maps
+    noEarthPlanets = non_earthPlanets
+    combPlanets = allPlanets
 
     @classmethod
     def generate(cls, near=False, earth=False):
         import random
-        noEarthPlanets = non_earthPlanets
-        combPlanets = allPlanets
 
         rnMargin = (random.random() * cls.margin - 0.9 + 1) + 0.9
         # if i < 6:
         if near:
             if not earth:
-                planet_type = random.choice(combPlanets)
+                planet_type = random.choice(cls.combPlanets)
                 # combPlanets.splice(ranPlanet, 1);
-                if planet_type.earth:
-                    earth = True
             else:
-                planet_type = random.choice(noEarthPlanets)
+                planet_type = random.choice(cls.noEarthPlanets)
                 # combPlanets.splice(ranPlanet, 1);
         else:
-            planet_type = random.choice(noEarthPlanets)
+            planet_type = random.choice(cls.noEarthPlanets)
             
         if planet_type.earth:
             dayType = 1
@@ -494,8 +492,8 @@ class PlanetGenerator1():
             planet_type=planet_type,
             margin_left=rnMargin,
             width=random.randrange(20, 71),
-            environment=random.choice(cls.environment),
-            surface_map=random.choice(cls.map),
+            environment=random.choice(cls.environments),
+            surface_map=random.choice(cls.maps),
             atmosphere=random.choice(atmospheres),
             hours=hours,
             days=days,
