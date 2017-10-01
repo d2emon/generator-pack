@@ -59,35 +59,6 @@ class PlanetType():
         self.title = title
 
 
-class PlanetSize():
-    def __init__(self, min_size=0, max_size=0, min_grav=0, max_grav=0):
-        self.min_size = min_size
-        self.max_size = max_size
-        self.min_grav = min_grav
-        self.max_grav = max_grav
-
-    def random_size(self):
-        return random.random() * (self.max_size - self.min_size) + self.min_size
-
-    def random_grav(self):
-        return random.random() * (self.max_grav - self.min_grav) + self.min_grav
-
-    def random_day(self):
-        return round(random.random() * 40 + 10, 2)
-
-    def random_year(self):
-        return random.randrange(100, 500)
-
-    def random_continents(self):
-        return random.randrange(1, 16)
-
-    def random_landmass(self):
-        return random.randrange(10, 90)
-
-    def random_moons(self):
-        return random.randrange(1, 6)
-
-
 class Planet1(Generated):
     def __init__(self):
         Generated.__init__(self)
@@ -254,6 +225,9 @@ class StarSystemGenerator(DataGenerator):
         return generated
 
 
+from .fixtures import atmospheres, environments, maps, non_earthPlanets, allPlanets, planet_names, planet_sizes
+
+
 class PlanetGenerator1(ParamGenerator):
     generated_class = Planet1
     life_types = [
@@ -277,32 +251,7 @@ class PlanetGenerator1(ParamGenerator):
             life_list=load_lines("data/planet/life3.txt"),
         ),
     ]
-    planet_sizes = [
-        PlanetSize(
-            min_size=0.2,
-            max_size=3,
-            min_grav=0.2,
-            max_grav=3,
-        ),
-        PlanetSize(
-            min_size=3,
-            max_size=8,
-            min_grav=1,
-            max_grav=5,
-        ),
-        PlanetSize(
-            min_size=8,
-            max_size=20,
-            min_grav=3,
-            max_grav=8,
-        ),
-        PlanetSize(
-            min_size=20,
-            max_size=40,
-            min_grav=5,
-            max_grav=15,
-        ),
-    ]
+    planet_sizes = planet_sizes
 
     @classmethod
     def generate_text(cls, living=None):
@@ -413,9 +362,6 @@ class PlanetGenerator1(ParamGenerator):
         return generated
 
 
-from .fixtures import atmospheres, environments, maps, non_earthPlanets, allPlanets
-
-
 class Planet(Generated):
     """
     <div class=\"planClose\" style=\"background-image: url('../images/planets/" + planet + ".png');\"></div>\
@@ -431,29 +377,52 @@ class Planet(Generated):
     </div>");
     """
     def __init__(self, **kwargs):
+        self.name = kwargs.get('name')
         self.planet_type = kwargs.get('planet_type')
         self.environment = kwargs.get('environment')
         self.atmosphere = kwargs.get('atmosphere')
         self.surface_map = kwargs.get('surface_map')
         self.hours = kwargs.get('hours')
-        self.gravity = kwargs.get('gravity')
         self.days = kwargs.get('days')
         self.moons = kwargs.get('moons')
         self.tilt = kwargs.get('tilt')
 
-        self.margin_left = kwargs.get('margin_left')
-        self.width = kwargs.get('width')
+        self.__orbit = kwargs.get('margin_left')
+        self.__width = kwargs.get('width')
+        self.__gravity = kwargs.get('gravity')
+        self.size = planet_sizes[0]
+
+    @property
+    def width(self):
+        if not self.__width:
+            self.__width = self.size.random_size()
+        return self.__width
+
+    @property
+    def gravity(self):
+        if not self.__gravity:
+            self.__gravity = self.size.random_grav()
+        return self.__gravity
+
+    @property
+    def margin_left(self):
+        if not self.__orbit:
+            self.__orbit = self.size.random_orbit()
+        return self.__orbit
 
 
 class PlanetGenerator(ListGenerator):
     generated_class = Planet
 
     margin = 5.4
+
     atmospheres = atmospheres
     environments = environments
     maps = maps
     noEarthPlanets = non_earthPlanets
     combPlanets = allPlanets
+    planet_names = planet_names
+    planet_sizes = planet_sizes
 
     @classmethod
     def generate(cls, near=False, earth=False):
@@ -473,16 +442,14 @@ class PlanetGenerator(ListGenerator):
 
     @classmethod
     def fill_generated(cls, generated):
-        generated.margin_left = (random.random() * cls.margin - 0.9 + 1) + 0.9
-
         if generated.planet_type.earth:
             dayType = 1
             orbitType = 1
-            atmospheres=cls.atmospheres[1:]
+            atmospheres = cls.atmospheres[1:]
         else:
             dayType = random.randrange(2)
             orbitType = random.randrange(2)
-            atmospheres=cls.atmospheres
+            atmospheres = cls.atmospheres
 
         if dayType == 1:
             generated.hours = random.randrange(8, 51)
@@ -494,12 +461,12 @@ class PlanetGenerator(ListGenerator):
         else:
             generated.days = ((random.random() * 191) + 10)
 
-        generated.width = random.randrange(20, 71),
-        generated.environment = cls.generate_value(cls.environments),
-        generated.surface_map = cls.generate_value(cls.maps),
-        generated.atmosphere = cls.generate_value(atmospheres),
-        generated.gravity = ((random.random() * 4.8) + 0.2),
-        generated.moons = random.randint(1, generated.planet_type.max_moons),
+        generated.name = cls.generate_value(cls.planet_names)
+        generated.size = cls.generate_value(cls.planet_sizes)
+        generated.environment = cls.generate_value(cls.environments)
+        generated.surface_map = cls.generate_value(cls.maps)
+        generated.atmosphere = cls.generate_value(atmospheres)
+        generated.moons = random.randint(1, generated.planet_type.max_moons)
         generated.tilt = random.randrange(18000) * 0.01
 
         return generated
