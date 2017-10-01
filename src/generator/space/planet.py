@@ -446,8 +446,8 @@ class Planet(Generated):
 
 
 class PlanetGenerator(ListGenerator):
-    generated_class = Planet1
-    
+    generated_class = Planet
+
     margin = 5.4
     atmospheres = atmospheres
     environments = environments
@@ -466,15 +466,15 @@ class PlanetGenerator(ListGenerator):
                 # combPlanets.splice(ranPlanet, 1);
         else:
             planet_type = cls.generate_value(cls.noEarthPlanets)
-            
+
         generated = cls.generated()
         generated.planet_type = planet_type
         return cls.fill_generated(generated)
-        
+
     @classmethod
     def fill_generated(cls, generated):
         generated.margin_left = (random.random() * cls.margin - 0.9 + 1) + 0.9
-            
+
         if generated.planet_type.earth:
             dayType = 1
             orbitType = 1
@@ -501,5 +501,5 @@ class PlanetGenerator(ListGenerator):
         generated.gravity = ((random.random() * 4.8) + 0.2),
         generated.moons = random.randint(1, generated.planet_type.max_moons),
         generated.tilt = random.randrange(18000) * 0.01
-            
+
         return generated
