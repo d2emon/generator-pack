@@ -62,10 +62,6 @@ class PlanetSize():
     max_day = 40
     min_year = 100
     max_year = 500
-    min_continents = 1
-    max_continents = 16
-    min_landmass = 10
-    max_landmass = 90
     min_moons = 1
     max_moons = 6
     min_orbit = 40
@@ -89,15 +85,40 @@ class PlanetSize():
     def random_year(self):
         return random.randrange(self.min_year, self.max_year)
 
-    def random_continents(self):
-        return random.randrange(self.min_continents, self.max_continents)
-
-    def random_landmass(self):
-        return random.randrange(self.min_landmass, self.max_landmass)
-
     def random_moons(self):
         return random.randrange(self.min_moons, self.max_moons)
 
     def random_orbit(self):
         # generated.margin_left = (random.random() * cls.margin - 0.9 + 1) + 0.9
         return random.randrange(self.min_orbit * 10, self.max_orbit * 10) * 0.1
+
+
+class SolarSystemSize():
+    def __init__(self, **kwargs):
+        self.min_planets = kwargs.get("min_planets", 5)
+        self.max_planets = kwargs.get("max_planets", 10)
+        self.description = kwargs.get("description")
+
+    def random_planets(self):
+        return random.randrange(self.min_planets, self.max_planets)
+
+
+class PlanetSubtype():
+    min_continents = 1
+    max_continents = 16
+    min_landmass = 10
+    max_landmass = 90
+
+    def __init__(self, title="", **kwargs):
+        self.title = title
+        self.has_continents = kwargs.get('has_continents', True)
+
+    def random_continents(self):
+        if not self.has_continents:
+            return 0
+        return random.randrange(self.min_continents, self.max_continents)
+
+    def random_landmass(self):
+        if not self.has_continents:
+            return 0
+        return random.randrange(self.min_landmass, self.max_landmass)

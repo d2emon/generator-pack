@@ -225,7 +225,7 @@ class StarSystemGenerator(DataGenerator):
         return generated
 
 
-from .fixtures import atmospheres, environments, maps, non_earthPlanets, allPlanets, planet_names, planet_sizes
+from .fixtures import atmospheres, environments, maps, non_earthPlanets, allPlanets, planet_names, planet_sizes, planet_name_origins
 
 
 class PlanetGenerator1(ParamGenerator):
@@ -422,6 +422,7 @@ class PlanetGenerator(ListGenerator):
     noEarthPlanets = non_earthPlanets
     combPlanets = allPlanets
     planet_names = planet_names
+    planet_name_origins = planet_name_origins
     planet_sizes = planet_sizes
 
     @classmethod
