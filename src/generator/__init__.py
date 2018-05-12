@@ -3,8 +3,19 @@ from utils import load_lines
 
 
 class Generated():
+    title = None
+
     def __init__(self, value=""):
-        self.generated_value = value
+        self.value = value
+
+    def __repr__(self):
+        if self.title is None:
+            return str(self.value)
+        return "{}:\t\"{}\"".format(self.title, self.value)
+
+    @property
+    def generated_value(self):
+        return self.value
 
 
 class GeneratorTemplate():
@@ -60,7 +71,7 @@ class DataGenerator():
 
     @classmethod
     def fill_generated(cls, generated):
-        generated.generated_value = cls.generate_value()
+        generated.value = cls.generate_value()
         return generated
 
     @classmethod
