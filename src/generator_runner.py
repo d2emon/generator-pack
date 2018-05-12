@@ -13,6 +13,7 @@ from generator.schoolSubject import SchoolSubjectGenerator
 from generator.slogan import SloganGenerator
 from generator.swear import SwearGenerator
 from generator.wisdom import WisdomQuoteGenerator
+from generator.world import WorldGenerator
 
 from generator.space.galaxy import GalaxyGenerator
 
@@ -35,6 +36,7 @@ generators = {
     "slogan": SloganGenerator,
     "swear": SwearGenerator,
     "wisdom": WisdomQuoteGenerator,
+    "world": WorldGenerator,
     "galaxy": GalaxyGenerator,
 }
 
@@ -94,6 +96,19 @@ def markov_street(data, length=32):
     return "ул. {}".format(g.generate_chain(length))
 
 
+def print_result(data=[], title=None):
+    print("=" * 80)
+    if title is not None:
+        print(title)
+        print("-" * 80)
+    for i, item in enumerate(data):
+        print("{}:\t{}".format(
+            i + 1,
+            item
+        ))
+    print("=" * 80)
+
+
 def run_generator(name='', count=1, *args, **kwargs):
     try:
         count = int(count)
@@ -102,37 +117,22 @@ def run_generator(name='', count=1, *args, **kwargs):
     print(name, count, args, kwargs)
 
     if name == 'street':
-        print("=" * 80)
-        print('Street', args, kwargs)
-        print("-" * 80)
         data = [markov_street(streets, 64) for i in range(count)]
-        for i, item in enumerate(data):
-            print("{}:\t{}".format(
-                i + 1,
-                item
-            ))
-        print("=" * 80)
+        print_result(data, ('Street', args, kwargs))
+        return
+    if name == 'all':
+        for name, g in generators.items():
+            data = [g.generate() for i in range(count)]
+            print_result(data, name)
         return
 
     g = generators.get(name)
     if g is None:
-        print("=" * 80)
-        for k in generators.keys():
-            print(k)
-        print("=" * 80)
+        print_result(generators.keys())
         return
 
-    print("=" * 80)
-    print(name)
-    print("-" * 80)
     data = [g.generate() for i in range(count)]
-    for i, item in enumerate(data):
-        print("{}\t{}:\t{}".format(
-            name,
-            i + 1,
-            item
-        ))
-    print("=" * 80)
+    print_result(data, name)
 
     # print("Art concept (being)")
     # print(ArtConceptGenerator.generate(being=True))
