@@ -1,17 +1,8 @@
 #! /usr/bin/python
 import sys
-import chart
 import random
-from generator import album, band
 
-
-def new_album():
-    openweekend = random.randint(100000000, 500000000)
-    return chart.MediaItem(
-        name=album.generate(),
-        author=band.generate(),
-        openweekend=openweekend
-    )
+from media import new_album
 
 
 def main(args):

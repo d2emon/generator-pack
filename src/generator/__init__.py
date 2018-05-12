@@ -113,7 +113,7 @@ class ParamGenerator(DataGenerator):
 
 class PercentedGenerator(DataGenerator):
     subgenerators = dict()
-    
+
     @classmethod
     def generator_by_chance(cls, chance=0):
         for c in sorted(cls.subgenerators):
@@ -128,11 +128,11 @@ class PercentedGenerator(DataGenerator):
         if g is None:
             return cls.default_value
         return g.generate_value()
-    
-    
+
+
 class TemplatedGenerator(DataGenerator):
     template = "{c}{n}"
 
     @classmethod
     def generate_value(cls):
-        return GeneratorTemplate.pregenerate(cls.template)    
+        return GeneratorTemplate.pregenerate(cls.template)

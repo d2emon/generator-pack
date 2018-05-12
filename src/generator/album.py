@@ -5,7 +5,7 @@ from .data.album import names
 
 class Album(Generated):
     def __repr__(self):
-        return "Album: \"%s\"" % (self.generated_text)
+        return "Album: \"%s\"" % (self.generated_value)
 
 
 class AlbumGenerator(ListGenerator):

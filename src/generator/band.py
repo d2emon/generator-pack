@@ -5,7 +5,7 @@ from .data.band import names1, names2, names3, names4, names5
 
 class Band(Generated):
     def __repr__(self):
-        return "Band: \"%s\"" % (self.generated_text)
+        return "Band: \"%s\"" % (self.generated_value)
 
 
 class BandGenerator(DataGenerator):
@@ -33,7 +33,7 @@ class BandGenerator(DataGenerator):
         )
 
     @classmethod
-    def generate_text(cls):
+    def generate_value(cls):
         chance = random.randint(0, 100)
         if chance < 30:
             return cls.generate1()
