@@ -116,7 +116,7 @@ def gen_other():
     print("ул. %s" % (street_mg.generate_chain(32)))
 
 
-def main(args):
+def gen_all(args):
     print("Hello!")
     print("args:", args)
 
@@ -136,4 +136,4 @@ def main(args):
 
 
 if __name__ == "__main__":
-    main(sys.argv[1:])
+    gen_all(sys.argv[1:])
