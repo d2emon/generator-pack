@@ -88,7 +88,7 @@ class PrayerGenerator(ParamGenerator):
         ])
 
     @classmethod
-    def generate_text(cls, forgive=False):
+    def generate_value(cls, forgive=False):
         appeal =AppealToDeityTemplate.generate([
             "data/prayer/deity_title.txt",
             "data/prayer/deity_name.txt",
@@ -98,4 +98,3 @@ class PrayerGenerator(ParamGenerator):
             return appeal + cls.forgiveness()
         else:
             return appeal + cls.aid()
-

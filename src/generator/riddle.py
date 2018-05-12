@@ -3,7 +3,7 @@ from . import Generated, FileGenerator
 
 class Riddle(Generated):
     def __repr__(self):
-        return "Riddle: \"%s\"" % (self.generated_text)
+        return "Riddle: \"%s\"" % (self.generated_value)
 
 
 class RiddleGenerator(FileGenerator):

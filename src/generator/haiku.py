@@ -5,7 +5,7 @@ from .data.band import names1, names2, names3, names4, names5
 
 class Haiku(Generated):
     def __repr__(self):
-        return "Haiku:\n%s" % (self.generated_text)
+        return "Haiku:\n%s" % (self.generated_value)
 
 
 class HaikuGenerator(DataGenerator):
@@ -77,7 +77,7 @@ class HaikuGenerator(DataGenerator):
             ])
 
     @classmethod
-    def generate_text(cls):
+    def generate_value(cls):
         names = [
             cls.generate1(),
             cls.generate2(),

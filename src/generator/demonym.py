@@ -31,7 +31,7 @@ class DemonymBase(Generated):
 
     @property
     def base(self):
-        return self.generated_text
+        return self.generated_value
 
     @property
     def demonym(self):
@@ -45,7 +45,7 @@ class DemonymBase(Generated):
         chance = random.randint(0, 100)
         word_base = self.base
         word_end = ""
-        if word_base[-1] in vowels:
+        if word_base[:-1] in vowels:
             word_base = word_base[:-1]
             if chance < 50:
                 word_end = s_ran
@@ -57,7 +57,7 @@ class DemonymBase(Generated):
                 word_end = s_ran
             else:
                 word_base = word_base[:-2]
-                demonym = toponym[:-2]
+                # demonym = toponym[:-2]
                 if chance < 50:
                     word_end = s_ran
                 else:
@@ -145,7 +145,7 @@ class DemonymGenerator(DataGenerator):
         ]).capitalize()
 
     @classmethod
-    def generate_text(cls):
+    def generate_value(cls):
         chance = random.randint(0, 100)
         if chance < 20:
             return cls.generate1()

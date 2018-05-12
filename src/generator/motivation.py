@@ -3,7 +3,7 @@ from . import Generated, FileGenerator
 
 class Motivation(Generated):
     def __repr__(self):
-        return "Motivation: \"%s\"" % (self.generated_text)
+        return "Motivation: \"%s\"" % (self.generated_value)
 
 
 class MotivationGenerator(FileGenerator):

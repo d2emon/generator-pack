@@ -3,7 +3,7 @@ from . import Generated, FileGenerator
 
 class BattleCry(Generated):
     def __repr__(self):
-        return "BattleCry: \"%s\"" % (self.generated_text)
+        return "BattleCry: \"%s\"" % (self.generated_value)
 
 
 class BattleCryGenerator(FileGenerator):

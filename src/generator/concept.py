@@ -29,7 +29,7 @@ class ArtConceptGenerator(ParamGenerator):
         ])
 
     @classmethod
-    def generate_text(cls, being):
+    def generate_value(cls, being=False):
         if being:
             return cls.generate_being()
         else:
@@ -54,7 +54,7 @@ class StoryConceptGenerator(ParamGenerator):
         ])
 
     @classmethod
-    def generate_text(cls, character=False):
+    def generate_value(cls, character=False):
         if character:
             return cls.character()
         else:

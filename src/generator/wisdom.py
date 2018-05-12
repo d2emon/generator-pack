@@ -3,7 +3,7 @@ from . import Generated, FileGenerator
 
 class WisdomQuote(Generated):
     def __repr__(self):
-        return "Wisdom quote:\n\"%s\"" % (self.generated_text)
+        return "Wisdom quote:\n\"%s\"" % (self.generated_value)
 
 
 class WisdomQuoteGenerator(FileGenerator):
