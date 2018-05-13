@@ -1,16 +1,18 @@
+from .generator import DataGenerator
+
 import random
-from . import DataGenerator
 
 
 class MarkovChain():
-    def __init__(self, data=None, length=2, data_list=None):
-        if data is None:
-            self.data = dict()
-        else:
-            self.data = data
+    def __init__(self, data=dict(), length=2, data_list=None):
+        self.data = data
         self.length = length
         if data_list is not None:
-            self.parse_list(data_list)
+            self.parse_list(data_list, length=length)
+
+    def parse_list(self, data=[], length=2):
+        for s in data:
+            self.parse_str(s, length)
 
     def parse_str(self, data="", length=None):
         if not length:
@@ -23,13 +25,13 @@ class MarkovChain():
                 self.data[block] = []
             self.data[block].append(data[block_end:block_end + length])
 
-    def parse_list(self, data=[], length=None):
-        for s in data:
-            self.parse_str(s, length)
+    def generator(self):
+        return MarkovGenerator(self)
+
 
 
 class MarkovGenerator(DataGenerator):
-    def __init__(self, chain=None):
+    def __init__(self, chain=MarkovChain()):
         self.chain = chain
 
     def generate_chain(self, length=16):

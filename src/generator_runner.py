@@ -96,7 +96,7 @@ streets = [
 
 def markov_street(data, length=32):
     chain = MarkovChain(data_list=data, length=3)
-    g = MarkovGenerator(chain)
+    g = chain.generator()
     return "ул. {}".format(g.generate_chain(length))
 
 
