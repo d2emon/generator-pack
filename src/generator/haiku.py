@@ -7,7 +7,7 @@ class Haiku(Generated):
     title = "Haiku"
 
     def __repr__(self):
-        return "Haiku:\n%s" % (self.generated_value)
+        return "{}:\n{}".format(self.title, self.generated_value)
 
 
 class HaikuGenerator(DataGenerator):
@@ -20,27 +20,27 @@ class HaikuGenerator(DataGenerator):
     def generate1(cls):
         snt = random.randint(0, 4)
         if snt == 0:
-            return GeneratorTemplate.generate([
+            return GeneratorTemplate.strip([
                 "data/haiku/haiku1a.txt",
                 "data/haiku/haiku2a.txt",
             ])
         elif snt == 1:
-            return GeneratorTemplate.generate([
+            return GeneratorTemplate.strip([
                 "data/haiku/haiku1b.txt",
                 "data/haiku/haiku2b.txt",
             ])
         elif snt == 2:
-            return GeneratorTemplate.generate([
+            return GeneratorTemplate.strip([
                 "data/haiku/haiku1c.txt",
                 "data/haiku/haiku2c.txt",
             ])
         elif snt == 3:
-            return GeneratorTemplate.generate([
+            return GeneratorTemplate.strip([
                 "data/haiku/haiku5a.txt",
                 "data/haiku/haiku2c.txt",
             ])
         else:
-            return GeneratorTemplate.generate([
+            return GeneratorTemplate.strip([
                 "data/haiku/haiku5b.txt",
                 "data/haiku/haiku6b.txt",
             ])
@@ -49,12 +49,12 @@ class HaikuGenerator(DataGenerator):
     def generate2(cls):
         snt = random.randint(0, 1)
         if snt == 0:
-            return GeneratorTemplate.generate([
+            return GeneratorTemplate.strip([
                 "data/haiku/haiku3a.txt",
                 "data/haiku/haiku4a.txt",
             ])
         else:
-            return GeneratorTemplate.generate([
+            return GeneratorTemplate.strip([
                 "data/haiku/haiku3b.txt",
                 "data/haiku/haiku4b.txt",
             ])
@@ -63,17 +63,17 @@ class HaikuGenerator(DataGenerator):
     def generate3(cls):
         snt = random.randint(0, 2)
         if snt == 0:
-            return GeneratorTemplate.generate([
+            return GeneratorTemplate.strip([
                 "data/haiku/haiku1a.txt",
                 "data/haiku/haiku2a.txt",
             ])
         elif snt == 1:
-            return GeneratorTemplate.generate([
+            return GeneratorTemplate.strip([
                 "data/haiku/haiku1b.txt",
                 "data/haiku/haiku2b.txt",
             ])
         else:
-            return GeneratorTemplate.generate([
+            return GeneratorTemplate.strip([
                 "data/haiku/haiku5a.txt",
                 "data/haiku/haiku2c.txt",
             ])

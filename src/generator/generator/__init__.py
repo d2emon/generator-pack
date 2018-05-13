@@ -106,4 +106,4 @@ class TemplatedGenerator(DataGenerator):
 
     @classmethod
     def generate_value(cls):
-        return GeneratorTemplate.pregenerate(cls.template)
+        return GeneratorTemplate.generate(cls.template)

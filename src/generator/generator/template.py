@@ -6,32 +6,32 @@ import random
 class GeneratorTemplate():
     letters = [chr(c) for c in range(ord("A"), ord("Z") + 1)]
     numbers = range(0, 9)
-    text_format = "%s %s"
+    text = "%s %s"
 
     @classmethod
-    def letter(cls):
-        return random.choice(cls.letters)
-
-    @classmethod
-    def number(cls):
-        return str(random.choice(cls.numbers))
-
-    @classmethod
-    def pregenerate(cls, text_format=None):
-        if not text_format:
-            text_format = cls.text_format
+    def generate(cls, text=None):
         formatter = {
-            "{c}": cls.letter,
-            "{n}": cls.number,
+            "{c}": cls.letters,
+            "{n}": cls.numbers,
         }
+
+        if not text:
+            text = cls.text
+
         for k, v in formatter.items():
-            while k in text_format:
-                text_format = text_format.replace(k, v(), 1)
-        return text_format
+            while k in text:
+                text = text.replace(k, str(random.choice(v)), 1)
+        return text
 
     @classmethod
-    def generate(cls, filenames):
-        return (cls.pregenerate() % (
+    def strip(cls, filenames):
+        return (cls.generate() % (
             random.choice(load_lines(filenames[0])),
             random.choice(load_lines(filenames[1])),
         )).strip()
+
+
+    @classmethod
+    def glue(cls, parts, glue=""):
+        selected = [i.select() for i in parts]
+        return glue.join(selected).capitalize()

@@ -1,6 +1,7 @@
 from .generator import DataGenerator, PercentedGenerator
 from .generator.template import GeneratorTemplate
 from .generator.generated import Generated
+from .generator.generator_data import FileData
 
 from utils import load_lines
 
@@ -105,62 +106,55 @@ class DemonymBase(Generated):
         return "{}:\t\"{} of {}\"".format(self.title, self.demonym, self.value)
 
 
-class DemonymTemplate(GeneratorTemplate):
-    @classmethod
-    def generate(cls, filenames):
-        parts = [random.choice(load_lines(f)) for f in filenames]
-        return "".join(parts)
-
-
 class DemonymBaseSubGenerator(DataGenerator):
     generated_class = DemonymBase
     data_files = []
 
     @classmethod
     def generate_value(cls):
-        return DemonymTemplate.generate(cls.data_files).capitalize()
+        return GeneratorTemplate.glue(cls.data_files)
 
 
 class DemonymBaseSubGenerator1(DemonymBaseSubGenerator):
     data_files = [
-        "data/demonym/demonym1.txt",
-        "data/demonym/demonym2.txt",
-        "data/demonym/demonym3.txt",
-        "data/demonym/endings.txt",
+        FileData("data/demonym/demonym1.txt"),
+        FileData("data/demonym/demonym2.txt"),
+        FileData("data/demonym/demonym3.txt"),
+        FileData("data/demonym/endings.txt"),
     ]
 
 
 class DemonymBaseSubGenerator2(DemonymBaseSubGenerator):
     data_files = [
-        "data/demonym/demonym1.txt",
-        "data/demonym/demonym2.txt",
-        "data/demonym/demonym3.txt",
-        "data/demonym/demonym6.txt",
+        FileData("data/demonym/demonym1.txt"),
+        FileData("data/demonym/demonym2.txt"),
+        FileData("data/demonym/demonym3.txt"),
+        FileData("data/demonym/demonym6.txt"),
     ]
 
 
 class DemonymBaseSubGenerator3(DemonymBaseSubGenerator):
     data_files = [
-        "data/demonym/demonym3.txt",
-        "data/demonym/demonym4.txt",
-        "data/demonym/demonym5.txt",
+        FileData("data/demonym/demonym3.txt"),
+        FileData("data/demonym/demonym4.txt"),
+        FileData("data/demonym/demonym5.txt"),
     ]
 
 
 class DemonymBaseSubGenerator4(DemonymBaseSubGenerator):
     data_files = [
-        "data/demonym/demonym2.txt",
-        "data/demonym/demonym3.txt",
-        "data/demonym/demonym6.txt",
+        FileData("data/demonym/demonym2.txt"),
+        FileData("data/demonym/demonym3.txt"),
+        FileData("data/demonym/demonym6.txt"),
     ]
 
 
 class DemonymBaseSubGenerator5(DemonymBaseSubGenerator):
     data_files = [
-        "data/demonym/demonym3.txt",
-        "data/demonym/demonym4.txt",
-        "data/demonym/demonym1.txt",
-        "data/demonym/endings.txt",
+        FileData("data/demonym/demonym3.txt"),
+        FileData("data/demonym/demonym4.txt"),
+        FileData("data/demonym/demonym1.txt"),
+        FileData("data/demonym/endings.txt"),
     ]
 
 
