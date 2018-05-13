@@ -1,5 +1,5 @@
 import random
-from .. import Generated, DataGenerator, ParamGenerator, ListGenerator, GeneratorTemplate, load_lines
+from .. import Generated, DataGenerator, ListGenerator, GeneratorTemplate, load_lines
 
 
 class StarSystemType():
@@ -228,7 +228,7 @@ class StarSystemGenerator(DataGenerator):
 from .fixtures import atmospheres, environments, maps, non_earthPlanets, allPlanets, planet_names, planet_sizes, planet_name_origins
 
 
-class PlanetGenerator1(ParamGenerator):
+class PlanetGenerator1(DataGenerator):
     generated_class = Planet1
     life_types = [
         LifeType(

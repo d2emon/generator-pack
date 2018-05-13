@@ -1,10 +1,15 @@
+from .generator import DataGenerator, PercentedGenerator
+from .generator.template import GeneratorTemplate
+from .generator.generated import Generated
+
+from utils import load_lines
+
 import random
-from . import Generated, DataGenerator, GeneratorTemplate, load_lines
 
 
 vowels = ["a", "e", "i", "o", "u", "y"]
 double_vowels = [
-    "aa", "ae", "ai", "ao", "ae",
+    "aa", "ae", "ai", "ao", "au",
     "ea", "ee", "ei", "eo", "eu",
     "ia", "ie", "ii", "io", "iu",
     "oa", "oe", "oi", "oo", "ou",
@@ -24,73 +29,80 @@ c_ending_no_splice =[
     "ot", "ote", "asque", "gian", "onian", "vian"
 ]
 
-class DemonymBase(Generated):
+
+class Demonym():
     title = "Demonym"
 
-    def __init__(self):
-        Generated.__init__(self)
-        self.__demonym = None
+    def __init__(self, base):
+        def vowelBased(base):
+            return base[:-1], random.choice([
+                ending_splice,
+                ending_no_splice,
+            ])
 
-    @property
-    def base(self):
-        return self.generated_value
+        def doubleVowelBased(base):
+            if len(base) < 5:
+                word_base = base[:-1]
+                word_ends = ending_splice
+            else:
+                word_base = base[:-2]
+                word_ends = random.choice([
+                    ending_splice,
+                    c_ending_no_splice,
+                ])
+            return word_base, word_ends
+
+        def consonantBased(base):
+            chance = random.randint(0, 100)
+            if chance < 40:
+                word_base = base
+            elif chance < 60:
+                word_base = base[:-1]
+            elif chance < 80:
+                if len(base) < 5:
+                    word_base = base[:-1]
+                else:
+                    word_base = base[:-2]
+            else:
+                if len(base) < 5:
+                    word_base = base[:-1]
+                else:
+                    word_base = base[:-3]
+            return word_base, ending_splice
+
+        self.base = base
+        word_base = ""
+        word_ends = []
+        if self.base[-2:] in double_vowels:
+            word_base, word_ends = doubleVowelBased(self.base)
+        elif self.base[-1:] in vowels:
+            word_base, word_ends = vowelBased(self.base)
+        else:
+            word_base, word_ends = consonantBased(self.base)
+        self.value = "{}{}".format(word_base, random.choice(word_ends))
+
+    def __repr__(self):
+        return self.value
+
+
+class DemonymBase(Generated):
+    title = "Demonym Base"
+
+    def __init__(self, value=''):
+        Generated.__init__(self)
+        self.value = value
+        self.__demonym = None
 
     @property
     def demonym(self):
         if self.__demonym:
             return self.__demonym
 
-        c_ran = random.choice(c_ending_no_splice)
-        ran = random.choice(ending_no_splice)
-        s_ran = random.choice(ending_splice)
-
-        chance = random.randint(0, 100)
-        word_base = self.base
-        word_end = ""
-        if word_base[:-1] in vowels:
-            word_base = word_base[:-1]
-            if chance < 50:
-                word_end = s_ran
-            else:
-                word_end = ran
-        elif word_base[-2:] in double_vowels:
-            if len(word_base) < 5:
-                word_base = word_base[:-1]
-                word_end = s_ran
-            else:
-                word_base = word_base[:-2]
-                # demonym = toponym[:-2]
-                if chance < 50:
-                    word_end = s_ran
-                else:
-                    word_end = c_ran
-        else:
-            word_end = s_ran
-            if chance < 40:
-                word_base = word_base
-            elif chance < 60:
-                word_base = word_base[:-1]
-            elif chance < 80:
-                if len(word_base) < 5:
-                    word_base = word_base[:-1]
-                else:
-                    word_base = word_base[:-2]
-            else:
-                if len(word_base) < 5:
-                    word_base = word_base[:-1]
-                else:
-                    word_base = word_base[:-3]
-        self.__demonym = "%s%s" % (word_base, word_end)
+        self.__demonym = Demonym(self.value)
         return self.__demonym
 
     def __repr__(self):
-        return "Demonym: \"%s(%s)\"" % (self.demonym, self.base)
-
-
-def makeDemonym(base):
-    db = DemonymBase()
-    db.generated_text = base
-    return db
+        return "{}:\t\"{} of {}\"".format(self.title, self.demonym, self.value)
 
 
 class DemonymTemplate(GeneratorTemplate):
@@ -100,62 +112,63 @@ class DemonymTemplate(GeneratorTemplate):
         return "".join(parts)
 
 
-class DemonymGenerator(DataGenerator):
+class DemonymBaseSubGenerator(DataGenerator):
     generated_class = DemonymBase
-
-    @classmethod
-    def generate1(cls):
-        return DemonymTemplate.generate([
-            "data/demonym/demonym1.txt",
-            "data/demonym/demonym2.txt",
-            "data/demonym/demonym3.txt",
-            "data/demonym/endings.txt",
-        ]).capitalize()
-
-    @classmethod
-    def generate2(cls):
-        return DemonymTemplate.generate([
-            "data/demonym/demonym1.txt",
-            "data/demonym/demonym2.txt",
-            "data/demonym/demonym3.txt",
-            "data/demonym/demonym6.txt",
-        ]).capitalize()
-
-    @classmethod
-    def generate3(cls):
-        return DemonymTemplate.generate([
-            "data/demonym/demonym3.txt",
-            "data/demonym/demonym4.txt",
-            "data/demonym/demonym5.txt",
-        ]).capitalize()
-
-    @classmethod
-    def generate4(cls):
-        return DemonymTemplate.generate([
-            "data/demonym/demonym2.txt",
-            "data/demonym/demonym3.txt",
-            "data/demonym/demonym6.txt",
-        ]).capitalize()
-
-    @classmethod
-    def generate5(cls):
-        return DemonymTemplate.generate([
-            "data/demonym/demonym3.txt",
-            "data/demonym/demonym4.txt",
-            "data/demonym/demonym1.txt",
-            "data/demonym/endings.txt",
-        ]).capitalize()
+    data_files = []
 
     @classmethod
     def generate_value(cls):
-        chance = random.randint(0, 100)
-        if chance < 20:
-            return cls.generate1()
-        elif chance < 40:
-            return cls.generate2()
-        elif chance < 60:
-            return cls.generate3()
-        elif chance < 80:
-            return cls.generate4()
-        else:
-            return cls.generate5()
+        return DemonymTemplate.generate(cls.data_files).capitalize()
+
+
+class DemonymBaseSubGenerator1(DemonymBaseSubGenerator):
+    data_files = [
+        "data/demonym/demonym1.txt",
+        "data/demonym/demonym2.txt",
+        "data/demonym/demonym3.txt",
+        "data/demonym/endings.txt",
+    ]
+
+
+class DemonymBaseSubGenerator2(DemonymBaseSubGenerator):
+    data_files = [
+        "data/demonym/demonym1.txt",
+        "data/demonym/demonym2.txt",
+        "data/demonym/demonym3.txt",
+        "data/demonym/demonym6.txt",
+    ]
+
+
+class DemonymBaseSubGenerator3(DemonymBaseSubGenerator):
+    data_files = [
+        "data/demonym/demonym3.txt",
+        "data/demonym/demonym4.txt",
+        "data/demonym/demonym5.txt",
+    ]
+
+
+class DemonymBaseSubGenerator4(DemonymBaseSubGenerator):
+    data_files = [
+        "data/demonym/demonym2.txt",
+        "data/demonym/demonym3.txt",
+        "data/demonym/demonym6.txt",
+    ]
+
+
+class DemonymBaseSubGenerator5(DemonymBaseSubGenerator):
+    data_files = [
+        "data/demonym/demonym3.txt",
+        "data/demonym/demonym4.txt",
+        "data/demonym/demonym1.txt",
+        "data/demonym/endings.txt",
+    ]
+
+
+class DemonymGenerator(PercentedGenerator):
+    subgenerators = {
+        20: DemonymBaseSubGenerator1,
+        40: DemonymBaseSubGenerator2,
+        60: DemonymBaseSubGenerator3,
+        80: DemonymBaseSubGenerator4,
+        100: DemonymBaseSubGenerator5,
+    }

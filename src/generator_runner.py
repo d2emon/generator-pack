@@ -2,8 +2,8 @@ from generator.album import AlbumGenerator
 from generator.band import BandGenerator
 from generator.battlecry import BattleCryGenerator
 from generator.motivation import MotivationGenerator
-from generator.concept import ArtConceptGenerator, StoryConceptGenerator
-from generator.demonym import DemonymGenerator, makeDemonym
+from generator.concept import ArtConceptBeingGenerator, ArtConceptPlaceGenerator, ArtConceptGenerator, StoryConceptCharacterGenerator, StoryConceptEventGenerator, StoryConceptGenerator
+from generator.demonym import DemonymGenerator, Demonym
 from generator.haiku import HaikuGenerator
 from generator.idiom import IdiomGenerator
 from generator.motto import MottoGenerator
@@ -23,7 +23,11 @@ generators = {
     "album": AlbumGenerator,
     "band": BandGenerator,
     "battlecry": BattleCryGenerator,
+    "concept-art-place": ArtConceptPlaceGenerator,
+    "concept-art-being": ArtConceptBeingGenerator,
     "concept-art": ArtConceptGenerator,
+    "concept-story-character": StoryConceptCharacterGenerator,
+    "concept-story-event": StoryConceptEventGenerator,
     "concept-story": StoryConceptGenerator,
     "demonym": DemonymGenerator,
     "motivation": MotivationGenerator,
@@ -120,6 +124,10 @@ def run_generator(name='', count=1, *args, **kwargs):
         data = [markov_street(streets, 64) for i in range(count)]
         print_result(data, ('Street', args, kwargs))
         return
+    if name == 'lugansk':
+        data = [Demonym('Lugansk') for i in range(count)]
+        print_result(data, 'Lugansk')
+        return
     if name == 'all':
         for name, g in generators.items():
             data = [g.generate() for i in range(count)]
@@ -131,7 +139,8 @@ def run_generator(name='', count=1, *args, **kwargs):
         print_result(generators.keys())
         return
 
-    data = [g.generate() for i in range(count)]
+    data = [g.generate(*args, **kwargs) for i in range(count)]
+    print(args, kwargs)
     print_result(data, name)
 
     # print("Art concept (being)")

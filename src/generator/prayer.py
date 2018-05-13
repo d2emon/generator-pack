@@ -1,4 +1,4 @@
-from . import Generated, ParamGenerator, GeneratorTemplate, load_lines
+from . import Generated, DataGenerator, GeneratorTemplate, load_lines
 import random
 
 
@@ -6,7 +6,7 @@ class Prayer(Generated):
     title = "Prayer"
 
     def __repr__(self):
-        return "Prayer:\n\"%s\"" % (self.generated_text)
+        return "Prayer:\n\"%s\"" % (self.generated_value)
 
 
 class AppealToDeityTemplate(GeneratorTemplate):
@@ -56,7 +56,7 @@ class AidPrayerTemplate(GeneratorTemplate):
         )
 
 
-class PrayerGenerator(ParamGenerator):
+class PrayerGenerator(DataGenerator):
     generated_class = Prayer
 
     @classmethod

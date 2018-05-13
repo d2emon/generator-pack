@@ -11,23 +11,25 @@ import random
 class DataGenerator():
     generated_class = Generated
     default_value = "UNGENERATED"
+    text_format = "%s"
 
     @classmethod
     def generated(cls, *args, **kwargs):
         return cls.generated_class(*args, **kwargs)
 
     @classmethod
-    def generate_value(cls):
+    def generate_value(cls, **kwargs):
         raise AttributeError("No value to generate")
 
     @classmethod
-    def generate(cls):
+    def generate(cls, *args, **kwargs):
         generated = cls.generated()
-        return cls.fill_generated(generated)
+        return cls.fill_generated(generated, *args, **kwargs)
 
     @classmethod
-    def fill_generated(cls, generated):
-        generated.value = cls.generate_value()
+    def fill_generated(cls, generated, *args, **kwargs):
+        # generated.value = cls.generate_value()
+        generated.value = cls.text_format % (cls.generate_value(*args, **kwargs))
         return generated
 
     @classmethod
@@ -39,21 +41,11 @@ class DataGenerator():
         return [cls.generate_value() for i in range(count)]
 
 
-class TextGenerator(DataGenerator):
-    text_format = "%s"
-
-    @classmethod
-    def generate(cls):
-        generated = cls.generated()
-        generated.generated_value = cls.text_format % (cls.generate_value())
-        return generated
-
-
 class ListGenerator(DataGenerator):
     data_list = ListData()
 
     @classmethod
-    def generate_value(cls, data=None):
+    def generate_value(cls, data=None, **kwargs):
         if data is None:
             data_list = cls.data_list
         else:
@@ -77,17 +69,9 @@ class FileGenerator(ListGenerator):
     data_list = FileData()
 
     @classmethod
-    def generate_value(cls, count=1):
+    def generate_value(cls, count=1, **kwargs):
         cls.data_list.filename = cls.data_file
         return cls.data_list.select(count)
-
-
-class ParamGenerator(DataGenerator):
-    @classmethod
-    def generate(cls, **kwargs):
-        generated = cls.generated()
-        generated.generated_text = cls.generate_value(**kwargs)
-        return generated
 
 
 class PercentedGenerator(DataGenerator):
