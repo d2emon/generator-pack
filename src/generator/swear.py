@@ -1,4 +1,5 @@
-from . import Generated, FileGenerator
+from .generator import FileGenerator
+from .generator.generated import Generated
 
 
 class Swear(Generated):
