@@ -1,6 +1,6 @@
 import random
 from . import Generated, DataGenerator, GeneratorTemplate
-from .data.band import names1, names2, names3, names4, names5
+from data.band import names1, names2, names3, names4, names5
 
 
 class Haiku(Generated):

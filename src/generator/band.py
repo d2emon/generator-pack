@@ -1,42 +1,49 @@
 import random
-from . import Generated, DataGenerator
-from .data.band import names1, names2, names3, names4, names5
+from .generator import ListGenerator, PercentedGenerator
+from .generator.generated import Generated
+from .generator.generator_data import ListData
+from data.band import names1, names2, names3, names4, names5
 
 
 class Band(Generated):
     title = "Band"
 
 
-class BandGenerator(DataGenerator):
+class BandSubGenerator(ListGenerator):
     generated_class = Band
-    band_names1 = [names1, names2]
-    band_names2 = names5
-    band_names3 = [names3, names4]
 
-    @classmethod
-    def generate1(cls):
-        return "%s %s" % (
-            random.choice(cls.band_names1[0]),
-            random.choice(cls.band_names1[1]),
-        )
 
-    @classmethod
-    def generate2(cls):
-        return random.choice(cls.band_names2)
-
-    @classmethod
-    def generate3(cls):
-        return "%s of %s" % (
-            random.choice(cls.band_names3[0]),
-            random.choice(cls.band_names3[1]),
-        )
+class BandSubGenerator1(BandSubGenerator):
+    data_list1 = ListData(names1)
+    data_list2 = ListData(names2)
 
     @classmethod
     def generate_value(cls):
-        chance = random.randint(0, 100)
-        if chance < 30:
-            return cls.generate1()
-        elif chance < 70:
-            return cls.generate2()
-        else:
-            return cls.generate3()
+        return "%s %s" % (
+            cls.data_list1.select(),
+            cls.data_list2.select(),
+        )
+
+
+class BandSubGenerator2(BandSubGenerator):
+    data_list = ListData(names5)
+
+
+class BandSubGenerator3(BandSubGenerator):
+    data_list1 = ListData(names3)
+    data_list2 = ListData(names4)
+
+    @classmethod
+    def generate_value(cls):
+        return "%s of %s" % (
+            cls.data_list1.select(),
+            cls.data_list2.select(),
+        )
+
+
+class BandGenerator(PercentedGenerator):
+    subgenerators = {
+        30: BandSubGenerator1,
+        70: BandSubGenerator2,
+        100: BandSubGenerator3,
+    }
