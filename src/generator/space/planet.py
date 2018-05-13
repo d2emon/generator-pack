@@ -393,6 +393,10 @@ class Planet(Generated):
         self.size = planet_sizes[0]
 
     @property
+    def value(self):
+        return self.name
+
+    @property
     def width(self):
         if not self.__width:
             self.__width = self.size.random_size()
@@ -426,16 +430,20 @@ class PlanetGenerator(ListGenerator):
     planet_sizes = planet_sizes
 
     @classmethod
+    def __next__(cls, data=[]):
+        return random.choice(data)
+
+    @classmethod
     def generate(cls, near=False, earth=False):
         if near:
             if not earth:
-                planet_type = cls.generate_value(cls.combPlanets)
+                planet_type = cls.__next__(cls.combPlanets)
                 # combPlanets.splice(ranPlanet, 1);
             else:
-                planet_type = cls.generate_value(cls.noEarthPlanets)
+                planet_type = cls.__next__(cls.noEarthPlanets)
                 # combPlanets.splice(ranPlanet, 1);
         else:
-            planet_type = cls.generate_value(cls.noEarthPlanets)
+            planet_type = cls.__next__(cls.noEarthPlanets)
 
         generated = cls.generated()
         generated.planet_type = planet_type
@@ -462,11 +470,11 @@ class PlanetGenerator(ListGenerator):
         else:
             generated.days = ((random.random() * 191) + 10)
 
-        generated.name = cls.generate_value(cls.planet_names)
-        generated.size = cls.generate_value(cls.planet_sizes)
-        generated.environment = cls.generate_value(cls.environments)
-        generated.surface_map = cls.generate_value(cls.maps)
-        generated.atmosphere = cls.generate_value(atmospheres)
+        generated.name = cls.__next__(cls.planet_names)
+        generated.size = cls.__next__(cls.planet_sizes)
+        generated.environment = cls.__next__(cls.environments)
+        generated.surface_map = cls.__next__(cls.maps)
+        generated.atmosphere = cls.__next__(atmospheres)
         generated.moons = random.randint(1, generated.planet_type.max_moons)
         generated.tilt = random.randrange(18000) * 0.01
 

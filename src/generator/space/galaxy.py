@@ -26,13 +26,14 @@ galaxy_names = fixtures.galaxy_names
 
 class BaseGalaxyGenerator(ListGenerator):
     generated_class = Galaxy
-    galaxy_names = [
-        galaxy_names[0],
-        galaxy_names[1],
-    ]
+    template = "{part1} {part2}"
+    data = {
+        'part1': ListData(galaxy_names[0]),
+        'part2': ListData(galaxy_names[1]),
+    }
 
     @classmethod
-    def __next__(cls):
+    def __next__1(cls):
         choices = [ListData(n) for n in cls.galaxy_names]
         return "%s %s" % (
             choices[0].__next__(),
@@ -44,32 +45,32 @@ class GalaxyGenerator(PercentedGenerator):
     generated_class = Galaxy
 
     class GalaxyGenerator1(BaseGalaxyGenerator):
-        galaxy_names = [
-            galaxy_names[0],
-            galaxy_names[1],
-        ]
+        data = {
+            'part1': ListData(galaxy_names[0]),
+            'part2': ListData(galaxy_names[1]),
+        }
 
 
     class GalaxyGenerator2(BaseGalaxyGenerator):
-        galaxy_names = [
-            galaxy_names[1],
-            galaxy_names[3],
-        ]
+        data = {
+            'part1': ListData(galaxy_names[1]),
+            'part2': ListData(galaxy_names[3]),
+        }
 
 
     class GalaxyGenerator3(BaseGalaxyGenerator):
-        galaxy_names = [
-            galaxy_names[2],
-            galaxy_names[3],
-        ]
+        data = {
+            'part1': ListData(galaxy_names[2]),
+            'part2': ListData(galaxy_names[3]),
+        }
 
 
     class GalaxyGenerator4(TemplatedGenerator, BaseGalaxyGenerator):
-        template = "{c}{c}-{n}{n}"
+        template_str = "{c}{c}-{n}{n}"
 
 
     class GalaxyGenerator5(TemplatedGenerator, BaseGalaxyGenerator):
-        template = "{c}{c}{c} {n}{n}{c}"
+        template_str = "{c}{c}{c} {n}{n}{c}"
 
 
     subgenerators = {

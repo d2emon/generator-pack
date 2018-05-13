@@ -16,6 +16,8 @@ from generator.wisdom import WisdomQuoteGenerator
 from generator.world import WorldGenerator
 
 from generator.space.galaxy import GalaxyGenerator
+from generator.space.star import StarGenerator
+from generator.space.planet import PlanetGenerator
 
 from generator.generator.markov import MarkovChain, MarkovGenerator
 
@@ -44,6 +46,8 @@ generators = {
     "wisdom": WisdomQuoteGenerator,
     "world": WorldGenerator,
     "galaxy": GalaxyGenerator,
+    "star": StarGenerator,
+    "planet": PlanetGenerator,
 }
 
 

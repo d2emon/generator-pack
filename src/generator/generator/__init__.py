@@ -46,15 +46,15 @@ class ListGenerator(DataGenerator):
         next_data = {key: next(d) for key, d in cls.data.items()}
         return cls.template.format(**next_data)
 
-class FileGenerator(ListGenerator):
-    data_file = ""
-    data_list = None
-
-    @classmethod
-    def __next__(cls):
-        if cls.data_list is None:
-            cls.data_list = FileData(cls.data_file)
-        return next(cls.data_list)
+# class FileGenerator(ListGenerator):
+#     data_file = ""
+#     data_list = None
+#
+#     @classmethod
+#     def __next__(cls):
+#         if cls.data_list is None:
+#             cls.data_list = FileData(cls.data_file)
+#         return next(cls.data_list)
 
 
 class PercentedGenerator(DataGenerator):
@@ -85,8 +85,8 @@ class PercentedGenerator(DataGenerator):
 
 
 class TemplatedGenerator(DataGenerator):
-    template = "{c}{n}"
+    template_str = "{c}{n}"
 
     @classmethod
     def __next__(cls):
-        return GeneratorTemplate.generate(cls.template)
+        return GeneratorTemplate.generate(cls.template_str)

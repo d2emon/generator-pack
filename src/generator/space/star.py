@@ -1,8 +1,9 @@
-from generator import ListGenerator
-
+from ..generator import ListGenerator
 
 from .fixtures import suns
 from .planet import PlanetGenerator
+
+import random
 
 
 class Star():
@@ -13,11 +14,23 @@ class Star():
         self.blue = blue
         self.planets = []
 
+    def __repr__(self):
+        return "{}: {} ({}) - {}".format(
+            'Star',
+            self.title,
+            self.blue,
+            self.planets,
+        )
+
 
 class StarGenerator(ListGenerator):
     generated_class = Star
     sun_list = suns[:30]
     blue_sun_list = suns[30:]
+
+    @classmethod
+    def __next__(cls, data=[]):
+        return random.choice(data)
 
     @classmethod
     def generate(cls, planets=0, blue_sun=False, only_blue=False, sun=None):
@@ -34,7 +47,7 @@ class StarGenerator(ListGenerator):
             sun_list = cls.blue_sun_list
 
         if not sun:
-            sun = cls.generate_value(sun_list)
+            sun = cls.__next__(sun_list)
         generated.title = str(sun)
         generated.image = sun.image
         generated.blue = sun.blue
