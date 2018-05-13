@@ -25,11 +25,11 @@ class AppealToDeityTemplate(DataGenerator):
     ]
 
     @classmethod
-    def generate_value(cls):
+    def __next__(cls):
         return cls.template % (
-            cls.data_files[0].select(),
-            cls.data_files[1].select(),
-            cls.data_files[2].select(),
+            cls.data_files[0].__next__(),
+            cls.data_files[1].__next__(),
+            cls.data_files[2].__next__(),
         )
 
 
@@ -53,17 +53,17 @@ class ForgivePrayerGenerator(BasePrayerGenerator):
     ]
 
     @classmethod
-    def generate_value(cls, *args, **kwargs):
+    def __next__(cls, *args, **kwargs):
         deity = AppealToDeityTemplate.generate()
         return cls.template % (
             deity.value,
-            cls.data_files[0].select(),
-            cls.data_files[1].select(),
-            cls.data_files[2].select(),
-            cls.data_files[3].select(),
-            cls.data_files[4].select(),
-            cls.data_files[5].select(),
-            cls.data_files[6].select(),
+            cls.data_files[0].__next__(),
+            cls.data_files[1].__next__(),
+            cls.data_files[2].__next__(),
+            cls.data_files[3].__next__(),
+            cls.data_files[4].__next__(),
+            cls.data_files[5].__next__(),
+            cls.data_files[6].__next__(),
         )
 
 
@@ -86,20 +86,20 @@ class AidPrayerGenerator(BasePrayerGenerator):
     ]
 
     @classmethod
-    def generate_value(cls, *args, **kwargs):
+    def __next__(cls, *args, **kwargs):
         deity = AppealToDeityTemplate.generate()
         return cls.template % (
             deity.value,
-            cls.data_files[0].select(),
-            cls.data_files[1].select(),
-            cls.data_files[2].select(),
-            cls.data_files[3].select(),
-            cls.data_files[4].select(),
-            cls.data_files[5].select(),
-            cls.data_files[6].select(),
-            cls.data_files[7].select(),
-            cls.data_files[8].select(),
-            cls.data_files[9].select(),
+            cls.data_files[0].__next__(),
+            cls.data_files[1].__next__(),
+            cls.data_files[2].__next__(),
+            cls.data_files[3].__next__(),
+            cls.data_files[4].__next__(),
+            cls.data_files[5].__next__(),
+            cls.data_files[6].__next__(),
+            cls.data_files[7].__next__(),
+            cls.data_files[8].__next__(),
+            cls.data_files[9].__next__(),
         )
 
 

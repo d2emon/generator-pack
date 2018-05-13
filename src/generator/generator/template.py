@@ -33,5 +33,5 @@ class GeneratorTemplate():
 
     @classmethod
     def glue(cls, parts, glue=""):
-        selected = [i.select() for i in parts]
+        selected = [i.__next__() for i in parts]
         return glue.join(selected).capitalize()

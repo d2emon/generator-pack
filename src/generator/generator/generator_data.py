@@ -3,8 +3,11 @@ from utils import load_lines
 import random
 
 
-class GeneratorData():
-    def select(self):
+class GeneratorData:
+    def __iter__(self):
+        return self
+
+    def __next__(self):
         return None
         # random.shuffle(data_list)
 
@@ -12,12 +15,26 @@ class GeneratorData():
 class ListData(GeneratorData):
     def __init__(self, data=[]):
         self.data = data
+        self.items = None
+        self.load(data)
 
-    def select(self, count=1):
-        if count <= 1:
-            return random.choice(self.data)
+    def load(self, data):
+        self.data = data
+        self.items = self.generator(data)
+
+    def generator(self, data):
+        self.data = data
+        while True:
+            yield random.choice(self.data)
+
+    def __next__(self):
+        if self.items is None:
+            raise StopIteration
+        return self.items.__next__()
+
+    def shuffled(self):
         random.shuffle(self.data)
-        return self.data[0:count]
+        return self.data
 
     @property
     def length(self):
@@ -26,13 +43,9 @@ class ListData(GeneratorData):
 
 class FileData(ListData):
     def __init__(self, filename=""):
-        ListData.__init__(self)
+        self.load(filename)
+
+    def load(self, filename):
         self.filename = filename
-
-    def reload(self):
-        self.data = load_lines(self.filename)
-
-    def select(self, count=1):
-        if self.length < 1:
-            self.reload()
-        return ListData.select(self, count=count)
+        lines = load_lines(self.filename)
+        self.items = self.generator(lines)

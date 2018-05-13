@@ -111,7 +111,7 @@ class DemonymBaseSubGenerator(DataGenerator):
     data_files = []
 
     @classmethod
-    def generate_value(cls):
+    def __next__(cls):
         return GeneratorTemplate.glue(cls.data_files)
 
 

@@ -81,7 +81,7 @@ class HaikuGenerator(DataGenerator):
     generated_class = Haiku
 
     @classmethod
-    def generate_value(cls):
+    def __next__(cls):
         names = [
             HaikuSubGenerator1.generate(),
             HaikuSubGenerator2.generate(),

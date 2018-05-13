@@ -13,7 +13,7 @@ class StoryConcept(Generated):
 
 class BaseConceptGenerator(DataGenerator):
     @classmethod
-    def generate_value(cls, *args, **kwargs):
+    def __next__(cls, *args, **kwargs):
         return GeneratorTemplate.glue(cls.data_files, glue=" ")
 
 

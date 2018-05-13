@@ -132,6 +132,7 @@ def run_generator(name='', count=1, *args, **kwargs):
         return
     if name == 'all':
         for name, g in generators.items():
+            print(name)
             data = [g.generate() for i in range(count)]
             print_result(data, name)
         return
