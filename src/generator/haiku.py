@@ -1,6 +1,9 @@
+from .generator import DataGenerator
+from .generator.template import GeneratorTemplate
+from .generator.generated import Generated
+from .generator.generator_data import FileData
+
 import random
-from . import Generated, DataGenerator, GeneratorTemplate
-from data.band import names1, names2, names3, names4, names5
 
 
 class Haiku(Generated):
@@ -10,79 +13,78 @@ class Haiku(Generated):
         return "{}:\n{}".format(self.title, self.generated_value)
 
 
+class HaikuSubGenerator(DataGenerator):
+    data_files = []
+
+    @classmethod
+    def generate(cls):
+        snt = random.choice(cls.data_files)
+        return GeneratorTemplate.glue(snt, glue=" ")
+
+
+class HaikuSubGenerator1(HaikuSubGenerator):
+    data_files = [
+        [
+            FileData("data/haiku/haiku1a.txt"),
+            FileData("data/haiku/haiku2a.txt"),
+        ],
+        [
+            FileData("data/haiku/haiku1b.txt"),
+            FileData("data/haiku/haiku2b.txt"),
+        ],
+        [
+            FileData("data/haiku/haiku1c.txt"),
+            FileData("data/haiku/haiku2c.txt"),
+        ],
+        [
+            FileData("data/haiku/haiku5a.txt"),
+            FileData("data/haiku/haiku2c.txt"),
+        ],
+        [
+            FileData("data/haiku/haiku5b.txt"),
+            FileData("data/haiku/haiku6b.txt"),
+        ]
+    ]
+
+
+class HaikuSubGenerator2(HaikuSubGenerator):
+    data_files = [
+        [
+            FileData("data/haiku/haiku3a.txt"),
+            FileData("data/haiku/haiku4a.txt"),
+        ],
+        [
+            FileData("data/haiku/haiku3b.txt"),
+            FileData("data/haiku/haiku4b.txt"),
+        ],
+    ]
+
+
+class HaikuSubGenerator3(HaikuSubGenerator):
+    data_files = [
+        [
+            FileData("data/haiku/haiku1a.txt"),
+            FileData("data/haiku/haiku2a.txt"),
+        ],
+        [
+            FileData("data/haiku/haiku1b.txt"),
+            FileData("data/haiku/haiku2b.txt"),
+        ],
+        [
+            FileData("data/haiku/haiku5a.txt"),
+            FileData("data/haiku/haiku2c.txt"),
+        ],
+    ]
+
+
 class HaikuGenerator(DataGenerator):
     generated_class = Haiku
-    band_names1 = [names1, names2]
-    band_names2 = names5
-    band_names3 = [names3, names4]
-
-    @classmethod
-    def generate1(cls):
-        snt = random.randint(0, 4)
-        if snt == 0:
-            return GeneratorTemplate.strip([
-                "data/haiku/haiku1a.txt",
-                "data/haiku/haiku2a.txt",
-            ])
-        elif snt == 1:
-            return GeneratorTemplate.strip([
-                "data/haiku/haiku1b.txt",
-                "data/haiku/haiku2b.txt",
-            ])
-        elif snt == 2:
-            return GeneratorTemplate.strip([
-                "data/haiku/haiku1c.txt",
-                "data/haiku/haiku2c.txt",
-            ])
-        elif snt == 3:
-            return GeneratorTemplate.strip([
-                "data/haiku/haiku5a.txt",
-                "data/haiku/haiku2c.txt",
-            ])
-        else:
-            return GeneratorTemplate.strip([
-                "data/haiku/haiku5b.txt",
-                "data/haiku/haiku6b.txt",
-            ])
-
-    @classmethod
-    def generate2(cls):
-        snt = random.randint(0, 1)
-        if snt == 0:
-            return GeneratorTemplate.strip([
-                "data/haiku/haiku3a.txt",
-                "data/haiku/haiku4a.txt",
-            ])
-        else:
-            return GeneratorTemplate.strip([
-                "data/haiku/haiku3b.txt",
-                "data/haiku/haiku4b.txt",
-            ])
-
-    @classmethod
-    def generate3(cls):
-        snt = random.randint(0, 2)
-        if snt == 0:
-            return GeneratorTemplate.strip([
-                "data/haiku/haiku1a.txt",
-                "data/haiku/haiku2a.txt",
-            ])
-        elif snt == 1:
-            return GeneratorTemplate.strip([
-                "data/haiku/haiku1b.txt",
-                "data/haiku/haiku2b.txt",
-            ])
-        else:
-            return GeneratorTemplate.strip([
-                "data/haiku/haiku5a.txt",
-                "data/haiku/haiku2c.txt",
-            ])
 
     @classmethod
     def generate_value(cls):
         names = [
-            cls.generate1(),
-            cls.generate2(),
-            cls.generate3(),
+            HaikuSubGenerator1.generate(),
+            HaikuSubGenerator2.generate(),
+            HaikuSubGenerator3.generate(),
         ]
         return "\n".join(names)
