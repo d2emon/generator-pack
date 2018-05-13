@@ -17,7 +17,7 @@ from generator.world import WorldGenerator
 
 from generator.space.galaxy import GalaxyGenerator
 
-from generator.markov import MarkovChain, MarkovGenerator
+from generator.generator.markov import MarkovChain, MarkovGenerator
 
 generators = {
     "album": AlbumGenerator,
@@ -94,10 +94,10 @@ streets = [
     "Зеленая",
 ]
 
+
 def markov_street(data, length=32):
-    chain = MarkovChain(data_list=data, length=3)
-    g = chain.generator()
-    return "ул. {}".format(g.generate_chain(length))
+    g = MarkovChain(data_list=data, length=3).generator()
+    return "ул. {}".format(g.generate(length))
 
 
 def print_result(data=[], title=None):

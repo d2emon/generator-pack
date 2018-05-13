@@ -6,7 +6,7 @@ import random
 class GeneratorData():
     def select(self):
         return None
-        random.shuffle(data_list)
+        # random.shuffle(data_list)
 
 
 class ListData(GeneratorData):
