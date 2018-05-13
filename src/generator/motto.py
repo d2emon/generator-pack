@@ -1,12 +1,13 @@
-from .generator import FileGenerator
+from .generator import ListGenerator
 from .generator.generated import Generated
+from .generator.generator_data import FileData
 
 
 class Motto(Generated):
     title = "Motto"
 
 
-class MottoGenerator(FileGenerator):
+class MottoGenerator(ListGenerator):
     generated_class = Motto
-    data_file = "data/motto.txt"
-    text_format = "%s."
+    data = { 'name': FileData("data/motto.txt") }
+    template = "{name}."

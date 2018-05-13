@@ -1,5 +1,4 @@
-from .generator import DataGenerator, PercentedGenerator
-from .generator.template import GeneratorTemplate
+from .generator import ListGenerator, PercentedGenerator
 from .generator.generated import Generated
 from .generator.generator_data import FileData
 
@@ -83,7 +82,7 @@ class Demonym():
         self.value = "{}{}".format(word_base, random.choice(word_ends))
 
     def __repr__(self):
-        return self.value
+        return "{} of {}".format(self.value, self.base)
 
 
 class DemonymBase(Generated):
@@ -92,73 +91,75 @@ class DemonymBase(Generated):
     def __init__(self, value=''):
         Generated.__init__(self)
         self.value = value
-        self.__demonym = None
 
     @property
     def demonym(self):
-        if self.__demonym:
-            return self.__demonym
-
-        self.__demonym = Demonym(self.value)
         return self.__demonym
 
+    @property
+    def value(self):
+        return self.__value
+
+    @value.setter
+    def value(self, value):
+        self.__value = value.capitalize()
+        self.__demonym = Demonym(self.__value)
+
     def __repr__(self):
-        return "{}:\t\"{} of {}\"".format(self.title, self.demonym, self.value)
+        return "{}:\t\"{}, {}\"".format(self.title, self.value, self.demonym)
 
 
-class DemonymBaseSubGenerator(DataGenerator):
+class DemonymBaseSubGenerator(ListGenerator):
     generated_class = DemonymBase
-    data_files = []
-
-    @classmethod
-    def __next__(cls):
-        return GeneratorTemplate.glue(cls.data_files)
-
-
-class DemonymBaseSubGenerator1(DemonymBaseSubGenerator):
-    data_files = [
-        FileData("data/demonym/demonym1.txt"),
-        FileData("data/demonym/demonym2.txt"),
-        FileData("data/demonym/demonym3.txt"),
-        FileData("data/demonym/endings.txt"),
-    ]
-
-
-class DemonymBaseSubGenerator2(DemonymBaseSubGenerator):
-    data_files = [
-        FileData("data/demonym/demonym1.txt"),
-        FileData("data/demonym/demonym2.txt"),
-        FileData("data/demonym/demonym3.txt"),
-        FileData("data/demonym/demonym6.txt"),
-    ]
-
-
-class DemonymBaseSubGenerator3(DemonymBaseSubGenerator):
-    data_files = [
-        FileData("data/demonym/demonym3.txt"),
-        FileData("data/demonym/demonym4.txt"),
-        FileData("data/demonym/demonym5.txt"),
-    ]
-
-
-class DemonymBaseSubGenerator4(DemonymBaseSubGenerator):
-    data_files = [
-        FileData("data/demonym/demonym2.txt"),
-        FileData("data/demonym/demonym3.txt"),
-        FileData("data/demonym/demonym6.txt"),
-    ]
-
-
-class DemonymBaseSubGenerator5(DemonymBaseSubGenerator):
-    data_files = [
-        FileData("data/demonym/demonym3.txt"),
-        FileData("data/demonym/demonym4.txt"),
-        FileData("data/demonym/demonym1.txt"),
-        FileData("data/demonym/endings.txt"),
-    ]
 
 
 class DemonymGenerator(PercentedGenerator):
+    class DemonymBaseSubGenerator1(DemonymBaseSubGenerator):
+        template = "{demonym1}{demonym2}{demonym3}{end}"
+        data = {
+            'demonym1': FileData("data/demonym/demonym1.txt"),
+            'demonym2': FileData("data/demonym/demonym2.txt"),
+            'demonym3': FileData("data/demonym/demonym3.txt"),
+            'end': FileData("data/demonym/endings.txt"),
+        }
+
+
+    class DemonymBaseSubGenerator2(DemonymBaseSubGenerator):
+        template = "{demonym1}{demonym2}{demonym3}{end}"
+        data = {
+            'demonym1': FileData("data/demonym/demonym1.txt"),
+            'demonym2': FileData("data/demonym/demonym2.txt"),
+            'demonym3': FileData("data/demonym/demonym3.txt"),
+            'end': FileData("data/demonym/demonym6.txt"),
+        }
+
+
+    class DemonymBaseSubGenerator3(DemonymBaseSubGenerator):
+        template = "{demonym1}{demonym2}{demonym3}"
+        data = {
+            'demonym1': FileData("data/demonym/demonym3.txt"),
+            'demonym2': FileData("data/demonym/demonym4.txt"),
+            'demonym3': FileData("data/demonym/demonym5.txt"),
+        }
+
+
+    class DemonymBaseSubGenerator4(DemonymBaseSubGenerator):
+        template = "{demonym1}{demonym2}{demonym3}"
+        data = {
+            'demonym1': FileData("data/demonym/demonym2.txt"),
+            'demonym2': FileData("data/demonym/demonym3.txt"),
+            'demonym3': FileData("data/demonym/demonym6.txt"),
+        }
+
+
+    class DemonymBaseSubGenerator5(DemonymBaseSubGenerator):
+        template = "{demonym1}{demonym2}{demonym3}{end}"
+        data = {
+            'demonym1': FileData("data/demonym/demonym3.txt"),
+            'demonym2': FileData("data/demonym/demonym4.txt"),
+            'demonym3': FileData("data/demonym/demonym1.txt"),
+            'end': FileData("data/demonym/endings.txt"),
+        }
     subgenerators = {
         20: DemonymBaseSubGenerator1,
         40: DemonymBaseSubGenerator2,

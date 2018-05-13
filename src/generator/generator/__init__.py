@@ -12,6 +12,7 @@ class DataGenerator():
     generated_class = Generated
     default_value = "UNGENERATED"
     text_format = "%s"
+    template = "{name}"
 
     @classmethod
     def generated(cls, *args, **kwargs):
@@ -34,18 +35,16 @@ class DataGenerator():
 
     @classmethod
     def generate_values(cls, count=1):
-        return [cls.__next__() for i in range(count)]
+        return [next(cls) for i in range(count)]
 
 
 class ListGenerator(DataGenerator):
-    data_list = ListData()
+    data = dict()
 
     @classmethod
     def __next__(cls):
-        if cls.data_list is None:
-            return None
-        return cls.data_list.__next__()
-
+        next_data = {key: next(d) for key, d in cls.data.items()}
+        return cls.template.format(**next_data)
 
 class FileGenerator(ListGenerator):
     data_file = ""
@@ -55,7 +54,7 @@ class FileGenerator(ListGenerator):
     def __next__(cls):
         if cls.data_list is None:
             cls.data_list = FileData(cls.data_file)
-        return cls.data_list.__next__()
+        return next(cls.data_list)
 
 
 class PercentedGenerator(DataGenerator):
@@ -74,7 +73,7 @@ class PercentedGenerator(DataGenerator):
         g = cls.generator_by_chance(chance)
         if g is None:
             return cls.default_value
-        return g.__next__()
+        return next(g)
 
     @classmethod
     def generate(cls):

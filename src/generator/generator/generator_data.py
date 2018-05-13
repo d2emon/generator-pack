@@ -3,16 +3,26 @@ from utils import load_lines
 import random
 
 
-class GeneratorData:
+class StaticData:
+    def __init__(self, data=None):
+        self.data = data
+
     def __iter__(self):
         return self
 
     def __next__(self):
-        return None
-        # random.shuffle(data_list)
+        return self.data
 
 
-class ListData(GeneratorData):
+class GeneratorData(StaticData):
+    def __init__(self, data):
+        self.data = data
+
+    def __next__(self):
+        return self.data.__next__()
+
+
+class ListData(StaticData):
     def __init__(self, data=[]):
         self.data = data
         self.items = None

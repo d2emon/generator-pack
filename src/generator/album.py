@@ -10,4 +10,4 @@ class Album(Generated):
 
 class AlbumGenerator(ListGenerator):
     generated_class = Album
-    data_list = ListData(names)
+    data = { 'name': ListData(names) }

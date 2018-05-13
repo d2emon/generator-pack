@@ -1,4 +1,4 @@
-from .generator import DataGenerator
+from .generator import DataGenerator, ListGenerator
 from .generator.template import GeneratorTemplate
 from .generator.generated import Generated
 from .generator.generator_data import FileData
@@ -10,81 +10,87 @@ class Haiku(Generated):
     title = "Haiku"
 
     def __repr__(self):
-        return "{}:\n{}".format(self.title, self.value)
+        return "{}:\n{}".format(self.title, "\n".join(self.value))
 
 
 class HaikuSubGenerator(DataGenerator):
-    data_files = []
+    template = "{part1} {part2}"
 
     @classmethod
     def generate(cls):
-        snt = random.choice(cls.data_files)
-        return GeneratorTemplate.glue(snt, glue=" ")
-
-
-class HaikuSubGenerator1(HaikuSubGenerator):
-    data_files = [
-        [
-            FileData("data/haiku/haiku1a.txt"),
-            FileData("data/haiku/haiku2a.txt"),
-        ],
-        [
-            FileData("data/haiku/haiku1b.txt"),
-            FileData("data/haiku/haiku2b.txt"),
-        ],
-        [
-            FileData("data/haiku/haiku1c.txt"),
-            FileData("data/haiku/haiku2c.txt"),
-        ],
-        [
-            FileData("data/haiku/haiku5a.txt"),
-            FileData("data/haiku/haiku2c.txt"),
-        ],
-        [
-            FileData("data/haiku/haiku5b.txt"),
-            FileData("data/haiku/haiku6b.txt"),
-        ]
-    ]
-
-
-class HaikuSubGenerator2(HaikuSubGenerator):
-    data_files = [
-        [
-            FileData("data/haiku/haiku3a.txt"),
-            FileData("data/haiku/haiku4a.txt"),
-        ],
-        [
-            FileData("data/haiku/haiku3b.txt"),
-            FileData("data/haiku/haiku4b.txt"),
-        ],
-    ]
-
-
-class HaikuSubGenerator3(HaikuSubGenerator):
-    data_files = [
-        [
-            FileData("data/haiku/haiku1a.txt"),
-            FileData("data/haiku/haiku2a.txt"),
-        ],
-        [
-            FileData("data/haiku/haiku1b.txt"),
-            FileData("data/haiku/haiku2b.txt"),
-        ],
-        [
-            FileData("data/haiku/haiku5a.txt"),
-            FileData("data/haiku/haiku2c.txt"),
-        ],
-    ]
+        snt = random.choice(cls.data)
+        next_data = {key: next(d) for key, d in snt.items()}
+        return cls.template.format(**next_data)
 
 
 class HaikuGenerator(DataGenerator):
     generated_class = Haiku
+    class HaikuSubGenerator1(HaikuSubGenerator):
+        data = [
+            {
+                'part1': FileData("data/haiku/haiku1a.txt"),
+                'part2': FileData("data/haiku/haiku2a.txt"),
+            },
+            {
+                'part1': FileData("data/haiku/haiku1b.txt"),
+                'part2': FileData("data/haiku/haiku2b.txt"),
+            },
+            {
+                'part1': FileData("data/haiku/haiku1c.txt"),
+                'part2': FileData("data/haiku/haiku2c.txt"),
+            },
+            {
+                'part1': FileData("data/haiku/haiku5a.txt"),
+                'part2': FileData("data/haiku/haiku2c.txt"),
+            },
+            {
+                'part1': FileData("data/haiku/haiku5b.txt"),
+                'part2': FileData("data/haiku/haiku6b.txt"),
+            }
+        ]
+
+
+    class HaikuSubGenerator2(HaikuSubGenerator):
+        data = [
+            {
+                'part1': FileData("data/haiku/haiku3a.txt"),
+                'part2': FileData("data/haiku/haiku4a.txt"),
+            },
+            {
+                'part1': FileData("data/haiku/haiku3b.txt"),
+                'part2': FileData("data/haiku/haiku4b.txt"),
+            },
+        ]
+
+
+    class HaikuSubGenerator3(HaikuSubGenerator):
+        data = [
+            {
+                'part1': FileData("data/haiku/haiku1a.txt"),
+                'part2': FileData("data/haiku/haiku2a.txt"),
+            },
+            {
+                'part1': FileData("data/haiku/haiku1b.txt"),
+                'part2': FileData("data/haiku/haiku2b.txt"),
+            },
+            {
+                'part1': FileData("data/haiku/haiku5a.txt"),
+                'part2': FileData("data/haiku/haiku2c.txt"),
+            },
+        ]
+
+    strings = [
+        HaikuSubGenerator1,
+        HaikuSubGenerator2,
+        HaikuSubGenerator3,
+    ]
 
     @classmethod
     def __next__(cls):
-        names = [
-            HaikuSubGenerator1.generate(),
-            HaikuSubGenerator2.generate(),
-            HaikuSubGenerator3.generate(),
-        ]
-        return "\n".join(names)
+        return [s.generate() for s in cls.strings]
+
+    @classmethod
+    def fill_generated(cls, generated, *args, **kwargs):
+        # generated.value = cls.generate_value()
+        generated.value = cls.__next__()
+        return generated

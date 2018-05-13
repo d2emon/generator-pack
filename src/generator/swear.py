@@ -1,11 +1,12 @@
-from .generator import FileGenerator
+from .generator import ListGenerator
 from .generator.generated import Generated
+from .generator.generator_data import FileData
 
 
 class Swear(Generated):
     title = "Swear"
 
 
-class SwearGenerator(FileGenerator):
+class SwearGenerator(ListGenerator):
     generated_class = Swear
-    data_file = "data/swear.txt"
+    data = { 'name': FileData("data/swear.txt") }

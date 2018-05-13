@@ -1,11 +1,12 @@
-from .generator import FileGenerator
+from .generator import ListGenerator
 from .generator.generated import Generated
+from .generator.generator_data import FileData
 
 
 class Riddle(Generated):
     title = "Riddle"
 
 
-class RiddleGenerator(FileGenerator):
+class RiddleGenerator(ListGenerator):
     generated_class = Riddle
-    data_file = "data/riddle.txt"
+    data = { 'name': FileData("data/riddle.txt") }

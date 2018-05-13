@@ -1,5 +1,6 @@
-from .generator import FileGenerator
+from .generator import ListGenerator
 from .generator.generated import Generated
+from .generator.generator_data import FileData
 
 
 class WisdomQuote(Generated):
@@ -9,6 +10,6 @@ class WisdomQuote(Generated):
         return "{}:\n\"{}\"".format(self.title, self.value)
 
 
-class WisdomQuoteGenerator(FileGenerator):
+class WisdomQuoteGenerator(ListGenerator):
     generated_class = WisdomQuote
-    data_file = "data/wisdom.txt"
+    data = { 'name': FileData("data/motivation.txt") }

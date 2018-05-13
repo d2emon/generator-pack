@@ -1,5 +1,4 @@
-from .generator import DataGenerator, PercentedGenerator
-from .generator.template import GeneratorTemplate
+from .generator import ListGenerator, PercentedGenerator
 from .generator.generated import Generated
 from .generator.generator_data import FileData
 
@@ -11,28 +10,24 @@ class ArtConcept(Generated):
 class StoryConcept(Generated):
     title = "StoryConcept"
 
-class BaseConceptGenerator(DataGenerator):
-    @classmethod
-    def __next__(cls, *args, **kwargs):
-        return GeneratorTemplate.glue(cls.data_files, glue=" ")
 
-
-class BaseArtConceptGenerator(BaseConceptGenerator):
+class BaseArtConceptGenerator(ListGenerator):
     generated_class = ArtConcept
+    template = "{first} {last}"
 
 
 class ArtConceptPlaceGenerator(BaseArtConceptGenerator):
-    data_files = [
-        FileData("data/art-concept/place1.txt"),
-        FileData("data/art-concept/place2.txt"),
-    ]
+    data = {
+        'first': FileData("data/art-concept/place1.txt"),
+        'last': FileData("data/art-concept/place2.txt"),
+    }
 
 
 class ArtConceptBeingGenerator(BaseArtConceptGenerator):
-    data_files = [
-        FileData("data/art-concept/being1.txt"),
-        FileData("data/art-concept/being2.txt"),
-    ]
+    data = {
+        'first': FileData("data/art-concept/being1.txt"),
+        'last': FileData("data/art-concept/being2.txt"),
+    }
 
 
 class ArtConceptGenerator(PercentedGenerator):
@@ -42,22 +37,23 @@ class ArtConceptGenerator(PercentedGenerator):
     }
 
 
-class BaseStoryConceptGenerator(BaseConceptGenerator):
+class BaseStoryConceptGenerator(ListGenerator):
     generated_class = StoryConcept
+    template = "{first} {last}"
 
 
 class StoryConceptCharacterGenerator(BaseStoryConceptGenerator):
-    data_files = [
-        FileData("data/story-concept/character1.txt"),
-        FileData("data/story-concept/character2.txt"),
-    ]
+    data = {
+        'first': FileData("data/story-concept/character1.txt"),
+        'last': FileData("data/story-concept/character2.txt"),
+    }
 
 
 class StoryConceptEventGenerator(BaseStoryConceptGenerator):
-    data_files = [
-        FileData("data/story-concept/event1.txt"),
-        FileData("data/story-concept/event2.txt"),
-    ]
+    data = {
+        'first': FileData("data/story-concept/event1.txt"),
+        'last': FileData("data/story-concept/event2.txt"),
+    }
 
 
 class StoryConceptGenerator(PercentedGenerator):

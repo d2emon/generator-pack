@@ -1,12 +1,13 @@
-from .generator import FileGenerator
+from .generator import ListGenerator
 from .generator.generated import Generated
+from .generator.generator_data import FileData
 
 
 class Idiom(Generated):
     title = "Idiom"
 
 
-class IdiomGenerator(FileGenerator):
+class IdiomGenerator(ListGenerator):
     generated_class = Idiom
-    data_file = "data/idiom.txt"
-    text_format = "%s."
+    data = { 'name': FileData("data/idiom.txt") }
+    template = "{name}."

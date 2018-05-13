@@ -1,12 +1,13 @@
-from .generator import FileGenerator
+from .generator import ListGenerator
 from .generator.generated import Generated
+from .generator.generator_data import FileData
 
 
 class BattleCry(Generated):
     title = "BattleCry"
 
 
-class BattleCryGenerator(FileGenerator):
+class BattleCryGenerator(ListGenerator):
     generated_class = BattleCry
-    data_file = "data/battlecry.txt"
-    text_format = "%s!"
+    data = { 'name': FileData("data/battlecry.txt") }
+    template = "{name}!"

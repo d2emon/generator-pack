@@ -15,29 +15,21 @@ class BandSubGenerator(ListGenerator):
 
 class BandGenerator(PercentedGenerator):
     class BandSubGenerator1(BandSubGenerator):
-        data_list1 = ListData(names1)
-        data_list2 = ListData(names2)
-
-        @classmethod
-        def __next__(cls):
-            return "%s %s" % (
-                cls.data_list1.__next__(),
-                cls.data_list2.__next__(),
-            )
+        template = "{name1} {name2}"
+        data = {
+            'name1': ListData(names1),
+            'name2': ListData(names2),
+        }
 
     class BandSubGenerator2(BandSubGenerator):
-        data_list = ListData(names5)
+        data = { 'name': ListData(names5) }
 
     class BandSubGenerator3(BandSubGenerator):
-        data_list1 = ListData(names3)
-        data_list2 = ListData(names4)
-
-        @classmethod
-        def __next__(cls):
-            return "%s of %s" % (
-                cls.data_list1.__next__(),
-                cls.data_list2.__next__(),
-            )
+        template = "{name1} of {name2}"
+        data = {
+            'name1': ListData(names3),
+            'name2': ListData(names4),
+        }
 
     subgenerators = {
         30: BandSubGenerator1,

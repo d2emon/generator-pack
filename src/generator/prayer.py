@@ -1,7 +1,7 @@
-from .generator import DataGenerator, PercentedGenerator
+from .generator import ListGenerator, PercentedGenerator
 from .generator.generated import Generated
 from .generator.template import GeneratorTemplate
-from .generator.generator_data import FileData
+from .generator.generator_data import GeneratorData, FileData
 
 
 class Deity(Generated):
@@ -15,92 +15,55 @@ class Prayer(Generated):
         return "{}:\n\"{}\"".format(self.title, self.value)
 
 
-class AppealToDeityTemplate(DataGenerator):
+class AppealToDeityTemplate(ListGenerator):
     generated_class = Deity
-    template = "%s %s, %s"
-    data_files = [
-        FileData("data/prayer/deity_title.txt"),
-        FileData("data/prayer/deity_name.txt"),
-        FileData("data/prayer/deity_long_title.txt"),
-    ]
-
-    @classmethod
-    def __next__(cls):
-        return cls.template % (
-            cls.data_files[0].__next__(),
-            cls.data_files[1].__next__(),
-            cls.data_files[2].__next__(),
-        )
+    template = "{title} {name}, {long_title}"
+    data = {
+        'title': FileData("data/prayer/deity_title.txt"),
+        'name': FileData("data/prayer/deity_name.txt"),
+        'long_title': FileData("data/prayer/deity_long_title.txt"),
+    }
 
 
-class BasePrayerGenerator(DataGenerator):
+class BasePrayerGenerator(ListGenerator):
     generated_class = Prayer
 
 
 class ForgivePrayerGenerator(BasePrayerGenerator):
-    template = "%s, %s. %s, %s. %s, %s. %s so I %s."
-    data_files = [
-        FileData("data/prayer/sin.txt"),
+    template = "{deity}, {sin}. {forgive}, {description}. {ask1}, {promise1}. {ask2} so I {promise2}."
+    data = {
+        'deity': GeneratorData(AppealToDeityTemplate),
+        'sin': FileData("data/prayer/sin.txt"),
 
-        FileData("data/prayer/forgive.txt"),
-        FileData("data/prayer/sin_description.txt"),
+        'forgive': FileData("data/prayer/forgive.txt"),
+        'description': FileData("data/prayer/sin_description.txt"),
 
-        FileData("data/prayer/ask_sin.txt"),
-        FileData("data/prayer/promise.txt"),
+        'ask1': FileData("data/prayer/ask_sin.txt"),
+        'promise1': FileData("data/prayer/promise.txt"),
 
-        FileData("data/prayer/ask_sin2.txt"),
-        FileData("data/prayer/promise2.txt"),
-    ]
-
-    @classmethod
-    def __next__(cls, *args, **kwargs):
-        deity = AppealToDeityTemplate.generate()
-        return cls.template % (
-            deity.value,
-            cls.data_files[0].__next__(),
-            cls.data_files[1].__next__(),
-            cls.data_files[2].__next__(),
-            cls.data_files[3].__next__(),
-            cls.data_files[4].__next__(),
-            cls.data_files[5].__next__(),
-            cls.data_files[6].__next__(),
-        )
+        'ask2': FileData("data/prayer/ask_sin2.txt"),
+        'promise2': FileData("data/prayer/promise2.txt"),
+    }
 
 
 class AidPrayerGenerator(BasePrayerGenerator):
-    template = "%s, %s. %s so I %s %s. I %s this of you %s, o %s. %s me with your %s %s."
-    data_files = [
-        FileData("data/prayer/ask.txt"),
+    template = "{deity}, {ask1}. {ask2} so I {may} {subject}. I {ask3} this of you {asker}, o {title}. {bless} me with your {bless_description} {bless_subject}."
+    data = {
+        'deity': GeneratorData(AppealToDeityTemplate),
+        'ask1': FileData("data/prayer/ask.txt"),
 
-        FileData("data/prayer/ask2.txt"),
-        FileData("data/prayer/may.txt"),
-        FileData("data/prayer/subject.txt"),
+        'ask2': FileData("data/prayer/ask2.txt"),
+        'may': FileData("data/prayer/may.txt"),
+        'subject': FileData("data/prayer/subject.txt"),
 
-        FileData("data/prayer/ask3.txt"),
-        FileData("data/prayer/asker.txt"),
-        FileData("data/prayer/deity_title2.txt"),
+        'ask3': FileData("data/prayer/ask3.txt"),
+        'asker': FileData("data/prayer/asker.txt"),
+        'title': FileData("data/prayer/deity_title2.txt"),
 
-        FileData("data/prayer/bless.txt"),
-        FileData("data/prayer/bless_description.txt"),
-        FileData("data/prayer/bless_subject.txt"),
-    ]
-
-    @classmethod
-    def __next__(cls, *args, **kwargs):
-        deity = AppealToDeityTemplate.generate()
-        return cls.template % (
-            deity.value,
-            cls.data_files[0].__next__(),
-            cls.data_files[1].__next__(),
-            cls.data_files[2].__next__(),
-            cls.data_files[3].__next__(),
-            cls.data_files[4].__next__(),
-            cls.data_files[5].__next__(),
-            cls.data_files[6].__next__(),
-            cls.data_files[7].__next__(),
-            cls.data_files[8].__next__(),
-            cls.data_files[9].__next__(),
-        )
+        'bless': FileData("data/prayer/bless.txt"),
+        'bless_description': FileData("data/prayer/bless_description.txt"),
+        'bless_subject': FileData("data/prayer/bless_subject.txt"),
+    }
 
 
 class PrayerGenerator(PercentedGenerator):

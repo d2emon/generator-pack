@@ -1,12 +1,13 @@
-from .generator import FileGenerator
+from .generator import ListGenerator
 from .generator.generated import Generated
+from .generator.generator_data import FileData
 
 
 class Motivation(Generated):
     title = "Motivation"
 
 
-class MotivationGenerator(FileGenerator):
+class MotivationGenerator(ListGenerator):
     generated_class = Motivation
-    data_file = "data/motivation.txt"
-    text_format = "%s."
+    data = { 'name': FileData("data/motivation.txt") }
+    template = "{name}."
