@@ -2,8 +2,7 @@ from . import Generated, FileGenerator
 
 
 class SchoolSubject(Generated):
-    def __repr__(self):
-        return "School Subject: \"%s\"" % (self.generated_value)
+    title = "School Subject"
 
 
 class SchoolSubjectGenerator(FileGenerator):

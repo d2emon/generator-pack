@@ -2,8 +2,7 @@ from . import Generated, FileGenerator
 
 
 class Idiom(Generated):
-    def __repr__(self):
-        return "Idiom: \"%s\"" % (self.generated_value)
+    title = "Idiom"
 
 
 class IdiomGenerator(FileGenerator):

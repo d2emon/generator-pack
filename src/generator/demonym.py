@@ -25,6 +25,8 @@ c_ending_no_splice =[
 ]
 
 class DemonymBase(Generated):
+    title = "Demonym"
+
     def __init__(self):
         Generated.__init__(self)
         self.__demonym = None

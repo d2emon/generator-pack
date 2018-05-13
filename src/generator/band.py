@@ -4,8 +4,7 @@ from .data.band import names1, names2, names3, names4, names5
 
 
 class Band(Generated):
-    def __repr__(self):
-        return "Band: \"%s\"" % (self.generated_value)
+    title = "Band"
 
 
 class BandGenerator(DataGenerator):

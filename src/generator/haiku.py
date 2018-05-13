@@ -4,6 +4,8 @@ from .data.band import names1, names2, names3, names4, names5
 
 
 class Haiku(Generated):
+    title = "Haiku"
+
     def __repr__(self):
         return "Haiku:\n%s" % (self.generated_value)
 

@@ -3,6 +3,8 @@ import random
 
 
 class Prayer(Generated):
+    title = "Prayer"
+
     def __repr__(self):
         return "Prayer:\n\"%s\"" % (self.generated_text)
 

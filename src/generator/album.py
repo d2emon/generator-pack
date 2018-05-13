@@ -1,13 +1,12 @@
 import random
-from . import Generated, ListGenerator
+from . import Generated, ListGenerator, ListData
 from .data.album import names
 
 
 class Album(Generated):
-    def __repr__(self):
-        return "Album: \"%s\"" % (self.generated_value)
+    title = "Album"
 
 
 class AlbumGenerator(ListGenerator):
     generated_class = Album
-    data_list = names
+    data_list = ListData(names)

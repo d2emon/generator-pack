@@ -2,8 +2,7 @@ from . import Generated, FileGenerator
 
 
 class Riddle(Generated):
-    def __repr__(self):
-        return "Riddle: \"%s\"" % (self.generated_value)
+    title = "Riddle"
 
 
 class RiddleGenerator(FileGenerator):

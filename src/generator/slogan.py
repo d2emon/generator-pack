@@ -2,8 +2,7 @@ from . import Generated, FileGenerator
 
 
 class Slogan(Generated):
-    def __repr__(self):
-        return "Slogan: \"%s\"" % (self.generated_value)
+    title = "Slogan"
 
 
 class SloganGenerator(FileGenerator):

@@ -2,8 +2,7 @@ from . import Generated, FileGenerator
 
 
 class BattleCry(Generated):
-    def __repr__(self):
-        return "BattleCry: \"%s\"" % (self.generated_value)
+    title = "BattleCry"
 
 
 class BattleCryGenerator(FileGenerator):

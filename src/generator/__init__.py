@@ -2,6 +2,38 @@ import random
 from utils import load_lines
 
 
+class GeneratorData():
+    def select(self):
+        return None
+        random.shuffle(data_list)
+
+
+class ListData(GeneratorData):
+    def __init__(self, data=[]):
+        self.data = data
+
+    def select(self, count=1):
+        if count <= 1:
+            return random.choice(self.data)
+        random.shuffle(self.data)
+        return self.data[0:count]
+
+    @property
+    def length(self):
+        return len(self.data)
+
+
+class FileData(ListData):
+    def __init__(self, filename=""):
+        ListData.__init__(self)
+        self.filename = filename
+
+    def select(self, count=1):
+        if self.length < 1:
+            self.data = load_lines(self.filename)
+        return ListData.select(self, count=count)
+
+
 class Generated():
     title = None
 
@@ -90,28 +122,27 @@ class TextGenerator(DataGenerator):
 
 
 class ListGenerator(DataGenerator):
-    data_list = []
+    data_list = ListData()
 
     @classmethod
-    def generate_value(cls, data_list=None, count=1):
-        if data_list is None:
+    def generate_value(cls, data=None, count=1):
+        if data is None:
             data_list = cls.data_list
+        else:
+            data_list = ListData(data)
         if not data_list:
-            return None #  ""
-        if count > 1:
-            random.shuffle(data_list)
-            return data_list[0:count]
-        return random.choice(data_list)
+            return None
+        return data_list.select(count)
 
 
 class FileGenerator(ListGenerator):
     data_file = ""
+    data_list = FileData()
 
     @classmethod
-    def generate_value(cls):
-        if len(cls.data_list) < 1:
-            cls.data_list = load_lines(cls.data_file)
-        return random.choice(cls.data_list)
+    def generate_value(cls, count=1):
+        cls.data_list.filename = cls.data_file
+        return cls.data_list.select(count)
 
 
 class ParamGenerator(DataGenerator):

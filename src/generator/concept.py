@@ -2,13 +2,11 @@ from . import Generated, ParamGenerator, GeneratorTemplate
 
 
 class ArtConcept(Generated):
-    def __repr__(self):
-        return "ArtConcept: \"%s\"" % (self.generated_text)
+    title = "ArtConcept"
 
 
 class StoryConcept(Generated):
-    def __repr__(self):
-        return "StoryConcept: \"%s\"" % (self.generated_text)
+    title = "StoryConcept"
 
 
 class ArtConceptGenerator(ParamGenerator):
