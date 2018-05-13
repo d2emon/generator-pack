@@ -29,7 +29,10 @@ class FileData(ListData):
         ListData.__init__(self)
         self.filename = filename
 
+    def reload(self):
+        self.data = load_lines(self.filename)
+
     def select(self, count=1):
         if self.length < 1:
-            self.data = load_lines(self.filename)
+            self.reload()
         return ListData.select(self, count=count)

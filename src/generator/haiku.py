@@ -10,7 +10,7 @@ class Haiku(Generated):
     title = "Haiku"
 
     def __repr__(self):
-        return "{}:\n{}".format(self.title, self.generated_value)
+        return "{}:\n{}".format(self.title, self.value)
 
 
 class HaikuSubGenerator(DataGenerator):

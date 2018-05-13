@@ -70,7 +70,7 @@ class FileGenerator(ListGenerator):
 
     @classmethod
     def generate_value(cls, count=1, **kwargs):
-        cls.data_list.filename = cls.data_file
+        cls.data_list = FileData(cls.data_file)
         return cls.data_list.select(count)
 
 

@@ -7,7 +7,7 @@ from generator.demonym import DemonymGenerator, Demonym
 from generator.haiku import HaikuGenerator
 from generator.idiom import IdiomGenerator
 from generator.motto import MottoGenerator
-from generator.prayer import PrayerGenerator
+from generator.prayer import ForgivePrayerGenerator, AidPrayerGenerator, PrayerGenerator
 from generator.riddle import RiddleGenerator
 from generator.schoolSubject import SchoolSubjectGenerator
 from generator.slogan import SloganGenerator
@@ -34,6 +34,8 @@ generators = {
     "haiku": HaikuGenerator,
     "idiom": IdiomGenerator,
     "motto": MottoGenerator,
+    "prayer-forgive": ForgivePrayerGenerator,
+    "prayer-aid": AidPrayerGenerator,
     "prayer": PrayerGenerator,
     "riddle": RiddleGenerator,
     "subject": SchoolSubjectGenerator,
