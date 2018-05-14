@@ -13,6 +13,16 @@ var random1 = parseInt(Math.floor((Math.random() * names1.length)));
 6   "bird"
 7   "mammal"
 """
+from .generator import Generated
+from .generator.generator_data import ListData
+
+import random
+
+
+def nextUnique(*args):
+    return [arg for arg in args]
+
+
 class Body:
     base_parts = [
         [],
@@ -509,6 +519,17 @@ def int2str(i):
     }
     return data.get(i)
 
+class Horns(Generated):
+    pass
+
+
+class Nose(Generated):
+    pass
+
+
+class Mouth(Generated):
+    pass
+
 
 class Eyes(Generated):
     def __init__(self, **kwargs):
@@ -568,107 +589,123 @@ class Skin(Generated):
 
 
 class EyesGenerator:
-    count = DataList(eyes_count)
-    eyesockets = DataList(eyesockets)
+    count = ListData(eyes_count)
+    eyesockets = ListData(eyesockets)
 
-    def __next__(self, appearance, quality):
+    @classmethod
+    def __next__(cls, appearance, quality):
         return Eyes(
-            count=next(self.count),
-            sockets=next(self.eyesockets_data),
+            count=next(cls.count),
+            sockets=next(cls.eyesockets),
             appearance=appearance,
             quality=quality,
         )
 
 
 class MouthGenerator:
-    mouths = DataList(mouths)
+    mouths = ListData(mouths)
 
-    def __next__(self, appearance):
-        return Mouth(next(self.mouths))
+    @classmethod
+    def __next__(cls):
+        return Mouth(next(cls.mouths))
 
 
 class NoseGenerator:
-    noses = DataList(noses)
+    noses = ListData(noses)
 
-    def __next__(self, appearance):
-        return Nose(next(self.noses))
+    @classmethod
+    def __next__(cls):
+        return Nose(next(cls.noses))
 
 
 class FishNoseGenerator(NoseGenerator):
-    noses = DataList(fish_noses)
+    noses = ListData(fish_noses)
 
 
-class BeakGenerator(BeakGenerator):
-    noses = DataList(beaks)
+class BeakGenerator(MouthGenerator):
+    noses = ListData(beaks)
 
 
 class EarsGenerator:
-    ears = DataList(ears)
+    ears = ListData(ears)
 
-    def __next__(self, quality):
+    @classmethod
+    def __next__(cls, quality):
         return Ears(
-            ears=next(self.ears),
+            ears=next(cls.ears),
             quality=quality,
         )
 
 
-class HornsGenerator:
-    horns = DataList(horns)
+class FishEarsGenerator(EarsGenerator):
+    ears = ListData(fish_ears)
 
-    def __next__(self, quality):
-        return Horns(next(self.horns))
+
+class BirdEarsGenerator(EarsGenerator):
+    ears = ListData(bird_ears)
+
+
+class HornsGenerator:
+    horns = ListData(horns)
+
+    @classmethod
+    def __next__(cls):
+        return Horns(next(cls.horns))
 
 
 class AquaticHornsGenerator(HornsGenerator):
-    horns = DataList(aquatic_horns)
+    horns = ListData(aquatic_horns)
 
 
 class SkinGenerator:
-    skins = DataList(skins)
-    covers = DataList(covers)
-    colors = [DataList(color) for color in skin_colors]
-    agings = DataList(agings)
+    skins = ListData(skins)
+    covers = ListData(covers)
+    colors = [ListData(color) for color in skin_colors]
+    agings = ListData(agings)
 
-    def __next__(self, skin="Their skin "):
+    @classmethod
+    def __next__(cls, skin="Their skin "):
         cover = None
-        if self.covers is not None:
-            cover = next(self.covers)
+        if cls.covers is not None:
+            cover = next(cls.covers)
 
         return Skin(
-            skin=skin
-            skin_type=next(self.skins),
+            skin=skin,
+            skin_type=next(cls.skins),
             cover=cover,
-            colors=[next(color) for color in self.colors], # unique
-            aging=next(self.agings),
+            colors=[next(color) for color in cls.colors], # unique
+            aging=next(cls.agings),
         )
 
 
-class AquaticSkinGenerator:
+class AquaticSkinGenerator(SkinGenerator):
     covers = None
 
 
-class AmphibianSkinGenerator:
-    covers = DataList([""])
+class AmphibianSkinGenerator(SkinGenerator):
+    covers = ListData([""])
     # cover=["It's covered in a thin layer of mucous.","It's covered in a thick layer of mucous.","It's covered in a very thin layer of mucous.","It's covered in a very thick layer of mucous.","It's covered lightly in mucous."]
 
 
-class ReptileSkinGenerator:
-    covers = DataList([""])
+class ReptileSkinGenerator(SkinGenerator):
+    covers = ListData([""])
     # cover=["It's covered in thin, coarse scales.","It's covered in large, coarse scales.","It's covered in large, smooth scales.","It's covered in large, strong scales.","It's covered in small, coarse scales.","It's covered in small, smooth scales.","It's covered in small, strong scales.","It's covered in strong, hard scales.","It's covered in thick, coarse scales.","It's covered in thick, strong scales."]
 
 
-class FishSkinGenerator:
-    covers = DataList([""])
+class FishSkinGenerator(SkinGenerator):
+    covers = ListData([""])
     # cover=["It's covered in thin, coarse scales.","It's covered in large, coarse scales.","It's covered in large, smooth scales.","It's covered in large, strong scales.","It's covered in small, coarse scales.","It's covered in small, smooth scales.","It's covered in small, strong scales.","It's covered in strong, hard scales.","It's covered in thick, coarse scales.","It's covered in thick, strong scales."]
 
 
-class BirdSkinGenerator:
-    covers = DataList([""])
+class BirdSkinGenerator(SkinGenerator):
+    covers = ListData([""])
     # cover=["It's covered in large feathers.","It's covered in large, thin feathers.","It's covered in large, wide feathers.","It's covered in long, thin feathers.","It's covered in long, wide feathers.","It's covered in short, thin feathers.","It's covered in short, wide feathers.","It's covered in small feathers.","It's covered in small, thin feathers.","It's covered in small, wide feathers."]
 
 
 class Race:
     def __init__(self, **kwargs):
+        self.title = kwargs.get('title')
+        self.body = kwargs.get('body')
         self.appearance = kwargs.get('appearance')
         self.horns = kwargs.get('horns')
         self.ears = kwargs.get('ears')
@@ -676,14 +713,15 @@ class Race:
         self.nose = kwargs.get('nose')
         self.mouth = kwargs.get('mouth')
         self.skin = kwargs.get('skin')
+        self.divercity = kwargs.get('divercity')
 
     @property
     def nose_mouth(self):
         nose_mouth = []
         if self.mouth is not None:
-            nose_mouth.append(self.mouth)
+            nose_mouth.append(str(self.mouth))
         if self.nose is not None:
-            nose_mouth.append(self.nose)
+            nose_mouth.append(str(self.nose))
         return "".join(nose_mouth),
 
     def __str__(self):
@@ -700,19 +738,19 @@ class Race:
             "{skin}",
             "The males are usually {divercity.0} than their female counter part and their colors are {divercity_color}. The females, however, are usually {divercity.1}.",
         ])
-        return text.format(
-            title=self.title,
-            body=self.body,
-            eyes=self.eyes,
-            nose_mouth=nose_mouth,
-            ears=self.ears,
-            horns=self.horns,
-            skin=self.skin,
-            divercity_0=self.divercity[0],
-            divercity_1=self.divercity[1],
-            divercity_color=self.divercity_color,
-        )
-
+        # return text.format(
+        #     title=self.title,
+        #     body=self.body,
+        #     eyes=self.eyes,
+        #     nose_mouth=nose_mouth,
+        #     ears=self.ears,
+        #     horns=self.horns,
+        #     skin=self.skin,
+        #     divercity_0='self.divercity[0]',
+        #     divercity_1='self.divercity[1]',
+        #     divercity_color='self.divercity_color',
+        # )
+        return text
 
 
 class RaceGenerator:
@@ -754,11 +792,11 @@ class RaceGenerator:
         horns = None
         nose = None
         mouth = None
-        if horns_generator is not None:
+        if self.horns_generator is not None:
             horns = self.horns_generator.__next__()
-        if nose_generator is not None:
+        if self.nose_generator is not None:
             nose = self.nose_generator.__next__()
-        if mouth_generator is not None:
+        if self.mouth_generator is not None:
             mouth = self.mouth_generator.__next__()
 
         return Race(
@@ -766,22 +804,22 @@ class RaceGenerator:
             horns=horns,
             ears=self.ears_generator.__next__(
                 quality=quality[1]
-            )
+            ),
             eyes=self.eyes_generator.__next__(
                 appearance=appearance[0],
                 quality=quality[0]
-            )
+            ),
             nose=nose,
             mouth=mouth,
             skin=self.skin_generator.__next__(self.skin),
         )
 
 
-class MammalRace(Race):
+class MammalRaceGenerator(RaceGenerator):
     title = "mammal"
 
 
-class AquaticRace(Race):
+class AquaticRaceGenerator(RaceGenerator):
     title = "aquatic mammal"
 
     horns_generator = AquaticHornsGenerator
@@ -795,7 +833,7 @@ class AquaticRace(Race):
 
 
 
-class AmphibianRace(Race):
+class AmphibianRaceGenerator(RaceGenerator):
     title = "amphibian"
 
     skin_generator = AmphibianSkinGenerator
@@ -805,7 +843,7 @@ class AmphibianRace(Race):
     )
 
 
-class ReptileRace(Race):
+class ReptileRaceGenerator(RaceGenerator):
     title = "reptile"
     skin = "Their scale "
 
@@ -818,7 +856,7 @@ class ReptileRace(Race):
     )
 
 
-class FishRace(Race):
+class FishRaceGenerator(RaceGenerator):
     title = "fish"
     skin = "Their scale "
 
@@ -833,7 +871,7 @@ class FishRace(Race):
     )
 
 
-class InvertebrateRace(Race):
+class InvertebrateRaceGenerator(RaceGenerator):
     title = "invertebrate"
 
     body = Body(
@@ -843,7 +881,7 @@ class InvertebrateRace(Race):
     )
 
 
-class BirdRace(Race):
+class BirdRaceGenerator(RaceGenerator):
     title = "bird"
     skin = "Their feather "
 
@@ -859,16 +897,19 @@ class BirdRace(Race):
         ["with a huge tail","with a huge, wide tail","with a huge, powerful tail","with a long, powerful tail","with a long, elegant tail","with a short, elegant tail","with a short, powerful tail","with a wide, powerful tail","with a wide, elegant tail","with a short tail"],
     )
 
+class RandomRaceGenerator:
+    races = [
+        MammalRaceGenerator,
+        AquaticRaceGenerator,
+        AmphibianRaceGenerator,
+        ReptileRaceGenerator,
+        FishRaceGenerator,
+        InvertebrateRaceGenerator,
+        BirdRaceGenerator,
+        MammalRaceGenerator,
+    ]
 
-
-
-races = [
-    MammalRace,
-    AquaticRace,
-    AmphibianRace,
-    ReptileRace,
-    FishRace,
-    InvertebrateRace,
-    BirdRace,
-    MammalRace,
-]
+    @classmethod
+    def generate(cls):
+        g = random.choice(cls.races)
+        return g().__next__()

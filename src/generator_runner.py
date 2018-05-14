@@ -14,6 +14,7 @@ from generator.slogan import SloganGenerator
 from generator.swear import SwearGenerator
 from generator.wisdom import WisdomQuoteGenerator
 from generator.world import WorldGenerator
+from generator.race import RandomRaceGenerator
 
 from generator.space.galaxy import GalaxyGenerator
 from generator.space.star import StarGenerator
@@ -48,6 +49,7 @@ generators = {
     "galaxy": GalaxyGenerator,
     "star": StarGenerator,
     "planet": PlanetGenerator,
+    "alien": RandomRaceGenerator,
 }
 
 
