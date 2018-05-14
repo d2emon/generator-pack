@@ -20,7 +20,7 @@ import random
 
 
 def nextUnique(*args):
-    return [arg for arg in args]
+    return [random.choice(arg) for arg in args]
 
 
 class Body:
@@ -558,7 +558,7 @@ class Ears(Generated):
         self.quality = kwargs.get('quality', None)
 
     def __str__(self):
-        text = "Their ears are {} and their hearing is {}.".format(
+        return "Their ears are {} and their hearing is {}.".format(
             self.ears,
             self.quality,
         )
@@ -580,9 +580,9 @@ class Skin(Generated):
         text = "Their skin is {} {}\n"
         text += "{} colors are mostly {}, which tend to become {} as they age."
         return text.format(
-            self.skin,
-            self.cover,
             self.skin_type,
+            self.cover,
+            self.skin,
             self.color,
             self.aging,
         )
@@ -704,7 +704,7 @@ class BirdSkinGenerator(SkinGenerator):
 
 class Race:
     def __init__(self, **kwargs):
-        self.title = kwargs.get('title')
+        self.race_type = kwargs.get('race_type')
         self.body = kwargs.get('body')
         self.appearance = kwargs.get('appearance')
         self.horns = kwargs.get('horns')
@@ -722,7 +722,7 @@ class Race:
             nose_mouth.append(str(self.mouth))
         if self.nose is not None:
             nose_mouth.append(str(self.nose))
-        return "".join(nose_mouth),
+        return "".join(nose_mouth)
 
     def __str__(self):
         text = "Their {} often make these aliens appear to be {}, but looks can be deceiving."
@@ -736,21 +736,21 @@ class Race:
             "{eyes}",
             "{nose_mouth}\n{ears} {horns}",
             "{skin}",
-            "The males are usually {divercity.0} than their female counter part and their colors are {divercity_color}. The females, however, are usually {divercity.1}.",
+            "The males are usually {divercity_0} than their female counter part and their colors are {divercity_color}. The females, however, are usually {divercity_1}.",
         ])
-        # return text.format(
-        #     title=self.title,
-        #     body=self.body,
-        #     eyes=self.eyes,
-        #     nose_mouth=nose_mouth,
-        #     ears=self.ears,
-        #     horns=self.horns,
-        #     skin=self.skin,
-        #     divercity_0='self.divercity[0]',
-        #     divercity_1='self.divercity[1]',
-        #     divercity_color='self.divercity_color',
-        # )
-        return text
+        return text.format(
+            title=self.race_type,
+            body=self.body,
+            eyes=self.eyes,
+            nose_mouth=nose_mouth,
+            ears=self.ears,
+            horns=self.horns,
+            skin=self.skin,
+            divercity_0='self.divercity[0]',
+            divercity_1='self.divercity[1]',
+            divercity_color='self.divercity_color',
+        )
+        # return text
 
 
 class RaceGenerator:
@@ -800,6 +800,7 @@ class RaceGenerator:
             mouth = self.mouth_generator.__next__()
 
         return Race(
+            race_type=self.title,
             appearance=appearance[1],
             horns=horns,
             ears=self.ears_generator.__next__(
