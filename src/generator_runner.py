@@ -114,7 +114,7 @@ def print_result(data=[], title=None):
         print(title)
         print("-" * 80)
     for i, item in enumerate(data):
-        print("{}:\t{}".format(
+        print("{}:\n{}".format(
             i + 1,
             item
         ))
