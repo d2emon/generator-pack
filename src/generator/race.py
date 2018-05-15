@@ -327,6 +327,7 @@ class RaceGenerator:
 
         return Race(
             race_type=self.title,
+            body=self.body_generator.__next__(),
             appearance=appearance[1],
             horns=horns,
             ears=self.ears_generator.__next__(
