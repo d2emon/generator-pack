@@ -3,7 +3,7 @@ from utils import load_lines
 import random
 
 
-class StaticData:
+class GeneratorData:
     def __init__(self, data=None):
         self.data = data
 
@@ -11,18 +11,15 @@ class StaticData:
         return self
 
     def __next__(self):
+        return next(self.data)
+
+
+class StaticData(GeneratorData):
+    def __next__(self):
         return self.data
 
 
-class GeneratorData(StaticData):
-    def __init__(self, data):
-        self.data = data
-
-    def __next__(self):
-        return self.data.__next__()
-
-
-class ListData(StaticData):
+class ListData(GeneratorData):
     def __init__(self, data=[]):
         self.data = data
         self.items = None
@@ -41,6 +38,10 @@ class ListData(StaticData):
         if self.items is None:
             raise StopIteration
         return self.items.__next__()
+
+    def unique(self, count=1):
+        random.shuffle(self.data)
+        return self.data[:count]
 
     def shuffled(self):
         random.shuffle(self.data)

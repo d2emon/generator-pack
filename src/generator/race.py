@@ -8,8 +8,13 @@ from fixtures import race
 import random
 
 
-def nextUnique(*args):
-    return [random.choice(arg) for arg in args]
+class RandomGenerator:
+    data = []
+
+    @classmethod
+    def generate(cls):
+        g = random.choice(cls.data)
+        return g.__next__()
 
 
 def int2str(i):
@@ -104,6 +109,20 @@ class Skin(Generated):
             self.skin,
             self.color,
             self.aging,
+        )
+
+
+class Divercity(Generated):
+    def __init__(self, **kwargs):
+        self.m = kwargs.get('m', None)
+        self.f = kwargs.get('f', None)
+        self.color = kwargs.get('color', None)
+
+    def __str__(self):
+        return "The males are usually {m} than their female counter part and their colors are {color}. The females, however, are usually {f}.".format(
+            m=self.m,
+            f=self.f,
+            color=self.color,
         )
 
 
@@ -242,6 +261,20 @@ class BirdSkinGenerator(SkinGenerator):
     covers = ListData(race.feathers)
 
 
+class DivercityGenerator:
+    divercity = ListData(race.divercities)
+    colors = ListData(race.divercity_colors_data)
+
+    @classmethod
+    def __next__(cls):
+        divercity = cls.divercity.unique(2)
+        return Divercity(
+            m=divercity[0],
+            f=divercity[1],
+            color=next(cls.colors),
+        )
+
+
 class Race:
     def __init__(self, **kwargs):
         self.race_type = kwargs.get('race_type')
@@ -271,18 +304,13 @@ class Race:
             self.nose_mouth,
             self.appearance,
         )
-        divercity = ['UNKNOWN', 'UNKNOWN']
-        if len(self.divercity) > 0:
-            divercity[0] = self.divercity[0]
-        if len(self.divercity) > 1:
-            divercity[1] = self.divercity[1]
 
         text = "\n\n".join([
             "These aliens are a type of {title}. {body}",
             "{eyes}",
             "{nose_mouth}\n{ears} {horns}",
             "{skin}",
-            "The males are usually {divercity[0]} than their female counter part and their colors are {divercity_color}. The females, however, are usually {divercity[1]}.",
+            "{divercity}"
         ])
         return text.format(
             title=self.race_type,
@@ -292,8 +320,7 @@ class Race:
             ears=self.ears,
             horns=self.horns,
             skin=self.skin,
-            divercity=divercity,
-            divercity_color=self.divercity_color,
+            divercity=self.divercity,
         )
         # return text
 
@@ -303,7 +330,6 @@ class RaceGenerator:
     skin = "Their skin "
 
     body_generator = BodyGenerator()
-
     horns_generator = HornsGenerator
     ears_generator = EarsGenerator
     eyes_generator = EyesGenerator
@@ -311,24 +337,14 @@ class RaceGenerator:
     mouth_generator = MouthGenerator
     skin_generator = SkinGenerator
 
+    divercity_generator = DivercityGenerator
+
     appearance_data = ListData(race.appearances)
     quality_data = ListData(race.qualities)
-    divercity_data = ListData(race.divercities)
-    divercity_colors = ListData(race.divercity_colors_data)
-
-
-    def appearance(self):
-        return nextUnique(self.appearance_data.data, self.appearance_data.data)
-
-    def quality(self):
-        return nextUnique(self.quality_data.data, self.quality_data.data)
-
-    def divercity(self):
-        return nextUnique(self.divercity_data.data, self.divercity_data.data)
 
     def __next__(self):
-        appearance = self.appearance()
-        quality = self.quality()
+        appearance = self.appearance_data.unique(2)
+        quality = self.quality_data.unique(2)
 
         horns = None
         nose = None
@@ -355,8 +371,7 @@ class RaceGenerator:
             nose=nose,
             mouth=mouth,
             skin=self.skin_generator.__next__(self.skin),
-            divercity=self.divercity(),
-            divercity_color=next(self.divercity_colors),
+            divercity=self.divercity_generator.__next__(),
         )
 
 
@@ -442,8 +457,9 @@ class BirdRaceGenerator(RaceGenerator):
         ["with a huge tail","with a huge, wide tail","with a huge, powerful tail","with a long, powerful tail","with a long, elegant tail","with a short, elegant tail","with a short, powerful tail","with a wide, powerful tail","with a wide, elegant tail","with a short tail"],
     )
 
-class RandomRaceGenerator:
-    races = [
+
+class RandomRaceGenerator(RandomGenerator):
+    data = [
         MammalRaceGenerator,
         AquaticRaceGenerator,
         AmphibianRaceGenerator,
@@ -453,8 +469,3 @@ class RandomRaceGenerator:
         BirdRaceGenerator,
         MammalRaceGenerator,
     ]
-
-    @classmethod
-    def generate(cls):
-        g = random.choice(cls.races)
-        return g().__next__()
