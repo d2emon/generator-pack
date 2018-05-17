@@ -14,7 +14,7 @@ class RandomGenerator:
     @classmethod
     def generate(cls):
         g = random.choice(cls.data)
-        return g.__next__()
+        return g().__next__()
 
 
 def int2str(i):
