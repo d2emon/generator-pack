@@ -1,11 +1,10 @@
-from .generator import Generated
-from .generator.generator_data import ListData
-
+import random
+from num2words import num2words
 
 from fixtures import race
 
-
-import random
+# from .generator import Generated
+from .generator.generator_data import ListData
 
 
 class RandomGenerator:
@@ -17,21 +16,17 @@ class RandomGenerator:
         return g().__next__()
 
 
-def int2str(i):
-    data = {
-        2: 'two',
-        4: 'four',
-        6: 'six',
-    }
-    return data.get(i)
+class Generated:
+    def __init__(self, value=None, **kwargs):
+        self.value = value
+        for key, value in kwargs.items():
+            setattr(self, key, value)
+
+    def __str__(self):
+        return self.value
 
 
-class Body:
-    def __init__(self, part1=None, part2=None, part3=None):
-        self.part1 = part1
-        self.part2 = part2
-        self.part3 = part3
-
+class Body(Generated):
     def __str__(self):
         return "They have {}{}{}.".format(
             self.part1,
@@ -53,15 +48,11 @@ class Mouth(Generated):
 
 
 class Eyes(Generated):
-    def __init__(self, **kwargs):
-        self.count = kwargs.get('count', 2)
-        self.sockets = kwargs.get('sockets', None)
-        self.appearance = kwargs.get('appearance', None)
-        self.quality = kwargs.get('quality', None)
+    lang='en'
 
     @property
     def count_str(self):
-        return "{} eyes".format(int2str(self.count))
+        return "{} eyes".format(num2words(self.count, lang=self.lang))
 
     def __str__(self):
         text = "They have {} which sit {} in their sockets and can often make them appear to be {}. Their eyesight is {}."
@@ -74,10 +65,6 @@ class Eyes(Generated):
 
 
 class Ears(Generated):
-    def __init__(self, **kwargs):
-        self.ears = kwargs.get('ears', None)
-        self.quality = kwargs.get('quality', None)
-
     def __str__(self):
         return "Their ears are {} and their hearing is {}.".format(
             self.ears,
@@ -86,13 +73,6 @@ class Ears(Generated):
 
 
 class Skin(Generated):
-    def __init__(self, **kwargs):
-        self.skin = kwargs.get('skin', None)
-        self.skin_type = kwargs.get('skin_type', None)
-        self.cover = kwargs.get('cover', None)
-        self.colors = kwargs.get('colors', None)
-        self.aging = kwargs.get('aging', None)
-
     @property
     def color(self):
         return "".join(self.colors)
@@ -113,11 +93,6 @@ class Skin(Generated):
 
 
 class Divercity(Generated):
-    def __init__(self, **kwargs):
-        self.m = kwargs.get('m', None)
-        self.f = kwargs.get('f', None)
-        self.color = kwargs.get('color', None)
-
     def __str__(self):
         return "The males are usually {m} than their female counter part and their colors are {color}. The females, however, are usually {f}.".format(
             m=self.m,
@@ -145,9 +120,9 @@ class BodyGenerator:
 
     def __next__(self):
         return Body(
-            next(self.parts[1]),
-            next(self.parts[2]),
-            next(self.parts[3])
+            part1=next(self.parts[1]),
+            part2=next(self.parts[2]),
+            part3=next(self.parts[3])
         )
 
 
@@ -178,7 +153,7 @@ class NoseGenerator:
 
     @classmethod
     def __next__(cls):
-        return Nose(next(cls.noses))
+        return Nose(value=next(cls.noses))
 
 
 class FishNoseGenerator(NoseGenerator):
@@ -213,7 +188,7 @@ class HornsGenerator:
 
     @classmethod
     def __next__(cls):
-        return Horns(next(cls.horns))
+        return Horns(value=next(cls.horns))
 
 
 class AquaticHornsGenerator(HornsGenerator):
@@ -386,9 +361,9 @@ class AquaticRaceGenerator(RaceGenerator):
     skin_generator = AquaticSkinGenerator
 
     body_generator = BodyGenerator(
-        ["a huge, powerful tail and small anal fin, ","a huge, muscular tail and small anal fin, ","a large, muscular tail and small anal fin, ","a large, powerful tail and small anal fin, ","a short, muscular tail and small anal fin, ","a long, powerful tail and small anal fin, ","a short, powerful tail and small anal fin, ","a long, muscular tail and small anal fin, ","a huge, powerful tail and small anal fin, ","a huge, muscular tail and long anal fin, ","a large, muscular tail and long anal fin, ","a large, powerful tail and long anal fin, ","a short, muscular tail and long anal fin, ","a long, powerful tail and long anal fin, ","a short, powerful tail and long anal fin, ","a long, muscular tail and long anal fin, "],
-        ["two arms and ","four arms and ","two strong side fins and ","four strong side fins and ","six strong side fins and ","two side fins and ","four side fins and ","six side fins and ","two large side fins and ","four large side fins and ","six large side fins and ","two powerful arms and ","four powerful arms and ","two powerful side fins and ","four powerful sidefins and ","two huge side fins and ","four huge side fins and "],
-        ["a huge dorsal fin","a small dorsal fin","a thick, long dorsal fin","a thin, long dorsal fin","a wide, sail-like dorsal fin","a ribbon-like dorsal fin","a long, ribbon-like dorsal fin","a short, ribbon-like dorsal fin","a huge, sail-like dorsal fin","a short, strong dorsal fin","a long, strong dorsal fin","a short, pointy dorsal fin","a long, pointy dorsal fin","a long, streamlined dorsal fin","a short, streamlined dorsal fin"],
+        parts1=["a huge, powerful tail and small anal fin, ","a huge, muscular tail and small anal fin, ","a large, muscular tail and small anal fin, ","a large, powerful tail and small anal fin, ","a short, muscular tail and small anal fin, ","a long, powerful tail and small anal fin, ","a short, powerful tail and small anal fin, ","a long, muscular tail and small anal fin, ","a huge, powerful tail and small anal fin, ","a huge, muscular tail and long anal fin, ","a large, muscular tail and long anal fin, ","a large, powerful tail and long anal fin, ","a short, muscular tail and long anal fin, ","a long, powerful tail and long anal fin, ","a short, powerful tail and long anal fin, ","a long, muscular tail and long anal fin, "],
+        parts2=["two arms and ","four arms and ","two strong side fins and ","four strong side fins and ","six strong side fins and ","two side fins and ","four side fins and ","six side fins and ","two large side fins and ","four large side fins and ","six large side fins and ","two powerful arms and ","four powerful arms and ","two powerful side fins and ","four powerful sidefins and ","two huge side fins and ","four huge side fins and "],
+        parts3=["a huge dorsal fin","a small dorsal fin","a thick, long dorsal fin","a thin, long dorsal fin","a wide, sail-like dorsal fin","a ribbon-like dorsal fin","a long, ribbon-like dorsal fin","a short, ribbon-like dorsal fin","a huge, sail-like dorsal fin","a short, strong dorsal fin","a long, strong dorsal fin","a short, pointy dorsal fin","a long, pointy dorsal fin","a long, streamlined dorsal fin","a short, streamlined dorsal fin"],
     )
 
 
@@ -410,9 +385,9 @@ class ReptileRaceGenerator(RaceGenerator):
     skin_generator = ReptileSkinGenerator
 
     body_generator = BodyGenerator(
-        ["two arms and two legs, ","two arms and four legs, ","two arms and six legs, ","four arms and two legs, ","four arms and four legs, ","four arms and six legs, ","six arms and two legs, ","six arms and four legs, ","two arms, but no legs, like a snake with arms, ","four arms, but no legs, like a snake with arms, ","six arms, but no legs, like a snake with arms, "],
-        [""],
-        ["with a long, thin tail","with a long, thick tail","with a short, thin tail","with a short, thick tail","with remnants of what was once a tail","but they have no tail","with a long, strong and agile tail","with a short, strong tail","with a long, strong tail","with a short, muscular tail","with a long, muscular tail","with a long, weak tail","with a short, weak tail","with a long, useless tail","with a short, useless tail","with a short, stubby tail"],
+        parts1=["two arms and two legs, ","two arms and four legs, ","two arms and six legs, ","four arms and two legs, ","four arms and four legs, ","four arms and six legs, ","six arms and two legs, ","six arms and four legs, ","two arms, but no legs, like a snake with arms, ","four arms, but no legs, like a snake with arms, ","six arms, but no legs, like a snake with arms, "],
+        parts2=[""],
+        parts3=["with a long, thin tail","with a long, thick tail","with a short, thin tail","with a short, thick tail","with remnants of what was once a tail","but they have no tail","with a long, strong and agile tail","with a short, strong tail","with a long, strong tail","with a short, muscular tail","with a long, muscular tail","with a long, weak tail","with a short, weak tail","with a long, useless tail","with a short, useless tail","with a short, stubby tail"],
     )
 
 
