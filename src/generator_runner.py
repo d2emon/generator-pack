@@ -118,6 +118,9 @@ def print_result(data=[], title=None):
             i + 1,
             item
         ))
+        print('-' * 80)
+        print(item.description)
+        print("-" * 80)
     print("=" * 80)
 
 

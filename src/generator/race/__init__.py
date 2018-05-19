@@ -1,256 +1,27 @@
-import random
-from num2words import num2words
-
 from fixtures import race
 
-# from .generator import Generated
-from .generator.generator_data import ListData
+from .generated import Generated
+from .generators import *
+from .face import *
 
 
-class RandomGenerator:
-    data = []
 
-    @classmethod
-    def generate(cls):
-        g = random.choice(cls.data)
-        return g().__next__()
+class Race(Generated):
+    fields = [
+        'race_type',
+        'body',
+        'appearance',
+        'horns',
+        'ears',
+        'eyes',
+        'nose',
+        'mouth',
+        'skin',
+        'divercity',
+        'divercity_color',
 
-
-class Generated:
-    def __init__(self, value=None, **kwargs):
-        self.value = value
-        for key, value in kwargs.items():
-            setattr(self, key, value)
-
-    def __str__(self):
-        return self.value
-
-
-class Body(Generated):
-    def __str__(self):
-        return "They have {}{}{}.".format(
-            self.part1,
-            self.part2,
-            self.part3,
-        )
-
-
-class Horns(Generated):
-    pass
-
-
-class Nose(Generated):
-    pass
-
-
-class Mouth(Generated):
-    pass
-
-
-class Eyes(Generated):
-    lang='en'
-
-    @property
-    def count_str(self):
-        return "{} eyes".format(num2words(self.count, lang=self.lang))
-
-    def __str__(self):
-        text = "They have {} which sit {} in their sockets and can often make them appear to be {}. Their eyesight is {}."
-        return text.format(
-            self.count_str,
-            self.sockets,
-            self.appearance,
-            self.quality,
-        )
-
-
-class Ears(Generated):
-    def __str__(self):
-        return "Their ears are {} and their hearing is {}.".format(
-            self.ears,
-            self.quality,
-        )
-
-
-class Skin(Generated):
-    @property
-    def color(self):
-        return "".join(self.colors)
-
-    def __str__(self):
-        cover = ""
-        if self.cover is not None:
-            cover = self.cover
-        text = "Their skin is {} {}\n"
-        text += "{}colors are mostly {}, which tend to become {} as they age."
-        return text.format(
-            self.skin_type,
-            cover,
-            self.skin,
-            self.color,
-            self.aging,
-        )
-
-
-class Divercity(Generated):
-    def __str__(self):
-        return "The males are usually {m} than their female counter part and their colors are {color}. The females, however, are usually {f}.".format(
-            m=self.m,
-            f=self.f,
-            color=self.color,
-        )
-
-
-class BodyGenerator:
-    base_parts = [
-        ListData([]),
-        ListData(["two arms and ","four arms and ","six arms and ","two arms and ","two arms and ","four arms and ","two arms and "]),
-        ListData(["two legs, ","four legs, ","six legs, ","four legs, ","two legs, ","two legs, "]),
-        ListData(["with a long, thin tail","with a long, thick tail","with a short, thin tail","with a short, thick tail","with remnants of what was once a tail","but they have no tail","with a long, strong and agile tail","with a short, strong tail","with a long, strong tail","with a short, muscular tail","with a long, muscular tail","with a long, weak tail","with a short, weak tail","with a long, useless tail","with a short, useless tail","with a short, stubby tail"]),
     ]
 
-    def __init__(self, parts1=None, parts2=None, parts3=None):
-        self.parts = self.base_parts
-        if parts1 is not None:
-            self.parts[1] = ListData(parts1)
-        if parts2 is not None:
-            self.parts[2] = ListData(parts2)
-        if parts3 is not None:
-            self.parts[3] = ListData(parts3)
-
-    def __next__(self):
-        return Body(
-            part1=next(self.parts[1]),
-            part2=next(self.parts[2]),
-            part3=next(self.parts[3])
-        )
-
-
-class EyesGenerator:
-    count = ListData(race.eyes_count)
-    eyesockets = ListData(race.eyesockets)
-
-    @classmethod
-    def __next__(cls, appearance, quality):
-        return Eyes(
-            count=next(cls.count),
-            sockets=next(cls.eyesockets),
-            appearance=appearance,
-            quality=quality,
-        )
-
-
-class MouthGenerator:
-    mouths = ListData(race.mouths)
-
-    @classmethod
-    def __next__(cls):
-        return Mouth(next(cls.mouths))
-
-
-class NoseGenerator:
-    noses = ListData(race.noses)
-
-    @classmethod
-    def __next__(cls):
-        return Nose(value=next(cls.noses))
-
-
-class FishNoseGenerator(NoseGenerator):
-    noses = ListData(race.fish_noses)
-
-
-class BeakGenerator(MouthGenerator):
-    noses = ListData(race.beaks)
-
-
-class EarsGenerator:
-    ears = ListData(race.ears)
-
-    @classmethod
-    def __next__(cls, quality):
-        return Ears(
-            ears=next(cls.ears),
-            quality=quality,
-        )
-
-
-class FishEarsGenerator(EarsGenerator):
-    ears = ListData(race.fish_ears)
-
-
-class BirdEarsGenerator(EarsGenerator):
-    ears = ListData(race.bird_ears)
-
-
-class HornsGenerator:
-    horns = ListData(race.horns)
-
-    @classmethod
-    def __next__(cls):
-        return Horns(value=next(cls.horns))
-
-
-class AquaticHornsGenerator(HornsGenerator):
-    horns = ListData(race.aquatic_horns)
-
-
-class SkinGenerator:
-    skins = ListData(race.skins)
-    covers = ListData(race.covers)
-    colors = [ListData(color) for color in race.skin_colors]
-    agings = ListData(race.agings)
-
-    @classmethod
-    def __next__(cls, skin="Their skin "):
-        cover = None
-        if cls.covers is not None:
-            cover = next(cls.covers)
-
-        return Skin(
-            skin=skin,
-            skin_type=next(cls.skins),
-            cover=cover,
-            colors=[next(color) for color in cls.colors], # unique
-            aging=next(cls.agings),
-        )
-
-
-class AquaticSkinGenerator(SkinGenerator):
-    covers = None
-
-
-class AmphibianSkinGenerator(SkinGenerator):
-    covers = ListData(race.mucouses)
-
-
-class ReptileSkinGenerator(SkinGenerator):
-    covers = ListData(race.reptile_scales)
-
-
-class FishSkinGenerator(SkinGenerator):
-    covers = ListData(race.fish_scales)
-
-
-class BirdSkinGenerator(SkinGenerator):
-    covers = ListData(race.feathers)
-
-
-class DivercityGenerator:
-    divercity = ListData(race.divercities)
-    colors = ListData(race.divercity_colors_data)
-
-    @classmethod
-    def __next__(cls):
-        divercity = cls.divercity.unique(2)
-        return Divercity(
-            m=divercity[0],
-            f=divercity[1],
-            color=next(cls.colors),
-        )
-
-
-class Race:
     def __init__(self, **kwargs):
         self.race_type = kwargs.get('race_type')
         self.body = kwargs.get('body')
@@ -274,6 +45,12 @@ class Race:
         return "".join(nose_mouth)
 
     def __str__(self):
+        return "These aliens are a type of {race_type}.".format(
+            race_type=self.race_type,
+        )
+
+    @property
+    def description(self):
         text = "Their {} often make these aliens appear to be {}, but looks can be deceiving."
         nose_mouth = text.format(
             self.nose_mouth,
@@ -281,14 +58,14 @@ class Race:
         )
 
         text = "\n\n".join([
-            "These aliens are a type of {title}. {body}",
+            "{short} {body}",
             "{eyes}",
             "{nose_mouth}\n{ears} {horns}",
             "{skin}",
             "{divercity}"
         ])
         return text.format(
-            title=self.race_type,
+            short=str(self),
             body=self.body,
             eyes=self.eyes,
             nose_mouth=nose_mouth,
@@ -298,7 +75,6 @@ class Race:
             divercity=self.divercity,
         )
         # return text
-
 
 class RaceGenerator:
     title = "mammal"
@@ -357,53 +133,49 @@ class MammalRaceGenerator(RaceGenerator):
 class AquaticRaceGenerator(RaceGenerator):
     title = "aquatic mammal"
 
-    horns_generator = AquaticHornsGenerator
-    skin_generator = AquaticSkinGenerator
-
     body_generator = BodyGenerator(
         parts1=["a huge, powerful tail and small anal fin, ","a huge, muscular tail and small anal fin, ","a large, muscular tail and small anal fin, ","a large, powerful tail and small anal fin, ","a short, muscular tail and small anal fin, ","a long, powerful tail and small anal fin, ","a short, powerful tail and small anal fin, ","a long, muscular tail and small anal fin, ","a huge, powerful tail and small anal fin, ","a huge, muscular tail and long anal fin, ","a large, muscular tail and long anal fin, ","a large, powerful tail and long anal fin, ","a short, muscular tail and long anal fin, ","a long, powerful tail and long anal fin, ","a short, powerful tail and long anal fin, ","a long, muscular tail and long anal fin, "],
         parts2=["two arms and ","four arms and ","two strong side fins and ","four strong side fins and ","six strong side fins and ","two side fins and ","four side fins and ","six side fins and ","two large side fins and ","four large side fins and ","six large side fins and ","two powerful arms and ","four powerful arms and ","two powerful side fins and ","four powerful sidefins and ","two huge side fins and ","four huge side fins and "],
         parts3=["a huge dorsal fin","a small dorsal fin","a thick, long dorsal fin","a thin, long dorsal fin","a wide, sail-like dorsal fin","a ribbon-like dorsal fin","a long, ribbon-like dorsal fin","a short, ribbon-like dorsal fin","a huge, sail-like dorsal fin","a short, strong dorsal fin","a long, strong dorsal fin","a short, pointy dorsal fin","a long, pointy dorsal fin","a long, streamlined dorsal fin","a short, streamlined dorsal fin"],
     )
+    horns_generator = AquaticHornsGenerator
+    skin_generator = AquaticSkinGenerator
 
 
 
 class AmphibianRaceGenerator(RaceGenerator):
     title = "amphibian"
 
-    skin_generator = AmphibianSkinGenerator
-
     body_generator = BodyGenerator(
         parts3 = ["but they have no tail","with a huge, powerful tail","with a long, muscular tail","with a long, powerful tail","with a long, strong and agile tail","with a long, strong tail","with a long, thick tail","with a long, thin tail","with a long, useless tail","with a long, weak tail","with a short, muscular tail","with a short, powerful tail","with a short, strong tail","with a short, stubby tail","with a short, thick tail","with a short, thin tail","with a short, useless tail","with a short, weak tail","with a thick, powerful tail","with remnants of what was once a tail"],
     )
+    skin_generator = AmphibianSkinGenerator
 
 
 class ReptileRaceGenerator(RaceGenerator):
     title = "reptile"
     skin = "Their scale "
 
-    skin_generator = ReptileSkinGenerator
-
     body_generator = BodyGenerator(
         parts1=["two arms and two legs, ","two arms and four legs, ","two arms and six legs, ","four arms and two legs, ","four arms and four legs, ","four arms and six legs, ","six arms and two legs, ","six arms and four legs, ","two arms, but no legs, like a snake with arms, ","four arms, but no legs, like a snake with arms, ","six arms, but no legs, like a snake with arms, "],
         parts2=[""],
         parts3=["with a long, thin tail","with a long, thick tail","with a short, thin tail","with a short, thick tail","with remnants of what was once a tail","but they have no tail","with a long, strong and agile tail","with a short, strong tail","with a long, strong tail","with a short, muscular tail","with a long, muscular tail","with a long, weak tail","with a short, weak tail","with a long, useless tail","with a short, useless tail","with a short, stubby tail"],
     )
+    skin_generator = ReptileSkinGenerator
 
 
 class FishRaceGenerator(RaceGenerator):
     title = "fish"
     skin = "Their scale "
 
-    ears_generator = FishEarsGenerator
-    nose_generator = FishNoseGenerator
-    skin_generator = FishSkinGenerator
-
     body_generator = BodyGenerator(
         ["a huge, powerful tail and small anal fin, ","a huge, muscular tail and small anal fin, ","a large, muscular tail and small anal fin, ","a large, powerful tail and small anal fin, ","a short, muscular tail and small anal fin, ","a long, powerful tail and small anal fin, ","a short, powerful tail and small anal fin, ","a long, muscular tail and small anal fin, ","a huge, powerful tail and small anal fin, ","a huge, muscular tail and long anal fin, ","a large, muscular tail and long anal fin, ","a large, powerful tail and long anal fin, ","a short, muscular tail and long anal fin, ","a long, powerful tail and long anal fin, ","a short, powerful tail and long anal fin, ","a long, muscular tail and long anal fin, "],
         ["two strong side fins and ","four strong side fins and ","six strong side fins and ","two side fins and ","four side fins and ","six side fins and ","two large side fins and ","four large side fins and ","six large side fins and ","two powerful side fins and ","four powerful sidefins and ","two huge side fins and ","four huge side fins and "],
         ["a huge dorsal fin","a small dorsal fin","a thick, long dorsal fin","a thin, long dorsal fin","a wide, sail-like dorsal fin","a ribbon-like dorsal fin","a long, ribbon-like dorsal fin","a short, ribbon-like dorsal fin","a huge, sail-like dorsal fin","a short, strong dorsal fin","a long, strong dorsal fin","a short, pointy dorsal fin","a long, pointy dorsal fin","a long, streamlined dorsal fin","a short, streamlined dorsal fin"],
     )
+    ears_generator = FishEarsGenerator
+    nose_generator = FishNoseGenerator
+    skin_generator = FishSkinGenerator
 
 
 class InvertebrateRaceGenerator(RaceGenerator):
@@ -420,17 +192,16 @@ class BirdRaceGenerator(RaceGenerator):
     title = "bird"
     skin = "Their feather "
 
-    horns_generator = None
-    ears_generator = BirdEarsGenerator
-    mouth_generator = BeakGenerator
-    nose_generator = None
-    skin_generator = BirdSkinGenerator
-
     body_generator = BodyGenerator(
         ["two huge wings and ","four huge wings and ","two huge, powerful wings and ","four huge, powerful wings and ","two huge and two smaller wings and ","two enormous wings and ","four enormous wings and ","two large and four smaller wings and ","four smaller wings and ","two smaller wings and "],
         ["two strong, clawed legs, ","two small, clawed legs, ","four strong, clawed legs, ","four small, clawed legs, ","two strong legs, ","four strong legs, ","two small legs, ","four small legs, ","two thin, long legs, ","two long, strong legs, "],
         ["with a huge tail","with a huge, wide tail","with a huge, powerful tail","with a long, powerful tail","with a long, elegant tail","with a short, elegant tail","with a short, powerful tail","with a wide, powerful tail","with a wide, elegant tail","with a short tail"],
     )
+    horns_generator = None
+    ears_generator = BirdEarsGenerator
+    mouth_generator = BeakGenerator
+    nose_generator = None
+    skin_generator = BirdSkinGenerator
 
 
 class RandomRaceGenerator(RandomGenerator):
