@@ -15,27 +15,21 @@ class RandomGenerator:
 
 
 class BodyGenerator:
-    base_parts = [
-        ListData([]),
-        ListData(["two arms and ","four arms and ","six arms and ","two arms and ","two arms and ","four arms and ","two arms and "]),
-        ListData(["two legs, ","four legs, ","six legs, ","four legs, ","two legs, ","two legs, "]),
-        ListData(["with a long, thin tail","with a long, thick tail","with a short, thin tail","with a short, thick tail","with remnants of what was once a tail","but they have no tail","with a long, strong and agile tail","with a short, strong tail","with a long, strong tail","with a short, muscular tail","with a long, muscular tail","with a long, weak tail","with a short, weak tail","with a long, useless tail","with a short, useless tail","with a short, stubby tail"]),
-    ]
-
-    def __init__(self, parts1=None, parts2=None, parts3=None):
-        self.parts = self.base_parts
-        if parts1 is not None:
-            self.parts[1] = ListData(parts1)
-        if parts2 is not None:
-            self.parts[2] = ListData(parts2)
-        if parts3 is not None:
-            self.parts[3] = ListData(parts3)
+    def __init__(self, fixtures=None):
+        if fixtures is not None:
+            self.parts = [
+                fixtures.body1,
+                fixtures.body2,
+                fixtures.body3,
+            ]
+        else:
+            self.parts = []
 
     def __next__(self):
         return Body(
-            part1=next(self.parts[1]),
-            part2=next(self.parts[2]),
-            part3=next(self.parts[3])
+            part1=next(self.parts[0]),
+            part2=next(self.parts[1]),
+            part3=next(self.parts[2])
         )
 
 

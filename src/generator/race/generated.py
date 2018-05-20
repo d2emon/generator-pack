@@ -11,17 +11,22 @@ class Body(Generated):
 
     def __str__(self):
         return "They have {}{}{}.".format(
-            getattr(self, 'part1', None),
-            getattr(self, 'part2', None),
-            getattr(self, 'part3', None),
+            self.part1 or '',
+            self.part2 or '',
+            self.part3 or '',
         )
 
 
-class Horns(Generated):
+class BodyParts(Generated):
+    def __str__(self):
+        return self.value
+
+
+class Horns(BodyParts):
     title = "Horns"
 
 
-class Skin(Generated):
+class Skin(BodyParts):
     title = "Skin"
     fields = [
         'skin_type',
@@ -40,7 +45,7 @@ class Skin(Generated):
         if self.cover is not None:
             cover = self.cover
         text = "Their skin is {} {}\n"
-        text += "{}colors are mostly {}, which tend to become {} as they age."
+        text += "Their {} colors are mostly {}, which tend to become {} as they age."
         return text.format(
             self.skin_type,
             cover,

@@ -61,26 +61,26 @@ mouths = [
     "enormous mouths"
 ]
 noses = [
-    " and huge noses",
-    " and small noses",
-    " and wide noses",
-    " and long noses",
-    " and enormous noses",
-    " and thin noses",
-    " and almost hidden noses",
-    " and lack of a visible nose",
-    " and tiny noses",
-    " and narrow noses"
+    "huge noses",
+    "small noses",
+    "wide noses",
+    "long noses",
+    "enormous noses",
+    "thin noses",
+    "almost hidden noses",
+    "lack of a visible nose",
+    "tiny noses",
+    "narrow noses"
 ]
 fish_noses = [
-    " and small noses",
-    " and wide noses",
-    " and long noses",
-    " and thin noses",
-    " and almost hidden noses",
-    " and lack of a visible nose",
-    " and tiny noses",
-    " and narrow noses",
+    "small noses",
+    "wide noses",
+    "long noses",
+    "thin noses",
+    "almost hidden noses",
+    "lack of a visible nose",
+    "tiny noses",
+    "narrow noses",
 ]
 beaks = [
     "long beaks",
@@ -549,4 +549,285 @@ qualities = [
     "among the best",
     "almost among the best",
     "perhaps the best of all species",
+]
+
+arms = [
+    "two arms and ",
+    "four arms and ",
+    "six arms and ",
+    "two arms and ",
+    "two arms and ",
+    "four arms and ",
+    "two arms and "
+]
+legs = [
+    "two legs, ",
+    "four legs, ",
+    "six legs, ",
+    "four legs, ",
+    "two legs, ",
+    "two legs, "
+]
+tails = [
+    "with a long, thin tail",
+    "with a long, thick tail",
+    "with a short, thin tail",
+    "with a short, thick tail",
+    "with remnants of what was once a tail",
+    "but they have no tail",
+    "with a long, strong and agile tail",
+    "with a short, strong tail",
+    "with a long, strong tail",
+    "with a short, muscular tail",
+    "with a long, muscular tail",
+    "with a long, weak tail",
+    "with a short, weak tail",
+    "with a long, useless tail",
+    "with a short, useless tail",
+    "with a short, stubby tail"
+]
+
+aquatic_tails = [
+    "a huge, powerful tail and small anal fin, ",
+    "a huge, muscular tail and small anal fin, ",
+    "a large, muscular tail and small anal fin, ",
+    "a large, powerful tail and small anal fin, ",
+    "a short, muscular tail and small anal fin, ",
+    "a long, powerful tail and small anal fin, ",
+    "a short, powerful tail and small anal fin, ",
+    "a long, muscular tail and small anal fin, ",
+    "a huge, powerful tail and small anal fin, ",
+    "a huge, muscular tail and long anal fin, ",
+    "a large, muscular tail and long anal fin, ",
+    "a large, powerful tail and long anal fin, ",
+    "a short, muscular tail and long anal fin, ",
+    "a long, powerful tail and long anal fin, ",
+    "a short, powerful tail and long anal fin, ",
+    "a long, muscular tail and long anal fin, "
+]
+aquatic_arms = [
+    "two arms and ",
+    "four arms and ",
+    "two strong side fins and ",
+    "four strong side fins and ",
+    "six strong side fins and ",
+    "two side fins and ",
+    "four side fins and ",
+    "six side fins and ",
+    "two large side fins and ",
+    "four large side fins and ",
+    "six large side fins and ",
+    "two powerful arms and ",
+    "four powerful arms and ",
+    "two powerful side fins and ",
+    "four powerful sidefins and ",
+    "two huge side fins and ",
+    "four huge side fins and "
+]
+aquatic_dorsals = [
+    "a huge dorsal fin",
+    "a small dorsal fin",
+    "a thick, long dorsal fin",
+    "a thin, long dorsal fin",
+    "a wide, sail-like dorsal fin",
+    "a ribbon-like dorsal fin",
+    "a long, ribbon-like dorsal fin",
+    "a short, ribbon-like dorsal fin",
+    "a huge, sail-like dorsal fin",
+    "a short, strong dorsal fin",
+    "a long, strong dorsal fin",
+    "a short, pointy dorsal fin",
+    "a long, pointy dorsal fin",
+    "a long, streamlined dorsal fin",
+    "a short, streamlined dorsal fin"
+]
+
+amphibian_tails = [
+    "but they have no tail",
+    "with a huge, powerful tail",
+    "with a long, muscular tail",
+    "with a long, powerful tail",
+    "with a long, strong and agile tail",
+    "with a long, strong tail",
+    "with a long, thick tail",
+    "with a long, thin tail",
+    "with a long, useless tail",
+    "with a long, weak tail",
+    "with a short, muscular tail",
+    "with a short, powerful tail",
+    "with a short, strong tail",
+    "with a short, stubby tail",
+    "with a short, thick tail",
+    "with a short, thin tail",
+    "with a short, useless tail",
+    "with a short, weak tail",
+    "with a thick, powerful tail",
+    "with remnants of what was once a tail"
+]
+
+reptilian_arms = [
+    "two arms and two legs, ",
+    "two arms and four legs, ",
+    "two arms and six legs, ",
+    "four arms and two legs, ",
+    "four arms and four legs, ",
+    "four arms and six legs, ",
+    "six arms and two legs, ",
+    "six arms and four legs, ",
+    "two arms, but no legs, like a snake with arms, ",
+    "four arms, but no legs, like a snake with arms, ",
+    "six arms, but no legs, like a snake with arms, "
+]
+reptilian_tails = [
+    "with a long, thin tail",
+    "with a long, thick tail",
+    "with a short, thin tail",
+    "with a short, thick tail",
+    "with remnants of what was once a tail",
+    "but they have no tail",
+    "with a long, strong and agile tail",
+    "with a short, strong tail",
+    "with a long, strong tail",
+    "with a short, muscular tail",
+    "with a long, muscular tail",
+    "with a long, weak tail",
+    "with a short, weak tail",
+    "with a long, useless tail",
+    "with a short, useless tail",
+    "with a short, stubby tail"
+]
+
+fish_tails = [
+    "a huge, powerful tail and small anal fin, ",
+    "a huge, muscular tail and small anal fin, ",
+    "a large, muscular tail and small anal fin, ",
+    "a large, powerful tail and small anal fin, ",
+    "a short, muscular tail and small anal fin, ",
+    "a long, powerful tail and small anal fin, ",
+    "a short, powerful tail and small anal fin, ",
+    "a long, muscular tail and small anal fin, ",
+    "a huge, powerful tail and small anal fin, ",
+    "a huge, muscular tail and long anal fin, ",
+    "a large, muscular tail and long anal fin, ",
+    "a large, powerful tail and long anal fin, ",
+    "a short, muscular tail and long anal fin, ",
+    "a long, powerful tail and long anal fin, ",
+    "a short, powerful tail and long anal fin, ",
+    "a long, muscular tail and long anal fin, "
+]
+fish_sides = [
+    "two strong side fins and ",
+    "four strong side fins and ",
+    "six strong side fins and ",
+    "two side fins and ",
+    "four side fins and ",
+    "six side fins and ",
+    "two large side fins and ",
+    "four large side fins and ",
+    "six large side fins and ",
+    "two powerful side fins and ",
+    "four powerful sidefins and ",
+    "two huge side fins and ",
+    "four huge side fins and "
+]
+fish_dorsals = [
+    "a huge dorsal fin",
+    "a small dorsal fin",
+    "a thick, long dorsal fin",
+    "a thin, long dorsal fin",
+    "a wide, sail-like dorsal fin",
+    "a ribbon-like dorsal fin",
+    "a long, ribbon-like dorsal fin",
+    "a short, ribbon-like dorsal fin",
+    "a huge, sail-like dorsal fin",
+    "a short, strong dorsal fin",
+    "a long, strong dorsal fin",
+    "a short, pointy dorsal fin",
+    "a long, pointy dorsal fin",
+    "a long, streamlined dorsal fin",
+    "a short, streamlined dorsal fin"
+]
+
+invertebrate_arms = [
+    "two arms and ",
+    "four arms and ",
+    "six arms and ",
+    "four winged arms and ",
+    "two winged arms and ",
+    "six winged arms and ",
+    "two clawed arms and ",
+    "four clawed arms and ",
+    "two wings, two arms and ",
+    "four wings, two arms and ",
+    "two wings, four arms and ",
+    "four wings, four arms and ",
+    "two wings, six arms and ",
+    "two wings, two clawed arms and ",
+    "two clawed arms, two normal arms and "
+]
+invertebrate_legs = [
+    "two legs, ",
+    "four legs, ",
+    "six legs, ",
+    "four legs, ",
+    "two legs, "
+]
+invertebrate_tails = [
+    "but they have no tail",
+    "with a huge, powerful tail",
+    "with a long, muscular tail",
+    "with a long, powerful tail",
+    "with a long, strong and agile tail",
+    "with a long, strong tail",
+    "with a long, thick tail",
+    "with a long, thin tail",
+    "with a long, useless tail",
+    "with a long, weak tail",
+    "with a short, muscular tail",
+    "with a short, powerful tail",
+    "with a short, strong tail",
+    "with a short, stubby tail",
+    "with a short, thick tail",
+    "with a short, thin tail",
+    "with a short, useless tail",
+    "with a short, weak tail",
+    "with a thick, powerful tail",
+    "with remnants of what was once a tail"
+]
+
+bird_wings = [
+    "two huge wings and ",
+    "four huge wings and ",
+    "two huge, powerful wings and ",
+    "four huge, powerful wings and ",
+    "two huge and two smaller wings and ",
+    "two enormous wings and ",
+    "four enormous wings and ",
+    "two large and four smaller wings and ",
+    "four smaller wings and ",
+    "two smaller wings and "
+]
+bird_legs = [
+    "two strong, clawed legs, ",
+    "two small, clawed legs, ",
+    "four strong, clawed legs, ",
+    "four small, clawed legs, ",
+    "two strong legs, ",
+    "four strong legs, ",
+    "two small legs, ",
+    "four small legs, ",
+    "two thin, long legs, ",
+    "two long, strong legs, "
+]
+bird_tails = [
+    "with a huge tail",
+    "with a huge, wide tail",
+    "with a huge, powerful tail",
+    "with a long, powerful tail",
+    "with a long, elegant tail",
+    "with a short, elegant tail",
+    "with a short, powerful tail",
+    "with a wide, powerful tail",
+    "with a wide, elegant tail",
+    "with a short tail"
 ]

@@ -10,7 +10,7 @@ lang = 'en'
 
 class FacePart(Generated):
     def __str__(self):
-        return self.value
+        return self.value or ''
 
 
 class Nose(FacePart):
@@ -66,19 +66,13 @@ class BaseGenerator:
         self.data = data or self.default_data
 
     def generate(self):
+        if self.data is None:
+            return None
         return self.generated_class(next(self.data))
 
     @classmethod
     def __next__(cls):
         return cls.generated_class(next(cls.data))
-
-
-class FaceGenerator(BaseGenerator):
-    default_fixtures = RaceFixtures
-
-    def __init__(self, fixtures=None, data=None):
-        BaseGenerator.__init__(self, data)
-        self.fixtures = fixtures or self.default_fixtures
 
 
 class EyesGenerator(BaseGenerator):
@@ -88,8 +82,8 @@ class EyesGenerator(BaseGenerator):
 
     def generate(self, appearance, quality):
         return self.generated_class(
-            count = next(self.fixtures.eyes_count)
-            sockets = next(self.fixtures.eyesockets)
+            count = next(self.count),
+            sockets = next(self.eyesockets),
             appearance=appearance,
             quality=quality,
         )
@@ -136,7 +130,7 @@ class FaceGenerator:
     default_fixtures = RaceFixtures
 
     def __init__(self, fixtures=None, data=None):
-        BaseGenerator.__init__(self, data)
+        # BaseGenerator.__init__(self, data)
         self.fixtures = fixtures or self.default_fixtures
 
         self.eyes_generator = EyesGenerator(self.fixtures)
@@ -149,7 +143,7 @@ class FaceGenerator:
             'eyes': self.eyes_generator.generate(appearance, quality[0]),
             'ears': self.ears_generator.generate(quality[1]),
             'nose': self.nose_generator.generate(),
-            'mouth': self.mouth_generator.generate(),
+            'mouth':self.mouth_generator.generate()
         }
 
 

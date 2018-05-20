@@ -1,4 +1,4 @@
-from .generator_data import ListData, FileData
+from .generator_data import StaticData, ListData, FileData
 from .generated import Generated
 from .template import GeneratorTemplate
 
