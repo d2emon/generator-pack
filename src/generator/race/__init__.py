@@ -7,6 +7,21 @@ from .face import *
 
 
 class Race(Generated):
+    """
+    def __init__(self, **kwargs):
+        self.race_type = kwargs.get('race_type')
+        self.body = kwargs.get('body')
+        self.appearance = kwargs.get('appearance')
+        self.horns = kwargs.get('horns')
+        self.ears = kwargs.get('ears')
+        self.eyes = kwargs.get('eyes')
+        self.nose = kwargs.get('nose')
+        self.mouth = kwargs.get('mouth')
+        self.skin = kwargs.get('skin')
+        self.divercity = kwargs.get('divercity', [])
+        self.divercity_color = kwargs.get('divercity_color')
+
+    """
     fields = [
         'race_type',
         'body',
@@ -21,19 +36,6 @@ class Race(Generated):
         'divercity_color',
 
     ]
-
-    def __init__(self, **kwargs):
-        self.race_type = kwargs.get('race_type')
-        self.body = kwargs.get('body')
-        self.appearance = kwargs.get('appearance')
-        self.horns = kwargs.get('horns')
-        self.ears = kwargs.get('ears')
-        self.eyes = kwargs.get('eyes')
-        self.nose = kwargs.get('nose')
-        self.mouth = kwargs.get('mouth')
-        self.skin = kwargs.get('skin')
-        self.divercity = kwargs.get('divercity', [])
-        self.divercity_color = kwargs.get('divercity_color')
 
     @property
     def nose_mouth(self):

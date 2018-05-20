@@ -2,20 +2,28 @@ from num2words import num2words
 
 from fixtures import race
 from generator.generator.generator_data import ListData
-from .generated import Generated
+from generator import Generated
 
 
-class Nose(Generated):
+lang = 'en'
+
+
+
+class FacePart(Generated):
+    def __str__(self):
+        return self.value
+
+
+class Nose(FacePart):
     title = "Nose"
 
 
-class Mouth(Generated):
+class Mouth(FacePart):
     title = "Mouth"
 
 
-class Eyes(Generated):
+class Eyes(FacePart):
     title = "Eyes"
-    lang='en'
     fields = [
         'count',
         'sockets',
@@ -37,7 +45,7 @@ class Eyes(Generated):
         )
 
 
-class Ears(Generated):
+class Ears(FacePart):
     title = "Ears"
     fields = [
         'ears',
