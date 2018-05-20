@@ -58,13 +58,45 @@ class Ears(FacePart):
         )
 
 
-class EyesGenerator:
+class BaseGenerator:
+    generated_class = Generated
+    default_data = None
+
+    def __init__(self, data=None):
+        self.data = data or self.default_data
+
+    def generate(self):
+        return self.generated_class(next(self.data))
+
+    @classmethod
+    def __next__(cls):
+        return cls.generated_class(next(cls.data))
+
+
+class FaceGenerator(BaseGenerator):
+    default_fixtures = RaceFixtures
+
+    def __init__(self, fixtures=None, data=None):
+        BaseGenerator.__init__(self, data)
+        self.fixtures = fixtures or self.default_fixtures
+
+
+class EyesGenerator(BaseGenerator):
+    generated_class = Eyes
     count = RaceFixtures.eyes_count
     eyesockets = RaceFixtures.eyesockets
 
+    def generate(self, appearance, quality):
+        return self.generated_class(
+            count = next(self.fixtures.eyes_count)
+            sockets = next(self.fixtures.eyesockets)
+            appearance=appearance,
+            quality=quality,
+        )
+
     @classmethod
     def __next__(cls, appearance, quality):
-        return Eyes(
+        return cls.generated_class(
             count=next(cls.count),
             sockets=next(cls.eyesockets),
             appearance=appearance,
@@ -72,44 +104,58 @@ class EyesGenerator:
         )
 
 
-class MouthGenerator:
-    mouths = RaceFixtures.mouths
-
-    @classmethod
-    def __next__(cls):
-        return Mouth(next(cls.mouths))
+class MouthGenerator(BaseGenerator):
+    generated_class = Mouth
+    data = RaceFixtures.mouths
 
 
-class NoseGenerator:
-    noses = RaceFixtures.noses
-
-    @classmethod
-    def __next__(cls):
-        return Nose(value=next(cls.noses))
+class NoseGenerator(BaseGenerator):
+    generated_class = Nose
+    data = RaceFixtures.noses
 
 
-class FishNoseGenerator(NoseGenerator):
-    noses = FishFixtures.noses
+class EarsGenerator(BaseGenerator):
+    generated_class = Ears
+    data = RaceFixtures.ears
 
-
-class BeakGenerator(MouthGenerator):
-    noses = BirdFixtures.noses
-
-
-class EarsGenerator:
-    ears = RaceFixtures.ears
+    def generate(self, quality):
+        return self.generated_class(
+            ears=next(self.data),
+            quality=quality,
+        )
 
     @classmethod
     def __next__(cls, quality):
-        return Ears(
-            ears=next(cls.ears),
+        return cls.generated_class(
+            ears=next(cls.data),
             quality=quality,
         )
 
 
-class FishEarsGenerator(EarsGenerator):
-    ears = FishFixtures.ears
+class FaceGenerator:
+    default_fixtures = RaceFixtures
+
+    def __init__(self, fixtures=None, data=None):
+        BaseGenerator.__init__(self, data)
+        self.fixtures = fixtures or self.default_fixtures
+
+        self.eyes_generator = EyesGenerator(self.fixtures)
+        self.ears_generator = EarsGenerator(self.fixtures.ears)
+        self.nose_generator = NoseGenerator(self.fixtures.noses)
+        self.mouth_generator = MouthGenerator(self.fixtures.mouths)
+
+    def generate(self, appearance, quality):
+        return {
+            'eyes': self.eyes_generator.generate(appearance, quality[0]),
+            'ears': self.ears_generator.generate(quality[1]),
+            'nose': self.nose_generator.generate(),
+            'mouth': self.mouth_generator.generate(),
+        }
 
 
-class BirdEarsGenerator(EarsGenerator):
-    ears = BirdFixtures.ears
+class FishFaceGenerator(FaceGenerator):
+    default_fixtures = FishFixtures
+
+
+class BirdFaceGenerator(FaceGenerator):
+    default_fixtures = BirdFixtures

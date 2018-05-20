@@ -82,6 +82,7 @@ class RaceGenerator:
     title = "mammal"
     skin = "Their skin "
 
+    face_generator = FaceGenerator()
     body_generator = BodyGenerator()
     horns_generator = HornsGenerator
     ears_generator = EarsGenerator
@@ -109,22 +110,16 @@ class RaceGenerator:
         if self.mouth_generator is not None:
             mouth = self.mouth_generator.__next__()
 
+        face = self.face_generator.generate(appearance[0], quality)
+
         return Race(
             race_type=self.title,
             body=self.body_generator.__next__(),
             appearance=appearance[1],
             horns=horns,
-            ears=self.ears_generator.__next__(
-                quality=quality[1]
-            ),
-            eyes=self.eyes_generator.__next__(
-                appearance=appearance[0],
-                quality=quality[0]
-            ),
-            nose=nose,
-            mouth=mouth,
             skin=self.skin_generator.__next__(self.skin),
             divercity=self.divercity_generator.__next__(),
+            **face,
         )
 
 
@@ -170,6 +165,7 @@ class FishRaceGenerator(RaceGenerator):
     title = "fish"
     skin = "Their scale "
 
+    face_generator = FishFaceGenerator()
     body_generator = BodyGenerator(
         ["a huge, powerful tail and small anal fin, ","a huge, muscular tail and small anal fin, ","a large, muscular tail and small anal fin, ","a large, powerful tail and small anal fin, ","a short, muscular tail and small anal fin, ","a long, powerful tail and small anal fin, ","a short, powerful tail and small anal fin, ","a long, muscular tail and small anal fin, ","a huge, powerful tail and small anal fin, ","a huge, muscular tail and long anal fin, ","a large, muscular tail and long anal fin, ","a large, powerful tail and long anal fin, ","a short, muscular tail and long anal fin, ","a long, powerful tail and long anal fin, ","a short, powerful tail and long anal fin, ","a long, muscular tail and long anal fin, "],
         ["two strong side fins and ","four strong side fins and ","six strong side fins and ","two side fins and ","four side fins and ","six side fins and ","two large side fins and ","four large side fins and ","six large side fins and ","two powerful side fins and ","four powerful sidefins and ","two huge side fins and ","four huge side fins and "],
@@ -194,6 +190,7 @@ class BirdRaceGenerator(RaceGenerator):
     title = "bird"
     skin = "Their feather "
 
+    face_generator = BirdFaceGenerator()
     body_generator = BodyGenerator(
         ["two huge wings and ","four huge wings and ","two huge, powerful wings and ","four huge, powerful wings and ","two huge and two smaller wings and ","two enormous wings and ","four enormous wings and ","two large and four smaller wings and ","four smaller wings and ","two smaller wings and "],
         ["two strong, clawed legs, ","two small, clawed legs, ","four strong, clawed legs, ","four small, clawed legs, ","two strong legs, ","four strong legs, ","two small legs, ","four small legs, ","two thin, long legs, ","two long, strong legs, "],
