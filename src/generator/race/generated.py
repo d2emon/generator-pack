@@ -1,14 +1,4 @@
-class Generated:
-    title = "<UNTITLED>"
-    fields = []
-
-    def __init__(self, value=None, **kwargs):
-        self.value = value
-        for field in self.fields:
-            setattr(self, field, kwargs.get(field))
-
-    def __str__(self):
-        return self.value
+from generator import Generated
 
 
 class Body(Generated):

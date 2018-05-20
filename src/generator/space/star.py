@@ -1,4 +1,5 @@
 from ..generator import ListGenerator
+from generator.generator.generated import Generated
 
 from .fixtures import suns
 from .planet import PlanetGenerator
@@ -6,7 +7,7 @@ from .planet import PlanetGenerator
 import random
 
 
-class Star():
+class Star(Generated):
     def __init__(self, sun_type=None, blue=False):
         self.star_type = sun_type
         self.title = sun_type

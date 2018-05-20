@@ -154,21 +154,3 @@ def run_generator(name='', count=1, *args, **kwargs):
     data = [g.generate(*args, **kwargs) for i in range(count)]
     print(args, kwargs)
     print_result(data, name)
-
-    # print("Art concept (being)")
-    # print(ArtConceptGenerator.generate(being=True))
-    # print("Art concept (place)")
-    # print(ArtConceptGenerator.generate(being=False))
-
-    # print("Story concept (event)")
-    # print(StoryConceptGenerator.generate(character=False))
-    # print("Story concept (character)")
-    # print(StoryConceptGenerator.generate(character=True))
-
-    # print(d, "%s from %s" % (d.demonym, d.base))
-    # print(makeDemonym("Lugansk"))
-
-    # print("Prayer (aid)")
-    # print(PrayerGenerator.generate(forgive=False))
-    # print("Prayer (forgiveness)")
-    # print(PrayerGenerator.generate(forgive=True))

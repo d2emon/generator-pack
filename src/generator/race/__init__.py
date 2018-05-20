@@ -37,7 +37,7 @@ class Race(Generated):
 
     @property
     def nose_mouth(self):
-        nose_mouth = [str(i) for i in [self.mouth, self.nose] if i is not None]
+        nose_mouth = [i.value for i in [self.mouth, self.nose] if i is not None]
         # if self.mouth is not None:
         #     nose_mouth.append(str(self.mouth))
         # if self.nose is not None:
@@ -65,14 +65,14 @@ class Race(Generated):
             "{divercity}"
         ])
         return text.format(
-            short=str(self),
-            body=self.body,
-            eyes=self.eyes,
-            nose_mouth=nose_mouth,
-            ears=self.ears,
-            horns=self.horns,
-            skin=self.skin,
-            divercity=self.divercity,
+            short=str(self) or '',
+            body=self.body or '',
+            eyes=self.eyes or '',
+            nose_mouth=nose_mouth or '',
+            ears=self.ears.value or '',
+            horns=self.horns or '',
+            skin=self.skin or '',
+            divercity=self.divercity or '',
         )
         # return text
 
