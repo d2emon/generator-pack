@@ -1,12 +1,11 @@
 from num2words import num2words
 
-from fixtures import race
-from generator.generator.generator_data import ListData
-from generator import Generated
+from generator import ListData, Generated
+
+from .fixtures import RaceFixtures, FishFixtures, BirdFixtures
 
 
 lang = 'en'
-
 
 
 class FacePart(Generated):
@@ -33,7 +32,7 @@ class Eyes(FacePart):
 
     @property
     def count_str(self):
-        return "{} eyes".format(num2words(self.count, lang=self.lang))
+        return "{} eyes".format(num2words(self.count, lang=lang))
 
     def __str__(self):
         text = "They have {} which sit {} in their sockets and can often make them appear to be {}. Their eyesight is {}."
@@ -60,8 +59,8 @@ class Ears(FacePart):
 
 
 class EyesGenerator:
-    count = ListData(race.eyes_count)
-    eyesockets = ListData(race.eyesockets)
+    count = RaceFixtures.eyes_count
+    eyesockets = RaceFixtures.eyesockets
 
     @classmethod
     def __next__(cls, appearance, quality):
@@ -74,7 +73,7 @@ class EyesGenerator:
 
 
 class MouthGenerator:
-    mouths = ListData(race.mouths)
+    mouths = RaceFixtures.mouths
 
     @classmethod
     def __next__(cls):
@@ -82,7 +81,7 @@ class MouthGenerator:
 
 
 class NoseGenerator:
-    noses = ListData(race.noses)
+    noses = RaceFixtures.noses
 
     @classmethod
     def __next__(cls):
@@ -90,15 +89,15 @@ class NoseGenerator:
 
 
 class FishNoseGenerator(NoseGenerator):
-    noses = ListData(race.fish_noses)
+    noses = FishFixtures.noses
 
 
 class BeakGenerator(MouthGenerator):
-    noses = ListData(race.beaks)
+    noses = BirdFixtures.noses
 
 
 class EarsGenerator:
-    ears = ListData(race.ears)
+    ears = RaceFixtures.ears
 
     @classmethod
     def __next__(cls, quality):
@@ -109,8 +108,8 @@ class EarsGenerator:
 
 
 class FishEarsGenerator(EarsGenerator):
-    ears = ListData(race.fish_ears)
+    ears = FishFixtures.ears
 
 
 class BirdEarsGenerator(EarsGenerator):
-    ears = ListData(race.bird_ears)
+    ears = BirdFixtures.ears
