@@ -2,7 +2,7 @@ import random
 
 from fixtures import race
 from generator.generator.generator_data import ListData
-from .generated import Body, Horns, Skin, Divercity
+from .generated import Body, Horns, Skin, Divercity, Arms, Wings, Legs, Tail
 
 
 class RandomGenerator:
@@ -22,11 +22,38 @@ class BodyGenerator:
                 fixtures.body2,
                 fixtures.body3,
             ]
+            self.arms = fixtures.arms
+            self.wings = fixtures.wings
+            self.legs = fixtures.legs
+            self.tails = fixtures.tails
+            self.limbs = fixtures.limbs
         else:
             self.parts = []
+            self.arms = []
+            self.wings = []
+            self.legs = []
+            self.tails = []
+            self.limbs = []
+
+    def generateOrNone(self, generate_class, data=None):
+        if data is None:
+            return None
+        return generate_class(data)
 
     def __next__(self):
+        if self.limbs.data:
+            limbs = next(self.limbs)
+        else:
+            limbs = dict(
+                arms=next(self.arms),
+                legs=next(self.legs),
+            )
         return Body(
+            arms=self.generateOrNone(Arms, limbs.get('arms')),
+            wings=self.generateOrNone(Wings, limbs.get('wings')),
+            legs=self.generateOrNone(Legs, limbs.get('legs')),
+            tail=self.generateOrNone(Tail, next(self.tails)),
+
             part1=next(self.parts[0]),
             part2=next(self.parts[1]),
             part3=next(self.parts[2])
