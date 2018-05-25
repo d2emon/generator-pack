@@ -13,6 +13,16 @@ def interpolate(x, xmin, ymin, xmax, ymax):
     r = ymin + dy * math.sin((x0 / dx) * (math.pi / 2))
     return r
 
+def multiplied_noise(x1, x2):
+    x1m = 1 + x1
+    x2m = 1 + x2
+    return math.sqrt(x1m * x2m) - 1
+
+def squared_noise(x1, x2):
+    x1m = x1 * x1
+    x2m = x2 * x2
+    return math.sqrt((x1m + x2m) / 2)
+
 def red_noise(x1, x2):
     return (x1 + x2) / 2
 
@@ -43,15 +53,17 @@ def lift(data, y0=0):
     return [i + y0 for i in data]
 
 noise = [fill(seed) for seed in range(5)]
-data = [go.Scatter(x=x, y=lift(filter_noise(noise[i], blue_noise), i*2)) for i in range(5)]
-data += [go.Scatter(x=x, y=lift(noise[i], i*2)) for i in range(5)]
+data = [go.Scatter(x=x, y=lift(noise[i], i*2)) for i in range(5)]
+data += [go.Scatter(x=x, y=lift(filter_noise(noise[i], red_noise), i*2)) for i in range(5)]
+# data += [go.Scatter(x=x, y=lift(filter_noise(noise[i], pink_noise), i*2)) for i in range(5)]
+# data += [go.Scatter(x=x, y=lift(filter_noise(noise[i], violet_noise), i*2)) for i in range(5)]
 # data += [scatterSeed(f2, seed, seed*10 + 50) for seed in range(5)]
-plotly.offline.plot({
-    "data": data,
-    "layout": go.Layout(title="hello world")
-})
+# plotly.offline.plot({
+#     "data": data,
+#     "layout": go.Layout(title="hello world")
+# })
 
-# plotly.offline.plot(
-#     data,
-#     filename = 'basic-line'
-# )
+plotly.offline.plot(
+    data,
+    filename = 'tmp/basic-line.html'
+)
