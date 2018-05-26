@@ -65,5 +65,5 @@ data += [go.Scatter(x=x, y=lift(filter_noise(noise[i], red_noise), i*2)) for i i
 
 plotly.offline.plot(
     data,
-    filename = 'tmp/basic-line.html'
+    filename = 'tmp/graph.html'
 )
