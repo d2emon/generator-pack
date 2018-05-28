@@ -37,6 +37,19 @@ class Race(Generated):
         'divercity_color',
 
     ]
+    description_template = """
+{short} {body}\n
+{eyes}\n
+{nose_mouth}\n{ears} {horns}\n
+{skin}\n
+{divercity}\n
+\n\n\n
+FACE
+Eyes:\t{eyes}
+Ears:\t{ears}
+Nose:\t{nose}
+Mouth:\t{mouth}
+"""
 
     @property
     def nose_mouth(self):
@@ -54,21 +67,7 @@ class Race(Generated):
 
     @property
     def description(self):
-        text = "\n\n".join([
-            "{short} {body}",
-            "{eyes}",
-            "{nose_mouth}\n{ears} {horns}",
-            "{skin}",
-            "{divercity}",
-            "\n",
-        ]) + "\n".join([
-            "FACE",
-            "Eyes: {eyes}",
-            "Ears: {ears}",
-            "Nose: {nose}",
-            "Mouth: {mouth}",
-        ])
-        return text.format(
+        return self.description_template.format(
             short=str(self) or '',
             body=self.body or '',
             eyes=self.eyes or '',
@@ -81,6 +80,34 @@ class Race(Generated):
             mouth=self.mouth or '',
         )
         # return text
+
+    def __repr__(self):
+        return """
+Race type:\t{race}
+Body:\t{body}
+Appearance:\t{appearance}
+Horns:\t{horns}
+Ears:\t{ears}
+Eyes:\t{eyes}
+Nose:\t{nose}
+Mouth:\t{mouth}
+Skin:\t{skin}
+Divercity:\t{divercity}
+Divercity Color:\t{divercity_color}
+        """.format(
+            race=self.race_type,
+            body=self.body,
+            appearance=self.appearance,
+            horns=self.horns,
+            ears=self.ears,
+            eyes=self.eyes,
+            nose=self.nose,
+            mouth=self.mouth,
+            skin=self.skin,
+            divercity=self.divercity,
+            divercity_color=self.divercity_color
+        )
+
 
 class RaceGenerator:
     title = "mammal"
