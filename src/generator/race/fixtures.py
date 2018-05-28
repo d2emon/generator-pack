@@ -1,8 +1,6 @@
 from fixtures import race
 from generator import StaticData, ListData
 
-from .generators import *
-
 
 class RaceFixtures:
     eyes_count = ListData(race.eyes_count)
@@ -21,8 +19,8 @@ class RaceFixtures:
     body2 = StaticData()
     body3 = StaticData()
 
-    horns_generator = HornsGenerator
-    skin_generator = SkinGenerator
+    horns = ListData(race.horns)
+    covers = ListData(race.covers)
 
 
 class MammalFixtures(RaceFixtures):
@@ -36,21 +34,21 @@ class AquaticFixtures(MammalFixtures):
     arms = ListData(race.aquatic_arms)
     legs = ListData(race.aquatic_dorsals)
 
-    horns_generator = AquaticHornsGenerator
-    skin_generator = AquaticSkinGenerator
+    covers = StaticData()
+    horns = ListData(race.aquatic_horns)
 
 
 class AmphibianFixtures(RaceFixtures):
     tails = ListData(race.amphibian_tails)
 
-    skin_generator = AmphibianSkinGenerator
+    covers = ListData(race.mucouses)
 
 
 class ReptileFixtures(RaceFixtures):
     limbs = ListData(race.reptilian_arms)
     tails = ListData(race.reptilian_tails)
 
-    skin_generator = ReptileSkinGenerator
+    covers = ListData(race.reptile_scales)
 
 
 class FishFixtures(RaceFixtures):
@@ -64,7 +62,7 @@ class FishFixtures(RaceFixtures):
 
     # tails = ListData(race.tails)
 
-    skin_generator = FishSkinGenerator
+    covers = ListData(race.fish_scales)
 
 
 class InvertebrateFixtures(RaceFixtures):
@@ -82,8 +80,8 @@ class BirdFixtures(RaceFixtures):
     legs = ListData(race.bird_legs)
     tails = ListData(race.bird_tails)
 
-    horns_generator = None
+    horns = StaticData()
     # ears_generator = BirdEarsGenerator
     # mouth_generator = BeakGenerator
     # nose_generator = None
-    skin_generator = BirdSkinGenerator
+    covers = ListData(race.feathers)

@@ -61,8 +61,8 @@ Mouth:\t{mouth}
             horns=self.horns or '',
             skin=self.skin or '',
             divercity=self.divercity or '',
-            nose=self.nose or '',
-            mouth=self.mouth or '',
+            nose='self.nose' or '',
+            mouth='self.mouth' or '',
         )
         # return text
 
@@ -84,19 +84,19 @@ Mouth:\t{mouth}
 Skin:\t{skin}
 Divercity:\t{divercity}
 Divercity Color:\t{divercity_color}
-        """.format(
-            race=self.race_type,
-            body=self.body,
-            appearance=self.appearance,
-            horns=self.horns,
-            ears=self.ears,
-            eyes=self.eyes,
-            nose=self.nose,
-            mouth=self.mouth,
-            skin=self.skin,
-            divercity=self.divercity,
-            divercity_color=self.divercity_color
-        )
+        """ # .format(
+    #         race=self.race_type,
+    #         body=self.body,
+    #         appearance=self.appearance,
+    #         horns=self.horns,
+    #         ears=self.ears,
+    #         eyes=self.eyes,
+    #         nose=self.nose,
+    #         mouth=self.mouth,
+    #         skin=self.skin,
+    #         divercity=self.divercity,
+    #         divercity_color='self.divercity_color',
+    #     )
 
 
 class RaceGenerator:
@@ -109,14 +109,14 @@ class RaceGenerator:
 
         self.face_generator = FaceGenerator(fixtures=fixtures)
         self.body_generator = BodyGenerator(fixtures=fixtures)
-        self.horns_generator = fixtures.horns_generator
+        self.horns_generator = HornsGenerator(data=fixtures.horns)
         # self.ears_generator = fixtures.ears_generator
         # self.eyes_generator = fixtures.eyes_generator
         # self.nose_generator = fixtures.nose_generator
         # self.mouth_generator = fixtures.mouth_generator
-        self.skin_generator = fixtures.skin_generator
+        self.skin_generator = SkinGenerator(covers=fixtures.covers)
 
-        self.divercity_generator = DivercityGenerator
+        self.divercity_generator = DivercityGenerator()
 
         self.appearance_data = ListData(race.appearances)
         self.quality_data = ListData(race.qualities)

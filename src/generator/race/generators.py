@@ -1,8 +1,9 @@
 import random
 
 from fixtures import race
-from generator.generator.generator_data import ListData
-from .generated import Body, Horns, Skin, Divercity, Arms, WingedArms, ClawedArms, SideFins, DorsalFin, Wings, Legs, Tail
+from generator.generator.generator_data import StaticData, ListData
+from .generated import Body, Horns, Skin, Divercity
+from .limbs import Arms, WingedArms, ClawedArms, SideFins, DorsalFin, Wings, Legs, Tail
 
 
 class RandomGenerator:
@@ -14,7 +15,30 @@ class RandomGenerator:
         return g().__next__()
 
 
-class BodyGenerator:
+class BasicGenerator:
+    generated_class = None
+
+    def __init__(self, data=None):
+        self.data = data
+
+    def generateOrNone(self, generated_class, data=None):
+        if data is None:
+            return None
+        return generated_class(data)
+
+    def value(self, *args, **kwargs):
+        return {
+            'value': next(self.data),
+        }
+
+    def __next__(self, *args, **kwargs):
+        return self.generated_class(**self.value(*args, **kwargs))
+
+
+
+class BodyGenerator(BasicGenerator):
+    generated_class = Body
+
     def __init__(self, fixtures=None):
         if fixtures is not None:
             self.parts = [
@@ -31,12 +55,7 @@ class BodyGenerator:
             self.legs = []
             self.tails = []
 
-    def generateOrNone(self, generate_class, data=None):
-        if data is None:
-            return None
-        return generate_class(data)
-
-    def __next__(self):
+    def value(self, *args, **kwargs):
         limbs = dict()
 
         limbs1 = next(self.arms)
@@ -64,7 +83,7 @@ class BodyGenerator:
         # print('WINGS', wings)
         # print('LEGS', legs)
 
-        return Body(
+        return dict(
             arms=self.generateOrNone(Arms, arms),
             winged_arms=self.generateOrNone(WingedArms, winged_arms),
             clawed_arms=self.generateOrNone(ClawedArms, clawed_arms),
@@ -79,69 +98,38 @@ class BodyGenerator:
             part3=next(self.parts[2])
         )
 
-
-class HornsGenerator:
-    horns = ListData(race.horns)
-
-    @classmethod
-    def __next__(cls):
-        return Horns(value=next(cls.horns))
+class HornsGenerator(BasicGenerator):
+    generated_class = Horns
 
 
-class AquaticHornsGenerator(HornsGenerator):
-    horns = ListData(race.aquatic_horns)
+class SkinGenerator(BasicGenerator):
+    generated_class = Skin
 
+    def __init__(self, **kwargs):
+        self.skins = kwargs.get('skins', ListData(race.skins))
+        self.covers = kwargs.get('covers', StaticData())
+        self.colors = kwargs.get('colors', [ListData(color) for color in race.skin_colors])
+        self.agings = kwargs.get('agings', ListData(race.agings))
 
-class SkinGenerator:
-    skins = ListData(race.skins)
-    covers = ListData(race.covers)
-    colors = [ListData(color) for color in race.skin_colors]
-    agings = ListData(race.agings)
+    def value(self, skin="Their skin ", *args, **kwargs):
+        return {
+            'skin': skin,
+            'skin_type': next(self.skins),
+            'cover': next(self.covers),
+            'colors': [next(color) for color in self.colors], # unique
+            'aging': next(self.agings),
+        }
 
-    @classmethod
-    def __next__(cls, skin="Their skin "):
-        cover = None
-        if cls.covers is not None:
-            cover = next(cls.covers)
+class DivercityGenerator(BasicGenerator):
+    generated_class = Divercity
 
-        return Skin(
-            skin=skin,
-            skin_type=next(cls.skins),
-            cover=cover,
-            colors=[next(color) for color in cls.colors], # unique
-            aging=next(cls.agings),
-        )
-
-
-class AquaticSkinGenerator(SkinGenerator):
-    covers = None
-
-
-class AmphibianSkinGenerator(SkinGenerator):
-    covers = ListData(race.mucouses)
-
-
-class ReptileSkinGenerator(SkinGenerator):
-    covers = ListData(race.reptile_scales)
-
-
-class FishSkinGenerator(SkinGenerator):
-    covers = ListData(race.fish_scales)
-
-
-class BirdSkinGenerator(SkinGenerator):
-    covers = ListData(race.feathers)
-
-
-class DivercityGenerator:
     divercity = ListData(race.divercities)
     colors = ListData(race.divercity_colors_data)
 
-    @classmethod
-    def __next__(cls):
-        divercity = cls.divercity.unique(2)
-        return Divercity(
-            m=divercity[0],
-            f=divercity[1],
-            color=next(cls.colors),
-        )
+    def value(self, *args, **kwargs):
+        divercity = self.divercity.unique(2)
+        return {
+            'm': divercity[0],
+            'f': divercity[1],
+            'color': next(self.colors),
+        }
