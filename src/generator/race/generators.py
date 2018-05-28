@@ -2,7 +2,7 @@ import random
 
 from fixtures import race
 from generator.generator.generator_data import ListData
-from .generated import Body, Horns, Skin, Divercity, Arms, Wings, Legs, Tail
+from .generated import Body, Horns, Skin, Divercity, Arms, WingedArms, ClawedArms, SideFins, DorsalFin, Wings, Legs, Tail
 
 
 class RandomGenerator:
@@ -23,17 +23,13 @@ class BodyGenerator:
                 fixtures.body3,
             ]
             self.arms = fixtures.arms
-            self.wings = fixtures.wings
             self.legs = fixtures.legs
             self.tails = fixtures.tails
-            self.limbs = fixtures.limbs
         else:
             self.parts = []
             self.arms = []
-            self.wings = []
             self.legs = []
             self.tails = []
-            self.limbs = []
 
     def generateOrNone(self, generate_class, data=None):
         if data is None:
@@ -41,17 +37,41 @@ class BodyGenerator:
         return generate_class(data)
 
     def __next__(self):
-        if self.limbs.data:
-            limbs = next(self.limbs)
+        limbs = dict()
+
+        limbs1 = next(self.arms)
+        if type(limbs1) is not dict:
+            limbs['arms'] = limbs1
         else:
-            limbs = dict(
-                arms=next(self.arms),
-                legs=next(self.legs),
-            )
+            limbs.update(limbs1)
+
+        limbs2 = next(self.legs)
+        if type(limbs2) is not dict:
+            limbs['legs'] = limbs2
+        else:
+            limbs.update(limbs2)
+
+        side_fins = limbs.get('side_fins')
+        arms = limbs.get('arms')
+        winged_arms = limbs.get('winged_arms')
+        clawed_arms = limbs.get('clawed_arms')
+        legs = limbs.get('legs')
+        dorsal_fin = limbs.get('dorsal_fin')
+        wings = limbs.get('wings')
+
+        # print('FINS', side_fins)
+        # print('ARMS', arms)
+        # print('WINGS', wings)
+        # print('LEGS', legs)
+
         return Body(
-            arms=self.generateOrNone(Arms, limbs.get('arms')),
-            wings=self.generateOrNone(Wings, limbs.get('wings')),
-            legs=self.generateOrNone(Legs, limbs.get('legs')),
+            arms=self.generateOrNone(Arms, arms),
+            winged_arms=self.generateOrNone(WingedArms, winged_arms),
+            clawed_arms=self.generateOrNone(ClawedArms, clawed_arms),
+            side_fins=self.generateOrNone(SideFins, side_fins),
+            dorsal_fin=self.generateOrNone(DorsalFin, dorsal_fin),
+            wings=self.generateOrNone(Wings, wings),
+            legs=self.generateOrNone(Legs, legs),
             tail=self.generateOrNone(Tail, next(self.tails)),
 
             part1=next(self.parts[0]),

@@ -8,21 +8,6 @@ from .fixtures import *
 
 
 class Race(Generated):
-    """
-    def __init__(self, **kwargs):
-        self.race_type = kwargs.get('race_type')
-        self.body = kwargs.get('body')
-        self.appearance = kwargs.get('appearance')
-        self.horns = kwargs.get('horns')
-        self.ears = kwargs.get('ears')
-        self.eyes = kwargs.get('eyes')
-        self.nose = kwargs.get('nose')
-        self.mouth = kwargs.get('mouth')
-        self.skin = kwargs.get('skin')
-        self.divercity = kwargs.get('divercity', [])
-        self.divercity_color = kwargs.get('divercity_color')
-
-    """
     fields = [
         'race_type',
         'body',
@@ -38,7 +23,7 @@ class Race(Generated):
 
     ]
     description_template = """
-{short} {body}\n
+{short} They have {body}.\n
 {eyes}\n
 {nose_mouth}\n{ears} {horns}\n
 {skin}\n
@@ -68,7 +53,7 @@ Mouth:\t{mouth}
     @property
     def description(self):
         return self.description_template.format(
-            short=str(self) or '',
+            short=str(self),
             body=self.body or '',
             eyes=self.eyes or '',
             nose_mouth=self.nose_mouth or '',
@@ -85,6 +70,11 @@ Mouth:\t{mouth}
         return """
 Race type:\t{race}
 Body:\t{body}
+\tARMS:\t{body.arms}
+\tSIDE_FINS:\t{body.side_fins}
+\tDORSAL_FIN:\t{body.dorsal_fin}
+\tWINGS:\t{body.wings}
+\tLEGS:\t{body.legs}
 Appearance:\t{appearance}
 Horns:\t{horns}
 Ears:\t{ears}
@@ -110,22 +100,26 @@ Divercity Color:\t{divercity_color}
 
 
 class RaceGenerator:
-    title = "mammal"
+    title = "UNKNOWN"
     skin = "skin"
+    fixtures = RaceFixtures
 
-    face_generator = FaceGenerator()
-    body_generator = BodyGenerator(fixtures=RaceFixtures)
-    horns_generator = HornsGenerator
-    ears_generator = EarsGenerator
-    eyes_generator = EyesGenerator
-    nose_generator = NoseGenerator
-    mouth_generator = MouthGenerator
-    skin_generator = SkinGenerator
+    def __init__(self, fixtures=None):
+        fixtures = fixtures or self.fixtures
 
-    divercity_generator = DivercityGenerator
+        self.face_generator = FaceGenerator(fixtures=fixtures)
+        self.body_generator = BodyGenerator(fixtures=fixtures)
+        self.horns_generator = fixtures.horns_generator
+        # self.ears_generator = fixtures.ears_generator
+        # self.eyes_generator = fixtures.eyes_generator
+        # self.nose_generator = fixtures.nose_generator
+        # self.mouth_generator = fixtures.mouth_generator
+        self.skin_generator = fixtures.skin_generator
 
-    appearance_data = ListData(race.appearances)
-    quality_data = ListData(race.qualities)
+        self.divercity_generator = DivercityGenerator
+
+        self.appearance_data = ListData(race.appearances)
+        self.quality_data = ListData(race.qualities)
 
     def __next__(self):
         appearance = self.appearance_data.unique(2)
@@ -154,54 +148,35 @@ class MammalRaceGenerator(RaceGenerator):
 
 class AquaticRaceGenerator(RaceGenerator):
     title = "aquatic mammal"
-
-    body_generator = BodyGenerator(fixtures=AquaticFixtures)
-    horns_generator = AquaticHornsGenerator
-    skin_generator = AquaticSkinGenerator
-
+    fixtures = AquaticFixtures
 
 
 class AmphibianRaceGenerator(RaceGenerator):
     title = "amphibian"
-
-    body_generator = BodyGenerator(fixtures=AmphibianFixtures)
-    skin_generator = AmphibianSkinGenerator
+    fixtures = AmphibianFixtures
 
 
 class ReptileRaceGenerator(RaceGenerator):
     title = "reptile"
     skin = "scale "
-
-    body_generator = BodyGenerator(fixtures=ReptileFixtures)
-    skin_generator = ReptileSkinGenerator
+    fixtures = ReptileFixtures
 
 
 class FishRaceGenerator(RaceGenerator):
     title = "fish"
     skin = "scale "
-
-    face_generator = FaceGenerator(fixtures=FishFixtures)
-    body_generator = BodyGenerator(fixtures=FishFixtures)
-    skin_generator = FishSkinGenerator
+    fixtures = FishFixtures
 
 
 class InvertebrateRaceGenerator(RaceGenerator):
     title = "invertebrate"
-
-    body_generator = BodyGenerator(fixtures=InvertebrateFixtures)
+    fixtures = InvertebrateFixtures
 
 
 class BirdRaceGenerator(RaceGenerator):
     title = "bird"
     skin = "feather "
-
-    face_generator = FaceGenerator(fixtures=BirdFixtures)
-    body_generator = BodyGenerator(fixtures=BirdFixtures)
-    horns_generator = None
-    # ears_generator = BirdEarsGenerator
-    # mouth_generator = BeakGenerator
-    # nose_generator = None
-    skin_generator = BirdSkinGenerator
+    fixtures = BirdFixtures
 
 
 class RandomRaceGenerator(RandomGenerator):

@@ -28,6 +28,20 @@ class Arms(Limbs):
         return "{}{} arms".format(self.countText, self.description)
 
 
+class WingedArms(Limbs):
+    title = "Winged arms"
+
+    def __str__(self):
+        return "{}{} winged arms".format(self.countText, self.description)
+
+
+class ClawedArms(Limbs):
+    title = "Clawed arms"
+
+    def __str__(self):
+        return "{}{} clawed arms".format(self.countText, self.description)
+
+
 class Legs(Limbs):
     title = "Legs"
 
@@ -39,7 +53,21 @@ class Wings(Limbs):
     title = "Wings"
 
     def __str__(self):
-        return "{}{} wings and".format(self.countText, self.description)
+        return "{}{} wings".format(self.countText, self.description)
+
+
+class SideFins(Limbs):
+    title = "Side fins"
+
+    def __str__(self):
+        return "{}{} side fins".format(self.countText, self.description)
+
+
+class DorsalFin(Limbs):
+    title = "Dorsal fin"
+
+    def __str__(self):
+        return "a {}{} dorsal fin".format(self.countText, self.description)
 
 
 class Tail(Generated):
@@ -64,18 +92,28 @@ class Body(Generated):
     title = "Body"
     fields = [
         'arms',
+        'winged_arms',
+        'clawed_arms',
         'wings',
         'legs',
         'tail',
+        'side_fins',
+        'dorsal_fin',
         'part1',
         'part2',
         'part3',
     ]
 
     def __str__(self):
-        return "They have {}{}{}{}({}{}{}).".format(
-            self.arms or '',
-            self.wings or '',
+        arms = ", ".join([str(i) for i in [
+            self.side_fins,
+            self.wings,
+            self.winged_arms,
+            self.clawed_arms,
+            self.arms,
+        ] if i is not None])
+        return "{}{}{}({}{}{})".format(
+            arms,
             self.legs or ', but no legs, like a snake with arms, ',
             self.tail or 'but they have no tail',
             self.part1 or '',

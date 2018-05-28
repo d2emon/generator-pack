@@ -1,6 +1,8 @@
 from fixtures import race
 from generator import StaticData, ListData
 
+from .generators import *
+
 
 class RaceFixtures:
     eyes_count = ListData(race.eyes_count)
@@ -19,6 +21,9 @@ class RaceFixtures:
     body2 = StaticData()
     body3 = StaticData()
 
+    horns_generator = HornsGenerator
+    skin_generator = SkinGenerator
+
 
 class MammalFixtures(RaceFixtures):
     pass
@@ -26,34 +31,44 @@ class MammalFixtures(RaceFixtures):
 
 class AquaticFixtures(MammalFixtures):
     body1 = ListData(race.aquatic_tails)
-    body2 = ListData(race.aquatic_arms)
-    body3 = ListData(race.aquatic_dorsals)
 
     # tails = ListData(race.tails)
+    arms = ListData(race.aquatic_arms)
+    legs = ListData(race.aquatic_dorsals)
+
+    horns_generator = AquaticHornsGenerator
+    skin_generator = AquaticSkinGenerator
+
 
 class AmphibianFixtures(RaceFixtures):
     tails = ListData(race.amphibian_tails)
+
+    skin_generator = AmphibianSkinGenerator
 
 
 class ReptileFixtures(RaceFixtures):
     limbs = ListData(race.reptilian_arms)
     tails = ListData(race.reptilian_tails)
 
+    skin_generator = ReptileSkinGenerator
+
 
 class FishFixtures(RaceFixtures):
     noses = ListData(race.fish_noses)
     ears = ListData(race.fish_ears)
 
+    arms = ListData(race.fish_sides)
+    legs = ListData(race.fish_dorsals)
+
     body1 = ListData(race.fish_tails)
-    body2 = ListData(race.fish_sides)
-    body3 = ListData(race.fish_dorsals)
 
     # tails = ListData(race.tails)
 
+    skin_generator = FishSkinGenerator
+
 
 class InvertebrateFixtures(RaceFixtures):
-    body1 = ListData(race.invertebrate_arms)
-
+    arms = ListData(race.invertebrate_arms)
     legs = ListData(race.invertebrate_legs)
     tails = ListData(race.invertebrate_tails)
 
@@ -63,7 +78,12 @@ class BirdFixtures(RaceFixtures):
     noses = None
     ears = ListData(race.bird_ears)
 
-    arms = StaticData()
-    wings = ListData(race.bird_wings)
+    arms = ListData(race.bird_wings)
     legs = ListData(race.bird_legs)
     tails = ListData(race.bird_tails)
+
+    horns_generator = None
+    # ears_generator = BirdEarsGenerator
+    # mouth_generator = BeakGenerator
+    # nose_generator = None
+    skin_generator = BirdSkinGenerator
