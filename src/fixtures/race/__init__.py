@@ -1,5 +1,5 @@
 from .parts import *
-from .colors import colors_list
+from .colors import colors, chances
 
 horns = [
     "They also have two horns on their heads.",
@@ -206,7 +206,8 @@ feathers=[
     "It's covered in small, thin feathers.",
     "It's covered in small, wide feathers."
 ]
-skin_colors = colors_list
+skin_colors = colors
+skin_color_chances = chances
 agings = [
     "darker",
     "lighter",

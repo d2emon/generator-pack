@@ -108,15 +108,20 @@ class SkinGenerator(BasicGenerator):
     def __init__(self, **kwargs):
         self.skins = kwargs.get('skins', ListData(race.skins))
         self.covers = kwargs.get('covers', StaticData())
-        self.colors = kwargs.get('colors', [ListData(color) for color in race.skin_colors])
+        self.colors = kwargs.get('colors', ListData(race.skin_colors))
+        self.color_chances = kwargs.get('color_chances', race.skin_color_chances)
         self.agings = kwargs.get('agings', ListData(race.agings))
+
+    def generate_colors(self):
+        chances = [c for c in self.color_chances if c >= random.randint(100)]
+        return self.colors.unique(len(chances))
 
     def value(self, skin="Their skin ", *args, **kwargs):
         return {
             'skin': skin,
             'skin_type': next(self.skins),
             'cover': next(self.covers),
-            'colors': [next(color) for color in self.colors], # unique
+            'colors': self.generate_colors(),
             'aging': next(self.agings),
         }
 
