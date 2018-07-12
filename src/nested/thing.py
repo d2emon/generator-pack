@@ -37,12 +37,16 @@ class Thing:
 
         self.contains = filter(lambda item: item, self.contains)
 
-t = [
-    Thing("later", ["sorry"], "will do later"),
-    Thing("error", ["sorry"], "Uh oh... It looks like you didn't supply a valid element to create."),
-    Thing("sorry", ["consolation universe"], "(Sorry!)"),
-    Thing("consolation universe", [".universe"]),
-    Thing("universe",["supercluster,10-30"]),
-    Thing("supercluster",["galaxy,10-30"],"galactic supercluster"),
-    Thing("galaxy",["galaxy center","galaxy arm,2-6"]),
-]
+# universe stuff
+Thing("multiverse",["universe,10-30"],["multiverse","lasagnaverse","doughnutverse","towelverse","baconverse","sharkverse","nestedverse","tastyverse","upverse","downverse","layerverse","clusterverse","metaverse","quantiverse","paraverse","epiverse","alterverse","hypoverse","dimensioverse","planiverse","pluriverse","polyverse","maniverse","stackoverse","antiverse","superverse","upperverse","maxiverse","megaverse","babyverse","tinyverse","retroverse","ultraverse","topoverse","otherverse","bubbleverse","esreverse","versiverse","'verse","cookieverse","grandmaverse"])
+Thing("universe",["supercluster,10-30"])
+Thing("supercluster",["galaxy,10-30"],"galactic supercluster")
+Thing("galaxy",["galaxy center","galaxy arm,2-6"])
+Thing("galaxy arm",["galactic life,5%","dyson sphere,4%","dyson sphere,2%","star system,20-50","nebula,0-12","black hole,20%","black hole,20%"],"arm")
+Thing("galaxy center",["black hole","galactic life,10%","dyson sphere,4%","dyson sphere,2%","star system,20-50","nebula,0-12"],"galactic center")
+
+# meta
+Thing("later", ["sorry"], "will do later")
+Thing("error", ["sorry"], "Uh oh... It looks like you didn't supply a valid element to create.")
+Thing("sorry", ["consolation universe"], "(Sorry!)")
+Thing("consolation universe", [".universe"])

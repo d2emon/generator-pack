@@ -252,56 +252,36 @@ Instance.prototype.Name=function()
 
 }
 
-Instance.prototype.Grow=function()
-{
-}
-
-
 """
 
 ITEMS = []
 
 
 class Item:
-    i_n = 0
-    div = dict()
-
     def __init__(self, what):
         global ITEMS
 
         print("GENERATE", what)
-        self.__name = "thing"
+        self.raw_name = "thing"
         if Thing.get_thing(what) is None:
             self.type = Thing.get_thing("error")
         else:
             self.type = Thing.get_thing(what)
         self.parent = 0
         self.children = []
-        self.n = self.i_n
         self.display = 0
         self.grown = False
-        self.i_n += 1
 
         ITEMS.append(self)
 
     @property
-    def style(self):
-        style = dict()
-        # special - case pictures
-        if self.__name == "sharkverse":
-            style = {"background-image": "nestedSharkverse.png"}
-        elif self.__name == "baconverse":
-            style = {"background-image": "nestedBaconverse.png"}
-        elif self.__name == "doughnutverse":
-            style = {"background-image": "nestedDoughnutverse.png"}
-        elif self.__name == "lasagnaverse":
-            style = {"background-image": "nestedLasagnaverse.png"}
-        return style
-
+    def id(self):
+        global ITEMS
+        return ITEMS.index(self)
 
     def name(self, *args, **kwargs):
         print("NAME", args, kwargs)
-        pass
+        return self.raw_name
 
     def grow(self, *args, **kwargs):
         def get_data(data):
@@ -357,94 +337,3 @@ class Item:
                 new_item.parent = self
                 self.children.append(new_item)
         self.grown = True
-
-    def list(self, *args, **kwargs):
-        text = ""
-        for i in self.children:
-            text += "<div id=\"div{}\">{}</div>".format(i.n, i.name)
-
-        """
-        if len(self.children) > 0:
-            div = [
-                {
-                    0: "span",
-                    "onclick": self.toggle,
-                    "children": [
-                        {
-                            0: "span",
-                            "class": "arrow",
-                            "id": "arrow{}".format(self.n),
-                            "children": ["+"]
-                        },
-                        self.__name
-                    ]
-                },
-                {
-                    0: "div",
-                    "id": "container{}".format(self.n),
-                    "class": "thing",
-                    "style": {
-                        "display": "none"
-                    }
-                    "children": [text]
-                }
-                
-            ]
-        """
-        if len(self.children) > 0:
-            div = [
-                {
-                    0: "a",
-                    "href": self.toggle,
-                    "style": {"padding-right": "8px;"},
-                    "alt": "archetype: {}".format(self.type.name),
-                    "title": "archetype: {}".format(self.type.name),
-                    "children": [
-                        {
-                            0: "span",
-                            "class": "arrow",
-                            "id": "arrow{}".format(self.n),
-                            "children": ["+"]
-                        },
-                        self.__name
-                    ]
-                },
-                {
-                    0: "div",
-                    "id": "container{}".format(self.n),
-                    "class": "thing",
-                    "style": "display:none;{}".format(self.style),
-                    "children": [text]
-                }
-            ]
-        else:
-            div = [
-                {
-                    0: "span",
-                    "class": "emptyThing",
-                    "children": [self.__name]
-                }
-            ]
-        print(self.n, div)
-        return div
-
-
-
-    def toggle(self):
-        if self.display == 0:
-            for c in self.children:
-                if not c.grown:
-                    c.Grow(0)
-                    c.List(0)
-
-            self.display = 1
-            return {
-                "container" + self.n: {"style": {"display": "block"}},
-                "arrow" + self.n: "-"
-            }
-        elif self.display == 1:
-            self.display = 0
-            return {
-                "container" + self.n: {"style": {"display": "none"}},
-                "arrow" + self.n: "+"
-            }
