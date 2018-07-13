@@ -3,16 +3,30 @@ import random
 
 THINGS = dict()
 
+class NameGenerator:
+    def __init__(self, data):
+        self.data = data
+
+    def generate(self):
+        if isinstance(self.data, str):
+            return self.data
+        if isinstance(self.data[0], str):
+            return random.choice(self.data)
+        else:
+            return "".join(random.choice(n) for n in self.data)
+
+    def parts(self):
+        return self.generate().split("|")
+
 
 class SubGenerator:
     def __init__(self, data):
         self.data = data
-        print("SUB GEN", data)
-        # if not instanceof(data, str):
-        #     data = Choose(data)
+        if not isinstance(self.data, str):
+            self.data = random.choice(self.data)
         # value, probability, amount = get_data(data)
         self.get_value(self.data)
-        print(self.value, self.amount, self.probability)
+        # print(self.value, self.amount, self.probability)
 
     def get_value(self, value):
         data = value.split(",")
@@ -44,6 +58,12 @@ class SubGenerator:
     def get_probability(self, probability):
         return (probability + "?").split("%")
 
+    def __repr__(self):
+        amount = "-".join([str(a) for a in self.amount])
+        if self.probability != 100:
+            amount += " ({}%)".format(self.probability)
+        return "<Generator [{}] {}>".format(self.value, amount)
+
 
 class Thing:
     things_n = 0
@@ -51,23 +71,17 @@ class Thing:
     def __init__(self, name, contains, namegen=None):
         self.name = name
 
-        self.contains = None
         self.generators = []
+        for d in contains:
+            self.generators.append(SubGenerator(d))
+        print("GENERATORS", self.name, self.generators)
 
-        self.parse(contains)
-        self.namegen = namegen
-        if (self.namegen is None):
-            self.namegen = self.name
+        if (namegen is None):
+            namegen = self.name
+        self.namegen = NameGenerator(namegen)
 
         THINGS[name] = self
         self.things_n += 1
-
-    def parse(self, data):
-        print("PARSE", self.name, data)
-        self.contains = data
-        self.generators = []
-        for d in data:
-            self.generators.append(SubGenerator(d))
 
     @classmethod
     def get_thing(cls, key):
@@ -80,17 +94,19 @@ class Thing:
 
     def clear(self):
         to_concat = []
-        for i, c in enumerate(self.contains):
-            if not isinstance(c, str):
+        for i, g in enumerate(self.generators):
+            if not isinstance(g.data, str):
                 continue
-            if c[0] == ".":
-                sub = self.get_thing(c[1:])
+            if g.data[0] == ".":
+                sub_name = g.data[1:]
+                sub = self.get_thing(sub_name)
                 if sub is not None:
-                    to_concat += sub.contains
-                self.contains[i] = ""
-        self.contains += to_concat
-
-        self.contains = filter(lambda item: item, self.contains)
+                    to_concat += sub.generators
+                self.generators[i] = None
+        # f = filter(lambda item: item is not None, self.generators + to_concat)
+        # print(self.name, self.generators, "+", to_concat)
+        # print(list(f))
+        self.generators = list(filter(lambda item: item is not None, self.generators + to_concat))
 
 
 # universe stuff

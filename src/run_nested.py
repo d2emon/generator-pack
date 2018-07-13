@@ -9,7 +9,7 @@ def show_all():
     global ITEMS
     print("-" * 20)
     for c in ITEMS:
-        print("{}\t\"{}\"".format(c.type.name, c.raw_name))
+        print("{}\t\"{}\"".format(c.type.name, c.name))
     print("-" * 20)
 
 def show_item(items):
@@ -27,10 +27,10 @@ def show_item(items):
     # Tag(item).text()
 
     print("-" * 20)
-    print("{}\t\"{}\"".format(item.type.name, item.raw_name))
+    print("{}\t\"{}\"".format(item.type.name, item.name))
     print("-" * 20)
-    for c in item.children:
-        print("{}\t\"{}\"".format(c.type.name, c.raw_name))
+    for i, c in enumerate(item.children):
+        print("{}\t{}\t\"{}\"".format(i, c.type.name, c.name))
 
     return items[1:]
 
