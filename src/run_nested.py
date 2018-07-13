@@ -30,7 +30,7 @@ def show_item(items):
     print("{}\t\"{}\"".format(item.type.name, item.name))
     print("-" * 20)
     for i, c in enumerate(item.children):
-        print("{}\t{}\t\"{}\"".format(i, c.type.name, c.name))
+        print("{}\t{} \"{}\"\t-\t{} \"{}\"".format(i + 1, item.type.name, item.name, c.type.name, c.name))
 
     return items[1:]
 
