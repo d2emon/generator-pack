@@ -1,6 +1,6 @@
 import sys
 
-from nested.thing import Thing
+from nested.data import clean_things
 from nested.item import Item, ITEMS
 # from nested.tag import Tag, get_DOM
 
@@ -9,7 +9,7 @@ def show_all():
     global ITEMS
     print("-" * 20)
     for c in ITEMS:
-        print("{}\t\"{}\"".format(c.type.name, c.name))
+        print(c)
     print("-" * 20)
 
 def show_item(items):
@@ -27,10 +27,10 @@ def show_item(items):
     # Tag(item).text()
 
     print("-" * 20)
-    print("{}\t\"{}\"".format(item.type.name, item.name))
+    print(item)
     print("-" * 20)
     for i, c in enumerate(item.children):
-        print("{}\t{} \"{}\"\t-\t{} \"{}\"".format(i + 1, item.type.name, item.name, c.type.name, c.name))
+        print("{}\t{}".format(i + 1, c))
 
     return items[1:]
 
@@ -38,7 +38,7 @@ def show_item(items):
 def main(args):
     print("Building...")
 
-    Thing.clean()
+    clean_things()
 
     # check_missing_things()
     # print("There are {} thing archetypes.".format(things_n))
