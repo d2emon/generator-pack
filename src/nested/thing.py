@@ -4,27 +4,43 @@ from .name import NameGenerator
 
 class Thing:
     # things_n = 0
+    type_name = None
+    children_data = []
+    names_data = None
 
-    def __init__(self, name, namegen=None):
+    def __init__(self, name=None, namegen=None):
+        if name is None:
+            name = self.type_name
+
         self.name = name
+
         self.generators = []
-        if namegen is None:
-            self.namegen = NameGenerator(self.name)
-        else:
-            self.namegen = namegen
+        self.add_generators(self.children_data)
+
+        self.namegen = namegen
+        if self.namegen is None:
+            if self.names_data is not None:
+                self.namegen = NameGenerator.from_str(self.names_data)
+            else:
+                self.namegen = NameGenerator(self.name)
 
         # THINGS[name] = self
         # self.things_n += 1
 
+    def add_generators(self, children=[]):
+        for child in children:
+            self.generators.append(ChildGenerator.from_str(child))
+
     @classmethod
-    def from_str(cls, name, children, namegen=None):
+    def from_str(cls, name, children=None, namegen=None):
         if (namegen is not None):
             namegen = NameGenerator.from_str(namegen)
-        t = cls(name, namegen)
 
-        t.generators = []
-        for child in children:
-            t.generators.append(ChildGenerator.from_str(child))
+        if children is None:
+            children = []
+
+        t = cls(name, namegen)
+        t.add_generators(children)
         print("GENERATORS", t.name, t.generators)
         return t
 

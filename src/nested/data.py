@@ -1,16 +1,25 @@
 from .thing import Thing
+from .space import CONTENTS as SPACE_CONTENTS
 
 
 THINGS = dict()
+
+
+def addFromContents(content):
+    for c in content:
+        THINGS[c.type_name] = c()
+
 
 
 def addThing(name, children, namegen=None):
     global THINGS
     THINGS[name] = Thing.from_str(name, children, namegen)
 
+
 def get_thing(key):
     global THINGS
     return THINGS.get(key)
+
 
 def clean_things():
     global THINGS
@@ -18,13 +27,9 @@ def clean_things():
         thing.clear()
 
 
+addFromContents(SPACE_CONTENTS)
+
 # universe stuff
-addThing("multiverse",["universe,10-30"],["multiverse","lasagnaverse","doughnutverse","towelverse","baconverse","sharkverse","nestedverse","tastyverse","upverse","downverse","layerverse","clusterverse","metaverse","quantiverse","paraverse","epiverse","alterverse","hypoverse","dimensioverse","planiverse","pluriverse","polyverse","maniverse","stackoverse","antiverse","superverse","upperverse","maxiverse","megaverse","babyverse","tinyverse","retroverse","ultraverse","topoverse","otherverse","bubbleverse","esreverse","versiverse","'verse","cookieverse","grandmaverse"])
-addThing("universe",["supercluster,10-30"])
-addThing("supercluster",["galaxy,10-30"],"galactic supercluster")
-addThing("galaxy",["galaxy center","galaxy arm,2-6"])
-addThing("galaxy arm",["galactic life,5%","dyson sphere,4%","dyson sphere,2%","star system,20-50","nebula,0-12","black hole,20%","black hole,20%"],"arm")
-addThing("galaxy center",["black hole","galactic life,10%","dyson sphere,4%","dyson sphere,2%","star system,20-50","nebula,0-12"],"galactic center")
 addThing("nebula",["galactic life,15%","star,2%","star,2%","star,2%","interstellar cloud,1-6"])
 addThing("interstellar cloud",["helium","hydrogen","carbon,80%","water,5%","ammonia,5%","nitrogen,5%","iron,5%","sulfur,5%","oxygen,15%"],[["a bright pink","a faint","a fading","a pale","a fluo","a glowing","a green","a bright green","a dark brown","a brooding","a magenta","a bright red","a dark red","a blueish","a deep blue","a turquoise","a teal","a golden","a multicolored","a silver","a dramatic","a luminous","a colossal","a purple","a gold-trimmed","an opaline","a silvery","a shimmering"],[" "],["interstellar cloud"]])
 addThing("star system",["star","star,3%","visitor planet,5%","future planet,10%","future planet,10%","terraformed planet,50%","terraformed planet,20%","terraformed planet,10%","medieval planet,30%","medieval planet,20%","ancient planet,50%","ancient planet,30%","ancient planet,10%","barren planet,60%","barren planet,40%","barren planet,20%","gas giant,60%","gas giant,40%","gas giant,20%","gas giant,10%","asteroid belt,0-2"])
