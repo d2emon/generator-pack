@@ -38,6 +38,10 @@ class Item:
             return self.__name
         return self.generate_name()
 
+    @property
+    def image(self):
+        return self.type.name
+
     def generate_name(self, *args, **kwargs):
         gen = self.type.namegen
         self.__name = gen.generate()
