@@ -47,7 +47,7 @@ class ChildGenerator:
             # return Rand(r[0], r[1])
             return int(r[0]), int(r[1])
         else:
-            return amount[0:0]
+            return int(amount[0:1]),
 
     def get_probability(self, probability):
         return (probability + "?").split("%")
