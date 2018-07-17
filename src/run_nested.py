@@ -38,7 +38,7 @@ def show_item(items):
 def main(args):
     print("Building...")
 
-    clean_things()
+    # clean_things()
 
     # check_missing_things()
     # print("There are {} thing archetypes.".format(things_n))

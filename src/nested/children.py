@@ -2,15 +2,17 @@ import random
 
 
 class ChildGenerator:
-    def __init__(self, value=None, amount=1, probability=100):
+    def __init__(self, value=None, amount=(1, ), probability=100):
         self.value = value
         self.amount = amount
         self.probability = probability
+        self.data = None
 
     @classmethod
     def from_str(cls, data):
         g = cls()
-        g.data = g.parse(data)
+        g.data = data
+        g.parse(data)
         return g
 
     def parse(self, data):

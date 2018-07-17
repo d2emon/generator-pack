@@ -5,7 +5,8 @@ from .name import NameGenerator
 class Thing:
     # things_n = 0
     type_name = None
-    children_data = []
+    child_data = []
+    child_generators = []
     names_data = None
 
     def __init__(self, name=None, namegen=None):
@@ -14,8 +15,8 @@ class Thing:
 
         self.name = name
 
-        self.generators = []
-        self.add_generators(self.children_data)
+        self.generators = [] + self.child_generators
+        self.add_generators(self.child_data)
 
         self.namegen = namegen
         if self.namegen is None:
@@ -44,6 +45,7 @@ class Thing:
         print("GENERATORS", t.name, t.generators)
         return t
 
+    """
     def clear(self):
         to_concat = []
         for i, g in enumerate(self.generators):
@@ -59,3 +61,4 @@ class Thing:
         # print(self.name, self.generators, "+", to_concat)
         # print(list(f))
         self.generators = list(filter(lambda item: item is not None, self.generators + to_concat))
+    """

@@ -47,14 +47,31 @@ class Item:
         self.__name = gen.generate()
         return self.__name
 
+    def get_generators(self):
+        to_concat = []
+        generators = []
+        for i, g in enumerate(self.type.generators):
+            if not isinstance(g.data, str):
+                generators.append(g)
+                continue
+            if g.data[0] == ".":
+                sub_name = g.data[1:]
+                sub = get_thing(sub_name)
+                if sub is not None:
+                    to_concat += sub.generators
+                # self.type.generators[i] = None
+            else:
+                generators.append(g)
+        # return list(filter(lambda item: item is not None, self.type.generators + to_concat))
+        return list(filter(lambda item: item is not None, generators + to_concat))
+
     def grow(self, *args, **kwargs):
         print("GROW", args, kwargs)
         if self.grown:
             return
 
-        print("GENERATED", self.generate_name())
-
-        for g in self.type.generators:
+        generators = self.get_generators()
+        for g in generators:
             subthing = get_thing(g.value)
             if subthing is None:
                 print("NO CHILD", g.value)
@@ -65,7 +82,7 @@ class Item:
 
             for i in range(*g.amount):
                 new_item = Item(subthing.name, self)
-                self.children.append(new_item)
+                # self.children.append(new_item)
         random.shuffle(self.children)
 
         self.grown = True
