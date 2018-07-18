@@ -1,4 +1,5 @@
 from .thing import Thing
+from .chemistry import CONTENTS as CHEMISTRY_CONTENTS
 from .particles import CONTENTS as PARTICLES_CONTENTS
 from .space import CONTENTS as SPACE_CONTENTS
 
@@ -8,9 +9,11 @@ THINGS = dict()
 
 def addFromContents(content):
     for c in content:
-        print("ADD", c.type_name)
-        THINGS[c.type_name] = c()
-
+        if isinstance(c, type):
+            name = c.type_name
+        else:
+            name = c.name
+        THINGS[name] = c()
 
 
 def addThing(name, children, namegen=None):
@@ -36,32 +39,7 @@ addThing("water",["hydrogen","oxygen"])
 # addThing("ice",["water"])
 # addThing("snow",["snowflakes"])
 # addThing("snowflakes",["water"])
-addThing("ammonia",["hydrogen","nitrogen"])
-# addThing("methane",["hydrogen","carbon"])
-addThing("hydrogen",[".hydrogen atom"])
-addThing("hydrogen atom",["proton","electron"],["atoms"])
-# addThing("plastic",["polymers"])
-# addThing("rubber",["polymers"])
-# addThing("polymers",[".glucids"])
-# addThing("alcohol",[".glucids"])
-addThing("carbon",[".atom"])
-# addThing("sodium",[".atom"])
-# addThing("chlorine",[".atom"])
-addThing("oxygen",[".atom"])
-addThing("helium",[".atom"])
-# addThing("potassium",[".atom"])
-# addThing("aluminium",[".atom"])
-addThing("iron",[".atom"])
-# addThing("copper",[".atom"])
-# addThing("lead",[".atom"])
-# addThing("steel",["iron","carbon"])
-# addThing("gold",[".atom"])
-# addThing("silver",[".atom"])
-# addThing("silicon",[".atom"])
-# addThing("calcium",[".atom"])
-addThing("nitrogen",[".atom"])
-addThing("sulfur",[".atom"])
-# addThing("phosphorus",[".atom"])
+addFromContents(CHEMISTRY_CONTENTS)
 # alright, I'm not doing the whole periodic table.
 # addThing("proteins",[".molecule"])
 # addThing("lipids",[".molecule"])

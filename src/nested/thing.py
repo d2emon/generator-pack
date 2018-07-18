@@ -45,6 +45,10 @@ class Thing:
         print("GENERATORS", t.name, t.generators)
         return t
 
+    def __call__(self, *args, **kwargs):
+        return self
+
+
     """
     def clear(self):
         to_concat = []
