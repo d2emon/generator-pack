@@ -86,13 +86,80 @@ class InterstellarCloud(Thing):
     ]
 
 
+class StarSystem(Thing):
+    type_name = "star system"
+    child_generators = [
+        ChildGenerator("star"),
+        ChildGenerator("star", probability=3),
+        ChildGenerator("visitor planet", probability=5),
+        ChildGenerator("future planet", probability=10),
+        ChildGenerator("future planet", probability=10),
+        ChildGenerator("terraformed planet", probability=50),
+        ChildGenerator("terraformed planet", probability=20),
+        ChildGenerator("terraformed planet", probability=10),
+        ChildGenerator("medieval planet", probability=30),
+        ChildGenerator("medieval planet", probability=20),
+        ChildGenerator("ancient planet", probability=50),
+        ChildGenerator("ancient planet", probability=30),
+        ChildGenerator("ancient planet", probability=10),
+        ChildGenerator("barren planet", probability=60),
+        ChildGenerator("barren planet", probability=40),
+        ChildGenerator("barren planet", probability=20),
+        ChildGenerator("gas giant", probability=60),
+        ChildGenerator("gas giant", probability=40),
+        ChildGenerator("gas giant", probability=20),
+        ChildGenerator("gas giant", probability=10),
+        ChildGenerator("asteroid belt", (0, 2)),
+    ]
+
+
+class DysonSphere(Thing):
+    type_name = "dyson sphere"
+    child_generators = [
+        ChildGenerator("star"),
+        ChildGenerator("star", probability=3),
+        ChildGenerator("dyson surface"),
+        ChildGenerator("future planet", (1, 8)),
+        ChildGenerator("barren planet", probability=60),
+        ChildGenerator("barren planet", probability=40),
+        ChildGenerator("barren planet", probability=20),
+        ChildGenerator("gas giant", probability=60),
+        ChildGenerator("gas giant", probability=40),
+        ChildGenerator("gas giant", probability=20),
+        ChildGenerator("gas giant", probability=10),
+        ChildGenerator("asteroid belt", (0, 2)),
+    ]
+
+
+class Star(Thing):
+    type_name = "star"
+    child_generators = [
+        ChildGenerator("ghost", probability=0.1),
+        ChildGenerator("space monster", probability=0.2),
+        ChildGenerator("hydrogen"),
+        ChildGenerator("helium"),
+    ]
+    name_data = [
+        ["white","faint","yellow","red","blue","green","purple","bright","double","twin","triple","old","young","dying","small","giant","large","pale","dark","hell","horrific","twisted","spectral"],
+        [" star"],
+    ]
+
+
 # ChildGenerator("galactic life", probability=5),
-# ChildGenerator("dyson sphere", probability=4),
-# ChildGenerator("star system", (20, 50)),
 # ChildGenerator("nebula", (0, 12)),
 # ChildGenerator("black hole", probability=20),
-# ChildGenerator("interstellar cloud", (1, 6)),
-
+# ChildGenerator("star"),
+# ChildGenerator("dyson surface"),
+# ChildGenerator("visitor planet", probability=5),
+# ChildGenerator("future planet", (1, 8)),
+# ChildGenerator("terraformed planet", probability=50),
+# ChildGenerator("medieval planet", probability=30),
+# ChildGenerator("ancient planet", probability=50),
+# ChildGenerator("barren planet", probability=60),
+# ChildGenerator("gas giant", probability=60),
+# ChildGenerator("asteroid belt", (0, 2)),
+# ChildGenerator("ghost", probability=0.1),
+# ChildGenerator("space monster", probability=0.2),
 
 CONTENTS = [
     Multiverse,
@@ -103,4 +170,7 @@ CONTENTS = [
     GalaxyCenter,
     Nebula,
     InterstellarCloud,
+    StarSystem,
+    DysonSphere,
+    Star,
 ]
