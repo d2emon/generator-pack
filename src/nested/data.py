@@ -1,4 +1,5 @@
 from .thing import Thing
+from .particles import CONTENTS as PARTICLES_CONTENTS
 from .space import CONTENTS as SPACE_CONTENTS
 
 
@@ -7,6 +8,7 @@ THINGS = dict()
 
 def addFromContents(content):
     for c in content:
+        print("ADD", c.type_name)
         THINGS[c.type_name] = c()
 
 
@@ -26,8 +28,6 @@ def clean_things():
     for key, thing in THINGS.items():
         thing.clear()
 
-
-addFromContents(SPACE_CONTENTS)
 
 addThing("water",["hydrogen","oxygen"])
 # addThing("fire",["oxygen","carbon"])
@@ -67,17 +67,13 @@ addThing("sulfur",[".atom"])
 # addThing("lipids",[".molecule"])
 # addThing("glucids",["carbon","hydrogen","oxygen"],"glucose")
 # addThing("organic matter",[["proteins","lipids","glucids"],["proteins","lipids","glucids",""],"salt,30%"])
-addThing("atom",["proton","neutron","electron"],["atoms"])
-# addThing("molecule",["atom"],["molecules"])
-addThing("proton",["up quark,2","down quark"])
-addThing("neutron",["down quark,2","up quark"])
-addThing("electron",["qwubble"])
-addThing("up quark",["qwubble"])
-addThing("down quark",["qwubble"])
-addThing("qwubble",["multiverse,1-5"])
+
+addFromContents(PARTICLES_CONTENTS)
 # addThing("portal",["universe"])
 
 # universe stuff
+addFromContents(SPACE_CONTENTS)
+
 addThing("star system",["star","star,3%","visitor planet,5%","future planet,10%","future planet,10%","terraformed planet,50%","terraformed planet,20%","terraformed planet,10%","medieval planet,30%","medieval planet,20%","ancient planet,50%","ancient planet,30%","ancient planet,10%","barren planet,60%","barren planet,40%","barren planet,20%","gas giant,60%","gas giant,40%","gas giant,20%","gas giant,10%","asteroid belt,0-2"])
 addThing("dyson sphere",["star","star,3%","dyson surface","future planet,1-8","barren planet,60%","barren planet,40%","barren planet,20%","gas giant,60%","gas giant,40%","gas giant,20%","gas giant,10%","asteroid belt,0-2"])
 addThing("star",["ghost,0.1%","space monster,0.2%","hydrogen","helium"],[["white","faint","yellow","red","blue","green","purple","bright","double","twin","triple","old","young","dying","small","giant","large","pale","dark","hell","horrific","twisted","spectral"],[" star"]])
