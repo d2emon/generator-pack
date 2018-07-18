@@ -52,13 +52,6 @@ addFromContents(PARTICLES_CONTENTS)
 # universe stuff
 addFromContents(SPACE_CONTENTS)
 
-addThing("planet",[".terraformed planet"],"telluric planet")
-addThing("barren planet",["galactic life,10%","rock","ice,50%",".planet composition"],"telluric planet")
-addThing("visitor planet",["visitor city,1-8","visitor installation,2-6","galactic life","rock","ice,50%",".planet composition"],"telluric planet")
-addThing("future planet",["future continent,2-7","ocean,1-7","future sky",".future moon,30%",".planet composition"],"telluric planet")
-addThing("terraformed planet",["continent,2-7","ocean,1-7","terraformed sky",".terraformed moon,30%",".planet composition"],"telluric planet")
-addThing("medieval planet",["medieval continent,2-4","ancient continent,0-3","ocean,1-7","sky",".planet composition"],"telluric planet")
-addThing("ancient planet",["ancient continent,2-7","ocean,1-7","sky",".planet composition"],"telluric planet")
 addThing("planet composition",["planet core","moon,40%","moon,20%","moon,10%"],"planet")
 addThing("moon",["ghost,0.1%","rock","planet core"],[["young","old","large","small","pale","white","dark","black","old"],[" moon"]])
 addThing("terraformed moon",[".planet composition","continent,1-4","ocean,1-4","sky"],[["young","old","large","small","pale","white","dark","black","old","green","lush","blue","city","colonized","life"],[" moon"]])

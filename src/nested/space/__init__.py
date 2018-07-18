@@ -145,17 +145,87 @@ class Star(Thing):
     ]
 
 
+# addThing("planet",[".terraformed planet"],"telluric planet")
+class Planet(Thing):
+    pass
+
+
+class TelluricPlanet(Planet):
+    name_data = "telluric planet"
+
+
+class BarrenPlanet(TelluricPlanet):
+    type_name = "barren planet"
+    child_generators = [
+        ChildGenerator("galactic life", probability=10),
+        ChildGenerator("rock"),
+        ChildGenerator("ice", probability=50),
+        ChildGenerator(".planet composition"),
+    ]
+
+
+class VisitorPlanet(TelluricPlanet):
+    type_name = "visitor planet"
+    child_generators = [
+        ChildGenerator("visitor city", (1, 8)),
+        ChildGenerator("visitor installation", (2, 6)),
+        ChildGenerator("galactic life"),
+        ChildGenerator("rock"),
+        ChildGenerator("ice", probability=50),
+        ChildGenerator(".planet composition"),
+    ]
+
+
+class FuturePlanet(TelluricPlanet):
+    type_name = "future planet"
+    child_generators = [
+        ChildGenerator("future continent", (2, 7)),
+        ChildGenerator("ocean", (1, 7)),
+        ChildGenerator("future sky"),
+        ChildGenerator(".future moon", probability=30),
+        ChildGenerator(".planet composition"),
+    ]
+
+
+class TerraformedPlanet(TelluricPlanet):
+    type_name = "terraformed planet"
+    child_generators = [
+        ChildGenerator("continent", (2, 7)),
+        ChildGenerator("ocean", (1, 7)),
+        ChildGenerator("terraformed sky"),
+        ChildGenerator(".terraformed moon", probability=30),
+        ChildGenerator(".planet composition"),
+    ]
+
+
+class MedievalPlanet(TelluricPlanet):
+    type_name = "medieval planet"
+    child_generators = [
+        ChildGenerator("medieval continent", (2, 4)),
+        ChildGenerator("ancient continent", (0, 3)),
+        ChildGenerator("ocean", (1, 7)),
+        ChildGenerator("sky"),
+        ChildGenerator(".planet composition"),
+    ]
+
+
+class AncientPlanet(TelluricPlanet):
+    type_name = "ancient planet"
+    child_generators = [
+        ChildGenerator("ancient continent", (2, 7)),
+        ChildGenerator("ocean", (1, 7)),
+        ChildGenerator("sky"),
+        ChildGenerator(".planet composition"),
+    ]
+
+
+
+
 # ChildGenerator("galactic life", probability=5),
 # ChildGenerator("nebula", (0, 12)),
 # ChildGenerator("black hole", probability=20),
 # ChildGenerator("star"),
 # ChildGenerator("dyson surface"),
-# ChildGenerator("visitor planet", probability=5),
-# ChildGenerator("future planet", (1, 8)),
-# ChildGenerator("terraformed planet", probability=50),
-# ChildGenerator("medieval planet", probability=30),
-# ChildGenerator("ancient planet", probability=50),
-# ChildGenerator("barren planet", probability=60),
 # ChildGenerator("gas giant", probability=60),
 # ChildGenerator("asteroid belt", (0, 2)),
 # ChildGenerator("ghost", probability=0.1),
@@ -173,4 +243,10 @@ CONTENTS = [
     StarSystem,
     DysonSphere,
     Star,
+    BarrenPlanet,
+    VisitorPlanet,
+    FuturePlanet,
+    TerraformedPlanet,
+    MedievalPlanet,
+    AncientPlanet,
 ]
