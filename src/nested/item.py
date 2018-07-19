@@ -51,11 +51,11 @@ class Item:
         to_concat = []
         generators = []
         for i, g in enumerate(self.type.generators):
-            if not isinstance(g.data, str):
+            if not isinstance(g.value, str):
                 generators.append(g)
                 continue
-            if g.data[0] == ".":
-                sub_name = g.data[1:]
+            if g.value[0] == ".":
+                sub_name = g.value[1:]
                 sub = get_thing(sub_name)
                 if sub is not None:
                     to_concat += sub.generators

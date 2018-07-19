@@ -219,6 +219,51 @@ class AncientPlanet(TelluricPlanet):
     ]
 
 
+class PlanetComposition(Thing):
+    type_name = "planet composition"
+    child_generators = [
+        ChildGenerator("planet core"),
+        ChildGenerator("moon", probability=40),
+        ChildGenerator("moon", probability=20),
+        ChildGenerator("moon", probability=10)
+    ]
+    names_data = "planet"
+
+
+class Moon(Planet):
+    type_name = "moon"
+    child_generators = [
+        ChildGenerator("ghost", probability=0.1),
+        ChildGenerator("rock"),
+        ChildGenerator("planet core"),
+    ]
+    names_data = [
+        ["young","old","large","small","pale","white","dark","black","old"],
+        [" moon"],
+    ]
+
+
+class TerraformedMoon(Moon):
+    type_name = "terraformed moon"
+    child_generators = [
+        ChildGenerator(".planet composition"),
+        ChildGenerator("continent", (1, 4)),
+        ChildGenerator("ocean", (1, 4)),
+        ChildGenerator("sky"),
+    ]
+    names_data = [
+        ["young", "old", "large", "small", "pale", "white", "dark", "black", "old", "green", "lush", "blue", "city", "colonized", "life"],
+        [" moon"],
+    ]
+
+
+class AsteroidBelt(Thing):
+    type_name = "asteroid belt"
+    child_generators = [
+        ChildGenerator("galactic life", probability=20),
+        ChildGenerator("asteroid", (10, 30)),
+    ]
+
 
 
 # ChildGenerator("galactic life", probability=5),
@@ -227,9 +272,24 @@ class AncientPlanet(TelluricPlanet):
 # ChildGenerator("star"),
 # ChildGenerator("dyson surface"),
 # ChildGenerator("gas giant", probability=60),
-# ChildGenerator("asteroid belt", (0, 2)),
 # ChildGenerator("ghost", probability=0.1),
 # ChildGenerator("space monster", probability=0.2),
+# ChildGenerator("rock"),
+# ChildGenerator("ice", probability=50),
+# ChildGenerator(".planet composition"),
+# ChildGenerator("visitor city", (1, 8)),
+# ChildGenerator("visitor installation", (2, 6)),
+# ChildGenerator("future continent", (2, 7)),
+# ChildGenerator("ocean", (1, 7)),
+# ChildGenerator("future sky"),
+# ChildGenerator(".future moon", probability=30),
+# ChildGenerator("continent", (2, 7)),
+# ChildGenerator("terraformed sky"),
+# ChildGenerator("medieval continent", (2, 4)),
+# ChildGenerator("ancient continent", (0, 3)),
+# ChildGenerator("sky"),
+# ChildGenerator("planet core"),
+# ChildGenerator("asteroid", (10, 30)),
 
 CONTENTS = [
     Multiverse,
@@ -249,4 +309,8 @@ CONTENTS = [
     TerraformedPlanet,
     MedievalPlanet,
     AncientPlanet,
+    PlanetComposition,
+    Moon,
+    TerraformedMoon,
+    AsteroidBelt,
 ]

@@ -52,10 +52,6 @@ addFromContents(PARTICLES_CONTENTS)
 # universe stuff
 addFromContents(SPACE_CONTENTS)
 
-addThing("planet composition",["planet core","moon,40%","moon,20%","moon,10%"],"planet")
-addThing("moon",["ghost,0.1%","rock","planet core"],[["young","old","large","small","pale","white","dark","black","old"],[" moon"]])
-addThing("terraformed moon",[".planet composition","continent,1-4","ocean,1-4","sky"],[["young","old","large","small","pale","white","dark","black","old","green","lush","blue","city","colonized","life"],[" moon"]])
-addThing("asteroid belt",["galactic life,20%","asteroid,10-30"])
 addThing("earth",[".asteroid belt"],"Earth")
 addThing("asteroid",["space animal,0.5%","rock","ice,30%"],"asteroid")
 addThing("gas giant",["gas giant atmosphere","planet core,50%","moon,0-3","terraformed moon,20%","terraformed moon,10%"])
