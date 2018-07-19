@@ -1,5 +1,15 @@
+import re
+
+
 from .children import ChildGenerator
 from .name import NameGenerator
+
+
+CAMEL_CASE = re.compile('([a-z0-9])([A-Z])')
+
+
+def camelCaseToSpaces(s):
+    return ALL_CAP_RE.sub(r'\1 \2', s).lower()
 
 
 class Thing:
@@ -10,10 +20,7 @@ class Thing:
     names_data = None
 
     def __init__(self, name=None, namegen=None):
-        if name is None:
-            name = self.type_name
-
-        self.name = name
+        self.__name = name
 
         self.generators = [] + self.child_generators
         self.add_generators(self.child_data)
@@ -27,6 +34,21 @@ class Thing:
 
         # THINGS[name] = self
         # self.things_n += 1
+
+    @property
+    def name(self):
+        if self.__name is not None:
+            return self.__name
+
+        if self.type_name is not None:
+            self.__name = self.type_name
+            return self.__name
+
+        print("CLASS", self.__class__.__name__)
+        self.__name = type(self).__name__
+        print("CLASS", self.__name)
+
+        return self.__name
 
     def add_generators(self, children=[]):
         for child in children:
