@@ -8,19 +8,23 @@ class NameGenerator:
     @classmethod
     def from_str(cls, data):
         g = cls()
-        g.data = g.parse(data).split("|")
+        g.data = g.parse(data)
         return g
 
     def parse(self, data):
         if isinstance(data, str):
-            return data
-        if isinstance(data[0], str):
-            return random.choice(data)
+            return data,
+        return data
+
+    def gen_parts(self):
+        if isinstance(self.data[0], str):
+            s = random.choice(self.data)
         else:
-            return "".join(random.choice(n) for n in data)
+            s = "".join(random.choice(n) for n in self.data)
+        return s.split("|")
 
     def generate(self):
-        parts = self.data
+        parts = self.gen_parts()
 
         if len(parts) < 1:
             return None
