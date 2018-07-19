@@ -5,24 +5,20 @@ from .dyson import DysonSphere, DysonSurface, DysonSegment
 
 
 class Multiverse(Thing):
-    type_name = "multiverse"
     child_generators = [ChildGenerator("universe", (10, 30))]
     names_data = ["multiverse","lasagnaverse","doughnutverse","towelverse","baconverse","sharkverse","nestedverse","tastyverse","upverse","downverse","layerverse","clusterverse","metaverse","quantiverse","paraverse","epiverse","alterverse","hypoverse","dimensioverse","planiverse","pluriverse","polyverse","maniverse","stackoverse","antiverse","superverse","upperverse","maxiverse","megaverse","babyverse","tinyverse","retroverse","ultraverse","topoverse","otherverse","bubbleverse","esreverse","versiverse","'verse","cookieverse","grandmaverse"]
 
 
 class Universe(Thing):
-    type_name = "universe"
     child_generators = [ChildGenerator("supercluster", (10, 30))]
 
 
 class Supercluster(Thing):
-    type_name = "supercluster"
     child_generators = [ChildGenerator("galaxy", (10, 30))]
     names_data = "galactic supercluster"
 
 
 class Galaxy(Thing):
-    type_name = "galaxy"
     child_generators = [
         ChildGenerator("galaxy center"),
         ChildGenerator("galaxy arm", (2, 6)),
@@ -30,7 +26,6 @@ class Galaxy(Thing):
 
 
 class GalaxyArm(Thing):
-    type_name = "galaxy arm"
     child_generators = [
         ChildGenerator("galactic life", probability=5),
         ChildGenerator("dyson sphere", probability=4),
@@ -44,7 +39,6 @@ class GalaxyArm(Thing):
 
 
 class GalaxyCenter(Thing):
-    type_name = "galaxy center"
     child_generators = [
         ChildGenerator("black hole"),
         ChildGenerator("galactic life", probability=10),
@@ -58,7 +52,6 @@ class GalaxyCenter(Thing):
 
 
 class Nebula(Thing):
-    type_name = "nebula"
     child_generators = [
         ChildGenerator("galactic life", probability=15),
         ChildGenerator("star", probability=2),
@@ -69,7 +62,6 @@ class Nebula(Thing):
 
 
 class InterstellarCloud(Thing):
-    type_name = "interstellar cloud"
     child_generators = [
         ChildGenerator("helium"),
         ChildGenerator("hydrogen"),
@@ -89,7 +81,6 @@ class InterstellarCloud(Thing):
 
 
 class StarSystem(Thing):
-    type_name = "star system"
     child_generators = [
         ChildGenerator("star"),
         ChildGenerator("star", probability=3),
@@ -116,7 +107,6 @@ class StarSystem(Thing):
 
 
 class Star(Thing):
-    type_name = "star"
     child_generators = [
         ChildGenerator("ghost", probability=0.1),
         ChildGenerator("space monster", probability=0.2),
@@ -139,7 +129,6 @@ class TelluricPlanet(Planet):
 
 
 class BarrenPlanet(TelluricPlanet):
-    type_name = "barren planet"
     child_generators = [
         ChildGenerator("galactic life", probability=10),
         ChildGenerator("rock"),
@@ -149,7 +138,6 @@ class BarrenPlanet(TelluricPlanet):
 
 
 class VisitorPlanet(TelluricPlanet):
-    type_name = "visitor planet"
     child_generators = [
         ChildGenerator("visitor city", (1, 8)),
         ChildGenerator("visitor installation", (2, 6)),
@@ -161,7 +149,6 @@ class VisitorPlanet(TelluricPlanet):
 
 
 class FuturePlanet(TelluricPlanet):
-    type_name = "future planet"
     child_generators = [
         ChildGenerator("future continent", (2, 7)),
         ChildGenerator("ocean", (1, 7)),
@@ -172,7 +159,6 @@ class FuturePlanet(TelluricPlanet):
 
 
 class TerraformedPlanet(TelluricPlanet):
-    type_name = "terraformed planet"
     child_generators = [
         ChildGenerator("continent", (2, 7)),
         ChildGenerator("ocean", (1, 7)),
@@ -183,7 +169,6 @@ class TerraformedPlanet(TelluricPlanet):
 
 
 class MedievalPlanet(TelluricPlanet):
-    type_name = "medieval planet"
     child_generators = [
         ChildGenerator("medieval continent", (2, 4)),
         ChildGenerator("ancient continent", (0, 3)),
@@ -194,7 +179,6 @@ class MedievalPlanet(TelluricPlanet):
 
 
 class AncientPlanet(TelluricPlanet):
-    type_name = "ancient planet"
     child_generators = [
         ChildGenerator("ancient continent", (2, 7)),
         ChildGenerator("ocean", (1, 7)),
@@ -204,7 +188,6 @@ class AncientPlanet(TelluricPlanet):
 
 
 class PlanetComposition(Thing):
-    type_name = "planet composition"
     child_generators = [
         ChildGenerator("planet core"),
         ChildGenerator("moon", probability=40),
@@ -215,7 +198,6 @@ class PlanetComposition(Thing):
 
 
 class Moon(Planet):
-    type_name = "moon"
     child_generators = [
         ChildGenerator("ghost", probability=0.1),
         ChildGenerator("rock"),
@@ -228,7 +210,6 @@ class Moon(Planet):
 
 
 class TerraformedMoon(Moon):
-    type_name = "terraformed moon"
     child_generators = [
         ChildGenerator(".planet composition"),
         ChildGenerator("continent", (1, 4)),
@@ -242,7 +223,6 @@ class TerraformedMoon(Moon):
 
 
 class AsteroidBelt(Thing):
-    type_name = "asteroid belt"
     child_generators = [
         ChildGenerator("galactic life", probability=20),
         ChildGenerator("asteroid", (10, 30)),
@@ -252,7 +232,6 @@ class AsteroidBelt(Thing):
 
 
 class Asteroid(Planet):
-    type_name = "asteroid"
     child_generators = [
         ChildGenerator("space animal", probability=0.5),
         ChildGenerator("rock"),
@@ -262,7 +241,6 @@ class Asteroid(Planet):
 
 
 class GasGiant(Planet):
-    type_name = "gas giant"
     child_generators = [
         ChildGenerator("gas giant atmosphere"),
         ChildGenerator("planet core", probability=50),
@@ -273,7 +251,6 @@ class GasGiant(Planet):
 
 
 class GasGiantAtmosphere(Thing):
-    type_name = "gas giant atmosphere"
     child_generators = [
         ChildGenerator("galactic life", probability=10),
         ChildGenerator("helium"),
@@ -286,7 +263,6 @@ class GasGiantAtmosphere(Thing):
 
 
 class PlanetCore(Thing):
-    type_name = "planet core"
     child_generators = [
         ChildGenerator("space monster", probability=0.5),
         ChildGenerator("iron"),
@@ -298,12 +274,10 @@ class PlanetCore(Thing):
 
 
 class BlackHole(Star):
-    type_name = "black hole"
     child_generators = [ChildGenerator("inside the black hole")]
 
 
 class InsideTheBlackHole(Thing):
-    type_name = "inside the black hole"
     child_generators = [
         ChildGenerator("end of universe note", probability=0.5),
         ChildGenerator("crustacean", probability=0.2),
@@ -312,7 +286,6 @@ class InsideTheBlackHole(Thing):
 
 
 class WhiteHole(BlackHole):
-    type_name = "white hole"
     child_generators = [ChildGenerator("universe")]
 
 
@@ -321,7 +294,6 @@ class WhiteHole(BlackHole):
 
 
 class EndOfUniverseNote(Thing):
-    type_name = "end of universe note"
     child_generators = [ChildGenerator("pasta", probability=0.1)]
     names_data = [
         "Help! I'm trapped in a universe factory!",
@@ -334,9 +306,6 @@ class EndOfUniverseNote(Thing):
 # new Thing("god",[".orteil"],"Orteil");//I'm a fucking god
 # new Thing("orteil psyche",["orteil thoughts"],"psyche");
 # new Thing("orteil thoughts",[],["OH MY GOD WHAT ARE YOU DOING HERE TURN BACK IMMEDIATELY","WHAT IS WRONG WITH YOU","WHAT THE HELL GO AWAY","WHAT ARE YOU DOING OH GOD","WHY THE HELL ARE YOU HERE","I DO WHAT I WANT OKAY","NO I DON'T CARE GO AWAY","WHAT DID I EVEN DO TO YOU","OH NO WHY THIS","OKAY JUST <a href=\"http://orteil.deviantart.com\">GO THERE ALREADY</a>","<a href=\"http://twitter.com/orteil42\">WHATEVER</a>"]);
-
-
-
 
 
 # ChildGenerator("ghost", probability=0.1),

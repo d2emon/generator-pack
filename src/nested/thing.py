@@ -9,7 +9,7 @@ CAMEL_CASE = re.compile('([a-z0-9])([A-Z])')
 
 
 def camelCaseToSpaces(s):
-    return ALL_CAP_RE.sub(r'\1 \2', s).lower()
+    return CAMEL_CASE.sub(r'\1 \2', s).lower()
 
 
 class Thing:
@@ -45,9 +45,9 @@ class Thing:
             return self.__name
 
         print("CLASS", self.__class__.__name__)
-        self.__name = type(self).__name__
-        print("CLASS", self.__name)
-
+        res = type(self).__name__
+        print("CLASS", res)
+        self.__name = camelCaseToSpaces(res)
         return self.__name
 
     def add_generators(self, children=[]):

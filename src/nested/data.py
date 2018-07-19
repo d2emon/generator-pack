@@ -14,11 +14,8 @@ THINGS = dict()
 
 def addFromContents(content):
     for c in content:
-        if isinstance(c, type):
-            name = c.type_name
-        else:
-            name = c.name
-        THINGS[name] = c()
+        i = c()
+        THINGS[i.name] = i
 
 
 def addThing(name, children, namegen=None):
@@ -109,3 +106,7 @@ addThing("later", ["sorry"], "will do later")
 addThing("error", ["sorry"], "Uh oh... It looks like you didn't supply a valid element to create.")
 addThing("sorry", ["consolation universe"], "(Sorry!)")
 addThing("consolation universe", [".universe"])
+
+for t in THINGS.items():
+    print(t)
+print(THINGS['universe'])
