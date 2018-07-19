@@ -8,6 +8,7 @@ from .space import CONTENTS as SPACE_CONTENTS
 from .biology.life import CONTENTS as LIFE_CONTENTS
 from .biology.monsters import CONTENTS as MONSTERS_CONTENTS
 from .terrain import CONTENTS as TERRAIN_CONTENTS
+from .state import CONTENTS as STATE_CONTENTS
 
 
 THINGS = dict()
@@ -96,6 +97,9 @@ addFromContents(LIFE_CONTENTS)
 addFromContents(TERRAIN_CONTENTS)
 
 addFromContents(MONSTERS_CONTENTS)
+
+addFromContents(STATE_CONTENTS)
+
 
 addThing("ectoplasm",["proton,3-7"],[["purple","fetid","green","yellow","blood-red","shiny","wispy","sparkly"],[" "],["ectoplasm"]])
 addThing("ghost",["ghost body","ghost thoughts"],[["depressed","sad","lonely","wailing","screaming","stretching","clinking","sneezing","breathing","screeching","spinning","gasping","moaning","regretful","remorseful","vengeful","friendly neighborhood","skeletal","tentacled","conjoined","grasping","slimy","floating","mournful"],[" "],["ghost","spirit","apparition","phantom","poltergeist","specter","hauntling"]])

@@ -175,10 +175,6 @@ class EndOfUniverseNote(Thing):
 
 # ChildGenerator("ocean", (1, 7)),
 
-# ChildGenerator("future sky"),
-# ChildGenerator("terraformed sky"),
-# ChildGenerator("sky"),
-
 # ChildGenerator(".future moon", probability=30),
 
 # ChildGenerator("pasta", probability=0.1)

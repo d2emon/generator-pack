@@ -89,6 +89,13 @@ class Precipitation(Cloud):
     ]
 
 
+# ChildGenerator("visitor ship", probability=10),
+# ChildGenerator("sky life"),
+# ChildGenerator("plane", (1, 8)),
+# ChildGenerator("rocketship", probability=20),
+# ChildGenerator("sprowseship", (4, 12)),
+
+
 CONTENTS = [
     FutureSky,
     TerraformedSky,
