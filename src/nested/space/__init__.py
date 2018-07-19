@@ -366,6 +366,8 @@ class GalacticLife(Thing):
 # ChildGenerator("diamond", probability=2),
 # ChildGenerator("magma"),
 # ChildGenerator("pasta", probability=0.1)
+# ChildGenerator("future city", (4, 20)),
+# ChildGenerator("nanocollector", (12, 20)),
 
 
 CONTENTS = [

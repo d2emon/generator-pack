@@ -53,7 +53,12 @@ class Item:
             return
 
         generators = get_generators(self.type.type_name)
+        if generators is None:
+            return
         for g in generators:
+            if g.value is None:
+                continue
+
             subthing = get_thing(g.value)
             if subthing is None:
                 print("NO CHILD", g.value)
