@@ -52,7 +52,7 @@ class Item:
         if self.grown:
             return
 
-        generators = get_generators(self.type.type_name)
+        generators = get_generators(self.type.name)
         if generators is None:
             return
         for g in generators:
