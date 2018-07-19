@@ -7,6 +7,7 @@ from .particles import CONTENTS as PARTICLES_CONTENTS
 from .space import CONTENTS as SPACE_CONTENTS
 from .biology.life import CONTENTS as LIFE_CONTENTS
 from .biology.monsters import CONTENTS as MONSTERS_CONTENTS
+from .terrain import CONTENTS as TERRAIN_CONTENTS
 
 
 THINGS = dict()
@@ -91,6 +92,8 @@ addFromContents(PARTICLES_CONTENTS)
 addFromContents(SPACE_CONTENTS)
 
 addFromContents(LIFE_CONTENTS)
+
+addFromContents(TERRAIN_CONTENTS)
 
 addFromContents(MONSTERS_CONTENTS)
 

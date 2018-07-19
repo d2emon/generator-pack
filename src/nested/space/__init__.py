@@ -171,20 +171,26 @@ class EndOfUniverseNote(Thing):
 
 
 # ChildGenerator("ghost", probability=0.1),
-# ChildGenerator("visitor city", (1, 8)),
 # ChildGenerator("visitor installation", (2, 6)),
-# ChildGenerator("future continent", (2, 7)),
+
 # ChildGenerator("ocean", (1, 7)),
+
 # ChildGenerator("future sky"),
-# ChildGenerator(".future moon", probability=30),
-# ChildGenerator("continent", (2, 7)),
 # ChildGenerator("terraformed sky"),
+# ChildGenerator("sky"),
+
+# ChildGenerator(".future moon", probability=30),
+
+# ChildGenerator("pasta", probability=0.1)
+# ChildGenerator("nanocollector", (12, 20)),
+
+# ChildGenerator("visitor city", (1, 8)),
+# ChildGenerator("future city", (4, 20)),
+
+# ChildGenerator("continent", (2, 7)),
+# ChildGenerator("future continent", (2, 7)),
 # ChildGenerator("medieval continent", (2, 4)),
 # ChildGenerator("ancient continent", (0, 3)),
-# ChildGenerator("sky"),
-# ChildGenerator("pasta", probability=0.1)
-# ChildGenerator("future city", (4, 20)),
-# ChildGenerator("nanocollector", (12, 20)),
 
 
 CONTENTS = [
