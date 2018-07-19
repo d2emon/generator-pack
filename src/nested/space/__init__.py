@@ -332,6 +332,27 @@ class WhiteHole(BlackHole):
     child_generators = [ChildGenerator("universe")]
 
 
+# new Thing("42",["universe"]);
+# new Thing("everything",["universe"]);
+
+
+class EndOfUniverseNote(Thing):
+    type_name = "end of universe note"
+    child_generators = [ChildGenerator("pasta", probability=0.1)]
+    names_data = [
+        "Help! I'm trapped in a universe factory!",
+        "Okay, you can stop clicking now.",
+        "I want to get off Mr Orteil's Wild Ride",
+        "my sides"
+    ]
+
+# new Thing("orteil",["body","orteil psyche","clothing set","computer"],"Orteil");//I do what I want
+# new Thing("god",[".orteil"],"Orteil");//I'm a fucking god
+# new Thing("orteil psyche",["orteil thoughts"],"psyche");
+# new Thing("orteil thoughts",[],["OH MY GOD WHAT ARE YOU DOING HERE TURN BACK IMMEDIATELY","WHAT IS WRONG WITH YOU","WHAT THE HELL GO AWAY","WHAT ARE YOU DOING OH GOD","WHY THE HELL ARE YOU HERE","I DO WHAT I WANT OKAY","NO I DON'T CARE GO AWAY","WHAT DID I EVEN DO TO YOU","OH NO WHY THIS","OKAY JUST <a href=\"http://orteil.deviantart.com\">GO THERE ALREADY</a>","<a href=\"http://twitter.com/orteil42\">WHATEVER</a>"]);
+
+
+
 class GalacticLife(Thing):
     type_name = "galactic life"
     child_generators = [
@@ -395,4 +416,5 @@ CONTENTS = [
     InsideTheBlackHole,
     WhiteHole,
     GalacticLife,
+    EndOfUniverseNote,
 ]
