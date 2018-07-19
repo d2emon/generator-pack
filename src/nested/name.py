@@ -5,6 +5,10 @@ class NameGenerator:
     def __init__(self, *data):
         self.data = data
 
+    def __repr__(self):
+        return "<NameGenerator {}>".format(self.data)
+
+
     @classmethod
     def from_str(cls, data):
         g = cls()

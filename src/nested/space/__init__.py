@@ -151,7 +151,7 @@ class Planet(Thing):
 
 
 class TelluricPlanet(Planet):
-    name_data = "telluric planet"
+    names_data = "telluric planet"
 
 
 class BarrenPlanet(TelluricPlanet):
