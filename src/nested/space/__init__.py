@@ -1,6 +1,8 @@
 from ..thing import Thing
 from ..children import ChildGenerator
 
+from .dyson import DysonSphere, DysonSurface, DysonSegment
+
 
 class Multiverse(Thing):
     type_name = "multiverse"
@@ -102,24 +104,6 @@ class StarSystem(Thing):
         ChildGenerator("ancient planet", probability=50),
         ChildGenerator("ancient planet", probability=30),
         ChildGenerator("ancient planet", probability=10),
-        ChildGenerator("barren planet", probability=60),
-        ChildGenerator("barren planet", probability=40),
-        ChildGenerator("barren planet", probability=20),
-        ChildGenerator("gas giant", probability=60),
-        ChildGenerator("gas giant", probability=40),
-        ChildGenerator("gas giant", probability=20),
-        ChildGenerator("gas giant", probability=10),
-        ChildGenerator("asteroid belt", (0, 2)),
-    ]
-
-
-class DysonSphere(Thing):
-    type_name = "dyson sphere"
-    child_generators = [
-        ChildGenerator("star"),
-        ChildGenerator("star", probability=3),
-        ChildGenerator("dyson surface"),
-        ChildGenerator("future planet", (1, 8)),
         ChildGenerator("barren planet", probability=60),
         ChildGenerator("barren planet", probability=40),
         ChildGenerator("barren planet", probability=20),
@@ -352,7 +336,6 @@ class EndOfUniverseNote(Thing):
 # new Thing("orteil thoughts",[],["OH MY GOD WHAT ARE YOU DOING HERE TURN BACK IMMEDIATELY","WHAT IS WRONG WITH YOU","WHAT THE HELL GO AWAY","WHAT ARE YOU DOING OH GOD","WHY THE HELL ARE YOU HERE","I DO WHAT I WANT OKAY","NO I DON'T CARE GO AWAY","WHAT DID I EVEN DO TO YOU","OH NO WHY THIS","OKAY JUST <a href=\"http://orteil.deviantart.com\">GO THERE ALREADY</a>","<a href=\"http://twitter.com/orteil42\">WHATEVER</a>"]);
 
 
-
 class GalacticLife(Thing):
     type_name = "galactic life"
     child_generators = [
@@ -362,8 +345,6 @@ class GalacticLife(Thing):
     names_data = "life"
 
 
-# ChildGenerator("galactic life", probability=5),
-# ChildGenerator("dyson surface"),
 # ChildGenerator("ghost", probability=0.1),
 # ChildGenerator("space monster", probability=0.2),
 # ChildGenerator("rock"),
@@ -384,6 +365,7 @@ class GalacticLife(Thing):
 # ChildGenerator("rock"),
 # ChildGenerator("diamond", probability=2),
 # ChildGenerator("magma"),
+# ChildGenerator("pasta", probability=0.1)
 
 
 CONTENTS = [
@@ -415,6 +397,8 @@ CONTENTS = [
     BlackHole,
     InsideTheBlackHole,
     WhiteHole,
-    GalacticLife,
     EndOfUniverseNote,
+    GalacticLife,
+    DysonSurface,
+    DysonSegment,
 ]
