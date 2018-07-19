@@ -32,6 +32,32 @@ def clean_things():
         thing.clear()
 
 
+def get_generators(thing_name):
+    def dotted_generators(gen):
+        sub_name = gen.value[1:]
+        sub = get_thing(sub_name)
+        return get_generators(sub_name)
+
+    t = get_thing(thing_name)
+    if t is None:
+        return None
+    to_concat = []
+    generators = []
+    for i, g in enumerate(t.generators):
+        if not isinstance(g.value, str):
+            generators.append(g)
+            continue
+        if g.value[0] == ".":
+            sub = dotted_generators(g)
+            if sub is not None:
+                to_concat += sub
+            # self.type.generators[i] = None
+        else:
+            generators.append(g)
+    # return list(filter(lambda item: item is not None, self.type.generators + to_concat))
+    return list(filter(lambda item: item is not None, generators + to_concat))
+
+
 addThing("water",["hydrogen","oxygen"])
 # addThing("fire",["oxygen","carbon"])
 # addThing("ash",["organic matter","carbon"])
@@ -52,11 +78,6 @@ addFromContents(PARTICLES_CONTENTS)
 # universe stuff
 addFromContents(SPACE_CONTENTS)
 
-addThing("earth",[".asteroid belt"],"Earth")
-addThing("asteroid",["space animal,0.5%","rock","ice,30%"],"asteroid")
-addThing("gas giant",["gas giant atmosphere","planet core,50%","moon,0-3","terraformed moon,20%","terraformed moon,10%"])
-addThing("gas giant atmosphere",["galactic life,10%","helium","hydrogen","water,50%","ammonia,50%","methane,50%"],"atmosphere")
-addThing("planet core",["space monster,0.5%","iron","rock","diamond,2%","magma"],"core")
 
 addThing("black hole",["inside the black hole"])
 addThing("inside the black hole",["end of universe note,0.5%","crustacean,0.2%","white hole"])

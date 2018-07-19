@@ -1,6 +1,6 @@
 import random
 
-from .data import get_thing
+from .data import get_thing, get_generators
 
 
 ITEMS = []
@@ -47,30 +47,12 @@ class Item:
         self.__name = gen.generate()
         return self.__name
 
-    def get_generators(self):
-        to_concat = []
-        generators = []
-        for i, g in enumerate(self.type.generators):
-            if not isinstance(g.value, str):
-                generators.append(g)
-                continue
-            if g.value[0] == ".":
-                sub_name = g.value[1:]
-                sub = get_thing(sub_name)
-                if sub is not None:
-                    to_concat += sub.generators
-                # self.type.generators[i] = None
-            else:
-                generators.append(g)
-        # return list(filter(lambda item: item is not None, self.type.generators + to_concat))
-        return list(filter(lambda item: item is not None, generators + to_concat))
-
     def grow(self, *args, **kwargs):
         print("GROW", args, kwargs)
         if self.grown:
             return
 
-        generators = self.get_generators()
+        generators = get_generators(self.type.type_name)
         for g in generators:
             subthing = get_thing(g.value)
             if subthing is None:

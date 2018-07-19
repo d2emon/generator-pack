@@ -14,7 +14,12 @@ class Ammonia(Thing):
     ]
 
 
-# addThing("methane",["hydrogen","carbon"])
+class Methane(Thing):
+    type_name = "methane"
+    child_generators = [
+        ChildGenerator("hydrogen"),
+        ChildGenerator("carbon"),
+    ]
 
 
 class Hydrogen(Thing):
@@ -55,6 +60,7 @@ Sulfur = ElementGenerator("sulfur")
 
 CONTENTS = [
     Ammonia,
+    Methane,
     Hydrogen,
     HydrogenAtom,
     Carbon,

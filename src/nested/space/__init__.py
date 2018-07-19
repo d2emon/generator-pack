@@ -264,6 +264,53 @@ class AsteroidBelt(Thing):
         ChildGenerator("asteroid", (10, 30)),
     ]
 
+#addThing("earth",[".asteroid belt"],"Earth")
+
+
+class Asteroid(Planet):
+    type_name = "asteroid"
+    child_generators = [
+        ChildGenerator("space animal", probability=0.5),
+        ChildGenerator("rock"),
+        ChildGenerator("ice", probability=30)
+    ]
+    names_data = "asteroid"
+
+
+class GasGiant(Planet):
+    type_name = "gas giant"
+    child_generators = [
+        ChildGenerator("gas giant atmosphere"),
+        ChildGenerator("planet core", probability=50),
+        ChildGenerator("moon", (0, 3)),
+        ChildGenerator("terraformed moon", probability=20),
+        ChildGenerator("terraformed moon", probability=10),
+    ]
+
+
+class GasGiantAtmosphere(Thing):
+    type_name = "gas giant atmosphere"
+    child_generators = [
+        ChildGenerator("galactic life", probability=10),
+        ChildGenerator("helium"),
+        ChildGenerator("hydrogen"),
+        ChildGenerator("water", probability=50),
+        ChildGenerator("ammonia", probability=50),
+        ChildGenerator("methane", probability=50),
+    ]
+    names_data = "atmosphere"
+
+
+class PlanetCore(Thing):
+    type_name = "planet core"
+    child_generators = [
+        ChildGenerator("space monster", probability=0.5),
+        ChildGenerator("iron"),
+        ChildGenerator("rock"),
+        ChildGenerator("diamond", probability=2),
+        ChildGenerator("magma"),
+    ]
+    names_data = "core"
 
 
 # ChildGenerator("galactic life", probability=5),
@@ -271,7 +318,6 @@ class AsteroidBelt(Thing):
 # ChildGenerator("black hole", probability=20),
 # ChildGenerator("star"),
 # ChildGenerator("dyson surface"),
-# ChildGenerator("gas giant", probability=60),
 # ChildGenerator("ghost", probability=0.1),
 # ChildGenerator("space monster", probability=0.2),
 # ChildGenerator("rock"),
@@ -288,8 +334,12 @@ class AsteroidBelt(Thing):
 # ChildGenerator("medieval continent", (2, 4)),
 # ChildGenerator("ancient continent", (0, 3)),
 # ChildGenerator("sky"),
-# ChildGenerator("planet core"),
-# ChildGenerator("asteroid", (10, 30)),
+# ChildGenerator("space animal", probability=0.5),
+# ChildGenerator("space monster", probability=0.5),
+# ChildGenerator("rock"),
+# ChildGenerator("diamond", probability=2),
+# ChildGenerator("magma"),
+
 
 CONTENTS = [
     Multiverse,
@@ -313,4 +363,8 @@ CONTENTS = [
     Moon,
     TerraformedMoon,
     AsteroidBelt,
+    Asteroid,
+    GasGiant,
+    GasGiantAtmosphere,
+    PlanetCore,
 ]

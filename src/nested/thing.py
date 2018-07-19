@@ -48,7 +48,6 @@ class Thing:
     def __call__(self, *args, **kwargs):
         return self
 
-
     """
     def clear(self):
         to_concat = []
