@@ -336,20 +336,10 @@ class EndOfUniverseNote(Thing):
 # new Thing("orteil thoughts",[],["OH MY GOD WHAT ARE YOU DOING HERE TURN BACK IMMEDIATELY","WHAT IS WRONG WITH YOU","WHAT THE HELL GO AWAY","WHAT ARE YOU DOING OH GOD","WHY THE HELL ARE YOU HERE","I DO WHAT I WANT OKAY","NO I DON'T CARE GO AWAY","WHAT DID I EVEN DO TO YOU","OH NO WHY THIS","OKAY JUST <a href=\"http://orteil.deviantart.com\">GO THERE ALREADY</a>","<a href=\"http://twitter.com/orteil42\">WHATEVER</a>"]);
 
 
-class GalacticLife(Thing):
-    type_name = "galactic life"
-    child_generators = [
-        ChildGenerator("space monster", probability=1),
-        ChildGenerator("space animal", (1, 12)),
-    ]
-    names_data = "life"
+
 
 
 # ChildGenerator("ghost", probability=0.1),
-# ChildGenerator("space monster", probability=0.2),
-# ChildGenerator("rock"),
-# ChildGenerator("ice", probability=50),
-# ChildGenerator(".planet composition"),
 # ChildGenerator("visitor city", (1, 8)),
 # ChildGenerator("visitor installation", (2, 6)),
 # ChildGenerator("future continent", (2, 7)),
@@ -361,10 +351,6 @@ class GalacticLife(Thing):
 # ChildGenerator("medieval continent", (2, 4)),
 # ChildGenerator("ancient continent", (0, 3)),
 # ChildGenerator("sky"),
-# ChildGenerator("space animal", probability=0.5),
-# ChildGenerator("rock"),
-# ChildGenerator("diamond", probability=2),
-# ChildGenerator("magma"),
 # ChildGenerator("pasta", probability=0.1)
 # ChildGenerator("future city", (4, 20)),
 # ChildGenerator("nanocollector", (12, 20)),
@@ -400,7 +386,6 @@ CONTENTS = [
     InsideTheBlackHole,
     WhiteHole,
     EndOfUniverseNote,
-    GalacticLife,
     DysonSurface,
     DysonSegment,
 ]

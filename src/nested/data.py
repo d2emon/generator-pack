@@ -66,6 +66,13 @@ def get_generators(thing_name):
     return list(filter(lambda item: item is not None, generators + to_concat))
 
 
+addThing("diamond",["carbon"])
+# new Thing("oil",["lipids"]);
+addThing("magma",[".rock"])
+addThing("rock",["silica","aluminium,30%","iron,20%","potassium,20%","sodium,50%","calcium,50%"])
+addThing("silica",["silicon","oxygen"]);
+# new Thing("chitin",["carbon","hydrogen","oxygen","nitrogen"]);
+# new Thing("salt",["chlorine","sodium"]);
 addThing("water",["hydrogen","oxygen"])
 # addThing("fire",["oxygen","carbon"])
 # addThing("ash",["organic matter","carbon"])

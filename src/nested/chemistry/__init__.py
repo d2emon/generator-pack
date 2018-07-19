@@ -39,20 +39,20 @@ class HydrogenAtom(Thing):
 # addThing("alcohol",[".glucids"])
 
 Carbon = ElementGenerator("carbon")
-# addThing("sodium",[".atom"])
+Sodium = ElementGenerator("sodium")
 # addThing("chlorine",[".atom"])
 Oxygen = ElementGenerator("oxygen")
 Helium = ElementGenerator("helium")
-# addThing("potassium",[".atom"])
-# addThing("aluminium",[".atom"])
+Potassium = ElementGenerator("potassium")
+Aluminium = ElementGenerator("aluminium")
 Iron = ElementGenerator("iron")
 # addThing("copper",[".atom"])
 # addThing("lead",[".atom"])
 # addThing("steel",["iron","carbon"])
 # addThing("gold",[".atom"])
 # addThing("silver",[".atom"])
-# addThing("silicon",[".atom"])
-# addThing("calcium",[".atom"])
+Silicon = ElementGenerator("silicon")
+Calcium = ElementGenerator("calcium")
 Nitrogen = ElementGenerator("nitrogen")
 Sulfur = ElementGenerator("sulfur")
 # addThing("phosphorus",[".atom"])
@@ -63,10 +63,19 @@ CONTENTS = [
     Methane,
     Hydrogen,
     HydrogenAtom,
+
     Carbon,
+    Sodium,
+
     Oxygen,
     Helium,
+    Potassium,
+    Aluminium,
     Iron,
+
+    Silicon,
+    Calcium,
     Nitrogen,
     Sulfur,
+
 ]
