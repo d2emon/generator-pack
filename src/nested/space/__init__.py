@@ -313,10 +313,35 @@ class PlanetCore(Thing):
     names_data = "core"
 
 
+class BlackHole(Star):
+    type_name = "black hole"
+    child_generators = [ChildGenerator("inside the black hole")]
+
+
+class InsideTheBlackHole(Thing):
+    type_name = "inside the black hole"
+    child_generators = [
+        ChildGenerator("end of universe note", probability=0.5),
+        ChildGenerator("crustacean", probability=0.2),
+        ChildGenerator("white hole"),
+    ]
+
+
+class WhiteHole(BlackHole):
+    type_name = "white hole"
+    child_generators = [ChildGenerator("universe")]
+
+
+class GalacticLife(Thing):
+    type_name = "galactic life"
+    child_generators = [
+        ChildGenerator("space monster", probability=1),
+        ChildGenerator("space animal", (1, 12)),
+    ]
+    names_data = "life"
+
+
 # ChildGenerator("galactic life", probability=5),
-# ChildGenerator("nebula", (0, 12)),
-# ChildGenerator("black hole", probability=20),
-# ChildGenerator("star"),
 # ChildGenerator("dyson surface"),
 # ChildGenerator("ghost", probability=0.1),
 # ChildGenerator("space monster", probability=0.2),
@@ -335,7 +360,6 @@ class PlanetCore(Thing):
 # ChildGenerator("ancient continent", (0, 3)),
 # ChildGenerator("sky"),
 # ChildGenerator("space animal", probability=0.5),
-# ChildGenerator("space monster", probability=0.5),
 # ChildGenerator("rock"),
 # ChildGenerator("diamond", probability=2),
 # ChildGenerator("magma"),
@@ -367,4 +391,8 @@ CONTENTS = [
     GasGiant,
     GasGiantAtmosphere,
     PlanetCore,
+    BlackHole,
+    InsideTheBlackHole,
+    WhiteHole,
+    GalacticLife,
 ]

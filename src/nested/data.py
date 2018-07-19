@@ -78,13 +78,6 @@ addFromContents(PARTICLES_CONTENTS)
 # universe stuff
 addFromContents(SPACE_CONTENTS)
 
-
-addThing("black hole",["inside the black hole"])
-addThing("inside the black hole",["end of universe note,0.5%","crustacean,0.2%","white hole"])
-addThing("white hole",["universe"])
-
-addThing("galactic life",["space monster,1%","space animal,1-12"],"life")
-
 # monsters
 addThing("space monster",["space monster thoughts",["tentacle,0-6","fish fin,0-4","",""],"stinger,20%",["crustacean claw,0-4",""],["crustacean leg,0-8",""],["crustacean shell","scales","fur","exoskeleton",""],["mouth,1-2","beak,1-2"],"skull,80%",["eye,1-8","simple eye,1-8","",""],"weird soft organ,0-4","weird hard organ,0-4"],[["C'","Vr'","Ksh","Zn'","Sh","Hrl","X","O","Yog","Gorg","Morg","Marg","Magg"],["","","agn","soth","norgn","ngas","alx","orx","rgl","iirn","egw","thulh","t","g","m"],["org","orgon","orgus","orkus","oid","us","u","esth","ath","oth","um","ott","aur"],[""," the Forgotten"," the Entity"," the Ancient"," the Starchild"," the Seeder"," the Leech"," the Timeless"," the Eon"," the Many"," the Countless"," the Boundless"," the Prisoner"," the Child"," the Form"," the Shape"," the Drifter"," the Swarm"," the Vicious"," the Warden"," the Ender"," the Unworldly"," the Unfriendly"," the All-Consumer"]])
 addThing("space monster thoughts",["space monster thought,1-2"],["thoughts"])
