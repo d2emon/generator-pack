@@ -38,10 +38,7 @@ class Generator:
         if self.__name is not None:
             return self.__name
 
-        if self.type_name is not None:
-            self.__name = self.type_name
-        else:
-            self.__name = camelCaseToSpaces(type(self).__name__)
+        self.__name = self.type_name or camelCaseToSpaces(type(self).__name__)
         return self.__name
 
     def __call__(self, *args, **kwargs):
