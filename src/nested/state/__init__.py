@@ -49,6 +49,64 @@ class Region(Thing):
     ]
 
 
+class City(Thing):
+    child_generators = [
+        ChildGenerator("monument", probability=15),
+        ChildGenerator("monument", probability=5),
+        ChildGenerator("residential area", (4, 9)),
+        ChildGenerator("commercial area", (1, 5)),
+        ChildGenerator("police station"),
+        ChildGenerator("police station", probability=50),
+        ChildGenerator("fire department"),
+        ChildGenerator("fire department", probability=50),
+        ChildGenerator("museum", probability=40),
+        ChildGenerator("library", probability=60),
+        ChildGenerator("hospital"),
+        ChildGenerator("farm", (0, 3)),
+        ChildGenerator("factory", (1, 4)),
+        ChildGenerator("cemetery"),
+        ChildGenerator("research facility", probability=2),
+    ]
+    names_data = "city"
+
+
+class Village(City):
+    child_generators = [
+        ChildGenerator("residential area", (1, 4)),
+        ChildGenerator("commercial area", probability=90),
+        ChildGenerator("police station", probability=50),
+        ChildGenerator("fire department", probability=40),
+        ChildGenerator("museum", probability=5),
+        ChildGenerator("library", probability=40),
+        ChildGenerator("farm", (0, 6)),
+        ChildGenerator("factory", (0, 2)),
+        ChildGenerator("cemetery", probability=60),
+        ChildGenerator("research facility", probability=4),
+    ]
+    names_data = "village"
+
+
+class Capital(Thing):
+    child_generators = [
+        ChildGenerator("monument", probability=70),
+        ChildGenerator("monument", probability=40),
+        ChildGenerator("monument", probability=10),
+        ChildGenerator("residential area", (7, 15)),
+        ChildGenerator("commercial area", (3, 9)),
+        ChildGenerator("police station", (2, 5)),
+        ChildGenerator("fire department", (1, 3)),
+        ChildGenerator("museum", (1, 2)),
+        ChildGenerator("library", (1, 3)),
+        ChildGenerator("hospital", (1, 3)),
+        ChildGenerator("farm", (0, 2)),
+        ChildGenerator("factory", (2, 6)),
+        ChildGenerator("cemetery"),
+        ChildGenerator("cemetery", probability=50),
+        ChildGenerator("research facility", probability=1),
+    ]
+    names_data = "capital city"
+
+
 class MedievalContinent(Continent):
     child_generators = [
         ChildGenerator("medieval land", (1, 6)),
@@ -89,6 +147,46 @@ class MedievalRegion(Region):
     ]
 
 
+class MedievalVillage(Village):
+    child_generators = [
+        ChildGenerator("townwall", probability=20),
+        ChildGenerator("watchtower", probability=15),
+        ChildGenerator("medieval monument", probability=50),
+        ChildGenerator("medieval residential area", (1, 4)),
+        ChildGenerator("medieval commercial area", (1, 2)),
+        ChildGenerator("medieval temple", (0, 2)),
+        ChildGenerator("medieval farm", (4, 8)),
+        ChildGenerator("medieval cemetery", probability=50),
+        ChildGenerator("wizard tower", probability=5),
+    ]
+    names_data = "village"
+
+
+class MedievalCapital(City):
+    child_generators = [
+        ChildGenerator("castle"),
+        ChildGenerator("townwall"),
+        ChildGenerator("medieval monument", probability=70),
+        ChildGenerator("medieval monument", probability=20),
+        ChildGenerator("medieval residential area", (3, 12)),
+        ChildGenerator("medieval mage quarter", probability=50),
+        ChildGenerator("medieval mage quarter", probability=20),
+        ChildGenerator("medieval temple", (1, 3)),
+        ChildGenerator("medieval commercial area", (2, 6)),
+        ChildGenerator("medieval farm", (2, 6)),
+        ChildGenerator("medieval cemetery"),
+    ]
+    names_data = [
+        "stronghold",
+        "fortress",
+        "fort",
+        "hold",
+        "palace",
+        "main city",
+        "citadel",
+    ]
+
+
 class AncientContinent(Continent):
     child_generators = [
         ChildGenerator("ancient land", (1, 5)),
@@ -125,14 +223,30 @@ class FutureContinent(Continent):
     # ["A","Eu","Ame","Ocea","Anta","Atla"],["frica","rtica","ropa","rica","nia","sia","ntide"]
 
 
-# ChildGenerator("ancient land", (1, 5)),
-# ChildGenerator("future city", (20, 50))
+class FutureCity(City):
+    child_generators = [
+        ChildGenerator("spaceport", (1, 3)),
+        ChildGenerator("living center", (5, 20)),
+        ChildGenerator("spending center", (5, 20)),
+    ]
+    names_data = "citadion"
+
+
+class VisitorCity(City):
+    child_generators = [
+        ChildGenerator("named visitor", (0, 8)),
+        [
+            ChildGenerator("space animal", (0, 3)),
+            ChildGenerator(),
+        ],
+        ChildGenerator("visitor neighborhood", (1, 8)),
+    ]
+    names_data = "visitor city"
+
+
 # ChildGenerator("battlefield", probability=10),
 # ChildGenerator("medieval battlefield", probability=10),
 # ChildGenerator(".biome"),
-# ChildGenerator("capital"),
-# ChildGenerator("city", (1, 10)),
-# ChildGenerator("village", (2, 15)),
 # ChildGenerator("medieval capital"),
 # ChildGenerator("medieval village", (2, 6)),
 # ChildGenerator("dungeon", probability=15),
@@ -140,6 +254,11 @@ class FutureContinent(Continent):
 # ChildGenerator("ancient forest", (0, 4)),
 # ChildGenerator("ancient jungle", (0, 4)),
 # ChildGenerator("mountain", (0, 3)),
+# ChildGenerator("named visitor", (0, 8)),
+# ChildGenerator("visitor neighborhood", (1, 8)),
+# ChildGenerator("spaceport", (1, 3)),
+# ChildGenerator("living center", (5, 20)),
+# ChildGenerator("spending center", (5, 20)),
 
 
 CONTENTS = [
@@ -147,12 +266,21 @@ CONTENTS = [
     Country,
     Region,
 
+    Village,
+    City,
+    Capital,
+
     MedievalContinent,
     MedievalLand,
     MedievalRegion,
+    MedievalVillage,
+    MedievalCapital,
 
     AncientContinent,
     AncientLand,
 
     FutureContinent,
+    FutureCity,
+
+    VisitorCity,
 ]

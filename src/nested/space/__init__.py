@@ -178,7 +178,6 @@ class EndOfUniverseNote(Thing):
 # ChildGenerator("pasta", probability=0.1)
 # ChildGenerator("nanocollector", (12, 20)),
 
-# ChildGenerator("visitor city", (1, 8)),
 # ChildGenerator("future city", (4, 20)),
 
 
