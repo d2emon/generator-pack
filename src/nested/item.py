@@ -7,54 +7,55 @@ ITEMS = []
 
 
 class Item:
-    def __init__(self, what, parent=None):
-        global ITEMS
-
-        print("GENERATE", what)
+    def __init__(self, template, parent=None):
+        print("GENERATE", template)
         self.__name = None
-        if get_thing(what) is None:
-            self.type = get_thing("error")
-        else:
-            self.type = get_thing(what)
-
-        self.children = []
-        self.display = 0
-        self.grown = False
-
-        self.parent = parent
-        if self.parent is not None:
-            parent.children.append(self)
-
-        ITEMS.append(self)
-
-    @property
-    def id(self):
-        global ITEMS
-        return ITEMS.index(self)
+        self.__children = None
+        self.type = template
+        self.setParent(parent)
 
     @property
     def name(self):
         if self.__name is not None:
             return self.__name
-        return self.generate_name()
+
+        gen = self.type.namegen
+        self.__name = gen.generate()
+        return self.__name
 
     @property
     def image(self):
         return self.type.name
 
-    def generate_name(self, *args, **kwargs):
-        gen = self.type.namegen
-        self.__name = gen.generate()
-        return self.__name
+    def setParent(self, parent=None):
+        self.parent = parent
 
-    def grow(self, *args, **kwargs):
-        print("GROW", args, kwargs)
-        if self.grown:
+    def addChild(self, child):
+        if child is None:
             return
+
+        if self.__children is None:
+            self.__children = []
+
+        self.__children.append(child)
+        child.setParent(self)
+
+    @property
+    def children(self):
+        if self.__children is not None:
+            return self.__children
+
+        self.generate_children()
+        return self.__children
+
+    def generate_children(self, *args, **kwargs):
+        print("GROW", args, kwargs)
 
         generators = get_generators(self.type.name)
         if generators is None:
-            return
+            self.__children = []
+            return self.__children
+
         for g in generators:
             if g.value is None:
                 continue
@@ -68,11 +69,11 @@ class Item:
                 continue
 
             for i in range(*g.amount):
-                new_item = Item(subthing.name, self)
-                # self.children.append(new_item)
-        random.shuffle(self.children)
+                new_item = Item.generate(subthing.name)
+                self.addChild(new_item)
 
-        self.grown = True
+        random.shuffle(self.__children)
+        return self.__children
 
     def __repr__(self):
         if self.parent is not None:
@@ -80,3 +81,19 @@ class Item:
         else:
             desc = ""
         return "{}{} \"{}\"".format(desc, self.type.name, self.name)
+
+    @classmethod
+    def getTemplate(cls, template="error"):
+        if get_thing(template) is None:
+            return get_thing("error")
+        return get_thing(template)
+
+    @classmethod
+    def generate(cls, template, parent=None):
+        global ITEMS
+
+        print("GENERATE", template)
+        item = cls(cls.getTemplate(template), parent)
+
+        ITEMS.append(item)
+        return item

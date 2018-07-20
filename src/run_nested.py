@@ -22,9 +22,7 @@ def show_item(items):
         show_all()
         return items[1:]
 
-    item = Item(item_type)
-    item.grow(0)
-    # Tag(item).text()
+    item = Item.generate(item_type)
 
     print("-" * 20)
     print(item)
