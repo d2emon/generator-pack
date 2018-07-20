@@ -19,15 +19,19 @@ class Generator:
     child_generators = []
     names_data = None
 
-    def __init__(self, name=None, namegen=None):
+    def __init__(self, name=None, namegen=None, names_data=None):
         self.__name = name
 
         self.generators = [] + self.child_generators
-        self.add_generators(self.child_data)
+        self.generators += [ChildGenerator.from_str(child) for child in self.child_data]
+        # self.add_generators(self.child_data)
+
+        if names_data is None:
+            names_data = self.names_data
 
         self.namegen = namegen
         if self.namegen is None:
-            self.namegen = NameGenerator(self.names_data, default=self.name)
+            self.namegen = NameGenerator(names_data, default=self.name)
 
         self.generated_name = None
         self.generated_image = None
@@ -39,12 +43,8 @@ class Generator:
 
         if self.type_name is not None:
             self.__name = self.type_name
-            return self.__name
-
-        print("CLASS", self.__class__.__name__)
-        res = type(self).__name__
-        print("CLASS", res)
-        self.__name = camelCaseToSpaces(res)
+        else:
+            self.__name = camelCaseToSpaces(type(self).__name__)
         return self.__name
 
     def add_generators(self, children=[]):
@@ -92,14 +92,13 @@ class Generator:
 
 class Thing(Generator):
     @classmethod
-    def from_str(cls, name, children=None, namegen=None):
-        if (namegen is not None):
-            namegen = NameGenerator(namegen)
-
+    def from_str(cls, name, children=None, names_data=None):
         if children is None:
             children = []
 
-        t = cls(name, namegen)
-        t.add_generators(children)
+        t = cls(name, names_data=names_data)
+        # t.namegen = NameGenerator(namegen, default=name)
+        t.generators += [ChildGenerator.from_str(child) for child in children]
+        # t.add_generators(children)
         print("GENERATORS", t.name, t.generators)
         return t
