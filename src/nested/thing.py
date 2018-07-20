@@ -12,7 +12,7 @@ def camelCaseToSpaces(s):
     return CAMEL_CASE.sub(r'\1 \2', s).lower()
 
 
-class Thing:
+class Generator:
     # things_n = 0
     type_name = None
     child_data = []
@@ -27,13 +27,10 @@ class Thing:
 
         self.namegen = namegen
         if self.namegen is None:
-            if self.names_data is not None:
-                self.namegen = NameGenerator.from_str(self.names_data)
-            else:
-                self.namegen = NameGenerator(self.name)
+            self.namegen = NameGenerator(self.names_data, default=self.name)
 
-        # THINGS[name] = self
-        # self.things_n += 1
+        self.generated_name = None
+        self.generated_image = None
 
     @property
     def name(self):
@@ -54,21 +51,26 @@ class Thing:
         for child in children:
             self.generators.append(ChildGenerator.from_str(child))
 
-    @classmethod
-    def from_str(cls, name, children=None, namegen=None):
-        if (namegen is not None):
-            namegen = NameGenerator.from_str(namegen)
-
-        if children is None:
-            children = []
-
-        t = cls(name, namegen)
-        t.add_generators(children)
-        print("GENERATORS", t.name, t.generators)
-        return t
-
     def __call__(self, *args, **kwargs):
         return self
+
+    def generate_name(self):
+        return self.namegen.generate()
+
+    def generate_image(self):
+        return self.name
+
+    @classmethod
+    def fill(cls, generated):
+        t = cls.generate()
+        generated.template = t
+        generated.generated_name = t.generate_name()
+        generated.generated_image = t.generate_image()
+        return generated
+
+    @classmethod
+    def generate(cls):
+        return cls()
 
     """
     def clear(self):
@@ -87,3 +89,17 @@ class Thing:
         # print(list(f))
         self.generators = list(filter(lambda item: item is not None, self.generators + to_concat))
     """
+
+class Thing(Generator):
+    @classmethod
+    def from_str(cls, name, children=None, namegen=None):
+        if (namegen is not None):
+            namegen = NameGenerator(namegen)
+
+        if children is None:
+            children = []
+
+        t = cls(name, namegen)
+        t.add_generators(children)
+        print("GENERATORS", t.name, t.generators)
+        return t

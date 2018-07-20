@@ -14,6 +14,10 @@ class Item:
         self.type = template
         self.setParent(parent)
 
+        self.template = None
+        self.generated_name = ""
+        self.generated_image = ""
+
     @property
     def name(self):
         if self.__name is not None:
@@ -51,9 +55,9 @@ class Item:
     def generate_children(self, *args, **kwargs):
         print("GROW", args, kwargs)
 
+        self.__children = []
         generators = get_generators(self.type.name)
         if generators is None:
-            self.__children = []
             return self.__children
 
         for g in generators:

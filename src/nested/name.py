@@ -2,29 +2,20 @@ import random
 
 
 class NameGenerator:
-    def __init__(self, *data):
-        self.data = data
+    def __init__(self, data, default="UNNAMED"):
+        if data is None:
+            data = default
+        if isinstance(data, str):
+            data = data,
+
+        self.data = [d if isinstance(d, list) else [d] for d in data]
 
     def __repr__(self):
         return "<NameGenerator {}>".format(self.data)
 
-
-    @classmethod
-    def from_str(cls, data):
-        g = cls()
-        g.data = g.parse(data)
-        return g
-
-    def parse(self, data):
-        if isinstance(data, str):
-            return data,
-        return data
-
     def gen_parts(self):
-        if isinstance(self.data[0], str):
-            s = random.choice(self.data)
-        else:
-            s = "".join(random.choice(n) for n in self.data)
+        print("GEN PARTS", self.data)
+        s = "".join(random.choice(n) for n in self.data)
         return s.split("|")
 
     def generate(self):

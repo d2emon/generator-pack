@@ -1,4 +1,4 @@
-from ..thing import Thing
+from ..thing import Generator, Thing
 from ..children import ChildGenerator
 
 from .dyson import DysonSphere, DysonSurface, DysonSegment
@@ -6,7 +6,7 @@ from .planet import BarrenPlanet, VisitorPlanet, FuturePlanet, TerraformedPlanet
     PlanetComposition, Moon, TerraformedMoon, Asteroid, GasGiant, GasGiantAtmosphere, PlanetCore
 
 
-class Multiverse(Thing):
+class Multiverse(Generator):
     child_generators = [ChildGenerator("universe", (10, 30))]
     names_data = [
         "multiverse","lasagnaverse","doughnutverse","towelverse","baconverse","sharkverse","nestedverse",
