@@ -19,19 +19,16 @@ class Generator:
     child_generators = []
     names_data = None
 
-    def __init__(self, name=None, namegen=None, names_data=None):
+    def __init__(self, name=None, namegen=None, **kwargs):
         self.__name = name
 
+        child_data = kwargs.get('children_data') or self.child_data
+        names_data = kwargs.get('children_names') or self.names_data
+
         self.generators = [] + self.child_generators
-        self.generators += [ChildGenerator.from_str(child) for child in self.child_data]
-        # self.add_generators(self.child_data)
+        self.generators += [ChildGenerator.from_str(child) for child in child_data]
 
-        if names_data is None:
-            names_data = self.names_data
-
-        self.namegen = namegen
-        if self.namegen is None:
-            self.namegen = NameGenerator(names_data, default=self.name)
+        self.namegen = namegen or NameGenerator(names_data, default=self.name)
 
         self.generated_name = None
         self.generated_image = None
@@ -46,10 +43,6 @@ class Generator:
         else:
             self.__name = camelCaseToSpaces(type(self).__name__)
         return self.__name
-
-    def add_generators(self, children=[]):
-        for child in children:
-            self.generators.append(ChildGenerator.from_str(child))
 
     def __call__(self, *args, **kwargs):
         return self
@@ -92,13 +85,10 @@ class Generator:
 
 class Thing(Generator):
     @classmethod
-    def from_str(cls, name, children=None, names_data=None):
-        if children is None:
-            children = []
-
-        t = cls(name, names_data=names_data)
+    def from_str(cls, name, children=None, names=None):
+        t = cls(name, children_names=names, children_data=children)
         # t.namegen = NameGenerator(namegen, default=name)
-        t.generators += [ChildGenerator.from_str(child) for child in children]
+        # t.generators += [ChildGenerator.from_str(child) for child in children]
         # t.add_generators(children)
         print("GENERATORS", t.name, t.generators)
         return t
