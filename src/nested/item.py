@@ -8,7 +8,6 @@ ITEMS = []
 
 class Item:
     def __init__(self, template, parent=None):
-        print("GENERATE", template)
         self.__name = None
         self.__children = None
         self.type = template
@@ -60,19 +59,16 @@ class Item:
         if generators is None:
             return self.__children
 
-        for g in generators:
-            if g.value is None:
-                continue
+        for generator in generators:
+            for value in generator.generate():
+                if value is None:
+                    continue
 
-            subthing = get_thing(g.value)
-            if subthing is None:
-                print("NO CHILD", g.value)
-                continue
+                subthing = get_thing(value)
+                if subthing is None:
+                    print("NO CHILD", value)
+                    continue
 
-            if random.randrange(100) > g.probability:
-                continue
-
-            for i in range(*g.amount):
                 new_item = Item.generate(subthing.name)
                 self.addChild(new_item)
 
@@ -96,7 +92,6 @@ class Item:
     def generate(cls, template, parent=None):
         global ITEMS
 
-        print("GENERATE", template)
         item = cls(cls.getTemplate(template), parent)
 
         ITEMS.append(item)

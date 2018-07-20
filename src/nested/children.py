@@ -6,24 +6,46 @@ class ChildGenerator:
         self.value = value
         self.amount = amount
         self.probability = probability
-        self.data = None
+
+        # self.data = None
+        self.generators = []
+
+    def generator(self):
+        if len(self.generators) < 1:
+            return self
+        return random.choice(self.generators)
+
+    def test_probaility(self, probability=None):
+        probability = probability or random.randrange(100)
+        return probability <= self.probability
+
+    def to_generate(self):
+        if not self.test_probaility():
+            return 0
+        return random.randrange(*self.amount)
+
+    def generate(self):
+        return [self.generator().value for i in range(self.to_generate())]
+
 
     @classmethod
     def from_str(cls, data):
         g = cls()
-        g.data = data
         g.parse(data)
         return g
 
     def parse(self, data):
-        if not isinstance(data, str):
-            data = random.choice(data)
-        # value, probability, amount = get_data(data)
-        self.get_value(data)
-        # print(self.value, self.amount, self.probability)
+        # g.data = data
 
-    def get_value(self, value):
-        data = value.split(",")
+        if isinstance(data, list):
+            self.generators = [cls.from_str(d) for d in data]
+            return
+
+        if data is None:
+            return
+
+        # value, probability, amount = get_data(data)
+        data = data.split(",")
         self.amount = [1]
 
         if len(data) > 1:
@@ -40,6 +62,7 @@ class ChildGenerator:
         else:
             self.probability = 100
         self.value = data[0]
+        # print(self.value, self.amount, self.probability)
 
     def get_amount(self, amount):
         r = amount.split("-")
