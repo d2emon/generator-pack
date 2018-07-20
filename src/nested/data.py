@@ -114,6 +114,6 @@ addThing("error", ["sorry"], "Uh oh... It looks like you didn't supply a valid e
 addThing("sorry", ["consolation universe"], "(Sorry!)")
 addThing("consolation universe", [".universe"])
 
-for t in THINGS.items():
-    print(t)
-print(THINGS['universe'])
+# for t in THINGS.items():
+#     print(t)
+# print(THINGS['universe'])

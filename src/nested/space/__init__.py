@@ -1,5 +1,8 @@
+import random
+
 from ..thing import Generator, Thing
 from ..children import ChildGenerator
+# from ..name import NameGenerator
 
 from .dyson import DysonSphere, DysonSurface, DysonSegment
 from .planet import BarrenPlanet, VisitorPlanet, FuturePlanet, TerraformedPlanet, MedievalPlanet, AncientPlanet, \
@@ -7,23 +10,27 @@ from .planet import BarrenPlanet, VisitorPlanet, FuturePlanet, TerraformedPlanet
 
 
 class Multiverse(Generator):
-    child_generators = [ChildGenerator("universe", (10, 30))]
-    names_data = [
-        "multiverse","lasagnaverse","doughnutverse","towelverse","baconverse","sharkverse","nestedverse",
-        "tastyverse","upverse","downverse","layerverse","clusterverse","metaverse","quantiverse","paraverse",
-        "epiverse","alterverse","hypoverse","dimensioverse","planiverse","pluriverse","polyverse","maniverse",
-        "stackoverse","antiverse","superverse","upperverse","maxiverse","megaverse","babyverse","tinyverse",
-        "retroverse","ultraverse","topoverse","otherverse","bubbleverse","esreverse","versiverse","'verse",
-        "cookieverse","grandmaverse"
+    child_generator = ("universe", (10, 30))
+    names = [
+        "multiverse", "lasagnaverse", "doughnutverse", "towelverse", "baconverse", "sharkverse", "nestedverse",
+        "tastyverse", "upverse", "downverse", "layerverse", "clusterverse", "metaverse", "quantiverse", "paraverse",
+        "epiverse", "alterverse", "hypoverse", "dimensioverse", "planiverse", "pluriverse", "polyverse", "maniverse",
+        "stackoverse", "antiverse", "superverse", "upperverse", "maxiverse", "megaverse", "babyverse", "tinyverse",
+        "retroverse", "ultraverse", "topoverse", "otherverse", "bubbleverse", "esreverse", "versiverse", "'verse",
+        "cookieverse", "grandmaverse"
     ]
+
+    def describe_gen(self, **kwargs):
+        universes = kwargs.get('chidren', [])
+        print("{} has {} children: {}".format(self.name, len(universes), universes))
 
 
 class Universe(Thing):
-    child_generators = [ChildGenerator("supercluster", (10, 30))]
+    child_generator = ("supercluster", (10, 30))
 
 
 class Supercluster(Thing):
-    child_generators = [ChildGenerator("galaxy", (10, 30))]
+    child_generator = ("galaxy", (10, 30))
     names_data = "galactic supercluster"
 
 
@@ -32,6 +39,11 @@ class Galaxy(Thing):
         ChildGenerator("galaxy center"),
         ChildGenerator("galaxy arm", (2, 6)),
     ]
+
+    def custom_generate(self):
+        self.arms = ["galaxy arm"] * random.randrange(2, 6)
+        self.center = "galaxy center"
+        return [self.center] + self.arms
 
 
 class GalaxyArm(Thing):

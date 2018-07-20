@@ -16,17 +16,23 @@ class Generator:
     # things_n = 0
     type_name = None
     child_data = []
+    child_generator = None
     child_generators = []
+
+    names = None
     names_data = None
 
     def __init__(self, name=None, namegen=None, **kwargs):
         self.__name = name
+        self.__children = None
 
         child_data = kwargs.get('children_data') or self.child_data
-        names_data = kwargs.get('children_names') or self.names_data
+        names_data = kwargs.get('children_names') or self.names or self.names_data
 
         self.generators = [] + self.child_generators
         self.generators += [ChildGenerator.from_str(child) for child in child_data]
+        if self.child_generator is not None:
+            self.generators.append(ChildGenerator(*self.child_generator))
 
         self.namegen = namegen or NameGenerator(names_data, default=self.name)
 
@@ -41,8 +47,19 @@ class Generator:
         self.__name = self.type_name or camelCaseToSpaces(type(self).__name__)
         return self.__name
 
+    @property
+    def children(self):
+        if self.__children is not None:
+            return self.__children
+
+        self.__children = sum([g.generate() for g in self.generators])
+        return self.__children
+
     def __call__(self, *args, **kwargs):
         return self
+
+    def custom_generate(self):
+        return None
 
     def generate_name(self):
         return self.namegen.generate()

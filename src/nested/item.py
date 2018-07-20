@@ -52,25 +52,34 @@ class Item:
         return self.__children
 
     def generate_children(self, *args, **kwargs):
-        print("GROW", args, kwargs)
+        def generate_by_name(name):
+            if name is None:
+                return
+
+            subthing = get_thing(name)
+            if subthing is None:
+                print("NO CHILD", name)
+                return
+
+            new_item = Item.generate(subthing.name)
+            self.addChild(new_item)
+
+        # print("GROW", args, kwargs)
 
         self.__children = []
         generators = get_generators(self.type.name)
         if generators is None:
             return self.__children
 
+        custom = self.type.custom_generate()
+        if custom is not None:
+            for c in custom:
+                generate_by_name(c)
+            return self.__children
+
         for generator in generators:
             for value in generator.generate():
-                if value is None:
-                    continue
-
-                subthing = get_thing(value)
-                if subthing is None:
-                    print("NO CHILD", value)
-                    continue
-
-                new_item = Item.generate(subthing.name)
-                self.addChild(new_item)
+                generate_by_name(value)
 
         random.shuffle(self.__children)
         return self.__children
@@ -96,3 +105,7 @@ class Item:
 
         ITEMS.append(item)
         return item
+
+    def describe_gen(self, **kwargs):
+        kwargs['children'] = kwargs['children'] or self.children
+        self.template.describe_gen(kwargs)

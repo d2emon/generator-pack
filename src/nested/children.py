@@ -22,6 +22,8 @@ class ChildGenerator:
     def to_generate(self):
         if not self.test_probaility():
             return 0
+        if len(self.amount) == 1:
+            return self.amount[0]
         return random.randrange(*self.amount)
 
     def generate(self):
