@@ -55,6 +55,12 @@ class FutureContinent(Continent):
     # ["A","Eu","Ame","Ocea","Anta","Atla"],["frica","rtica","ropa","rica","nia","sia","ntide"]
 
 
+# ChildGenerator("country", (1, 10)),
+# ChildGenerator("medieval land", (1, 6)),
+# ChildGenerator("ancient land", (1, 5)),
+# ChildGenerator("future city", (20, 50))
+
+
 CONTENTS = [
     Continent,
     MedievalContinent,

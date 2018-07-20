@@ -2,15 +2,72 @@ from ..thing import Thing
 from ..children import ChildGenerator
 
 
+# terrain stuff
+
+
+class Ocean(Thing):
+    child_generators = [
+        ChildGenerator("sea water"),
+        ChildGenerator("sea life"),
+        ChildGenerator("beach,10-20"),
+        [
+            ChildGenerator("iceberg", (2, 6)),
+            ChildGenerator(),
+            ChildGenerator(),
+            ChildGenerator(),
+            ChildGenerator()
+        ],
+        ChildGenerator("abyss"),
+    ]
+
+
+class Sea(Thing):
+    child_generators = [
+        ChildGenerator("sea water"),
+        ChildGenerator("sea life"),
+        ChildGenerator("beach", (2, 6)),
+    ]
+    names_data = [
+        ["great","wide","big","old","young","large","small","dead","shallow","deep","red","yellow","green","blue",
+         "orange","brown","grey","black","white","purple","shady","bright","silver"],
+        [" sea"]
+    ]
+
+
+class SeaWater(Thing):
+    child_generators = [
+        ChildGenerator("water"),
+        ChildGenerator("salt"),
+    ]
+
+
+class Iceberg(Thing):
+    child_generators = [
+        ChildGenerator("bear", probability=30),
+        ChildGenerator("bear", probability=10),
+        ChildGenerator("ice"),
+    ]
+
+
+class Beach(Thing):
+    child_generators = [
+        ChildGenerator("beach life"),
+        ChildGenerator("sand"),
+    ]
+
+
+class Abyss(Thing):
+    child_generators = [
+        ChildGenerator("sand"),
+        ChildGenerator("abyss life"),
+    ]
+
+
+class Sand(Thing):
+    child_generators = [ChildGenerator("silica")]
+
+
 """
-//terrain stuff
-new Thing("ocean",["sea water","sea life","beach,10-20",["iceberg,2-6","","","",""],"abyss"]);
-new Thing("sea",["sea water","sea life","beach,2-6"],[["great","wide","big","old","young","large","small","dead","shallow","deep","red","yellow","green","blue","orange","brown","grey","black","white","purple","shady","bright","silver"],[" sea"]]);
-new Thing("sea water",["water","salt"]);
-new Thing("iceberg",["bear,30%","bear,10%","ice"]);
-new Thing("beach",["beach life","sand"]);
-new Thing("abyss",["sand","abyss life"]);
-new Thing("sand",["silica"]);
 new Thing("soil",[["worm,0-2","",""],["insect,0-2","",""],"silica"],"dirt");
 new Thing("mud",[["worm,0-2","",""],["insect,0-2","",""],"water","silica"]);
 
@@ -89,6 +146,11 @@ class Precipitation(Cloud):
     ]
 
 
+# ChildGenerator("sea life"),
+# ChildGenerator("salt"),
+# ChildGenerator("bear", probability=10),
+# ChildGenerator("beach life"),
+# ChildGenerator("abyss life"),
 # ChildGenerator("visitor ship", probability=10),
 # ChildGenerator("sky life"),
 # ChildGenerator("plane", (1, 8)),
@@ -97,6 +159,14 @@ class Precipitation(Cloud):
 
 
 CONTENTS = [
+    Ocean,
+    Sea,
+    SeaWater,
+    Iceberg,
+    Beach,
+    Abyss,
+    Sand,
+
     FutureSky,
     TerraformedSky,
     Sky,

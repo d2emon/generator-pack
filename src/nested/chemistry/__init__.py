@@ -40,7 +40,7 @@ class HydrogenAtom(Thing):
 
 Carbon = ElementGenerator("carbon")
 Sodium = ElementGenerator("sodium")
-# addThing("chlorine",[".atom"])
+Chlorine = ElementGenerator("chlorine")
 Oxygen = ElementGenerator("oxygen")
 Helium = ElementGenerator("helium")
 Potassium = ElementGenerator("potassium")
@@ -66,7 +66,7 @@ CONTENTS = [
 
     Carbon,
     Sodium,
-
+    Chlorine,
     Oxygen,
     Helium,
     Potassium,

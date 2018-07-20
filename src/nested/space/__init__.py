@@ -173,8 +173,6 @@ class EndOfUniverseNote(Thing):
 # ChildGenerator("ghost", probability=0.1),
 # ChildGenerator("visitor installation", (2, 6)),
 
-# ChildGenerator("ocean", (1, 7)),
-
 # ChildGenerator(".future moon", probability=30),
 
 # ChildGenerator("pasta", probability=0.1)
@@ -182,11 +180,6 @@ class EndOfUniverseNote(Thing):
 
 # ChildGenerator("visitor city", (1, 8)),
 # ChildGenerator("future city", (4, 20)),
-
-# ChildGenerator("continent", (2, 7)),
-# ChildGenerator("future continent", (2, 7)),
-# ChildGenerator("medieval continent", (2, 4)),
-# ChildGenerator("ancient continent", (0, 3)),
 
 
 CONTENTS = [

@@ -71,7 +71,7 @@ addThing("magma",[".rock"])
 addThing("rock",["silica","aluminium,30%","iron,20%","potassium,20%","sodium,50%","calcium,50%"])
 addThing("silica",["silicon","oxygen"]);
 # new Thing("chitin",["carbon","hydrogen","oxygen","nitrogen"]);
-# new Thing("salt",["chlorine","sodium"]);
+addThing("salt",["chlorine","sodium"])
 addThing("water",["hydrogen","oxygen"])
 # addThing("fire",["oxygen","carbon"])
 # addThing("ash",["organic matter","carbon"])
