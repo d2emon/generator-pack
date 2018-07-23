@@ -57,6 +57,7 @@ class GalaxyArm(Thing):
         ChildGenerator("black hole", probability=20),
     ]
     names_data = "arm"
+    positions = ((-2, 2), (-2, 2))
 
 
 class GalaxyCenter(Thing):
@@ -70,6 +71,7 @@ class GalaxyCenter(Thing):
     ]
     # children_data = ["black hole","galactic life,10%","dyson sphere,4%","dyson sphere,2%","star system,20-50","nebula,0-12"]
     names_data = "galactic center"
+    positions = ((0, ), (0, ))
 
 
 class Nebula(Thing):

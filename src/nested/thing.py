@@ -1,4 +1,5 @@
 import re
+import random
 
 
 from .children import ChildGenerator
@@ -21,6 +22,8 @@ class Generator:
 
     names = None
     names_data = None
+
+    positions = None
 
     def __init__(self, name=None, namegen=None, **kwargs):
         self.__name = name
@@ -67,7 +70,11 @@ class Generator:
     def generate_image(self):
         return self.name
 
-    @classmethod
+    def generate_pos(self):
+        if self.positions is None:
+            return None
+        return [random.randrange(*i) if len(i) > 1 else i[0] for i in self.positions]
+
     def fill(cls, generated):
         t = cls.generate()
         generated.template = t

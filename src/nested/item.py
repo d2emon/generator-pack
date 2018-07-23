@@ -17,6 +17,8 @@ class Item:
         self.generated_name = ""
         self.generated_image = ""
 
+        self.__position = None
+
     @property
     def name(self):
         if self.__name is not None:
@@ -29,6 +31,14 @@ class Item:
     @property
     def image(self):
         return self.type.name
+
+    @property
+    def position(self):
+        if self.__position is not None:
+            return self.__position
+
+        self.__position = self.type.generate_pos()
+        return self.__position
 
     def setParent(self, parent=None):
         self.parent = parent
