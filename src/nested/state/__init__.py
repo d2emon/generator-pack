@@ -1,6 +1,8 @@
 from ..thing import Thing
 from ..children import ChildGenerator
 
+from ..terrain import Biome
+
 
 class Continent(Thing):
     child_generators = [
@@ -23,7 +25,7 @@ class Continent(Thing):
     """
 
 
-class Country(Thing):
+class Country(Biome):
     child_generators = [
         ChildGenerator("region", (1, 10)),
         ChildGenerator("battlefield", probability=10),
@@ -108,11 +110,27 @@ class Capital(Thing):
 
 
 # buildings
-# new Thing("monument",["tourist,5-30","souvenir shop,70%","souvenir shop,30%"],"*MONUMENT*");
-# new Thing("tourist",[".person"],"*PERSON*| (tourist)");
+class Monument(Thing):
+    child_generators = [
+        ChildGenerator("tourist", (5, 30)),
+        ChildGenerator("souvenir shop", probability=70),
+        ChildGenerator("souvenir shop", probability=30),
+    ]
+    names_data = "*MONUMENT*"
 
-# new Thing("commercial area",["street,1-5","bargain shop,60%","bargain shop,30%","souvenir shop,10%","fresh produce shop,60%","pet shop,60%","toy shop,60%","game shop,60%","office building,1-12"]);
-# new Thing("office building",["building hall","office,6-20",".building"],[["a tall","a stout","an unimpressive","a large","a humongous","a modern","a classic","a historic","a gray","a dull","a white","a black","a concrete","a glass-covered","an impressive","a beautiful","an old-fashioned","a boring","a newly-built","a fancy"],[" "],["office building","skyscraper","building"]]);
+
+class CommercialArea(Thing):
+    child_generators = [
+        ChildGenerator("street", (1, 5)),
+        ChildGenerator("bargain shop", probability=60),
+        ChildGenerator("bargain shop", probability=30),
+        ChildGenerator("souvenir shop", probability=10),
+        ChildGenerator("fresh produce shop", probability=60),
+        ChildGenerator("pet shop", probability=60),
+        ChildGenerator("toy shop", probability=60),
+        ChildGenerator("game shop",probability=60),
+        ChildGenerator("office building", (1, 12)),
+    ]
 
 
 class ResidentialArea(Thing):
@@ -127,6 +145,23 @@ class Building(Thing):
     child_generators = [
         ChildGenerator("walls"),
         ChildGenerator("roof"),
+    ]
+
+
+class OfficeBuilding(Building):
+    child_generators = [
+        ChildGenerator("building hall"),
+        ChildGenerator("office", (6, 20)),
+        ChildGenerator(".building")
+    ]
+    names_data = [
+        [
+            "a tall", "a stout", "an unimpressive", "a large", "a humongous", "a modern", "a classic", "a historic",
+            "a gray", "a dull", "a white", "a black", "a concrete", "a glass-covered", "an impressive", "a beautiful",
+            "an old-fashioned", "a boring", "a newly-built", "a fancy"
+        ],
+        [" "],
+        [ "office building", "skyscraper", "building" ]
     ]
 
 
@@ -172,10 +207,19 @@ class ApartmentBuilding(Building):
 
 
 # rooms
+class Roof(Thing):
+    child_generators = [
+        ChildGenerator("cat", probability=2),
+        ChildGenerator("bird", probability=10),
+        ChildGenerator("bird", probability=10),
+        ChildGenerator("nest", probability=2),
+        ChildGenerator("roof tiles"),
+    ]
 
 
-# new Thing("roof",["cat,2%","bird,10%","bird,10%","nest,2%","roof tiles"]);
-# new Thing("roof tiles",["ceramic"],"tiles");
+class RoofTiles(Thing):
+    child_generators = [ChildGenerator("ceramic"), ]
+    names_data = "tiles"
 
 
 class Room(Thing):
@@ -186,18 +230,95 @@ class Room(Thing):
     ]
 
 
-# new Thing("walls",["door,1-4","window,0-6",["wall,4","wall,4-8"]]);
-# new Thing("wall",[["plaster","wood"],"dirt,5%"]);
-# new Thing("plaster",["calcium","sulfur"]);
+class Walls(Thing):
+    child_generators = [
+        ChildGenerator("door", (1, 4)),
+        ChildGenerator("window", (0, 6)),
+        [
+            ChildGenerator("wall", (4, )),
+            ChildGenerator("wall", (4, 8)),
+        ]
+    ]
+
+
+class Wall(Thing):
+    child_generators = [
+        [
+            ChildGenerator("plaster"),
+            ChildGenerator("wood")
+        ],
+        ChildGenerator("dirt", probability=5),
+    ]
+
+
+class Plaster(Thing):
+    child_generators = [
+        ChildGenerator("calcium"),
+        ChildGenerator("sulfur"),
+    ]
+
+
 # new Thing("marble",["calcium"]);
 # new Thing("stone",["rock"]);
 # new Thing("concrete",["rock","cement","water"]);
 # new Thing("cement",["calcium"]);
 # new Thing("marble",["calcium"]);
-# new Thing("door",["wood frame","glass,10%"]);
-# new Thing("window",["wood frame","glass"]);
-# new Thing("living-room",[".room","person,0-4","cat,10%","cat,10%","stuff box,5%","tv,95%","armchair,50%","armchair,50%","couch,90%","living-room table,50%","chair,1-6","painting,70%","painting,20%","mirror,2%","bookshelf,0-3","small bookshelf,0-2","desk,40%","computer,40%"]);
-# new Thing("kitchen",[".room","person,40%","person,20%","tv,40%","kitchen sink","cabinet,1-5","fridge","oven","chair,0-3","computer,5%","small bookshelf,5%","painting,30%","painting,10%"]);
+
+
+class Door(Thing):
+    child_generators = [
+        ChildGenerator("wood frame"),
+        ChildGenerator("glass", probability=10),
+    ]
+
+
+class Window(Thing):
+    child_generators = [
+        ChildGenerator("wood frame"),
+        ChildGenerator("glass"),
+    ]
+
+
+class LivingRoom(Room):
+    type_name = 'living-room'
+    child_generators = [
+        ChildGenerator(".room"),
+        ChildGenerator("person", (0, 4)),
+        ChildGenerator("cat", probability=10),
+        ChildGenerator("cat", probability=10),
+        ChildGenerator("stuff box", probability=5),
+        ChildGenerator("tv", probability=95),
+        ChildGenerator("armchair", probability=50),
+        ChildGenerator("armchair", probability=50),
+        ChildGenerator("couch", probability=90),
+        ChildGenerator("living-room table", probability=50),
+        ChildGenerator("chair", (1, 6)),
+        ChildGenerator("painting", probability=70),
+        ChildGenerator("painting", probability=20),
+        ChildGenerator("mirror", probability=2),
+        ChildGenerator("bookshelf", (0, 3)),
+        ChildGenerator("small bookshelf", (0, 2)),
+        ChildGenerator("desk", probability=40),
+        ChildGenerator("computer", probability=40),
+    ]
+
+
+class Kitchen(Room):
+    child_generators = [
+        ChildGenerator(".room"),
+        ChildGenerator("person", probability=40),
+        ChildGenerator("person", probability=20),
+        ChildGenerator("tv", probability=40),
+        ChildGenerator("kitchen sink"),
+        ChildGenerator("cabinet", (1, 5)),
+        ChildGenerator("fridge"),
+        ChildGenerator("oven"),
+        ChildGenerator("chair", (0, 3)),
+        ChildGenerator("computer", probability=5),
+        ChildGenerator("small bookshelf", probability=5),
+        ChildGenerator("painting", probability=30),
+        ChildGenerator("painting", probability=10),
+    ]
 
 
 class Bedroom(Room):
@@ -241,202 +362,62 @@ class Bathroom(Room):
     ]
 
 
-# new Thing("study",[".room","person,30%","person,5%","stuff box,20%","tv,20%","desk,95%","computer,90%","chair,1-4","bookshelf,0-6","painting,70%","painting,20%","mirror,5%"]);
-# new Thing("garden",["person,40%","person,10%","dog,20%","dog,5%","cat,15%","grass","tree,50%","tree,50%","tree,20%","tree,5%","flowers,30%","hole,1%","hole,1%","hole,1%","poultry,1%","bird,20%","bird,10%"],["garden","lawn","backyard"]);
-# new Thing("garage",["person,20%","cat,2%","stuff box,30%","stuff box,20%","chair,0-3","car,90%","car,40%","car,5%","bike,40%","bike,30%","bike,10%","computer,5%","small bookshelf,30%","hole,1%","hole,0.5%","small mammal,5%","insect,15%","insect,15%","dirt,50%"]);
-# new Thing("hole",["corpse,20%","corpse,5%","blood,20%","shovel,20%","hole,0.5%","insect,25%","insect,15%","dirt"]);
-
-
-class MedievalContinent(Continent):
+class Study(Room):
     child_generators = [
-        ChildGenerator("medieval land", (1, 6)),
-        ChildGenerator("sea", (1, 5)),
+        ChildGenerator(".room"),
+        ChildGenerator("person", probability=30),
+        ChildGenerator("person", probability=5),
+        ChildGenerator("stuff box", probability=20),
+        ChildGenerator("tv", probability=20),
+        ChildGenerator("desk", probability=95),
+        ChildGenerator("computer", probability=90),
+        ChildGenerator("chair", (1, 4)),
+        ChildGenerator("bookshelf", (0, 6)),
+        ChildGenerator("painting", probability=70),
+        ChildGenerator("painting", probability=20),
+        ChildGenerator("mirror", probability=5),
     ]
-    names_data = ["explored continent"]
 
 
-class MedievalLand(Country):
+class Garden(Room):
     child_generators = [
-        ChildGenerator("medieval region", (1, 10)),
-        ChildGenerator("medieval battlefield", probability=10),
-        ChildGenerator(".biome"),
+        ChildGenerator("person", probability=40),
+        ChildGenerator("person", probability=10),
+        ChildGenerator("dog", probability=20),
+        ChildGenerator("dog", probability=5),
+        ChildGenerator("cat", probability=15),
+        ChildGenerator("grass"),
+        ChildGenerator("tree", probability=50),
+        ChildGenerator("tree", probability=50),
+        ChildGenerator("tree", probability=20),
+        ChildGenerator("tree", probability=5),
+        ChildGenerator("flowers", probability=30),
+        ChildGenerator("hole", probability=1),
+        ChildGenerator("hole", probability=1),
+        ChildGenerator("hole", probability=1),
+        ChildGenerator("poultry", probability=1),
+        ChildGenerator("bird", probability=20),
+        ChildGenerator("bird", probability=10),
     ]
-    names_data = [
-        ["realm","kingdom","empire","dominion"],
-        [" of "],
-        ["G","P","S","St","Sh","B","F","K","Z","Az","Oz"],
-        ["","","","r","l"],
-        ["u","o","a","e"],
-        ["r","sh","nd","st","sd","kl","kt","pl","fr","ck","sh","ff","gg","l","lig","rag","sha","pta","lir","limd","lim","shim","stel"],
-        ["i","u","o","oo","e","ee","y","a"],
-        ["ll","th","h","k","lm","r","g","gh","n","m","p","s","rg","lg"],
-    ]
+    names_data = [ "garden", "lawn", "backyard" ]
 
 
-class MedievalRegion(Region):
+# new Thing("garage",["person,20%","cat,2%","stuff box,30%","stuff box,20%","chair,0-3","car,90%","car,40%","car,5%",
+# "bike,40%","bike,30%","bike,10%","computer,5%","small bookshelf,30%","hole,1%","hole,0.5%","small mammal,5%",
+# "insect,15%","insect,15%","dirt,50%"]);
+
+
+class Hole(Room):
     child_generators = [
-        ChildGenerator("medieval capital"),
-        ChildGenerator("medieval village", (2, 6)),
-        ChildGenerator("dungeon", probability=15),
-        ChildGenerator("dungeon", probability=5),
+        ChildGenerator("corpse", probability=20),
+        ChildGenerator("corpse", probability=5),
+        ChildGenerator("blood", probability=20),
+        ChildGenerator("shovel", probability=20),
+        ChildGenerator("hole", probability=0.5),
+        ChildGenerator("insect", probability=25),
+        ChildGenerator("insect", probability=15),
+        ChildGenerator("dirt"),
     ]
-    names_data = [
-        ["hilly","rainy","lush","foggy","desertic","green","tropical","rich","barren","scorched"],
-        [" "],
-        ["shire","province","county","parish","pale"],
-    ]
-
-
-class MedievalVillage(Village):
-    child_generators = [
-        ChildGenerator("townwall", probability=20),
-        ChildGenerator("watchtower", probability=15),
-        ChildGenerator("medieval monument", probability=50),
-        ChildGenerator("medieval residential area", (1, 4)),
-        ChildGenerator("medieval commercial area", (1, 2)),
-        ChildGenerator("medieval temple", (0, 2)),
-        ChildGenerator("medieval farm", (4, 8)),
-        ChildGenerator("medieval cemetery", probability=50),
-        ChildGenerator("wizard tower", probability=5),
-    ]
-    names_data = "village"
-
-
-class MedievalCapital(City):
-    child_generators = [
-        ChildGenerator("castle"),
-        ChildGenerator("townwall"),
-        ChildGenerator("medieval monument", probability=70),
-        ChildGenerator("medieval monument", probability=20),
-        ChildGenerator("medieval residential area", (3, 12)),
-        ChildGenerator("medieval mage quarter", probability=50),
-        ChildGenerator("medieval mage quarter", probability=20),
-        ChildGenerator("medieval temple", (1, 3)),
-        ChildGenerator("medieval commercial area", (2, 6)),
-        ChildGenerator("medieval farm", (2, 6)),
-        ChildGenerator("medieval cemetery"),
-    ]
-    names_data = [
-        "stronghold",
-        "fortress",
-        "fort",
-        "hold",
-        "palace",
-        "main city",
-        "citadel",
-    ]
-
-
-# new Thing("castle",["medieval peasant,1-4","medieval noble,0-2","medieval guard,2-8","castle keep","giant monster cage,1%","watchtower,1-6","medieval temple,30%","medieval inn,40%","medieval house,1-4","medieval monument,70%","medieval monument,20%","moat,30%","gatehouse","medieval wall"]);
-# new Thing("gatehouse",["medieval guard,1-3","portcullis,1-2","wood","medieval wall"]);
-# new Thing("portcullis",["wood","metal"]);
-# new Thing("moat",["water,50%","dirt"]);
-# new Thing("medieval monument",[["stone","marble"]],["fountain","memorial","statue","well","altar"]);
-# new Thing("townwall",["medieval guard,1-8","watchtower,1-6","medieval wall"]);
-# new Thing("watchtower",["medieval guard,1-2","medieval chest,30%",".medieval building"]);
-# new Thing("castle keep",["great hall","noble medieval living quarters,1-3","noble medieval bedroom,2-5",".medieval building"]);
-# new Thing("great hall",["medieval king,90%","medieval queen,90%","throne,2","wizard,0-3","medieval noble,1-6","medieval guard,1-4","medieval servant,1-4","medieval table","medieval table,60%","medieval chair,3-8","medieval chest,1-4","medieval clutter,0-4","medieval meat,30%","sack of medieval food,0-2","medieval food,0-2","sack of grain,50%","medieval fireplace","medieval fireplace,50%","dog,60%","dog,30%","cat,30%",".medieval room"],"throne room");
-
-
-class MedievalResidentialArea(ResidentialArea):
-    child_generators = [ChildGenerator("medieval house", (3, 8))]
-    names_data = ["housing district"]
-
-
-# new Thing("medieval commercial area",["medieval inn,1-2","medieval armor shop,0-2","medieval tool shop,0-2","medieval clothing shop,0-2","medieval butcher shop,0-2","medieval food shop,0-2","medieval apothecary shop,0-2"],"trade district");
-# new Thing("medieval mage quarter",["wizard tower,1-5","medieval inn,0-1","medieval apothecary shop,0-3"],"mage district");
-
-
-class MedievalBuilding(Building):
-    child_generators = [
-        ChildGenerator("medieval walls"),
-        ChildGenerator("roof"),
-    ]
-    names_data = ["building"]
-
-
-class MedievalHouse(MedievalBuilding):
-    child_generators = [
-        ChildGenerator("medieval living quarters"),
-        ChildGenerator("medieval bedroom"),
-        ChildGenerator("medieval bedroom", probability=50),
-        ChildGenerator(".medieval building"),
-    ]
-    names_data = [
-        ["a small","a large","a big","a cozy","a bland","a boring","an old","a new","a freshly-painted","a pretty",
-         "an old-fashioned","a creepy","a spooky","a gloomy","a tall","a tiny","a fine","a happy little"],
-        [" hovel"]
-    ]
-
-
-class MedievalRoom(Thing):
-    child_generators = [
-        ChildGenerator("visitor", probability=0.1),
-        ChildGenerator("ghost", probability=0.1),
-        ChildGenerator("medieval walls"),
-    ]
-    names_data = [
-        "room",
-    ]
-
-
-# new Thing("medieval walls",["door,1-4","window,0-6",["medieval wall,4","medieval wall,4-8"]],"stone walls");
-# new Thing("medieval wall",["wood","stone","dirt,20%"],"stone wall");
-
-
-class MedievalLivingQuarters(MedievalRoom):
-    child_generators = [
-        ChildGenerator("medieval peasant", (0, 4)),
-        ChildGenerator("medieval pantry"),
-        ChildGenerator("medieval table"),
-        ChildGenerator("medieval table", probability=30),
-        ChildGenerator("medieval chair", (1, 6)),
-        ChildGenerator("medieval chest", (0, 3)),
-        ChildGenerator("medieval clutter", (0, 2)),
-        ChildGenerator("medieval meat", probability=30),
-        ChildGenerator("sack of medieval food", (0, 2)),
-        ChildGenerator("medieval food", (0, 2)),
-        ChildGenerator("sack of grain", probability=50),
-        ChildGenerator("medieval fireplace", probability=90),
-        ChildGenerator("dog", probability=60),
-        ChildGenerator("dog", probability=30),
-        ChildGenerator("cat", probability=30),
-        ChildGenerator("poultry", probability=10),
-        ChildGenerator("insect", probability=70),
-        ChildGenerator("insect", probability=40),
-        ChildGenerator(".medieval room"),
-    ]
-    names_data = [
-        "living quarters",
-    ]
-
-
-class MedievalBedroom(MedievalRoom):
-    child_generators = [
-        ChildGenerator("medieval peasant", (0, 2)),
-        ChildGenerator("medieval bed"),
-        ChildGenerator("medieval bed", probability=20),
-        ChildGenerator("medieval table", probability=30),
-        ChildGenerator("medieval chair", (0, 4)),
-        ChildGenerator("medieval chest", (0, 2)),
-        ChildGenerator("medieval clutter", (0, 2)),
-        ChildGenerator("medieval fireplace", probability=40),
-        ChildGenerator("dog", probability=10),
-        ChildGenerator("dog", probability=10),
-        ChildGenerator("cat", probability=20),
-        ChildGenerator("insect", probability=70),
-        ChildGenerator("insect", probability=40),
-        ChildGenerator(".medieval room"),
-    ]
-    names_data = ["bedroom"]
-
-
-# new Thing("medieval pantry",["medieval peasant,10%","medieval meat,0-4","sack of medieval food,0-8","medieval food,0-8","sack of grain,0-6","ale keg,0-3","medieval chest,0-2","medieval clutter,0-2","insect,0-4",".medieval room"],"pantry");
-# new Thing("noble medieval living quarters",["wizard,10%","medieval noble,0-4","medieval servant,0-3","medieval pantry,0-2","medieval table","medieval table,60%","medieval chair,1-8","medieval chest,1-4","medieval clutter,0-4","medieval meat,30%","sack of medieval food,0-2","medieval food,0-2","sack of grain,50%","medieval fireplace","medieval fireplace,50%","dog,60%","dog,30%","cat,30%",".medieval room"],"living quarters");
-# new Thing("noble medieval bedroom",["medieval noble,0-2","medieval servant,0-2","medieval bed","medieval bed,20%","medieval table,50%","medieval chair,0-4","medieval chest,1-3","medieval clutter,0-3","medieval fireplace,80%","dog,10%","dog,10%","cat,20%",".medieval room"],"bedroom");
-# new Thing("medieval fireplace",["fire","ash","wood","stone"],"fireplace");
-# new Thing("medieval temple",["medieval priest,1-3","medieval noble,0-2","medieval peasant,0-4","medieval altar,1-2","medieval table,70%","medieval bench,2-6","medieval chair,1-3","medieval chest,1-4","medieval clutter,0-4","medieval fireplace,20%",".medieval room"],[["temple of the","church of the","chapel of the","house of the","abbey of the","cathedral of the","shrine of the","sanctuary of the","priory of the"],[" "],["blinding","sacred","holy","unholy","bloody","cursed","marvellous","wondrous","pious","miraculous","endless","unending","undying","infinite","unworldly","worldly","divine","demonic","ghostly","monstrous","tentacled","all-knowing","rational","pretty good","vengeful","hallowed"],[" "],["light","star","beam","sphere","goddess","god","lords","sisterhood","brotherhood","skies","pact","sect","harmony","discord","child","entity","ghost","builders","makers","guide","wit","story","tale","unicorn","flame","fountain","locust","squid","gembaby","father","mother"]]);
-# new Thing("giant monster cage",[["dragon","sea monster"]],"giant cage");
 
 
 class AncientContinent(Continent):
@@ -584,8 +565,59 @@ class VisitorCity(City):
 
 
 # ChildGenerator("battlefield", probability=10),
+
+# ChildGenerator("police station"),
+# ChildGenerator("fire department"),
+# ChildGenerator("museum", probability=40),
+# ChildGenerator("library", probability=60),
+# ChildGenerator("hospital"),
+# ChildGenerator("farm", (0, 3)),
+# ChildGenerator("factory", (1, 4)),
+# ChildGenerator("cemetery"),
+# ChildGenerator("research facility", probability=2),
+# ChildGenerator("souvenir shop", probability=70),
+# ChildGenerator("street", (1, 5)),
+# "bargain shop,30%",
+# "fresh produce shop,60%",
+# "pet shop,60%",
+# "toy shop,60%",
+# "game shop,60%",
+
+# ChildGenerator("fire", probability=0.3),
+# ChildGenerator("living-room"),
+# ChildGenerator("kitchen"),
+# ChildGenerator("attic"),
+# ChildGenerator("study", (0, 2)),
+# ChildGenerator("garden", probability=90),
+# ChildGenerator("garage", probability=90),
+# ChildGenerator("visitor", probability=0.1),
+# ChildGenerator("ghost", probability=0.1),
+# ChildGenerator("wood")
+# ChildGenerator("dirt", probability=5),
+# ChildGenerator("calcium"),
+# ChildGenerator("wood frame"),
+# ChildGenerator("glass"),
+# ChildGenerator("cat", probability=5),
+# ChildGenerator("bird", probability=10),
+# ChildGenerator("nest", probability=2),
+# ChildGenerator("stuff box", probability=5),
+# ChildGenerator("tv", probability=60),
+# ChildGenerator("bed"),
+# ChildGenerator("chair", (0, 4)),
+# ChildGenerator("cupboard", probability=90),
+# ChildGenerator("closet", probability=90),
+# ChildGenerator("mirror", probability=50),
+# ChildGenerator("bookshelf", (0, 2)),
+# ChildGenerator("small bookshelf", (0, 3)),
+# ChildGenerator("desk", probability=40),
+# ChildGenerator("computer", probability=40),
+# ChildGenerator("painting", probability=60),
+# ChildGenerator("sink", probability=95),
+# ChildGenerator("bathtub"),
+# ChildGenerator("shower")
+# ChildGenerator("toilet"),
+
 # ChildGenerator("medieval battlefield", probability=10),
-# ChildGenerator(".biome"),
 # ChildGenerator("medieval capital"),
 # ChildGenerator("medieval village", (2, 6)),
 # ChildGenerator("dungeon", probability=15),
@@ -609,32 +641,35 @@ CONTENTS = [
     City,
     Capital,
 
+    Monument,
+
     ResidentialArea,
+    CommercialArea,
+    OfficeBuilding,
     House,
     Apartment,
     ApartmentBuilding,
 
     Building,
 
+    Roof,
+    RoofTiles,
+
     Room,
 
+    Walls,
+    Wall,
+    Plaster,
+    Door,
+    Window,
+
+    LivingRoom,
+    Kitchen,
     Bedroom,
     Bathroom,
+    Garden,
 
-    MedievalContinent,
-    MedievalLand,
-    MedievalRegion,
-    MedievalVillage,
-    MedievalCapital,
-
-    MedievalResidentialArea,
-
-    MedievalHouse,
-    MedievalBuilding,
-    MedievalRoom,
-
-    MedievalLivingQuarters,
-    MedievalBedroom,
+    Hole,
 
     AncientContinent,
     AncientLand,

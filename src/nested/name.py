@@ -255,4 +255,7 @@ class NameGenerator:
 		this.name=Title(str);
 	}
         """
-        return "".join(parts[0:2]).capitalize()
+
+        # return "".join(parts[0:2]).title()
+        title = "".join(parts[0:2])
+        return title[0].upper() + title[1:]

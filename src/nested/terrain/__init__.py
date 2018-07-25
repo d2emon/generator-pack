@@ -146,6 +146,17 @@ class Precipitation(Cloud):
     ]
 
 
+class Biome(Thing):
+    child_generators = [
+        ChildGenerator("plain", (1, 5)),
+        [
+            ChildGenerator("forest", (0, 4)),
+            ChildGenerator("jungle", (0, 4)),
+        ],
+        ChildGenerator("mountain", (0, 3))
+    ]
+
+
 # ChildGenerator("sea life"),
 # ChildGenerator("salt"),
 # ChildGenerator("bear", probability=10),
@@ -156,6 +167,11 @@ class Precipitation(Cloud):
 # ChildGenerator("plane", (1, 8)),
 # ChildGenerator("rocketship", probability=20),
 # ChildGenerator("sprowseship", (4, 12)),
+
+# ChildGenerator("plain", (1, 5)),
+# ChildGenerator("forest", (0, 4)),
+# ChildGenerator("jungle", (0, 4)),
+# ChildGenerator("mountain", (0, 3))
 
 
 CONTENTS = [
@@ -173,4 +189,6 @@ CONTENTS = [
     Ozone,
     Cloud,
     Precipitation,
+
+    Biome,
 ]
