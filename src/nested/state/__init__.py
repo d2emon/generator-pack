@@ -420,6 +420,55 @@ class Hole(Room):
     ]
 
 
+# services
+class FireDepartment(Building):
+    child_generators = [
+        ChildGenerator("fire", probability=0.2),
+        ChildGenerator("firefighter", (3, 6)),
+        ChildGenerator("desk", (0, 3)),
+        ChildGenerator("chair", (1, 4)),
+        ChildGenerator("fridge", probability=60),
+        ChildGenerator("tv", probability=60),
+        ChildGenerator("fire truck"),
+        ChildGenerator(".building")
+    ]
+
+
+# new Thing("firefighter",[".person"],"*PERSON*| (firefighter)");
+
+
+class PoliceStation(Building):
+    child_generators = [
+        ChildGenerator("police officer", (2, 6)),
+        ChildGenerator("desk", (0, 2)),
+        ChildGenerator("tv", probability=40),
+        ChildGenerator("small bookshelf", (0, 2)),
+        ChildGenerator("chair", (0, 4)),
+        ChildGenerator(".building")
+    ]
+
+
+# new Thing("police officer",[".person"],"*PERSON*| (police officer)");
+
+
+class Library(Building):
+    child_generators = [
+        ChildGenerator("bookshelf", (10, 30)),
+        ChildGenerator("painting", probability=50),
+        ChildGenerator("painting", probability=50),
+        ChildGenerator("painting", probability=50),
+        ChildGenerator("desk", (0, 4)),
+        ChildGenerator("computer", (0, 4)),
+        ChildGenerator("chair", (0, 4)),
+        ChildGenerator("librarian", (1, 4)),
+        ChildGenerator("person", (0, 12)),
+        ChildGenerator(".building"),
+    ]
+
+
+# new Thing("librarian",[".person"],"*PERSON*| (librarian)");
+
+
 class AncientContinent(Continent):
     child_generators = [
         ChildGenerator("ancient land", (1, 5)),
@@ -670,6 +719,12 @@ CONTENTS = [
     Garden,
 
     Hole,
+
+    FireDepartment,
+
+    PoliceStation,
+
+    Library,
 
     AncientContinent,
     AncientLand,
