@@ -9,6 +9,8 @@ from .biology.life import CONTENTS as LIFE_CONTENTS
 from .biology.monsters import CONTENTS as MONSTERS_CONTENTS
 from .terrain import CONTENTS as TERRAIN_CONTENTS
 from .state import CONTENTS as STATE_CONTENTS
+from .room import  CONTENTS as ROOM_CONTENTS
+
 from .person import CONTENTS as PERSON_CONTENTS
 
 from .medieval import CONTENTS as MEDIEVAL_CONTENTS
@@ -96,15 +98,11 @@ addFromContents(PARTICLES_CONTENTS)
 addFromContents(SPACE_CONTENTS)
 
 addFromContents(LIFE_CONTENTS)
-
 addFromContents(TERRAIN_CONTENTS)
-
 addFromContents(MONSTERS_CONTENTS)
-
 addFromContents(STATE_CONTENTS)
-
+addFromContents(ROOM_CONTENTS)
 addFromContents(PERSON_CONTENTS)
-
 addFromContents(MEDIEVAL_CONTENTS)
 
 

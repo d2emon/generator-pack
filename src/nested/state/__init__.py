@@ -2,6 +2,7 @@ from ..thing import Thing
 from ..children import ChildGenerator
 
 from ..terrain import Biome
+from ..room import Building
 
 
 class Continent(Thing):
@@ -141,13 +142,6 @@ class ResidentialArea(Thing):
     ]
 
 
-class Building(Thing):
-    child_generators = [
-        ChildGenerator("walls"),
-        ChildGenerator("roof"),
-    ]
-
-
 class OfficeBuilding(Building):
     child_generators = [
         ChildGenerator("building hall"),
@@ -240,218 +234,6 @@ class Farm(Thing):
 # new Thing("public bathroom",[".room","person,10%","person,1%","sink,1-4","toilet,1-4","mirror,0-3"],"restroom");
 
 
-# rooms
-class Roof(Thing):
-    child_generators = [
-        ChildGenerator("cat", probability=2),
-        ChildGenerator("bird", probability=10),
-        ChildGenerator("bird", probability=10),
-        ChildGenerator("nest", probability=2),
-        ChildGenerator("roof tiles"),
-    ]
-
-
-class RoofTiles(Thing):
-    child_generators = [ChildGenerator("ceramic"), ]
-    names_data = "tiles"
-
-
-class Room(Thing):
-    child_generators = [
-        ChildGenerator("visitor", probability=0.1),
-        ChildGenerator("ghost", probability=0.1),
-        ChildGenerator("walls"),
-    ]
-
-
-class Walls(Thing):
-    child_generators = [
-        ChildGenerator("door", (1, 4)),
-        ChildGenerator("window", (0, 6)),
-        [
-            ChildGenerator("wall", (4, )),
-            ChildGenerator("wall", (4, 8)),
-        ]
-    ]
-
-
-class Wall(Thing):
-    child_generators = [
-        [
-            ChildGenerator("plaster"),
-            ChildGenerator("wood")
-        ],
-        ChildGenerator("dirt", probability=5),
-    ]
-
-
-class Plaster(Thing):
-    child_generators = [
-        ChildGenerator("calcium"),
-        ChildGenerator("sulfur"),
-    ]
-
-
-# new Thing("marble",["calcium"]);
-# new Thing("stone",["rock"]);
-# new Thing("concrete",["rock","cement","water"]);
-# new Thing("cement",["calcium"]);
-# new Thing("marble",["calcium"]);
-
-
-class Door(Thing):
-    child_generators = [
-        ChildGenerator("wood frame"),
-        ChildGenerator("glass", probability=10),
-    ]
-
-
-class Window(Thing):
-    child_generators = [
-        ChildGenerator("wood frame"),
-        ChildGenerator("glass"),
-    ]
-
-
-class LivingRoom(Room):
-    type_name = 'living-room'
-    child_generators = [
-        ChildGenerator(".room"),
-        ChildGenerator("person", (0, 4)),
-        ChildGenerator("cat", probability=10),
-        ChildGenerator("cat", probability=10),
-        ChildGenerator("stuff box", probability=5),
-        ChildGenerator("tv", probability=95),
-        ChildGenerator("armchair", probability=50),
-        ChildGenerator("armchair", probability=50),
-        ChildGenerator("couch", probability=90),
-        ChildGenerator("living-room table", probability=50),
-        ChildGenerator("chair", (1, 6)),
-        ChildGenerator("painting", probability=70),
-        ChildGenerator("painting", probability=20),
-        ChildGenerator("mirror", probability=2),
-        ChildGenerator("bookshelf", (0, 3)),
-        ChildGenerator("small bookshelf", (0, 2)),
-        ChildGenerator("desk", probability=40),
-        ChildGenerator("computer", probability=40),
-    ]
-
-
-class Kitchen(Room):
-    child_generators = [
-        ChildGenerator(".room"),
-        ChildGenerator("person", probability=40),
-        ChildGenerator("person", probability=20),
-        ChildGenerator("tv", probability=40),
-        ChildGenerator("kitchen sink"),
-        ChildGenerator("cabinet", (1, 5)),
-        ChildGenerator("fridge"),
-        ChildGenerator("oven"),
-        ChildGenerator("chair", (0, 3)),
-        ChildGenerator("computer", probability=5),
-        ChildGenerator("small bookshelf", probability=5),
-        ChildGenerator("painting", probability=30),
-        ChildGenerator("painting", probability=10),
-    ]
-
-
-class Bedroom(Room):
-    child_generators = [
-        ChildGenerator(".room"),
-        ChildGenerator("person", probability=40),
-        ChildGenerator("person", probability=10),
-        ChildGenerator("cat", probability=5),
-        ChildGenerator("stuff box", probability=5),
-        ChildGenerator("tv", probability=60),
-        ChildGenerator("bed"),
-        ChildGenerator("chair", (0, 4)),
-        [
-            ChildGenerator("cupboard", probability=90),
-            ChildGenerator("closet", probability=90),
-        ],
-        ChildGenerator("mirror", probability=50),
-        ChildGenerator("bookshelf", (0, 2)),
-        ChildGenerator("small bookshelf", (0, 3)),
-        ChildGenerator("desk", probability=40),
-        ChildGenerator("computer", probability=40),
-        ChildGenerator("painting", probability=60),
-        ChildGenerator("painting", probability=20),
-    ]
-
-
-class Bathroom(Room):
-    child_generators = [
-        ChildGenerator(".room"),
-        ChildGenerator("person", probability=10),
-        ChildGenerator("person", probability=1),
-        ChildGenerator("cat", probability=1),
-        ChildGenerator("sink", probability=95),
-        [
-            ChildGenerator("bathtub"),
-            ChildGenerator("shower")
-        ],
-        ChildGenerator("toilet"),
-        ChildGenerator("painting", probability=20),
-        ChildGenerator("mirror", probability=80),
-    ]
-
-
-class Study(Room):
-    child_generators = [
-        ChildGenerator(".room"),
-        ChildGenerator("person", probability=30),
-        ChildGenerator("person", probability=5),
-        ChildGenerator("stuff box", probability=20),
-        ChildGenerator("tv", probability=20),
-        ChildGenerator("desk", probability=95),
-        ChildGenerator("computer", probability=90),
-        ChildGenerator("chair", (1, 4)),
-        ChildGenerator("bookshelf", (0, 6)),
-        ChildGenerator("painting", probability=70),
-        ChildGenerator("painting", probability=20),
-        ChildGenerator("mirror", probability=5),
-    ]
-
-
-class Garden(Room):
-    child_generators = [
-        ChildGenerator("person", probability=40),
-        ChildGenerator("person", probability=10),
-        ChildGenerator("dog", probability=20),
-        ChildGenerator("dog", probability=5),
-        ChildGenerator("cat", probability=15),
-        ChildGenerator("grass"),
-        ChildGenerator("tree", probability=50),
-        ChildGenerator("tree", probability=50),
-        ChildGenerator("tree", probability=20),
-        ChildGenerator("tree", probability=5),
-        ChildGenerator("flowers", probability=30),
-        ChildGenerator("hole", probability=1),
-        ChildGenerator("hole", probability=1),
-        ChildGenerator("hole", probability=1),
-        ChildGenerator("poultry", probability=1),
-        ChildGenerator("bird", probability=20),
-        ChildGenerator("bird", probability=10),
-    ]
-    names_data = [ "garden", "lawn", "backyard" ]
-
-
-# new Thing("garage",["person,20%","cat,2%","stuff box,30%","stuff box,20%","chair,0-3","car,90%","car,40%","car,5%",
-# "bike,40%","bike,30%","bike,10%","computer,5%","small bookshelf,30%","hole,1%","hole,0.5%","small mammal,5%",
-# "insect,15%","insect,15%","dirt,50%"]);
-
-
-class Hole(Room):
-    child_generators = [
-        ChildGenerator("corpse", probability=20),
-        ChildGenerator("corpse", probability=5),
-        ChildGenerator("blood", probability=20),
-        ChildGenerator("shovel", probability=20),
-        ChildGenerator("hole", probability=0.5),
-        ChildGenerator("insect", probability=25),
-        ChildGenerator("insect", probability=15),
-        ChildGenerator("dirt"),
-    ]
 
 
 # services
@@ -733,25 +515,6 @@ CONTENTS = [
     Farm,
 
     Building,
-
-    Roof,
-    RoofTiles,
-
-    Room,
-
-    Walls,
-    Wall,
-    Plaster,
-    Door,
-    Window,
-
-    LivingRoom,
-    Kitchen,
-    Bedroom,
-    Bathroom,
-    Garden,
-
-    Hole,
 
     FireDepartment,
 
