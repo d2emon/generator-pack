@@ -81,6 +81,8 @@ class Window(Thing):
 # new Thing("cement",["calcium"]);
 # new Thing("marble",["calcium"]);
 
+class Attic(Room):
+    pass
 
 class LivingRoom(Room):
     type_name = 'living-room'
@@ -314,4 +316,6 @@ CONTENTS = [
     Garden,
     Garage,
     Hole,
+
+    Attic
 ]
