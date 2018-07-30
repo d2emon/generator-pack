@@ -10,6 +10,7 @@ from .biology.monsters import CONTENTS as MONSTERS_CONTENTS
 from .terrain import CONTENTS as TERRAIN_CONTENTS
 from .state import CONTENTS as STATE_CONTENTS
 from .room import CONTENTS as ROOM_CONTENTS
+from .furniture import CONTENTS as FURNITURE_CONTENTS
 
 from .person import CONTENTS as PERSON_CONTENTS
 
@@ -104,6 +105,7 @@ add_from_contents(MONSTERS_CONTENTS)
 add_from_contents(STATE_CONTENTS)
 add_from_contents(ROOM_CONTENTS)
 add_from_contents(PERSON_CONTENTS)
+add_from_contents(FURNITURE_CONTENTS)
 add_from_contents(MEDIEVAL_CONTENTS)
 
 
