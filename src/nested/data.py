@@ -9,7 +9,7 @@ from .biology.life import CONTENTS as LIFE_CONTENTS
 from .biology.monsters import CONTENTS as MONSTERS_CONTENTS
 from .terrain import CONTENTS as TERRAIN_CONTENTS
 from .state import CONTENTS as STATE_CONTENTS
-from .room import  CONTENTS as ROOM_CONTENTS
+from .room import CONTENTS as ROOM_CONTENTS
 
 from .person import CONTENTS as PERSON_CONTENTS
 
@@ -19,7 +19,7 @@ from .medieval import CONTENTS as MEDIEVAL_CONTENTS
 THINGS = dict()
 
 
-def addFromContents(content):
+def add_from_contents(content):
     for c in content:
         i = c()
         THINGS[i.name] = i
@@ -84,26 +84,27 @@ addThing("water",["hydrogen","oxygen"])
 addThing("ice",["water"])
 # addThing("snow",["snowflakes"])
 # addThing("snowflakes",["water"])
-addFromContents(CHEMISTRY_CONTENTS)
+
+add_from_contents(CHEMISTRY_CONTENTS)
 # alright, I'm not doing the whole periodic table.
 # addThing("proteins",[".molecule"])
 # addThing("lipids",[".molecule"])
 # addThing("glucids",["carbon","hydrogen","oxygen"],"glucose")
 # addThing("organic matter",[["proteins","lipids","glucids"],["proteins","lipids","glucids",""],"salt,30%"])
 
-addFromContents(PARTICLES_CONTENTS)
+add_from_contents(PARTICLES_CONTENTS)
 # addThing("portal",["universe"])
 
 # universe stuff
-addFromContents(SPACE_CONTENTS)
+add_from_contents(SPACE_CONTENTS)
 
-addFromContents(LIFE_CONTENTS)
-addFromContents(TERRAIN_CONTENTS)
-addFromContents(MONSTERS_CONTENTS)
-addFromContents(STATE_CONTENTS)
-addFromContents(ROOM_CONTENTS)
-addFromContents(PERSON_CONTENTS)
-addFromContents(MEDIEVAL_CONTENTS)
+add_from_contents(LIFE_CONTENTS)
+add_from_contents(TERRAIN_CONTENTS)
+add_from_contents(MONSTERS_CONTENTS)
+add_from_contents(STATE_CONTENTS)
+add_from_contents(ROOM_CONTENTS)
+add_from_contents(PERSON_CONTENTS)
+add_from_contents(MEDIEVAL_CONTENTS)
 
 
 addThing("ectoplasm",["proton,3-7"],[["purple","fetid","green","yellow","blood-red","shiny","wispy","sparkly"],[" "],["ectoplasm"]])

@@ -12,8 +12,8 @@ class Continent(Thing):
     ]
     names_data = [
         ["continent of "],
-        ["A","Eu","Ame","Ocea","Anta","Atla"],
-        ["frica","rtica","ropa","rica","nia","sia","ntide"],
+        ["A", "Eu", "Ame", "Ocea", "Anta", "Atla"],
+        ["frica", "rtica", "ropa", "rica", "nia", "sia", "ntide"],
     ]
     """
     [
@@ -129,7 +129,7 @@ class CommercialArea(Thing):
         ChildGenerator("fresh produce shop", probability=60),
         ChildGenerator("pet shop", probability=60),
         ChildGenerator("toy shop", probability=60),
-        ChildGenerator("game shop",probability=60),
+        ChildGenerator("game shop", probability=60),
         ChildGenerator("office building", (1, 12)),
     ]
 
@@ -155,7 +155,7 @@ class OfficeBuilding(Building):
             "an old-fashioned", "a boring", "a newly-built", "a fancy"
         ],
         [" "],
-        [ "office building", "skyscraper", "building" ]
+        ["office building", "skyscraper", "building"]
     ]
 
 
@@ -234,8 +234,6 @@ class Farm(Thing):
 # new Thing("public bathroom",[".room","person,10%","person,1%","sink,1-4","toilet,1-4","mirror,0-3"],"restroom");
 
 
-
-
 # services
 class FireDepartment(Building):
     child_generators = [
@@ -312,11 +310,11 @@ class FutureContinent(Continent):
     child_generators = [ChildGenerator("future city", (20, 50))]
     names_data = [
         ["united continent of "],
-        ["Eu","A","O","E","Ca","Ma"],
-        ["rt","lt","rm","t","tr","tl","str","s","m","fr"],
-        ["a","o","e","i"],
-        ["ri","ni","ti","fri","",""],
-        ["sia","nia","ca"]
+        ["Eu", "A", "O", "E", "Ca", "Ma"],
+        ["rt", "lt", "rm", "t", "tr", "tl", "str", "s", "m", "fr"],
+        ["a", "o", "e", "i"],
+        ["ri", "ni", "ti", "fri", "", ""],
+        ["sia", "nia", "ca"]
     ]
     # ["A","Eu","Ame","Ocea","Anta","Atla"],["frica","rtica","ropa","rica","nia","sia","ntide"]
 

@@ -81,8 +81,10 @@ class Window(Thing):
 # new Thing("cement",["calcium"]);
 # new Thing("marble",["calcium"]);
 
+
 class Attic(Room):
     pass
+
 
 class LivingRoom(Room):
     type_name = 'living-room'
@@ -204,7 +206,7 @@ class Garden(Room):
         ChildGenerator("bird", probability=20),
         ChildGenerator("bird", probability=10),
     ]
-    names_data = [ "garden", "lawn", "backyard" ]
+    names_data = ["garden", "lawn", "backyard"]
 
 
 class Garage(Room):
