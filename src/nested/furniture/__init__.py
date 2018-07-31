@@ -2,12 +2,71 @@ from ..thing import Thing
 from ..children import ChildGenerator
 
 # furniture
-# new Thing("cabinet",["wood frame","glass,30%",".cabinet content"]);
-# new Thing("cabinet content",["donut box,4%",["cheese,0-3",""],"water bottle,0-1","juice bottle,0-1","soda bottle,0-1",["can,0-6","cookie box,0-6"],"insect,2%"]);
-# new Thing("fridge",[".fridge content","plastic","metal grill,1-4","electronics"]);
-# new Thing("fridge content",["roast,15%","pasta,40%","pasta,10%","can,15%","donut box,5%","cake,3%","pie,3%",["yoghurt,0-6",""],["ice cream,0-6",""],["cheese,0-3",""],"water bottle,0-1","juice bottle,0-2","soda bottle,0-2","milk bottle,0-1","wine bottle,10%"]);
-# new Thing("oven",[["pie","cake","roast","",""],"plastic","metal grill,1-3","electronics"]);
-# new Thing("kitchen sink",[".sink"]);
+class Cabinet(Thing):
+    child_generators = [
+        ChildGenerator("wood frame"),
+        ChildGenerator("glass", probability=30),
+        ChildGenerator(".cabinet content"),
+    ]
+
+
+class CabinetContent(Thing):
+    child_generators = [
+        ChildGenerator("donut box", probability=4),
+        [ChildGenerator("cheese", (0, 3)), None],
+        ChildGenerator("water bottle", (0, 1)),
+        ChildGenerator("juice bottle", (0, 1)),
+        ChildGenerator("soda bottle", (0, 1)),
+        [
+            ChildGenerator("can", (0, 6)),
+            ChildGenerator("cookie box", (0, 6)),
+        ],
+        ChildGenerator("insect", probability=2),
+    ]
+
+
+class Fridge(Thing):
+    child_generators = [
+        ChildGenerator(".fridge content"),
+        ChildGenerator("plastic"),
+        ChildGenerator("metal grill", (1, 4)),
+        ChildGenerator("electronics"),
+    ]
+
+
+class FridgeContent(Thing):
+    child_generators = [
+        ChildGenerator("roast", probability=15),
+        ChildGenerator("pasta", probability=40),
+        ChildGenerator("pasta", probability=10),
+        ChildGenerator("can", probability=15),
+        ChildGenerator("donut box", probability=5),
+        ChildGenerator("cake", probability=3),
+        ChildGenerator("pie", probability=3),
+        [ChildGenerator("yoghurt", (0, 6)), None],
+        [ChildGenerator("ice cream", (0, 6)), None],
+        [ChildGenerator("cheese", (0, 3)), None],
+        ChildGenerator("water bottle", (0, 1)),
+        ChildGenerator("juice bottle", (0, 2)),
+        ChildGenerator("soda bottle", (0, 2)),
+        ChildGenerator("milk bottle", (0, 1)),
+        ChildGenerator("wine bottle", probability=10),
+    ]
+
+
+class Oven(Thing):
+    child_generators = [
+        [
+            ChildGenerator("pie"),
+            ChildGenerator("cake"),
+            ChildGenerator("roast"),
+            None,
+            None
+        ],
+        ChildGenerator("plastic"),
+        ChildGenerator("metal grill", (1, 3)),
+        ChildGenerator("electronics"),
+    ]
 
 
 class Sink(Thing):
@@ -19,6 +78,10 @@ class Sink(Thing):
         ChildGenerator("organic matter", probability=5),
         ChildGenerator("pipes"),
     ]
+
+
+class KitchenSink(Sink):
+    child_generators = [ChildGenerator(".sink")]
 
 
 class Toilet(Thing):
@@ -347,7 +410,30 @@ class TvShow(Thing):
 # ChildGenerator("coin", probability=5),
 # ChildGenerator("pen", probability=5),
 
+# ChildGenerator("donut box", probability=4),
+# ChildGenerator("cheese", (0, 3)),
+# ChildGenerator("water bottle", (0, 1)),
+# ChildGenerator("juice bottle", (0, 1)),
+# ChildGenerator("soda bottle", (0, 1)),
+# ChildGenerator("can", (0, 6)),
+# ChildGenerator("cookie box", (0, 6)),
+# ChildGenerator("insect", probability=2),
+# ChildGenerator("roast", probability=15),
+# ChildGenerator("cake", probability=3),
+# ChildGenerator("pie", probability=3),
+# [ChildGenerator("yoghurt", (0, 6)), None],
+# [ChildGenerator("ice cream", (0, 6)), None],
+# [ChildGenerator("cheese", (0, 3)), None],
+# ChildGenerator("milk bottle", (0, 1)),
+# ChildGenerator("wine bottle", probability=10),
+
 CONTENTS = [
+    Cabinet,
+    CabinetContent,
+    Fridge,
+    FridgeContent,
+    Oven,
+    KitchenSink,
     Sink,
     Toilet,
 
