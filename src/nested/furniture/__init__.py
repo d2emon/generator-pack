@@ -94,12 +94,31 @@ class Toilet(Thing):
     ]
 
 
-# new Thing("pipes",["metal","dirt"]);
-# new Thing("nails",["iron"]);
-# new Thing("metal",["iron"]);
-# new Thing("metal grill",["metal"]);
-# new Thing("porcelain",["silica"]);
-# new Thing("ceramic",["silica"]);
+class Pipes(Thing):
+    child_generators = [
+        ChildGenerator("metal"),
+        ChildGenerator("dirt")
+    ]
+
+
+class Nails(Thing):
+    child_generators = [ChildGenerator("iron")]
+
+
+class Metal(Thing):
+    child_generators = [ChildGenerator("iron")]
+
+
+class MetalGrill(Thing):
+    child_generators = [ChildGenerator("metal")]
+
+
+class Porcelain(Thing):
+    child_generators = [ChildGenerator("silica")]
+
+
+class Ceramic(Thing):
+    child_generators = [ChildGenerator("silica")]
 
 
 class Chair(Thing):
@@ -137,15 +156,46 @@ class TvRemote(Thing):
     names_data = ["TV remote"]
 
 
-# new Thing("coin",["organic matter,2%","dirt,2%","copper"]);
+class Coin(Thing):
+    child_generators = [
+        ChildGenerator("organic matter", probability=2),
+        ChildGenerator("dirt", probability=2),
+        ChildGenerator("copper"),
+    ]
+
+
 # new Thing("gold coin",["gold"]);
-# new Thing("dirt",["organic matter,50%","dust"]);
+
+
+class Dirt(Thing):
+    child_generators = [
+        ChildGenerator("organic matter", probability=50),
+        ChildGenerator("dust"),
+    ]
+
+
 # new Thing("grease",["lipids","dust"]);
-# new Thing("dust",["molecule"]);
+
+
+class Dust(Thing):
+    child_generators = [ChildGenerator("molecule")]
+
+
 # new Thing("crumbs",["organic matter"]);
 # new Thing("lint",["textile fibre"]);
-# new Thing("pen",["plastic","ink,80%"]);
-# new Thing("button",["plastic"]);
+
+
+class Pen(Thing):
+    child_generators = [
+        ChildGenerator("plastic"),
+        ChildGenerator("ink", probability=80),
+    ]
+
+
+class Button(Thing):
+    child_generators = [ChildGenerator("plastic")]
+
+
 # new Thing("note",["note writing","paper"]);
 # new Thing("note writing",[],["*NOTE*"]);
 
@@ -178,7 +228,8 @@ class Mirror(Thing):
     ]
 
 
-# new Thing("glass",["silica"]);
+class Glass(Thing):
+    child_generators = [ChildGenerator("silica")]
 
 
 class Desk(Thing):
@@ -200,10 +251,21 @@ class Cupboard(Thing):
     ]
 
 
-# new Thing("drinking glass",["glass"],"glass");
-# new Thing("bowl",["ceramic"]);
-# new Thing("cup",["ceramic"]);
-# new Thing("plate",["ceramic"]);
+class DrinkingGlass(Thing):
+    child_generators = [ChildGenerator("glass")]
+    names_data = "glass"
+
+
+class Bowl(Thing):
+    child_generators = [ChildGenerator("ceramic")]
+
+
+class Cup(Thing):
+    child_generators = [ChildGenerator("ceramic")]
+
+
+class Plate(Thing):
+    child_generators = [ChildGenerator("ceramic")]
 
 
 class Closet(Thing):
@@ -235,7 +297,7 @@ class Table(Thing):
 
 
 class LivingRoomTable(Table):
-    type_name = 'living-room'
+    type_name = 'living-room table'
     child_generators = [
         ChildGenerator(".table"),
         ChildGenerator("drawer", (0, 2)),
@@ -243,7 +305,27 @@ class LivingRoomTable(Table):
     names_data = ["table"]
 
 
-# new Thing("drawer",["note,0-8","office toy,30%","office toy,30%","pen,30%","pen,10%","pen,5%","donut box,4%","can,2%","book,20%","book,20%","book,5%","book,5%","button,10%","button,10%","dust,40%","lint,40%"]);
+class Drawer(Thing):
+    child_generators = [
+        ChildGenerator("note", (0, 8)),
+        ChildGenerator("office toy", probability=30),
+        ChildGenerator("office toy", probability=30),
+        ChildGenerator("pen", probability=30),
+        ChildGenerator("pen", probability=10),
+        ChildGenerator("pen", probability=5),
+        ChildGenerator("donut box", probability=4),
+        ChildGenerator("can", probability=2),
+        ChildGenerator("book", probability=20),
+        ChildGenerator("book", probability=20),
+        ChildGenerator("book", probability=5),
+        ChildGenerator("book", probability=5),
+        ChildGenerator("button", probability=10),
+        ChildGenerator("button", probability=10),
+        ChildGenerator("dust", probability=40),
+        ChildGenerator("lint", probability=40),
+    ]
+
+
 # new Thing("note stack",["note,5-25"]);//lotsonotes
 
 
@@ -373,25 +455,14 @@ class TvShow(Thing):
 # new Thing("electronic component",["plastic,75%","copper,75%","silicon,25%","gold,5%"],["transistor","inductor","capacitor","diode","metagizmo","transmorpher","beeper"]);
 
 
-# ChildGenerator("porcelain"),
-# ChildGenerator("metal"),
 # ChildGenerator("organic matter", probability=5),
-# ChildGenerator("pipes"),
-# ChildGenerator("water"),
 # ChildGenerator("pasta", probability=0.1),
-# ChildGenerator("dirt", probability=30),
 # ChildGenerator("insect", probability=5),
 # ChildGenerator("hair", probability=30)
-# ChildGenerator("glass"),
 # ChildGenerator("portal", probability=0.1),
 # ChildGenerator("wood"),
-# ChildGenerator("nails", probability=50),
 # ChildGenerator("cloth"),
 # ChildGenerator("keratin")
-# ChildGenerator("cup", (0, 6)),
-# ChildGenerator("drinking glass", (0, 6)),
-# ChildGenerator("bowl", (0, 4)),
-# ChildGenerator("plate", (0, 8)),
 # ChildGenerator("wood frame"),
 # ChildGenerator("wood shelf", (1, 4)),
 # ChildGenerator("drawer", (0, 2)),
@@ -405,10 +476,14 @@ class TvShow(Thing):
 # ChildGenerator("coat", (0, 3)),
 # ChildGenerator("socks", (0, 8)),
 # ChildGenerator("shoes", (0, 6)),
-# ChildGenerator("button", probability=20),
 # ChildGenerator("plastic shelf", (3, 8)),
-# ChildGenerator("coin", probability=5),
-# ChildGenerator("pen", probability=5),
+# ChildGenerator("copper"),
+# [ChildGenerator("molecule")]
+# ChildGenerator("ink", probability=80),
+# ChildGenerator("note", (0, 8)),
+# ChildGenerator("office toy", probability=30),
+# ChildGenerator("book", probability=20),
+# ChildGenerator("lint", probability=40),
 
 # ChildGenerator("donut box", probability=4),
 # ChildGenerator("cheese", (0, 3)),
@@ -436,24 +511,41 @@ CONTENTS = [
     KitchenSink,
     Sink,
     Toilet,
-
+    Pipes,
+    Nails,
+    Metal,
+    MetalGrill,
+    Porcelain,
+    Ceramic,
     Chair,
     Armchair,
     Couch,
     TvRemote,
+    Coin,
+
+    Dirt,
+
+    Dust,
+
+    Pen,
+    Button,
 
     Bed,
     Pillow,
     Feather,
 
     Mirror,
-
+    Glass,
     Desk,
     Cupboard,
-
+    DrinkingGlass,
+    Bowl,
+    Cup,
+    Plate,
     Closet,
     LivingRoomTable,
     Table,
+    Drawer,
 
     Bookshelf,
     SmallBookshelf,
