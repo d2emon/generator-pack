@@ -351,9 +351,29 @@ class SmallBookshelf(Bookshelf):
     names_data = ["bookshelf"]
 
 
-# new Thing("wood shelf",["wood","nails"],"shelf");
-# new Thing("plastic shelf",["plastic","nails,50%"],"shelf");
-# new Thing("wood frame",["wood","nails"]);
+class WoodShelf(Thing):
+    child_generators = [
+        ChildGenerator("wood"),
+        ChildGenerator("nails")
+    ]
+    names_data = ["shelf"]
+
+
+class PlasticShelf(Thing):
+    child_generators = [
+        ChildGenerator("plastic"),
+        ChildGenerator("nails", probability=50)
+    ]
+    names_data = ["shelf"]
+
+
+class WoodFrame(Thing):
+    child_generators = [
+        ChildGenerator("wood"),
+        ChildGenerator("nails")
+    ]
+
+
 # new Thing("book",["page,20-100"],"*BOOK*");
 # new Thing("page",["paragraph,1-8","paper"]);
 # new Thing("paper",["cellulose"]);
@@ -463,9 +483,6 @@ class TvShow(Thing):
 # ChildGenerator("wood"),
 # ChildGenerator("cloth"),
 # ChildGenerator("keratin")
-# ChildGenerator("wood frame"),
-# ChildGenerator("wood shelf", (1, 4)),
-# ChildGenerator("drawer", (0, 2)),
 # ChildGenerator("plastic"),
 # ChildGenerator("electronics"),
 # ChildGenerator("skeleton", probability=0.1),
@@ -476,7 +493,6 @@ class TvShow(Thing):
 # ChildGenerator("coat", (0, 3)),
 # ChildGenerator("socks", (0, 8)),
 # ChildGenerator("shoes", (0, 6)),
-# ChildGenerator("plastic shelf", (3, 8)),
 # ChildGenerator("copper"),
 # [ChildGenerator("molecule")]
 # ChildGenerator("ink", probability=80),
@@ -549,6 +565,9 @@ CONTENTS = [
 
     Bookshelf,
     SmallBookshelf,
+    WoodShelf,
+    PlasticShelf,
+    WoodFrame,
 
     Bathtub,
     Shower,
