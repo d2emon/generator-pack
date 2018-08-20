@@ -60,8 +60,15 @@ class Chest(Thing):
     ]
 
 
-# new Thing("bellybutton",["skin","lint,0-1"]);
-# new Thing("nipple",["skin"]);
+class Bellybutton(Thing):
+    child_generators = [
+        ChildGenerator("skin"),
+        ChildGenerator("lint", (0, 1))
+    ]
+
+
+class Nipple(Thing):
+    child_generators = [ChildGenerator("skin")]
 
 
 class Pelvis(Thing):
@@ -72,8 +79,18 @@ class Pelvis(Thing):
     ]
 
 
-# new Thing("naughty bits",[".soft body part"]);
-# new Thing("butt",["pasta,0.01%","sweat,50%",".body part"]);
+class NaughtyBits(Thing):
+    child_generators = [ChildGenerator(".soft body part")]
+
+
+class Butt(Thing):
+    child_generators = [
+        ChildGenerator("pasta", probability=0.01),
+        ChildGenerator("sweat", probability=50),
+        ChildGenerator(".body part"),
+    ]
+
+
 # new Thing("arm",["hand","elbow","armpit",".body part"],"arm");
 # new Thing("hand",["finger,5",".body part"]);
 # new Thing("finger",["fingernail",".body part"],"finger");
@@ -167,8 +184,11 @@ CONTENTS = [
     Body,
     Torso,
     Chest,
-
+    Bellybutton,
+    Nipple,
     Pelvis,
+    NaughtyBits,
+    Butt,
 
     Head,
 
