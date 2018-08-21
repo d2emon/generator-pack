@@ -1,11 +1,11 @@
-class Opponent():
-    def __init__(self, title="Untitled"):
-        self.title = title
+from rpg.pc import PlayerCharacter
 
+
+class Opponent(PlayerCharacter):
     def roll(self):
         import random
         roll = random.randint(1, 6)
-        print("%s rolls a die (%d)" % (self.title, roll))
+        print("%s rolls a die (%d)" % (self.name, roll))
         return roll
 
 

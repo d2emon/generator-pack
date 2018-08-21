@@ -1,16 +1,16 @@
-class PlayerCharacter():
-    name = "player"
+from rpg.pc import PlayerCharacter as BasePlayerCharacter
+
+
+class PlayerCharacter(BasePlayerCharacter):
     triggers_count = 17
     items_count = 17
 
-    def __init__(self):
-        self.reset()
-
-    def reset(self):
+    def __init__(self, name=None):
+        super().__init__(name)
         self.article_id = 0
         self.history = [self.article_id, ]
-        self.triggers = [False for t in range(self.triggers_count)]
-        self.items = [None for i in range(self.items_count)]
+        self.triggers = [False for _ in range(self.triggers_count)]
+        self.items = [None for _ in range(self.items_count)]
 
     def show(self):
         print(self.name)
@@ -35,4 +35,5 @@ class PlayerCharacter():
 
 
 class Conan(PlayerCharacter):
-    name = "Конан"
+    def __init__(self):
+        super().__init__("Конан")

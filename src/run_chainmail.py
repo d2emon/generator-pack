@@ -1,7 +1,7 @@
 #! /usr/bin/python
-from chainmail import Opponent, PlayerStack, Battle
-from chainmail.movesystem import MoveCounterMove
-from chainmail.terrain import generateTerrain
+from rpg.games.chainmail import Opponent, PlayerStack, Battle
+from rpg.games.chainmail import MoveCounterMove
+from rpg.games.chainmail.terrain import generateTerrain
 
 
 def play(*args, **kwargs):
