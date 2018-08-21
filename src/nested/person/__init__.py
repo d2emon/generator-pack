@@ -16,10 +16,6 @@ class ClothingSet(Thing):
     names_data = "clothing"
 
 
-# new Thing("man",[".person"],"*MAN*");
-# new Thing("woman",[".person"],"*WOMAN*");
-
-
 class Person(Thing):
     child_generators = [
         ChildGenerator("body"),
@@ -27,6 +23,16 @@ class Person(Thing):
         ChildGenerator("clothing set"),
     ]
     names_data = ["*PERSON*"]
+
+
+class Man(Person):
+    child_generators = [ChildGenerator(".person")]
+    names_data = ["*MAN"]
+
+
+class Woman(Person):
+    child_generators = [ChildGenerator(".person")]
+    names_data = ["*WOMAN"]
 
 
 # new Thing("corpse",["body","clothing set","blood,35%","worm,20%","worm,10%"],"*PERSON*| (dead)");
@@ -91,18 +97,91 @@ class Butt(Thing):
     ]
 
 
-# new Thing("arm",["hand","elbow","armpit",".body part"],"arm");
-# new Thing("hand",["finger,5",".body part"]);
-# new Thing("finger",["fingernail",".body part"],"finger");
-# new Thing("fingernail",["dust,30%","keratin"],"fingernail");
-# new Thing("elbow",[".body part"]);
-# new Thing("armpit",["armpit hair","sweat,80%",".soft body part"]);
-# new Thing("armpit hair",[".hair"],"hair");
-# new Thing("leg",["foot","knee",".body part"],"leg");
-# new Thing("foot",["toe,5","sweat,30%",".body part"]);
-# new Thing("toe",["toenail",".body part"],"toe");
-# new Thing("toenail",["dust,40%","keratin"],"toenail");
-# new Thing("knee",[".body part"],"knee");
+class Arm(Thing):
+    child_generators = [
+        ChildGenerator("hand"),
+        ChildGenerator("elbow"),
+        ChildGenerator("armpit"),
+        ChildGenerator(".body part"),
+    ]
+
+
+class Hand(Thing):
+    child_generators = [
+        ChildGenerator("finger", (5, )),
+        ChildGenerator(".body part"),
+    ]
+
+
+class Finger(Thing):
+    child_generators = [
+        ChildGenerator("fingernail"),
+        ChildGenerator(".body part"),
+    ]
+
+
+class Fingernail(Thing):
+    child_generators = [
+        ChildGenerator("dust", probability=30),
+        ChildGenerator("keratin"),
+    ]
+
+
+class Elbow(Thing):
+    child_generators = [
+        ChildGenerator(".body part"),
+    ]
+
+
+class Armpit(Thing):
+    child_generators = [
+        ChildGenerator("armpit hair"),
+        ChildGenerator("sweat", probability=80),
+        ChildGenerator(".soft body part"),
+    ]
+
+
+class ArmpitHair(Thing):
+    names_data = "hair"
+    child_generators = [
+        ChildGenerator(".hair"),
+    ]
+
+
+class Leg(Thing):
+    child_generators = [
+        ChildGenerator("foot"),
+        ChildGenerator("knee"),
+        ChildGenerator(".body part"),
+    ]
+
+
+class Foot(Thing):
+    child_generators = [
+        ChildGenerator("toe", (5,)),
+        ChildGenerator("sweat", probability=30),
+        ChildGenerator(".body part"),
+    ]
+
+
+class Toe(Thing):
+    child_generators = [
+        ChildGenerator("toenail"),
+        ChildGenerator(".body part"),
+    ]
+
+
+class Toenail(Thing):
+    child_generators = [
+        ChildGenerator("dust", probability=40),
+        ChildGenerator("keratin"),
+    ]
+
+
+class Knee(Thing):
+    child_generators = [
+        ChildGenerator(".body part"),
+    ]
 
 
 class Head(Thing):
@@ -151,8 +230,18 @@ class FutureClothingSet(ClothingSet):
     names_data = ["clothing"]
 
 
-# new Thing("future man",[".future person"],"*FUTURE MAN*");
-# new Thing("future woman",[".future person"],"*FUTURE WOMAN*");
+class FutureMan(Man):
+    child_generators = [
+        ChildGenerator(".future person")
+    ]
+    names_data = ["*FUTURE MAN*"]
+
+
+class FutureWoman(Man):
+    child_generators = [
+        ChildGenerator(".future person")
+    ]
+    names_data = ["*FUTURE WOMAN*"]
 
 
 class FuturePerson(Person):
@@ -179,6 +268,8 @@ class Tourist(Person):
 CONTENTS = [
     ClothingSet,
 
+    Man,
+    Woman,
     Person,
 
     Body,
@@ -189,11 +280,24 @@ CONTENTS = [
     Pelvis,
     NaughtyBits,
     Butt,
-
+    Arm,
+    Hand,
+    Finger,
+    Fingernail,
+    Elbow,
+    Armpit,
+    ArmpitHair,
+    Leg,
+    Foot,
+    Toe,
+    Toenail,
+    Knee,
     Head,
 
     FutureClothingSet,
 
+    FutureMan,
+    FutureWoman,
     FuturePerson,
 
     Tourist,
