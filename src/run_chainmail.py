@@ -1,6 +1,6 @@
 #! /usr/bin/python
 from chainmail import Opponent, PlayerStack, Battle
-from chainmail.movesystem import MoveCounterMove
+from chainmail.battle.movesystem import MoveCounterMove
 from chainmail.terrain import generateTerrain
 
 

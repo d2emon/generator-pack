@@ -1,4 +1,4 @@
-class Opponent():
+class Opponent:
     def __init__(self, title="Untitled"):
         self.title = title
 
@@ -9,7 +9,7 @@ class Opponent():
         return roll
 
 
-class PlayerStack():
+class PlayerStack:
     def __init__(self):
         self.__players = []
 
@@ -30,32 +30,3 @@ class PlayerStack():
             rolls = {p.roll(): p for p in self.__players}
         order = sorted(rolls, reverse=True)
         return [rolls[r] for r in order]
-
-
-class Battle():
-    def __init__(self, moveSystem, opponents):
-        self.moveSystem = moveSystem
-        self.opponents = opponents
-
-    def start(self):
-        self.__turns = 5
-        self.moveSystem.start(self.opponents)
-        print("Battle stated")
-
-    def finish(self):
-        print("Battle finished")
-
-    @property
-    def is_finished(self):
-        return self.__turns <= 0
-
-    def turn(self):
-        print("Next turn")
-        self.moveSystem.turn()
-        self.__turns -= 1
-
-    def process(self):
-        self.start()
-        while not self.is_finished:
-            self.turn()
-        self.finish()
