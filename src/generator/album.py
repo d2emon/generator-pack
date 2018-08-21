@@ -1,7 +1,7 @@
 from .generator import ListGenerator
 from .generator.generated import Generated
 from .generator.generator_data import ListData
-from data.album import names
+from fixtures import names
 
 
 class Album(Generated):
