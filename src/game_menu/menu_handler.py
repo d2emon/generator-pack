@@ -1,14 +1,14 @@
 from menu import Menu
 
 
-class MenuHandler():
+class MenuHandler:
     @property
     def text(self):
         return ""
 
     @property
-    def menuOption(self):
-        return (self.text, self.handle)
+    def option(self):
+        return self.text, self.handle
 
     def handle(self):
         menu = Menu(
