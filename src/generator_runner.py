@@ -133,8 +133,6 @@ def run_generator(name='', count=1, *args, **kwargs):
     print(name, count, args, kwargs)
 
     if name == 'street':
-        data = [markov_street(streets, 64) for i in range(count)]
-        print_result(data, ('Street', args, kwargs))
         return
     if name == 'lugansk':
         data = [Demonym('Lugansk') for i in range(count)]
