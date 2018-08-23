@@ -1,4 +1,4 @@
-from utils import load_lines
+from utils.loaders import load_lines
 
 import random
 

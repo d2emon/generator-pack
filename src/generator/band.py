@@ -1,7 +1,7 @@
 from .generator import ListGenerator, PercentedGenerator
 from .generator.generated import Generated
 from .generator.generator_data import ListData
-from fixtures import names1, names2, names3, names4, names5
+from fixtures.media.band import names1, names2, names3, names4, names5
 
 
 class Band(Generated):

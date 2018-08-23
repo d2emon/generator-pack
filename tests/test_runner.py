@@ -1,7 +1,7 @@
 import pytest
 import random
 
-from generator_runner import generators, markov_street
+from generator import generators, markov_street
 
 from generator.demonym import Demonym
 from fixtures.streets import streets
@@ -13,24 +13,24 @@ def count():
 
 
 def test_street(count):
-    data = [markov_street(streets, 64) for _ in range(count)]
-    assert data is None
+    for _ in range(count):
+        assert markov_street(streets, 64) is None
 
 
 def test_lugansk(count):
-    data = [Demonym('Lugansk') for _ in range(count)]
-    assert data is None
+    for _ in range(count):
+        assert str(Demonym('Lugansk'))[:4] == "Luga"
 
 
 def test_all(count):
     for name, g in generators.items():
         print(name)
-        data = [g.generate() for _ in range(count)]
-        assert data is None
+        for _ in range(count):
+            assert g.generate() is not None
 
 
 def test_other(count):
     name = random.choice(generators.keys())
     g = generators.get(name)
-    data = [g.generate() for _ in range(count)]
-    assert data is None
+    for _ in range(count):
+        assert g.generate() is None

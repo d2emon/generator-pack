@@ -5,7 +5,7 @@ def load_lines(filename):
     :return:
     """
     lines = []
-    with open(filename, "r", encoding='utf-8') as f:
+    with open('../' + filename, "r", encoding='utf-8') as f:
         lines = [line.strip() for line in f]
     return lines
 

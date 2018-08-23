@@ -3,7 +3,7 @@ from .generated import Generated
 from .template import GeneratorTemplate
 
 
-from utils import load_lines
+from utils.loaders import load_lines
 
 import random
 

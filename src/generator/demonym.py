@@ -2,7 +2,7 @@ from .generator import ListGenerator, PercentedGenerator
 from .generator.generated import Generated
 from .generator.generator_data import FileData
 
-from utils import load_lines
+from utils.loaders import load_lines
 
 import random
 
