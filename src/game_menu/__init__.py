@@ -1,45 +1,7 @@
 #! /usr/bin/env python
 from menu import Menu
-from .utils import MenuHandler
-from generator.space.galaxy import GalaxyGenerator
-from generator.space.planet import PlanetGenerator
 
-
-galaxies = []
-
-
-class GalaxyHandler(MenuHandler):
-    def __init__(self, galaxy):
-        self.galaxy = galaxy
-
-    @property
-    def text(self):
-        return self.galaxy.generated_value
-
-    def handle(self):
-        planets = []
-        for i in range(10):
-            planets.append(GalaxyHandler(PlanetGenerator.generate()).menuOption)
-        menu = Menu(
-            title=self.text,
-            options=planets + [
-                ("Back", Menu.CLOSE),
-                ("Exit", exit),
-            ]
-        )
-        menu.open()
-
-
-def list_galaxies():
-    global galaxies
-    galaxies = []
-    for i in range(10):
-        galaxies.append(GalaxyHandler(GalaxyGenerator.generate()).menuOption)
-    menu = Menu(
-        title="Galaxies",
-        options=galaxies + [("Exit", Menu.CLOSE), ]
-    )
-    menu.open()
+from .galaxy_menu import list_galaxies
 
 
 def show_menu():
