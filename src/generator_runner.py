@@ -55,55 +55,6 @@ generators = {
 }
 
 
-
-
 def markov_street(data, length=32):
     g = MarkovChain(data_list=data, length=3).generator()
     return "ул. {}".format(g.generate(length))
-
-
-def print_result(data=[], title=None):
-    print("=" * 80)
-    if title is not None:
-        print(title)
-        print("-" * 80)
-    for i, item in enumerate(data):
-        print("{}:\n----\n{}\n----\n{}".format(
-            i + 1,
-            repr(item),
-            item
-        ))
-        print('-' * 80)
-        print(item.description)
-        print("-" * 80)
-    print("=" * 80)
-
-
-def run_generator(name='', count=1, *args, **kwargs):
-    try:
-        count = int(count)
-    except:
-        count = 1
-    print(name, count, args, kwargs)
-
-    if name == 'street':
-        return
-    if name == 'lugansk':
-        data = [Demonym('Lugansk') for i in range(count)]
-        print_result(data, 'Lugansk')
-        return
-    if name == 'all':
-        for name, g in generators.items():
-            print(name)
-            data = [g.generate() for i in range(count)]
-            print_result(data, name)
-        return
-
-    g = generators.get(name)
-    if g is None:
-        print_result(generators.keys())
-        return
-
-    data = [g.generate(*args, **kwargs) for i in range(count)]
-    print(args, kwargs)
-    print_result(data, name)
