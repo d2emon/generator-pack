@@ -11,7 +11,7 @@ class MoveSystem:
 
 class ChainmailMoveSystem(MoveSystem):
     def move_figures(self, mover):
-        print("{} moves its figures".format(mover.title))
+        print("{} moves its figures".format(mover.name))
 
     def artillery(self):
         print("Artillery fire is taken")

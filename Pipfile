@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 "num2words" = "==0.5.6"
 Menu = "==3.1.0"
+coverage = "*"
 
 [dev-packages]
 
