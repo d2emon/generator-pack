@@ -12,7 +12,7 @@ class Generated:
             setattr(self, field, kwargs.get(field))
 
     def __str__(self):
-        return self.value
+        return str(self.value)
 
     def __repr__(self):
         return "{}:\t\"{}\"".format(type(self).__name__, str(self))
