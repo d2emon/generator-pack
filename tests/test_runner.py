@@ -1,20 +1,14 @@
 import pytest
 import random
 
-from generator import generators, markov_street
+from generator import generators
 
 from generator.other.demonym import Demonym
-from fixtures.streets import streets
 
 
 @pytest.fixture
 def count():
     return random.randrange(255)
-
-
-def test_street(count):
-    for _ in range(count):
-        assert markov_street(streets, 64) is None
 
 
 def test_lugansk(count):

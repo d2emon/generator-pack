@@ -48,7 +48,7 @@ class MarkovChain(GeneratorData):
             return None
 
         block = prev[-self.length:]
-        next_blocks = self.data.get(block)
+        next_blocks = self[block]
         if next_blocks is None:
             return None
         return random.choice(next_blocks)
