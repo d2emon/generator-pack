@@ -1,28 +1,27 @@
 from .generator import *
-
-from generator.name.other.album import AlbumGenerator
-from generator.name.other.band import BandGenerator
-from generator.other.battlecry import BattleCryGenerator
-from generator._unknown.motivation import MotivationGenerator
-from generator.other.concept import ArtConceptBeingGenerator, ArtConceptPlaceGenerator, ArtConceptGenerator, StoryConceptCharacterGenerator, StoryConceptEventGenerator, StoryConceptGenerator
-from generator.other.demonym import DemonymGenerator
-from generator.other.haiku import HaikuGenerator
-from generator.other.idiom import IdiomGenerator
-from generator.other.motto import MottoGenerator
-from generator.other.prayer import ForgivePrayerGenerator, AidPrayerGenerator, PrayerGenerator
-from generator.other.riddle import RiddleGenerator
-from generator.other.schoolSubject import SchoolSubjectGenerator
-from generator.other.slogan import SloganGenerator
-from generator.other.swear import SwearGenerator
-from generator.other.wisdom import WisdomQuoteGenerator
-from generator._unknown.world import WorldGenerator
-from generator.description.race import RandomRaceGenerator
-
-from generator._unknown.space import GalaxyGenerator
-from generator._unknown.space import StarGenerator
-from generator._unknown.space import PlanetGenerator
-
 from .generator.markov import MarkovChain
+
+from .name.other.album import AlbumGenerator
+from .name.other.band import BandGenerator
+from ._unknown.motivation import MotivationGenerator
+from ._unknown.world import WorldGenerator
+from ._unknown.space import GalaxyGenerator
+from ._unknown.space import StarGenerator
+from ._unknown.space import PlanetGenerator
+from .other.battlecry import BattleCryGenerator
+from .other.concept import ArtConceptBeingGenerator, ArtConceptPlaceGenerator, ArtConceptGenerator, StoryConceptCharacterGenerator, StoryConceptEventGenerator, StoryConceptGenerator
+from .other.demonym import DemonymGenerator
+from .other.haiku import HaikuGenerator
+from .other.idiom import IdiomGenerator
+from .other.motto import MottoGenerator
+from .other.prayer import ForgivePrayerGenerator, AidPrayerGenerator, PrayerGenerator
+from .other.riddle import RiddleGenerator
+from .other.schoolSubject import SchoolSubjectGenerator
+from .other.slogan import SloganGenerator
+from .other.swear import SwearGenerator
+from .other.wisdom import WisdomQuoteGenerator
+from .description.race import RandomRaceGenerator
+
 
 generators = {
     "album": AlbumGenerator,
