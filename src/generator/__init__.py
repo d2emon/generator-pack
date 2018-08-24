@@ -52,8 +52,3 @@ generators = {
     "planet": PlanetGenerator,
     "alien": RandomRaceGenerator,
 }
-
-
-def markov_street(data, length=32):
-    g = MarkovChain(data_list=data, length=3).generator()
-    return "ул. {}".format(g.generate(length))

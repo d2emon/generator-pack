@@ -57,3 +57,8 @@ class MarkovGenerator():
                 break
             generated += block
         return generated.strip()
+
+
+def markov_street(data, length=32):
+    g = MarkovChain(data_list=data, length=3).generator()
+    return "ул. {}".format(g.generate(length))
