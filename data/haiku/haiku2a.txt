@@ -21,10 +21,34 @@ in shadows
 in silence
 in spring night
 in still peace
-"in the light","in the wind","in twilight","lonely now","morning comes","music
-plays","nearby home","over here","over hills","over
-there","playfully","side to side","silently","softly still","swift and
-just","throughout all","time to time","to the West","to the sky","turn
-around","voiceless now","wait and see","wild and fierce","with
-caution","with desire","with relief","with rigor","without care","without
-fear","without grief","eternally"
+in the light
+in the wind
+in twilight
+lonely now
+morning comes
+music plays
+nearby home
+over here
+over hills
+over there
+playfully
+side to side
+silently
+softly still
+swift and just
+throughout all
+time to time
+to the West
+to the sky
+turn around
+voiceless now
+wait and see
+wild and fierce
+with caution
+with desire
+with relief
+with rigor
+without care
+without fear
+without grief
+eternally
