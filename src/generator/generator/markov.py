@@ -1,23 +1,50 @@
-# from . import DataGenerator
-from .generator_data import GeneratorData
-
 import random
+
+from .generator_data import GeneratorData
 
 
 class MarkovChain(GeneratorData):
-    startchar = " "
-    breakchar = "\n"
+    start_char = " "
+    break_char = "\n"
 
-    def __init__(self, data_list=None, length=2, data=dict()):
-        self.data = data
+    def __init__(self, data=(), length=2):
+        super().__init__(dict())
+
         self.length = length
-        if data_list is not None:
-            self.parse_list(data_list, length=length)
+        for string in data:
+            self.parse(string)
+
+    def _string_unit(self, string, i, length):
+        first = i - length
+        last = i + length
+
+        key = ""
+        if first < 0:
+            key = self.start_char * (-first)
+            first = 0
+        key += string[first:i]
+
+        if last < len(string):
+            value = string[i:last]
+        else:
+            value = string[i:]
+            value += self.break_char * (last - len(string))
+
+        return key, value
+
+    def parse(self, string="", length=None):
+        length = length or self.length
+        # string = (self.start_char * length) + string + (self.break_char * length)
+
+        chain = [self._string_unit(string, i, length) for i in range(len(string))]
+
+        for key, unit in chain:
+            self[key] = unit
 
     def select(self, prev=""):
         if len(prev) < self.length:
-            return self.startchar * self.length
-        if prev[-1] == self.breakchar:
+            return self.start_char * self.length
+        if prev[-1] == self.break_char:
             return None
 
         block = prev[-self.length:]
@@ -26,39 +53,39 @@ class MarkovChain(GeneratorData):
             return None
         return random.choice(next_blocks)
 
-    def parse_list(self, data=[], length=None):
-        for s in data:
-            self.parse_str(s, length)
+    def __setitem__(self, key, value):
+        if self.data.get(key) is None:
+            self.data[key] = [value]
+        else:
+            self.data[key].append(value)
 
-    def parse_str(self, data="", length=None):
-        if not length:
-            length = self.length
-        data = (self.startchar * length) + data + (self.breakchar * length)
-        for i in range(len(data)-length):
-            block_end = i + length
-            block = data[i:block_end]
-            if self.data.get(block) is None:
-                self.data[block] = []
-            self.data[block].append(data[block_end:block_end + length])
-
-    def generator(self):
-        return MarkovGenerator(self)
-
-
-class MarkovGenerator():
-    def __init__(self, chain=MarkovChain()):
-        self.chain = chain
+    def __getitem__(self, item):
+        return self.data.get(item)
 
     def generate(self, length=16):
-        generated = ""
-        while len(generated) < length:
-            block = self.chain.select(generated)
-            if block is None:
+        result = ""
+        while len(result) < length:
+            unit = self.select(result)
+            if unit is None:
                 break
-            generated += block
-        return generated.strip()
+            result += unit
+        return result.strip()
 
 
-def markov_street(data, length=32):
-    g = MarkovChain(data_list=data, length=3).generator()
-    return "ул. {}".format(g.generate(length))
+class MarkovGenerator:
+    chain_class = MarkovChain
+    _chain = None
+
+    def __init__(self, name):
+        self.name = name
+
+    @classmethod
+    def chain(cls):
+        if cls._chain is None:
+            cls._chain = cls.chain_class()
+        return cls._chain
+
+    @classmethod
+    def generate(cls, length=32):
+        name = cls.chain().generate(length)
+        return cls(name)
