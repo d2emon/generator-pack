@@ -8,10 +8,13 @@ class Generated:
         for field in self.fields:
             setattr(self, field, kwargs.get(field))
 
+    def __str__(self):
+        return str(self.value)
+
     def __repr__(self):
         if self.title is None:
-            return str(self.value)
-        return "{}:\t\"{}\"".format(self.title, self.value)
+            return str(self)
+        return "{item.title}:\t\"{item.value}\"".format(item=self)
 
     @property
     def generated_value(self):
