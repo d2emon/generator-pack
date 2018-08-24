@@ -5,9 +5,9 @@ from .name.other.album import AlbumGenerator
 from .name.other.band import BandGenerator
 from ._unknown.motivation import MotivationGenerator
 from ._unknown.world import WorldGenerator
-from ._unknown.space import GalaxyGenerator
-from ._unknown.space import StarGenerator
-from ._unknown.space import PlanetGenerator
+from ._unknown.space.galaxy import GalaxyGenerator
+from ._unknown.space.star import StarGenerator
+from ._unknown.space.planet import PlanetGenerator
 from .other.battlecry import BattleCryGenerator
 from .other.concept import ArtConceptBeingGenerator, ArtConceptPlaceGenerator, ArtConceptGenerator, StoryConceptCharacterGenerator, StoryConceptEventGenerator, StoryConceptGenerator
 from .other.demonym import DemonymGenerator

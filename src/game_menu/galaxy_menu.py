@@ -1,7 +1,7 @@
 from menu import Menu
 
-from generator._unknown.space import GalaxyGenerator
-from generator._unknown.space import PlanetGenerator
+from generator._unknown.space.galaxy import GalaxyGenerator
+from generator._unknown.space.planet import PlanetGenerator
 
 from .menu_handler import MenuHandler
 
