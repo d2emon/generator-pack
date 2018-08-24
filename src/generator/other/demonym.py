@@ -1,4 +1,4 @@
-from generator.generator import ListGenerator, PercentedGenerator
+from generator.generator import ListGenerator, PercentGenerator
 from generator.generator.generated import Generated
 from generator.generator.generator_data import FileData
 
@@ -113,7 +113,7 @@ class DemonymBaseSubGenerator(ListGenerator):
     generated_class = DemonymBase
 
 
-class DemonymGenerator(PercentedGenerator):
+class DemonymGenerator(PercentGenerator):
     class DemonymBaseSubGenerator1(DemonymBaseSubGenerator):
         template = "{demonym1}{demonym2}{demonym3}{end}"
         data = {

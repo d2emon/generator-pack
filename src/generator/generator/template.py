@@ -1,37 +1,39 @@
-from utils.loaders import load_lines
-
 import random
 
+from utils.loaders import load_lines
 
-class GeneratorTemplate():
+
+class GeneratorTemplate:
     letters = [chr(c) for c in range(ord("A"), ord("Z") + 1)]
     numbers = range(0, 9)
-    text = "%s %s"
+    text = ""
 
     @classmethod
-    def generate(cls, text=None):
-        formatter = {
+    def formatter(cls):
+        return {
             "{c}": cls.letters,
             "{n}": cls.numbers,
         }
 
-        if not text:
-            text = cls.text
+    @classmethod
+    def generate(cls, text=None):
+        text = text or cls.text
 
-        for k, v in formatter.items():
+        for k, v in cls.formatter().items():
             while k in text:
                 text = text.replace(k, str(random.choice(v)), 1)
         return text
 
     @classmethod
     def strip(cls, filenames):
-        return (cls.generate() % (
+        return cls.generate().format(
             random.choice(load_lines(filenames[0])),
             random.choice(load_lines(filenames[1])),
-        )).strip()
+        ).strip()
 
 
     @classmethod
     def glue(cls, parts, glue=""):
-        selected = [i.__next__() for i in parts]
-        return glue.join(selected).capitalize()
+        return glue.join(
+            [next(i) for i in parts]
+        ).capitalize()

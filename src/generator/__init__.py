@@ -1,28 +1,29 @@
 from .generator import *
 from .generator.markov import MarkovChain
 
-from .name.other.album import AlbumGenerator
-from .name.other.band import BandGenerator
-from ._unknown.motivation import MotivationGenerator
-from ._unknown.world import WorldGenerator
-from ._unknown.space.galaxy import GalaxyGenerator
-from ._unknown.space.star import StarGenerator
-from ._unknown.space.planet import PlanetGenerator
-from .other.battlecry import BattleCryGenerator
-from .other.concept import ArtConceptBeingGenerator, ArtConceptPlaceGenerator, ArtConceptGenerator, StoryConceptCharacterGenerator, StoryConceptEventGenerator, StoryConceptGenerator
+# from .name.other.album import AlbumGenerator
+# from .name.other.band import BandGenerator
+# from ._unknown.motivation import MotivationGenerator
+# from ._unknown.world import WorldGenerator
+# from ._unknown.space.galaxy import GalaxyGenerator
+# from ._unknown.space.star import StarGenerator
+# from ._unknown.space.planet import PlanetGenerator
+from .other.battlecry import BattleCry
+# from .other.concept import ArtConceptBeingGenerator, ArtConceptPlaceGenerator, ArtConceptGenerator, StoryConceptCharacterGenerator, StoryConceptEventGenerator, StoryConceptGenerator
 from .other.demonym import DemonymGenerator
 from .other.haiku import HaikuGenerator
 from .other.idiom import IdiomGenerator
 from .other.motto import MottoGenerator
-from .other.prayer import ForgivePrayerGenerator, AidPrayerGenerator, PrayerGenerator
+# from .other.prayer import ForgivePrayerGenerator, AidPrayerGenerator, PrayerGenerator
 from .other.riddle import RiddleGenerator
 from .other.schoolSubject import SchoolSubjectGenerator
 from .other.slogan import SloganGenerator
 from .other.swear import SwearGenerator
 from .other.wisdom import WisdomQuoteGenerator
-from .description.race import RandomRaceGenerator
+# from .description.race import RandomRaceGenerator
 
 
+"""
 generators = {
     "album": AlbumGenerator,
     "band": BandGenerator,
@@ -52,3 +53,4 @@ generators = {
     "planet": PlanetGenerator,
     "alien": RandomRaceGenerator,
 }
+"""

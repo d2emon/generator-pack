@@ -1,13 +1,9 @@
-from generator.generator import ListGenerator
-from generator.generator.generated import Generated
+from generator.generator.generated import ListGenerated
 from generator.generator.generator_data import FileData
 
 
-class BattleCry(Generated):
-    title = "BattleCry"
+class BattleCry(ListGenerated):
+    data = {'value': FileData("data/battlecry.txt")}
 
-
-class BattleCryGenerator(ListGenerator):
-    generated_class = BattleCry
-    data = { 'name': FileData("data/battlecry.txt") }
-    template = "{name}!"
+    def __str__(self):
+        return "{}!".format(self.value)

@@ -1,4 +1,4 @@
-from generator.generator import ListGenerator, PercentedGenerator, TemplatedGenerator
+from generator.generator import ListGenerator, PercentGenerator, TemplateGenerator
 from generator.generator.generated import Generated
 #from ..generator.template import GeneratorTemplate
 from generator.generator.generator_data import ListData
@@ -39,7 +39,7 @@ class BaseGalaxyGenerator(ListGenerator):
         )
 
 
-class GalaxyGenerator(PercentedGenerator):
+class GalaxyGenerator(PercentGenerator):
     generated_class = Galaxy
 
     class GalaxyGenerator1(BaseGalaxyGenerator):
@@ -63,11 +63,11 @@ class GalaxyGenerator(PercentedGenerator):
         }
 
 
-    class GalaxyGenerator4(TemplatedGenerator, BaseGalaxyGenerator):
+    class GalaxyGenerator4(TemplateGenerator, BaseGalaxyGenerator):
         template_str = "{c}{c}-{n}{n}"
 
 
-    class GalaxyGenerator5(TemplatedGenerator, BaseGalaxyGenerator):
+    class GalaxyGenerator5(TemplateGenerator, BaseGalaxyGenerator):
         template_str = "{c}{c}{c} {n}{n}{c}"
 
 

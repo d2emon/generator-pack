@@ -1,10 +1,10 @@
-from utils.loaders import load_lines
-
 import random
+
+from utils.loaders import load_lines
 
 
 class GeneratorData:
-    def __init__(self, data=None):
+    def __init__(self, data):
         self.data = data
 
     def __iter__(self):
@@ -20,43 +20,32 @@ class StaticData(GeneratorData):
 
 
 class ListData(GeneratorData):
-    def __init__(self, data=[]):
-        self.data = data
-        self.items = None
-        self.load(data)
+    def __init__(self, data=()):
+        super().__init__(data)
+        self.items = self.generator()
 
-    def load(self, data):
-        self.data = data
-        self.items = self.generator(data)
-
-    def generator(self, data):
-        self.data = data
+    def generator(self, data=None):
+        data = data or self.data
         while True:
-            yield random.choice(self.data)
+            yield random.choice(data)
 
     def __next__(self):
         if self.items is None:
             raise StopIteration
-        return self.items.__next__()
+        return next(self.items)
 
     def unique(self, count=1):
         random.shuffle(self.data)
-        return self.data[:count]
+        for i in range(count):
+            yield self.data[i]
+        raise StopIteration
 
-    def shuffled(self):
-        random.shuffle(self.data)
-        return self.data
-
-    @property
-    def length(self):
+    def __len__(self):
         return len(self.data)
 
 
 class FileData(ListData):
     def __init__(self, filename=""):
-        self.load(filename)
-
-    def load(self, filename):
         self.filename = filename
-        lines = load_lines(self.filename)
-        self.items = self.generator(lines)
+        data = load_lines(self.filename)
+        super().__init__(data)

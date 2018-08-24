@@ -1,4 +1,4 @@
-from generator.generator import DataGenerator, ListGenerator
+from generator.generator import Generator, ListGenerator
 from generator.generator.template import GeneratorTemplate
 from generator.generator.generated import Generated
 from generator.generator.generator_data import FileData
@@ -13,7 +13,7 @@ class Haiku(Generated):
         return "{}:\n{}".format(self.title, "\n".join(self.value))
 
 
-class HaikuSubGenerator(DataGenerator):
+class HaikuSubGenerator(Generator):
     template = "{part1} {part2}"
 
     @classmethod
@@ -23,7 +23,7 @@ class HaikuSubGenerator(DataGenerator):
         return cls.template.format(**next_data)
 
 
-class HaikuGenerator(DataGenerator):
+class HaikuGenerator(Generator):
     generated_class = Haiku
     class HaikuSubGenerator1(HaikuSubGenerator):
         data = [

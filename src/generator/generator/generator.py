@@ -1,92 +1,86 @@
-from .generator_data import StaticData, ListData, FileData
+import random
+
+# from utils.loaders import load_lines
+# from .generator_data import StaticData, ListData, FileData
 from .generated import Generated
 from .template import GeneratorTemplate
 
 
-from utils.loaders import load_lines
-
-import random
-
-
-class DataGenerator:
+class Generator:
     generated_class = Generated
-    default_value = "UNGENERATED"
+    default = "UNGENERATED"
     text_format = "%s"
-    template = "{name}"
 
     @classmethod
-    def generated(cls, *args, **kwargs):
-        return cls.generated_class(*args, **kwargs)
+    def __iter__(cls):
+        return cls
 
     @classmethod
-    def __next__(cls, **kwargs):
+    def __next__(cls):
         raise AttributeError("No value to generate")
 
     @classmethod
     def generate(cls, *args, **kwargs):
-        generated = cls.generated()
-        return cls.fill_generated(generated, *args, **kwargs)
+        generated = cls.generated_class(*args, **kwargs)
+        return cls.populate(generated, *args, **kwargs)
 
     @classmethod
-    def fill_generated(cls, generated, *args, **kwargs):
-        # generated.value = cls.generate_value()
-        generated.value = cls.text_format % (cls.__next__(*args, **kwargs))
+    def populate(cls, generated, *args, **kwargs):
+        generated.value = cls.text_format % (next(cls))
         return generated
 
-    @classmethod
-    def generate_values(cls, count=1):
-        return [next(cls) for i in range(count)]
 
-
-class ListGenerator(DataGenerator):
+class ListGenerator(Generator):
     data = dict()
+    template = "{name}"
+
+    @classmethod
+    def get_data(cls):
+        return cls.data
+
+    @classmethod
+    def __iter__(cls):
+        return cls
 
     @classmethod
     def __next__(cls):
-        next_data = {key: next(d) for key, d in cls.data.items()}
+        next_data = {key: next(d) for key, d in cls.get_data().items()}
         return cls.template.format(**next_data)
 
-# class FileGenerator(ListGenerator):
-#     data_file = ""
-#     data_list = None
-#
-#     @classmethod
-#     def __next__(cls):
-#         if cls.data_list is None:
-#             cls.data_list = FileData(cls.data_file)
-#         return next(cls.data_list)
 
-
-class PercentedGenerator(DataGenerator):
-    subgenerators = dict()
+class FileGenerator(ListGenerator):
+    filename = ""
+    data = None
 
     @classmethod
-    def generator_by_chance(cls, chance=0):
-        for c in sorted(cls.subgenerators):
+    def get_data(cls):
+        if cls.data:
+            return cls.data
+        return FileData(cls.filename)
+
+
+class PercentGenerator(Generator):
+    generators = dict()
+
+    @classmethod
+    def generator(cls, chance=0):
+        for c in sorted(cls.generators.keys()):
             if c >= chance:
-                return cls.subgenerators[c]
+                return cls.generators[c]
         return None
 
     @classmethod
     def __next__(cls):
         chance = random.randint(0, 100)
-        g = cls.generator_by_chance(chance)
-        if g is None:
-            return cls.default_value
-        return next(g)
-
-    @classmethod
-    def generate(cls):
-        chance = random.randint(0, 100)
-        g = cls.generator_by_chance(chance)
+        g = cls.generator(chance)
         if g is None:
             return cls.default
-        return g.generate()
+        return next(g)
 
 
-class TemplatedGenerator(DataGenerator):
-    template_str = "{c}{n}"
+class TemplateGenerator(Generator):
+    template = "{c}{n}"
 
     @classmethod
     def __next__(cls):
-        return GeneratorTemplate.generate(cls.template_str)
+        return GeneratorTemplate.generate(cls.template)

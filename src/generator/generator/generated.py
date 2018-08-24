@@ -1,7 +1,7 @@
 class Generated:
-    # title = "<UNTITLED>"
-    title = None
     fields = []
+
+    generator = None
 
     def __init__(self, value=None, **kwargs):
         self.value = value
@@ -9,9 +9,7 @@ class Generated:
             setattr(self, field, kwargs.get(field))
 
     def __repr__(self):
-        if self.title is None:
-            return str(self.value)
-        return "{}:\t\"{}\"".format(self.title, self.value)
+        return "{}:\t\"{}\"".format(type(self).__name__, str(self))
 
     @property
     def generated_value(self):
@@ -20,3 +18,16 @@ class Generated:
     @property
     def description(self):
         return str(self)
+
+    @classmethod
+    def generate(cls):
+        return cls(cls.generator.__next__())
+
+
+class ListGenerated(Generated):
+    data = dict()
+
+    @classmethod
+    def generate(cls):
+        next_data = {key: next(d) for key, d in cls.data.items()}
+        return cls(**next_data)

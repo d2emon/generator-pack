@@ -1,4 +1,4 @@
-from generator.generator import ListGenerator, PercentedGenerator
+from generator.generator import ListGenerator, PercentGenerator
 from generator.generator.generated import Generated
 from generator.generator.generator_data import ListData
 from fixtures.media.band import names1, names2, names3, names4, names5
@@ -12,7 +12,7 @@ class BandSubGenerator(ListGenerator):
     generated_class = Band
 
 
-class BandGenerator(PercentedGenerator):
+class BandGenerator(PercentGenerator):
     class BandSubGenerator1(BandSubGenerator):
         template = "{name1} {name2}"
         data = {
