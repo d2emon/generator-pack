@@ -1,7 +1,8 @@
 import sys
 
-from nested.data import clean_things
-from nested.item import Item, ITEMS
+from generator.nested import Item
+
+
 # from nested.tag import Tag, get_DOM
 
 
