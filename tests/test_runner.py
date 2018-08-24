@@ -3,7 +3,7 @@ import random
 
 from generator import generators, markov_street
 
-from generator.demonym import Demonym
+from generator.other.demonym import Demonym
 from fixtures.streets import streets
 
 

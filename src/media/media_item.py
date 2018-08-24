@@ -1,5 +1,5 @@
-from generator.album import AlbumGenerator
-from generator.band import BandGenerator
+from generator.name.other.album import AlbumGenerator
+from generator.name.other.band import BandGenerator
 
 from .history import BoxHistory
 

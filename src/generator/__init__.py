@@ -1,26 +1,26 @@
 from .generator import *
 
-from .album import AlbumGenerator
-from .band import BandGenerator
-from .battlecry import BattleCryGenerator
-from .motivation import MotivationGenerator
-from .concept import ArtConceptBeingGenerator, ArtConceptPlaceGenerator, ArtConceptGenerator, StoryConceptCharacterGenerator, StoryConceptEventGenerator, StoryConceptGenerator
-from .demonym import DemonymGenerator, Demonym
-from .haiku import HaikuGenerator
-from .idiom import IdiomGenerator
-from .motto import MottoGenerator
-from .prayer import ForgivePrayerGenerator, AidPrayerGenerator, PrayerGenerator
-from .riddle import RiddleGenerator
-from .schoolSubject import SchoolSubjectGenerator
-from .slogan import SloganGenerator
-from .swear import SwearGenerator
-from .wisdom import WisdomQuoteGenerator
-from .world import WorldGenerator
-from .race import RandomRaceGenerator
+from generator.name.other.album import AlbumGenerator
+from generator.name.other.band import BandGenerator
+from generator.other.battlecry import BattleCryGenerator
+from generator._unknown.motivation import MotivationGenerator
+from generator.other.concept import ArtConceptBeingGenerator, ArtConceptPlaceGenerator, ArtConceptGenerator, StoryConceptCharacterGenerator, StoryConceptEventGenerator, StoryConceptGenerator
+from generator.other.demonym import DemonymGenerator
+from generator.other.haiku import HaikuGenerator
+from generator.other.idiom import IdiomGenerator
+from generator.other.motto import MottoGenerator
+from generator.other.prayer import ForgivePrayerGenerator, AidPrayerGenerator, PrayerGenerator
+from generator.other.riddle import RiddleGenerator
+from generator.other.schoolSubject import SchoolSubjectGenerator
+from generator.other.slogan import SloganGenerator
+from generator.other.swear import SwearGenerator
+from generator.other.wisdom import WisdomQuoteGenerator
+from generator._unknown.world import WorldGenerator
+from generator.description.race import RandomRaceGenerator
 
-from .space.galaxy import GalaxyGenerator
-from .space.star import StarGenerator
-from .space.planet import PlanetGenerator
+from generator._unknown.space import GalaxyGenerator
+from generator._unknown.space import StarGenerator
+from generator._unknown.space import PlanetGenerator
 
 from .generator.markov import MarkovChain
 
