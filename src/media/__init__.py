@@ -1,46 +1,24 @@
 #! /usr/bin/python
-import media.chart
 import random
 
-from generator.album import AlbumGenerator
-from generator.band import BandGenerator
+from .media_item import MediaItem
+from .chart import Chart
 
 
-def new_album():
-    openweekend = random.randint(100000000, 500000000)
-    return chart.MediaItem(
-        name=AlbumGenerator.generate(),
-        author=BandGenerator.generate(),
-        openweekend=openweekend
-    )
+def simulate(albums_count=20, start_week=None, weeks=20):
+    start_week = start_week or random.randint(1, 100)
+    albums = [MediaItem() for _ in range(albums_count)]
 
+    for week in range(start_week, start_week + weeks):
+        albums.append(MediaItem())
+        week_chart = Chart(albums)
 
-def simulate(args):
-    items = []
-    for i in range(20):
-        items.append(new_album())
-    weeks = random.randint(1, 100)
-    print("On week %d" % (weeks))
-    for i in items:
-        print(i.name, i.last_week(), i.total(i.weeks_in_chart()))
-    for w in range(20):
-        print("=" * 80)
-        items.append(new_album())
-        places = dict()
-        for i in items:
-            places[i.next_week()] = i
-            # print(i.name, i.weekend(weeks), i.total(weeks))
-        points = list(places.keys())
-        points.sort(reverse=True)
-        n = 1
-        for p in range(0, 10):
-            i = places[points[p]]
-            print("%d.\t%s by %s\t%d\t%d\t%d" % (
-                n,
-                i.name,
-                i.author,
-                i.last_week(),
-                i.total(i.weeks_in_chart()),
-                i.weeks_in_chart()
+        print("On week {}".format(week))
+        for n in range(10):
+            print("{position}.\t{album}{album.weeks:>4}".format(
+                position=n + 1,
+                album=week_chart[n],
             ))
-            n += 1
+            album = week_chart[n]
+            print([album.history[i] for i in range(1, album.weeks + 1)])
+        print("-" * 80)

@@ -1,4 +1,4 @@
-from generator.character import race
+from generator._unknown.character import race
 import random
 
 
@@ -62,11 +62,11 @@ def charGen():
 
     names20 = []
     races = [race.Human(i) for i in range(3)] + \
-        [race.Elf(i) for i in range(3, 9)] + \
-        [race.Gnome(10), ] + \
-        [race.Troll(11), race.Orc(12), race.Goblin(13)] + \
-        [race.Dwarf(14), race.Giant(15)] + \
-        [race.Race(15 + i) for i in range(10)]
+            [race.Elf(i) for i in range(3, 9)] + \
+            [race.Gnome(10), ] + \
+            [race.Troll(11), race.Orc(12), race.Goblin(13)] + \
+            [race.Dwarf(14), race.Giant(15)] + \
+            [race.Race(15 + i) for i in range(10)]
 
     names22 = []
     names23 = []
