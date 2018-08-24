@@ -8,6 +8,9 @@ class Generated:
         for field in self.fields:
             setattr(self, field, kwargs.get(field))
 
+    def __str__(self):
+        return self.value
+
     def __repr__(self):
         return "{}:\t\"{}\"".format(type(self).__name__, str(self))
 
