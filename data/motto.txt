@@ -74,55 +74,148 @@ Fruits of our labor
 Glorious, victorious
 Glory of the West
 Glory, pride, honor
-"God brings freedom","God brings salvation","God is great, god is
-just","God is the king, the king is god","God is with the people","God,
-king, country","God, life, death","Gold in peace, steel in war","Good
-life, good death","Grow forever, never yield","Haven of peace","Head,
-heart, hand","Health, peace, prosperity","Hear our voices","Heaven's light
-in the darkness","Here to stay","Honor binds us","Honor without
-dishonor","Honor, duty, valor","Honorbound and just","Hope, homeland,
-honor","Hope, peace, unity","I will be free","In ancestral footsteps we
-tread","In god's hand, in god's grace","In service of god","In spirit and
-truth","In unity and freedom","Inextinguishable light","Justice and honor
-reign","Justice is our shield","Justice, honesty, integrity","Land we
-desire","Lead by our history, leading our future","Let there be eternal
-light","Life, death, balance","Light and law","Light in the
-darkness","Lighting the way","Live great, die better","Live long and die
-free","Love is life","Love of the South","Love of the people, strength of
-the nation","Love, friendship and brotherhood","Many hearts beating as
-one","Many skills, many virtues","May all be as one","Never conquered,
-always feared","Never forget","Never forget, never forgive","None shall be
-left behind","None shall pass","Now our enemies rest","Now you see us","Of
-the sea, the land and the sky","One god, one goal","One house, one
-family","One nation, one people","One struggle, one people, one
-destiny","One with nature","Onwards and forwards forever","Open hearts,
-open doors","Our land, our history","Our right, our freedom","Out of
-darkness we bring light","Peace, equality, unity","Peace, justice,
-progress","Peace, passion, compassion","Peace, progress,
-prosperity","Peace, prosperity, progress","People of nature","People of
-the land","Perseverance conquers all","Power, progress, peace","Prepared
-for all","Pride and honor","Pride and prosperity","Pride, honor,
-justice","Progress through unity","Progress through wisdom","Protect,
-serve, progress","Reap what you sow","Righteous in duty","Risen from the
-ashes","Risen to the heavens","Roots of the earth","Serve and obey","Serve
-and protect","Shield in the darkness","Simplicity, honesty,
-integrity","Sow knowledge, reap wisdom","Spirits guide us, spirits watch
-over us","Spirits watch over us","Stand strong, stand tall","Steadfast and
-loyal","Steadfast in duty","Strength lies in unity","Strength, prosperity,
-perseverance","Strength, skill, virtue","Strike swiftly, aim true","Strong
-deeds, gentle words","Strong, free, proud","Sword or pen, we conquer
-all","Take what they owe","Taste for battle","The first, the last, the
-eternal","The first, the true","Through struggle we persevered","Through
-the shadows we persevered","Through wisdom and strength","To fight or
-work, we are ready","True and sure","Trust and loyalty","Truth
-prevails","Truth prevails above all","Truth sets us free","United in
-strife, together in peace","United we stand, together we stay","United we
-stand, united we conquer","United we stand, united we stay","Unity brings
-strength","Unity in diversity","Walking hand in hand","Wardens of the
-West","Watchers in the shade","We are always free","We are and always will
-be","We breathe, we live","We can, we will, we did","We remember","We
-rule, we conquer","We see all","We were, we are, we will be","We will
-persevere","Wealth of the land","Wealth of the sea","Weave trust with
-trust","Well versed in the art of war","Whispers in the wind","With pen
-and sword","With wisdom we conquer","Without god we are nothing","Work,
-love, play","World, nature, people"
+God brings freedom
+God brings salvation
+God is great, god is just
+God is the king, the king is god
+God is with the people
+God, king, country
+God, life, death
+Gold in peace, steel in war
+Good life, good death
+Grow forever, never yield
+Haven of peace
+Head, heart, hand
+Health, peace, prosperity
+Hear our voices
+Heaven's light in the darkness
+Here to stay
+Honor binds us
+Honor without dishonor
+Honor, duty, valor
+Honorbound and just
+Hope, homeland, honor
+Hope, peace, unity
+I will be free
+In ancestral footsteps we tread
+In god's hand, in god's grace
+In service of god
+In spirit and truth
+In unity and freedom
+Inextinguishable light
+Justice and honor reign
+Justice is our shield
+Justice, honesty, integrity
+Land we desire
+Lead by our history, leading our future
+Let there be eternal light
+Life, death, balance
+Light and law
+Light in the darkness
+Lighting the way
+Live great, die better
+Live long and die free
+Love is life
+Love of the South
+Love of the people, strength of the nation
+Love, friendship and brotherhood
+Many hearts beating as one
+Many skills, many virtues
+May all be as one
+Never conquered, always feared
+Never forget
+Never forget, never forgive
+None shall be left behind
+None shall pass
+Now our enemies rest
+Now you see us
+Of the sea, the land and the sky
+One god, one goal
+One house, one family
+One nation, one people
+One struggle, one people, one destiny
+One with nature
+Onwards and forwards forever
+Open hearts, open doors
+Our land, our history
+Our right, our freedom
+Out of darkness we bring light
+Peace, equality, unity
+Peace, justice, progress
+Peace, passion, compassion
+Peace, progress, prosperity
+Peace, prosperity, progress
+People of nature
+People of the land
+Perseverance conquers all
+Power, progress, peace
+Prepared for all
+Pride and honor
+Pride and prosperity
+Pride, honor, justice
+Progress through unity
+Progress through wisdom
+Protect, serve, progress
+Reap what you sow
+Righteous in duty
+Risen from the ashes
+Risen to the heavens
+Roots of the earth
+Serve and obey
+Serve and protect
+Shield in the darkness
+Simplicity, honesty, integrity
+Sow knowledge, reap wisdom
+Spirits guide us, spirits watch over us
+Spirits watch over us
+Stand strong, stand tall
+Steadfast and loyal
+Steadfast in duty
+Strength lies in unity
+Strength, prosperity, perseverance
+Strength, skill, virtue
+Strike swiftly, aim true
+Strong deeds, gentle words
+Strong, free, proud
+Sword or pen, we conquer all
+Take what they owe
+Taste for battle
+The first, the last, the eternal
+The first, the true
+Through struggle we persevered
+Through the shadows we persevered
+Through wisdom and strength
+To fight or work, we are ready
+True and sure
+Trust and loyalty
+Truth prevails
+Truth prevails above all
+Truth sets us free
+United in strife, together in peace
+United we stand, together we stay
+United we stand, united we conquer
+United we stand, united we stay
+Unity brings strength
+Unity in diversity
+Walking hand in hand
+Wardens of the West
+Watchers in the shade
+We are always free
+We are and always will be
+We breathe, we live
+We can, we will, we did
+We remember
+We rule, we conquer
+We see all
+We were, we are, we will be
+We will persevere
+Wealth of the land
+Wealth of the sea
+Weave trust with trust
+Well versed in the art of war
+Whispers in the wind
+With pen and sword
+With wisdom we conquer
+Without god we are nothing
+Work, love, play
+World, nature, people
