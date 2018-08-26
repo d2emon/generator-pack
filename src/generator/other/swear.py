@@ -1,12 +1,6 @@
-from generator.generator import ListGenerator
-from generator.generator.generated import Generated
+from generator.generator.generated import ListGenerated
 from generator.generator.generator_data import FileData
 
 
-class Swear(Generated):
-    title = "Swear"
-
-
-class SwearGenerator(ListGenerator):
-    generated_class = Swear
-    data = { 'name': FileData("data/swear.txt") }
+class Curse(ListGenerated):
+    data = {'value': FileData("data/swear.txt")}
