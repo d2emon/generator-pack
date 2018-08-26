@@ -9,21 +9,8 @@ from .generator.markov import MarkovChain
 # from ._unknown.space.star import StarGenerator
 # from ._unknown.space.planet import PlanetGenerator
 
-from .other.battlecry import BattleCry
-from .other.birthday_wish import BirthdayWish
-from .other.motivation import CharacterGoal
-from .other.concept import ArtConceptBeing, ArtConceptPlace, ArtConcept,\
-    StoryConceptCharacter, StoryConceptEvent, StoryConcept
-# from .other.demonym import DemonymGenerator
-from .other.haiku import Haiku
-# from .other.idiom import IdiomGenerator
-# from .other.motto import MottoGenerator
-# from .other.prayer import ForgivePrayerGenerator, AidPrayerGenerator, PrayerGenerator
-# from .other.riddle import RiddleGenerator
-# from .other.schoolSubject import SchoolSubjectGenerator
-# from .other.slogan import SloganGenerator
-# from .other.swear import SwearGenerator
-# from .other.wisdom import WisdomQuoteGenerator
+from .other import *
+
 # from .description.race import RandomRaceGenerator
 
 
