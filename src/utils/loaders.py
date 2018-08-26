@@ -1,7 +1,7 @@
 import os
 
 
-ROOT_PATH = os.path.abspath(os.path.join(os.path.curdir, "../"))
+ROOT_PATH = os.path.abspath(os.path.join(os.path.curdir))
 
 
 def load_lines(filename):
