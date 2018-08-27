@@ -20,9 +20,14 @@ class Settlement:
         self.population = population
 
     @classmethod
-    def generate_population(cls):
-        return random.randrange(cls.min_population, cls.max_population)
+    def generate(cls, name, min_population=None, max_population=None):
+        min_population = min_population or cls.min_population
+        max_population = max_population or cls.max_population
+        population = random.randint(min_population, max_population)
+        return cls(name, population)
 
+    def __repr__(self):
+        return "<{} \"{}({})\">".format(type(self).__name__, self.name, self.population)
 
 class Village(Settlement):
     """

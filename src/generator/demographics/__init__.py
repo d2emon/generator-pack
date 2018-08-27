@@ -18,8 +18,8 @@ your needs.
 
 * Population Density: How Many In That Kingdom?
 * Town and City Population: How Many In Those Walls?
+* Population Spread
 
-## Population Spread
 ## An Example Kingdom: Chamlek
 ## Merchants and Services
 ## Agriculture

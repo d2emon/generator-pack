@@ -17,6 +17,8 @@ import math
 
 from dice import d
 
+from .city import BigCity, City, Town, Village
+
 
 class CitiesGenerator:
     def __init__(self, population=500000):
@@ -31,7 +33,12 @@ class CitiesGenerator:
         """
         p = math.sqrt(population)
         m = d(2, 4) + 10
-        return int(p * m)
+        city_population = int(p * m)
+        if city_population < City.min_population:
+            return None
+        if city_population >= City.max_population:
+            return BigCity("First", city_population)
+        return City("First", city_population)
 
     @classmethod
     def second(cls, first):
@@ -42,37 +49,46 @@ class CitiesGenerator:
         :param first:
         :return:
         """
-        return int(d(2, 4) * .10 * first)
+        population = int(d(2, 4) * .10 * first.population)
+        if population < City.min_population:
+            return None
+        return City("Second", population)
 
-    def cities(self):
+    @classmethod
+    def next(cls, city):
         """
         Each remaining city will be from 10% to 40% smaller than the previous one (2d4 times 5% - the average result is
         25%); continue listing cities for as long as the results maintain a city-scaled population (8,000 or more).
 
         :return:
-        """
-        min_city = 8000
 
+        """
+        population = city.population - int(d(2, 4) * .05 * city.population)
+        if population < City.min_population:
+            return None
+        return City("City", population)
+
+    def cities(self):
         population = self.population
 
         city = self.first(population)
-        if city <= min_city:
+        if not city:
             return
         yield city
-        population -= city
+        population -= city.population
 
         city = self.second(city)
-        if city <= min_city:
+        if not city:
             return
         yield city
-        population -= city
+        population -= city.population
 
         while True:
-            city -= int(d(2, 4) * .05 * city)
-            if city <= min_city:
+            city = self.next(city)
+            if not city:
                 return
             yield city
-            population -= city
+            population -= city.population
 
     @classmethod
     def towns_count(cls, cities_count=10):
@@ -87,13 +103,12 @@ class CitiesGenerator:
 
     @classmethod
     def towns(cls, population=1000000, towns_count=10):
-        import random
         for _ in range(towns_count):
-            town = random.randrange(1000, 8000)
-            if town >= population:
+            town = Town.generate("Town")
+            population -= town.population
+            if population < town.min_population:
                 break
             yield town
-            population -= town
 
     @classmethod
     def villages(cls, population=1000):
@@ -105,30 +120,27 @@ class CitiesGenerator:
         :param towns:
         :return:
         """
-        import random
         while population > 20:
-            village = random.randrange(20, 1000)
-            if village >= population:
-                village = population
+            village = Village.generate("Village")
+            if village.population >= population:
+                village.population = population
             yield village
-            population -= village
+            population -= village.population
 
     def generate(self):
         population = self.population
 
         cities = list(self.cities())
         for city in cities:
-            population -= city
+            population -= city.population
 
         towns_count = self.towns_count(len(cities))
         towns = list(self.towns(population, towns_count))
         for town in towns:
-            population -= town
+            population -= town.population
 
         villages = list(self.villages(population))
         for village in villages:
-            population -= village
+            population -= village.population
 
-        print(len(cities), len(towns), len(villages))
         return cities, towns, villages, population
-
