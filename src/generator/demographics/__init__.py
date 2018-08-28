@@ -21,8 +21,8 @@ your needs.
 * Population Spread
 * An Example Kingdom: Chamlek
 * Merchants and Services
+* Agriculture
 
-## Agriculture
 ## Castles
 ## Miscellany
 
