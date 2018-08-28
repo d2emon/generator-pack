@@ -23,8 +23,7 @@ your needs.
 * Merchants and Services
 * Agriculture
 * Castles
-
-## Miscellany
+* Miscellany
 
 # Bibliography
 
