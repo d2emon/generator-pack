@@ -20,8 +20,8 @@ your needs.
 * Town and City Population: How Many In Those Walls?
 * Population Spread
 * An Example Kingdom: Chamlek
+* Merchants and Services
 
-## Merchants and Services
 ## Agriculture
 ## Castles
 ## Miscellany
