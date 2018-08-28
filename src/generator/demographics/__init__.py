@@ -22,8 +22,8 @@ your needs.
 * An Example Kingdom: Chamlek
 * Merchants and Services
 * Agriculture
+* Castles
 
-## Castles
 ## Miscellany
 
 # Bibliography
