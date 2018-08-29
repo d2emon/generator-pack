@@ -1,13 +1,13 @@
 """
-    Fantasy worlds come in many varieties, from the "hard core" medieval-simulation school to the more fanciful realms
-of high fantasy, with alabaster castles and jeweled gardens in the place of the more traditional muddy squalor. Despite
+Fantasy worlds come in many varieties, from the "hard core" medieval-simulation school to the more fanciful realms of
+high fantasy, with alabaster castles and jeweled gardens in the place of the more traditional muddy squalor. Despite
 their differences, these share a vital common element: ordinary people. Most realms of fantasy, no matter how baroque
 or magical, can not get by without a supply of ordinary farmers, merchants, quarreling princes and palace guards.
 Clustered into villages and crowding the cities, they provide the human backdrop for adventure. Of course, doing the
 research necessary to find out how common a large city should be, or how many shoemakers can be found in a town, can
 take up time not all GMs have available. To the end of more satisfying world design, I've prepared this article.
 
-    This article is a distillation of broad possibilities drawn from a variety of historical reference points, focusing
+This article is a distillation of broad possibilities drawn from a variety of historical reference points, focusing
 more on results than on the details that create them. The rules here provide a baseline to be deviated from at need,
 not numbers cast into iron. Following my favorite FRP traditions, I've focused my lens on a fairly developed version
 of the middle ages - I've drawn freely from periods ranging from the 11th to 15th centuries, and from locales as varied
@@ -27,8 +27,8 @@ your needs.
 
 # Bibliography
 
-    The SV list was taken (mostly) from the tax list of Paris in 1292, and checked against other sources. This list can
-be found in Life in a Medieval City by Joseph and Francis Geis (Harper and Row, 1981). This is a fine book by amateur
+The SV list was taken (mostly) from the tax list of Paris in 1292, and checked against other sources. This list can be
+found in Life in a Medieval City by Joseph and Francis Geis (Harper and Row, 1981). This is a fine book by amateur
 historians, which includes some fascinating descriptions of medieval city life and layout. You can also find the list
 (including less-truncated versions) online if you poke around. Other books consulted include:
 
@@ -62,159 +62,6 @@ class Hex:
         return round((self.width * 0.9305347) ** 2)
 
 
-class City:
-    options = (
-        (10, "Barren, Desolate"),
-        (15, "Rocky, Chilly"),
-        (20, "Cool, Dry; Swampy"),
-        (30, "Hilly, Temperate"),
-        (40, "Abundant Arable Land"),
-        (50, "Fertile, Warm, Idyllic"),
-    )
-
-    def __init__(self, city_type=0, kingdom=None, population=5000, enforcement_type=1):
-        self.option = self.options[city_type][0]
-        self.settlement_type = city_type
-        self.kingdom = kingdom
-        self.population = population
-        self.enforcement_type = enforcement_type
-
-        self.area = 0
-        self.size = 0
-
-        self.army = 0
-        self.pop_business = 0
-
-        self.businessAutoCalc()
-        self.cityDesc()
-
-    def businessAutoCalc(self):
-        """
-
-        :return:
-        """
-        self.pop_business = self.option
-        self.businessCalc()
-
-    def businessCalc(self):
-        """
-        function businessCalc()
-        {
-          var iCityDensity = 15000
-          var iCityArea = (document.formDomesday.pop_business.value / iCityDensity)
-          if (iCityArea < 1)
-          {
-            document.formDomesday.citysize_km2.value = Math.ceil(iCityArea * 100) / 100;
-          }
-          else
-          {
-            document.formDomesday.citysize_km2.value = Math.ceil(iCityArea * 10) / 10;
-          }
-          document.formDomesday.citysize_acres.value = Math.ceil(iCityArea * 1000000 / 4047);
-
-          document.formDomesday.num_thugs.value = roundOrPercent(document.formDomesday.pop_business.value * document.formDomesday.thug_zeal.options[document.formDomesday.thug_zeal.selectedIndex].value / 150 );
-
-          document.formDomesday.num_clergy.value = roundOrPercent(document.formDomesday.pop_business.value / 40);
-          document.formDomesday.num_shoemakers.value = roundOrPercent(document.formDomesday.pop_business.value / 150);
-          document.formDomesday.num_nobles.value = roundOrPercent(document.formDomesday.pop_business.value / 200);
-          document.formDomesday.num_furriers.value = roundOrPercent(document.formDomesday.pop_business.value / 250);
-          document.formDomesday.num_maidservants.value = roundOrPercent(document.formDomesday.pop_business.value / 250);
-          document.formDomesday.num_tailors.value = roundOrPercent(document.formDomesday.pop_business.value / 250);
-          document.formDomesday.num_barbers.value = roundOrPercent(document.formDomesday.pop_business.value / 350);
-          document.formDomesday.num_jewelers.value = roundOrPercent(document.formDomesday.pop_business.value / 400);
-          document.formDomesday.num_taverns.value = roundOrPercent(document.formDomesday.pop_business.value / 400);
-          document.formDomesday.num_oldclothes.value = roundOrPercent(document.formDomesday.pop_business.value / 400);
-          document.formDomesday.num_pastrycooks.value = roundOrPercent(document.formDomesday.pop_business.value / 500);
-          document.formDomesday.num_masons.value = roundOrPercent(document.formDomesday.pop_business.value / 500);
-          document.formDomesday.num_carpenters.value = roundOrPercent(document.formDomesday.pop_business.value / 550);
-          document.formDomesday.num_weavers.value = roundOrPercent(document.formDomesday.pop_business.value / 600);
-          document.formDomesday.num_lawyers.value = roundOrPercent(document.formDomesday.pop_business.value / 650);
-          document.formDomesday.num_chandlers.value = roundOrPercent(document.formDomesday.pop_business.value / 700);
-          document.formDomesday.num_mercers.value = roundOrPercent(document.formDomesday.pop_business.value / 700);
-          document.formDomesday.num_coopers.value = roundOrPercent(document.formDomesday.pop_business.value / 700);
-          document.formDomesday.num_woodsellers.value = roundOrPercent(document.formDomesday.pop_business.value / 700);
-          document.formDomesday.num_bakers.value = roundOrPercent(document.formDomesday.pop_business.value / 800);
-          document.formDomesday.num_watercarriers.value = roundOrPercent(document.formDomesday.pop_business.value / 850);
-          document.formDomesday.num_scabbardmakers.value = roundOrPercent(document.formDomesday.pop_business.value / 850);
-          document.formDomesday.num_winesellers.value = roundOrPercent(document.formDomesday.pop_business.value / 900);
-          document.formDomesday.num_hatmakers.value = roundOrPercent(document.formDomesday.pop_business.value / 950);
-          document.formDomesday.num_saddlers.value = roundOrPercent(document.formDomesday.pop_business.value / 1000);
-          document.formDomesday.num_chickenbutchers.value = roundOrPercent(document.formDomesday.pop_business.value / 1000);
-          document.formDomesday.num_pursemakers.value = roundOrPercent(document.formDomesday.pop_business.value / 1100);
-          document.formDomesday.num_butchers.value = roundOrPercent(document.formDomesday.pop_business.value / 1200);
-          document.formDomesday.num_fishmongers.value = roundOrPercent(document.formDomesday.pop_business.value / 1200);
-          document.formDomesday.num_priests.value = roundOrPercent(document.formDomesday.pop_business.value / 1200);
-          document.formDomesday.num_beersellers.value = roundOrPercent(document.formDomesday.pop_business.value / 1400);
-          document.formDomesday.num_bucklemakers.value = roundOrPercent(document.formDomesday.pop_business.value / 1400);
-          document.formDomesday.num_plasterers.value = roundOrPercent(document.formDomesday.pop_business.value / 1400);
-          document.formDomesday.num_spicemerchants.value = roundOrPercent(document.formDomesday.pop_business.value / 1400);
-          document.formDomesday.num_blacksmiths.value = roundOrPercent(document.formDomesday.pop_business.value / 1500);
-          document.formDomesday.num_painters.value = roundOrPercent(document.formDomesday.pop_business.value / 1500);
-          document.formDomesday.num_doctors.value = roundOrPercent(document.formDomesday.pop_business.value / 1700);
-          document.formDomesday.num_roofers.value = roundOrPercent(document.formDomesday.pop_business.value / 1800);
-          document.formDomesday.num_locksmiths.value = roundOrPercent(document.formDomesday.pop_business.value / 1900);
-          document.formDomesday.num_bathers.value = roundOrPercent(document.formDomesday.pop_business.value / 1900);
-          document.formDomesday.num_ropemakers.value = roundOrPercent(document.formDomesday.pop_business.value / 1900);
-          document.formDomesday.num_inns.value = roundOrPercent(document.formDomesday.pop_business.value / 2000);
-          document.formDomesday.num_tanners.value = roundOrPercent(document.formDomesday.pop_business.value / 2000);
-          document.formDomesday.num_copyists.value = roundOrPercent(document.formDomesday.pop_business.value / 2000);
-          document.formDomesday.num_sculptors.value = roundOrPercent(document.formDomesday.pop_business.value / 2000);
-          document.formDomesday.num_rugmakers.value = roundOrPercent(document.formDomesday.pop_business.value / 2000);
-          document.formDomesday.num_harnessmakers.value = roundOrPercent(document.formDomesday.pop_business.value / 2000);
-          document.formDomesday.num_bleachers.value = roundOrPercent(document.formDomesday.pop_business.value / 2100);
-          document.formDomesday.num_haymerchants.value = roundOrPercent(document.formDomesday.pop_business.value / 2300);
-          document.formDomesday.num_cutlers.value = roundOrPercent(document.formDomesday.pop_business.value / 2300);
-          document.formDomesday.num_glovemakers.value = roundOrPercent(document.formDomesday.pop_business.value / 2400);
-          document.formDomesday.num_woodcarvers.value = roundOrPercent(document.formDomesday.pop_business.value / 2400);
-          document.formDomesday.num_apothecaries.value = roundOrPercent(document.formDomesday.pop_business.value / 2800);
-          document.formDomesday.num_bookbinders.value = roundOrPercent(document.formDomesday.pop_business.value / 3000);
-          document.formDomesday.num_illuminators.value = roundOrPercent(document.formDomesday.pop_business.value / 3900);
-          document.formDomesday.num_booksellers.value = roundOrPercent(document.formDomesday.pop_business.value / 6300);
-        }
-
-        :return:
-        """
-        density = 15000
-        self.area = (self.pop_business / density)
-        if self.area < 1:
-            self.size = math.ceil(self.area * 100) / 100
-        else:
-            self.size = math.ceil(self.area * 10) / 10
-
-        # self.num_thugs = round_or_percent(self.pop_business * self.thug_zeal[self.thug_zeal_index] / 150)
-
-    @property
-    def acres(self):
-        return math.ceil(self.area * 1000000 / 4047)
-
-    def cityDesc(self):
-        """
-
-        :return:
-        """
-        self.city_text = self.city.description
-
-    def description(self):
-        services = ""
-        return ("Towns and Cities\n"
-                + "A settlement (e.g. {type}) in {kingdom} with a population of {population} will occupy roughly "
-                + "{area}km^2 ({acres} acres).\n"
-                + "A settlement this size with {enforcement_type} law enforcement will probably have {army} armed "
-                + "agents of the ruling authority (guardsmen, watchmen, etc.).\n"
-                + "This settlement will probably have the following businesses and services available. (A percentage "
-                + "chance is indicated where no certainty exists.)\n"
-                + "{}").format(
-            type=self.settlement_type,
-            kingdom=self.kingdom.name,
-            population=self.population,
-            area=self.size,
-            acres=self.acres,
-            enforcement_type=self.enforcement_type,
-            army=self.army,
-            services=services,
-        )
-
-
 class Kingdom:
     densities = (
         10,
@@ -242,7 +89,7 @@ class Kingdom:
         self.density = self.densities[density]
         self.age = age
 
-        self.city = city or City()
+        # self.city = city or City()
 
         self.arable = 0
 
@@ -276,22 +123,8 @@ class Kingdom:
 
         self.city_text = ""
 
-        self.populationCalc()
-        self.castleCalc()
-
-    """
-    function kingdomName()
-    {
-      var sKingdom = document.formDomesday.kingdom_name.value;
-      document.formDomesday.kingdom_001.value = sKingdom;
-      document.formDomesday.kingdom_002.value = sKingdom;
-      document.formDomesday.kingdom_003.value = sKingdom;
-      document.formDomesday.kingdom_004.value = sKingdom;
-      document.formDomesday.kingdom_005.value = sKingdom;
-      document.formDomesday.kingdom_006.value = sKingdom;
-      document.formDomesday.kingdom_007.value = sKingdom;
-    }
-    """
+        self.generate_population()
+        self.generate_castle()
 
     @property
     def hexes(self):
@@ -311,7 +144,7 @@ class Kingdom:
     def wilderness(self):
         return int(self.area - self.arable)
 
-    def populationCalc(self):
+    def generate_population(self):
         """
 
         :return:
@@ -393,7 +226,7 @@ class Kingdom:
     def castles_wilderness(self):
         return self.castles - self.castles_civilized
 
-    def castleCalc(self):
+    def generate_castle(self):
         """
 
         :return:
@@ -485,4 +318,195 @@ class Kingdom:
             self.land_mass_description,
             self.population_description,
             self.castles_description,
+        )
+
+
+class SettlementType:
+    def __init__(self, name="", population=5000, description=""):
+        self.name = name
+        self.population = population
+        self.description = description
+
+
+class EnforcementType:
+    def __init__(self, name="", value=1.0):
+        self.name = name
+        self.value = value
+
+    def generate(self, population):
+        return round_or_percent(population * self.value / 150)
+
+
+class City:
+    types = (
+        SettlementType("tiny village", 30, """Villages range from 20 to 1,000 people, with typical villages ranging
+        from 50-300. Most kingdoms will have thousands of them. Villages are agrarian communities within the safe folds
+        of civilization. They provide the basic source of food and land-stability in a feudal system. Usually, a
+        village that supports orchards (instead of grainfields) is called a "hamlet." Occasionally, game writers use
+        the term to apply to a very small village, regardless of what food it produces."""),
+        SettlementType("small village", 100, """Villages range from 20 to 1,000 people, with typical villages ranging
+        from 50-300. Most kingdoms will have thousands of them. Villages are agrarian communities within the safe folds
+        of civilization. They provide the basic source of food and land-stability in a feudal system. Usually, a
+        village that supports orchards (instead of grainfields) is called a "hamlet." Occasionally, game writers use
+        the term to apply to a very small village, regardless of what food it produces."""),
+        SettlementType("village", 700, """Villages range from 20 to 1,000 people, with typical villages ranging from
+        50-300. Most kingdoms will have thousands of them. Villages are agrarian communities within the safe folds of
+        civilization. They provide the basic source of food and land-stability in a feudal system. Usually, a village
+        that supports orchards (instead of grainfields) is called a "hamlet." Occasionally, game writers use the term
+        to apply to a very small village, regardless of what food it produces."""),
+        SettlementType("small town", 1000, """Towns range in population from 1,000-8,000 people, with typical values
+        somewhere around 2,500. Culturally, these are the equivalent to the smaller American cities that line the
+        interstates. Cities and towns tend to have walls only if they are frequently threatened."""),
+        SettlementType("town", 5000, """Towns range in population from 1,000-8,000 people, with typical values
+        somewhere around 2,500. Culturally, these are the equivalent to the smaller American cities that line the
+        interstates. Cities and towns tend to have walls only if they are frequently threatened."""),
+        SettlementType("large town", 8000, """Towns range in population from 1,000-8,000 people, with typical values
+        somewhere around 2,500. Culturally, these are the equivalent to the smaller American cities that line the
+        interstates. Cities and towns tend to have walls only if they are frequently threatened."""),
+        SettlementType("city", 10000, """Cities tend to be from 8,000-12,000 people, with an average in the middle of
+        that range. A typical large kingdom will have only a few cities in this population range. Centers of scholarly
+        pursuits (the Universities) tend to be in cities of this size, with only the rare exception thriving in a
+        Big City."""),
+        SettlementType("big city", 40000, """Big Cities range from 12,000-100,000 people, with some exceptional cities
+        exceeding this scale. Some historical examples include London (25,000-40,000), Paris (50,000-80,000), Genoa
+        (75,000-100,000), and Venice (100,000+). Moscow in the 15th century had a population in excess of 200,000!"""),
+        SettlementType("huge city", 150000, """Big Cities range from 12,000-100,000 people, with some exceptional
+        cities exceeding this scale. Some historical examples include London (25,000-40,000), Paris (50,000-80,000),
+        Genoa (75,000-100,000), and Venice (100,000+). Moscow in the 15th century had a population in excess of
+        200,000!"""),
+    )
+    enforcements = (
+        EnforcementType("little to no", .25),
+        EnforcementType("indifferent", .5),
+        EnforcementType("undependable", .75),
+        EnforcementType("typical", 1),
+        EnforcementType("zealous", 1.5),
+        EnforcementType("oppresive", 2),
+        EnforcementType("tyrannical", 3),
+    )
+
+    def __init__(self, type_id=4, enforcement_id=3, kingdom=None, population=5000):
+        self.settlement_type = self.types[type_id]
+        self.enforcement_type = self.enforcements[enforcement_id]
+
+        self.kingdom = kingdom or Kingdom()
+        self.population = population
+
+        self.area = 0
+        self.size = 0
+
+        self.army = 0
+        self.pop_business = 0
+        self.services = dict()
+
+        self.businessAutoCalc()
+
+    def businessAutoCalc(self):
+        """
+
+        :return:
+        """
+        self.pop_business = self.settlement_type.population
+        self.businessCalc()
+
+    def businessCalc(self):
+        """
+
+        :return:
+        """
+        density = 15000
+        self.area = (self.pop_business / density)
+        if self.area < 1:
+            self.size = math.ceil(self.area * 100) / 100
+        else:
+            self.size = math.ceil(self.area * 10) / 10
+
+        self.army = self.enforcement_type.generate(self.pop_business)
+        self.services = {
+            "Clergy": round_or_percent(self.pop_business / 40),
+            "Shoemakers": round_or_percent(self.pop_business / 150),
+            "Nobles": round_or_percent(self.pop_business / 200),
+            "Furriers": round_or_percent(self.pop_business / 250),
+            "Maidservants": round_or_percent(self.pop_business / 250),
+            "Tailors": round_or_percent(self.pop_business / 250),
+            "Barbers": round_or_percent(self.pop_business / 350),
+            "Jewelers": round_or_percent(self.pop_business / 400),
+            "Taverns": round_or_percent(self.pop_business / 400),
+            "Old-Clothes": round_or_percent(self.pop_business / 400),
+            "Pastrycooks": round_or_percent(self.pop_business / 500),
+            "Masons": round_or_percent(self.pop_business / 500),
+            "Carpenters": round_or_percent(self.pop_business / 550),
+            "Weavers": round_or_percent(self.pop_business / 600),
+            "Lawyers": round_or_percent(self.pop_business / 650),
+            "Chandlers": round_or_percent(self.pop_business / 700),
+            "Mercers": round_or_percent(self.pop_business / 700),
+            "Coopers": round_or_percent(self.pop_business / 700),
+            "Woodsellers": round_or_percent(self.pop_business / 700),
+            "Bakers": round_or_percent(self.pop_business / 800),
+            "Watercarriers": round_or_percent(self.pop_business / 850),
+            "Scabbardmakers": round_or_percent(self.pop_business / 850),
+            "Winesellers": round_or_percent(self.pop_business / 900),
+            "Hatmakers": round_or_percent(self.pop_business / 950),
+            "Saddlers": round_or_percent(self.pop_business / 1000),
+            "Chicken Butchers": round_or_percent(self.pop_business / 1000),
+            "Pursemakers": round_or_percent(self.pop_business / 1100),
+            "Butchers": round_or_percent(self.pop_business / 1200),
+            "Fishmongers": round_or_percent(self.pop_business / 1200),
+            "Priests": round_or_percent(self.pop_business / 1200),
+            "Beer-Sellers": round_or_percent(self.pop_business / 1400),
+            "Buckle Makers": round_or_percent(self.pop_business / 1400),
+            "Plasterers": round_or_percent(self.pop_business / 1400),
+            "Spice Merchants": round_or_percent(self.pop_business / 1400),
+            "Blacksmiths": round_or_percent(self.pop_business / 1500),
+            "Painters": round_or_percent(self.pop_business / 1500),
+            "Doctors": round_or_percent(self.pop_business / 1700),
+            "Roofers": round_or_percent(self.pop_business / 1800),
+            "Locksmiths": round_or_percent(self.pop_business / 1900),
+            "Bathers": round_or_percent(self.pop_business / 1900),
+            "Ropemakers": round_or_percent(self.pop_business / 1900),
+            "Inns": round_or_percent(self.pop_business / 2000),
+            "Tanners": round_or_percent(self.pop_business / 2000),
+            "Copyists": round_or_percent(self.pop_business / 2000),
+            "Sculptors": round_or_percent(self.pop_business / 2000),
+            "Rugmakers": round_or_percent(self.pop_business / 2000),
+            "Harness-Makers": round_or_percent(self.pop_business / 2000),
+            "Bleachers": round_or_percent(self.pop_business / 2100),
+            "Hay Merchants": round_or_percent(self.pop_business / 2300),
+            "Cutlers": round_or_percent(self.pop_business / 2300),
+            "Glovemakers": round_or_percent(self.pop_business / 2400),
+            "Woodcarvers": round_or_percent(self.pop_business / 2400),
+            "Apothecaries": round_or_percent(self.pop_business / 2800),
+            "Bookbinders": round_or_percent(self.pop_business / 3000),
+            "Illuminators": round_or_percent(self.pop_business / 3900),
+            "Booksellers": round_or_percent(self.pop_business / 6300),
+        }
+
+    @property
+    def acres(self):
+        return math.ceil(self.area * 1000000 / 4047)
+
+    @property
+    def description(self):
+        services = ""
+        for key, value in self.services.items():
+            services += "{} {}\n".format(value, key)
+
+        return ("Towns and Cities\n"
+                + "{description}\n"
+                + "A settlement (e.g. {type}) in {kingdom} with a population of {population} will occupy roughly "
+                + "{area}km^2 ({acres} acres).\n"
+                + "A settlement this size with {enforcement_type} law enforcement will probably have {army} armed "
+                + "agents of the ruling authority (guardsmen, watchmen, etc.).\n"
+                + "This settlement will probably have the following businesses and services available. (A percentage "
+                + "chance is indicated where no certainty exists.)\n"
+                + "{services}").format(
+            description=self.settlement_type.description,
+            type=self.settlement_type.name,
+            kingdom=self.kingdom.name,
+            population=self.population,
+            area=self.size,
+            acres=self.acres,
+            enforcement_type=self.enforcement_type.name,
+            army=self.army,
+            services=services,
         )
