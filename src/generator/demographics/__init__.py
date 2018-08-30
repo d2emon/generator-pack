@@ -53,15 +53,6 @@ def round_or_percent(percent):
     return round(percent)
 
 
-class Hex:
-    def __init__(self, width=30):
-        self.width = width
-
-    @property
-    def area(self):
-        return round((self.width * 0.9305347) ** 2)
-
-
 class Kingdom:
     densities = (
         10,
@@ -80,16 +71,12 @@ class Kingdom:
         "Fertile, Warm, Idyllic",
     )
 
-    def __init__(self, name="Kingdom", area=780, density=3, age=300, city=None, map_hex=None):
+    def __init__(self, name="Kingdom", area=780, density=3, age=300):
         self.name = name
-
-        self.hex = map_hex or Hex()
 
         self.area = area
         self.density = self.densities[density]
         self.age = age
-
-        # self.city = city or City()
 
         self.arable = 0
 
@@ -125,16 +112,6 @@ class Kingdom:
 
         self.generate_population()
         self.generate_castle()
-
-    @property
-    def hexes(self):
-        if not self.hex:
-            return 0
-        if self.hex.area <= 0:
-            return 0
-        if self.area / self.hex.area >= 1:
-            return round(self.area / self.hex.area)
-        return round(self.area / self.hex.area, 1)
 
     @property
     def arable_percent(self):
@@ -216,7 +193,7 @@ class Kingdom:
         self.fowl = int(self.livestock * .68)
         self.meat_animals = self.livestock - self.fowl
 
-        self.castleCalc()
+        self.generate_castle()
 
     @property
     def castles(self):
@@ -234,91 +211,6 @@ class Kingdom:
         self.ruins = round((self.population / 5000000) * (math.sqrt(self.age)))
         self.castles_active = round(self.population / 50000)
         self.castles_civilized = round(self.castles * .75)
-
-    @property
-    def land_mass_description(self):
-        hex_text = ""
-        if self.hex:
-            hex_text = " ({hexes} hexes, each {hex.width}km across and roughly {hex.area}km^2 in area)".format(
-                hex=self.hex,
-                hexes=self.hexes,
-            )
-
-        return ("The population density of {name}, due to factors such as climate, geography, and political "
-                + "environment, is {density} persons per km^2.\n"
-                + "{name} occupies {area}km^2{hex}. Roughly {percent_arable}% of this is arable land, or {arable}km^2. "
-                + "The remaining {wilderness}km^2 is divided among wilderness, rivers, lakes, and the like.").format(
-            name=self.name,
-            density=self.density,
-            area=self.area,
-            hex=hex_text,
-            percent_arable=self.arable_percent,
-            arable=self.arable,
-            wilderness=self.wilderness
-        )
-
-    @property
-    def population_description(self):
-        return ("{name}'s population is approximately {population} persons.\n"
-                + "{hermits} residents are isolated or itinerant.\n"
-                + "{village_population} residents live in {villages} villages.\n"
-                + "{town_population} residents live in {towns} towns.\n"
-                + "{city_population} residents live in {cities} cities.\n"
-                + "{big_city_population} residents live in {big_cities} big cities.\n"
-                + "The average distance between villages is {village_distance}km.\n"
-                + "The average distance between towns is {town_distance}km.\n"
-                + "The average distance between cities (including big cities) is {city_distance}km.\n"
-                + "{name} supports {universities} Universities.\n"
-                + "{name} supports {livestock} head of livestock:\n"
-                + "{fowl} fowl (e.g. chickens, geese, ducks).\n"
-                + "{meat_animals} dairy and meat animals (e.g. cows, goats, pigs, sheep).").format(
-            name=self.name,
-            population=self.population,
-            hermits=self.hermits,
-            villages=self.villages,
-            village_population=self.village_population,
-            village_distance=self.village_distance,
-            towns=self.towns,
-            town_population=self.town_population,
-            town_distance=self.town_distance,
-            cities=self.cities,
-            city_population=self.city_population,
-            city_distance=self.city_distance,
-            big_cities=self.big_cities,
-            big_city_population=self.big_city_population,
-            universities=self.universities,
-            livestock=self.livestock,
-            fowl=self.fowl,
-            meat_animals=self.meat_animals,
-        )
-
-    @property
-    def castles_description(self):
-        return ("The inhabitants of {name} have been building castles for the last {age} years.\n"
-                + "There are approximately {castles} standing fortifications in {name}.\n"
-                + "{castles_active} castles are in active use.\n"
-                + "{ruins} castles are ruined or abandoned.\n"
-                + "{castles_civilized} castles are located in settled areas.\n"
-                + "{castles_wilderness} castles are located in remote areas, unsettled areas, or wilderness.\n"
-                + "(All numbers are approximate, particularly where ruins and wilderness are concerned.)").format(
-            name=self.name,
-            age=self.age,
-            castles=self.castles,
-            castles_active=self.castles_active,
-            ruins=self.ruins,
-            castles_civilized=self.castles_civilized,
-            castles_wilderness=self.castles_wilderness,
-        )
-
-    @property
-    def description(self):
-        return ("Land Mass\n{}\n"
-                +"Population\n{}\n"
-                +"Castles and Fortifications\n{}\n").format(
-            self.land_mass_description,
-            self.population_description,
-            self.castles_description,
-        )
 
 
 class SettlementType:
@@ -510,3 +402,65 @@ class City:
             army=self.army,
             services=services,
         )
+
+
+def describe(kingdom=None, map_hex=None):
+    kingdom = kingdom or Kingdom()
+
+    hex_text = ""
+    if map_hex:
+        hex_text = " ({hexes} hexes, each {hex.width}km across and roughly {hex.area}km^2 in area)".format(
+            hex=map_hex,
+            hexes=map_hex.hexes(kingdom.area),
+        )
+
+    land_mass_description = (
+        "The population density of {kingdom.name}, due to factors such as climate, geography, and political "
+        + "environment, is {kingdom.density} persons per km^2.\n"
+        + "{kingdom.name} occupies {kingdom.area}km^2{hex}. Roughly {kingdom.arable_percent}% of this is arable land, "
+        + "or {kingdom.arable}km^2. The remaining {kingdom.wilderness}km^2 is divided among wilderness, rivers, "
+        + "lakes, and the like."
+    ).format(
+        kingdom=kingdom,
+        hex=hex_text,
+    )
+
+    population_description = (
+        "{kingdom.name}'s population is approximately {kingdom.population} persons.\n"
+        + "{kingdom.hermits} residents are isolated or itinerant.\n"
+        + "{kingdom.village_population} residents live in {kingdom.villages} villages.\n"
+        + "{kingdom.town_population} residents live in {kingdom.towns} towns.\n"
+        + "{kingdom.city_population} residents live in {kingdom.cities} cities.\n"
+        + "{kingdom.big_city_population} residents live in {kingdom.big_cities} big cities.\n"
+        + "The average distance between villages is {kingdom.village_distance}km.\n"
+        + "The average distance between towns is {kingdom.town_distance}km.\n"
+        + "The average distance between cities (including big cities) is {kingdom.city_distance}km.\n"
+        + "{kingdom.name} supports {kingdom.universities} Universities.\n"
+        + "{kingdom.name} supports {kingdom.livestock} head of livestock:\n"
+        + "{kingdom.fowl} fowl (e.g. chickens, geese, ducks).\n"
+        + "{kingdom.meat_animals} dairy and meat animals (e.g. cows, goats, pigs, sheep)."
+    ).format(
+        kingdom=kingdom,
+    )
+
+    castles_description = (
+        "The inhabitants of {kingdom.name} have been building castles for the last {kingdom.age} years.\n"
+        + "There are approximately {kingdom.castles} standing fortifications in {kingdom.name}.\n"
+        + "{kingdom.castles_active} castles are in active use.\n"
+        + "{kingdom.ruins} castles are ruined or abandoned.\n"
+        + "{kingdom.castles_civilized} castles are located in settled areas.\n"
+        + "{kingdom.castles_wilderness} castles are located in remote areas, unsettled areas, or wilderness.\n"
+        + "(All numbers are approximate, particularly where ruins and wilderness are concerned.)"
+    ).format(
+        kingdom=kingdom,
+    )
+
+    return (
+        "Land Mass\n{}\n\n"
+        + "Population\n{}\n\n"
+        + "Castles and Fortifications\n{}\n"
+    ).format(
+        land_mass_description,
+        population_description,
+        castles_description,
+    )
