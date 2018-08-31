@@ -45,6 +45,7 @@ historians, which includes some fascinating descriptions of medieval city life a
 
 """
 import math
+from .density import DEFAULT_DEVELOPMENT, generate_density
 
 
 def round_or_percent(percent):
@@ -54,33 +55,26 @@ def round_or_percent(percent):
 
 
 class Kingdom:
-    densities = (
-        10,
-        15,
-        20,
-        30,
-        40,
-        50,
-    )
-    density_description = (
-        "Barren, Desolate",
-        "Rocky, Chilly",
-        "Cool, Dry; Swampy",
-        "Hilly, Temperate",
-        "Abundant Arable Land",
-        "Fertile, Warm, Idyllic",
-    )
-
-    def __init__(self, name="Kingdom", area=780, density=3, age=300):
+    def __init__(
+        self,
+        name="Kingdom",
+        area=780,
+        development=DEFAULT_DEVELOPMENT,
+        density=None,
+        population=None,
+        age=300,
+    ):
         self.name = name
 
         self.area = area
-        self.density = self.densities[density]
         self.age = age
+
+        self.development = development
+        self._density = density
+        self._population = population
 
         self.arable = 0
 
-        self.population = 0
         self.hermits = 0
         self.village_population = 0
         self.town_population = 0
@@ -114,6 +108,18 @@ class Kingdom:
         self.generate_castle()
 
     @property
+    def density(self):
+        if not self._density:
+            self._density = generate_density(self.development)
+        return self._density
+
+    @property
+    def population(self):
+        if not self._population:
+            self._population = self.density * self.area
+        return self._population
+
+    @property
     def arable_percent(self):
         return int((self.arable / self.area) * 100)
 
@@ -126,7 +132,6 @@ class Kingdom:
 
         :return:
         """
-        self.population = self.density * self.area
         self.arable = int(self.population / 69.5)
 
         if self.population < 20:
@@ -402,65 +407,3 @@ class City:
             army=self.army,
             services=services,
         )
-
-
-def describe(kingdom=None, map_hex=None):
-    kingdom = kingdom or Kingdom()
-
-    hex_text = ""
-    if map_hex:
-        hex_text = " ({hexes} hexes, each {hex.width}km across and roughly {hex.area}km^2 in area)".format(
-            hex=map_hex,
-            hexes=map_hex.hexes(kingdom.area),
-        )
-
-    land_mass_description = (
-        "The population density of {kingdom.name}, due to factors such as climate, geography, and political "
-        + "environment, is {kingdom.density} persons per km^2.\n"
-        + "{kingdom.name} occupies {kingdom.area}km^2{hex}. Roughly {kingdom.arable_percent}% of this is arable land, "
-        + "or {kingdom.arable}km^2. The remaining {kingdom.wilderness}km^2 is divided among wilderness, rivers, "
-        + "lakes, and the like."
-    ).format(
-        kingdom=kingdom,
-        hex=hex_text,
-    )
-
-    population_description = (
-        "{kingdom.name}'s population is approximately {kingdom.population} persons.\n"
-        + "{kingdom.hermits} residents are isolated or itinerant.\n"
-        + "{kingdom.village_population} residents live in {kingdom.villages} villages.\n"
-        + "{kingdom.town_population} residents live in {kingdom.towns} towns.\n"
-        + "{kingdom.city_population} residents live in {kingdom.cities} cities.\n"
-        + "{kingdom.big_city_population} residents live in {kingdom.big_cities} big cities.\n"
-        + "The average distance between villages is {kingdom.village_distance}km.\n"
-        + "The average distance between towns is {kingdom.town_distance}km.\n"
-        + "The average distance between cities (including big cities) is {kingdom.city_distance}km.\n"
-        + "{kingdom.name} supports {kingdom.universities} Universities.\n"
-        + "{kingdom.name} supports {kingdom.livestock} head of livestock:\n"
-        + "{kingdom.fowl} fowl (e.g. chickens, geese, ducks).\n"
-        + "{kingdom.meat_animals} dairy and meat animals (e.g. cows, goats, pigs, sheep)."
-    ).format(
-        kingdom=kingdom,
-    )
-
-    castles_description = (
-        "The inhabitants of {kingdom.name} have been building castles for the last {kingdom.age} years.\n"
-        + "There are approximately {kingdom.castles} standing fortifications in {kingdom.name}.\n"
-        + "{kingdom.castles_active} castles are in active use.\n"
-        + "{kingdom.ruins} castles are ruined or abandoned.\n"
-        + "{kingdom.castles_civilized} castles are located in settled areas.\n"
-        + "{kingdom.castles_wilderness} castles are located in remote areas, unsettled areas, or wilderness.\n"
-        + "(All numbers are approximate, particularly where ruins and wilderness are concerned.)"
-    ).format(
-        kingdom=kingdom,
-    )
-
-    return (
-        "Land Mass\n{}\n\n"
-        + "Population\n{}\n\n"
-        + "Castles and Fortifications\n{}\n"
-    ).format(
-        land_mass_description,
-        population_description,
-        castles_description,
-    )
