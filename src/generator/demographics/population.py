@@ -20,10 +20,58 @@ from dice import d
 from .city import BigCity, City, Town, Village
 
 
-class CitiesGenerator:
-    def __init__(self, population=500000):
+class PopulationGroup:
+    def __init__(self, settlement_type, population, area):
         self.population = population
+        self.settlements = population
+        if settlement_type:
+            self.population = settlement_type.generate_population(population)
+            self.settlements = settlement_type.generate_count(self.population, population)
 
+        self.distance = 0
+        if self.settlements > 1:
+            self.distance = math.sqrt(area / self.settlements)
+
+    @classmethod
+    def generate(cls, items, settlement_type, population, area):
+        population_group = cls(settlement_type, population, area)
+        population_group.population = 0
+        for item in items:
+            population_group.population += item.population
+        return population_group
+
+
+class SimpleCitiesGenerator:
+    def __init__(self, population=500000, area=5000):
+        self._population = population
+        self._area = area
+
+        self.hermits = None
+        self.villages = None
+        self.towns = None
+        self.cities = None
+        self.big_cities = None
+        self.generate()
+
+    def generate(self):
+        self.villages = PopulationGroup(Village, self.population, self.area)
+        self.towns = PopulationGroup(Town, self.population, self.area)
+        self.cities = PopulationGroup(City, self.population, self.area)
+        self.big_cities = PopulationGroup(BigCity, self.population, self.area)
+        self.hermits = PopulationGroup(
+            None,
+            self.population - (
+                self.villages.population
+                + self.towns.population
+                + self.cities.population
+                + self.big_cities.population
+            ),
+            self.area,
+        )
+        self.cities.distance = City.generate_distance(self.cities.population + self.big_cities.population, self.area)
+
+
+class CitiesGenerator(SimpleCitiesGenerator):
     @classmethod
     def first(cls, population):
         """
@@ -68,7 +116,7 @@ class CitiesGenerator:
             return None
         return City("City", population)
 
-    def cities(self):
+    def cities_generator(self):
         population = self.population
 
         city = self.first(population)
@@ -102,7 +150,7 @@ class CitiesGenerator:
         return d(2, 8) * cities_count
 
     @classmethod
-    def towns(cls, population=1000000, towns_count=10):
+    def towns_generator(cls, population=1000000, towns_count=10):
         for _ in range(towns_count):
             town = Town.generate("Town")
             population -= town.population
@@ -111,7 +159,7 @@ class CitiesGenerator:
             yield town
 
     @classmethod
-    def villages(cls, population=1000):
+    def villages_generator(cls, population=1000):
         """
         The remaining population live in villages, hamlets and smaller settlements; a small number will live in isolated
         dwellings or be itinerent workers and wanderers.
@@ -129,18 +177,20 @@ class CitiesGenerator:
 
     def generate(self):
         population = self.population
+        self.big_cities = PopulationGroup(BigCity, population, self.area)
 
-        cities = list(self.cities())
-        for city in cities:
-            population -= city.population
+        cities_list = list(self.cities_generator())
+        self.cities = PopulationGroup.generate(cities_list, City, population, self.area)
+        population -= self.cities.population
 
-        towns_count = self.towns_count(len(cities))
-        towns = list(self.towns(population, towns_count))
-        for town in towns:
-            population -= town.population
+        towns_count = self.towns_count(len(cities_list))
+        towns_list = list(self.towns_generator(population, towns_count))
+        self.towns = PopulationGroup.generate(towns_list, Town, population, self.area)
+        population -= self.towns.population
 
-        villages = list(self.villages(population))
-        for village in villages:
-            population -= village.population
+        villages_list = list(self.villages_generator(population))
+        self.villages = PopulationGroup.generate(villages_list, Village, population, self.area)
+        population -= self.villages.population
 
-        return cities, towns, villages, population
+        self.hermits = PopulationGroup(None, population, self.area)
+        self.cities.distance = City.generate_distance(self.cities.population + self.big_cities.population, self.area)

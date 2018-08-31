@@ -36,7 +36,9 @@ def univercity(population=50000000):
 
     :return:
     """
-    return population / 27300000
+    if population < 27300000:
+        return 0
+    return int(population / 27300000)
 
 
 def livestock(population=10000):

@@ -44,61 +44,40 @@ historians, which includes some fascinating descriptions of medieval city life a
 * http://www.lucidphoenix.com/dnd/demo/
 
 """
-import math
+from .density import DEFAULT_DEVELOPMENT, generate_density
+from .city import *
+from .population import SimpleCitiesGenerator
+from .services import populate_services, round_or_percent
+from .agriculture import Agriculture
+from .castles import ruins, castles, civilized
+from .miscellany import univercity, livestock, fowl
 
 
-def round_or_percent(percent):
-    if percent < 1:
-        return "{}%".format(round(percent * 100))
-    return round(percent)
-
-
-class Kingdom:
-    densities = (
-        10,
-        15,
-        20,
-        30,
-        40,
-        50,
-    )
-    density_description = (
-        "Barren, Desolate",
-        "Rocky, Chilly",
-        "Cool, Dry; Swampy",
-        "Hilly, Temperate",
-        "Abundant Arable Land",
-        "Fertile, Warm, Idyllic",
-    )
-
-    def __init__(self, name="Kingdom", area=780, density=3, age=300):
+class Kingdom(SimpleCitiesGenerator):
+    def __init__(
+        self,
+        name="Kingdom",
+        area=780,
+        development=DEFAULT_DEVELOPMENT,
+        density=None,
+        population=None,
+        age=300,
+    ):
         self.name = name
 
         self.area = area
-        self.density = self.densities[density]
         self.age = age
 
-        self.arable = 0
+        self.development = development
+        self._density = density
+        self._population = population
 
-        self.population = 0
-        self.hermits = 0
-        self.village_population = 0
-        self.town_population = 0
-        self.city_population = 0
-        self.big_city_population = 0
-
-        self.villages = 0
-        self.towns = 0
-        self.cities = 0
-        self.big_cities = 0
-
-        self.village_distance = 0
-        self.town_distance = 0
-        self.city_distance = 0
+        # Population spread
+        super().__init__(self.population, self.area)
+        self.agriculture = Agriculture(self.population, self.area)
 
         self.universities = 0
 
-        self.livestock = 0
         self.fowl = 0
         self.meat_animals = 0
 
@@ -106,94 +85,35 @@ class Kingdom:
         self.castles_active = 0
         self.castles_civilized = 0
 
-        self.pop_business = 0
-
-        self.city_text = ""
-
         self.generate_population()
-        self.generate_castle()
+        self.generate_castles()
 
     @property
-    def arable_percent(self):
-        return int((self.arable / self.area) * 100)
+    def density(self):
+        if not self._density:
+            self._density = generate_density(self.development)
+        return self._density
 
     @property
-    def wilderness(self):
-        return int(self.area - self.arable)
+    def population(self):
+        if not self._population:
+            self._population = int(self.density * self.area)
+        return self._population
+
+    @property
+    def livestock(self):
+        return self.fowl + self.meat_animals
 
     def generate_population(self):
         """
 
         :return:
         """
-        self.population = self.density * self.area
-        self.arable = int(self.population / 69.5)
+        self.universities = univercity(self.population)
 
-        if self.population < 20:
-            self.village_population = 0
-            self.town_population = 0
-            self.city_population = 0
-            self.big_city_population = 0
-        elif self.population < 15000:
-            self.village_population = int(self.population * .98)
-            self.town_population = 0
-            self.city_population = 0
-            self.big_city_population = 0
-        elif self.population < 300000:
-            self.village_population = int(self.population * .89)
-            self.town_population = int(self.population * .09)
-            self.city_population = 0
-            self.big_city_population = 0
-        elif self.population < 2400000:
-            self.village_population = int(self.population * .89)
-            self.town_population = int(self.population * .06)
-            self.city_population = int(self.population * .03)
-            self.big_city_population = 0
-        else:
-            self.village_population = int(self.population * .89)
-            self.town_population = int(self.population * .06)
-            self.city_population = int(self.population * .025)
-            self.big_city_population = int(self.population * .005)
-        self.hermits = self.population - (
-                self.village_population
-                + self.town_population
-                + self.city_population
-                + self.big_city_population)
-
-        self.villages = math.ceil(self.village_population / 450)
-        self.towns = math.ceil(self.town_population / 5000)
-        self.cities = math.ceil(self.city_population / 12000)
-
-        if math.sqrt(self.population) > 0:
-            self.big_cities = math.ceil(self.big_city_population / (math.sqrt(self.population) * 15))
-        else:
-            self.big_cities = 0
-
-        if self.villages > 1:
-            self.village_distance = round(math.sqrt(self.area / self.villages))
-        else:
-            self.village_distance = None
-
-        if self.towns > 1:
-            self.town_distance = round(math.sqrt(self.area / self.towns))
-        else:
-            self.town_distance = None
-
-        if self.cities > 1:
-            self.city_distance = round(math.sqrt(self.area / (self.cities + self.big_cities)))
-        else:
-            self.city_distance = None
-
-        if self.population >= 27300000:
-            self.universities = int(self.population / 27300000)
-        else:
-            self.universities = 0
-
-        self.livestock = int(self.population * 2.2)
-        self.fowl = int(self.livestock * .68)
-        self.meat_animals = self.livestock - self.fowl
-
-        self.generate_castle()
+        total_livestock = livestock(self.population)
+        self.fowl = fowl(total_livestock)
+        self.meat_animals = total_livestock - self.fowl
 
     @property
     def castles(self):
@@ -203,21 +123,14 @@ class Kingdom:
     def castles_wilderness(self):
         return self.castles - self.castles_civilized
 
-    def generate_castle(self):
+    def generate_castles(self):
         """
 
         :return:
         """
-        self.ruins = round((self.population / 5000000) * (math.sqrt(self.age)))
-        self.castles_active = round(self.population / 50000)
-        self.castles_civilized = round(self.castles * .75)
-
-
-class SettlementType:
-    def __init__(self, name="", population=5000, description=""):
-        self.name = name
-        self.population = population
-        self.description = description
+        self.ruins = ruins(self.population, self.age)
+        self.castles_active = castles(self.population)
+        self.castles_civilized = civilized(self.castles)
 
 
 class EnforcementType:
@@ -229,44 +142,7 @@ class EnforcementType:
         return round_or_percent(population * self.value / 150)
 
 
-class City:
-    types = (
-        SettlementType("tiny village", 30, """Villages range from 20 to 1,000 people, with typical villages ranging
-        from 50-300. Most kingdoms will have thousands of them. Villages are agrarian communities within the safe folds
-        of civilization. They provide the basic source of food and land-stability in a feudal system. Usually, a
-        village that supports orchards (instead of grainfields) is called a "hamlet." Occasionally, game writers use
-        the term to apply to a very small village, regardless of what food it produces."""),
-        SettlementType("small village", 100, """Villages range from 20 to 1,000 people, with typical villages ranging
-        from 50-300. Most kingdoms will have thousands of them. Villages are agrarian communities within the safe folds
-        of civilization. They provide the basic source of food and land-stability in a feudal system. Usually, a
-        village that supports orchards (instead of grainfields) is called a "hamlet." Occasionally, game writers use
-        the term to apply to a very small village, regardless of what food it produces."""),
-        SettlementType("village", 700, """Villages range from 20 to 1,000 people, with typical villages ranging from
-        50-300. Most kingdoms will have thousands of them. Villages are agrarian communities within the safe folds of
-        civilization. They provide the basic source of food and land-stability in a feudal system. Usually, a village
-        that supports orchards (instead of grainfields) is called a "hamlet." Occasionally, game writers use the term
-        to apply to a very small village, regardless of what food it produces."""),
-        SettlementType("small town", 1000, """Towns range in population from 1,000-8,000 people, with typical values
-        somewhere around 2,500. Culturally, these are the equivalent to the smaller American cities that line the
-        interstates. Cities and towns tend to have walls only if they are frequently threatened."""),
-        SettlementType("town", 5000, """Towns range in population from 1,000-8,000 people, with typical values
-        somewhere around 2,500. Culturally, these are the equivalent to the smaller American cities that line the
-        interstates. Cities and towns tend to have walls only if they are frequently threatened."""),
-        SettlementType("large town", 8000, """Towns range in population from 1,000-8,000 people, with typical values
-        somewhere around 2,500. Culturally, these are the equivalent to the smaller American cities that line the
-        interstates. Cities and towns tend to have walls only if they are frequently threatened."""),
-        SettlementType("city", 10000, """Cities tend to be from 8,000-12,000 people, with an average in the middle of
-        that range. A typical large kingdom will have only a few cities in this population range. Centers of scholarly
-        pursuits (the Universities) tend to be in cities of this size, with only the rare exception thriving in a
-        Big City."""),
-        SettlementType("big city", 40000, """Big Cities range from 12,000-100,000 people, with some exceptional cities
-        exceeding this scale. Some historical examples include London (25,000-40,000), Paris (50,000-80,000), Genoa
-        (75,000-100,000), and Venice (100,000+). Moscow in the 15th century had a population in excess of 200,000!"""),
-        SettlementType("huge city", 150000, """Big Cities range from 12,000-100,000 people, with some exceptional
-        cities exceeding this scale. Some historical examples include London (25,000-40,000), Paris (50,000-80,000),
-        Genoa (75,000-100,000), and Venice (100,000+). Moscow in the 15th century had a population in excess of
-        200,000!"""),
-    )
+class CityDescription:
     enforcements = (
         EnforcementType("little to no", .25),
         EnforcementType("indifferent", .5),
@@ -277,190 +153,160 @@ class City:
         EnforcementType("tyrannical", 3),
     )
 
-    def __init__(self, type_id=4, enforcement_id=3, kingdom=None, population=5000):
-        self.settlement_type = self.types[type_id]
+    def __init__(self, settlement_type=Town, enforcement_id=3, kingdom=None, population=5000):
+        self.settlement_type = settlement_type
         self.enforcement_type = self.enforcements[enforcement_id]
 
         self.kingdom = kingdom or Kingdom()
         self.population = population
 
-        self.area = 0
-        self.size = 0
-
         self.army = 0
-        self.pop_business = 0
         self.services = dict()
 
-        self.businessAutoCalc()
+        self.generate()
 
-    def businessAutoCalc(self):
-        """
+    @property
+    def average_population(self):
+        return self.settlement_type.average_population
 
-        :return:
-        """
-        self.pop_business = self.settlement_type.population
-        self.businessCalc()
-
-    def businessCalc(self):
-        """
-
-        :return:
-        """
+    @property
+    def area(self):
         density = 15000
-        self.area = (self.pop_business / density)
-        if self.area < 1:
-            self.size = math.ceil(self.area * 100) / 100
-        else:
-            self.size = math.ceil(self.area * 10) / 10
-
-        self.army = self.enforcement_type.generate(self.pop_business)
-        self.services = {
-            "Clergy": round_or_percent(self.pop_business / 40),
-            "Shoemakers": round_or_percent(self.pop_business / 150),
-            "Nobles": round_or_percent(self.pop_business / 200),
-            "Furriers": round_or_percent(self.pop_business / 250),
-            "Maidservants": round_or_percent(self.pop_business / 250),
-            "Tailors": round_or_percent(self.pop_business / 250),
-            "Barbers": round_or_percent(self.pop_business / 350),
-            "Jewelers": round_or_percent(self.pop_business / 400),
-            "Taverns": round_or_percent(self.pop_business / 400),
-            "Old-Clothes": round_or_percent(self.pop_business / 400),
-            "Pastrycooks": round_or_percent(self.pop_business / 500),
-            "Masons": round_or_percent(self.pop_business / 500),
-            "Carpenters": round_or_percent(self.pop_business / 550),
-            "Weavers": round_or_percent(self.pop_business / 600),
-            "Lawyers": round_or_percent(self.pop_business / 650),
-            "Chandlers": round_or_percent(self.pop_business / 700),
-            "Mercers": round_or_percent(self.pop_business / 700),
-            "Coopers": round_or_percent(self.pop_business / 700),
-            "Woodsellers": round_or_percent(self.pop_business / 700),
-            "Bakers": round_or_percent(self.pop_business / 800),
-            "Watercarriers": round_or_percent(self.pop_business / 850),
-            "Scabbardmakers": round_or_percent(self.pop_business / 850),
-            "Winesellers": round_or_percent(self.pop_business / 900),
-            "Hatmakers": round_or_percent(self.pop_business / 950),
-            "Saddlers": round_or_percent(self.pop_business / 1000),
-            "Chicken Butchers": round_or_percent(self.pop_business / 1000),
-            "Pursemakers": round_or_percent(self.pop_business / 1100),
-            "Butchers": round_or_percent(self.pop_business / 1200),
-            "Fishmongers": round_or_percent(self.pop_business / 1200),
-            "Priests": round_or_percent(self.pop_business / 1200),
-            "Beer-Sellers": round_or_percent(self.pop_business / 1400),
-            "Buckle Makers": round_or_percent(self.pop_business / 1400),
-            "Plasterers": round_or_percent(self.pop_business / 1400),
-            "Spice Merchants": round_or_percent(self.pop_business / 1400),
-            "Blacksmiths": round_or_percent(self.pop_business / 1500),
-            "Painters": round_or_percent(self.pop_business / 1500),
-            "Doctors": round_or_percent(self.pop_business / 1700),
-            "Roofers": round_or_percent(self.pop_business / 1800),
-            "Locksmiths": round_or_percent(self.pop_business / 1900),
-            "Bathers": round_or_percent(self.pop_business / 1900),
-            "Ropemakers": round_or_percent(self.pop_business / 1900),
-            "Inns": round_or_percent(self.pop_business / 2000),
-            "Tanners": round_or_percent(self.pop_business / 2000),
-            "Copyists": round_or_percent(self.pop_business / 2000),
-            "Sculptors": round_or_percent(self.pop_business / 2000),
-            "Rugmakers": round_or_percent(self.pop_business / 2000),
-            "Harness-Makers": round_or_percent(self.pop_business / 2000),
-            "Bleachers": round_or_percent(self.pop_business / 2100),
-            "Hay Merchants": round_or_percent(self.pop_business / 2300),
-            "Cutlers": round_or_percent(self.pop_business / 2300),
-            "Glovemakers": round_or_percent(self.pop_business / 2400),
-            "Woodcarvers": round_or_percent(self.pop_business / 2400),
-            "Apothecaries": round_or_percent(self.pop_business / 2800),
-            "Bookbinders": round_or_percent(self.pop_business / 3000),
-            "Illuminators": round_or_percent(self.pop_business / 3900),
-            "Booksellers": round_or_percent(self.pop_business / 6300),
-        }
+        return self.average_population / density
 
     @property
     def acres(self):
-        return math.ceil(self.area * 1000000 / 4047)
+        return self.area * 1000000 / 4047
+
+    def generate(self):
+        """
+
+        :return:
+        """
+        self.army = self.enforcement_type.generate(self.average_population)
+        self.services = populate_services(self.average_population)
+
 
     @property
     def description(self):
-        services = ""
-        for key, value in self.services.items():
-            services += "{} {}\n".format(value, key)
-
         return ("Towns and Cities\n"
                 + "{description}\n"
                 + "A settlement (e.g. {type}) in {kingdom} with a population of {population} will occupy roughly "
-                + "{area}km^2 ({acres} acres).\n"
+                + "{area:.2f}km² ({acres:.2f} acres).\n"
                 + "A settlement this size with {enforcement_type} law enforcement will probably have {army} armed "
                 + "agents of the ruling authority (guardsmen, watchmen, etc.).\n"
                 + "This settlement will probably have the following businesses and services available. (A percentage "
                 + "chance is indicated where no certainty exists.)\n"
                 + "{services}").format(
             description=self.settlement_type.description,
-            type=self.settlement_type.name,
+            type=self.settlement_type.type_name,
             kingdom=self.kingdom.name,
             population=self.population,
-            area=self.size,
+            area=self.area,
             acres=self.acres,
             enforcement_type=self.enforcement_type.name,
             army=self.army,
-            services=services,
+            services="\n".join(["{} {}".format(value, key) for key, value in self.services.items()]),
         )
 
 
-def describe(kingdom=None, map_hex=None):
-    kingdom = kingdom or Kingdom()
+def calculate_population(
+        area=0,
+        age=0,
+        density=None,
+        urban=None,
+        isolated=None,
+    ):
+    """
+    Densities:
+        Random
+        Low (30-50)
+        Medium (60-80)
+        High (90-120)
 
-    hex_text = ""
-    if map_hex:
-        hex_text = " ({hexes} hexes, each {hex.width}km across and roughly {hex.area}km^2 in area)".format(
-            hex=map_hex,
-            hexes=map_hex.hexes(kingdom.area),
-        )
+    Urban:
+        Random
+        Low (1-3)%
+        Medium (4-5)%
+        High (6-8)%
 
-    land_mass_description = (
-        "The population density of {kingdom.name}, due to factors such as climate, geography, and political "
-        + "environment, is {kingdom.density} persons per km^2.\n"
-        + "{kingdom.name} occupies {kingdom.area}km^2{hex}. Roughly {kingdom.arable_percent}% of this is arable land, "
-        + "or {kingdom.arable}km^2. The remaining {kingdom.wilderness}km^2 is divided among wilderness, rivers, "
-        + "lakes, and the like."
-    ).format(
-        kingdom=kingdom,
-        hex=hex_text,
-    )
+    Isolated:
+        Random
+        Low (2-3)%
+        High (4-5)%
 
-    population_description = (
-        "{kingdom.name}'s population is approximately {kingdom.population} persons.\n"
-        + "{kingdom.hermits} residents are isolated or itinerant.\n"
-        + "{kingdom.village_population} residents live in {kingdom.villages} villages.\n"
-        + "{kingdom.town_population} residents live in {kingdom.towns} towns.\n"
-        + "{kingdom.city_population} residents live in {kingdom.cities} cities.\n"
-        + "{kingdom.big_city_population} residents live in {kingdom.big_cities} big cities.\n"
-        + "The average distance between villages is {kingdom.village_distance}km.\n"
-        + "The average distance between towns is {kingdom.town_distance}km.\n"
-        + "The average distance between cities (including big cities) is {kingdom.city_distance}km.\n"
-        + "{kingdom.name} supports {kingdom.universities} Universities.\n"
-        + "{kingdom.name} supports {kingdom.livestock} head of livestock:\n"
-        + "{kingdom.fowl} fowl (e.g. chickens, geese, ducks).\n"
-        + "{kingdom.meat_animals} dairy and meat animals (e.g. cows, goats, pigs, sheep)."
-    ).format(
-        kingdom=kingdom,
-    )
+    :arg area: Land size (square miles)
+    :arg age: Kingdom age (years)
+    :arg density: Desired density (people per square mile)
+    :arg urban: Urban percentage
+    :arg isolated: Isolated percentage
+    :return:
+    """
+    print(area, age, density, urban, isolated)
 
-    castles_description = (
-        "The inhabitants of {kingdom.name} have been building castles for the last {kingdom.age} years.\n"
-        + "There are approximately {kingdom.castles} standing fortifications in {kingdom.name}.\n"
-        + "{kingdom.castles_active} castles are in active use.\n"
-        + "{kingdom.ruins} castles are ruined or abandoned.\n"
-        + "{kingdom.castles_civilized} castles are located in settled areas.\n"
-        + "{kingdom.castles_wilderness} castles are located in remote areas, unsettled areas, or wilderness.\n"
-        + "(All numbers are approximate, particularly where ruins and wilderness are concerned.)"
-    ).format(
-        kingdom=kingdom,
-    )
 
-    return (
-        "Land Mass\n{}\n\n"
-        + "Population\n{}\n\n"
-        + "Castles and Fortifications\n{}\n"
-    ).format(
-        land_mass_description,
-        population_description,
-        castles_description,
-    )
+def population_center(
+        population=0,
+        enable_dnd=False,
+        city_type=0,
+        races=(),
+        classes=(),
+    ):
+    """
+    Populations:
+        Village (20-1000)
+        Town (1000-8000)
+        City (8000-12000)
+        Big City(12000-100000)
+
+    City Types:
+        Isolated - 4 races, little divercity
+        Mixed - 7 races, more divercity
+        Integrated - 7 races, most divercity
+
+    Races:
+        Human
+        Halfling
+        Elf
+        Dwarf
+        Gnome
+        Half-Elf
+        Half-Orc
+        OtherA
+        OtherB
+        OtherC
+        OtherD
+        OtherE
+        OtherF
+        OtherG
+
+    Classes:
+        Barbarian   (dom)
+        Bard
+        Cleric
+        Druid
+        Fighter
+        Monk        (dom)
+        Paladin
+        Ranger
+        Rogue
+        Sorcerer
+        Wizard
+        Adept
+        Aristocrat
+        Expert
+        Warrior
+        Commoner
+
+    Class.priority:
+        Low/Normal
+        High
+
+    :arg population: Specific population or randomly generated
+    :arg enable_dnd: Enable D&D calculations
+    :arg city_type: Population Type
+    :arg races: Races
+    :arg classes: Highest levels (before city modifiers)
+    :return:
+    """
+    print(population, enable_dnd, city_type, races, classes)

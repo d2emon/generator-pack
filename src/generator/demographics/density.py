@@ -1,9 +1,9 @@
 """
-    Unless the kingdom is quite young, it is likely riddled with villages, a mile or two apart, covering every
-(farmable) inch of the countryside. Agrarian communities on the scale of the village or hamlet exist in vast networks.
-The only notable exception to this rule is frontier country, where isolated towns have no choice but to exist. But
-these towns will tend to be large and walled-a people huddled together for safety. On the frontier, food and goods are
-usually delivered by merchant caravans rather than produced by local agriculture. The presence of monsters would almost
+Unless the kingdom is quite young, it is likely riddled with villages, a mile or two apart, covering every (farmable)
+inch of the countryside. Agrarian communities on the scale of the village or hamlet exist in vast networks. The only
+notable exception to this rule is frontier country, where isolated towns have no choice but to exist. But these towns
+will tend to be large and walled-a people huddled together for safety. On the frontier, food and goods are usually
+delivered by merchant caravans rather than produced by local agriculture. The presence of monsters would almost
 certainly magnify these effects.
 """
 from dice import d
@@ -25,7 +25,28 @@ DENSITY_ITALY = 90
 DENSITY_BRITAIN = 40
 
 
-def density(development=5):
+# Development types
+BARREN_DEVELOPMENT = 1.0
+ROCKY_DEVELOPMENT = 1.5
+COOL_DEVELOPMENT = 2.0
+HILLY_DEVELOPMENT = 3.0
+ARABLE_DEVELOPMENT = 4.0
+IDYLLIC_DEVELOPMENT = 5.0
+
+DEFAULT_DEVELOPMENT = HILLY_DEVELOPMENT
+
+
+descriptions = {
+    BARREN_DEVELOPMENT: "Barren, Desolate",
+    ROCKY_DEVELOPMENT: "Rocky, Chilly",
+    COOL_DEVELOPMENT: "Cool, Dry; Swampy",
+    HILLY_DEVELOPMENT: "Hilly, Temperate",
+    ARABLE_DEVELOPMENT: "Abundant Arable Land",
+    IDYLLIC_DEVELOPMENT: "Fertile, Warm, Idyllic",
+}
+
+
+def generate_density(development=DEFAULT_DEVELOPMENT):
     """
     The average population density for a fully-developed medieval country is from 30 per square mile (for countries
     with lots of rocks, lots of rain, and lots of ice-or a slave-driving Mad King) to a limit of about 120 per square
@@ -42,25 +63,3 @@ def density(development=5):
     :return:
     """
     return d(6, 4) * development
-
-
-class MapHex:
-    """
-    Hexes: It may be important for some GMs using this article to know how much land is in a hexagonal area! To
-    determine the area of a hex, multiply its width by 0.9306049, and square the result. Thus, if your game-map has
-    hexes 30 miles across, each hex represents about 780 square miles (and it's a convenient size for travel-times,
-    since 30 miles is a good rule of thumb for a day's road travel on foot or horseback).
-    """
-    hex_area = .9305347  # .9306049
-
-    def __init__(self, length=30):
-        self.length = length
-
-    @property
-    def area(self):
-        return (self.length * self.hex_area) ** 2
-
-    def hexes(self, area):
-        if self.area <= 0:
-            return 0
-        return area / self.area
