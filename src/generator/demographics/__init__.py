@@ -49,6 +49,7 @@ from .city import *
 from .population import SimpleCitiesGenerator
 from .services import populate_services, round_or_percent
 from .agriculture import Agriculture
+from .castles import ruins, castles, civilized
 
 
 class Kingdom(SimpleCitiesGenerator):
@@ -89,7 +90,7 @@ class Kingdom(SimpleCitiesGenerator):
         self.city_text = ""
 
         self.generate_population()
-        self.generate_castle()
+        self.generate_castles()
 
     @property
     def density(self):
@@ -117,8 +118,6 @@ class Kingdom(SimpleCitiesGenerator):
         self.fowl = int(self.livestock * .68)
         self.meat_animals = self.livestock - self.fowl
 
-        self.generate_castle()
-
     @property
     def castles(self):
         return self.castles_active + self.ruins
@@ -127,14 +126,14 @@ class Kingdom(SimpleCitiesGenerator):
     def castles_wilderness(self):
         return self.castles - self.castles_civilized
 
-    def generate_castle(self):
+    def generate_castles(self):
         """
 
         :return:
         """
-        self.ruins = round((self.population / 5000000) * (math.sqrt(self.age)))
-        self.castles_active = round(self.population / 50000)
-        self.castles_civilized = round(self.castles * .75)
+        self.ruins = ruins(self.population, self.age)
+        self.castles_active = castles(self.population)
+        self.castles_civilized = civilized(self.castles)
 
 
 class EnforcementType:
