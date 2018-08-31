@@ -45,7 +45,9 @@ historians, which includes some fascinating descriptions of medieval city life a
 
 """
 import math
+
 from .density import DEFAULT_DEVELOPMENT, generate_density
+from .city import *
 
 
 def round_or_percent(percent):
@@ -75,20 +77,23 @@ class Kingdom:
 
         self.arable = 0
 
+        # Population spread
         self.hermits = 0
+
         self.village_population = 0
-        self.town_population = 0
-        self.city_population = 0
-        self.big_city_population = 0
-
         self.villages = 0
-        self.towns = 0
-        self.cities = 0
-        self.big_cities = 0
-
         self.village_distance = 0
+
+        self.town_population = 0
+        self.towns = 0
         self.town_distance = 0
+
+        self.city_population = 0
+        self.cities = 0
         self.city_distance = 0
+
+        self.big_city_population = 0
+        self.big_cities = 0
 
         self.universities = 0
 
@@ -116,7 +121,7 @@ class Kingdom:
     @property
     def population(self):
         if not self._population:
-            self._population = self.density * self.area
+            self._population = int(self.density * self.area)
         return self._population
 
     @property
@@ -134,60 +139,27 @@ class Kingdom:
         """
         self.arable = int(self.population / 69.5)
 
-        if self.population < 20:
-            self.village_population = 0
-            self.town_population = 0
-            self.city_population = 0
-            self.big_city_population = 0
-        elif self.population < 15000:
-            self.village_population = int(self.population * .98)
-            self.town_population = 0
-            self.city_population = 0
-            self.big_city_population = 0
-        elif self.population < 300000:
-            self.village_population = int(self.population * .89)
-            self.town_population = int(self.population * .09)
-            self.city_population = 0
-            self.big_city_population = 0
-        elif self.population < 2400000:
-            self.village_population = int(self.population * .89)
-            self.town_population = int(self.population * .06)
-            self.city_population = int(self.population * .03)
-            self.big_city_population = 0
-        else:
-            self.village_population = int(self.population * .89)
-            self.town_population = int(self.population * .06)
-            self.city_population = int(self.population * .025)
-            self.big_city_population = int(self.population * .005)
+        self.village_population = Village.generate_population(self.population)
+        self.villages = Village.generate_count(self.village_population, self.population)
+        self.village_distance = Village.generate_distance(self.villages, self.area)
+
+        self.town_population = Town.generate_population(self.population)
+        self.towns = Town.generate_count(self.town_population, self.population)
+        self.town_distance = Town.generate_distance(self.towns, self.area)
+
+        self.city_population = City.generate_population(self.population)
+        self.cities = City.generate_count(self.city_population, self.population)
+
+        self.big_city_population = BigCity.generate_population(self.population)
+        self.big_cities = BigCity.generate_count(self.big_city_population, self.population)
+        self.city_distance = City.generate_distance(self.cities + self.big_cities, self.area)
+
         self.hermits = self.population - (
                 self.village_population
                 + self.town_population
                 + self.city_population
                 + self.big_city_population)
-
-        self.villages = math.ceil(self.village_population / 450)
-        self.towns = math.ceil(self.town_population / 5000)
-        self.cities = math.ceil(self.city_population / 12000)
-
-        if math.sqrt(self.population) > 0:
-            self.big_cities = math.ceil(self.big_city_population / (math.sqrt(self.population) * 15))
-        else:
-            self.big_cities = 0
-
-        if self.villages > 1:
-            self.village_distance = round(math.sqrt(self.area / self.villages))
-        else:
-            self.village_distance = None
-
-        if self.towns > 1:
-            self.town_distance = round(math.sqrt(self.area / self.towns))
-        else:
-            self.town_distance = None
-
-        if self.cities > 1:
-            self.city_distance = round(math.sqrt(self.area / (self.cities + self.big_cities)))
-        else:
-            self.city_distance = None
+        print(self.area / self.hermits)
 
         if self.population >= 27300000:
             self.universities = int(self.population / 27300000)
@@ -218,13 +190,6 @@ class Kingdom:
         self.castles_civilized = round(self.castles * .75)
 
 
-class SettlementType:
-    def __init__(self, name="", population=5000, description=""):
-        self.name = name
-        self.population = population
-        self.description = description
-
-
 class EnforcementType:
     def __init__(self, name="", value=1.0):
         self.name = name
@@ -234,43 +199,17 @@ class EnforcementType:
         return round_or_percent(population * self.value / 150)
 
 
-class City:
+class CityDescription:
     types = (
-        SettlementType("tiny village", 30, """Villages range from 20 to 1,000 people, with typical villages ranging
-        from 50-300. Most kingdoms will have thousands of them. Villages are agrarian communities within the safe folds
-        of civilization. They provide the basic source of food and land-stability in a feudal system. Usually, a
-        village that supports orchards (instead of grainfields) is called a "hamlet." Occasionally, game writers use
-        the term to apply to a very small village, regardless of what food it produces."""),
-        SettlementType("small village", 100, """Villages range from 20 to 1,000 people, with typical villages ranging
-        from 50-300. Most kingdoms will have thousands of them. Villages are agrarian communities within the safe folds
-        of civilization. They provide the basic source of food and land-stability in a feudal system. Usually, a
-        village that supports orchards (instead of grainfields) is called a "hamlet." Occasionally, game writers use
-        the term to apply to a very small village, regardless of what food it produces."""),
-        SettlementType("village", 700, """Villages range from 20 to 1,000 people, with typical villages ranging from
-        50-300. Most kingdoms will have thousands of them. Villages are agrarian communities within the safe folds of
-        civilization. They provide the basic source of food and land-stability in a feudal system. Usually, a village
-        that supports orchards (instead of grainfields) is called a "hamlet." Occasionally, game writers use the term
-        to apply to a very small village, regardless of what food it produces."""),
-        SettlementType("small town", 1000, """Towns range in population from 1,000-8,000 people, with typical values
-        somewhere around 2,500. Culturally, these are the equivalent to the smaller American cities that line the
-        interstates. Cities and towns tend to have walls only if they are frequently threatened."""),
-        SettlementType("town", 5000, """Towns range in population from 1,000-8,000 people, with typical values
-        somewhere around 2,500. Culturally, these are the equivalent to the smaller American cities that line the
-        interstates. Cities and towns tend to have walls only if they are frequently threatened."""),
-        SettlementType("large town", 8000, """Towns range in population from 1,000-8,000 people, with typical values
-        somewhere around 2,500. Culturally, these are the equivalent to the smaller American cities that line the
-        interstates. Cities and towns tend to have walls only if they are frequently threatened."""),
-        SettlementType("city", 10000, """Cities tend to be from 8,000-12,000 people, with an average in the middle of
-        that range. A typical large kingdom will have only a few cities in this population range. Centers of scholarly
-        pursuits (the Universities) tend to be in cities of this size, with only the rare exception thriving in a
-        Big City."""),
-        SettlementType("big city", 40000, """Big Cities range from 12,000-100,000 people, with some exceptional cities
-        exceeding this scale. Some historical examples include London (25,000-40,000), Paris (50,000-80,000), Genoa
-        (75,000-100,000), and Venice (100,000+). Moscow in the 15th century had a population in excess of 200,000!"""),
-        SettlementType("huge city", 150000, """Big Cities range from 12,000-100,000 people, with some exceptional
-        cities exceeding this scale. Some historical examples include London (25,000-40,000), Paris (50,000-80,000),
-        Genoa (75,000-100,000), and Venice (100,000+). Moscow in the 15th century had a population in excess of
-        200,000!"""),
+        TinyVillage,
+        SmallVillage,
+        Village,
+        SmallTown,
+        Town,
+        LargeTown,
+        City,
+        BigCity,
+        HugeCity,
     )
     enforcements = (
         EnforcementType("little to no", .25),
@@ -303,7 +242,7 @@ class City:
 
         :return:
         """
-        self.pop_business = self.settlement_type.population
+        self.pop_business = self.settlement_type.average_population
         self.businessCalc()
 
     def businessCalc(self):
@@ -398,7 +337,7 @@ class City:
                 + "chance is indicated where no certainty exists.)\n"
                 + "{services}").format(
             description=self.settlement_type.description,
-            type=self.settlement_type.name,
+            type=self.settlement_type.type_name,
             kingdom=self.kingdom.name,
             population=self.population,
             area=self.size,

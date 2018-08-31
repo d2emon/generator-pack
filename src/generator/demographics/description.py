@@ -25,6 +25,22 @@ def land_mass_description(kingdom, map_hex=None):
 
 
 def population_description(kingdom):
+    village_distance = ""
+    if kingdom.village_distance:
+        village_distance = "The average distance between villages is {distance}km.\n".format(
+            distance=kingdom.village_distance
+        )
+    town_distance = ""
+    if kingdom.town_distance:
+        town_distance = "The average distance between towns is {distance}km.\n".format(
+            distance=kingdom.town_distance
+        )
+    city_distance = ""
+    if kingdom.city_distance:
+        city_distance = "The average distance between cities (including big cities) is {distance}km.\n".format(
+            distance=kingdom.city_distance
+        )
+
     return (
         "{kingdom.name}'s population is approximately {kingdom.population} persons.\n"
         + "{kingdom.hermits} residents are isolated or itinerant.\n"
@@ -32,15 +48,18 @@ def population_description(kingdom):
         + "{kingdom.town_population} residents live in {kingdom.towns} towns.\n"
         + "{kingdom.city_population} residents live in {kingdom.cities} cities.\n"
         + "{kingdom.big_city_population} residents live in {kingdom.big_cities} big cities.\n"
-        + "The average distance between villages is {kingdom.village_distance}km.\n"
-        + "The average distance between towns is {kingdom.town_distance}km.\n"
-        + "The average distance between cities (including big cities) is {kingdom.city_distance}km.\n"
+        + "{village_distance}"
+        + "{town_distance}"
+        + "{city_distance}"
         + "{kingdom.name} supports {kingdom.universities} Universities.\n"
         + "{kingdom.name} supports {kingdom.livestock} head of livestock:\n"
         + "{kingdom.fowl} fowl (e.g. chickens, geese, ducks).\n"
         + "{kingdom.meat_animals} dairy and meat animals (e.g. cows, goats, pigs, sheep)."
     ).format(
         kingdom=kingdom,
+        village_distance=village_distance,
+        town_distance=town_distance,
+        city_distance=city_distance,
     )
 
 
@@ -64,7 +83,7 @@ def describe(kingdom, map_hex=None):
         + "Population\n{}\n\n"
         + "Castles and Fortifications\n{}\n"
     ).format(
-        land_mass_description(),
-        population_description(),
-        castles_description(),
+        land_mass_description(kingdom, map_hex),
+        population_description(kingdom),
+        castles_description(kingdom),
     )
