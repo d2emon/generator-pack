@@ -56,6 +56,17 @@ def round_or_percent(percent):
     return round(percent)
 
 
+class PopulationGroup:
+    def __init__(self, settlement_type, population, area):
+        self.population = population
+        self.settlements = population
+        self.distance = 0
+        if settlement_type:
+            self.population = settlement_type.generate_population(population)
+            self.settlements = settlement_type.generate_count(self.population, population)
+            self.distance = settlement_type.generate_distance(self.settlements, area)
+
+
 class Kingdom:
     def __init__(
         self,
@@ -78,22 +89,11 @@ class Kingdom:
         self.arable = 0
 
         # Population spread
-        self.hermits = 0
-
-        self.village_population = 0
-        self.villages = 0
-        self.village_distance = 0
-
-        self.town_population = 0
-        self.towns = 0
-        self.town_distance = 0
-
-        self.city_population = 0
-        self.cities = 0
-        self.city_distance = 0
-
-        self.big_city_population = 0
-        self.big_cities = 0
+        self.hermits = None
+        self.villages = None
+        self.towns = None
+        self.cities = None
+        self.big_cities = None
 
         self.universities = 0
 
@@ -139,27 +139,21 @@ class Kingdom:
         """
         self.arable = int(self.population / 69.5)
 
-        self.village_population = Village.generate_population(self.population)
-        self.villages = Village.generate_count(self.village_population, self.population)
-        self.village_distance = Village.generate_distance(self.villages, self.area)
-
-        self.town_population = Town.generate_population(self.population)
-        self.towns = Town.generate_count(self.town_population, self.population)
-        self.town_distance = Town.generate_distance(self.towns, self.area)
-
-        self.city_population = City.generate_population(self.population)
-        self.cities = City.generate_count(self.city_population, self.population)
-
-        self.big_city_population = BigCity.generate_population(self.population)
-        self.big_cities = BigCity.generate_count(self.big_city_population, self.population)
-        self.city_distance = City.generate_distance(self.cities + self.big_cities, self.area)
-
-        self.hermits = self.population - (
-                self.village_population
-                + self.town_population
-                + self.city_population
-                + self.big_city_population)
-        print(self.area / self.hermits)
+        self.villages = PopulationGroup(Village, self.population, self.area)
+        self.towns = PopulationGroup(Town, self.population, self.area)
+        self.cities = PopulationGroup(City, self.population, self.area)
+        self.big_cities = PopulationGroup(BigCity, self.population, self.area)
+        self.hermits = PopulationGroup(
+            None,
+            self.population - (
+                self.villages.population
+                + self.towns.population
+                + self.cities.population
+                + self.big_cities.population
+            ),
+            self.area,
+        )
+        self.cities.distance = City.generate_distance(self.cities.population + self.big_cities.population, self.area)
 
         if self.population >= 27300000:
             self.universities = int(self.population / 27300000)
