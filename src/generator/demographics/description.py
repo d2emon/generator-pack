@@ -27,17 +27,17 @@ def land_mass_description(kingdom, map_hex=None):
 def population_description(kingdom):
     village_distance = ""
     if kingdom.villages.distance:
-        village_distance = "The average distance between villages is {distance}km.\n".format(
+        village_distance = "The average distance between villages is {distance:.1f}km.\n".format(
             distance=kingdom.villages.distance
         )
     town_distance = ""
     if kingdom.towns.distance:
-        town_distance = "The average distance between towns is {distance}km.\n".format(
+        town_distance = "The average distance between towns is {distance:.1f}km.\n".format(
             distance=kingdom.towns.distance
         )
     city_distance = ""
     if kingdom.cities.distance:
-        city_distance = "The average distance between cities (including big cities) is {distance}km.\n".format(
+        city_distance = "The average distance between cities (including big cities) is {distance:.1f}km.\n".format(
             distance=kingdom.cities.distance
         )
 
