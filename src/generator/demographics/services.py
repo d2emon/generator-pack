@@ -10,6 +10,12 @@ and he will welcome news and stories of adventures, not to mention any money the
 import random
 
 
+def round_or_percent(percent):
+    if percent < 1:
+        return "{}%".format(round(percent * 100))
+    return round(percent)
+
+
 class Service:
     """
     Each type of business is given a Support Value (SV). This is the number of people it takes to support a single
@@ -85,7 +91,6 @@ Businesses not listed here will most likely have an SV from 5,000 to 25,000! The
 wizards can purchase spell ingredients, scroll paper and the like, not a place to buy magic swords off the shelf.
 """
 SERVICES = [
-    Service("Shoemaker", 150),
     Service("Shoemakers", 150),
     Service("Furriers", 250),
     Service("Maidservants", 250),
@@ -164,3 +169,12 @@ def populate(population):
     res += [priest] * priest_count
 
     return res
+
+
+def populate_services(population):
+    services = {s.name: round_or_percent(population / s.sv) for s in SERVICES}
+    services[clergy.name] = round_or_percent(population / clergy.sv)
+
+    priests = Priest()
+    services[priests.name] = round_or_percent(services[clergy.name] / priests.sv)
+    return services

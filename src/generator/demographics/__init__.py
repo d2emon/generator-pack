@@ -47,12 +47,7 @@ historians, which includes some fascinating descriptions of medieval city life a
 from .density import DEFAULT_DEVELOPMENT, generate_density
 from .city import *
 from .population import SimpleCitiesGenerator
-
-
-def round_or_percent(percent):
-    if percent < 1:
-        return "{}%".format(round(percent * 100))
-    return round(percent)
+from .services import populate_services, round_or_percent
 
 
 class Kingdom(SimpleCitiesGenerator):
@@ -190,109 +185,39 @@ class CityDescription:
         self.kingdom = kingdom or Kingdom()
         self.population = population
 
-        self.area = 0
-        self.size = 0
-
         self.army = 0
-        self.pop_business = 0
         self.services = dict()
 
-        self.businessAutoCalc()
+        self.generate()
 
-    def businessAutoCalc(self):
-        """
+    @property
+    def average_population(self):
+        return self.settlement_type.average_population
 
-        :return:
-        """
-        self.pop_business = self.settlement_type.average_population
-        self.businessCalc()
-
-    def businessCalc(self):
-        """
-
-        :return:
-        """
+    @property
+    def area(self):
         density = 15000
-        self.area = (self.pop_business / density)
-        if self.area < 1:
-            self.size = math.ceil(self.area * 100) / 100
-        else:
-            self.size = math.ceil(self.area * 10) / 10
-
-        self.army = self.enforcement_type.generate(self.pop_business)
-        self.services = {
-            "Clergy": round_or_percent(self.pop_business / 40),
-            "Shoemakers": round_or_percent(self.pop_business / 150),
-            "Nobles": round_or_percent(self.pop_business / 200),
-            "Furriers": round_or_percent(self.pop_business / 250),
-            "Maidservants": round_or_percent(self.pop_business / 250),
-            "Tailors": round_or_percent(self.pop_business / 250),
-            "Barbers": round_or_percent(self.pop_business / 350),
-            "Jewelers": round_or_percent(self.pop_business / 400),
-            "Taverns": round_or_percent(self.pop_business / 400),
-            "Old-Clothes": round_or_percent(self.pop_business / 400),
-            "Pastrycooks": round_or_percent(self.pop_business / 500),
-            "Masons": round_or_percent(self.pop_business / 500),
-            "Carpenters": round_or_percent(self.pop_business / 550),
-            "Weavers": round_or_percent(self.pop_business / 600),
-            "Lawyers": round_or_percent(self.pop_business / 650),
-            "Chandlers": round_or_percent(self.pop_business / 700),
-            "Mercers": round_or_percent(self.pop_business / 700),
-            "Coopers": round_or_percent(self.pop_business / 700),
-            "Woodsellers": round_or_percent(self.pop_business / 700),
-            "Bakers": round_or_percent(self.pop_business / 800),
-            "Watercarriers": round_or_percent(self.pop_business / 850),
-            "Scabbardmakers": round_or_percent(self.pop_business / 850),
-            "Winesellers": round_or_percent(self.pop_business / 900),
-            "Hatmakers": round_or_percent(self.pop_business / 950),
-            "Saddlers": round_or_percent(self.pop_business / 1000),
-            "Chicken Butchers": round_or_percent(self.pop_business / 1000),
-            "Pursemakers": round_or_percent(self.pop_business / 1100),
-            "Butchers": round_or_percent(self.pop_business / 1200),
-            "Fishmongers": round_or_percent(self.pop_business / 1200),
-            "Priests": round_or_percent(self.pop_business / 1200),
-            "Beer-Sellers": round_or_percent(self.pop_business / 1400),
-            "Buckle Makers": round_or_percent(self.pop_business / 1400),
-            "Plasterers": round_or_percent(self.pop_business / 1400),
-            "Spice Merchants": round_or_percent(self.pop_business / 1400),
-            "Blacksmiths": round_or_percent(self.pop_business / 1500),
-            "Painters": round_or_percent(self.pop_business / 1500),
-            "Doctors": round_or_percent(self.pop_business / 1700),
-            "Roofers": round_or_percent(self.pop_business / 1800),
-            "Locksmiths": round_or_percent(self.pop_business / 1900),
-            "Bathers": round_or_percent(self.pop_business / 1900),
-            "Ropemakers": round_or_percent(self.pop_business / 1900),
-            "Inns": round_or_percent(self.pop_business / 2000),
-            "Tanners": round_or_percent(self.pop_business / 2000),
-            "Copyists": round_or_percent(self.pop_business / 2000),
-            "Sculptors": round_or_percent(self.pop_business / 2000),
-            "Rugmakers": round_or_percent(self.pop_business / 2000),
-            "Harness-Makers": round_or_percent(self.pop_business / 2000),
-            "Bleachers": round_or_percent(self.pop_business / 2100),
-            "Hay Merchants": round_or_percent(self.pop_business / 2300),
-            "Cutlers": round_or_percent(self.pop_business / 2300),
-            "Glovemakers": round_or_percent(self.pop_business / 2400),
-            "Woodcarvers": round_or_percent(self.pop_business / 2400),
-            "Apothecaries": round_or_percent(self.pop_business / 2800),
-            "Bookbinders": round_or_percent(self.pop_business / 3000),
-            "Illuminators": round_or_percent(self.pop_business / 3900),
-            "Booksellers": round_or_percent(self.pop_business / 6300),
-        }
+        return self.average_population / density
 
     @property
     def acres(self):
-        return math.ceil(self.area * 1000000 / 4047)
+        return self.area * 1000000 / 4047
+
+    def generate(self):
+        """
+
+        :return:
+        """
+        self.army = self.enforcement_type.generate(self.average_population)
+        self.services = populate_services(self.average_population)
+
 
     @property
     def description(self):
-        services = ""
-        for key, value in self.services.items():
-            services += "{} {}\n".format(value, key)
-
         return ("Towns and Cities\n"
                 + "{description}\n"
                 + "A settlement (e.g. {type}) in {kingdom} with a population of {population} will occupy roughly "
-                + "{area}km^2 ({acres} acres).\n"
+                + "{area:.2f}km² ({acres:.2f} acres).\n"
                 + "A settlement this size with {enforcement_type} law enforcement will probably have {army} armed "
                 + "agents of the ruling authority (guardsmen, watchmen, etc.).\n"
                 + "This settlement will probably have the following businesses and services available. (A percentage "
@@ -302,9 +227,9 @@ class CityDescription:
             type=self.settlement_type.type_name,
             kingdom=self.kingdom.name,
             population=self.population,
-            area=self.size,
+            area=self.area,
             acres=self.acres,
             enforcement_type=self.enforcement_type.name,
             army=self.army,
-            services=services,
+            services="\n".join(["{} {}".format(value, key) for key, value in self.services.items()]),
         )
