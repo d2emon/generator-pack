@@ -50,6 +50,7 @@ from .population import SimpleCitiesGenerator
 from .services import populate_services, round_or_percent
 from .agriculture import Agriculture
 from .castles import ruins, castles, civilized
+from .miscellany import univercity, livestock, fowl
 
 
 class Kingdom(SimpleCitiesGenerator):
@@ -77,17 +78,12 @@ class Kingdom(SimpleCitiesGenerator):
 
         self.universities = 0
 
-        self.livestock = 0
         self.fowl = 0
         self.meat_animals = 0
 
         self.ruins = 0
         self.castles_active = 0
         self.castles_civilized = 0
-
-        self.pop_business = 0
-
-        self.city_text = ""
 
         self.generate_population()
         self.generate_castles()
@@ -104,19 +100,20 @@ class Kingdom(SimpleCitiesGenerator):
             self._population = int(self.density * self.area)
         return self._population
 
+    @property
+    def livestock(self):
+        return self.fowl + self.meat_animals
+
     def generate_population(self):
         """
 
         :return:
         """
-        if self.population >= 27300000:
-            self.universities = int(self.population / 27300000)
-        else:
-            self.universities = 0
+        self.universities = univercity(self.population)
 
-        self.livestock = int(self.population * 2.2)
-        self.fowl = int(self.livestock * .68)
-        self.meat_animals = self.livestock - self.fowl
+        total_livestock = livestock(self.population)
+        self.fowl = fowl(total_livestock)
+        self.meat_animals = total_livestock - self.fowl
 
     @property
     def castles(self):
@@ -146,17 +143,6 @@ class EnforcementType:
 
 
 class CityDescription:
-    types = (
-        TinyVillage,
-        SmallVillage,
-        Village,
-        SmallTown,
-        Town,
-        LargeTown,
-        City,
-        BigCity,
-        HugeCity,
-    )
     enforcements = (
         EnforcementType("little to no", .25),
         EnforcementType("indifferent", .5),
@@ -167,8 +153,8 @@ class CityDescription:
         EnforcementType("tyrannical", 3),
     )
 
-    def __init__(self, type_id=4, enforcement_id=3, kingdom=None, population=5000):
-        self.settlement_type = self.types[type_id]
+    def __init__(self, settlement_type=Town, enforcement_id=3, kingdom=None, population=5000):
+        self.settlement_type = settlement_type
         self.enforcement_type = self.enforcements[enforcement_id]
 
         self.kingdom = kingdom or Kingdom()
