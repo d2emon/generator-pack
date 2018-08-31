@@ -14,9 +14,9 @@ def land_mass_description(kingdom, map_hex=None):
     return (
         "The population density of {kingdom.name}, due to factors such as climate, geography, and political "
         + "environment, is {density}.\n"
-        + "{kingdom.name} occupies {kingdom.area}km²{hex}. Roughly {kingdom.arable_percent}% of this is arable land, "
-        + "or {kingdom.arable}km². The remaining {kingdom.wilderness}km² is divided among wilderness, rivers, "
-        + "lakes, and the like."
+        + "{kingdom.name} occupies {kingdom.area}km²{hex}. Roughly {kingdom.agriculture.arable_percent}% of this is "
+        + "arable land, or {kingdom.agriculture.arable:.1f}km². The remaining {kingdom.agriculture.wilderness:.1f}km² "
+        + "is divided among wilderness, rivers, lakes, and the like."
     ).format(
         kingdom=kingdom,
         hex=hex_text,

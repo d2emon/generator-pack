@@ -48,6 +48,7 @@ from .density import DEFAULT_DEVELOPMENT, generate_density
 from .city import *
 from .population import SimpleCitiesGenerator
 from .services import populate_services, round_or_percent
+from .agriculture import Agriculture
 
 
 class Kingdom(SimpleCitiesGenerator):
@@ -71,6 +72,7 @@ class Kingdom(SimpleCitiesGenerator):
 
         # Population spread
         super().__init__(self.population, self.area)
+        self.agriculture = Agriculture(self.population, self.area)
 
         self.universities = 0
 
@@ -100,18 +102,6 @@ class Kingdom(SimpleCitiesGenerator):
         if not self._population:
             self._population = int(self.density * self.area)
         return self._population
-
-    @property
-    def arable(self):
-        return self.population / 69.5
-
-    @property
-    def arable_percent(self):
-        return int((self.arable / self.area) * 100)
-
-    @property
-    def wilderness(self):
-        return int(self.area - self.arable)
 
     def generate_population(self):
         """
