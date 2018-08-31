@@ -208,3 +208,105 @@ class CityDescription:
             army=self.army,
             services="\n".join(["{} {}".format(value, key) for key, value in self.services.items()]),
         )
+
+
+def calculate_population(
+        area=0,
+        age=0,
+        density=None,
+        urban=None,
+        isolated=None,
+    ):
+    """
+    Densities:
+        Random
+        Low (30-50)
+        Medium (60-80)
+        High (90-120)
+
+    Urban:
+        Random
+        Low (1-3)%
+        Medium (4-5)%
+        High (6-8)%
+
+    Isolated:
+        Random
+        Low (2-3)%
+        High (4-5)%
+
+    :arg area: Land size (square miles)
+    :arg age: Kingdom age (years)
+    :arg density: Desired density (people per square mile)
+    :arg urban: Urban percentage
+    :arg isolated: Isolated percentage
+    :return:
+    """
+    print(area, age, density, urban, isolated)
+
+
+def population_center(
+        population=0,
+        enable_dnd=False,
+        city_type=0,
+        races=(),
+        classes=(),
+    ):
+    """
+    Populations:
+        Village (20-1000)
+        Town (1000-8000)
+        City (8000-12000)
+        Big City(12000-100000)
+
+    City Types:
+        Isolated - 4 races, little divercity
+        Mixed - 7 races, more divercity
+        Integrated - 7 races, most divercity
+
+    Races:
+        Human
+        Halfling
+        Elf
+        Dwarf
+        Gnome
+        Half-Elf
+        Half-Orc
+        OtherA
+        OtherB
+        OtherC
+        OtherD
+        OtherE
+        OtherF
+        OtherG
+
+    Classes:
+        Barbarian   (dom)
+        Bard
+        Cleric
+        Druid
+        Fighter
+        Monk        (dom)
+        Paladin
+        Ranger
+        Rogue
+        Sorcerer
+        Wizard
+        Adept
+        Aristocrat
+        Expert
+        Warrior
+        Commoner
+
+    Class.priority:
+        Low/Normal
+        High
+
+    :arg population: Specific population or randomly generated
+    :arg enable_dnd: Enable D&D calculations
+    :arg city_type: Population Type
+    :arg races: Races
+    :arg classes: Highest levels (before city modifiers)
+    :return:
+    """
+    print(population, enable_dnd, city_type, races, classes)
