@@ -9,7 +9,7 @@ from .generator.markov import MarkovChain
 # from ._unknown.space.star import StarGenerator
 # from ._unknown.space.planet import PlanetGenerator
 
-from .other import *
+from generator.fng.other import *
 
 # from .description.race import RandomRaceGenerator
 
