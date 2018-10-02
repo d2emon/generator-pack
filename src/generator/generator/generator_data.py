@@ -1,5 +1,7 @@
 import random
 
+from os import path
+
 from utils.loaders import load_lines
 
 
@@ -46,6 +48,6 @@ class ListData(GeneratorData):
 
 class FileData(ListData):
     def __init__(self, filename=""):
-        self.filename = filename
+        self.filename = path.abspath(path.join("..", filename))
         data = load_lines(self.filename)
         super().__init__(data)

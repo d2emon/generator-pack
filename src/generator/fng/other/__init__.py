@@ -20,7 +20,7 @@ from .slogan import Slogan
 from .swear import Curse
 from .wisdom import WisdomQuote
 
-# ---
+# RollForFantasy.com
 
 # Armor Creator
 # Army Formation Creator

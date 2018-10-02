@@ -1,0 +1,17 @@
+second2 = [
+    "World",
+    "Land",
+    "Zone",
+    "Park",
+    "Town",
+    "Village",
+    "Realm",
+    "Fair",
+    "Island",
+    "Fun Park",
+    "Fun World",
+    "Kingdom",
+    "Dome",
+    "Paradise",
+    "Experience",
+]
