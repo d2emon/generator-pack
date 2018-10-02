@@ -3,7 +3,7 @@ import random
 
 from generator import generators
 
-from generator.other.demonym import Demonym
+from generator.fng.other.demonym import Demonym
 
 
 @pytest.fixture

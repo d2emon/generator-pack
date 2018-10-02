@@ -9,7 +9,7 @@ from .race.elf import Elf, NightElf, BloodElf, HighElf, WoodElf, DarkElf
 from .race.gnome import Gnome
 from .race.goblin import Troll, Orc, Goblin
 from .race.dwarf import Dwarf, Giant, Halfling
-from generator.description.clothing import ClothingGenerator
+from generator.fng.description.clothing import ClothingGenerator
 import random
 
 
