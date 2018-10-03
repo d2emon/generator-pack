@@ -12,6 +12,7 @@ age, you’ll note that the number of these turning points decreases as one trav
 The implication is that the more distant the era, the more pivotal the events.
 """
 import random
+from dice import d
 
 
 class Event:
@@ -26,7 +27,28 @@ class Event:
         return str(self)
 
 
-def prehistory():
+class Era:
+    count_dice = (1, 4)
+    years_dice = (1, 10)
+    years_mod = 1
+    events = []
+
+    @classmethod
+    def generate_count(cls):
+        return d(*cls.count_dice)
+
+    @classmethod
+    def generate_years(cls):
+        return (d(*cls.years_dice) * cls.years_mod for _ in range(cls.generate_count()))
+
+    @classmethod
+    def generate(cls):
+        for year in cls.generate_years():
+            event = random.choice(cls.events)
+            yield Event(year, event())
+
+
+class Prehistory(Era):
     """
     Any event that occurred before recorded history. In most cases, this era is described in speculative terms,
     typically describing how the setting came to be peopled and serving as a precursory justification of the setting’s
@@ -36,8 +58,9 @@ def prehistory():
 
     :return:
     """
-    count = random.randint(1, 4)
-    years = (random.randint(1, 10) * 1000 for _ in range(count))
+    count_dice = (1, 4)
+    years_dice = (1, 10)
+    years_mod = 1000
     events = [
         lambda: "Divine cleansing via {}".format(random.choice((
             "flood",
@@ -104,12 +127,9 @@ def prehistory():
             "superior species"
         ))),
     ]
-    for year in years:
-        event = random.choice(events)
-        yield Event(year, event())
 
 
-def ancient():
+class Ancient(Era):
     """
     These events occurred during the setting’s distant past, typically describing the rise (and possible fall) of an
     ancestral race or explaining the remnants of a now-extinct culture. Like prehistory, ancient events are offered
@@ -118,25 +138,98 @@ def ancient():
     interpretation. As a result, there is usually enough doubt surrounding ancient events to prevent taking them at
     face value. Roll 2d6 events, each spaced 1d10x100 years apart:
 
-    *   Cataclysm (d6: 1-2 technology gone awry; 3 magic gone awry; 4 demonic intrusion; 5 natural disaster; 6 cosmic event)
-    *   Rise of an empire
-    *   Fall of an empire
-    *   Mass migration into region (d6: 1-4 human tribe; 5 humanoids; 6 monsters)
-    *   Mass exodus from region (d6: 1-2 human tribe; 3-4 humanoids; 5-6 monsters)
-    *   Discovery of (d6: 1 advanced agriculture; 2 energy source; 3 industrial material; 4 advanced manufacturing; 5 precious metal; 6 unusual substance)
-    *   Historical figure (d6: 1 sorcerer; 2 sage; 3 prophet; 4 inventor; 5 artist; 6 slave)
-    *   War (d6: 1-2 successful defence against invaders; 3-4 successful conquest over foreign power; 5 defeat by invaders; 6 failed invasion)
-    *   Empire flourishes through (d6: 1-2 territorial expansion; 3-4 golden age; 5-6 renaissance)
-    *   Empire declines through (d6: 1-2 territorial reduction; 3-4 imperial decadence; 5 technically backward; 6 militarily inferior)
-    *   Religion (d6: 1-4 new religion founded; 5-6 old religion driven out)
-    *   Astrological event (d6: 1 comet; 2 star alignment; 3 planetary alignment; 4 new star appears; 5 solar flare; 6 conjunction)
-
     :return:
     """
-    pass
+    count_dice = (2, 6)
+    years_dice = (1, 10)
+    years_mod = 100
+    events = [
+        lambda: "Cataclysm ({})".format(random.choice((
+            "technology gone awry",
+            "technology gone awry",
+            "magic gone awry",
+            "demonic intrusion",
+            "natural disaster",
+            "cosmic event"
+        ))),
+        lambda: "Rise of an empire",
+        lambda: "Fall of an empire",
+        lambda: "Mass migration into region ({})".format(random.choice((
+            "human tribe",
+            "human tribe",
+            "human tribe",
+            "human tribe",
+            "humanoids",
+            "monsters"
+        ))),
+        lambda: "Mass exodus from region ({})".format(random.choice((
+            "human tribe",
+            "human tribe",
+            "humanoids",
+            "humanoids",
+            "monsters",
+            "monsters"
+        ))),
+        lambda: "Discovery of ({})".format(random.choice((
+            "advanced agriculture",
+            "energy source",
+            "industrial material",
+            "advanced manufacturing",
+            "precious metal",
+            "unusual substance",
+        ))),
+        lambda: "Historical figure ({})".format(random.choice((
+            "sorcerer",
+            "sage",
+            "prophet",
+            "inventor",
+            "artist",
+            "slave",
+        ))),
+        lambda: "War ({})".format(random.choice((
+            "successful defence against invaders",
+            "successful defence against invaders",
+            "successful conquest over foreign power",
+            "successful conquest over foreign power",
+            "defeat by invaders",
+            "failed invasion",
+        ))),
+        lambda: "Empire flourishes through ({})".format(random.choice((
+            "territorial expansion",
+            "territorial expansion",
+            "golden age",
+            "golden age",
+            "renaissance",
+            "renaissance",
+        ))),
+        lambda: "Empire declines through ({})".format(random.choice((
+            "territorial reduction",
+            "territorial reduction",
+            "imperial decadence",
+            "imperial decadence",
+            "technically backward",
+            "militarily inferior",
+        ))),
+        lambda: "Religion ({})".format(random.choice((
+            "new religion founded",
+            "new religion founded",
+            "new religion founded",
+            "new religion founded",
+            "old religion driven out",
+            "old religion driven out",
+        ))),
+        lambda: "Astrological event ({})".format(random.choice((
+            "comet",
+            "star alignment",
+            "planetary alignment",
+            "new star appears",
+            "solar flare",
+            "conjunction",
+        ))),
+    ]
 
 
-def past():
+class Past(Era):
     """
     These events occurred after the setting’s ancient period but before the last living generation. About two-thirds of
     these events should provide general support for the setting’s background, while the remaining third forms the
@@ -144,33 +237,172 @@ def past():
     time; I recommend rolling 4d6 events, each spaced 1d10x10 years apart, but add as many more as you feel are
     necessary to represent sufficiently the era’s duration:
 
-    *   Discovery of (d6: 1 advanced agriculture; 2 energy source; 3 industrial material; 4 advanced manufacturing; 5 precious metal; 6 unusual substance)
-    *   Historical figure (d6: 1 -2 sage; 3 inventor; 4 explorer; 5 artist; 6 advisor)
-    *   War hero (d6: 1-2 brilliant general; 3 leader of elite unit; 4 master spy; 5 battlefield heroine; 6 average soldier)
-    *   War (d6: 1 successful defence against invaders; 2-3 successful conquest over foreign power; 4 defeat by invaders; 5-6 failed invasion)
-    *   Kingdom flourishes through (d6: 1-3 territorial expansion; 4-5 resource surplus; 6 defeat of enemy)
-    *   Kingdom declines through (d6: 1-2 territorial reduction; 3-4 loss of trading partners; 5-6 source of major resource lost)
-    *   Natural disaster (d6: 1: fire; 2: flood; 3: earthquake; 4 meteors; 5 volcanoes; 6 violent storms)
-    *   Man-made disaster (d6: 1: fire; 2 flood; 3 famine; 4 plague; 5-6 pollution)
-    *   Kingdom expands (d6: 1-3 through conquest; 4 through colonisation; 5-6 through diplomatic means)
-    *   Religion (d6: 1 new religion founded; 2-3 progressive split from orthodoxy; 4-5 cult founded; 6 old religion driven out)
-    *   Astrological event (d6: 1 comet; 2 meteor shower; 3-4 eclipse; 5 solar flare; 6 conjunction)
-    *   Rise of a kingdom
-    *   Fall of a kingdom
-    *   Rebellion (d6: 1-4 successful; 5-6 failed) perpetrated by (d6: 1 military; 2 peasants; 3 colony; 4 anarchists; 5 slaves; 6 prisoners)
-    *   Political system (d6: 1-2 challenged; 3 created; 4 reformed; 5 replaced; 6 dissolved)
-    *   Cult (d6: 1-3 formed; 4-5 rooted out; 6 assumes power)
-    *   Strong leader (d6: 1-2 reigns; 3 dies of natural causes; 4 assassinated; 5 canonised; 6 abdicates)
-    *   Weak leader (d6: 1 reigns; 2 dies of natural causes; 3-4 assassinated; 5-6 forcibly deposed)
-    *   Genocide of (d6: 1-3 domestic racial minority; 4-5 foreign group; 6 religious sect)
-    *   Population shift (d6 1-2 to follow resources; 3 following discovery; 4 resulting from disaster; 5 due to oppressive laws; 6 resulting from warfare)
-
     :return:
     """
-    pass
+    count_dice = (4, 6)
+    years_dice = (1, 10)
+    years_mod = 10
+    events = [
+        lambda: "Discovery of {}".format(random.choice((
+            "advanced agriculture",
+            "energy source",
+            "industrial material",
+            "advanced manufacturing",
+            "precious metal",
+            "unusual substance",
+        ))),
+        lambda: "Historical figure ({})".format(random.choice((
+            "sage",
+            "sage",
+            "inventor",
+            "explorer",
+            "artist",
+            "advisor",
+        ))),
+        lambda: "War hero ({})".format(random.choice((
+            "brilliant general",
+            "brilliant general",
+            "leader of elite unit",
+            "master spy",
+            "battlefield heroine",
+            "average soldier",
+        ))),
+        lambda: "War ({})".format(random.choice((
+            "successful defence against invaders",
+            "successful conquest over foreign power",
+            "successful conquest over foreign power",
+            "defeat by invaders",
+            "failed invasion",
+            "failed invasion",
+        ))),
+        lambda: "Kingdom flourishes through ({})".format(random.choice((
+            "territorial expansion",
+            "territorial expansion",
+            "territorial expansion",
+            "resource surplus",
+            "resource surplus",
+            "defeat of enemy",
+        ))),
+        lambda: "Kingdom declines through {}".format(random.choice((
+            "territorial reduction",
+            "territorial reduction",
+            "loss of trading partners",
+            "loss of trading partners",
+            "source of major resource lost",
+            "source of major resource lost",
+        ))),
+        lambda: "Natural disaster ({})".format(random.choice((
+            "fire",
+            "flood",
+            "earthquake",
+            "meteors",
+            "volcanoes",
+            "violent storms"
+        ))),
+        lambda: "Man-made disaster ({})".format(random.choice((
+            "fire",
+            "flood",
+            "famine",
+            "plague",
+            "pollution",
+            "pollution"
+        ))),
+        lambda: "Kingdom expands {}".format(random.choice((
+            "through conquest",
+            "through conquest",
+            "through colonisation",
+            "through colonisation",
+            "through diplomatic means",
+            "through diplomatic means",
+        ))),
+        lambda: "Religion ({})".format(random.choice((
+            "new religion founded",
+            "progressive split from orthodoxy",
+            "progressive split from orthodoxy",
+            "cult founded",
+            "cult founded",
+            "old religion driven out",
+        ))),
+        lambda: "Astrological event ({})".format(random.choice((
+            "comet",
+            "meteor shower",
+            "eclipse",
+            "eclipse",
+            "solar flare",
+            "conjunction",
+        ))),
+        lambda: "Rise of a kingdom",
+        lambda: "Fall of a kingdom",
+        lambda: "Rebellion ({}) perpetrated by {}".format(
+            random.choice((
+                "successful",
+                "successful",
+                "successful",
+                "successful",
+                "failed",
+                "failed",
+            )),
+            random.choice((
+                "military",
+                "peasants",
+                "colony",
+                "anarchists",
+                "slaves",
+                "prisoners",
+            )),
+        ),
+        lambda: "Political system {}".format(random.choice((
+            "challenged",
+            "challenged",
+            "created",
+            "reformed",
+            "replaced",
+            "dissolved",
+        ))),
+        lambda: "Cult {}".format(random.choice((
+            "formed",
+            "formed",
+            "formed",
+            "rooted out",
+            "rooted out",
+            "assumes power",
+        ))),
+        lambda: "Strong leader {}".format(random.choice((
+            "reigns",
+            "reigns",
+            "dies of natural causes",
+            "assassinated",
+            "canonised",
+            "abdicates",
+        ))),
+        lambda: "Weak leader {}".format(random.choice((
+            "reigns",
+            "dies of natural causes",
+            "assassinated",
+            "assassinated",
+            "forcibly deposed",
+            "forcibly deposed",
+        ))),
+        lambda: "Genocide of {}".format(random.choice((
+            "domestic racial minority",
+            "domestic racial minority",
+            "domestic racial minority",
+            "foreign group",
+            "foreign group",
+            "religious sect",
+        ))),
+        lambda: "Population shift {}".format(random.choice((
+            "to follow resources",
+            "to follow resources",
+            "following discovery",
+            "resulting from disaster",
+            "due to oppressive laws",
+            "resulting from warfare",
+        ))),
+    ]
 
 
-def modern():
+class Modern(Era):
     """
     These are events that have occurred within the lifespan of the last living generation; only those living under the
     setting’s rocks will not have some memory of these events, either as a participant, a live observer, or as a direct
@@ -179,30 +411,179 @@ def modern():
     rule of thumb, each of these events should form the basis for a current adventure hook, either as stand-alone
     instance or as an extension of an event from a previous era. Roll 2d6 events, each spaced 1d10 years apart:
 
-    *   War (d6: 1 successful defence against invaders; 2 successful conquest over foreign power; 3 defeat on foreign shores; 4 is fought diplomatically; 5 ongoing defence; 6 ongoing invasion)
-    *   Disaster (d6: 1 fire; 2 flood; 3 famine; 4 disease; 5 earthquake; 6 violent weather)
-    *   Kingdom expands (d6: 1-2 through conquest; 3-4 through colonisation; 5-6 through diplomatic means)
-    *   Religion (d6: 1 progressive split from orthodoxy; 2 resurgence of orthodoxy; 3 forced underground; 4 acquires secular authority; 5 purge of the “unfaithful”; 6 absorption of associated cult)
-    *   Astrological event (d6: 1 comet; 2-3 meteor shower; 4 eclipse; 5-6 conjunction)
-    *   Scandal (d6: 1-2 religious head; 3-4 ruling family; 5 military leader; 6 high-level bureaucrat)
-    *   Formation of a county (or some subdivision of a kingdom)
-    *   Dissolution of a county (or some subdivision of a kingdom)
-    *   Rebellion (d6: 1 successful; 2-4 ongoing; 5-6 failed) perpetrated by (d6: 1-2 peasants; 3-4 anarchists; 5 slaves; 6 prisoners)
-    *   Political party (d6: 1-2 challenged; 3 created; 4 reformed; 5 replaced; 6 dissolved)
-    *   Cult (d6: 1-2 formed; 3-4 forced underground; 5 rises to legitimacy; 6 rooted out)
-    *   Leader (d6: 1 found insane; 2 scandalised; 3 heralds prosperity; 4 assassinated; 5 abdicates; 6 roots out injustice)
-    *   Schism between (d6: 1 political contenders; 2-3 noble families; 4-5 religious factions; 6 guilds)
-    *   Political reform (d6: 1-3 improves; 4-6 worsens) (d6: 1-2 tax rates; 3 minority rights; 4 laws of conscription; 5 slavery; 6 system of law)
-    *   Major monster (d6: 1-2 population increases; 3-4 hunted down; 5 establishes wilderness foothold; 6 eradicated from setting)
-    *   Commerce (d6: 1 tax increase; 2 raider activity rising; 3 economic boom; 4 recession; 5 trade route discovered; 6 guild unrest)
-    *   Population (d6: 1-2 boom; 3 decline; 4-5 divided; 6 whispers revolt)
-    *   Creation of advanced (d6: 1 food production; 2 manufacturing; 3 weaponry; 4 medicine; 5 defence; 6 transport/communication)
-    *   Criminal activity (d6: 1-2 rises in urban areas; 3-4 plagues the countryside; 5 is ruthlessly quashed; 6 prompts new laws)
-    *   Ethnic minority (d6: 1-2 seeks diplomatic sovereignty; 3 suffers persecution; 4 foments sedition; 5 afforded special legal status; 6 migrates out of area)
-
     :return:
     """
-    pass
+    count_dice = (2, 6)
+    years_dice = (1, 10)
+    years_mod = 1
+    events = [
+        lambda: "War ({})".format(random.choice((
+            "successful defence against invaders",
+            "successful conquest over foreign power",
+            "defeat on foreign shores",
+            "is fought diplomatically",
+            "ongoing defence",
+            "ongoing invasion",
+        ))),
+        lambda: "Disaster ({})".format(random.choice((
+            "fire",
+            "flood",
+            "famine",
+            "disease",
+            "earthquake",
+            "violent weather"
+        ))),
+        lambda: "Kingdom expands {}".format(random.choice((
+            "through conquest",
+            "through conquest",
+            "through colonisation",
+            "through colonisation",
+            "through diplomatic means",
+            "through diplomatic means",
+        ))),
+        lambda: "Religion ({})".format(random.choice((
+            "progressive split from orthodoxy",
+            "resurgence of orthodoxy",
+            "forced underground",
+            "acquires secular authority",
+            "purge of the “unfaithful”",
+            "absorption of associated cult",
+        ))),
+        lambda: "Astrological event ({})".format(random.choice((
+            "comet",
+            "meteor shower",
+            "meteor shower",
+            "eclipse",
+            "conjunction",
+            "conjunction",
+        ))),
+        lambda: "Scandal ({})".format(random.choice((
+            "religious head",
+            "religious head",
+            "ruling family",
+            "ruling family",
+            "military leader",
+            "high-level bureaucrat",
+        ))),
+        lambda: "Formation of a county (or some subdivision of a kingdom)",
+        lambda: "Dissolution of a county (or some subdivision of a kingdom)",
+        lambda: "Rebellion ({}) perpetrated by {}".format(
+            random.choice((
+                "successful",
+                "ongoing",
+                "ongoing",
+                "ongoing",
+                "failed",
+                "failed",
+            )),
+            random.choice((
+                "peasants",
+                "peasants",
+                "anarchists",
+                "anarchists",
+                "slaves",
+                "prisoners",
+            )),
+        ),
+        lambda: "Political party {}".format(random.choice((
+            "challenged",
+            "challenged",
+            "created",
+            "reformed",
+            "replaced",
+            "dissolved",
+        ))),
+        lambda: "Cult {}".format(random.choice((
+            "formed",
+            "formed",
+            "forced underground",
+            "forced underground",
+            "rises to legitimacy",
+            "rooted out",
+        ))),
+        lambda: "Leader {}".format(random.choice((
+            "found insane",
+            "scandalised",
+            "heralds prosperity",
+            "assassinated",
+            "abdicates",
+            "roots out injustice",
+        ))),
+        lambda: "Schism between {}".format(random.choice((
+            "political contenders",
+            "noble families",
+            "noble families",
+            "religious factions",
+            "religious factions",
+            "guilds",
+        ))),
+        lambda: "Political reform {} {}".format(
+            random.choice((
+                "improves",
+                "improves",
+                "improves",
+                "worsens",
+                "worsens",
+                "worsens",
+            )),
+            random.choice((
+                "tax rates",
+                "tax rates",
+                "minority rights",
+                "laws of conscription",
+                "slavery",
+                "system of law",
+            )),
+        ),
+        lambda: "Major monster {}".format(random.choice((
+            "population increases",
+            "population increases",
+            "hunted down",
+            "hunted down",
+            "establishes wilderness foothold",
+            "eradicated from setting",
+        ))),
+        lambda: "Commerce {}".format(random.choice((
+            "tax increase",
+            "raider activity rising",
+            "economic boom",
+            "recession",
+            "trade route discovered",
+            "guild unrest",
+        ))),
+        lambda: "Population {}".format(random.choice((
+            "boom",
+            "boom",
+            "decline",
+            "divided",
+            "divided",
+            "whispers revolt",
+        ))),
+        lambda: "Creation of advanced {}".format(random.choice((
+            "food production",
+            "manufacturing",
+            "weaponry",
+            "medicine",
+            "defence",
+            "transport/communication",
+        ))),
+        lambda: "Criminal activity {}".format(random.choice((
+            "rises in urban areas",
+            "rises in urban areas",
+            "plagues the countryside",
+            "plagues the countryside",
+            "is ruthlessly quashed",
+            "prompts new laws",
+        ))),
+        lambda: "Ethnic minority {}".format(random.choice((
+            "seeks diplomatic sovereignty",
+            "seeks diplomatic sovereignty",
+            "suffers persecution",
+            "foments sedition",
+            "afforded special legal status",
+            "migrates out of area",
+        ))),
+    ]
 
 
 """
