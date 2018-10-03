@@ -327,370 +327,49 @@ class Game:
 
     ---------
 
-	Afterlife
-	Alliance
-	Animal Group
-	Apocalypse
-	Armor:
-	    Belts
-	    Boots
-	    Bracers
-	    Chests
-	    Cloaks
-	    Gloves & Gauntlets
-	    Helmets
-	    Legs
-	    Pauldrons
-	    Shields
-    Army:
-        Army
-        (Dwarf)
-        (Elf)
-        (Orc)
-        (Troll)
-        (Undead)
-    Artifact
-    Artwork
-
-	Attack Move
-	Attack
-	Award
-	Battle
-	Board Game
-	Book Titles
-	Bouquet
-	Boxer
-
-    Brand
-    Bug Species
-    Candy
-    +   Card Game
-    Chivalric Order
-    +   Chosen One Titles
-    Clothing Brand
-    Clown
-
-    +   Clown (Evil)
-    Color
-    Computer Virus
-    Console
-    Constellation
-    Council
-
-
-	Crop
-	Currency
-	Curse
-	Dance
-	Date
-	Disease
-	Disease (Magical)
-	Disease (Scientific)
-
-	Dinosaur
-	+   DJ
-	Drink
-	Drug
-	Enchantment
-	Enchanted Gear
-	Energy Types
-	Epithets
-
-	Evil Organizations
-	+   Familiar Types
-	Fantasy Plant
-	Fantasy Tree
-	Fantasy Profession
-	Food
-	Food (Fantasy)
-	Fruit & Veg. Names
-
-	Fungus
-	?   Galaxy
-	Game Engine
-	Game Soundtrack
-	Gang / Clan
-	Gemstone/Mineral
-
-
-	Graffiti Tags
-	Guild / Clan
-	Hacker
-	Heist
-	Herb & Spice
-	Holiday
-	Holy Book
-	Human Species
-
-	Instrument
-	Invention
-	Jewelry
-	Language
-	+   Law Enforcement Agencies
-	Love nicknames
-	Magazine
-	Magic Types
-
-	+   Magic School Books
-	Martial Arts
-	Mascot
-	Material
-	Medicine
-	Metal/Element
-	+   Meteor
-	Military Division Names
-
-	Military Honor
-	Military Operation
-	Military Rank
-	Mobster
-	Molecule
-
-
-	Motorcycle Clubs
-	Motorsport Races
-	Music Album
-	Music Band
-	Musician
-	Mutant Plant
-	Natural Disaster
-	Newspaper
-
-	Nicknames
-	Noble House
-	Pirate Crew
-	Plague
-	Plant and Tree
-	Player Class & NPC Types
-	Poison
-	Political Party
-
-	Post-Apocalyptic Society
-	Potion
-	Racer
-	Railway
-	Rank
-	+   Rebellion
-	Religion
-	+   Rune
-
-	Satellite
-	Scientific Bird
-	Scientific Creature
-	Scientific Plant
-	School Book (Magic)
-
-
-	Siege Engine
-	Software
-	Song
-	Space Fleet
-	Spell
-	Sport
-	Sports Team
-	Squad
-
-	Steampunk Walker
-	Superpowers
-	Teleportation
-	Theme Park Ride
-	Throne
-	Time Period
-	Title
-	Tool Nicknames
-
-	Treaty
-	Tribal
-	Tribe
-	Usernames
-	Vehicle:
-	    Airplane
-	    Airship
-	    Car
-	    Helicopter
-	    Military Vehicle
-	    Pirate Ship
-	    Ship
-	    Spaceship
-	    Submarine
-	    Tank
-	    Vehicle Names</a></li>
-	    +   Yacht
-    Video Game
-    Vocal Group
-    Weapon Abilities
-
-    Weapon:
-        Battle Axe
-        Bombs & Missiles
-        Bows & Crossbows
-        Claws
-        Daggers
-        Dual Wielding
-        Fist Weapons
-        Flails & Maces
-        Magic Books
-        Magic Weapons
-        Pistols
-        Rifles
-        Sci-Fi Guns
-        Shotguns
-        Spears & Halberds
-        Staves
-        Swords
-        Throwing Weapons
-        War Hammers
-        War Scythes
-        Whips & Lassos
-    Web Series
-    Wine
-    Wrestler
-    Wrestling Move
-
-    --------------
-
-	Alien (Race)
-	+   Angel
-	Animal
-	Armor (Leather)
-	Armor (Plate)
-	Army
-	Backstory
-	Battlefield
-
-	Castle
-	Character
-	City
-	Clothing (Fancy)
-	Clothing (Medieval)
-
-
-	Clothing (Rags)
-	Coat of Arms
-	Constellation
-	Country
-	Demon
-	Disease
-	Dragon
-	Dungeon
-
-	Dying
-	Farm
-	Flag
-	Forest
-	+   Garden
-
-
-	Gem
-	Ghost Town
-	God(dess)
-	Hand Gesture
-	Holiday
-	House
-	Humanoid
-	Law
-
-	Martial Art
-	Monument
-	Pain
-	Personality
-
-
-	Planet
-	Plant
-	Plot
-	Potion
-	Prophecy
-	Quest
-	+   Realm
-	+   Religion
-
-	School Uniform
-	+   Shipwreck
-	Society
-	Spell
-
-
-    Tavern
-    Throne Hall
-    Town
-    Tradition
-    Wand
-    Weapons (A. Rifles)
-    Weapons (Blades)
-    Weapons (Bows)
-
-    Weapons (Pistol)
-    Weapons (Shields)
-    Weapons (Shotgun)
-    Weapons (Staves)
-
-    ----------------
-
-    Ascii Face Generator
-    Battle Cry
-    Birthday Wish
-    Character Goal
-
-    Concept Ideas (Art)
-    Concept Ideas (Story)
-    Demonym
-    Haiku
-
-    +   Halloween Costume Ideas
-    Idiom
-    Motto
-    Prayer
-
-    Religious Commandment
-    Riddle
-    School Subject
-
-    Slogan
-    Swear
-    Wisdom Quote
-
-    ------------
-
-    RollForFantasy.com
-
-    Armor Creator
-    Army Formation Creator
-    Calendar Creator
-    Castle Creator
-    Coat Of Arms Creator
-    Constellation Map Creator
-
-    Dice Generator
-    Dungeon Creator
-    Family Tree Creator
-    Flag Creator
-    Grammar Creator
-    Language Generator
-
-    Map Creator
-    Monster/Spell Card Creator
-    Notice Board Creator
-    Outfit Creator
-    Pantheon Creator
-    Periodic Table Creator
-
-    Planet Interior Creator
-    Random Loot Generator
-    Random Shop Inventory
-    Scroll Creator
-    Solar System Creator
-    Space Base Creator
-
-    Space Encounter
-    Summoning Circle
-    Tarot Cards
-    Timeline Creator
-    Town Creator
-    Weapon Creator
-
-    # Emblem/Logo Creator
     """
+    THEMES = [
+        "Afterlife", "Alien (Race)", "Alliance", "Angel", "Animal", "Animal Group", "Apocalypse",
+        "Armor (Leather, Plate, Belts, Boots, Bracers, Chests, Cloaks, Gloves & Gauntlets, Helmets, Legs, Pauldrons, "
+        + "Shields) +",
+        "Army (Name, Description, Formation +)", "Artifact", "Artwork", "Attack Move", "Attack", "Award", "Backstory",
+        "Battle", "Battle Cry", "Battlefield", "Birthday Wish", "Board Game", "Book Titles", "Bouquet", "Boxer",
+        "Brand", "Bug Species", "Calendar +", "Candy", "Card Game", "Castle +", "Character", "Character Goal",
+        "Chivalric Order", "Chosen One Titles", "City", "Clothing (Fancy, Medieval, Rags)", "Clothing Brand",
+        "Clown (Good, Evil)", "Coat of Arms +", "Color", "Computer Virus", "Concept Ideas (Art, Story)", "Console",
+        "Constellation (Name, Description +)", "Council", "Country", "Crop", "Currency", "Curse", "Dance", "Date",
+        "Demon", "Demonym", "Dice", "Disease (General, Magical, Scientific)", "Dinosaur", "DJ", "Dragon", "Drink",
+        "Drug", "Dungeon +", "Dying", "Enchantment", "Enchanted Gear", "Energy Types", "Epithets",
+        "Evil Organizations", "Farm", "Familiar Types", "Family Tree +", "Fantasy Plant", "Fantasy Tree",
+        "Fantasy Profession", "Flag +", "Food (General, Fantasy)", "Forest", "Fruit & Veg.", "Fungus", "Galaxy",
+        "Game Engine", "Game Soundtrack", "Gang / Clan", "Garden", "Gemstone/Mineral (Name, Description)",
+        "Ghost Town", "God(dess)", "Graffiti Tags", "Grammar +", "Guild / Clan", "Hacker", "Haiku",
+        "Halloween Costume Ideas", "Hand Gesture", "Heist", "Herb & Spice", "Holiday (Name, Description)", "Holy Book",
+        "House", "Human Species", "Humanoid", "Idiom", "Instrument", "Invention", "Jewelry", "Language +", "Law",
+        "Law Enforcement Agencies", "Love nicknames", "Magazine", "Magic Types", "Magic School Books", "Map +",
+        "Martial Art (Name, Description)", "Mascot", "Material", "Medicine", "Metal/Element", "Meteor",
+        "Military Division Names", "Military Honor", "Military Operation", "Military Rank", "Mobster", "Molecule",
+        "Monster/Spell Card +", "Monument", "Motorcycle Clubs", "Motorsport Races", "Motto", "Music Album",
+        "Music Band", "Musician", "Mutant Plant", "Natural Disaster", "Newspaper", "Nicknames", "Noble House",
+        "Notice Board +", "Outfit +", "Pain", "Пантеон (Pantheon +)", "Periodic Table +", "Personality", "Pirate Crew",
+        "Plague", "Planet", "Planet Interior +", "Plant and Tree (Name, Description)", "Player Class & NPC Types",
+        "Plot", "Poison", "Political Party", "Post-Apocalyptic Society", "Potion (Name, Description)", "Prayer",
+        "Prophecy", "Quest", "Racer", "Railway", "Random Loot +", "Random Shop +", "Rank", "Realm", "Rebellion",
+        "Religion (Name, Description)", "Religious Commandment", "Riddle", "Rune", "Satellite", "School Book (Magic)",
+        "School Subject", "School Uniform", "Scientific Bird", "Scientific Creature", "Scientific Plant", "Scroll +",
+        "Кораблекрушение (Shipwreck)", "Siege Engine", "Slogan", "Society", "Software", "Solar System +", "Song",
+        "Space Base +", "Space Encounter +", "Space Fleet", "Spell (Name, Description)", "Sport", "Sports Team",
+        "Squad", "Steampunk Walker", "Summoning Circle +", "Superpowers", "Swear", "Tavern", "Tarot Cards +",
+        "Teleportation", "Theme Park Ride", "Throne", "Throne Hall", "Time Period", "Timeline +", "Title",
+        "Tool Nicknames", "Town +", "Tradition", "Treaty", "Tribal", "Tribe", "Usernames",
+        "Vehicle (Airplane, Airship, Car, Helicopter, Military Vehicle, Pirate Ship, Ship, Spaceship, Submarine, "
+        + "Tank, Yacht)",
+        "Video Game", "Vocal Group", "Жезл (Wand)", "Weapon Abilities",
+        "Weapons (A. Rifles, Battle Axe, Blades, Bombs & Missiles, Bows & Crossbows, Claws, Daggers, Dual Wielding, "
+        + "Fist Weapons, Flails & Maces, Magic Books, Magic Weapons, Pistols, Rifles, Sci-Fi Guns, Shields, Shotgun, "
+        + "Spears & Halberds, Staves, Swords, Throwing Weapons, War Hammers, War Scythes, Whips & Lassos) +",
+        "Web Series", "Wine", "Wisdom Quote", "Wrestler", "Wrestling Move"
+    ]
     LETTERS = [chr(c) for c in range(ord('А'), ord('Я') + 1)]
 
     def __init__(self, random_letter=False):
@@ -764,6 +443,10 @@ class Game:
                 link = random.choice(self.LETTERS)
             yield link
 
+    @classmethod
+    def theme(cls):
+        return random.choice(cls.THEMES)
+
     def turn(self):
         """
         На каждом ходу каждая новая статья должна ссылаться на три других: одну уже существующую и две ненаписанных.
@@ -779,12 +462,13 @@ class Game:
 
         print("Буква \"{}\"".format(letter))
         print("Придумайте название статьи и напишите 100—200 слов на заданную тему.")
+        print("Например: \"{}\"".format(self.theme()))
         print("В конце статьи поставьте ссылки на другие статьи той же энциклопедии.")
         print("Например:")
         for link in self.prev_links():
-            print("{}...(существующая)".format(link))
+            print("{}...(существующая) [{}]".format(link, self.theme()))
         for link in self.new_links(letter):
-            print("{}...(новая)".format(link))
+            print("{}...(новая) [{}]".format(link, self.theme()))
 
 
 def main(players_count=4, turns=None, random_letter=False):
