@@ -21,7 +21,7 @@ class Event:
         self.title = title
 
     def __str__(self):
-        return "{} years ago: {}".format(self.year, self.title)
+        return "{} лет назад: {}".format(self.year, self.title)
 
     def __repr__(self):
         return str(self)
@@ -57,69 +57,69 @@ class Prehistory(Era):
     count_dice = Dice(sides=4)
     years_dice = Dice(sides=10, multiplier=1000)
     events = [
-        lambda: "Divine cleansing via {}".format(random.choice((
-            "flood",
-            "earthquake",
-            "eruption",
-            "disease",
-            "cosmic event",
-            "magic energy"
+        lambda: "Божественное очищение через {}".format(random.choice((
+            "потоп",
+            "землетрясение",
+            "извержение",
+            "болезнь",
+            "космическое событие",
+            "магическую энергию",
         ))),
-        lambda: "Rise of {}".format(random.choice((
-            "human sub-race",
-            "human sub-race",
-            "humanoid race",
-            "humanoid race",
-            "monsters",
-            "planar beings"
+        lambda: "Расцвет {}".format(random.choice((
+            "человеческой подрасы",
+            "человеческой подрасы",
+            "гуманоидной расы",
+            "гуманоидной расы",
+            "монстров",
+            "планарных существ",
         ))),
-        lambda: "Decline of {}".format(random.choice((
-            "human sub-race",
-            "humanoid race",
-            "humanoid race",
-            "monsters",
-            "monsters",
-            "planar beings"
+        lambda: "Упадок {}".format(random.choice((
+            "человеческой подрасы",
+            "гуманоидной расы",
+            "гуманоидной расы",
+            "монстров",
+            "монстров",
+            "планарных существ",
         ))),
-        lambda: "Arrival of {}".format(random.choice((
-            "new gods",
-            "planar beings",
-            "planar beings",
-            "human tribe",
-            "humanoid tribe",
-            "extraterrestrials"
+        lambda: "Прибытие {}".format(random.choice((
+            "новых богов",
+            "планарных существ",
+            "планарных существ",
+            "человеческих племен",
+            "гуманоидных племен",
+            "пришельцев",
         ))),
-        lambda: "Disappearance of {}".format(random.choice((
-            "old gods",
-            "old gods",
-            "planar beings",
-            "planar beings",
-            "monster population",
-            "powerful mortal race"
+        lambda: "Исчезновение {}".format(random.choice((
+            "старых богов",
+            "старых богов",
+            "планарных существ",
+            "планарных существ",
+            "популяции монстров",
+            "могущественной смертной расы",
         ))),
-        lambda: "Mortals attain knowledge of {}".format(random.choice((
-            "writing",
-            "basic technology",
-            "basic technology",
-            "divine order",
-            "advanced technology",
-            "psionics"
+        lambda: "Смертные получают знания {}".format(random.choice((
+            "о письме",
+            "об основных технологиях",
+            "об основных технологиях",
+            "о божественном порядке",
+            "о новых технологиях",
+            "о псионике",
         ))),
-        lambda: "Mortals punished for {}".format(random.choice((
-            "excessive pride",
-            "decadence",
-            "worshiping false gods",
-            "worshiping evil gods",
-            "ignoring the gods",
-            "succumbing to base urges"
+        lambda: "Смертные были наказаны за {}".format(random.choice((
+            "чрезмерную гордость",
+            "падение нравов",
+            "поклонение ложным богам",
+            "поклонение злым богам",
+            "игнорирование богов",
+            "то, что поддались греху",
         ))),
-        lambda: "Mortals threatened by {}".format(random.choice((
-            "planar beings",
-            "rampaging monsters",
-            "rampaging monsters",
-            "rampant magic energy",
-            "uncontrollable technology",
-            "superior species"
+        lambda: "Смертным угрожают {}".format(random.choice((
+            "планарные существа",
+            "злобные чудовища",
+            "злобные чудовища",
+            "неконтролируемая магическая энергия",
+            "неконтролируемая технология",
+            "превосходящие виды",
         ))),
     ]
 
@@ -138,87 +138,87 @@ class Ancient(Era):
     count_dice = Dice(2, 6)
     years_dice = Dice(sides=10, multiplier=100)
     events = [
-        lambda: "Cataclysm ({})".format(random.choice((
-            "technology gone awry",
-            "technology gone awry",
-            "magic gone awry",
-            "demonic intrusion",
-            "natural disaster",
-            "cosmic event"
+        lambda: "Катаклизм ({})".format(random.choice((
+            "технология вышла из под контроля",
+            "технология вышла из под контроля",
+            "магия вышла из под контроля",
+            "вмешательство демонов",
+            "естественная катастрофа",
+            "космическое событие"
         ))),
-        lambda: "Rise of an empire",
-        lambda: "Fall of an empire",
-        lambda: "Mass migration into region ({})".format(random.choice((
-            "human tribe",
-            "human tribe",
-            "human tribe",
-            "human tribe",
-            "humanoids",
-            "monsters"
+        lambda: "Возникновение империи",
+        lambda: "Падение империи",
+        lambda: "Массовая миграция {} в регион".format(random.choice((
+            "человеческих племен",
+            "человеческих племен",
+            "человеческих племен",
+            "человеческих племен",
+            "гуманоидов",
+            "чудовищ",
         ))),
-        lambda: "Mass exodus from region ({})".format(random.choice((
-            "human tribe",
-            "human tribe",
-            "humanoids",
-            "humanoids",
-            "monsters",
-            "monsters"
+        lambda: "Массовый исход из региона ({})".format(random.choice((
+            "человеческих племен",
+            "человеческих племен",
+            "гуманоидов",
+            "гуманоидов",
+            "чудовищ",
+            "чудовищ",
         ))),
-        lambda: "Discovery of ({})".format(random.choice((
-            "advanced agriculture",
-            "energy source",
-            "industrial material",
-            "advanced manufacturing",
-            "precious metal",
-            "unusual substance",
+        lambda: "Открытие {}".format(random.choice((
+            "передового сельского хозяйства",
+            "источника энергии",
+            "промышленного материала",
+            "передового производства",
+            "драгоценного метала",
+            "необычного вещества",
         ))),
-        lambda: "Historical figure ({})".format(random.choice((
-            "sorcerer",
-            "sage",
-            "prophet",
-            "inventor",
-            "artist",
-            "slave",
+        lambda: "Историческая личность ({})".format(random.choice((
+            "волшебник",
+            "мудрец",
+            "пророк",
+            "изобретатель",
+            "художник",
+            "раб",
         ))),
-        lambda: "War ({})".format(random.choice((
-            "successful defence against invaders",
-            "successful defence against invaders",
-            "successful conquest over foreign power",
-            "successful conquest over foreign power",
-            "defeat by invaders",
-            "failed invasion",
+        lambda: "Война ({})".format(random.choice((
+            "успешная оборона от захватчиков",
+            "успешная оборона от захватчиков",
+            "успешное завоевание чужой армии",
+            "успешное завоевание чужой армии",
+            "поражение от захватчиков",
+            "неудавшееся вторжение",
         ))),
-        lambda: "Empire flourishes through ({})".format(random.choice((
-            "territorial expansion",
-            "territorial expansion",
-            "golden age",
-            "golden age",
-            "renaissance",
-            "renaissance",
+        lambda: "Процветание империи благодаря {}".format(random.choice((
+            "территориальной экспансии",
+            "территориальной экспансии",
+            "золотому веку",
+            "золотому веку",
+            "возрождению",
+            "возрождению",
         ))),
-        lambda: "Empire declines through ({})".format(random.choice((
-            "territorial reduction",
-            "territorial reduction",
-            "imperial decadence",
-            "imperial decadence",
-            "technically backward",
-            "militarily inferior",
+        lambda: "Упадок империи из-за {}".format(random.choice((
+            "сокращения территории",
+            "сокращения территории",
+            "имперского декаданса",
+            "имперского декаданса",
+            "технологической отсталости",
+            "отсталости в военном плане",
         ))),
-        lambda: "Religion ({})".format(random.choice((
-            "new religion founded",
-            "new religion founded",
-            "new religion founded",
-            "new religion founded",
-            "old religion driven out",
-            "old religion driven out",
+        lambda: "Религия ({})".format(random.choice((
+            "основана новая религия",
+            "основана новая религия",
+            "основана новая религия",
+            "основана новая религия",
+            "исчезла старая религия",
+            "исчезла старая религия",
         ))),
-        lambda: "Astrological event ({})".format(random.choice((
-            "comet",
-            "star alignment",
-            "planetary alignment",
-            "new star appears",
-            "solar flare",
-            "conjunction",
+        lambda: "Астрологическое событие ({})".format(random.choice((
+            "комета",
+            "парад звезд",
+            "парад планет",
+            "возникновение новой звезды",
+            "вспышка на солнце",
+            "совмещение",
         ))),
     ]
 
@@ -236,161 +236,161 @@ class Past(Era):
     count_dice = Dice(4, 6)
     years_dice = Dice(sides=10, multiplier=10)
     events = [
-        lambda: "Discovery of {}".format(random.choice((
-            "advanced agriculture",
-            "energy source",
-            "industrial material",
-            "advanced manufacturing",
-            "precious metal",
-            "unusual substance",
+        lambda: "Открытие {}".format(random.choice((
+            "передового сельского хозяйства",
+            "источника энергии",
+            "промышленного материала",
+            "передового производства",
+            "драгоценного метала",
+            "необычного вещества",
         ))),
-        lambda: "Historical figure ({})".format(random.choice((
-            "sage",
-            "sage",
-            "inventor",
-            "explorer",
-            "artist",
-            "advisor",
+        lambda: "Историческая личность ({})".format(random.choice((
+            "мудрец",
+            "мудрец",
+            "изобретатель",
+            "исследователь",
+            "художник",
+            "советник",
         ))),
-        lambda: "War hero ({})".format(random.choice((
-            "brilliant general",
-            "brilliant general",
-            "leader of elite unit",
-            "master spy",
-            "battlefield heroine",
-            "average soldier",
+        lambda: "Герой войны ({})".format(random.choice((
+            "блестящий генерал",
+            "блестящий генерал",
+            "лидер элитного подразделения",
+            "мастер шпионажа",
+            "героиня боя",
+            "средний солдат",
         ))),
-        lambda: "War ({})".format(random.choice((
-            "successful defence against invaders",
-            "successful conquest over foreign power",
-            "successful conquest over foreign power",
-            "defeat by invaders",
-            "failed invasion",
-            "failed invasion",
+        lambda: "Война ({})".format(random.choice((
+            "успешная оборона от захватчиков",
+            "успешное завоевание чужой армии",
+            "успешное завоевание чужой армии",
+            "поражение от захватчиков",
+            "неудавшееся вторжение",
+            "неудавшееся вторжение",
         ))),
-        lambda: "Kingdom flourishes through ({})".format(random.choice((
-            "territorial expansion",
-            "territorial expansion",
-            "territorial expansion",
-            "resource surplus",
-            "resource surplus",
-            "defeat of enemy",
+        lambda: "Процветание королевства благодаря {}".format(random.choice((
+            "территориальной экспансии",
+            "территориальной экспансии",
+            "территориальной экспансии",
+            "избытку ресурсов",
+            "избытку ресурсов",
+            "победе над врагом",
         ))),
-        lambda: "Kingdom declines through {}".format(random.choice((
-            "territorial reduction",
-            "territorial reduction",
-            "loss of trading partners",
-            "loss of trading partners",
-            "source of major resource lost",
-            "source of major resource lost",
+        lambda: "Упадок королевство из-за {}".format(random.choice((
+            "сокращения территорий",
+            "сокращения территорий",
+            "потери торговых партнеров",
+            "потери торговых партнеров",
+            "потери источника основного ресурса",
+            "потери источника основного ресурса",
         ))),
-        lambda: "Natural disaster ({})".format(random.choice((
-            "fire",
-            "flood",
-            "earthquake",
-            "meteors",
-            "volcanoes",
-            "violent storms"
+        lambda: "Стихийное бедствие ({})".format(random.choice((
+            "пожар",
+            "потоп",
+            "землетрясение",
+            "метеориты",
+            "вулканы",
+            "ужасные ураганы"
         ))),
-        lambda: "Man-made disaster ({})".format(random.choice((
-            "fire",
-            "flood",
-            "famine",
-            "plague",
-            "pollution",
-            "pollution"
+        lambda: "Рукотворное бедствие ({})".format(random.choice((
+            "пожар",
+            "потоп",
+            "голод",
+            "мор",
+            "загрязнение",
+            "загрязнение"
         ))),
-        lambda: "Kingdom expands {}".format(random.choice((
-            "through conquest",
-            "through conquest",
-            "through colonisation",
-            "through colonisation",
-            "through diplomatic means",
-            "through diplomatic means",
+        lambda: "Увеличение королевства {}".format(random.choice((
+            "через завоевания",
+            "через завоевания",
+            "через колонизацию",
+            "через колонизацию",
+            "дипломатическими средствами",
+            "дипломатическими средствами",
         ))),
-        lambda: "Religion ({})".format(random.choice((
-            "new religion founded",
-            "progressive split from orthodoxy",
-            "progressive split from orthodoxy",
-            "cult founded",
-            "cult founded",
-            "old religion driven out",
+        lambda: "Религия ({})".format(random.choice((
+            "основана новая религия",
+            "увеличивается религиозный раскол",
+            "увеличивается религиозный раскол",
+            "основан культ",
+            "основан культ",
+            "исчезла старая религия",
         ))),
-        lambda: "Astrological event ({})".format(random.choice((
-            "comet",
-            "meteor shower",
-            "eclipse",
-            "eclipse",
-            "solar flare",
-            "conjunction",
+        lambda: "Астрологическое событие ({})".format(random.choice((
+            "комета",
+            "метеоритный дождь",
+            "затмение",
+            "затмение",
+            "вспышка на солнце",
+            "совмещение",
         ))),
-        lambda: "Rise of a kingdom",
-        lambda: "Fall of a kingdom",
-        lambda: "Rebellion ({}) perpetrated by {}".format(
+        lambda: "Расцвет королевства",
+        lambda: "Падение королевства",
+        lambda: "Восстание ({}) возглавляемое {}".format(
             random.choice((
-                "successful",
-                "successful",
-                "successful",
-                "successful",
-                "failed",
-                "failed",
+                "успешное",
+                "успешное",
+                "успешное",
+                "успешное",
+                "подавленое",
+                "подавленое",
             )),
             random.choice((
-                "military",
-                "peasants",
-                "colony",
-                "anarchists",
-                "slaves",
-                "prisoners",
+                "армией",
+                "крестьянством",
+                "колониями",
+                "анархистами",
+                "рабами",
+                "заключенными",
             )),
         ),
-        lambda: "Political system {}".format(random.choice((
-            "challenged",
-            "challenged",
-            "created",
-            "reformed",
-            "replaced",
-            "dissolved",
+        lambda: "Политическая система {}".format(random.choice((
+            "столкнулась с испытанием",
+            "столкнулась с испытанием",
+            "создана",
+            "реформирована",
+            "изменена",
+            "развалилась",
         ))),
-        lambda: "Cult {}".format(random.choice((
-            "formed",
-            "formed",
-            "formed",
-            "rooted out",
-            "rooted out",
-            "assumes power",
+        lambda: "Культ {}".format(random.choice((
+            "основан",
+            "основан",
+            "основан",
+            "искоренен",
+            "искоренен",
+            "приобретает власть",
         ))),
-        lambda: "Strong leader {}".format(random.choice((
-            "reigns",
-            "reigns",
-            "dies of natural causes",
-            "assassinated",
-            "canonised",
-            "abdicates",
+        lambda: "Сильный лидер {}".format(random.choice((
+            "у власти",
+            "у власти",
+            "умирает по естественным причинам",
+            "убит",
+            "канонизирован",
+            "отрекается от власти",
         ))),
-        lambda: "Weak leader {}".format(random.choice((
-            "reigns",
-            "dies of natural causes",
-            "assassinated",
-            "assassinated",
-            "forcibly deposed",
-            "forcibly deposed",
+        lambda: "Слабый лидер {}".format(random.choice((
+            "у власти",
+            "умирает по естественным причинам",
+            "убит",
+            "убит",
+            "насильно свергнут",
+            "насильно свергнут",
         ))),
-        lambda: "Genocide of {}".format(random.choice((
-            "domestic racial minority",
-            "domestic racial minority",
-            "domestic racial minority",
-            "foreign group",
-            "foreign group",
-            "religious sect",
+        lambda: "Геноцид {}".format(random.choice((
+            "местного расового меньшинства",
+            "местного расового меньшинства",
+            "местного расового меньшинства",
+            "группы иностранцев",
+            "группы иностранцев",
+            "религиозной секты",
         ))),
-        lambda: "Population shift {}".format(random.choice((
-            "to follow resources",
-            "to follow resources",
-            "following discovery",
-            "resulting from disaster",
-            "due to oppressive laws",
-            "resulting from warfare",
+        lambda: "Население уезжает {}".format(random.choice((
+            "на поиски ресурсов",
+            "на поиски ресурсов",
+            "за изобретением",
+            "из-за катастрофы",
+            "из-за репрессий",
+            "в результате войны",
         ))),
     ]
 
@@ -409,47 +409,48 @@ class Modern(Era):
     count_dice = Dice(2, 6)
     years_dice = Dice(sides=10)
     events = [
-        lambda: "War ({})".format(random.choice((
-            "successful defence against invaders",
-            "successful conquest over foreign power",
-            "defeat on foreign shores",
-            "is fought diplomatically",
-            "ongoing defence",
-            "ongoing invasion",
+        lambda: "Война ({})".format(random.choice((
+            "успешная оборона от захватчиков",
+            "успешное завоевание чужой армии",
+            "поражение на чужих берегах",
+            "ведется дипломатически",
+            "продолжающаяся оборона",
+            "продолжающееся вторжение",
         ))),
-        lambda: "Disaster ({})".format(random.choice((
-            "fire",
-            "flood",
-            "famine",
-            "disease",
-            "earthquake",
-            "violent weather"
+        lambda: "Бедствие ({})".format(random.choice((
+            "пожар",
+            "потоп",
+            "голод",
+            "болезнь",
+            "землетрясение",
+            "погодные катаклизмы"
         ))),
-        lambda: "Kingdom expands {}".format(random.choice((
-            "through conquest",
-            "through conquest",
-            "through colonisation",
-            "through colonisation",
-            "through diplomatic means",
-            "through diplomatic means",
+        lambda: "Увеличение королевства {}".format(random.choice((
+            "через завоевания",
+            "через завоевания",
+            "через колонизацию",
+            "через колонизацию",
+            "дипломатическими средствами",
+            "дипломатическими средствами",
         ))),
-        lambda: "Religion ({})".format(random.choice((
-            "progressive split from orthodoxy",
-            "resurgence of orthodoxy",
-            "forced underground",
-            "acquires secular authority",
-            "purge of the “unfaithful”",
-            "absorption of associated cult",
+        lambda: "Религия ({})".format(random.choice((
+            "увеличивается религиозный раскол",
+            "возрождение православия",
+            "вынуждена уцйти в подполье",
+            "приобретает светскую власть",
+            "чистка \"неверных\"",
+            "поглощен связаный культ",
         ))),
-        lambda: "Astrological event ({})".format(random.choice((
-            "comet",
-            "meteor shower",
-            "meteor shower",
-            "eclipse",
-            "conjunction",
-            "conjunction",
+        lambda: "Астрологическое событие ({})".format(random.choice((
+            "комета",
+            "метеоритный дождь",
+            "метеоритный дождь",
+            "затмение",
+            "совмещение",
+            "совмещение",
         ))),
-        lambda: "Scandal ({})".format(random.choice((
+
+        lambda: "Скандал ({})".format(random.choice((
             "religious head",
             "religious head",
             "ruling family",
@@ -457,27 +458,27 @@ class Modern(Era):
             "military leader",
             "high-level bureaucrat",
         ))),
-        lambda: "Formation of a county (or some subdivision of a kingdom)",
-        lambda: "Dissolution of a county (or some subdivision of a kingdom)",
-        lambda: "Rebellion ({}) perpetrated by {}".format(
+        lambda: "Образование графства (или другого подразделения королевства)",
+        lambda: "Ликвидация графства (или другого подразделения королевства)",
+        lambda: "Восстание ({}) возглавляемое {}".format(
             random.choice((
-                "successful",
-                "ongoing",
-                "ongoing",
-                "ongoing",
-                "failed",
-                "failed",
+                "успешное",
+                "продолжающееся",
+                "продолжающееся",
+                "продолжающееся",
+                "подавленое",
+                "подавленое",
             )),
             random.choice((
-                "peasants",
-                "peasants",
-                "anarchists",
-                "anarchists",
-                "slaves",
-                "prisoners",
+                "крестьянством",
+                "крестьянством",
+                "анархистами",
+                "анархистами",
+                "рабами",
+                "заключенными",
             )),
         ),
-        lambda: "Political party {}".format(random.choice((
+        lambda: "Политическая партия {}".format(random.choice((
             "challenged",
             "challenged",
             "created",
@@ -485,7 +486,7 @@ class Modern(Era):
             "replaced",
             "dissolved",
         ))),
-        lambda: "Cult {}".format(random.choice((
+        lambda: "Культ {}".format(random.choice((
             "formed",
             "formed",
             "forced underground",
@@ -493,7 +494,7 @@ class Modern(Era):
             "rises to legitimacy",
             "rooted out",
         ))),
-        lambda: "Leader {}".format(random.choice((
+        lambda: "Лидер {}".format(random.choice((
             "found insane",
             "scandalised",
             "heralds prosperity",
@@ -501,7 +502,7 @@ class Modern(Era):
             "abdicates",
             "roots out injustice",
         ))),
-        lambda: "Schism between {}".format(random.choice((
+        lambda: "Раскол между {}".format(random.choice((
             "political contenders",
             "noble families",
             "noble families",
@@ -509,7 +510,7 @@ class Modern(Era):
             "religious factions",
             "guilds",
         ))),
-        lambda: "Political reform {} {}".format(
+        lambda: "Политическая реформа {} {}".format(
             random.choice((
                 "improves",
                 "improves",
@@ -527,7 +528,7 @@ class Modern(Era):
                 "system of law",
             )),
         ),
-        lambda: "Major monster {}".format(random.choice((
+        lambda: "Крупные чудовища {}".format(random.choice((
             "population increases",
             "population increases",
             "hunted down",
@@ -535,7 +536,7 @@ class Modern(Era):
             "establishes wilderness foothold",
             "eradicated from setting",
         ))),
-        lambda: "Commerce {}".format(random.choice((
+        lambda: "Экономика ({})".format(random.choice((
             "tax increase",
             "raider activity rising",
             "economic boom",
@@ -551,7 +552,7 @@ class Modern(Era):
             "divided",
             "whispers revolt",
         ))),
-        lambda: "Creation of advanced {}".format(random.choice((
+        lambda: "Создание нового {}".format(random.choice((
             "food production",
             "manufacturing",
             "weaponry",
@@ -559,7 +560,7 @@ class Modern(Era):
             "defence",
             "transport/communication",
         ))),
-        lambda: "Criminal activity {}".format(random.choice((
+        lambda: "Преступность {}".format(random.choice((
             "rises in urban areas",
             "rises in urban areas",
             "plagues the countryside",
@@ -567,7 +568,7 @@ class Modern(Era):
             "is ruthlessly quashed",
             "prompts new laws",
         ))),
-        lambda: "Ethnic minority {}".format(random.choice((
+        lambda: "Этническое меньшинство {}".format(random.choice((
             "seeks diplomatic sovereignty",
             "seeks diplomatic sovereignty",
             "suffers persecution",
