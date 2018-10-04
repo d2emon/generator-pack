@@ -12,7 +12,7 @@ age, you’ll note that the number of these turning points decreases as one trav
 The implication is that the more distant the era, the more pivotal the events.
 """
 import random
-from dice import d
+from dice import Dice
 
 
 class Event:
@@ -21,25 +21,21 @@ class Event:
         self.title = title
 
     def __str__(self):
-        return "{} years ago: {}\n".format(self.year, self.title)
+        return "{} years ago: {}".format(self.year, self.title)
 
     def __repr__(self):
         return str(self)
 
 
 class Era:
-    count_dice = (1, 4)
-    years_dice = (1, 10)
-    years_mod = 1
+    count_dice = Dice(sides=4)
+    years_dice = Dice(sides=10)
     events = []
 
     @classmethod
-    def generate_count(cls):
-        return d(*cls.count_dice)
-
-    @classmethod
     def generate_years(cls):
-        return (d(*cls.years_dice) * cls.years_mod for _ in range(cls.generate_count()))
+        count = cls.count_dice.roll()
+        return (cls.years_dice.roll() for _ in range(count))
 
     @classmethod
     def generate(cls):
@@ -58,9 +54,8 @@ class Prehistory(Era):
 
     :return:
     """
-    count_dice = (1, 4)
-    years_dice = (1, 10)
-    years_mod = 1000
+    count_dice = Dice(sides=4)
+    years_dice = Dice(sides=10, multiplier=1000)
     events = [
         lambda: "Divine cleansing via {}".format(random.choice((
             "flood",
@@ -140,9 +135,8 @@ class Ancient(Era):
 
     :return:
     """
-    count_dice = (2, 6)
-    years_dice = (1, 10)
-    years_mod = 100
+    count_dice = Dice(2, 6)
+    years_dice = Dice(sides=10, multiplier=100)
     events = [
         lambda: "Cataclysm ({})".format(random.choice((
             "technology gone awry",
@@ -239,9 +233,8 @@ class Past(Era):
 
     :return:
     """
-    count_dice = (4, 6)
-    years_dice = (1, 10)
-    years_mod = 10
+    count_dice = Dice(4, 6)
+    years_dice = Dice(sides=10, multiplier=10)
     events = [
         lambda: "Discovery of {}".format(random.choice((
             "advanced agriculture",
@@ -413,9 +406,8 @@ class Modern(Era):
 
     :return:
     """
-    count_dice = (2, 6)
-    years_dice = (1, 10)
-    years_mod = 1
+    count_dice = Dice(2, 6)
+    years_dice = Dice(sides=10)
     events = [
         lambda: "War ({})".format(random.choice((
             "successful defence against invaders",
@@ -585,6 +577,16 @@ class Modern(Era):
         ))),
     ]
 
+
+def generate():
+    for event in Prehistory.generate():
+        yield event
+    for event in Ancient.generate():
+        yield event
+    for event in Past.generate():
+        yield event
+    for event in Modern.generate():
+        yield event
 
 """
 Final Words
