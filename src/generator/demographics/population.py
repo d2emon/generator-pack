@@ -15,7 +15,7 @@ world in transition between these extremes, find a middle ground you like the lo
 """
 import math
 
-from dice import d
+from dice.dice import d
 
 from .city import BigCity, City, Town, Village
 

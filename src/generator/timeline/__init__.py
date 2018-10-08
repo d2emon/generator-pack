@@ -12,7 +12,7 @@ age, you’ll note that the number of these turning points decreases as one trav
 The implication is that the more distant the era, the more pivotal the events.
 """
 import random
-from dice import Dice
+from dice.dice import Dice
 
 
 class Event:
@@ -28,14 +28,14 @@ class Event:
 
 
 class Era:
-    count_dice = Dice(sides=4)
-    years_dice = Dice(sides=10)
+    count_dice = Dice(max_value=4)
+    years_dice = Dice(max_value=10)
     events = []
 
     @classmethod
     def generate_years(cls):
         count = cls.count_dice.roll()
-        return (cls.years_dice.roll() for _ in range(count))
+        return (sum(cls.years_dice.roll()) for _ in count)
 
     @classmethod
     def generate(cls):
@@ -54,8 +54,8 @@ class Prehistory(Era):
 
     :return:
     """
-    count_dice = Dice(sides=4)
-    years_dice = Dice(sides=10, multiplier=1000)
+    count_dice = Dice(max_value=4)
+    years_dice = Dice(max_value=10, multiplier=1000)
     events = [
         lambda: "Божественное очищение через {}".format(random.choice((
             "потоп",
@@ -136,7 +136,7 @@ class Ancient(Era):
     :return:
     """
     count_dice = Dice(2, 6)
-    years_dice = Dice(sides=10, multiplier=100)
+    years_dice = Dice(max_value=10, multiplier=100)
     events = [
         lambda: "Катаклизм ({})".format(random.choice((
             "технология вышла из под контроля",
@@ -234,7 +234,7 @@ class Past(Era):
     :return:
     """
     count_dice = Dice(4, 6)
-    years_dice = Dice(sides=10, multiplier=10)
+    years_dice = Dice(max_value=10, multiplier=10)
     events = [
         lambda: "Открытие {}".format(random.choice((
             "передового сельского хозяйства",
@@ -407,7 +407,7 @@ class Modern(Era):
     :return:
     """
     count_dice = Dice(2, 6)
-    years_dice = Dice(sides=10)
+    years_dice = Dice(max_value=10)
     events = [
         lambda: "Война ({})".format(random.choice((
             "успешная оборона от захватчиков",

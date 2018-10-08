@@ -6,7 +6,7 @@ will tend to be large and walled-a people huddled together for safety. On the fr
 delivered by merchant caravans rather than produced by local agriculture. The presence of monsters would almost
 certainly magnify these effects.
 """
-from dice import d
+from dice.dice import d
 
 
 MIN_POPULATION_DENSITY = 30
