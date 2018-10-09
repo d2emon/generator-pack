@@ -5,20 +5,6 @@ from utils.loaders import load_lines
 
 
 class DataProvider:
-    instance = None
-    data = None
-
-    def __init__(self, data=None):
-        if self.instance is None:
-            self.instance = self
-            self.instance.set_data(data)
-
-    @classmethod
-    def set_data(cls, data):
-        if cls.instance is None:
-            cls.instance = cls()
-        cls.instance.data = data
-
     @property
     def items(self):
         raise NotImplementedError
@@ -33,45 +19,51 @@ class DataProvider:
 
 
 class StaticProvider(DataProvider):
-    instance = None
-    data = None
+    def __init__(self, value=None):
+        self.value = value
 
     @property
     def items(self):
+        if self.value is None:
+            raise StopIteration
         while True:
-            yield self.data
+            yield self.value
+
+
+class GeneratorProvider(DataProvider):
+    def __init__(self, generator=None):
+        self.generator = generator
+
+    @property
+    def items(self):
+        if self.generator is None:
+            raise StopIteration
+        while True:
+            yield self.generator.generate()
 
 
 class ListProvider(DataProvider):
-    instance = None
-    data = None
-    _items = None
+    def __init__(self, data=()):
+        self.data = data
+        self._items = []
+        self.unique = self.shuffle()
 
-    @classmethod
-    def shuffle(cls):
-        cls._items = list(cls.data)
-        random.shuffle(cls._items)
-        return cls._items
+    def shuffle(self):
+        self._items = list(self.data)
+        random.shuffle(self._items)
+        return self._items
 
     @property
     def items(self):
         while True:
             yield random.choice(self.data)
 
-    @classmethod
-    def unique(cls):
-        for item in cls._items:
-            yield item
-
     def __len__(self):
         return len(self.data)
 
 
-class FileData(ListProvider):
-    instance = None
-    _data = None
-    filename = None
-
-    def set_data(self, filename=""):
+class FileProvider(ListProvider):
+    def __init__(self, filename=""):
         self.filename = os.path.abspath(filename)
-        _data = load_lines(self.filename)
+        data = load_lines(self.filename)
+        super().__init__(data)

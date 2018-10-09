@@ -1,5 +1,5 @@
 from generator.generator.generated import ListGenerated, ComplexGenerated
-from generator.generator.generator_data import FileData
+from generator.generator.data_provider import FileProvider
 
 
 class BaseToponym(ListGenerated):
@@ -11,47 +11,52 @@ class BaseToponym(ListGenerated):
             end
         ]).capitalize())
 
+    @classmethod
+    def generate(cls):
+        next_data = {key: next(d) for key, d in cls.providers.items()}
+        return cls(**next_data)
+
 
 class Toponym1(BaseToponym):
-    data = {
-        'part1': FileData("data/demonym/demonym1.txt"),
-        'part2': FileData("data/demonym/demonym2.txt"),
-        'part3': FileData("data/demonym/demonym3.txt"),
-        'end': FileData("data/demonym/endings.txt"),
+    providers = {
+        'part1': FileProvider("data/demonym/demonym1.txt"),
+        'part2': FileProvider("data/demonym/demonym2.txt"),
+        'part3': FileProvider("data/demonym/demonym3.txt"),
+        'end': FileProvider("data/demonym/endings.txt"),
     }
 
 
 class Toponym2(BaseToponym):
-    data = {
-        'part1': FileData("data/demonym/demonym1.txt"),
-        'part2': FileData("data/demonym/demonym2.txt"),
-        'part3': FileData("data/demonym/demonym3.txt"),
-        'end': FileData("data/demonym/demonym6.txt"),
+    providers = {
+        'part1': FileProvider("data/demonym/demonym1.txt"),
+        'part2': FileProvider("data/demonym/demonym2.txt"),
+        'part3': FileProvider("data/demonym/demonym3.txt"),
+        'end': FileProvider("data/demonym/demonym6.txt"),
     }
 
 
 class Toponym3(BaseToponym):
-    data = {
-        'part1': FileData("data/demonym/demonym3.txt"),
-        'part2': FileData("data/demonym/demonym4.txt"),
-        'part3': FileData("data/demonym/demonym5.txt"),
+    providers = {
+        'part1': FileProvider("data/demonym/demonym3.txt"),
+        'part2': FileProvider("data/demonym/demonym4.txt"),
+        'part3': FileProvider("data/demonym/demonym5.txt"),
     }
 
 
 class Toponym4(BaseToponym):
-    data = {
-        'part1': FileData("data/demonym/demonym2.txt"),
-        'part2': FileData("data/demonym/demonym3.txt"),
-        'part3': FileData("data/demonym/demonym6.txt"),
+    providers = {
+        'part1': FileProvider("data/demonym/demonym2.txt"),
+        'part2': FileProvider("data/demonym/demonym3.txt"),
+        'part3': FileProvider("data/demonym/demonym6.txt"),
     }
 
 
 class Toponym5(BaseToponym):
-    data = {
-        'part1': FileData("data/demonym/demonym3.txt"),
-        'part2': FileData("data/demonym/demonym4.txt"),
-        'part3': FileData("data/demonym/demonym1.txt"),
-        'end': FileData("data/demonym/endings.txt"),
+    providers = {
+        'part1': FileProvider("data/demonym/demonym3.txt"),
+        'part2': FileProvider("data/demonym/demonym4.txt"),
+        'part3': FileProvider("data/demonym/demonym1.txt"),
+        'end': FileProvider("data/demonym/endings.txt"),
     }
 
 

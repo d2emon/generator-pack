@@ -1,6 +1,9 @@
 from generator.generator.generated import ListGenerated
-from generator.generator.generator_data import FileData
+from generator.generator.data_provider import ListProvider
+
+
+from fixtures.other.motivation import motivation
 
 
 class CharacterGoal(ListGenerated):
-    data = {'value': FileData("data/motivation.txt")}
+    provider = ListProvider(motivation)

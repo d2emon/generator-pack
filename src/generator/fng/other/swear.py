@@ -1,6 +1,6 @@
 from generator.generator.generated import ListGenerated
-from generator.generator.generator_data import FileData
+from generator.generator.data_provider import FileProvider
 
 
 class Curse(ListGenerated):
-    data = {'value': FileData("data/swear.txt")}
+    provider = FileProvider("data/swear.txt")

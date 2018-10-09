@@ -1,7 +1,9 @@
 import random
+from .data_provider import DataProvider
 
 
 class Generated:
+    provider = DataProvider()
     fields = []
 
     generator = None
@@ -31,12 +33,13 @@ class Generated:
 
 
 class ListGenerated(Generated):
-    data = dict()
+    # data = dict()
 
     @classmethod
     def generate(cls):
-        next_data = {key: next(d) for key, d in cls.data.items()}
-        return cls(**next_data)
+        # next_data = {key: next(d) for key, d in cls.data.items()}
+        # return cls(**next_data)
+        return cls(next(cls.provider.items))
 
 
 class ComplexGenerated(Generated):

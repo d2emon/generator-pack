@@ -48,6 +48,6 @@ class ListData(GeneratorData):
 
 class FileData(ListData):
     def __init__(self, filename=""):
-        self.filename = path.abspath(path.join("..", filename))
+        self.filename = path.abspath(path.join(".", filename))
         data = load_lines(self.filename)
         super().__init__(data)

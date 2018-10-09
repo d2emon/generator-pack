@@ -1,8 +1,8 @@
 from generator.generator.generated import ListGenerated
-from generator.generator.generator_data import ListData
+from generator.generator.data_provider import ListProvider
 
 from fixtures.other.wisdom import wisdom
 
 
 class WisdomQuote(ListGenerated):
-    data = {'value': ListData(wisdom)}
+    provider = ListProvider(wisdom)

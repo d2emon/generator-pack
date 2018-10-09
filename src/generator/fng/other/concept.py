@@ -1,8 +1,10 @@
 from generator.generator.generated import ListGenerated, ComplexGenerated
-from generator.generator.generator_data import FileData
+from generator.generator.data_provider import FileProvider
 
 
 class BaseConcept(ListGenerated):
+    providers = dict()
+
     def __init__(self, first="", last=""):
         super().__init__()
         self.first = first
@@ -10,6 +12,11 @@ class BaseConcept(ListGenerated):
 
     def __str__(self):
         return "{} {}".format(self.first, self.last)
+
+    @classmethod
+    def generate(cls):
+        next_data = {key: next(d) for key, d in cls.providers.items()}
+        return cls(**next_data)
 
 
 class BaseArtConcept(BaseConcept):
@@ -21,30 +28,30 @@ class BaseStoryConcept(BaseConcept):
 
 
 class ArtConceptPlace(BaseArtConcept):
-    data = {
-        'first': FileData("data/concept/art/place1.txt"),
-        'last': FileData("data/concept/art/place2.txt"),
+    providers = {
+        'first': FileProvider("data/concept/art/place1.txt"),
+        'last': FileProvider("data/concept/art/place2.txt"),
     }
 
 
 class ArtConceptBeing(BaseArtConcept):
-    data = {
-        'first': FileData("data/concept/art/being1.txt"),
-        'last': FileData("data/concept/art/being2.txt"),
+    providers = {
+        'first': FileProvider("data/concept/art/being1.txt"),
+        'last': FileProvider("data/concept/art/being2.txt"),
     }
 
 
 class StoryConceptCharacter(BaseStoryConcept):
-    data = {
-        'first': FileData("data/concept/story/character1.txt"),
-        'last': FileData("data/concept/story/character2.txt"),
+    providers = {
+        'first': FileProvider("data/concept/story/character1.txt"),
+        'last': FileProvider("data/concept/story/character2.txt"),
     }
 
 
 class StoryConceptEvent(BaseStoryConcept):
-    data = {
-        'first': FileData("data/concept/story/event1.txt"),
-        'last': FileData("data/concept/story/event2.txt"),
+    providers = {
+        'first': FileProvider("data/concept/story/event1.txt"),
+        'last': FileProvider("data/concept/story/event2.txt"),
     }
 
 

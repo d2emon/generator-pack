@@ -1,5 +1,5 @@
 from generator.generator.generated import ListGenerated, ComplexGenerated
-from generator.generator.generator_data import StaticData, FileData
+from generator.generator.data_provider import GeneratorProvider, FileProvider
 
 
 FORGIVE_PRAYER = "forgive"
@@ -8,10 +8,10 @@ AID_PRAYER = "aid"
 
 class Deity(ListGenerated):
     template = "{title} {name}, {long_title}"
-    data = {
-        'title': FileData("data/prayer/deity_title.txt"),
-        'name': FileData("data/prayer/deity_name.txt"),
-        'long': FileData("data/prayer/deity_long_title.txt"),
+    providers = {
+        'title': FileProvider("data/prayer/deity_title.txt"),
+        'name': FileProvider("data/prayer/deity_name.txt"),
+        'long': FileProvider("data/prayer/deity_long_title.txt"),
     }
 
     def __init__(self, name, title="", long=""):
@@ -28,6 +28,11 @@ class Deity(ListGenerated):
             return ForgivePrayer.generate(self)
         return AidPrayer.generate(self)
 
+    @classmethod
+    def generate(cls):
+        next_data = {key: next(d) for key, d in cls.providers.items()}
+        return cls(**next_data)
+
 
 class BasePrayer(ListGenerated):
     @classmethod
@@ -38,18 +43,18 @@ class BasePrayer(ListGenerated):
 
 
 class ForgivePrayer(BasePrayer):
-    data = {
-        'deity': StaticData(Deity),
-        'sin': FileData("data/prayer/sin.txt"),
+    providers = {
+        'deity': GeneratorProvider(Deity),
+        'sin': FileProvider("data/prayer/sin.txt"),
 
-        'forgive': FileData("data/prayer/forgive.txt"),
-        'description': FileData("data/prayer/sin_description.txt"),
+        'forgive': FileProvider("data/prayer/forgive.txt"),
+        'description': FileProvider("data/prayer/sin_description.txt"),
 
-        'ask1': FileData("data/prayer/ask_sin.txt"),
-        'promise1': FileData("data/prayer/promise.txt"),
+        'ask1': FileProvider("data/prayer/ask_sin.txt"),
+        'promise1': FileProvider("data/prayer/promise.txt"),
 
-        'ask2': FileData("data/prayer/ask_sin2.txt"),
-        'promise2': FileData("data/prayer/promise2.txt"),
+        'ask2': FileProvider("data/prayer/ask_sin2.txt"),
+        'promise2': FileProvider("data/prayer/promise2.txt"),
     }
 
     def __init__(self, deity, sin="", forgive="", description="", ask1="", promise1="", ask2="", promise2=""):
@@ -70,23 +75,28 @@ class ForgivePrayer(BasePrayer):
             prayer=self
         )
 
+    @classmethod
+    def generate(cls):
+        next_data = {key: next(d) for key, d in cls.providers.items()}
+        return cls(**next_data)
+
 
 class AidPrayer(BasePrayer):
-    data = {
-        'deity': StaticData(Deity),
-        'ask1': FileData("data/prayer/ask.txt"),
+    providers = {
+        'deity': GeneratorProvider(Deity),
+        'ask1': FileProvider("data/prayer/ask.txt"),
 
-        'ask2': FileData("data/prayer/ask2.txt"),
-        'may': FileData("data/prayer/may.txt"),
-        'subject': FileData("data/prayer/subject.txt"),
+        'ask2': FileProvider("data/prayer/ask2.txt"),
+        'may': FileProvider("data/prayer/may.txt"),
+        'subject': FileProvider("data/prayer/subject.txt"),
 
-        'ask3': FileData("data/prayer/ask3.txt"),
-        'asker': FileData("data/prayer/asker.txt"),
-        'title': FileData("data/prayer/deity_title2.txt"),
+        'ask3': FileProvider("data/prayer/ask3.txt"),
+        'asker': FileProvider("data/prayer/asker.txt"),
+        'title': FileProvider("data/prayer/deity_title2.txt"),
 
-        'bless': FileData("data/prayer/bless.txt"),
-        'bless_description': FileData("data/prayer/bless_description.txt"),
-        'bless_subject': FileData("data/prayer/bless_subject.txt"),
+        'bless': FileProvider("data/prayer/bless.txt"),
+        'bless_description': FileProvider("data/prayer/bless_description.txt"),
+        'bless_subject': FileProvider("data/prayer/bless_subject.txt"),
     }
 
     def __init__(self, deity, ask1="", ask2="", ask3="", may="", subject="", asker="", title="", bless="", bless_description="", bless_subject=""):
@@ -110,6 +120,11 @@ class AidPrayer(BasePrayer):
             deity=str(self.deity),
             prayer=self,
         )
+
+    @classmethod
+    def generate(cls):
+        next_data = {key: next(d) for key, d in cls.providers.items()}
+        return cls(**next_data)
 
 
 class Prayer(ComplexGenerated):

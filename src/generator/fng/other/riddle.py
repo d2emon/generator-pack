@@ -1,11 +1,11 @@
 from generator.generator.generated import Generated
-from generator.generator.generator_data import ListData
+from generator.generator.data_provider import ListProvider
 
 from fixtures.other.riddle import riddle
 
 
 class Riddle(Generated):
-    data = ListData(riddle)
+    provider = ListProvider(riddle)
 
     def __init__(self, question, answer=""):
         super().__init__(question)
@@ -20,5 +20,5 @@ class Riddle(Generated):
 
     @classmethod
     def generate(cls):
-        next_data = next(cls.data)
+        next_data = next(cls.provider.items)
         return cls(*next_data)
