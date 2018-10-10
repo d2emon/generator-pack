@@ -1,13 +1,13 @@
 import random
 
-from generator.generator.generated import Generated
-from generator.generator.data_provider import FileProvider, ProvidersList, ListProvider
+from generator.generator.generated import ListGenerated
+from generator.generator.data_provider import ProvidersList, ListProvider
 
 
 from fixtures.other.haiku import haiku, haiku_middle
 
 
-class HaikuString(Generated):
+class HaikuString(ListGenerated):
     providers = []
 
     @classmethod
@@ -19,11 +19,8 @@ class HaikuString(Generated):
         next_data = next(provider.items)
         return cls(next_data)
 
-    def __str__(self):
-        return " ".join(self.value)
 
-
-class Haiku(Generated):
+class Haiku(ListGenerated):
     class HaikuString1(HaikuString):
         providers = [
             ProvidersList(*[ListProvider(part) for part in haiku[0]]),

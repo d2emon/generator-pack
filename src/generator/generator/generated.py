@@ -29,17 +29,12 @@ class Generated:
 
     @classmethod
     def generate(cls):
-        return cls(cls.generator.__next__())
+        return cls(next(cls.provider.items))
 
 
 class ListGenerated(Generated):
-    # data = dict()
-
-    @classmethod
-    def generate(cls):
-        # next_data = {key: next(d) for key, d in cls.data.items()}
-        # return cls(**next_data)
-        return cls(next(cls.provider.items))
+    def __str__(self):
+        return " ".join(self.value)
 
 
 class ComplexGenerated(Generated):

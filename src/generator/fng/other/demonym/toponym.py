@@ -1,8 +1,8 @@
-from generator.generator.generated import ListGenerated, ComplexGenerated
+from generator.generator.generated import Generated, ComplexGenerated
 from generator.generator.data_provider import FileProvider
 
 
-class BaseToponym(ListGenerated):
+class BaseToponym(Generated):
     def __init__(self, part1="", part2="", part3="", end=""):
         super().__init__("".join([
             part1,

@@ -1,10 +1,10 @@
-from generator.generator.generated import ListGenerated
+from generator.generator.generated import Generated
 from generator.generator.data_provider import ListProvider
 
 from fixtures.other.commandment import commandment
 
 
-class ReligiousCommandment(ListGenerated):
+class ReligiousCommandment(Generated):
     provider = ListProvider(commandment)
 
     def __str__(self):

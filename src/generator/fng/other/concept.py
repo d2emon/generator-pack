@@ -7,8 +7,7 @@ from fixtures.other.concept.story import characters, events
 
 
 class BaseConcept(ListGenerated):
-    def __str__(self):
-        return " ".join(self.value)
+    pass
 
 
 class ArtConceptPlace(BaseConcept):
