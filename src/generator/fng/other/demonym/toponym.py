@@ -13,7 +13,7 @@ class BaseToponym(ListGenerated):
 
     @classmethod
     def generate(cls):
-        next_data = cls.providers.items
+        next_data = next(cls.providers.items)
         return cls(*next_data)
 
 

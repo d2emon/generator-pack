@@ -23,14 +23,18 @@ class DataProvider:
 
 class ProvidersList(DataProvider):
     def __init__(self, *providers):
-        self.providers = providers
+        self.providers = list(providers)
 
     @property
     def items(self):
         if len(self.providers) < 1:
             raise StopIteration
         while True:
-            yield [provider.items for provider in self.providers]
+            yield [next(provider.items) for provider in self.providers]
+
+    def __add__(self, other):
+        self.providers.append(other)
+        return self
 
 
 class StaticProvider(DataProvider):
@@ -79,6 +83,6 @@ class ListProvider(DataProvider):
 
 class FileProvider(ListProvider):
     def __init__(self, filename=""):
-        self.filename = os.path.abspath(filename)
+        self.filename = os.path.abspath(os.path.join("..", filename))
         data = load_lines(self.filename)
         super().__init__(data)
