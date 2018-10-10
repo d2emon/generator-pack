@@ -10,12 +10,27 @@ class DataProvider:
         raise NotImplementedError
 
     def __iter__(self):
-        return self.instance
+        return self
 
     def __next__(self):
         if self.items is None:
             raise StopIteration
         return next(self.items)
+
+    def __add__(self, other):
+        return ProvidersList(self, other)
+
+
+class ProvidersList(DataProvider):
+    def __init__(self, *providers):
+        self.providers = providers
+
+    @property
+    def items(self):
+        if len(self.providers) < 1:
+            raise StopIteration
+        while True:
+            yield [provider.items for provider in self.providers]
 
 
 class StaticProvider(DataProvider):
