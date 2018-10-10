@@ -1,58 +1,30 @@
 from generator.generator.generated import ListGenerated, ComplexGenerated
-from generator.generator.data_provider import FileProvider
+from generator.generator.data_provider import FileProvider, ListProvider, ProvidersList
+
+
+from fixtures.other.concept.art import beings, places
+from fixtures.other.concept.story import characters, events
 
 
 class BaseConcept(ListGenerated):
-    providers = dict()
-
-    def __init__(self, first="", last=""):
-        super().__init__()
-        self.first = first
-        self.last = last
-
     def __str__(self):
-        return "{} {}".format(self.first, self.last)
-
-    @classmethod
-    def generate(cls):
-        next_data = {key: next(d) for key, d in cls.providers.items()}
-        return cls(**next_data)
+        return " ".join(self.value)
 
 
-class BaseArtConcept(BaseConcept):
-    pass
+class ArtConceptPlace(BaseConcept):
+    provider = ProvidersList(*[ListProvider(provider) for provider in places])
 
 
-class BaseStoryConcept(BaseConcept):
-    pass
+class ArtConceptBeing(BaseConcept):
+    provider = ProvidersList(*[ListProvider(provider) for provider in beings])
 
 
-class ArtConceptPlace(BaseArtConcept):
-    providers = {
-        'first': FileProvider("data/concept/art/place1.txt"),
-        'last': FileProvider("data/concept/art/place2.txt"),
-    }
+class StoryConceptCharacter(BaseConcept):
+    provider = ProvidersList(*[ListProvider(provider) for provider in characters])
 
 
-class ArtConceptBeing(BaseArtConcept):
-    providers = {
-        'first': FileProvider("data/concept/art/being1.txt"),
-        'last': FileProvider("data/concept/art/being2.txt"),
-    }
-
-
-class StoryConceptCharacter(BaseStoryConcept):
-    providers = {
-        'first': FileProvider("data/concept/story/character1.txt"),
-        'last': FileProvider("data/concept/story/character2.txt"),
-    }
-
-
-class StoryConceptEvent(BaseStoryConcept):
-    providers = {
-        'first': FileProvider("data/concept/story/event1.txt"),
-        'last': FileProvider("data/concept/story/event2.txt"),
-    }
+class StoryConceptEvent(BaseConcept):
+    provider = ProvidersList(*[ListProvider(provider) for provider in events])
 
 
 class ArtConcept(ComplexGenerated):

@@ -1,7 +1,7 @@
 from generator.generator.generated import ListGenerated, ComplexGenerated
 from generator.generator.data_provider import GeneratorProvider, FileProvider
 
-
+RANDOM_PRAYER = "random"
 FORGIVE_PRAYER = "forgive"
 AID_PRAYER = "aid"
 
@@ -23,7 +23,9 @@ class Deity(ListGenerated):
     def __str__(self):
         return "{deity.title} {deity.name}, {deity.long}".format(deity=self)
 
-    def pray(self, prayer_type=FORGIVE_PRAYER):
+    def pray(self, prayer_type=RANDOM_PRAYER):
+        if prayer_type == RANDOM_PRAYER:
+            return Prayer.generate(self)
         if prayer_type == FORGIVE_PRAYER:
             return ForgivePrayer.generate(self)
         return AidPrayer.generate(self)
