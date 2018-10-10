@@ -1,6 +1,9 @@
 from generator.generator.generated import ListGenerated
-from generator.generator.data_provider import FileProvider
+from generator.generator.data_provider import ListProvider
+
+
+from fixtures.other.school_subject import school_subjects
 
 
 class SchoolSubject(ListGenerated):
-    provider = FileProvider("data/school-subjects.txt")
+    provider = ListProvider(school_subjects)

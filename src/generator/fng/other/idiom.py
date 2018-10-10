@@ -1,6 +1,8 @@
 from generator.generator.generated import ListGenerated
-from generator.generator.data_provider import FileProvider
+from generator.generator.data_provider import ListProvider
+
+from fixtures.other.idiom import idiom
 
 
 class Idiom(ListGenerated):
-    provider = FileProvider("data/idiom.txt")
+    provider = ListProvider(idiom)
