@@ -1,27 +1,24 @@
 import random
 
 
-vowels = ["a", "e", "i", "o", "u", "y"]
-double_vowels = [
-    "aa", "ae", "ai", "ao", "au",
-    "ea", "ee", "ei", "eo", "eu",
-    "ia", "ie", "ii", "io", "iu",
-    "oa", "oe", "oi", "oo", "ou",
-    "ua", "ue", "ui", "uo", "uu",
-]
-ending_splice =[
-    "an", "ian", "anian", "in", "ine", "ite", "er", "eno", "ino", "ish",
-    "ene", "ensian", "ard", "ese", "i", "ic", "iot", "iote", "asque", "onian"
-]
-ending_no_splice =[
-    "nan", "nian", "nin", "no", "ne", "nsian", "lese", "vese", "nese", "gian",
-    "vian", "lian"
-]
-c_ending_no_splice =[
-    "n", "an", "an", "anian", "nian", "in", "ine", "ite", "er", "eno", "ino",
-    "ish", "ene", "ensian", "ard", "ese", "lese", "vese", "nese", "i", "ic",
-    "ot", "ote", "asque", "gian", "onian", "vian"
-]
+from fixtures.other.alphabet import vowels, double_vowels
+from fixtures.other.demonym import endings
+
+
+BASE_SHORT = 0
+BASE_VOWEL = 1
+BASE_DOUBLE_VOWEL = 2
+BASE_CONSONANT = 3
+
+
+def base_type(word):
+    if len(word) < 2:
+        return BASE_SHORT
+    elif word[:-2] in double_vowels:
+        return BASE_DOUBLE_VOWEL
+    elif word[:-1] in vowels:
+        return BASE_VOWEL
+    return BASE_CONSONANT
 
 
 class Demonym:
@@ -29,19 +26,18 @@ class Demonym:
         def build_demonym(base="", endings=()):
             return base + random.choice(endings)
 
-        def vowel_based(toponym):
-            return build_demonym(toponym[:-1], random.choice([
-                ending_splice,
-                ending_no_splice,
-            ]))
+        def vowel_based():
+            return random.choice(endings[:2])
 
         def double_vowel_based(toponym):
             if len(toponym) < 5:
-                return build_demonym(toponym[:-1], ending_splice)
-            return build_demonym(toponym[:-2], random.choice([
-                ending_splice,
-                c_ending_no_splice,
-            ]))
+                return toponym[:-1], random.choice(endings[0])
+
+            endings_type = random.choice([
+                endings[0],
+                endings[2],
+            ])
+            return toponym[:-2], random.choice(endings_type)
 
         def consonant_based(toponym):
             chance = random.randint(0, 100)
@@ -59,15 +55,17 @@ class Demonym:
                     base = toponym[:-1]
                 else:
                     base = toponym[:-3]
-            return build_demonym(base, ending_splice)
+            return base, endings[0]
 
         self.toponym = str(toponym)
-        if self.toponym[-2:] in double_vowels:
-            self.value = double_vowel_based(self.toponym)
-        elif self.toponym[-1:] in vowels:
-            self.value = vowel_based(self.toponym)
+        toponym_base_type = base_type(toponym)
+        if toponym_base_type == BASE_DOUBLE_VOWEL:
+            base, ending = double_vowel_based(self.toponym)
+        elif toponym_base_type == BASE_VOWEL:
+            base, ending = self.toponym[:-1], vowel_based()
         else:
-            self.value = consonant_based(self.toponym)
+            base, ending = consonant_based(self.toponym)
+        self.value = base + random.choice(ending)
 
     def __str__(self):
         return self.value
