@@ -1,81 +1,49 @@
 import random
 
 from generator.generator.generated import Generated
-from generator.generator.data_provider import FileProvider
+from generator.generator.data_provider import FileProvider, ProvidersList, ListProvider
+
+
+from fixtures.other.haiku import haiku, haiku_middle
 
 
 class HaikuString(Generated):
     providers = []
 
-    def __init__(self, first="", last=""):
-        super().__init__()
-        self.first = first
-        self.last = last
-
     @classmethod
     def generate(cls):
-        strings = random.choice(cls.providers)
-        if strings is None:
+        provider = random.choice(cls.providers)
+        if provider is None:
             return cls()
 
-        next_data = {key: next(d) for key, d in strings.items()}
-        return cls(**next_data)
+        next_data = next(provider.items)
+        return cls(next_data)
 
     def __str__(self):
-        return "{} {}".format(self.first, self.last)
+        return " ".join(self.value)
 
 
 class Haiku(Generated):
     class HaikuString1(HaikuString):
         providers = [
-            {
-                'first': FileProvider("data/haiku/haiku1a.txt"),
-                'last': FileProvider("data/haiku/haiku2a.txt"),
-            },
-            {
-                'first': FileProvider("data/haiku/haiku1b.txt"),
-                'last': FileProvider("data/haiku/haiku2b.txt"),
-            },
-            {
-                'first': FileProvider("data/haiku/haiku1c.txt"),
-                'last': FileProvider("data/haiku/haiku2c.txt"),
-            },
-            {
-                'first': FileProvider("data/haiku/haiku5a.txt"),
-                'last': FileProvider("data/haiku/haiku2c.txt"),
-            },
-            {
-                'first': FileProvider("data/haiku/haiku5b.txt"),
-                'last': FileProvider("data/haiku/haiku6b.txt"),
-            }
+            ProvidersList(*[ListProvider(part) for part in haiku[0]]),
+            ProvidersList(*[ListProvider(part) for part in haiku[1]]),
+            ProvidersList(*[ListProvider(part) for part in haiku[2]]),
+            ProvidersList(*[ListProvider(part) for part in haiku[3]]),
+            ProvidersList(*[ListProvider(part) for part in haiku[4]]),
         ]
 
     class HaikuString2(HaikuString):
         providers = [
-            {
-                'first': FileProvider("data/haiku/haiku3a.txt"),
-                'last': FileProvider("data/haiku/haiku4a.txt"),
-            },
-            {
-                'first': FileProvider("data/haiku/haiku3b.txt"),
-                'last': FileProvider("data/haiku/haiku4b.txt"),
-            },
+            ProvidersList(*[ListProvider(part) for part in haiku_middle[0]]),
+            ProvidersList(*[ListProvider(part) for part in haiku_middle[1]]),
         ]
 
     class HaikuString3(HaikuString):
         providers = [
-            {
-                'first': FileProvider("data/haiku/haiku1a.txt"),
-                'last': FileProvider("data/haiku/haiku2a.txt"),
-            },
-            {
-                'first': FileProvider("data/haiku/haiku1b.txt"),
-                'last': FileProvider("data/haiku/haiku2b.txt"),
-            },
-            {
-                'first': FileProvider("data/haiku/haiku5a.txt"),
-                'last': FileProvider("data/haiku/haiku2c.txt"),
-            },
+            ProvidersList(*[ListProvider(part) for part in haiku[0]]),
+            ProvidersList(*[ListProvider(part) for part in haiku[1]]),
+            ProvidersList(*[ListProvider(part) for part in haiku[3]]),
         ]
 
     strings = [
