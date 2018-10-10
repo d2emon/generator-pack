@@ -8,63 +8,64 @@ from fixtures.other.demonym import endings
 BASE_SHORT = 0
 BASE_VOWEL = 1
 BASE_DOUBLE_VOWEL = 2
-BASE_CONSONANT = 3
+BASE_DOUBLE_VOWEL_SHORT = 3
+BASE_CONSONANT = 4
+
+
+def consonant_base(word):
+    chance = random.randint(0, 100)
+    if chance < 40:
+        return word
+    if chance < 60:
+        return word[:-1]
+    if len(word) < 5:
+        return word[:-1]
+    if chance < 80:
+        return word[:-2]
+    return word[:-3]
+
+
+BASE_SPLIT = {
+    BASE_VOWEL: lambda word: word[:-1],
+    BASE_DOUBLE_VOWEL_SHORT: lambda word: word[:-1],
+    BASE_DOUBLE_VOWEL: lambda word: word[:-2],
+    BASE_CONSONANT: consonant_base,
+}
+BASE_ENDINGS = {
+    BASE_VOWEL: endings[0] + endings[1],
+    BASE_DOUBLE_VOWEL_SHORT: endings[0],
+    BASE_DOUBLE_VOWEL: endings[0] + endings[2],
+    BASE_CONSONANT: endings[0]
+}
 
 
 def base_type(word):
     if len(word) < 2:
         return BASE_SHORT
     elif word[:-2] in double_vowels:
+        if len(word) < 5:
+            return BASE_DOUBLE_VOWEL_SHORT
         return BASE_DOUBLE_VOWEL
     elif word[:-1] in vowels:
         return BASE_VOWEL
     return BASE_CONSONANT
 
 
+def word_base(word):
+    word_base_type = base_type(word)
+
+    base_split = BASE_SPLIT.get(word_base_type)
+    endings = BASE_ENDINGS.get(word_base_type, [])
+
+    if base_split is None:
+        return BASE_SPLIT(word), endings
+    return word, endings
+
+
 class Demonym:
     def __init__(self, toponym):
-        def build_demonym(base="", endings=()):
-            return base + random.choice(endings)
-
-        def vowel_based():
-            return random.choice(endings[:2])
-
-        def double_vowel_based(toponym):
-            if len(toponym) < 5:
-                return toponym[:-1], random.choice(endings[0])
-
-            endings_type = random.choice([
-                endings[0],
-                endings[2],
-            ])
-            return toponym[:-2], random.choice(endings_type)
-
-        def consonant_based(toponym):
-            chance = random.randint(0, 100)
-            if chance < 40:
-                base = toponym
-            elif chance < 60:
-                base = toponym[:-1]
-            elif chance < 80:
-                if len(toponym) < 5:
-                    base = toponym[:-1]
-                else:
-                    base = toponym[:-2]
-            else:
-                if len(toponym) < 5:
-                    base = toponym[:-1]
-                else:
-                    base = toponym[:-3]
-            return base, endings[0]
-
         self.toponym = str(toponym)
-        toponym_base_type = base_type(toponym)
-        if toponym_base_type == BASE_DOUBLE_VOWEL:
-            base, ending = double_vowel_based(self.toponym)
-        elif toponym_base_type == BASE_VOWEL:
-            base, ending = self.toponym[:-1], vowel_based()
-        else:
-            base, ending = consonant_based(self.toponym)
+        base, ending = word_base(self.toponym)
         self.value = base + random.choice(ending)
 
     def __str__(self):

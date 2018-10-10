@@ -33,8 +33,9 @@ class ProvidersList(DataProvider):
             yield [next(provider.items) for provider in self.providers]
 
     def __add__(self, other):
-        self.providers.append(other)
-        return self
+        providers = list(self.providers)
+        providers.append(other)
+        return ProvidersList(*providers)
 
 
 class StaticProvider(DataProvider):

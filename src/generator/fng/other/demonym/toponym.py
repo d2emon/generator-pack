@@ -37,7 +37,7 @@ class Toponym2(BaseToponym):
 
 
 class Toponym3(BaseToponym):
-    providers =  double_letter_provider + ListProvider(endings[0])
+    providers = double_letter_provider + ListProvider(endings[0])
 
 
 class Toponym4(BaseToponym):
