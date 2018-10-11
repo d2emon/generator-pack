@@ -7,29 +7,29 @@ def test_swear(name):
 
 class Names:
     @classmethod
-    def male(cls):
+    def male(cls, subrace=0):
         raise NotImplementedError
 
     @classmethod
-    def female(cls):
+    def female(cls, subrace=0):
         raise NotImplementedError
 
     @classmethod
-    def surname(cls):
+    def surname(cls, subrace=0):
         raise NotImplementedError
 
 
+# 0-1
 class CalashiteNames(Names):
-    """
-    var nm1 = ["","","b","bh","f","h","j","kh","m","n","nh","r","rh","s","z"];
-    var nm2 = ["a","e","u","a","e","u","a","e","u","i","ei"];
-    var nm3 = ["b","d","hm","hn","hl","kh","l","m","rd","r","s","sh","z"];
-    var nm4 = ["d","m","n","r"];
-    var nm5 = ["","","c","f","h","j","m","n","r","s","sh","y","z"];
-    var nm6 = ["a","e","u","a","e","u","o","o","i","i","ei"];
-    var nm7 = ["d","f","hn","hl","hm","hr","l","m","n","p","r","s","sh","sm","sn","t","v","z"];
-    var nm8 = ["h","l"];
-    """
+    nm1 = ["","","b","bh","f","h","j","kh","m","n","nh","r","rh","s","z"]
+    nm2 = ["a","e","u","a","e","u","a","e","u","i","ei"]
+    nm3 = ["b","d","hm","hn","hl","kh","l","m","rd","r","s","sh","z"]
+    nm4 = ["d","m","n","r"]
+
+    nm5 = ["","","c","f","h","j","m","n","r","s","sh","y","z"]
+    nm6 = ["a","e","u","a","e","u","o","o","i","i","ei"]
+    nm7 = ["d","f","hn","hl","hm","hr","l","m","n","p","r","s","sh","sm","sn","t","v","z"]
+    nm8 = ["h","l"]
 
     nm9 = ["b","bh","c","d","dh","h","j","kh","m","n","p","r","rh","sh","z"]
     nm10 = ["a","e","i","o","u","a","e","i","o","u","a","e","i","o","u","a","a","a","ei"]
@@ -37,13 +37,23 @@ class CalashiteNames(Names):
     nm12= ["","","","","","d","l","m","n","r"]
 
     @classmethod
-    def surname(cls):
+    def surname(cls, subrace=0):
         return "".join([
             random.choice(cls.nm9),
             random.choice(cls.nm10),
             random.choice(cls.nm11),
             random.choice(cls.nm10),
             random.choice(cls.nm12),
+        ])
+
+    @classmethod
+    def male(cls, subrace=0):
+        return "".join([
+            random.choice(cls.nm1),
+            random.choice(cls.nm2),
+            random.choice(cls.nm3),
+            random.choice(cls.nm2),
+            random.choice(cls.nm4),
         ])
 
     @classmethod
@@ -55,7 +65,7 @@ class CalashiteNames(Names):
                 random.choice(cls.nm7),
                 random.choice(cls.nm6),
                 random.choice(cls.nm7),
-                random.choice(cls.nm6)
+                random.choice(cls.nm6),
                 random.choice(cls.nm8),
             ])
         return "".join([
@@ -67,30 +77,46 @@ class CalashiteNames(Names):
         ])
 
 
+# 2-3
 class ChondathanNames(Names):
-    """
-    var nm13 = ["","b","br","d","g","gr","h","m","n","r","st","t","v"];
-    """
+    nm13 = ["","b","br","d","g","gr","h","m","n","r","st","t","v"]
     nm14 = ["a","e","i","o","u"]
-    """
-    var nm15 = ["","br","cr","gr","kv","kr","l","ll","ld","lv","nd","ng","nk","nv","rd","rg","rk","rst","rv","v"];
-    var nm16 = ["","","","d","dd","g","l","lm","m","n","r","rk","rn"];
-    var nm17 = ["","c","j","jh","k","l","m","n","r","s","sh","t"];
-    var nm18 = ["a","e","i","o","u","a","e","i","o","u","a","e","i","o","u","a","e","i","o","u","a","e","i","o","u","ee","ai","ei","ie"];
-    var nm19 = ["ch","dr","l","ll","lr","ldr","ls","lz","n","ndr","rl","r","rr","rv","ss","sr","sv","w","z","zz","zn"];
-    var nm20 = ["","","","","h","l","ll","n"];
-    """
+    nm15 = ["","br","cr","gr","kv","kr","l","ll","ld","lv","nd","ng","nk","nv","rd","rg","rk","rst","rv","v"]
+    nm16 = ["","","","d","dd","g","l","lm","m","n","r","rk","rn"]
+
+    nm17 = ["","c","j","jh","k","l","m","n","r","s","sh","t"]
+    nm18 = ["a","e","i","o","u","a","e","i","o","u","a","e","i","o","u","a","e","i","o","u","a","e","i","o","u","ee","ai","ei","ie"]
+    nm19 = ["ch","dr","l","ll","lr","ldr","ls","lz","n","ndr","rl","r","rr","rv","ss","sr","sv","w","z","zz","zn"]
+    nm20 = ["","","","","h","l","ll","n"]
 
     nm21 = ["Axe","Glow","Blade","Blood","Bone","Cloud","Crag","Crest","Doom","Dream","Coven","Elf","Fern","Feather","Fire","Fist","Flame","Forest","Hammer","Heart","Hell","Leaf","Light","Moon","Rage","River","Rock","Shade","Shadow","Shield","Snow","Spirit","Star","Steel","Stone","Swift","Tree","Whisper","Wind","Wolf","Wood","Gloom","Glory","Orb","Ash","Blaze","Amber","Autumn","Barley","Battle","Bear","Black","Blue","Boulder","Bright","Bronze","Burning","Cask","Chest","Cinder","Clan","Claw","Clear","Cliff","Cold","Common","Crystal","Dark","Dawn","Day","Dead","Death","Deep","Dew","Dirge","Distant","Down","Dragon","Dusk","Dust","Eagle","Earth","Ember","Even","Far","Flat","Flint","Fog","Fore","Four","Free","Frost","Frozen","Full","Fuse","Gold","Horse","Gore","Grand","Gray","Grass","Great","Green","Grizzly","Hallow","Hallowed","Hard","Hawk","Haze","Heavy","Haven","High","Hill","Holy","Honor","Forest","Humble","Hydra","Ice","Iron","Keen","Laughing","Lightning","Lion","Lone","Long","Low","Luna","Marble","Meadow","Mild","Mirth","Mist","Molten","Monster","Morning","Moss","Mountain","Moon","Mourn","Mourning","Night","Noble","Nose","Oat","Ocean","Pale","Peace","Phoenix","Pine","Plain","Pride","Proud","Pyre","Rain","Rapid","Raven","Red","Regal","Rich","Rose","Rough","Rumble","Rune","Sacred","Sage","Saur","Sea","Serpent","Sharp","Silent","Silver","Simple","Single","Skull","Sky","Slate","Smart","Snake","Soft","Solid","Spider","Spring","Stag","Star","Stern","Still","Storm","Stout","Strong","Summer","Sun","Tall","Three","Thunder","Titan","True","Truth","Marsh","Tusk","Twilight","Two","Void","War","Wheat","Whit","White","Wild","Winter","Wise","Wyvern","Young","Alpen","Crest","Crow","Fallen","Farrow","Haven","Master","Nether","Nickle","Raven","River","Stone","Tarren","Terra","Water","Willow","Wooden"]
     nm22 = ["axe","glow","beam","blade","blood","bone","cloud","dane","crag","crest","doom","dream","feather","fire","fist","flame","forest","hammer","heart","hell","leaf","light","moon","rage","river","rock","shade","claw","shadow","shield","snow","spirit","star","steel","stone","swift","tree","whisper","wind","wolf","wood","gloom","glory","orb","ash","blaze","arm","arrow","bane","bash","basher","beard","belly","bend","bender","binder","bleeder","blight","bloom","blossom","blower","glade","bluff","bough","bow","brace","braid","branch","brand","breaker","breath","breeze","brew","bringer","brook","brow","caller","chaser","reaper","chewer","cleaver","creek","crusher","cut","cutter","dancer","dew","down","draft","dreamer","drifter","dust","eye","eyes","fall","fang","flare","flaw","flayer","flow","follower","flower","force","forge","fury","gaze","gazer","gem","gleam","glide","grain","grip","grove","guard","gust","hair","hand","helm","hide","horn","hunter","jumper","keep","keeper","killer","lance","lash","less","mane","mantle","mark","maul","maw","might","more","mourn","oak","ore","peak","pelt","pike","punch","reaver","rider","ridge","ripper","roar","run","runner","scar","scream","scribe","seeker","shaper","shard","shot","shout","singer","sky","slayer","snarl","snout","soar","song","sorrow","spark","spear","spell","spire","splitter","sprinter","stalker","steam","stream","strength","stride","strider","strike","striker","sun","surge","sword","sworn","tail","taker","talon","thorn","tide","toe","track","trap","trapper","vale","valor","vigor","walker","ward","watcher","water","weaver","whirl","whisk","winds","wing","woods","wound","brooke","fall","fallow","horn","root","shine","swallow","thorne","willow","wood"]
 
     @classmethod
-    def surname(cls):
+    def surname(cls, subrace=2):
         rnd1 = random.choice(cls.nm21)
         rnd2 = rnd1
         while rnd2 == rnd1:
             rnd2 = random.choice(cls.nm22)
         return "".join([rnd1, rnd2])
+
+    @classmethod
+    def male(cls, subrace=2):
+        rnd3 = random.choice(cls.nm15)
+        rnd5 = random.choice(cls.nm16)
+        if cls.nm16.index(rnd5) < 3:
+            rnd3 = cls.nm15[0]
+        else:
+            while cls.nm15.index(rnd3) == cls.nm15[0]:
+                rnd3 = random.choice(cls.nm15)
+
+        return "".join([
+            random.choice(cls.nm13),
+            random.choice(cls.nm14),
+            rnd3,
+            random.choice(cls.nm14),
+            rnd5,
+        ])
 
     @classmethod
     def female(cls, subrace=2):
@@ -104,26 +130,25 @@ class ChondathanNames(Names):
                 random.choice(cls.nm18),
                 random.choice(cls.nm20),
             ])
-        else:
-            return "".join([
-                random.choice(cls.nm17),
-                random.choice(cls.nm18),
-                random.choice(cls.nm19),
-                random.choice(cls.nm18),
-                random.choice(cls.nm20),
-            ])
+        return "".join([
+            random.choice(cls.nm17),
+            random.choice(cls.nm18),
+            random.choice(cls.nm19),
+            random.choice(cls.nm18),
+            random.choice(cls.nm20),
+        ])
 
 
+# 4-5
 class DamaranNames(Names):
-    """
-    var nm23 = ["","","b","br","f","g","gl","gr","h","k","m","n","p","r","s","v"];
-    var nm24 = ["a","e","i","o"];
-    var nm25 = ["b","br","d","dr","dg","g","gr","r","rg","rd","rv","s","v","z"];
-    var nm26 = ["f","l","m","n","r"];
-    var nm27 = ["c","ch","h","k","l","m","n","r","s","t","v","z"];
-    var nm28 = ["h","hn","hr","l","lm","lr","ln","n","nn","r","rn","rl","rm","t","th","thr","z"];
-    var nm29 = ["","","","","","","h","l","n","s"];
-    """
+    nm23 = ["","","b","br","f","g","gl","gr","h","k","m","n","p","r","s","v"]
+    nm24 = ["a","e","i","o"]
+    nm25 = ["b","br","d","dr","dg","g","gr","r","rg","rd","rv","s","v","z"]
+    nm26 = ["f","l","m","n","r"]
+
+    nm27 = ["c","ch","h","k","l","m","n","r","s","t","v","z"]
+    nm28 = ["h","hn","hr","l","lm","lr","ln","n","nn","r","rn","rl","rm","t","th","thr","z"]
+    nm29 = ["","","","","","","h","l","n","s"]
 
     nm30 = ["b","ch","d","gr","gl","k","m","n","r","s","sh","st","v"]
     nm31 = ["a","e","i","o","u"]
@@ -147,23 +172,51 @@ class DamaranNames(Names):
         ])
 
     @classmethod
-    def female(cls):
-        raise NotImplementedError
-
-
-class IlluskanNames(ChondathanNames):
-    """
-    var nm34 = ["","","","bl","br","fr","g","gr","l","m","r","st","str","t","tr","v","z"];
-    var nm35 = ["a","e","o","u"];
-    var nm36 = ["ck","dr","dv","gr","gn","lc","ld","lv","lb","m","nn","nd","nv","rd","rc","rk","rb"];
-    var nm37 = ["m","n","r","rth","th"];
-    var nm38 = ["","","b","c","h","k","l","m","n","r","s","v","w","z"];
-    var nm39 = ["fn","fl","fr","g","l","lg","lr","m","n","r","rh","sh","str","th","thr","v","vr"];
-    var nm40 = ["","","","","y"];
-    """
+    def male(cls, subrace=4):
+        if subrace == 4:
+            return "".join([
+                random.choice(cls.nm23),
+                random.choice(cls.nm24),
+                random.choice(cls.nm25),
+                random.choice(cls.nm24),
+                random.choice(cls.nm26),
+            ])
+        return "".join([
+            random.choice(cls.nm23),
+            random.choice(cls.nm24),
+            random.choice(cls.nm26),
+        ])
 
     @classmethod
-    def surname(cls):
+    def female(cls, subrace=4):
+        if subrace == 4:
+            return "".join([
+                random.choice(cls.nm27),
+                random.choice(cls.nm24),
+                random.choice(cls.nm28),
+                random.choice(cls.nm24),
+                random.choice(cls.nm29),
+            ])
+        return "".join([
+            random.choice(cls.nm27),
+            random.choice(cls.nm24),
+            random.choice(cls.nm29),
+        ])
+
+
+# 6-7
+class IlluskanNames(DamaranNames, ChondathanNames):
+    nm34 = ["","","","bl","br","fr","g","gr","l","m","r","st","str","t","tr","v","z"]
+    nm35 = ["a","e","o","u"]
+    nm36 = ["ck","dr","dv","gr","gn","lc","ld","lv","lb","m","nn","nd","nv","rd","rc","rk","rb"]
+    nm37 = ["m","n","r","rth","th"]
+
+    nm38 = ["","","b","c","h","k","l","m","n","r","s","v","w","z"]
+    nm39 = ["fn","fl","fr","g","l","lg","lr","m","n","r","rh","sh","str","th","thr","v","vr"]
+    nm40 = ["","","","","y"]
+
+    @classmethod
+    def surname(cls, subrace=0):
         rnd1 = random.choice(cls.nm21)
         rnd2 = rnd1
         while rnd2 == rnd1:
@@ -171,20 +224,52 @@ class IlluskanNames(ChondathanNames):
         return "".join([rnd1, rnd2])
 
     @classmethod
-    def female(cls):
-        raise NotImplementedError
+    def male(cls, subrace=6):
+        if subrace == 6:
+            return "".join([
+                random.choice(cls.nm34),
+                random.choice(cls.nm35),
+                random.choice(cls.nm36),
+                random.choice(cls.nm35),
+                random.choice(cls.nm37),
+            ])
+        return "".join([
+            random.choice(cls.nm34),
+            random.choice(cls.nm35),
+            random.choice(cls.nm37),
+        ])
+
+    @classmethod
+    def female(cls, subrace=6):
+        if subrace == 6:
+            return "".join([
+                random.choice(cls.nm38),
+                random.choice(cls.nm24),
+                random.choice(cls.nm39),
+                random.choice(cls.nm24),
+                random.choice(cls.nm39),
+                random.choice(cls.nm24),
+                random.choice(cls.nm40),
+            ])
+        return "".join([
+            random.choice(cls.nm38),
+            random.choice(cls.nm24),
+            random.choice(cls.nm39),
+            random.choice(cls.nm24),
+            random.choice(cls.nm40),
+        ])
 
 
-class MulanNames(Names):
-    """
-    var nm43 = ["b","d","g","h","j","k","l","m","n","r","s","t","th","v","z"];
-    var nm44 = ["a","e","i","o","u","a","e","i","o","u","a","e","i","o","u","a","e","i","o","u","a","e","i","o","u","io","ao","eo","eu","ue"];
-    var nm45 = ["d-k","d-v","k-d","k-v","k-m","k-r","m-k","m-z","m-v","n-v","n-z","n-d","r-k","r-v","r-z","t-k","r-d","h-k","h-z","-k","-d","-m","-n","-v","-z","-t","-r","ch","d","h","hp","hk","hv","j","k","m","n","r","rh","t","th","v","z","ch","d","h","hp","hk","hv","j","k","m","n","r","rh","t","th","v","z","ch","d","h","hp","hk","hv","j","k","m","n","r","rh","t","th","v","z"];
-    var nm46 = ["","","d","f","h","k","n","r","s","th","z"];
-    var nm47 = ["c","ch","f","h","k","l","m","n","r","s","t","th","v","z"];
-    var nm48 = ["ch","f","fr","h","l","m","n","ph","s","sh","r","th","z","zr","zh"];
-    var nm49 = ["","","","","","","","h","s","th"];
-    """
+# 8-9
+class MulanNames(ChondathanNames):
+    nm43 = ["b","d","g","h","j","k","l","m","n","r","s","t","th","v","z"]
+    nm44 = ["a","e","i","o","u","a","e","i","o","u","a","e","i","o","u","a","e","i","o","u","a","e","i","o","u","io","ao","eo","eu","ue"]
+    nm45 = ["d-k","d-v","k-d","k-v","k-m","k-r","m-k","m-z","m-v","n-v","n-z","n-d","r-k","r-v","r-z","t-k","r-d","h-k","h-z","-k","-d","-m","-n","-v","-z","-t","-r","ch","d","h","hp","hk","hv","j","k","m","n","r","rh","t","th","v","z","ch","d","h","hp","hk","hv","j","k","m","n","r","rh","t","th","v","z","ch","d","h","hp","hk","hv","j","k","m","n","r","rh","t","th","v","z"]
+    nm46 = ["","","d","f","h","k","n","r","s","th","z"]
+
+    nm47 = ["c","ch","f","h","k","l","m","n","r","s","t","th","v","z"]
+    nm48 = ["ch","f","fr","h","l","m","n","ph","s","sh","r","th","z","zr","zh"]
+    nm49 = ["","","","","","","","h","s","th"]
 
     nm50 = ["b","d","f","h","j","l","m","n","r","s","v","z"]
     nm51 = ["a","e","i","u","a","e","i","u","a","e","i","u","a","e","i","o","u","ue","uu"]
@@ -212,21 +297,57 @@ class MulanNames(Names):
         ])
 
     @classmethod
-    def female(cls):
-        raise NotImplementedError
+    def male(cls, subrace=8):
+        if subrace == 8:
+            return "".join([
+                random.choice(cls.nm43),
+                random.choice(cls.nm44),
+                random.choice(cls.nm45),
+                random.choice(cls.nm44),
+                random.choice(cls.nm45),
+                random.choice(cls.nm44),
+                random.choice(cls.nm46),
+            ])
+        return "".join([
+            random.choice(cls.nm43),
+            random.choice(cls.nm44),
+            random.choice(cls.nm45),
+            random.choice(cls.nm44),
+            random.choice(cls.nm46),
+        ])
+
+    @classmethod
+    def female(cls, subrace=8):
+        if subrace == 8:
+            return "".join([
+                random.choice(cls.nm47),
+                random.choice(cls.nm14),
+                random.choice(cls.nm48),
+                random.choice(cls.nm14),
+                random.choice(cls.nm48),
+                random.choice(cls.nm14),
+                random.choice(cls.nm49),
+            ])
+        return "".join([
+            random.choice(cls.nm47),
+            random.choice(cls.nm14),
+            random.choice(cls.nm48),
+            random.choice(cls.nm14),
+            random.choice(cls.nm49),
+        ])
 
 
+# 10-11
 class RashemiNames(Names):
-    """
-    var nm54 = ["b","br","d","dr","f","g","j","k","m","r","s","sh","t","vl","z"];
-    var nm55 = ["a","e","i","o","a","e","i","o","a","e","i","o","a","e","i","o","oo","ou","au"];
-    var nm56 = ["d","dj","j","lm","ld","lv","m","mz","mv","n","nz","nd","nr","nd","r","rg","rd","rl","rv","rz","sl","sv","sd","th","tv","v","z"];
-    var nm57 = ["c","d","k","r","s","sk","t"];
-    var nm58 = ["","","d","f","h","l","m","n","r","s","sh","t","th","v","y","z"];
-    var nm59 = ["a","e","i","u"];
-    var nm60 = ["ch","dr","dh","f","fr","gr","h","ldr","lm","ln","lv","lr","mm","mz","mv","ndr","nr","r","rr","rr","rv","rs","rl","v","vr","v","vl"];
-    var nm61 = ["","","","","","","","","","","","","l","n","s","sh","th"];
-    """
+    nm54 = ["b","br","d","dr","f","g","j","k","m","r","s","sh","t","vl","z"]
+    nm55 = ["a","e","i","o","a","e","i","o","a","e","i","o","a","e","i","o","oo","ou","au"]
+    nm56 = ["d","dj","j","lm","ld","lv","m","mz","mv","n","nz","nd","nr","nd","r","rg","rd","rl","rv","rz","sl","sv","sd","th","tv","v","z"]
+    nm57 = ["c","d","k","r","s","sk","t"]
+
+    nm58 = ["","","d","f","h","l","m","n","r","s","sh","t","th","v","y","z"]
+    nm59 = ["a","e","i","u"]
+    nm60 = ["ch","dr","dh","f","fr","gr","h","ldr","lm","ln","lv","lr","mm","mz","mv","ndr","nr","r","rr","rr","rv","rs","rl","v","vr","v","vl"]
+    nm61 = ["","","","","","","","","","","","","l","n","s","sh","th"]
 
     nm62 = ["","","ch","d","g","gr","h","m","n","r","st","t","tr","v","vr","z"]
     nm63 = ["a","e","i","o","u","a","e","i","o","u","a","e","i","o","u","a","e","i","o","u","ye","ya"]
@@ -255,25 +376,61 @@ class RashemiNames(Names):
         ])
 
     @classmethod
-    def female(cls):
-        raise NotImplementedError
+    def male(cls, subrace=10):
+        if subrace == 10:
+            return "".join([
+                random.choice(cls.nm54),
+                random.choice(cls.nm55),
+                random.choice(cls.nm56),
+                random.choice(cls.nm55),
+                random.choice(cls.nm56),
+                random.choice(cls.nm55),
+                random.choice(cls.nm57),
+            ])
+        return "".join([
+            random.choice(cls.nm54),
+            random.choice(cls.nm55),
+            random.choice(cls.nm56),
+            random.choice(cls.nm55),
+            random.choice(cls.nm57),
+        ])
+
+    @classmethod
+    def female(cls, subrace=10):
+        if subrace == 10:
+            return "".join([
+                random.choice(cls.nm58),
+                random.choice(cls.nm59),
+                random.choice(cls.nm60),
+                random.choice(cls.nm59),
+                random.choice(cls.nm60),
+                random.choice(cls.nm59),
+                random.choice(cls.nm61),
+            ])
+        return "".join([
+            random.choice(cls.nm58),
+            random.choice(cls.nm59),
+            random.choice(cls.nm60),
+            random.choice(cls.nm59),
+            random.choice(cls.nm61),
+        ])
 
 
+# 12-13
 class ShouNames(Names):
-    """
-    var nm65 = ["","","ch","f","h","j","l","m","q","sh","t","th","w","z"];
-    var nm66 = ["a","i","e","o","u","ia","ui","io","ie","iu"];
-    var nm67 = ["","","","h","m","n","ng","p","w","y"];
-    var nm68 = ["b","c","ch","d","j","l","m","n","p","q","sh","t","ts","x","y","z"];
-    var nm69 = ["ai","ia","ao","ei","iao","ui","ua","ue"];
-    """
+    nm65 = ["","","ch","f","h","j","l","m","q","sh","t","th","w","z"]
+    nm66 = ["a","i","e","o","u","ia","ui","io","ie","iu"]
+    nm67 = ["","","","h","m","n","ng","p","w","y"]
+
+    nm68 = ["b","c","ch","d","j","l","m","n","p","q","sh","t","ts","x","y","z"]
+    nm69 = ["ai","ia","ao","ei","iao","ui","ua","ue"]
 
     nm70 = ["","","","c","ch","d","h","j","k","l","m","n","p","q","s","sh","t","w","x","y","z"]
     nm71 = ["a","i","u","ai","ia","iao","ue","ei","ie","ua","ao"]
     nm72 = ["","","","m","n","ng","y"]
 
     @classmethod
-    def surname(cls):
+    def surname(cls, subrace=12):
         rnd1 = random.choice(cls.nm70)
         rnd2 = random.choice(cls.nm71)
         rnd3 = random.choice(cls.nm72)
@@ -283,27 +440,43 @@ class ShouNames(Names):
         return "".join([rnd1, rnd2, rnd3])
 
     @classmethod
-    def female(cls):
-        raise NotImplementedError
+    def male(cls, subrace=12):
+        rnd1 = random.choice(cls.nm65)
+        rnd3 = random.choice(cls.nm67)
+        if cls.nm67.index(rnd3) < 3:
+            while cls.nm65.index(rnd1) < 2:
+                rnd1 = random.choice(cls.nm65)
+        return "".join([
+            rnd1,
+            random.choice(cls.nm66),
+            rnd3,
+        ])
+
+    @classmethod
+    def female(cls, subrace=12):
+        return "".join([
+            random.choice(cls.nm68),
+            random.choice(cls.nm69),
+        ])
 
 
+# 14-15
 class TuramiNames(ChondathanNames):
-    """
-    var nm73 = ["","","ch","cr","d","gr","f","fr","h","m","p","r","s","t","v","z"];
-    var nm74 = ["a","e","i","o","u","a","e","i","o","u","a","e","i","o","u","ai","ie","ue","ea"];
-    var nm75 = ["b","br","c","dr","l","ld","lb","m","mb","n","nr","nt","nch","r","rf","rv","rn","rc","rd","rt","st","sc","t","v","z"];
-    var nm76 = ["","","l","n","r","s","z"];
-    var nm77 = ["","","","b","d","f","j","l","m","q","s","v"];
-    var nm78 = ["a","e","i","o","a","e","i","o","a","e","i","o","a","e","i","o","a","e","i","o","a","e","i","o","ui","ua","ai","ia","ie","ei"];
-    var nm79 = ["d","l","lm","m","n","nc","nd","ndr","nt","nn","r","rt","s","t","tt","v"];
-    """
+    nm73 = ["","","ch","cr","d","gr","f","fr","h","m","p","r","s","t","v","z"]
+    nm74 = ["a","e","i","o","u","a","e","i","o","u","a","e","i","o","u","ai","ie","ue","ea"]
+    nm75 = ["b","br","c","dr","l","ld","lb","m","mb","n","nr","nt","nch","r","rf","rv","rn","rc","rd","rt","st","sc","t","v","z"]
+    nm76 = ["","","l","n","r","s","z"]
+
+    nm77 = ["","","","b","d","f","j","l","m","q","s","v"]
+    nm78 = ["a","e","i","o","a","e","i","o","a","e","i","o","a","e","i","o","a","e","i","o","a","e","i","o","ui","ua","ai","ia","ie","ei"]
+    nm79 = ["d","l","lm","m","n","nc","nd","ndr","nt","nn","r","rt","s","t","tt","v"]
 
     nm80 = ["","","b","c","d","f","g","h","j","m","p","r","s","v","z"]
     nm81 = ["br","c","dr","g","h","l","lb","ld","m","n","nd","nz","r","rn","rg","s","sc","sq","st","v","z"]
     nm82 = ["","","","","l","n","r","s"]
 
     @classmethod
-    def surname(cls):
+    def surname(cls, subrace=10):
         return "".join([
             random.choice(cls.nm80),
             random.choice(cls.nm14),
@@ -315,8 +488,42 @@ class TuramiNames(ChondathanNames):
         ])
 
     @classmethod
-    def female(cls):
-        raise NotImplementedError
+    def male(cls, subrace=10):
+        if subrace == 14:
+            return "".join([
+                random.choice(cls.nm73),
+                random.choice(cls.nm74),
+                random.choice(cls.nm75),
+                random.choice(cls.nm74),
+                random.choice(cls.nm75),
+                random.choice(cls.nm74),
+                random.choice(cls.nm76),
+            ])
+        return "".join([
+            random.choice(cls.nm73),
+            random.choice(cls.nm74),
+            random.choice(cls.nm75),
+            random.choice(cls.nm74),
+            random.choice(cls.nm76),
+        ])
+
+    @classmethod
+    def female(cls, subrace=10):
+        if subrace == 10:
+            return "".join([
+                random.choice(cls.nm77),
+                random.choice(cls.nm78),
+                random.choice(cls.nm79),
+                random.choice(cls.nm77),
+                random.choice(cls.nm79),
+                random.choice(cls.nm77),
+            ])
+        return "".join([
+            random.choice(cls.nm77),
+            random.choice(cls.nm78),
+            random.choice(cls.nm79),
+            random.choice(cls.nm77),
+        ])
 
 
 class OldNames(Names):
@@ -324,38 +531,17 @@ class OldNames(Names):
     nm84 = ["Aaliyah","Abagail","Abbey","Abbie","Abbigail","Abby","Abelia","Abelina","Abella","Abigail","Abigale","Abigayle","Abril","Aceline","Adalene","Adalicia","Adalie","Adaliz","Adalyn","Addie","Addison","Adela","Adelaide","Adele","Adelia","Adelina","Adeline","Adelisa","Adelise","Adelle","Adelynn","Adilene","Adorlee","Adreanna","Adriana","Adriane","Adrianna","Adrianne","Adriene","Adrienne","Adula","Aeldrida","Aelfreda","Afra","Afrodille","Afton","Agatha","Agathe","Agda","Aget","Aggy","Aglaia","Aglaja","Agnes","Agnese","Agnita","Agrona","Aida","Aiglentina","Aileen","Aillsa","Ailsa","Ailssa","Aimee","Ainsley","Aischa","Aisha","Aislinn","Aiyana","Aja","Akira","Alaina","Alaine","Alair","Alana","Alanis","Alanna","Alarica","Alarice","Alarise","Alayna","Alban","Alberta","Albertina","Albertyna","Albertyne","Alcott","Alda","Alden","Aldercy","Alea","Aleah","Alejandra","Alena","Alessandra","Aletta","Alex","Alexa","Alexandra","Alexandrea","Alexandria","Alexandrina","Alexandrine","Alexia","Alexiana","Alexis","Alexus","Alexys","Alfonsine","Alhertine","Alia","Alice","Alicia","Alida","Alina","Alisa","Alisanne","Alisha","Alisia","Alison","Alissa","Alita","Alivia","Alix","Alixandra","Aliya","Aliyah","Aliza","Alize","Allaire","Alleffra","Allegra","Allesha","Allete","Allie","Allison","Ally","Allyson","Allyssa","Alma","Almuth","Alondra","Alonza","Aloys","Aloyse","Alphonsina","Alphonsine","Alsatia","Althea","Althee","Alva","Alvina","Alvine","Alwara","Alwera","Alwine","Alycia","Alysa","Alysha","Alyson","Alyssa","Alyssandra","Amabel","Amabella","Amabelle","Amabilia","Amadea","Amalberga","Amalia","Amalie","Amanda","Amani","Amara","Amarante","Amari","Amata","Amaya","Amber","Amberjill","Ambra","Ambre","Amedea","Amedee","Amelia","Amelie","Amely","America","Ami","Amia","Amie","Amina","Amira","Amite","Amitee","Amity","Amrei","Amy","Amya","Ana","Anabel","Anahi","Anais","Anastasia","Anastasija","Anastina","Anaya","Ancelin","Ancelina","Andie","Andra","Andrea","Andree","Aneta","Anette","Ange","Angel","Angela","Angeletta","Angelette","Angelia","Angelica","Angelika","Angelina","Angeline","Angelique","Angie","Angilia","Anika","Anina","Anissa","Anita","Aniya","Aniyah","Anja","Anjali","Anjuschka","Anka","Anke","Ann","Anna","Annabel","Annabella","Annabelle","Annalena","Annalise","Annamaria","Anne","Anne-Kathrin","Annekathrin","Anneke","Annelie","Anneliese","Annemarie","Annett","Annette","Annia","Annie","Annika","Annike","Annique","Anouk","Ansley","Antje","Antoinette","Antonella","Antonette","Antonia","Antonie","Antonina","Anuschka","Anya","Apollina","Apolline","Appollonia","April","Arabela","Arabella","Araceli","Aracely","Arantxa","Arcene","Arely","Aria","Ariadne","Ariana","Ariane","Arianna","Arianne","Ariel","Ariele","Ariella","Arielle","Arjean","Arleigh","Arlene","Arleta","Arlett","Arlette","Armani","Armelle","Armina","Armine","Arminia","Arnalda","Arnelle","Arsène","Aruna","Aryanna","Ash","Ashanti","Ashby","Ashe","Ashford","Ashi","Ashlan","Ashlee","Ashleigh","Ashley","Ashli","Ashlie","Ashlin","Ashling","Ashly","Ashlyn","Ashlynn","Ashton","Ashtyn","Asia","Aspen","Asta","Asteria","Astred","Astrid","Athena","Auberta","Aubina","Aubine","Aubree","Aubrey","Aubriana","Aubrianne","Aubrie","Aubry","Audery","Audey","Audie","Audra","Audrey","Audry","Aurelia","Aurelie","Aurica","Aurora","Aurorette","Autumn","Ava","Aveline","Avery","Avicia","Avon","Avril","Axelle","Ayana","Ayanna","Ayasha","Ayla","Aylin","Aysche","Aysun","Azzura","Babette","Baby","Baerbel","Bailee","Bailey","Barbara","Bathilda","Bathilde","Batilda","Batilde","Baxter","Baylee","Bea","Beata","Beate","Beatrice","Beatrix","Beatriz","Bebe","Becky","Belana","Belda","Belen","Belinda","Beline","Bell","Bella","Belle","Benedetta","Benedicta","Benedikta","Benita","Bente","Berangaria","Berdine","Berengaria","Berenice","Berenike","Berit","Bernadea","Bernadette","Bernadina","Bernadine","Bernarda","Bernarde","Berneen","Bernelle","Bernetta","Bernette","Bernhardine","Bernice","Berniss","Bernita","Bernyce","Bert","Berta","Berte","Bertha","Berthe","Bertie","Bertille","Bertina","Berty","Bessy","Bethany","Bette","Betti","Bettina","Bettine","Bev","Beverely","Beverley","Beverly","Bianca","Bianka","Bibi","Bibijana","Bijou","Bille","Billie","Billy","Bina","Bine","Binga","Binia","Birger","Birgit","Birgitta","Birke","Birte","Blaine","Blanca","Blanch","Blanche","Blanchefleur","Blandina","Blanka","Blenda","Blondell","Blondelle","Blondene","Blossom","Blythe","Bo","Bobbi","Bobbie","Bobby","Bojana","Bojena","Bonnie","Bonny","Borissa","Brandi","Brandy","Brea","Breana","Breanna","Brenda","Brenna","Breonna","Bret","Brett","Bretta","Brettany","Brette","Bria","Briana","Brianna","Brianne","Bridget","Bridgett","Bridgette","Brielle","Brigette","Brigitta","Brigitte","Brionna","Brisa","Brita","Britney","Britt","Britta","Brittany","Brittney","Bronja","Bronwen","Bronwyn","Brook","Brooke","Brookes","Brooklyn","Brooklynn","Brooks","Brucie","Brunella","Brunhild","Brunhilda","Brunhilde","Bryana","Bryanna","Brynn","Buffy","Burgi","Cäzilie","Cadence","Cadencia","Cady","Caitlin","Caitlyn","Caja","Calandre","Calantha","Calanthe","Cali","Calista","Callie","Cam","Cameron","Camila","Camile","Camilla","Camille","Camillei","Camm","Cammi","Cammie","Camryn","Camyron","Candace","Candice","Candide","Capucina","Capucine","Cara","Caress","Caressa","Caresse","Carin","Carina","Carine","Carissa","Carla","Carlee","Carley","Carli","Carlie","Carling","Carlotta","Carly","Carmela","Carmelia","Carmen","Carnation","Caro","Carol","Carola","Carole","Carolin","Carolina","Caroline","Carolyn","Carressa","Carrie","Carry","Carson","Carsta","Casandra","Casey","Cassandra","Cassidy","Cassie","Catalina","Cateline","Catharina","Catherine","Cathleen","Cathrin","Cayla","Cecelia","Cecile","Cecilia","Cecilie","Cecille","Cedrine","Celesse","Celeste","Celestia","Celestiel","Celestine","Celestyn","Celestyna","Celia","Celie","Celina","Celine","Cellina","Cendrillon","Cerise","Chana","Chanel","Chanell","Chanelle","Channelle","Chantae","Chantal","Chantalle","Chantay","Chante","Chantel","Chantell","Chantelle","Chantrell","Chardae","Charee","Charis","Charisse","Charity","Charlaine","Charlayne","Charleen","Charleena","Charlena","Charlene","Charlette","Charline","Charlisa","Charlita","Charlize","Charlot","Charlotta","Charlotte","Charmain","Charmaine","Charmayne","Charmine","Chasity","Chaunte","Chauntel","Chaya","Chelsea","Chelsey","Chelsie","Chenelle","Cher","Chere","Cheree","Chereen","Cherell","Cherelle","Cheri","Cherie","Cherina","Cherine","Cherise","Cherita","Cherree","Cherrelle","Cherry","Cheryl","Cheyanna","Cheyanne","Cheyenne","Chiana","Chianna","Chiara","Chlarimonda","Chlarimonde","Chloe","Chlorinde","Chloris","Chlothilde","Christa","Christel","Christian","Christiana","Christiane","Christin","Christina","Christine","Christy","Ciara","Cicilina","Ciera","Cierra","Cilia","Cinderella","Cindy","Cinzia","Cira","Citlali","Claiborne","Clair","Claire","Clara","Claral","Clare","Clarette","Claribel","Clarice","Clarimond","Clarimonda","Clarimonde","Clarinda","Clarissa","Clarissa Claudia","Clarisse","Clarita","Claudette","Claudia","Claudine","Clemance","Clemence","Clementia","Clementina","Clementine","Clodia","Clothilda","Clothilde","Clotilda","Clotilde","Clovis","Coco","Coleta","Coletta","Colette","Colleen","Colletta","Collette","Columbia","Comfort","Comforte","Conni","Connie","Conny","Conrada","Conradina","Conradine","Constance","Constancia","Constanze","Cora","Coralie","Cordelia","Cordula","Corette","Corina","Corine","Corinna","Corinne","Corliss","Cornelia","Corney","Cortney","Cosette","Cosima","Cosma","Courtlyn","Courtney","Creissant","Crescent","Cristal","Cristina","Crystal","Cybille","Cynthia","Cyprienne","Daggy","Dagmar","Dagmara","Dagny","Daisey","Daisi","Daisy","Dajana","Dakota","Dale","Dalia","Damaris","Damia","Damiana","Damiane","Damie","Damien","Dana","Danae","Dania","Daniela","Daniella","Danielle","Danja","Danna","Danny","Dany","Daphne","Daralis","Darby","Darcel","Darcell","Darcelle","Darcey","Darchelle","Darci","Darcia","Darcy","Daria","Darlene","Dasia","Daveney","Dawina","Dawn","Dayana","Dea","Deanna","Deasia","Debby","Debora","Deborah","Debra","Deik","Deja","Dela","Delaney","Dele","Delfine","Delia","Delight","Delilah","Delit","Della","Delmare","Delphina","Delphine","Demelza","Demie","Denice","Deniece","Denise","Denisha","Denissa","Denisse","Dennise","Denyse","Dereka","Derica","Dericka","Derrica","Desarae","Desaree","Desideria","Desirae","Desirat","Desire","Desiree","Destanee","Destine","Destinee","Destiney","Destini","Destinie","Destiny","Devan","Devana","Devanna","Devin","Devon","Devona","Devondra","Devonna","Devonne","Devyn","Devynn","Dezirae","Deziree","Di","Diahann","Diahna","Diamanta","Diamond","Dian","Diana","Diandra","Diane","Dianna","Diannah","Dianne","Dick","Dickie","Didina","Dina","Dionne","Dior","Dixie","Dodo","Dolores","Domenica","Dominica","Dominika","Dominique","Donna","Dora","Dorchen","Dore","Doreen","Dorene","Dorette","Dorika","Dorine","Doris","Dorkas","Doro","Dorothea","Dorothee","Dorothy","Dortas","Dortje","Dory","Dragana","Druella","Druilla","Dulce","Dunja","Dyana","Dyann","Dyanna","Dylan","Eada","Eartha","Easter","Ebony","Eda","Edda","Edeline","Eden","Edith","Editha","Edithe","Edlyn","Edmee","Edolie","Edsel","Effi","Eglantina","Eglantine","Eike","Eila","Eileen","Ela","Elaina","Elaine","Elayna","Elber","Elberta","Elda","Eldrida","Eleanor","Elektra","Elena","Eleonora","Eleonore","Eleta","Elfi","Elfie","Elfreda","Elfrida","Elfrieda","Elfriede","Elga","Eliana","Eliane","Elicia","Elienor","Elin","Elina","Elinore","Elisa","Elisabet","Elisabeth","Elisabetta","Elisamarie","Elise","Elisha","Elishia","Elissa","Elita","Eliza","Elizabeth","Elka","Elke","Ella","Ellaine","Ellayne","Elle","Ellen","Elli","Ellie","Ellinor","Elmina","Eloisa","Eloise","Eloisee","Elrica","Elsa","Elsbeth","Else","Elvira","Elvire","Elyse","Elyssa","Ema","Emanuela","Emanuele","Ember","Emele","Emelina","Emeline","Emelka","Emely","Emelyne","Emerald","Emeraude","Emerson","Emilee","Emilia","Emilie","Emily","Emma","Emmalee","Emmaline","Emmalyn","Emmeline","Emmi","Emmy","Ena","Encarna","Engelberga","Engelbert","Engelberta","Engelbertha","Engelberthe","Enna","Enrica","Eri","Erica","Ericka","Erika","Erin","Erma","Erme","Ermina","Erminia","Erminie","Erna","Ernesta","Ernstina","Esdras","Esme","Esmeralda","Esmeraude","Esperanza","Esra","Essence","Estee","Estefani","Estefania","Estefany","Estella","Estelle","Ester","Esther","Estrella","Estrid","Etelka","Ethel","Ethelda","Ethelinda","Etheline","Ethyl","Ethylyn","Etta","Eudokia","Eudoxia","Eufemia","Eugenia","Eugenie","Eulalie","Euphemia","Euphrasia","Eusebia","Ev","Eva","Eva-maria","Evangelina","Evangeline","Evchen","Eve","Evelia","Evelien","Evelin","Evelina","Eveline","Evelyn","Evelyne","Evette","Evi","Evita","Evon","Evonna","Evonne","Evony","Ewelina","Ezra","Fabia","Fabiana","Fabienne","Fabiola","Fae","Faith","Faithe","Fanchon","Fanchone","Fanetta","Fanette","Fantina","Fantine","Fara","Faralda","Farrah","Fastrada","Fatima","Fatime","Fatma","Faun","Fauna","Faunia","Fausta","Faustina","Faustine","Favor","Fawnia","Fay","Fayanna","Faye","Fayette","Fayme","Fealty","Fearn","Fearne","Federica","Federiga","Fedora","Felda","Felecia","Feli","Felicia","Felicienne","Felicitas","Felicity","Felina","Felizitas","Ferdinanda","Fern","Fernanda","Fernandina","Ferne","Fernly","Fidelia","Fifi","Fifine","Filicia","Finetta","Finja","Finnja","Fiona","Fjodora","Fleta","Fleur","Fleurette","Flora","Florence","Florentia","Florenzia","Floressa","Floretta","Florette","Flori","Floria","Floriana","Florida","Florina","Florinda","Florrie","Fontanne","Fortuna","Fortunat","Franca","France","Francena","Francene","Frances","Francesca","Francille","Francina","Francine","Francoise","Franja","Franka","Fransiska","Franzi","Franziska","Frauke","Frauwa","Frawa","Freda","Freddie","Freida","Frida","Frieda","Friederika","Friederike","Fritzi","Fritzie","Gabi","Gabriela","Gabriele","Gabriella","Gabrielle","Gaby","Gaetana","Gaetane","Gail","Gala","Galatea","Galatee","Galateia","Gale","Galiana","Galiena","Galilea","Galina","Galla","Gallia","Ganja","Garland","Garnet","Garnett","Gatty","Gay","Gayle","Gemma","Genesis","Geneva","Geneve","Genevie","Genevieve","Genevre","Genia","Genie","Genivee","Genovefa","Genoveva","Georgette","Georgia","Georgine","Georgitte","Geraldene","Geraldine","Geralyn","Geralynn","Gerda","Gerde","Gerdi","Gerdie","Geri","Gerlind","Gerlinde","Gerlindis","Germain","Germaine","Germana","Gerti","Gertraud","Gertraude","Gertraut","Gertrud","Gertrude","Gertrudis","Gesa","Gescha","Gia","Giana","Gianna","Gigi","Gilla","Gillian","Gina","Ginette","Gioa","Giovanna","Gisela","Gisele","Gisella","Giselle","Gisselle","Gitta","Gitte","Giuletta","Giulia","Giuliana","Giulietta","Giuseppa","Giustina","Gleda","Gloria","Gloriana","Gloriosa","Godiva","Golda","Goldie","Grace","Gracie","Graciela","Gracy","Grania","Gratia","Grazia","Graziella","Greta","Gretchen","Grete","Gretel","Grethe","Gretti","Grit","Gritt","Grizelda","Guadalupe","Gudrun","Gudrune","Gudula","Guilla","Gulja","Gunda","Gunde","Gundel","Gundela","Gundula","Gustava","Gustave","Gwend","Gwenda","Gwendolin","Gwendolina","Gwendoline","Gwendolyn","Gypsy","Gytha","Hadley","Hailee","Hailey","Hailie","Haleigh","Halette","Haley","Halfreida","Halfrida","Halfrieda","Halie","Halle","Hallie","Halsey","Hana","Hanna","Hannah","Hannchen","Hanne","Hannele","Hannelore","Hanni","Hanrietta","Hanriette","Harley","Harmony","Harriet","Harriett","Harrietta","Harriette","Harva","Harvelle","Harvina","Harvine","Hattie","Hatty","Hauke","Haven","Hayden","Haylee","Hayleigh","Hayley","Haylie","Hazel","Heather","Heaven","Hedda","Heddi","Heddy","Hedi","Hedvige","Hedwig","Hedy","Heide","Heidi","Heidrun","Heidy","Heike","Heinrike","Helaine","Helen","Helena","Helene","Helga","Helma","Helmi","Heloise","Hemma","Hendrikje","Henni","Henrietta","Henriette","Henrika","Henrike","Hera","Herma","Hermia","Hermine","Hermione","Hertha","Hester","Hetdt","Hettie","Hidie","Hilaire","Hild","Hilda","Hilde","Hildegard","Hildegarde","Hildemar","Hildie","Hildreth","Hildretha","Hilke","Hilma","Hollace","Hollee","Holli","Hollie","Holly","Hollye","Honey","Honore","Hope","Huberta","Hubertha","Huberthe","Hubertina","Hubertine","Huette","Hugette","Huguetta","Hulda","Hunter","Ida","Idda","Idelia","Idina","Idona","Ignatia","Iken","Ila","Ilga","Iliana","Iljana","Ilka","Ilona","Ilonka","Ilse","Imani","Imke","Immaculata","Immakulata","Ina","India","Indira","Indra","Ine","Ineke","Ines","Inga","Inge","Ingeborg","Ingrid","Inka","Inke","Inken","Innocentia","Innozentia","Insa","Iphigenie","Ira","Ireland","Irena","Irene","Irina","Irinka","Iris","Irma","Irme","Irmengard","Irmgard","Irmina","Irmine","Isa","Isabeau","Isabel","Isabela","Isabell","Isabella","Isabelle","Isalda","Isis","Isolda","Isolde","Isotta","Ita","Itzel","Iva","Ivana","Ivanka","Ivona","Ivonne","Ivy","Iwana","Iwanka","Iwanna","Iyana","Iyanna","Izabella","Jacalyn","Jacey","Jacinthe","Jackeline","Jackie","Jacky","Jaclyn","Jacqualine","Jacqueleen","Jacqueline","Jacquelyn","Jacquelyne","Jacquelynne","Jacquenetta","Jacquenette","Jacqui","Jada","Jade","Jaden","Jadwiga","Jadyn","Jaelyn","Jaida","Jaiden","Jaidyn","Jailyn","Jaime","Jakayla","Jaliyah","Jalyn","Jalynn","Jamie","Jamie-Lee","Jamya","Jana","Janae","Jane","Janelle","Janessa","Janet","Janette","Janice","Janie","Janika","Janina","Janine","Janiya","Janka","Jaquelin","Jaqueline","Jarvia","Jasmeen","Jasmin","Jasmina","Jasmine","Jasmyn","Jasmyne","Jaycee","Jayda","Jayde","Jayden","Jayla","Jaylene","Jaylin","Jaylyn","Jaylynn","Jazlyn","Jazmin","Jazmine","Jazmyn","Jazmyne","Jazzmine","Jazzmyn","Jean","Jeana","Jeane","Jeanee","Jeanetta","Jeanette","Jeanice","Jeanie","Jeanina","Jeanine","Jeanna","Jeanne","Jeannette","Jeannie","Jeannine","Jeanny","Jeena","Jehane","Jelena","Jelenka","Jelika","Jella","Jena","Jenette","Jenifer","Jenina","Jenine","Jenna","Jenni","Jennifer","Jennine","Jenny","Jeri","Jerica","Jessamina","Jessamine","Jessamyn","Jessica","Jessie","Jessika","Jettchen","Jette","Jewel","Jewell","Jill","Jillian","Jimena","Jineen","Joan","Joana","Joanna","Joanne","Jocelin","Jocelina","Joceline","Jocelyn","Jocelyne","Jocelynn","Joeliyn","Joell","Joella","Joelle","Joellen","Joelyn","Johana","Johanna","Joi","Joia","Joie","Jola","Jolanda","Jolande","Jolanta","Jolante","Jolantha","Jolanthe","Jolee","Joleigh","Joli","Jolie","Jolien","Jonesy","Jonna","Jordan","Jordane","Jordyn","Josalyn","Josalynn","Joscelyn","Josefa","Josefin","Josefina","Josefine","Joselyn","Josepha","Josephe","Josephina","Josephine","Josette","Josie","Josilyn","Josina","Joslin","Joslyn","Journey","Jovita","Jowita","Joy","Joy  Joyce","Joya","Joyann","Joyanna","Joyanne","Joyce","Joyelle","Jozlyn","Juana","Juanita","Judit","Judith","Juditha","Judy","Julchen","Jule","Julee","Juleen","Julia","Juliana","Juliane","Julianna","Julianne","Julie","Julienne","Juliet","Julietta","Juliette","Julika","Julissa","Julita","June","Justeen","Justice","Justina","Justine","Justyne","Jutta","Jutte","Kacie","Kaela","Kaelyn","Kaia","Kaila","Kailee","Kailey","Kailyn","Kaitlin","Kaitlyn","Kaitlynn","Kaiya","Kaleigh","Kaley","Kali","Kaliyah","Kallie","Kalyn","Kamille","Kamryn","Kara","Karcsi","Karen","Kari","Karin","Karina","Karissa","Karla","Karlee","Karley","Karli","Karlie","Karlotta","Karly","Karola","Karolin","Karolina","Karoline","Karoly","Kasandra","Kasey","Kassandra","Kassidy","Katarina","Kate","Katelin","Katelyn","Katelynn","Katerina","Katharina","Katharine","Kathe","Katherine","Kathi","Kathleen","Kathrin","Kathrina","Kathrine","Kathryn","Kathy","Katie","Katinka","Katja","Katlyn","Katriane","Katrin","Katrina","Katy","Kaya","Kayla","Kaylah","Kaylee","Kayleigh","Kayley","Kayli","Kaylie","Kaylin","Kaylyn","Kaylynn","Keeley","Keely","Keila","Keira","Kelli","Kellie","Kelly","Kelsey","Kelsi","Kelsie","Kelsy","Kemble","Kendal","Kendall","Kendra","Kenia","Kenna","Kennedi","Kennedy","Kenya","Kenzie","Kersten","Kersti","Kerstin","Keyla","Kezia","Kiana","Kianna","Kiara","Kiera","Kierra","Kiersten","Kiley","Kim","Kimball","Kimbell","Kimberley","Kimberly","Kimble","Kimby","Kimmey","Kimmi","Kimmie","Kimmy","Kira","Kirsten","Kirstin","Kiya","Klara","Klarina","Klarinda","Klarissa","Klaudia","Klementia","Klementine","Kleopatra","Klothild","Klothilde","Konstantia","Konstanza","Konstanze","Kora","Kordula","Korinna","Kornelia","Kourtney","Kriemhild","Kriemhilde","Krimhild","Krimhilde","Krista","Kristen","Kristiane","Kristin","Kristina","Krystal","Kunigunda","Kunigunde","Kunissa","Kya","Kyla","Kylee","Kyleigh","Kylie","Kym","Kymberly","Kyra","LaVergne","Lace","Lacee","Lacene","Lacey","Laci","Laciann","Lacie","Lacina","Lacy","Lacyann","Laetitia","Laila","Lana","Laney","Lara","Larissa","Laura","Laureen","Laurel","Lauren","Laurene","Laurentia","Laurenzia","Lauretta","Laurette","Laurina","Laurine","Lauryn","Lavern","Laverna","Laverne","Lavernia","Lavonne","Laycie","Layla","Lea","Leah","Leala","Lealia","Leander","Leanna","Lee","Leefka","Leefke","Lei","Leia","Leigh","Leila","Leilani","Leilena","Lela","Lena","Lenchen","Lene","Leni","Lenka","Lenore","Leoba","Leoda","Leola","Leona","Leonarda","Leonda","Leondra","Leondrea","Leone","Leonela","Leonelle","Leonie","Leonore","Leontina","Leontyne","Leopolda","Leopoldina","Leopoldine","Leota","Lesley","Leslie","Lesly","Leticia","Letje","Letya","Lexi","Lexie","Lexus","Leyla","Lia","Liana","Liane","Libby","Liberty","Lidda","Liealia","Lies","Liesel","Liesl","Lil","Lila","Lili","Lilian","Liliana","Liliane","Lilith","Lilli","Lillian","Lilliana","Lillie","Lilly","Lilo","Lily","Lina","Linchen","Linda","Lindsay","Lindsey","Line","Linette","Lioba","Liriene","Lirienne","Lisa","Lisbeth","Lise","Liselotte","Lisenka","Lisetta","Lisette","Lissette","Lissy","Litzy","Livi","Livia","Livie","Livvi","Lizbeth","Lizeth","Lizette","Lizzy","Locke","Loella","Logan","Logestilla","Logistilla","Lola","Lolo","London","Lone","Loraina","Loraine","Lorayne","Lorchen","Lore","Lorelei","Lorelia","Lorelie","Loren","Lorena","Lorenza","Loretta","Lorette","Lorin","Lorraina","Lorraine","Lottchen","Lotte","Lotye","Louanna","Louanne","Louella","Louisa","Louise","Lourdes","Love","Loveleen","Lovie","Luana","Luane","Luca","Lucette","Lucia","Luciana","Luciane","Lucie","Lucienne","Lucile","Lucilla","Lucille","Lucrece","Lucy","Ludmila","Ludmilla","Luella","Luelle","Luisa","Luise","Lukretia","Lulu","Luna","Lundy","Lunette","Lupe","Lurleen","Luwana","Luwanna","Luwanne","Luz","Luzia","Luzie","Lydia","Lydie","Lyndsey","Lynette","Lynn","Lynn-Marie","Lynnette","Lyonette","Lyra","Lyric","Mabelle","Macee","Macey","Maci","Macie","Mackenzie","Macy","Madalene","Madalyn","Madalynn","Maddison","Maddy","Madeleina","Madeleine","Madelina","Madeline","Madelon","Madelyn","Madelynn","Madie","Madilyn","Madisen","Madison","Madisyn","Madita","Madlen","Madolen","Mady","Madyson","Mae","Maegan","Maelee","Maelynn","Maeve","Mafalda","Magda","Magdalen","Magdalena","Maggie","Maggy","Magnolia","Mai","Maia","Maida","Maidel","Maidie","Maidy","Maika","Maike","Maiken","Maiolaine","Maira","Mairin","Maisie","Maitane","Maiya","Maja","Majori","Makaila","Makayla","Makena","Makenna","Makenzie","Malchen","Male","Maleah","Malenka","Malia","Malica","Malin","Malina","Maliyah","Mallorie","Mallory","Manda","Mandy","Manette","Manhattan","Mania","Manja","Manjana","Manny","Manon","Manuela","Manuella","Mara","Marcelin","Marcelina","Marceline","Marcella","Marcelle","Marcellia","Marcellina","Marchelle","Marcie","Maree","Mareen","Marei","Mareike","Marelda","Maren","Marene","Marga","Margaret","Margareta","Margarete","Margaretha","Margarita","Margaux","Margeaux","Margery","Margit","Margo","Margot","Margret","Marguerite","Maria","Mariah","Mariam","Marian","Mariana","Mariane","Marianna","Marianne","Maribel","Marie","Mariechen","Mariela","Mariele","Mariella","Marielle","Marietta","Mariette","Marija","Marika","Marike","Marilena","Marilyn","Marina","Marinka","Marion","Mariona","Marionna","Marisa","Marisol","Marissa","Marit","Maritza","Marjolaina","Marlee","Marlene","Marley","Marlis","Marlon","Marquisa","Marquise","Marquisha","Marta","Marteena","Martha","Martina","Martine","Marveille","Marvela","Marvella","Marvelle","Mary","Maryam","Maryl","Maryvonne","Maschinka","Masha","Mateja","Mathilda","Mathilde","Matilda","Matilde","Mattie","Matty","Maud","Maude","Maura","Maureen","Maurelle","Maurina","Maurine","Mavis","Mavise","Maxime","Maxine","May","Maya","Mayda","Mayra","Mckayla","Mckenna","Mckenzie","Meadow","Meagan","Meaghan","Mechthild","Mechthilde","Mechtild","Megan","Meghan","Meika","Meike","Meiken","Mela","Melaina","Melaine","Melanee","Melania","Melanie","Melany","Melina","Melinda","Meline","Melisande","Melissa","Melitta","Melodie","Melody","Melusina","Mercedes","Mercer","Merci","Mercy","Meredith","Meret","Meriel","Merla","Merle","Merlyn","Merryl","Meryl","Meta","Meyla","Mia","Mia  Miah","Miah","Micaela","Micah","Michaela","Michela","Michele","Micheline","Michella","Michelle","Mieke","Miette","Mignon","Mignonette","Mikaela","Mikayla","Milena","Milina","Millicent","Millicente","Millie","Milva","Mimi","Mina","Minchen","Minda","Mindy","Mine","Minerva","Minetta","Minette","Mingo","Minna","Minne","Minnie","Minta","Mira","Mirabell","Mirabella","Mirabelle","Miracle","Miranda","Mireille","Mirella","Mireya","Miriam","Mirielle","Mirjam","Mirla","Mirth","Missie","Missy","Missye","Mistee","Mistey","Mistique","Misty","Miya","Mollie","Molly","Mona","Mone","Moni","Monica","Monika","Moniqua","Monique","Monja","Monserrat","Montana","Moreen","Morgan","Moriah","Munira","Muriel","Musetta","Musette","Mya","Myah","Mychele","Mychelle","Myra","Myrla","Myrna","Mystique","Nada","Nadeen","Nadia","Nadina","Nadine","Nadinka","Nadja","Nadjeschda","Naeva","Nafia","Naima","Nan","Nancey","Nanci","Nancie","Nancy","Nane","Nanette","Nanine","Nann","Nannerl","Nannette","Nanni","Nanon","Naomi","Naomy","Nara","Narcisse","Nastasia","Nastjenka","Nata","Natalee","Natalia","Natalie","Natalii","Nataly","Natascha","Natasha","Natassja","Nathalee","Nathalia","Nathalie","Nathaly","Natuche","Nayeli","Neeske","Neisa","Nele","Nella","Nelli","Nelly","Nesrin","Nessie","Nettchen","Netti","Nevaeh","Nia","Nichol","Nichole","Nicki","Nicky","Nicola","Nicole","Nicoletta","Nicolette","Nicoline","Nicolle","Nikki","Nikoletta","Nikolina","Nikoline","Nila","Nina","Ninette","Ninon","Nissie","Nissy","Nixie","Noa","Noel","Noele","Noelia","Noell","Noella","Noelle","Noemi","Noemie","Nora","Norberta","Norberte","Norbertha","Norberthe","Nordica","Norma","Nuria","Nya","Nyah","Nyasia","Nyla","Nynette","Odalys","Odeletta","Odelette","Odetta","Odette","Odila","Odile","Odilia","Olave","Olga","Olive","Olivia","Ollie","Olva","Olympe","Olympia","Olympie","Oola","Ophelia","Ophelie","Orane","Orania","Oriel","Orla","Orlanda","Orlande","Orlena","Orlene","Orlina","Ornella","Orsina","Orsine","Orsola","Orsolya","Ortelia","Orva","Ottilia","Ottilie","Oxana","Page","Paige","Palma","Palmiera","Palmira","Palmyra","Paloma","Pamela","Pamelina","Pandora","Pansy","Paola","Paris","Parker","Parnella","Pascala","Pascale","Pascaline","Pasclina","Patience","Patrice","Patricia","Patrizia","Paula","Pauletta","Paulette","Paulina","Pauline","Pawla","Payton","Pearl","Peggy","Penelope","Penny","Pensee","Pepi","Perla","Petra","Peyton","Philina","Philine","Philippa","Philippe","Philippina","Philippine","Phillipa","Philomela","Philomele","Philomena","Philomene","Phinchen","Phoebe","Pia","Pia-Marie","Piera","Pierretta","Pierrette","Pilar","Piper","Pleasance","Poppy","Precious","Presley","Princess","Prisca","Priscila","Priscilla","Priska","Priszilla","Prunella","Prunellie","Pyper","Queena","Quendolin","Questa","Quinn","Rabea","Rabia","Rachael","Rachel","Rachele","Rachelle","Rachil","Radella","Radmila","Radmilla","Radomila","Raegan","Raffaela","Rahel","Raina","Raison","Raissa","Rama","Ramona","Ramonda","Raphaela","Raphaele","Raquel","Ratna","Raven","Raymonda","Raymonde","Rayna","Rea","Reagan","Reanna","Rebeca","Rebecca","Rebekah","Rebekka","Recha","Reese","Regan","Regina","Regine","Regula","Reilly","Reina","Reine","Relyea","Renata","Renate","Rene","Renee","Reyna","Rhea","Rhiannon","Ria","Riana","Rianna","Rica","Ricarda","Richarda","Richelle","Rickie","Ricky","Rieke","Rikchen","Rike","Riley","Rilla","Rille","Rillette","Rita","Riva","Rive","Riya","Ro","Robbin","Roberta","Roberte","Robertina","Robin","Robina","Robine","Robinetta","Robinette","Robyn","Rocio","Roddie","Roddy","Roderica","Rodericka","Roesia","Rohais","Roial","Rola","Rolanda","Rolande","Romaine","Romana","Romhilda","Romhilde","Romilda","Romilde","Romy","Ronalda","Ronalde","Ronja","Ronnie","Ronny","Rosa","Rosalba","Rosalie","Rosalinde","Rosamonde","Rosamunde","Rosanna","Rose","Rosegrethe","Rosella","Rosellina","Rosemarie","Rosemary","Rosi","Rosina","Rosine","Rosita","Roswita","Roswitha","Roterica","Roux","Rownan","Roxana","Roxane","Roxanne","Roya","Royale","Rubie","Ruby","Rudella","Rudelle","Ruperta","Rut","Ruth","Ryan","Ryann","Rylee","Ryleigh","Rylie","Sabina","Sabine","Sabrina","Sade","Sadie","Sage","Sahra","Saige","Salene","Sally","Salma","Salome","Salvina","Salwa","Samantha","Samara","Samira","Sandra","Sandria","Sandrina","Sandrine","Sandy","Sanetra","Sanne","Saphira","Sara","Sarah","Sarahi","Sarai","Sarina","Sascha","Sasha","Saskia","Sasna","Satin","Savana","Savanah","Savanna","Savannah","Saxona","Scarlet","Scarlett","Searlait","Selby","Selden","Seldon","Selena","Selene","Selima","Selina","Selma","Selwin","Selwyn","Serafin","Serafina","Seraphin","Seraphina","Seraphine","Serena","Serenity","Serfine","Serhilda","Serhilde","Serilda","Serilde","Shakira","Shalina","Shalyna","Shana","Shandy","Shania","Shanice","Shaniya","Shannon","Shantala","Shanton","Sharla","Sharleen","Sharlene","Sharon","Shawna","Shayla","Shaylee","Shayna","Shea","Sheila","Shelby","Sherey","Sherlie","Sheryl","Sheyla","Shir","Shirl","Shirlee","Shirleen","Shirleigh","Shirley","Shreya","Shurl","Shurlie","Shyann","Shyanne","Sibilla","Sibille","Sibyla","Sibylla","Sibylle","Sidney","Sidonia","Sidonie","Sienna","Sierra","Sigfreda","Sigfrieda","Sigfriede","Sigrid","Sigrun","Silana","Silja","Silka","Silke","Silvana","Silvetta","Silvette","Silvia","Silvina","Simona","Simone","Simonetta","Simonette","Sina","Sinja","Sinje","Sissi","Sky","Skye","Skyla","Skylar","Skyler","Slainie","Slania","Slanie","Sofia","Sofie","Solaina","Solaine","Solange","Solvig","Sonia","Sonja","Sonya","Sophia","Sophie","Soreen","Sorren","Stacey","Stacy","Stefana","Stefania","Stefanie","Steffi","Stella","Stephania","Stephanie","Stephany","Stina","Stine","Storm","Storme","Stormie","Stormy","Suleima","Summer","Susan","Susana","Susane","Susanna","Susanne","Suse","Susen","Susi","Susie","Suzanne","Suzette","Suzy","Svana","Svea","Svenja","Swantje","Swea","Swenja","Sydnee","Sydney","Sydni","Sydnie","Sylke","Sylvia","Sylvie","Tabea","Tabitha","Tait","Taite","Taitum","Talia","Talida","Talika","Taliyah","Tallis","Tamar","Tamara","Tamia","Tamira","Tania","Tanita","Taniya","Tanja","Tanjura","Tanya","Tara","Tara-Ann","Taryn","Tat","Tatiana","Tatjana","Tatum","Tatyana","Tavia","Taya","Tayler","Taylor","Tayte","Teagan","Teite","Tempeste","Teresa","Terese","Tereza","Tess","Tessa","Thabita","Thalia","Thea","Theodora","Theres","Theresa","Therese","Theresia","Theresina","Thery","Thilde","Thistle","Tia","Tiana","Tianna","Tiara","Tibelda","Tierra","Tiffanie","Tiffany","Tiffney","Tilda","Tilly","Timea","Tina","Tinchen","Tine","Tinette","Tizia","Tiziana","Tokessa","Toni","Tonja","Tori","Tosca","Toska","Tracy","Trine","Trinetta","Trinette","Trinity","Trista","Tristan","Trix","Trixi","Tru","Trudchen","Trude","Trudel","Trudi","Trudie","Trudy","Tuesday","Tyler","Tyra","Uda","Udele","Udella","Udelle","Uka","Ula","Ulita","Ulitta","Uljana","Ulla","Ulli","Ulrica","Ulrika","Ulrike","Ulva","Undine","Unique","Urania","Urith","Ursel","Ursina","Ursine","Ursula","Urte","Uschi","Uta","Ute","Vafara","Vala","Valborga","Valburga","Valda","Valentina","Valentine","Valeraine","Valere","Valeri","Valeria","Valeriana","Valeriane","Valerie","Valerien","Valeska","Valida","Vallerie","Vanadis","Vanesa","Vanessa","Vania","Vanja","Vanni","Varinka","Vedetta","Velda","Velma","Veloy","Veneta","Venetia","Venetta","Venus","Vera","Verena","Verona","Verone","Veronica","Veronika","Veronique","Vicky","Victoria","Victorina","Victorine","Vignetta","Vignette","Viktoria","Viktorin","Viktorina","Viktorine","Villetta","Villette","Vina","Vineta","Vinka","Viola","Violet","Violett","Violetta","Violette","Viollette","Virginia","Virginie","Vittoria","Vivian","Viviana","Viviane","Vivien","Vivienne","Voleta","Voletta","Vroni","Walborga","Walburg","Walburga","Walburge","Walda","Waldburg","Walli","Wally","Walpurgis","Waltraud","Wanda","Wandie","Wandis","Wanja","Warda","Warenka","Welda","Wencke","Wenda","Wendeline","Wendy","Wenke","Whitney","Wiba","Wibeke","Wibke","Wiebke","Wigberta","Wileen","Wilf","Wilfiede","Wilfreda","Wilfreida","Wilfrieda","Wilhelma","Wilhelmina","Wilhelmine","Willa","Willow","Wilma","Wilona","Winifred","Winifrieda","Winnie","Winny","Winola","Winona","Winter","Xandra","Xaveria","Xaverine","Xaviere","Xavierra","Xavierre","Xena","Xenia","Ximena","Xiomara","Yadira","Yamina","Yara","Yaren","Yasmin","Yasmina","Yasmine","Yazmin","Yedda","Yelena","Yesenia","Yessenia","Yetta","Ynes","Ynez","Yola","Yoland","Yolanda","Yolande","Yolanthe","Yolonda","Ysabel","Yseult","Yuliana","Yuria","Yvette","Yvonna","Yvonne","Zaida","Zaina","Zara","Zarah","Zaria","Zeider","Zelda","Zena","Zenobia","Zenzi","Zerelda","Zerla","Zerlina","Zerline","Zilli","Zina","Zoe","Zoey","Zoie","Zorra","Zuri","Zuria","Zurie"]
 
     @classmethod
-    def surname(cls):
+    def surname(cls, surname=0):
         raise NotImplementedError
 
     @classmethod
-    def female(cls):
-        raise NotImplementedError
+    def female(cls, surname=0):
+        return random.choice(cls.nm84)
 
+    @classmethod
+    def male(cls, surname=0):
+        return random.choice(cls.nm83)
 
-
-def name_gen(name_type):
-    # $('#placeholder').css('textTransform', 'capitalize');
-    for i in range(16):
-        lname = ""
-        while not lname:
-            lname = name_sur(i)
-
-        if name_type == 1:
-            nMs = ""
-            while not nMs:
-                nMs = name_fem()
-            nMs = nMs + " " + lname
-        elif name_type == 3:
-            nMs = random.choice(nm83)
-        elif name_type == 4:
-            nMs = random.choice(nm84)
-        else:
-            nMs = ""
-            while not nMs:
-                nMs = name_mas()
-            nMs = nMs + " " + lname
-            pass
-        yield nMs
 
 # 0-1 Calashite
 # 2-3 Chondathan
@@ -365,180 +551,43 @@ def name_gen(name_type):
 # 10-11 Rashemi
 # 12-13 Shou
 # 14-15 Turami
+def names_list(subrace_id):
+    if subrace_id < 2:
+        return CalashiteNames
+    elif subrace_id < 4:
+        return ChondathanNames
+    elif subrace_id < 6:
+        return DamaranNames
+    elif subrace_id < 8:
+        return IlluskanNames
+    elif subrace_id < 10:
+        return MulanNames
+    elif subrace_id < 12:
+        return RashemiNames
+    elif subrace_id < 14:
+        return ShouNames
+    return TuramiNames
 
 
-def name_fem():
-    """
-	if(i < 2){
-	}else if(i < 4){
-	}else if(i < 6){
-		rnd = Math.floor(Math.random() * nm27.length);
-		rnd2 = Math.floor(Math.random() * nm24.length);
-		rnd5 = Math.floor(Math.random() * nm29.length);
-		if(i === 4){
-			rnd3 = Math.floor(Math.random() * nm28.length);
-			rnd4 = Math.floor(Math.random() * nm24.length);
-			nMs = nm27[rnd] + nm24[rnd2] + nm28[rnd3] + nm24[rnd4] + nm29[rnd5];
-		}else{
-			nMs = nm27[rnd] + nm24[rnd2] + nm29[rnd5];
-		}
-	}else if(i < 8){
-		rnd = Math.floor(Math.random() * nm38.length);
-		rnd2 = Math.floor(Math.random() * nm24.length);
-		rnd3 = Math.floor(Math.random() * nm39.length);
-		rnd4 = Math.floor(Math.random() * nm24.length);
-		rnd5 = Math.floor(Math.random() * nm40.length);
-		if(i === 6){
-			rnd6 = Math.floor(Math.random() * nm39.length);
-			rnd7 = Math.floor(Math.random() * nm24.length);
-			nMs = nm38[rnd] + nm24[rnd2] + nm39[rnd3] + nm24[rnd4] + nm39[rnd6] + nm24[rnd7] + nm40[rnd5];
-		}else{
-			nMs = nm38[rnd] + nm24[rnd2] + nm39[rnd3] + nm24[rnd4] + nm40[rnd5];
-		}
-	}else if(i < 10){
-		rnd = Math.floor(Math.random() * nm47.length);
-		rnd2 = Math.floor(Math.random() * nm14.length);
-		rnd3 = Math.floor(Math.random() * nm48.length);
-		rnd4 = Math.floor(Math.random() * nm14.length);
-		rnd5 = Math.floor(Math.random() * nm49.length);
-		if(i === 8){
-			rnd6 = Math.floor(Math.random() * nm48.length);
-			rnd7 = Math.floor(Math.random() * nm14.length);
-			nMs = nm47[rnd] + nm14[rnd2] + nm48[rnd3] + nm14[rnd4] + nm48[rnd6] + nm14[rnd7] + nm49[rnd5];
-		}else{
-			nMs = nm47[rnd] + nm14[rnd2] + nm48[rnd3] + nm14[rnd4] + nm49[rnd5];
-		}
-	}else if(i < 12){
-		rnd = Math.floor(Math.random() * nm58.length);
-		rnd2 = Math.floor(Math.random() * nm59.length);
-		rnd3 = Math.floor(Math.random() * nm60.length);
-		rnd4 = Math.floor(Math.random() * nm59.length);
-		rnd5 = Math.floor(Math.random() * nm61.length);
-		if(i === 10){
-			rnd6 = Math.floor(Math.random() * nm60.length);
-			rnd7 = Math.floor(Math.random() * nm59.length);
-			nMs = nm58[rnd] + nm59[rnd2] + nm60[rnd3] + nm59[rnd4] + nm60[rnd6] + nm59[rnd7] + nm61[rnd5];
-		}else{
-			nMs = nm58[rnd] + nm59[rnd2] + nm60[rnd3] + nm59[rnd4] + nm61[rnd5];
-		}
-	}else if(i < 14){
-		rnd = Math.floor(Math.random() * nm68.length);
-		rnd2 = Math.floor(Math.random() * nm69.length);
-		nMs = nm68[rnd] + nm69[rnd2];
-	}else{
-		rnd = Math.floor(Math.random() * nm77.length);
-		rnd2 = Math.floor(Math.random() * nm78.length);
-		rnd3 = Math.floor(Math.random() * nm79.length);
-		rnd4 = Math.floor(Math.random() * nm77.length);
-		if(i === 10){
-			rnd6 = Math.floor(Math.random() * nm79.length);
-			rnd7 = Math.floor(Math.random() * nm77.length);
-			nMs = nm77[rnd] + nm78[rnd2] + nm79[rnd3] + nm77[rnd4] + nm79[rnd6] + nm77[rnd7];
-		}else{
-			nMs = nm77[rnd] + nm78[rnd2] + nm79[rnd3] + nm77[rnd4];
-		}
-	}
-	testSwear(nMs);
+def name_gen(name_type=0):
+    # $('#placeholder').css('textTransform', 'capitalize');
+    for i in range(16):
+        names = names_list(i)
 
-    :return:
-    """
+        name = ""
+        surname = ""
+        while not surname:
+            surname = test_swear(names.surname(i)).title()
 
-def name_mas():
-    """
-	if(i < 2){
-		rnd = Math.floor(Math.random() * nm1.length);
-		rnd2 = Math.floor(Math.random() * nm2.length);
-		rnd3 = Math.floor(Math.random() * nm3.length);
-		rnd4 = Math.floor(Math.random() * nm2.length);
-		rnd5 = Math.floor(Math.random() * nm4.length);
-		nMs = nm1[rnd] + nm2[rnd2] + nm3[rnd3] + nm2[rnd4] + nm4[rnd5];
-	}else if(i < 4){
-		rnd = Math.floor(Math.random() * nm13.length);
-		rnd2 = Math.floor(Math.random() * nm14.length);
-		rnd3 = Math.floor(Math.random() * nm15.length);
-		rnd4 = Math.floor(Math.random() * nm14.length);
-		rnd5 = Math.floor(Math.random() * nm16.length);
-		if(rnd5 < 3){
-			rnd3 = 0;
-		}else{
-			while(rnd3 === 0){
-				rnd3 = Math.floor(Math.random() * nm15.length);
-			}
-		}
-		nMs = nm13[rnd] + nm14[rnd2] + nm15[rnd3] + nm14[rnd4] + nm16[rnd5];
-	}else if(i < 6){
-		rnd = Math.floor(Math.random() * nm23.length);
-		rnd2 = Math.floor(Math.random() * nm24.length);
-		rnd5 = Math.floor(Math.random() * nm26.length);
-		if(i === 4){
-			rnd3 = Math.floor(Math.random() * nm25.length);
-			rnd4 = Math.floor(Math.random() * nm24.length);
-			nMs = nm23[rnd] + nm24[rnd2] + nm25[rnd3] + nm24[rnd4] + nm26[rnd5];
-		}else{
-			nMs = nm23[rnd] + nm24[rnd2] + nm26[rnd5];
-		}
-	}else if(i < 8){
-		rnd = Math.floor(Math.random() * nm34.length);
-		rnd2 = Math.floor(Math.random() * nm35.length);
-		rnd5 = Math.floor(Math.random() * nm37.length);
-		if(i === 6){
-			rnd3 = Math.floor(Math.random() * nm36.length);
-			rnd4 = Math.floor(Math.random() * nm35.length);
-			nMs = nm34[rnd] + nm35[rnd2] + nm36[rnd3] + nm35[rnd4] + nm37[rnd5];
-		}else{
-			nMs = nm34[rnd] + nm35[rnd2] + nm37[rnd5];
-		}
-	}else if(i < 10){
-		rnd = Math.floor(Math.random() * nm43.length);
-		rnd2 = Math.floor(Math.random() * nm44.length);
-		rnd3 = Math.floor(Math.random() * nm45.length);
-		rnd4 = Math.floor(Math.random() * nm44.length);
-		rnd5 = Math.floor(Math.random() * nm46.length);
-		if(i === 8){
-			rnd6 = Math.floor(Math.random() * nm45.length);
-			rnd7 = Math.floor(Math.random() * nm44.length);
-			nMs = nm43[rnd] + nm44[rnd2] + nm45[rnd3] + nm44[rnd4] + nm45[rnd6] + nm44[rnd7] + nm46[rnd5];
-		}else{
-			nMs = nm43[rnd] + nm44[rnd2] + nm45[rnd3] + nm44[rnd4] + nm46[rnd5];
-		}
-	}else if(i < 12){
-		rnd = Math.floor(Math.random() * nm54.length);
-		rnd2 = Math.floor(Math.random() * nm55.length);
-		rnd3 = Math.floor(Math.random() * nm56.length);
-		rnd4 = Math.floor(Math.random() * nm55.length);
-		rnd5 = Math.floor(Math.random() * nm57.length);
-		if(i === 10){
-			rnd6 = Math.floor(Math.random() * nm56.length);
-			rnd7 = Math.floor(Math.random() * nm55.length);
-			nMs = nm54[rnd] + nm55[rnd2] + nm56[rnd3] + nm55[rnd4] + nm56[rnd6] + nm55[rnd7] + nm56[rnd5];
-		}else{
-			nMs = nm54[rnd] + nm55[rnd2] + nm56[rnd3] + nm55[rnd4] + nm57[rnd5];
-		}
-	}else if(i < 14){
-		rnd = Math.floor(Math.random() * nm65.length);
-		rnd2 = Math.floor(Math.random() * nm66.length);
-		rnd3 = Math.floor(Math.random() * nm67.length);
-		if(rnd3 < 3){
-			while(rnd < 2){
-				rnd = Math.floor(Math.random() * nm65.length);
-			}
-		}
-		nMs = nm65[rnd] + nm66[rnd2] + nm67[rnd3];
-	}else{
-		rnd = Math.floor(Math.random() * nm73.length);
-		rnd2 = Math.floor(Math.random() * nm74.length);
-		rnd3 = Math.floor(Math.random() * nm75.length);
-		rnd4 = Math.floor(Math.random() * nm74.length);
-		rnd5 = Math.floor(Math.random() * nm76.length);
-		if(i === 14){
-			rnd6 = Math.floor(Math.random() * nm75.length);
-			rnd7 = Math.floor(Math.random() * nm74.length);
-			nMs = nm73[rnd] + nm74[rnd2] + nm75[rnd3] + nm74[rnd4] + nm75[rnd6] + nm74[rnd7] + nm76[rnd5];
-		}else{
-			nMs = nm73[rnd] + nm74[rnd2] + nm75[rnd3] + nm74[rnd4] + nm76[rnd5];
-		}
-	}
-	testSwear(nMs);
-
-    :return:
-    """
+        if name_type == 1:
+            while not name:
+                name = test_swear(names.female(i)).title()
+            yield name + " " + surname
+        elif name_type == 3:
+            yield OldNames.male().title()
+        elif name_type == 4:
+            yield OldNames.female().title()
+        else:
+            while not name:
+                name = test_swear(names.male(i)).title()
+            yield name + " " + surname
