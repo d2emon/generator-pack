@@ -1,5 +1,5 @@
 import random
-from generator.generator.name import NameGenerator, random_generator, GENDER_MALE, GENDER_NEUTRAL, GENDER_FEMALE
+from generator.generator.name import NameGenerator, random_generator, GENDER_MALE, GENDER_FEMALE
 
 
 class BanditNameGenerator(NameGenerator):
@@ -10,11 +10,11 @@ class BanditNameGenerator(NameGenerator):
     }
 
     @classmethod
-    def select_parts(cls, gender=GENDER_NEUTRAL):
+    def select_parts(cls, gender=GENDER_MALE):
         return cls.names[gender],
 
     @classmethod
-    def generate_parts(cls, gender=GENDER_NEUTRAL, *args, **kwargs):
+    def generate_parts(cls, gender=GENDER_MALE, *args, **kwargs):
         return [random.choice(parts) for parts in cls.select_parts(gender)]
 
 
@@ -22,7 +22,7 @@ class Bandit1NameGenerator(BanditNameGenerator):
     names2 = ["Angel Eyes","Bandana","Black Eye","Black Eyes","Blackjack","Blue Eyes","Bulletproof","Bullettooth","Bullseye","Coins","Crackers","Crazy Eyes","Danger","Dangerous","Diamond","Eyepatch","Fast Fingers","Five Fingers","Four Fingers","Ghost","Gold Digger","Greed","Grimm","Grin","Luck","Mad Dog","Mad Eye","Mad Eyes","Mad Man","Moneybags","Muscles","Nightmare","Nine Lives","Numbers","One Eye","Phantom","Poison","Razor","Scarface","Scars","Shades","Smokes","Straight Jacket","Three Fingers","Three Toes","Toothless","Two Face","Whisper","Whispers","the Angel","the Bandit","the Beast","the Brute","the Bug","the Bull","the Buster","the Cheat","the Cheater","the Clown","the Con","the Con Artist","the Crackpot","the Crazy","the Crook","the Danger","the Diamond","the Dwarf","the Eccentric","the Fang","the Fool","the Greedy","the Grin","the Heist","the Heister","the Jester","the Knuckles","the Lucky","the Lunatic","the Mad","the Maniac","the Menace","the Mumbler","the Nightmare","the Outlaw","the Pegleg","the Phantom","the Pickpocket","the Pillager","the Pirate","the Professional","the Punk","the Rat","the Ravager","the Razor","the Reaper","the Robber","the Rogue","the Scar","the Serpent","the Shark","the Silent","the Sly","the Smile","the Smirk","the Snake","the Spider","the Squint","the Suit","the Swindler","the Thief","the Thug","the Viper","the Weasel","the Whisper","the Wild"]
 
     @classmethod
-    def select_parts(cls, gender=GENDER_NEUTRAL):
+    def select_parts(cls, gender=GENDER_MALE):
         return [
             cls.names[gender],
             cls.names2,
@@ -33,7 +33,7 @@ class Bandit2NameGenerator(BanditNameGenerator):
     names2 = ["Action","Angel Eyes","Bandana","Black Eyed","Blackjack","Blue Eyed","Brute","Bug Eyed","Bulletproof","Bullettooth","Bullseye","Busting","Cheating","Coughing","Crackpot","Crazy","Crazy Eyed","Crazy Eyes","Dangerous","Diamond","Dingbat","Eccentric","Eyepatch","Fast Fingers","Five Fingered","Foolish","Four Fingered","Fruitcake","Gold Digger","Greedy","Grinning","Jester","Klepto","Knuckles","Laughing","Lucky","Lunatic","Mad","Mad Dog","Mad Eyed","Mad Hat","Mad Man","Menacing","Moneybags","Mumbling","Muscled","Nightmare","Nine Lives","Numbers","One Eye","Pegleg","Phantom","Pickpocket","Poison","Prowling","Razor","Razortooth","Reaper","Robbing","Rusty","Scarface","Scars","Serpent","Shades","Shark","Silent","Slithering","Sly","Smiling","Smirking","Smokey","Spider","Squinting","Straight Jacket","Swindling","Thieving","Three Fingered","Three Toed","Toothless","Two Face","Viper","Wacko","Weasel","Whispering","Wild"]
 
     @classmethod
-    def select_parts(cls, gender=GENDER_NEUTRAL):
+    def select_parts(cls, gender=GENDER_MALE):
         return [
             cls.names2,
             cls.names[gender],
@@ -46,5 +46,5 @@ def bandit_selector(generator_id=None):
     return Bandit2NameGenerator
 
 
-def bandit_name_generate(generator_id=None):
-    return random_generator(bandit_selector, generator_id=generator_id).generate()
+def bandit_name_generate(generator_id=None, gender=GENDER_MALE):
+    return random_generator(bandit_selector, generator_id=generator_id).generate(gender)

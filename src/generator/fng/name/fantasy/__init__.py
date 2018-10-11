@@ -11,9 +11,6 @@ from .banshee import BansheeNameGenerator, banshee_name_generate
 
 
 """
-										<li><a href="http://www.fantasynamegenerators.com/apocalypse-mutant-names.php">Apocalypse/Mutant Names</a></li>
-										<li><a href="http://www.fantasynamegenerators.com/bandit-names.php">Bandit Names</a></li>
-										<li><a href="http://www.fantasynamegenerators.com/banshee-names.php">Banshee Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/barbarian-names.php">Barbarian Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/basilisk-names.php">Basilisk Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/birdfolk-names.php">Birdfolk Names</a></li>
@@ -22,6 +19,7 @@ from .banshee import BansheeNameGenerator, banshee_name_generate
 										<li><a href="http://www.fantasynamegenerators.com/cat-people-nekojin-names.php">Cat-people/Nekojin Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/cavemen-names.php">Cavemen Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/centaur-names.php">Centaur Names</a></li>
+
 										<li><a href="http://www.fantasynamegenerators.com/christmas-elf-names.php">Christmas Elf Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/cockatrice-names.php">Cockatrice Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/code-names.php">Code Names</a></li>
@@ -30,6 +28,7 @@ from .banshee import BansheeNameGenerator, banshee_name_generate
 										<li><a href="http://www.fantasynamegenerators.com/dark-elf-names.php">Dark Elf Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/death-names.php">Death Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/demon_names.php">Demon Names</a></li>
+
 										<li><a href="http://www.fantasynamegenerators.com/detective-names.php">Detective Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/dracaenae-names.php">Dracaenae Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/dragon_names.php">Dragon Names</a></li>
@@ -38,6 +37,7 @@ from .banshee import BansheeNameGenerator, banshee_name_generate
 										<li><a href="http://www.fantasynamegenerators.com/dryad-names.php">Dryad Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/dwarf_names.php">Dwarf Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/elemental-names.php">Elemental Names</a></li>
+
 										<li><a href="http://www.fantasynamegenerators.com/elf_names.php">Elf Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/ent_names.php">Ent/Tree creature Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/evil_names.php">Evil Names</a></li>
@@ -46,6 +46,7 @@ from .banshee import BansheeNameGenerator, banshee_name_generate
 										<li><a href="http://www.fantasynamegenerators.com/creature-names.php">Fantasy Creature Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/fantasy-race-names.php">Fantasy Race Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/fantasy-surnames.php">Fantasy Surnames</a></li>
+
 										<li><a href="http://www.fantasynamegenerators.com/fursona-names.php">Fursona Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/futuristic-names.php">Futuristic Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/gargoyle-names.php">Gargoyle Names</a></li>
@@ -54,6 +55,7 @@ from .banshee import BansheeNameGenerator, banshee_name_generate
 										<li><a href="http://www.fantasynamegenerators.com/ghost-names.php">Ghost/Spirit Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/ghoul-names.php">Ghoul Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/giant-names.php">Giant Names</a></li>
+
 										<li><a href="http://www.fantasynamegenerators.com/gnoll-names.php">Gnoll Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/gnome-names.php">Gnome Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/goblin-names.php">Goblin Names</a></li>
@@ -62,6 +64,7 @@ from .banshee import BansheeNameGenerator, banshee_name_generate
 										<li><a href="http://www.fantasynamegenerators.com/gorgon-names.php">Gorgon Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/graeae-names.php">Graeae Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/griffin-names.php">Griffin Names</a></li>
+
 										<li><a href="http://www.fantasynamegenerators.com/guardian-names.php">Guardian Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/half-elf-names.php">Half-Elf Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/harpy-names.php">Harpy Names</a></li>
@@ -70,6 +73,7 @@ from .banshee import BansheeNameGenerator, banshee_name_generate
 										<li><a href="http://www.fantasynamegenerators.com/hydra-names.php">Hydra Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/imp-names.php">Imp Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/jotunn-names.php">Jotunn Names</a></li>
+
 										<li><a href="http://www.fantasynamegenerators.com/kaiju-names.php">Kaiju Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/killer-names.php">Killer Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/kitsune-names.php">Kitsune Names</a></li>
@@ -78,6 +82,7 @@ from .banshee import BansheeNameGenerator, banshee_name_generate
 										<li><a href="http://www.fantasynamegenerators.com/lamia-names.php">Lamia Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/legendary-creature-names.php">Legendary Creature Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/lich-names.php">Lich Names</a></li>
+
 										<li><a href="http://www.fantasynamegenerators.com/lizardfolk-names.php">Lizardfolk Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/manticore-names.php">Manticore Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/mecha-names.php">Mecha Names</a></li>
@@ -86,6 +91,7 @@ from .banshee import BansheeNameGenerator, banshee_name_generate
 										<li><a href="http://www.fantasynamegenerators.com/minotaur-names.php">Minotaur Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/twin_names.php">Mirrored Twin Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/monster-names.php">Monster Names</a></li>
+
 										<li><a href="http://www.fantasynamegenerators.com/mutant-species-names.php">Mutant Species Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/naga-names.php">Naga Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/necromancer-names.php">Necromancer Names</a></li>
@@ -94,6 +100,7 @@ from .banshee import BansheeNameGenerator, banshee_name_generate
 										<li><a href="http://www.fantasynamegenerators.com/non-magic-user-names.php">Non-Magic User Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/nymph-names.php">Nymph Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/ogre-names.php">Ogre Names</a></li>
+
 										<li><a href="http://www.fantasynamegenerators.com/orc_names.php">Orc Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/pegasus-names.php">Pegasus Names</a></li>
 										<li style="font-size: 100%; padding: 3px 0.5%;">Pets / Companions &gt;
@@ -137,6 +144,7 @@ from .banshee import BansheeNameGenerator, banshee_name_generate
 										<li><a href="http://www.fantasynamegenerators.com/puppet-names.php">Puppet Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/quetzalcoatl-names.php">Quetzalcoatl Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/rakshasha-names.php">Rakshasha Names</a></li>
+
 										<li><a href="http://www.fantasynamegenerators.com/robot-names.php">Robot Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/roc-names.php">Roc Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/satyr-faun-names.php">Satyr &amp; Faun Names</a></li>
@@ -145,6 +153,7 @@ from .banshee import BansheeNameGenerator, banshee_name_generate
 										<li><a href="http://www.fantasynamegenerators.com/servant-names.php">Servant Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/shapeshifter-names.php">Shapeshifter Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/siren-names.php">Siren Names</a></li>
+
 										<li><a href="http://www.fantasynamegenerators.com/slave-names.php">Slave Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/species-names.php">Species Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/steampunk-names.php">Steampunk Names</a></li>
@@ -153,6 +162,7 @@ from .banshee import BansheeNameGenerator, banshee_name_generate
 										<li><a href="http://www.fantasynamegenerators.com/superhero-team-names.php">Superhero Team Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/villain_names.php">Super Villain Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/sylph-names.php">Sylph Names</a></li>
+
 										<li><a href="http://www.fantasynamegenerators.com/tauren_names.php">Tauren Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/troll_names.php">Troll Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/unicorn-names.php">Unicorn Names</a></li>
@@ -161,6 +171,7 @@ from .banshee import BansheeNameGenerator, banshee_name_generate
 										<li><a href="http://www.fantasynamegenerators.com/vampire-clan-names.php">Vampire Clan Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/warrior-nicknames.php">Warrior Nicknames</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/werewolf_names.php">Werewolf Names</a></li>
+
 										<li><a href="http://www.fantasynamegenerators.com/werewolf-pack-names.php">Werewolf Pack Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/witch-names.php">Witch Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/witch-coven-names.php">Witch Coven Names</a></li>
@@ -169,6 +180,7 @@ from .banshee import BansheeNameGenerator, banshee_name_generate
 										<li><a href="http://www.fantasynamegenerators.com/world-destroyer-names.php">World Destroyer Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/wyvern-names.php">Wyvern Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/yeti-names.php">Yeti Names</a></li>
+
 										<li><a href="http://www.fantasynamegenerators.com/zaratan-names.php">Zaratan Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/zombie-types.php">Zombie Types</a></li>
 """

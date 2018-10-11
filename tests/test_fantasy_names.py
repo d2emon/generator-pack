@@ -17,6 +17,11 @@ def generators():
         angel_name_generate,
         animal_species_generate,
         animatronic_names_generate,
+        anthousai_name_generate,
+        apocalypse_nickname_generate,
+        artificial_intelligence_name_generate,
+        bandit_name_generate,
+        banshee_name_generate,
     ]
 
 
