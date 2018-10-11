@@ -7,6 +7,7 @@ from .anthousai import AnthousaiNameGenerator, anthousai_name_generate
 from .artificial_itelligence import ArtificialIntelligenceNameGenerator, artificial_intelligence_name_generate
 from .apocalypse import ApocalypseNicknameGenerator, apocalypse_nickname_generate
 from .bandit import BanditNameGenerator, bandit_name_generate
+from .banshee import BansheeNameGenerator, banshee_name_generate
 
 
 """

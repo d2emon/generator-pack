@@ -44,10 +44,14 @@ class NameGenerator:
         return parts
 
     @classmethod
+    def make_name(cls, parts):
+        return cls.glue.join(parts)
+
+    @classmethod
     def generate(cls, gender=GENDER_NEUTRAL, *args, **kwargs):
         parts = cls.generate_parts(gender=gender, *args, **kwargs)
         parts = cls.update_parts(parts)
-        return Name(cls.glue.join(parts), cls)
+        return Name(cls.make_name(parts), cls)
 
     def __iter__(self):
         return self
