@@ -1,9 +1,9 @@
 import random
-from .names import Names, GENDER_NEUTRAL, GENDER_FEMALE, GENDER_MALE
+from generator.generator.name import NameGenerator, GENDER_NEUTRAL, GENDER_FEMALE, GENDER_MALE
 
 
-class AngelNames(Names):
-    data = {
+class AngelNameGenerator(NameGenerator):
+    names = {
         GENDER_MALE: ["Aarin", "Abaddon", "Abalim", "Abasdarhon", "Abbadon", "Abdiel", "Abrariel", "Abraxos", "Adellum",
                       "Adimus", "Adnachiel", "Adoel", "Adonael", "Adriel", "Afriel", "Aithen", "Akhazriel", "Akriel",
                       "Ambriel", "Amitiel", "Amnayelth", "Amriel", "Anael", "Anahel", "Anaiel", "Anak", "Anakim",
@@ -98,9 +98,9 @@ class AngelNames(Names):
     }
 
     @classmethod
-    def generate(cls, gender=GENDER_NEUTRAL):
+    def generate(cls, gender=GENDER_NEUTRAL, *args, **kwargs):
         return random.choice(cls.data[gender])
 
 
-def generate(gender=GENDER_NEUTRAL):
-    return AngelNames.generate(gender).title()
+def angel_name_generate(gender=GENDER_NEUTRAL):
+    return AngelNameGenerator.generate(gender).title()

@@ -1,4 +1,5 @@
-from .names import Names, random_class, GENDER_NEUTRAL
+from generator.generator.name import NameGenerator, random_generator
+
 
 second_names = ["Aardvark", "Abyssinian", "Addax", "Affenpinscher", "Akbash", "Akita", "Albatross", "Alligator",
                 "Alpaca", "Anemone Fish", "Angelfish", "Angora", "Anole", "Ant", "Anteater", "Antelope", "Aoudad",
@@ -48,13 +49,11 @@ second_names = ["Aardvark", "Abyssinian", "Addax", "Affenpinscher", "Akbash", "A
                 "Woodlouse", "Woodpecker", "Wrasse", "Yak", "Zebra", "Zebu", "Zonkey", "Zorse"]
 
 
-class AnimalSpeciesNames(Names):
-    @classmethod
-    def glue(cls, parts):
-        return " ".join(parts)
+class AnimalSpeciesNameGenerator(NameGenerator):
+    glue = " "
 
 
-class AnimalSpecies1Names(AnimalSpeciesNames):
+class AnimalSpecies1NameGenerator(AnimalSpeciesNameGenerator):
     data = [
         ["Adelie", "Ainu", "Airedale", "Aldabra", "Almond", "Alpine", "Amazon", "Amber", "Ambush", "Amphibian",
          "Anatolian", "Antler", "Aqua", "Arctic", "Army", "Ash", "Assassin", "Autumn", "Awkward", "Aye", "Azure",
@@ -105,7 +104,7 @@ class AnimalSpecies1Names(AnimalSpeciesNames):
     ]
 
 
-class AnimalSpecies2Names(AnimalSpeciesNames):
+class AnimalSpecies2NameGenerator(AnimalSpeciesNameGenerator):
     data = [
         ["Almond-Eared", "Almond-Eyed", "Almond-Bellied", "Almond-Dotted", "Almond-Furred", "Almond-Nosed",
          "Almond-Scaled", "Almond-Striped", "Almond-Tailed", "Amazon-Eared", "Amazon-Eyed", "Amazon-Bellied",
@@ -357,25 +356,21 @@ class AnimalSpecies2Names(AnimalSpeciesNames):
     ]
 
 
-class AnimalSpecies3Names(AnimalSpeciesNames):
+class AnimalSpecies3NameGenerator(AnimalSpeciesNameGenerator):
+    glue = "-"
     data = [
         second_names,
         second_names,
     ]
 
-    @classmethod
-    def glue(cls, parts):
-        return "-".join(parts)
-
 
 def animal_species_selector(class_id):
     if class_id < 4:
-        return AnimalSpecies1Names
+        return AnimalSpecies1NameGenerator
     elif class_id < 6:
-        return AnimalSpecies2Names
-    else:
-        return AnimalSpecies3Names
+        return AnimalSpecies2NameGenerator
+    return AnimalSpecies3NameGenerator
 
 
-def generate(gender=GENDER_NEUTRAL):
-    return random_class(animal_species_selector).generate(gender).title()
+def animal_species_generate():
+    return random_generator(animal_species_selector).generate().title()

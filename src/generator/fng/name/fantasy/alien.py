@@ -1,8 +1,8 @@
 import random
-from .names import Names, random_class, GENDER_NEUTRAL
+from generator.generator.name import NameGenerator, random_generator
 
 
-class AlienNames(Names):
+class AlienNameGenerator(NameGenerator):
     @classmethod
     def not_empty_3(cls, parts):
         while parts[2] == parts[0] or parts[2] == parts[4]:
@@ -22,7 +22,7 @@ class AlienNames(Names):
         return parts
 
 
-class Alien1Names(AlienNames):
+class Alien1NameGenerator(AlienNameGenerator):
     data = [
         ["br", "c", "cr", "dr", "g", "gh", "gr", "k", "kh", "kr", "n", "q", "qh", "sc", "scr", "str", "st", "t", "tr",
          "thr", "v", "vr", "x", "z", "", "", "", "", ""],
@@ -45,7 +45,7 @@ class Alien1Names(AlienNames):
         return parts
 
 
-class Alien2Names(AlienNames):
+class Alien2NameGenerator(AlienNameGenerator):
     data = [
         ["b", "bh", "ch", "d", "dh", "f", "h", "l", "m", "n", "ph", "r", "s", "sh", "th", "v", "y", "z", "", "", "",
          "", "", "", "", "", ""],
@@ -60,7 +60,7 @@ class Alien2Names(AlienNames):
     ]
 
 
-class Alien3Names(AlienNames):
+class Alien3NameGenerator(AlienNameGenerator):
     data = [
         ["b", "bh", "br", "c", "ch", "cr", "d", "dh", "dr", "f", "g", "gh", "gr", "h", "k", "kh", "kr", "l", "m",
          "n", "q", "qh", "ph", "r", "s", "sc", "scr", "sh", "st", "str", "t", "th", "thr", "tr", "v", "vr", "y", "x",
@@ -88,16 +88,15 @@ class Alien3Names(AlienNames):
 
 def alien_selector(class_id):
     if class_id < 4:
-        return Alien1Names
+        return Alien1NameGenerator
     elif class_id < 7:
-        return Alien2Names
-    else:
-        return Alien3Names
+        return Alien2NameGenerator
+    return Alien3NameGenerator
 
 
 def name_mas():
-    return random_class(alien_selector).generate()
+    return random_generator(alien_selector).generate()
 
 
-def generate(gender=GENDER_NEUTRAL):
+def alien_name_generate():
     return name_mas().title()

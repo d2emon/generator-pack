@@ -1,4 +1,4 @@
-from .names import Names, random_class, GENDER_NEUTRAL
+from generator.generator.name import NameGenerator, random_generator
 
 
 names1 = ["b", "bl", "br", "c", "chr", "cl", "cr", "d", "dr", "f", "g", "gl", "gr", "h", "j", "k", "kl", "kr", "m", "n",
@@ -17,11 +17,11 @@ names6 = ["adia", "ameia", "anta", "asca", "cabe", "ce", "cleia", "cyone", "cyra
           "yope", "yrbe", "ytie"]
 
 
-class AmazonNames(Names):
+class AmazonNameGenerator(NameGenerator):
     pass
 
 
-class Amazon1Names(AmazonNames):
+class Amazon1NameGenerator(AmazonNameGenerator):
     data = [
         names1,
         names2,
@@ -31,7 +31,7 @@ class Amazon1Names(AmazonNames):
     ]
 
 
-class Amazon2Names(AmazonNames):
+class Amazon2NameGenerator(AmazonNameGenerator):
     data = [
         names1,
         names2,
@@ -43,9 +43,9 @@ class Amazon2Names(AmazonNames):
 
 def amazon_selector(class_id):
     if class_id < 5:
-        return Amazon1Names
-    return Amazon2Names
+        return Amazon1NameGenerator
+    return Amazon2NameGenerator
 
 
-def generate(gender=GENDER_NEUTRAL):
-    return random_class(amazon_selector).generate(gender).title()
+def amazon_name_generate():
+    return random_generator(amazon_selector).generate().title()

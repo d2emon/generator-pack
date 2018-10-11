@@ -1,9 +1,10 @@
+from .alien import AlienNameGenerator, Alien1NameGenerator, Alien2NameGenerator, Alien3NameGenerator, alien_name_generate
+from .amazon import AmazonNameGenerator, Amazon1NameGenerator, Amazon2NameGenerator, amazon_name_generate
+from .angel import AngelNameGenerator, angel_name_generate
+from .animal_species import AnimalSpeciesNameGenerator, AnimalSpecies1NameGenerator, AnimalSpecies2NameGenerator, AnimalSpecies3NameGenerator, animal_species_generate
+from .animatronic import AnimatronicNameGenerator, animatronic_names_generate
+
 """
-										<li><a href="http://www.fantasynamegenerators.com/alien-names.php">Alien Names</a></li>
-										<li><a href="http://www.fantasynamegenerators.com/amazon-names.php">Amazon Names</a></li>
-										<li><a href="http://www.fantasynamegenerators.com/angel_names.php">Angel Names</a></li>
-										<li><a href="http://www.fantasynamegenerators.com/animal-species-names.php">Animal Species Names</a></li>
-										<li><a href="http://www.fantasynamegenerators.com/animatronic-names.php">Animatronic Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/apocalypse-mutant-names.php">Apocalypse/Mutant Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/bandit-names.php">Bandit Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/banshee-names.php">Banshee Names</a></li>
