@@ -54,3 +54,23 @@ class NameGenerator:
 
     def __next__(self):
         return self.generate()
+
+
+class ListNameGenerator(NameGenerator):
+    names = []
+
+    @classmethod
+    def select_names(cls, *args, **kwargs):
+        return cls.names
+
+    @classmethod
+    def generate(cls, gender=GENDER_NEUTRAL, *args, **kwargs):
+        return Name(random.choice(cls.select_names(gender=gender, *args, **kwargs)), cls)
+
+
+class GenderListNameGenerator(ListNameGenerator):
+    names = dict()
+
+    @classmethod
+    def select_names(cls, gender=GENDER_NEUTRAL, *args, **kwargs):
+        return cls.names[gender]
