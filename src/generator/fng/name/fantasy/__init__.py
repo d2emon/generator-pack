@@ -3,6 +3,7 @@ from .amazon import AmazonNameGenerator, amazon_name_generate
 from .angel import AngelNameGenerator, angel_name_generate
 from .animal_species import AnimalSpeciesNameGenerator, animal_species_generate
 from .animatronic import AnimatronicNameGenerator, animatronic_names_generate
+from .anthousai import AnthousaiNameGenerator, anthousai_name_generate
 
 """
 										<li><a href="http://www.fantasynamegenerators.com/apocalypse-mutant-names.php">Apocalypse/Mutant Names</a></li>
