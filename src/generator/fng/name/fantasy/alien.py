@@ -1,29 +1,5 @@
 import random
-
-
-class Names:
-    data = []
-
-    @classmethod
-    def get_parts(cls):
-        return [random.choice(parts) for parts in cls.data]
-
-    @classmethod
-    def apply_rules(cls, parts):
-        return parts
-
-    @classmethod
-    def test_swear(cls, name):
-        return name
-
-    @classmethod
-    def generate(cls):
-        name = None
-        while not name:
-            parts = cls.get_parts()
-            parts = cls.apply_rules(parts)
-            name = cls.test_swear("".join(parts))
-        return name
+from .names import Names, random_class
 
 
 class AlienNames(Names):
@@ -110,13 +86,12 @@ class Alien3Names(AlienNames):
         return parts
 
 
-def random_alien():
+def alien_selector(alien_id):
     aliens = [
         Alien1Names,
         Alien2Names,
         Alien3Names,
     ]
-    alien_id = random.randrange(10)
     if alien_id < 4:
         return aliens[0]
     elif alien_id < 7:
@@ -126,8 +101,7 @@ def random_alien():
 
 
 def name_mas():
-    alien_class = random_alien()
-    return alien_class.generate()
+    return random_class(alien_selector).generate()
 
 
 def generate():
