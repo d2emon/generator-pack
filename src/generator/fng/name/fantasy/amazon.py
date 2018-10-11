@@ -1,4 +1,4 @@
-from .names import Names, random_class
+from .names import Names, random_class, GENDER_NEUTRAL
 
 
 names1 = ["b", "bl", "br", "c", "chr", "cl", "cr", "d", "dr", "f", "g", "gl", "gr", "h", "j", "k", "kl", "kr", "m", "n",
@@ -52,5 +52,5 @@ def amazon_selector(amazon_id):
         return amazons[1]
 
 
-def generate():
-    return random_class(amazon_selector).generate().title()
+def generate(gender=GENDER_NEUTRAL):
+    return random_class(amazon_selector).generate(gender).title()

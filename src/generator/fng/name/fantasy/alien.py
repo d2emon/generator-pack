@@ -1,5 +1,5 @@
 import random
-from .names import Names, random_class
+from .names import Names, random_class, GENDER_NEUTRAL
 
 
 class AlienNames(Names):
@@ -104,5 +104,5 @@ def name_mas():
     return random_class(alien_selector).generate()
 
 
-def generate():
+def generate(gender=GENDER_NEUTRAL):
     return name_mas().title()

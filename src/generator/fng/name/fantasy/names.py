@@ -1,5 +1,9 @@
 import random
 
+GENDER_NEUTRAL = 0
+GENDER_MALE = 1
+GENDER_FEMALE = 2
+
 
 class Names:
     data = []
@@ -17,7 +21,7 @@ class Names:
         return name
 
     @classmethod
-    def generate(cls):
+    def generate(cls, gender=GENDER_NEUTRAL):
         name = None
         while not name:
             parts = cls.get_parts()
