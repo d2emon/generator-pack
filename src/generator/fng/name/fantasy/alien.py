@@ -16,7 +16,7 @@ class AlienNameGenerator(NameGenerator):
         return parts
 
     @classmethod
-    def apply_rules(cls, parts):
+    def update_parts(cls, parts, *args, **kwargs):
         parts = cls.not_empty_3(parts)
 
         return parts
@@ -39,8 +39,8 @@ class Alien1NameGenerator(AlienNameGenerator):
     ]
 
     @classmethod
-    def apply_rules(cls, parts):
-        parts = super().apply_rules(parts)
+    def update_parts(cls, parts, *args, **kwargs):
+        parts = super().update_parts(parts)
         parts = cls.empty_4(parts)
         return parts
 
@@ -80,8 +80,8 @@ class Alien3NameGenerator(AlienNameGenerator):
     ]
 
     @classmethod
-    def apply_rules(cls, parts):
-        parts = super().apply_rules(parts)
+    def update_parts(cls, parts, *args, **kwargs):
+        parts = super().update_parts(parts)
         parts = cls.empty_4(parts)
         return parts
 

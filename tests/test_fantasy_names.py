@@ -22,6 +22,7 @@ def generators():
         artificial_intelligence_name_generate,
         bandit_name_generate,
         banshee_name_generate,
+        barbarian_name_generate,
     ]
 
 

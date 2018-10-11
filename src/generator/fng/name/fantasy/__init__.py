@@ -8,6 +8,7 @@ from .artificial_itelligence import ArtificialIntelligenceNameGenerator, artific
 from .apocalypse import ApocalypseNicknameGenerator, apocalypse_nickname_generate
 from .bandit import BanditNameGenerator, bandit_name_generate
 from .banshee import BansheeNameGenerator, banshee_name_generate
+from .barbarian import BarbarianNameGenerator, barbarian_name_generate
 
 
 """

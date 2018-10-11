@@ -40,7 +40,7 @@ class NameGenerator:
         return [random.choice(parts) for parts in cls.data]
 
     @classmethod
-    def update_parts(cls, parts):
+    def update_parts(cls, parts, *args, **kwargs):
         return parts
 
     @classmethod
@@ -50,7 +50,7 @@ class NameGenerator:
     @classmethod
     def generate(cls, gender=GENDER_NEUTRAL, *args, **kwargs):
         parts = cls.generate_parts(gender=gender, *args, **kwargs)
-        parts = cls.update_parts(parts)
+        parts = cls.update_parts(parts, gender=gender, *args, **kwargs)
         return Name(cls.make_name(parts), cls)
 
     def __iter__(self):
