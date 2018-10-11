@@ -41,15 +41,10 @@ class Amazon2Names(AmazonNames):
     ]
 
 
-def amazon_selector(amazon_id):
-    amazons = [
-        Amazon1Names,
-        Amazon2Names,
-    ]
-    if amazon_id < 5:
-        return amazons[0]
-    else:
-        return amazons[1]
+def amazon_selector(class_id):
+    if class_id < 5:
+        return Amazon1Names
+    return Amazon2Names
 
 
 def generate(gender=GENDER_NEUTRAL):

@@ -86,18 +86,13 @@ class Alien3Names(AlienNames):
         return parts
 
 
-def alien_selector(alien_id):
-    aliens = [
-        Alien1Names,
-        Alien2Names,
-        Alien3Names,
-    ]
-    if alien_id < 4:
-        return aliens[0]
-    elif alien_id < 7:
-        return aliens[1]
+def alien_selector(class_id):
+    if class_id < 4:
+        return Alien1Names
+    elif class_id < 7:
+        return Alien2Names
     else:
-        return aliens[2]
+        return Alien3Names
 
 
 def name_mas():

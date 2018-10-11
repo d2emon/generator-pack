@@ -21,12 +21,16 @@ class Names:
         return name
 
     @classmethod
+    def glue(cls, parts):
+        return "".join(parts)
+
+    @classmethod
     def generate(cls, gender=GENDER_NEUTRAL):
         name = None
         while not name:
             parts = cls.get_parts()
             parts = cls.apply_rules(parts)
-            name = cls.test_swear("".join(parts))
+            name = cls.test_swear(cls.glue(parts))
         return name
 
 
