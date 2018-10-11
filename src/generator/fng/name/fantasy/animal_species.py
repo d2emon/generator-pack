@@ -373,4 +373,4 @@ def animal_species_selector(generator_id):
 
 
 def animal_species_generate(generator_id=None):
-    return random_generator(animal_species_selector, generator_id=generator_id).generate().title()
+    return random_generator(animal_species_selector, generator_id=generator_id).generate()

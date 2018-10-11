@@ -1,5 +1,5 @@
 import random
-from generator.generator.name import NameGenerator, GENDER_NEUTRAL, GENDER_FEMALE, GENDER_MALE
+from generator.generator.name import Name, NameGenerator, GENDER_NEUTRAL, GENDER_FEMALE, GENDER_MALE
 
 
 class AngelNameGenerator(NameGenerator):
@@ -99,8 +99,8 @@ class AngelNameGenerator(NameGenerator):
 
     @classmethod
     def generate(cls, gender=GENDER_NEUTRAL, *args, **kwargs):
-        return random.choice(cls.data[gender])
+        return Name(random.choice(cls.names[gender]), cls)
 
 
 def angel_name_generate(gender=GENDER_NEUTRAL):
-    return AngelNameGenerator.generate(gender).title()
+    return AngelNameGenerator.generate(gender)

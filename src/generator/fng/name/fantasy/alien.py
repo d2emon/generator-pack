@@ -99,4 +99,4 @@ def name_mas(generator_id=None):
 
 
 def alien_name_generate(generator_id=None):
-    return name_mas(generator_id).title()
+    return name_mas(generator_id)

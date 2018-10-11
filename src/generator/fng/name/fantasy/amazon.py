@@ -48,4 +48,4 @@ def amazon_selector(generator_id=None):
 
 
 def amazon_name_generate(generator_id=None):
-    return random_generator(amazon_selector, generator_id=generator_id).generate().title()
+    return random_generator(amazon_selector, generator_id=generator_id).generate()

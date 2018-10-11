@@ -334,4 +334,4 @@ class AnimatronicNameGenerator(NameGenerator):
 
 
 def animatronic_names_generate(gender=GENDER_MALE):
-    return AnimatronicNameGenerator.generate(gender).title()
+    return AnimatronicNameGenerator.generate(gender)

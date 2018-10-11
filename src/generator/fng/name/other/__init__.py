@@ -1,3 +1,6 @@
+from .album import AlbumGenerator, Album
+from .band import BandGenerator, Band
+
 """
 										<li><a href="http://www.fantasynamegenerators.com/afterlife-names.php">Afterlife Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/alliance-names.php">Alliance Names</a></li>

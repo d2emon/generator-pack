@@ -22,7 +22,7 @@ class Name:
 
     @property
     def name(self):
-        return self.test_name(self._name)
+        return self.test_name(self._name).title()
 
     def __str__(self):
         return self.name
@@ -45,7 +45,7 @@ class NameGenerator:
 
     @classmethod
     def generate(cls, gender=GENDER_NEUTRAL, *args, **kwargs):
-        parts = cls.generate_parts(gender=gender, *args, **kwargs),
+        parts = cls.generate_parts(gender=gender, *args, **kwargs)
         parts = cls.update_parts(parts)
         return Name(cls.glue.join(parts), cls)
 
