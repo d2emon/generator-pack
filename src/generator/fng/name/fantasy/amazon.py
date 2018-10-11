@@ -41,11 +41,11 @@ class Amazon2NameGenerator(AmazonNameGenerator):
     ]
 
 
-def amazon_selector(class_id):
-    if class_id < 5:
+def amazon_selector(generator_id=None):
+    if generator_id < 5:
         return Amazon1NameGenerator
     return Amazon2NameGenerator
 
 
-def amazon_name_generate():
-    return random_generator(amazon_selector).generate().title()
+def amazon_name_generate(generator_id=None):
+    return random_generator(amazon_selector, generator_id=generator_id).generate().title()

@@ -1,7 +1,7 @@
-from .alien import AlienNameGenerator, Alien1NameGenerator, Alien2NameGenerator, Alien3NameGenerator, alien_name_generate
-from .amazon import AmazonNameGenerator, Amazon1NameGenerator, Amazon2NameGenerator, amazon_name_generate
+from .alien import AlienNameGenerator, alien_name_generate
+from .amazon import AmazonNameGenerator, amazon_name_generate
 from .angel import AngelNameGenerator, angel_name_generate
-from .animal_species import AnimalSpeciesNameGenerator, AnimalSpecies1NameGenerator, AnimalSpecies2NameGenerator, AnimalSpecies3NameGenerator, animal_species_generate
+from .animal_species import AnimalSpeciesNameGenerator, animal_species_generate
 from .animatronic import AnimatronicNameGenerator, animatronic_names_generate
 
 """

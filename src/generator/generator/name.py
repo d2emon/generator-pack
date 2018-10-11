@@ -5,8 +5,9 @@ GENDER_MALE = 1
 GENDER_FEMALE = 2
 
 
-def random_generator(selector, max_value=10):
-    generator_id = random.randrange(max_value)
+def random_generator(selector, generator_id=None, max_value=10):
+    if generator_id is None:
+        generator_id = random.randrange(max_value)
     return selector(generator_id)
 
 

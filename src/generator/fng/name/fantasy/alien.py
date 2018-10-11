@@ -86,17 +86,17 @@ class Alien3NameGenerator(AlienNameGenerator):
         return parts
 
 
-def alien_selector(class_id):
-    if class_id < 4:
+def alien_selector(generator_id):
+    if generator_id < 4:
         return Alien1NameGenerator
-    elif class_id < 7:
+    elif generator_id < 7:
         return Alien2NameGenerator
     return Alien3NameGenerator
 
 
-def name_mas():
-    return random_generator(alien_selector).generate()
+def name_mas(generator_id=None):
+    return random_generator(alien_selector, generator_id=generator_id).generate()
 
 
-def alien_name_generate():
-    return name_mas().title()
+def alien_name_generate(generator_id=None):
+    return name_mas(generator_id).title()

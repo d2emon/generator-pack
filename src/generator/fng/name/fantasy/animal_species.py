@@ -364,13 +364,13 @@ class AnimalSpecies3NameGenerator(AnimalSpeciesNameGenerator):
     ]
 
 
-def animal_species_selector(class_id):
-    if class_id < 4:
+def animal_species_selector(generator_id):
+    if generator_id < 4:
         return AnimalSpecies1NameGenerator
-    elif class_id < 6:
+    elif generator_id < 6:
         return AnimalSpecies2NameGenerator
     return AnimalSpecies3NameGenerator
 
 
-def animal_species_generate():
-    return random_generator(animal_species_selector).generate().title()
+def animal_species_generate(generator_id=None):
+    return random_generator(animal_species_selector, generator_id=generator_id).generate().title()
