@@ -24,7 +24,8 @@ def test_all(count):
 
 
 def test_other(count):
-    name = random.choice(generators.keys())
+    generator_names = list(generators.keys())
+    name = random.choice(generator_names)
     g = generators.get(name)
     for _ in range(count):
-        assert g.generate() is None
+        assert g.generate() is not None

@@ -1,7 +1,7 @@
 from menu import Menu
 
-from generator._unknown.space.galaxy import GalaxyGenerator
-from generator._unknown.space.planet import PlanetGenerator
+# from generator._unknown.space.galaxy import GalaxyGenerator
+# from generator._unknown.space.planet import PlanetGenerator
 
 from .menu_handler import MenuHandler
 
@@ -19,8 +19,8 @@ class GalaxyHandler(MenuHandler):
 
     def handle(self):
         planets = []
-        for i in range(10):
-            planets.append(GalaxyHandler(PlanetGenerator.generate()).option)
+        # for i in range(10):
+        #     planets.append(GalaxyHandler(PlanetGenerator.generate()).option)
         menu = Menu(
             title=self.text,
             options=planets + [
@@ -34,8 +34,8 @@ class GalaxyHandler(MenuHandler):
 def list_galaxies():
     global galaxies
     galaxies = []
-    for i in range(10):
-        galaxies.append(GalaxyHandler(GalaxyGenerator.generate()).option)
+    # for i in range(10):
+    #     galaxies.append(GalaxyHandler(GalaxyGenerator.generate()).option)
     menu = Menu(
         title="Galaxies",
         options=galaxies + [("Exit", Menu.CLOSE), ]

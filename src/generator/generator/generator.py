@@ -26,7 +26,7 @@ class Generator:
 
     @classmethod
     def populate(cls, generated, *args, **kwargs):
-        generated.value = cls.text_format % (next(cls))
+        generated.value = cls.text_format % (cls.__next__())
         return generated
 
 
