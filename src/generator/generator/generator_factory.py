@@ -1,5 +1,5 @@
 import random
-from fixtures.names import names_data
+from fixtures import generator_data
 
 
 class Name:
@@ -13,29 +13,34 @@ class Name:
         return str(self)
 
 
-class AlienNameGenerator:
-    races = ('race1', 'race2', 'race3')
+class NameGenerator:
     block_id = 'aliens'
+    groups = ()
 
     def __init__(self, data=None):
-        self._data = data or names_data
+        self._data = data or generator_data
+        self._names = self._data['names']
 
-    def _race(self, race_id=None):
-        if race_id is None:
-            race_id = random.choice(self.races)
-        return self._data[self.block_id].get(race_id)
+    def _group(self, group_id=None):
+        block = self._names[self.block_id]
 
-    def _parts(self, race_id=None):
-        return (random.choice(part) for part in self._race(race_id))
+        if len(self.groups) < 1:
+            return block
+
+        if group_id is None:
+            group_id = random.choice(self.groups)
+        return block.get(group_id)
+
+    def _parts(self, group_id=None):
+        return (random.choice(part) for part in self._group(group_id))
 
     def generate(self, race_id=None):
         return Name(*self._parts(race_id))
 
 
-class NameGenerators:
-    def __init__(self, data=None):
-        self._data = data or names_data
-        self.alien_name_generator = AlienNameGenerator(self._data)
+class AlienNameGenerator(NameGenerator):
+    groups = ('race1', 'race2', 'race3')
+    block_id = 'aliens'
 
 
 class BaseGenerator1:
