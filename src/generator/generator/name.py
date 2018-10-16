@@ -1,4 +1,6 @@
 import random
+from fixtures import generator_data
+
 
 GENDER_NEUTRAL = 0
 GENDER_MALE = 1
@@ -12,52 +14,70 @@ def random_generator(selector, generator_id=None, max_value=10):
 
 
 class Name:
-    def __init__(self, name, generator=None):
-        self._name = name
+    glue = ""
+
+    def __init__(self, *items, generator=None):
+        self._items = items
         self.generator = generator
 
     @classmethod
-    def test_name(cls, name):
-        return name
+    def build_name(cls, items):
+        return cls.glue.join(items).title()
 
     @property
-    def name(self):
-        return self.test_name(self._name).title()
+    def value(self):
+        return self.build_name(self._items)
+
+    @value.setter
+    def __set_name__(self, value):
+        self._items = value,
 
     def __str__(self):
-        return self.name
+        return self.value
 
     def __repr__(self):
         return str(self)
 
 
-class NameGenerator:
+class TextGenerator:
+    block_id = ''
+    groups = ()
     data = []
-    glue = ""
 
-    @classmethod
-    def generate_parts(cls, *args, **kwargs):
-        return [random.choice(parts) for parts in cls.data]
+    def __init__(self, data=None):
+        data = data or generator_data
+        self.data = data[self.block_id]
 
-    @classmethod
-    def update_parts(cls, parts, *args, **kwargs):
-        return parts
+    def generate_data(self, group_id=None):
+        if len(self.groups) < 1:
+            return self.data
 
-    @classmethod
-    def make_name(cls, parts):
-        return cls.glue.join(parts)
+        if group_id is None:
+            group_id = random.choice(self.groups)
+        return self.data.get(group_id)
 
-    @classmethod
-    def generate(cls, gender=GENDER_NEUTRAL, *args, **kwargs):
-        parts = cls.generate_parts(gender=gender, *args, **kwargs)
-        parts = cls.update_parts(parts, gender=gender, *args, **kwargs)
-        return Name(cls.make_name(parts), cls)
+    def generate(self, group_id=None, item_id=None, *args, **kwargs):
+        return Name(random.choice(self.generate_data(group_id)), generator=self)
 
     def __iter__(self):
         return self
 
     def __next__(self):
         return self.generate()
+
+
+class NameGenerator(TextGenerator):
+    block_id = 'names'
+    name_group_id = 'aliens'
+    gender = GENDER_NEUTRAL
+
+    def __init__(self, data=None):
+        super().__init__(data)
+        self.data = self.data[self.name_group_id]
+
+    def generate(self, race_id=None, item_id=None, *args, **kwargs):
+        parts = (random.choice(part) for part in self.generate_data(race_id))
+        return Name(*parts, generator=self)
 
 
 class ListNameGenerator(NameGenerator):

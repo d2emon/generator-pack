@@ -1,41 +1,4 @@
-import random
-from fixtures import generator_data
-
-
-class Name:
-    def __init__(self, *items):
-        self.items = items
-
-    def __str__(self):
-        return "".join(self.items).title()
-
-    def __repr__(self):
-        return str(self)
-
-
-class NameGenerator:
-    block_id = 'aliens'
-    groups = ()
-
-    def __init__(self, data=None):
-        self._data = data or generator_data
-        self._names = self._data['names']
-
-    def _group(self, group_id=None):
-        block = self._names[self.block_id]
-
-        if len(self.groups) < 1:
-            return block
-
-        if group_id is None:
-            group_id = random.choice(self.groups)
-        return block.get(group_id)
-
-    def _parts(self, group_id=None):
-        return (random.choice(part) for part in self._group(group_id))
-
-    def generate(self, race_id=None):
-        return Name(*self._parts(race_id))
+from .name import NameGenerator
 
 
 class AlienNameGenerator(NameGenerator):
