@@ -12,6 +12,9 @@ auburn = Color("Auburn")
 violet = Color("Violet")
 blue = Color("Blue")
 pink = Color("Pink")
+red = Color("Red")
+white = Color("White")
+gray = Color("Gray")
 checkered = Color("Checkered")
 
 

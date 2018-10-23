@@ -56,12 +56,26 @@ class Socks(Clothing):
     def __init__(self, name, color=None):
         super().__init__(name, color)
         self.order = 5
-        self.parts = {Thighs, Legs, Feet, }
+        self.parts = {Legs, Feet, }
+
+
+class Shoes(Clothing):
+    def __init__(self, name, color=None):
+        super().__init__(name, color)
+        self.order = 10
+        self.parts = {Feet, }
 
 
 class Blouse(UpClothing):
     pass
 
 
-class Skirt(DownClothing):
+class Chemise(UpClothing):
     pass
+
+
+class Skirt(DownClothing):
+    def __init__(self, name, color=None):
+        super().__init__(name, color)
+        self.order = 10
+        self.parts = {Thighs, }

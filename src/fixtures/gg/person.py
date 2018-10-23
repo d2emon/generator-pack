@@ -13,18 +13,10 @@ names = (
 
 class Paperdoll:
     def __init__(self, cloths=()):
-        self.parts = {
-            Chest: dict(),
-            Thighs: dict(),
-            Legs: dict(),
-            Feet: dict(),
-        }
-
-        for cloth in cloths:
-            self.wear(cloth)
+        self.cloths = list(cloths)
 
     def wearing(self, part, take_off=False):
-        cloths = self.parts.get(part)
+        cloths = self.sorted.get(part)
         if len(cloths) < 1:
             return None
 
@@ -32,12 +24,21 @@ class Paperdoll:
         orders.sort(reverse=True)
         result = cloths[orders[0]]
         if take_off:
-            del cloths[orders[0]]
+            del self.cloths[self.cloths.index(result)]
         return result
 
-    def wear(self, cloth):
-        for part in cloth.parts:
-            self.parts[part][cloth.order] = cloth
+    @property
+    def sorted(self):
+        parts = {
+            Chest: dict(),
+            Thighs: dict(),
+            Legs: dict(),
+            Feet: dict(),
+        }
+        for cloth in self.cloths:
+            for part in cloth.parts:
+                parts[part][cloth.order] = cloth
+        return parts
 
 
 class Person(Paperdoll):
