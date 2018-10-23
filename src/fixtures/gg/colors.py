@@ -5,6 +5,8 @@ class Color:
     def __str__(self):
         return self.name
 
+dark = Color("Dark")
+
 
 blond = Color("Blond")
 black = Color("Black")
@@ -19,6 +21,7 @@ checkered = Color("Checkered")
 
 
 hair_colors = (
+    dark,
     blond,
     black,
     auburn,
