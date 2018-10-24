@@ -10,6 +10,7 @@ dark = Color("Dark")
 
 blond = Color("Blond")
 black = Color("Black")
+brown = Color("Brown")
 auburn = Color("Auburn")
 violet = Color("Violet")
 blue = Color("Blue")
@@ -18,6 +19,7 @@ red = Color("Red")
 white = Color("White")
 gray = Color("Gray")
 checkered = Color("Checkered")
+bee = Color("Bee")
 
 
 hair_colors = (
