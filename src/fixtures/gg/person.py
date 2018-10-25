@@ -41,6 +41,16 @@ class Paperdoll:
         return parts
 
 
+class Hair:
+    def __init__(self):
+        self.color = None
+
+
+class Eyes:
+    def __init__(self):
+        self.color = None
+
+
 class Person(Paperdoll):
     gender = None
 
@@ -48,7 +58,14 @@ class Person(Paperdoll):
         super().__init__(cloths)
 
         self.name = name or random.choice(names)
-        self.hair = hair or random.choice(hair_colors)
+        self.hair = Hair()
+        self.eyes = Eyes()
+
+    def set_hair(self, color=None):
+        self.hair.color = color or random.choice(hair_colors)
+
+    def set_eyes(self, color=None):
+        self.eyes.color = color or random.choice(hair_colors)
 
 
 class Girl(Person):
