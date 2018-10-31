@@ -1,5 +1,6 @@
 import random
 from .locations import Location, Named, Spheric
+from pyvoronoi import Pyvoronoi
 
 
 PARSEC = 3.26
@@ -38,6 +39,34 @@ class Filament(SpaceStructure):
         )
         super().__init__(x, y, z, color, size)
 
+        self.start = None
+        self.end = None
+        self.start_point =(0, 0)
+        self.end_point =(0, 0)
+        self.width = random.randrange(2)
+        self.density = random.randrange(255)
+
+
+    def set_points(self, start=-1, end=-1):
+        if start >= 0:
+            self.start = start
+        else:
+            self.start = None
+
+        if end >= 0:
+            self.end = end
+        else:
+            self.end = None
+
+        self.start_point = (0, 0)
+        self.end_point = (0, 0)
+
+    def set_start(self, x, y):
+        self.start_point = (int(x * 10), int(y * 10))
+
+    def set_end(self, x, y):
+        self.end_point = (int(x * 10), int(y * 10))
+
     def point(self):
         size = (
             self.size[0] / 2,
@@ -45,6 +74,10 @@ class Filament(SpaceStructure):
         )
 
         return self.x - size[0], self.y - size[1], self.x + size[0], self.y + size[1]
+
+    @property
+    def line(self):
+        return self.start_point + self.end_point
 
 
 class Wall(Filament):
@@ -65,6 +98,9 @@ class Void(SpaceStructure):
     def __init__(self, x=0, y=0, z=0, color=None, size=None):
         size = size or .130
         super().__init__(x, y, z, color, size)
+
+    def get_rect(self, scale):
+        return [int(x * scale) for x in self.point()]
 
 
 class SuperVoid(Void):
@@ -87,6 +123,7 @@ class Universe(Named, Spheric):
         Spheric.__init__(self, radius)
 
         self.structure = []
+        self.voids = []
 
         walls = [
             (10, 7.2),
@@ -99,23 +136,23 @@ class Universe(Named, Spheric):
             w = Wall(*self.generate_coordinates(), size=wall)
             self.structure.append(w)
 
+        # Voids
         for _ in range(5):
-            v = Void(*self.generate_coordinates())
-            self.structure.append(v)
+            self.voids.append(Void(*self.generate_coordinates()))
 
         for _ in range(5):
-            v = SuperVoid(*self.generate_coordinates())
-            self.structure.append(v)
+            self.voids.append(SuperVoid(*self.generate_coordinates()))
 
         giant_void = SuperVoid(*self.generate_coordinates(), size=.4 * PARSEC)
-        self.structure.append(giant_void)
+        self.voids.append(giant_void)
 
         for _ in range(500):
-            v = Void(*self.generate_coordinates())
-            self.structure.append(v)
-            sv = SuperVoid(*self.generate_coordinates())
-            self.structure.append(sv)
+            self.voids.append(Void(*self.generate_coordinates()))
+            self.voids.append(SuperVoid(*self.generate_coordinates()))
 
+        # Structure
+        self.structure += self.voids
+        for _ in range(500):
             f = Filament(*self.generate_coordinates())
             self.structure.append(f)
             w = Wall(*self.generate_coordinates())
@@ -206,5 +243,54 @@ class Universe(Named, Spheric):
             l = GalaxySupercluster(*self.generate_coordinates(), size=supercluster)
             self.structure.append(l)
 
+        self.filaments = []
+
     def generate_location(self):
         return SpaceStructure(*self.generate_coordinates())
+
+    def generate_voids(self):
+        return [Void(*self.generate_coordinates()) for _ in range(self.items_count)]
+
+    def generate_map(self):
+        pv = Pyvoronoi(1)
+        for void in self.voids:
+            pv.AddPoint((void.x, void.y))
+        pv.Construct()
+
+        self.filaments = []
+        for cell in pv.GetCells():
+            for edge_id in cell.edges:
+                if edge_id < 0:
+                    continue
+
+                edge = pv.GetEdge(edge_id)
+                filament = Filament()
+                filament.set_points(edge.start, edge.end)
+
+                if filament.start:
+                    vertex = pv.GetVertex(filament.start)
+                    filament.set_start(vertex.X, vertex.Y)
+                else:
+                    continue
+
+                if filament.end:
+                    vertex = pv.GetVertex(filament.end)
+                    filament.set_end(vertex.X, vertex.Y)
+                else:
+                    continue
+
+                self.filaments.append(filament)
+
+    def get_size(self, scale=10):
+        return (
+            int(self.diameter * scale),
+            int(self.diameter * scale),
+        )
+
+    def get_rect(self, scale=10):
+        return (
+            0,
+            0,
+            self.diameter * scale,
+            self.diameter * scale,
+        )

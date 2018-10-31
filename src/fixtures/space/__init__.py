@@ -3,9 +3,6 @@ import math
 from PIL import Image, ImageDraw
 
 
-
-
-
 def parabola(focus, l):
     def x(y):
         xf, yf = focus
