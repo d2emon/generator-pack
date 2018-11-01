@@ -1,4 +1,5 @@
 import random
+import math
 from .locations import Location, Named, Spheric
 from pyvoronoi import Pyvoronoi
 
@@ -46,7 +47,6 @@ class Filament(SpaceStructure):
         self.width = random.randrange(2)
         self.density = random.randrange(255)
 
-
     def set_points(self, start=-1, end=-1):
         if start >= 0:
             self.start = start
@@ -60,6 +60,22 @@ class Filament(SpaceStructure):
 
         self.start_point = (0, 0)
         self.end_point = (0, 0)
+
+    def get_dots(self):
+        x = self.start_point[0] - self.end_point[0]
+        y = self.start_point[1] - self.end_point[1]
+
+        width = int(math.hypot(x, y)) + 10
+        height = self.width * 10 + 10
+        size = (width, height)
+
+        dots = []
+        for _ in range(32):
+            point = [random.randrange(c) for c in size]
+            color = random.randrange(255)
+            alpha = 255
+            dots.append((point, (color, color, color, alpha)))
+        return size, dots
 
     def set_start(self, x, y):
         self.start_point = (int(x * 10), int(y * 10))
