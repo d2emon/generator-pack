@@ -1,3 +1,4 @@
+dice
 Menu==3.1.0
 num2words==0.5.6
 coverage==4.5.1
