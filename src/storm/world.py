@@ -153,6 +153,14 @@ class WorldSize(Model):
         self.min_size = int(self.min_size) if self.min_size else 0
         self.max_size = int(self.max_size) if self.max_size else None
 
+    @property
+    def text(self):
+        return "\n".join([
+            "Класс размера:\t{size_class.size_class}",
+            "Описание:\t\t{size_class.name}",
+            "Размер:\t\t\t{size_class.size}",
+        ]).format(size_class=self)
+
     def generate_size(self):
         if self.min_size is None:
             return random.randrange(self.max_size)
@@ -222,3 +230,18 @@ class World(Model):
             size_class = self.size_class
             self.__size = size_class.generate_size() if size_class else None
         return self.__size
+
+    @property
+    def description(self):
+        return "\n".join([
+            "{world_type.world_type} {shape.name} ({size} миль)",
+            "{world_type.description}",
+            "Возможные столкновения: {world_type.encounters}",
+            "{shape.description}",
+            "{size_class.text}",
+        ]).format(
+            size=self.size,
+            shape=self.shape,
+            size_class=self.size_class,
+            world_type=self.world_type,
+        )
