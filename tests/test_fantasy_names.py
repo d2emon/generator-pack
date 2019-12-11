@@ -1,7 +1,6 @@
 import pytest
-import random
 
-from generator.fng.name.fantasy import *
+from genesys.generator import *
 
 
 @pytest.fixture

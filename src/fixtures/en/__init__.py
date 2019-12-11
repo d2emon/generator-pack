@@ -1,5 +1,5 @@
 from fixtures.space.multiverse import multiverse
-from fixtures.names.en import en as names_en
+from fixtures.names import en as names_en
 
 
 en = {

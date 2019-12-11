@@ -2,7 +2,7 @@ import pytest
 import random
 
 from fixtures.streets import streets
-from generator._unknown.street import Street, StreetChain
+from genesys.generator import Street, StreetChain
 
 
 @pytest.fixture
