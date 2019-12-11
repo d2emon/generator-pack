@@ -1,6 +1,6 @@
 from factory import SimpleItem
-from sample_data.dndspeak import DESERT_ENCOUNTERS
+from sample_data import get_from_group
 
 
 class DesertEncounter(SimpleItem):
-    default_data = DESERT_ENCOUNTERS
+    default_data = [item.get('value') for item in get_from_group('desert-encounters')]
