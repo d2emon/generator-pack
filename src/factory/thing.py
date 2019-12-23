@@ -5,9 +5,9 @@ class Thing:
     default_children_data = []
     default_name = ""
 
-    def __init__(self, name=None, *children):
+    def __init__(self, name=None, children=None):
         self.name = name or self.generate_name()
-        self.children = children
+        self.__children = children
 
     @classmethod
     def children_data(cls):
@@ -42,7 +42,13 @@ class Thing:
 
     @classmethod
     def generate(cls):
-        return cls(cls.generate_name(), *cls.__generate_children())
+        return cls(cls.generate_name(), list(cls.__generate_children()))
+
+    @property
+    def children(self):
+        if self.__children is None:
+            self.__children = list(self.__generate_children())
+        return self.__children
 
     def find(self, child_class):
         return (child for child in self.children if isinstance(child, child_class))

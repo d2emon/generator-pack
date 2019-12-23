@@ -33,22 +33,6 @@ class Ghost(Thing):
     pass
 
 
-class Continent(Thing):
-    pass
-
-
-class FutureContinent(Continent):
-    pass
-
-
-class MedievalContinent(Continent):
-    pass
-
-
-class AncientContinent(Continent):
-    pass
-
-
 class Ocean(Thing):
     pass
 

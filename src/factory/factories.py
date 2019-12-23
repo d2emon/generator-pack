@@ -8,6 +8,9 @@ class ThingFactory:
     def generate(self):
         yield self.generated_class()
 
+    def next(self):
+        return next(self.generate())
+
     def factory(self):
         return self
 

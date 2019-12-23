@@ -1,5 +1,6 @@
-from factory.thing import Thing
 from . import dummy
+from factory.thing import Thing
+from .. import land, future
 
 
 class PlanetCore(Thing):
@@ -55,7 +56,7 @@ class PlanetBody(Thing):
 
     @property
     def continents(self):
-        return self.find(dummy.Continent)
+        return self.find(land.Continent)
 
     @property
     def oceans(self):
@@ -86,7 +87,7 @@ class Moon(PlanetBody):
 
 
 class TerraformedMoon(Moon):
-    continent_class = dummy.Continent
+    continent_class = land.ModernContinent
     ocean_class = dummy.Ocean
     sky_class = dummy.Sky
     moon_types = Thing.list_factory([
@@ -131,9 +132,9 @@ class BarrenPlanet(TelluricPlanet):
     @classmethod
     def children_data(cls):
         yield from cls.default_children_data
-        yield from dummy.GalacticLife.probable_factory(cls.galactic_life_probability)
+        yield dummy.GalacticLife.probable_factory(cls.galactic_life_probability)
         yield dummy.Rock
-        yield from dummy.Ice.probable_factory(50)
+        yield dummy.Ice.probable_factory(50)
         yield from TelluricPlanet.children_data()
 
 
@@ -146,31 +147,31 @@ class VisitorPlanet(BarrenPlanet):
 
 
 class EarthLike(TelluricPlanet):
-    continent_class = dummy.Continent
+    continent_class = land.ModernContinent
     ocean_class = dummy.Ocean
     sky_class = dummy.Sky
 
 
 class FuturePlanet(EarthLike):
-    continent_class = dummy.FutureContinent
+    continent_class = future.FutureContinent
     sky_class = dummy.FutureSky
     moon_class = FutureMoon
 
 
 class TerraformedPlanet(EarthLike):
-    continent_class = dummy.Continent
+    continent_class = land.ModernContinent
     sky_class = dummy.TerraformedSky
     moon_class = TerraformedMoon
 
 
 class MedievalPlanet(EarthLike):
-    continent_class = dummy.MedievalContinent
+    continent_class = land.MedievalContinent
 
     @classmethod
     def continents_factory(cls):
-        yield dummy.MedievalContinent.multiple_factory(2, 4)
-        yield dummy.AncientContinent.multiple_factory(0, 3)
+        yield land.MedievalContinent.multiple_factory(2, 4)
+        yield land.AncientContinent.multiple_factory(0, 3)
 
 
 class AncientPlanet(EarthLike):
-    continent_class = dummy.AncientContinent
+    continent_class = land.AncientContinent
