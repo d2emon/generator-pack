@@ -2,6 +2,7 @@ from . import dummy
 from ..dummy import Mountain
 from factory.thing import Thing
 from ..subdivision import Region, Land, Continent, Biome
+from . import town
 
 
 class MedievalRegion(Region):
@@ -16,14 +17,14 @@ class MedievalRegion(Region):
     @classmethod
     def generate_name(cls):
         return cls.default_name.format(
-            cls.biome_types.generate(),
-            cls.region_types.generate(),
+            cls.biome_types.next(),
+            cls.region_types.next(),
         )
 
     @classmethod
     def children_data(cls):
-        yield dummy.MedievalCapital
-        yield dummy.MedievalVillage.multiple_factory(2, 6)
+        yield town.MedievalCapital
+        yield town.MedievalVillage.multiple_factory(2, 6)
         yield dummy.Dungeon.probable_factory(15)
         yield dummy.Dungeon.probable_factory(5)
 
@@ -58,13 +59,13 @@ class MedievalLand(Land):
     @classmethod
     def generate_name(cls):
         return cls.default_name.format(
-            cls.land_types.generate(),
-            cls.land_name_parts[0].generate(),
-            cls.land_name_parts[1].generate(),
-            cls.land_name_parts[2].generate(),
-            cls.land_name_parts[3].generate(),
-            cls.land_name_parts[4].generate(),
-            cls.land_name_parts[5].generate(),
+            cls.land_types.next(),
+            cls.land_name_parts[0].next(),
+            cls.land_name_parts[1].next(),
+            cls.land_name_parts[2].next(),
+            cls.land_name_parts[3].next(),
+            cls.land_name_parts[4].next(),
+            cls.land_name_parts[5].next(),
         )
 
     @classmethod

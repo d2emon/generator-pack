@@ -1,7 +1,7 @@
 from . import dummy
-from ..land.dummy import City
 from factory.thing import Thing
 from ..land.subdivision import Continent
+from ..land.town import City
 
 
 class Sprowseship(Thing):

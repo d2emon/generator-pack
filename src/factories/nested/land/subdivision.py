@@ -1,5 +1,6 @@
 from . import dummy
 from factory.thing import Thing
+from . import town
 
 
 class Biome(Thing):
@@ -12,7 +13,7 @@ class Biome(Thing):
     @classmethod
     def children_data(cls):
         yield dummy.Plain.multiple_factory(1, 5)
-        yield cls.forest_types.generate()
+        yield cls.forest_types.next()
         yield dummy.Mountain.multiple_factory(0, 3)
 
 
@@ -28,9 +29,21 @@ class Region(Thing):
 
     @classmethod
     def children_data(cls):
-        yield dummy.Capital
-        yield dummy.City.multiple_factory(1, 10)
-        yield dummy.Village.multiple_factory(2, 15)
+        yield town.Capital
+        yield town.City.multiple_factory(1, 10)
+        yield town.Village.multiple_factory(2, 15)
+
+    @property
+    def capital(self):
+        return self.find_one(town.Capital)
+
+    @property
+    def cities(self):
+        return self.find(town.City)
+
+    @property
+    def villages(self):
+        return self.find(town.Village)
 
 
 class Land(Biome):

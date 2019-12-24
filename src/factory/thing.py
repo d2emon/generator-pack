@@ -50,11 +50,14 @@ class Thing:
             self.__children = list(self.__generate_children())
         return self.__children
 
-    def find(self, child_class):
+    def __find(self, child_class):
         return (child for child in self.children if isinstance(child, child_class))
 
+    def find(self, child_class):
+        return list(self.__find(child_class))
+
     def find_one(self, child_class):
-        return next(self.find(child_class), None)
+        return next(self.__find(child_class), None)
 
     def __str__(self):
         return self.name

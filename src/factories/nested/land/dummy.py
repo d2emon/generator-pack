@@ -29,13 +29,49 @@ class Battlefield(Thing):
     pass
 
 
-class City(Thing):
+class ResidentalArea(Thing):
     pass
 
 
-class Capital(Thing):
+class CommercialArea(Thing):
     pass
 
 
-class Village(Thing):
+class PoliceStation(Thing):
+    pass
+
+
+class FireDepartment(Thing):
+    pass
+
+
+class Museum(Thing):
+    pass
+
+
+class Library(Thing):
+    pass
+
+
+class Farm(Thing):
+    pass
+
+
+class Factory(Thing):
+    pass
+
+
+class Cemetery(Thing):
+    pass
+
+
+class ResearchFacility(Thing):
+    pass
+
+
+class Monument(Thing):
+    pass
+
+
+class Hospital(Thing):
     pass
