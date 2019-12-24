@@ -1,16 +1,17 @@
 from . import dummy
 from .. import town
+from . import building
 
 
 class MedievalVillage(town.Village):
     @classmethod
     def children_data(cls):
-        yield dummy.Townwall.probable_factory(20)
-        yield dummy.WatchTower.probable_factory(15)
-        yield dummy.MedievalMonument.probable_factory(50)
-        yield dummy.MedievalResidentialArea.multiple_factory(1, 4)
-        yield dummy.MedievalCommercialArea.multiple_factory(1, 2)
-        yield dummy.MedievalTemple.multiple_factory(0, 2)
+        yield building.Townwall.probable_factory(20)
+        yield building.WatchTower.probable_factory(15)
+        yield building.MedievalMonument.probable_factory(50)
+        yield building.MedievalResidentialArea.multiple_factory(1, 4)
+        yield building.MedievalCommercialArea.multiple_factory(1, 2)
+        yield building.MedievalTemple.multiple_factory(0, 2)
         yield dummy.MedievalFarm.multiple_factory(4, 8)
         yield dummy.MedievalCemetery.probable_factory(50)
         yield dummy.WizardTower.probable_factory(5)
@@ -27,46 +28,20 @@ class MedievalCapital(town.Capital):
 
     @classmethod
     def children_data(cls):
-        yield dummy.Castle
-        yield dummy.Townwall
-        yield dummy.MedievalMonument.probable_factory(70)
-        yield dummy.MedievalMonument.probable_factory(20)
-        yield dummy.MedievalResidentialArea.multiple_factory(3, 12)
-        yield dummy.MedievalMageQuarter.probable_factory(50)
-        yield dummy.MedievalMageQuarter.probable_factory(20)
-        yield dummy.MedievalTemple.multiple_factory(1, 3)
-        yield dummy.MedievalCommercialArea.multiple_factory(2, 6)
+        yield building.Castle
+        yield building.Townwall
+        yield building.MedievalMonument.probable_factory(70)
+        yield building.MedievalMonument.probable_factory(20)
+        yield building.MedievalResidentialArea.multiple_factory(3, 12)
+        yield building.MedievalMageQuarter.probable_factory(50)
+        yield building.MedievalMageQuarter.probable_factory(20)
+        yield building.MedievalTemple.multiple_factory(1, 3)
+        yield building.MedievalCommercialArea.multiple_factory(2, 6)
         yield dummy.MedievalFarm.multiple_factory(2, 6)
         yield dummy.MedievalCemetery
 
 
 """
-new Thing("castle",["medieval peasant,1-4","medieval noble,0-2","medieval guard,2-8","castle keep","giant monster cage,1%","watchtower,1-6","medieval temple,30%","medieval inn,40%","medieval house,1-4","medieval monument,70%","medieval monument,20%","moat,30%","gatehouse","medieval wall"]);
-new Thing("gatehouse",["medieval guard,1-3","portcullis,1-2","wood","medieval wall"]);
-new Thing("portcullis",["wood","metal"]);
-new Thing("moat",["water,50%","dirt"]);
-new Thing("medieval monument",[["stone","marble"]],["fountain","memorial","statue","well","altar"]);
-new Thing("townwall",["medieval guard,1-8","watchtower,1-6","medieval wall"]);
-new Thing("watchtower",["medieval guard,1-2","medieval chest,30%",".medieval building"]);
-new Thing("castle keep",["great hall","noble medieval living quarters,1-3","noble medieval bedroom,2-5",".medieval building"]);
-new Thing("great hall",["medieval king,90%","medieval queen,90%","throne,2","wizard,0-3","medieval noble,1-6","medieval guard,1-4","medieval servant,1-4","medieval table","medieval table,60%","medieval chair,3-8","medieval chest,1-4","medieval clutter,0-4","medieval meat,30%","sack of medieval food,0-2","medieval food,0-2","sack of grain,50%","medieval fireplace","medieval fireplace,50%","dog,60%","dog,30%","cat,30%",".medieval room"],"throne room");
-new Thing("medieval residential area",["medieval house,3-8"],"housing district");
-new Thing("medieval commercial area",["medieval inn,1-2","medieval armor shop,0-2","medieval tool shop,0-2","medieval clothing shop,0-2","medieval butcher shop,0-2","medieval food shop,0-2","medieval apothecary shop,0-2"],"trade district");
-new Thing("medieval mage quarter",["wizard tower,1-5","medieval inn,0-1","medieval apothecary shop,0-3"],"mage district");
-new Thing("medieval house",["medieval living quarters","medieval bedroom","medieval bedroom,50%",".medieval building"],[["a small","a large","a big","a cozy","a bland","a boring","an old","a new","a freshly-painted","a pretty","an old-fashioned","a creepy","a spooky","a gloomy","a tall","a tiny","a fine","a happy little"],[" hovel"]]);
-new Thing("medieval building",["medieval walls","roof"],"building");
-new Thing("medieval room",["visitor,0.1%","ghost,0.1%","medieval walls"],"room");
-new Thing("medieval walls",["door,1-4","window,0-6",["medieval wall,4","medieval wall,4-8"]],"stone walls");
-new Thing("medieval wall",["wood","stone","dirt,20%"],"stone wall");
-new Thing("medieval living quarters",["medieval peasant,0-4","medieval pantry","medieval table","medieval table,30%","medieval chair,1-6","medieval chest,0-3","medieval clutter,0-2","medieval meat,30%","sack of medieval food,0-2","medieval food,0-2","sack of grain,50%","medieval fireplace,90%","dog,60%","dog,30%","cat,30%","poultry,10%","insect,70%","insect,40%",".medieval room"],"living quarters");
-new Thing("medieval bedroom",["medieval peasant,0-2","medieval bed","medieval bed,20%","medieval table,30%","medieval chair,0-4","medieval chest,0-2","medieval clutter,0-2","medieval fireplace,40%","dog,10%","dog,10%","cat,20%","insect,70%","insect,40%",".medieval room"],"bedroom");
-new Thing("medieval pantry",["medieval peasant,10%","medieval meat,0-4","sack of medieval food,0-8","medieval food,0-8","sack of grain,0-6","ale keg,0-3","medieval chest,0-2","medieval clutter,0-2","insect,0-4",".medieval room"],"pantry");
-new Thing("noble medieval living quarters",["wizard,10%","medieval noble,0-4","medieval servant,0-3","medieval pantry,0-2","medieval table","medieval table,60%","medieval chair,1-8","medieval chest,1-4","medieval clutter,0-4","medieval meat,30%","sack of medieval food,0-2","medieval food,0-2","sack of grain,50%","medieval fireplace","medieval fireplace,50%","dog,60%","dog,30%","cat,30%",".medieval room"],"living quarters");
-new Thing("noble medieval bedroom",["medieval noble,0-2","medieval servant,0-2","medieval bed","medieval bed,20%","medieval table,50%","medieval chair,0-4","medieval chest,1-3","medieval clutter,0-3","medieval fireplace,80%","dog,10%","dog,10%","cat,20%",".medieval room"],"bedroom");
-new Thing("medieval fireplace",["fire","ash","wood","stone"],"fireplace");
-new Thing("medieval temple",["medieval priest,1-3","medieval noble,0-2","medieval peasant,0-4","medieval altar,1-2","medieval table,70%","medieval bench,2-6","medieval chair,1-3","medieval chest,1-4","medieval clutter,0-4","medieval fireplace,20%",".medieval room"],[["temple of the","church of the","chapel of the","house of the","abbey of the","cathedral of the","shrine of the","sanctuary of the","priory of the"],[" "],["blinding","sacred","holy","unholy","bloody","cursed","marvellous","wondrous","pious","miraculous","endless","unending","undying","infinite","unworldly","worldly","divine","demonic","ghostly","monstrous","tentacled","all-knowing","rational","pretty good","vengeful","hallowed"],[" "],["light","star","beam","sphere","goddess","god","lords","sisterhood","brotherhood","skies","pact","sect","harmony","discord","child","entity","ghost","builders","makers","guide","wit","story","tale","unicorn","flame","fountain","locust","squid","gembaby","father","mother"]]);
-new Thing("giant monster cage",[["dragon","sea monster"]],"giant cage");
-
 new Thing("medieval shop",["medieval shopkeeper,1-2","medieval peasant,0-2","medieval noble,40%","medieval table,80%","medieval chair,0-2","medieval chest,0-2","medieval clutter,1-3",".medieval building"],"shop");
 new Thing("medieval armor shop",["armor,2-8","medieval weapon,2-8","treasure,30%","anvil",".medieval shop"],[["armors & swords","swords","bows","maces","armor","weapon","blacksmith","forge","equipment","gear"],[" shop"," market"," store"]]);
 new Thing("medieval tool shop",["medieval clutter,1-6","medieval chest,1-6",".medieval shop"],[["wares","tools","miscellaneous","utilities","equipment","gear","general"],[" shop"," market"," store"]]);
