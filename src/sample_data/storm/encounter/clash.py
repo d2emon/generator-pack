@@ -1,4 +1,4 @@
-from .encounter import Encounter
+from models.storm.encounters.encounter import Encounter
 
 
 class ClashEncounter(Encounter):

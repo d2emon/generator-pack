@@ -1,9 +1,9 @@
 import random
 from dice.dice import Dice
 from models.storm.encounters.event import Event as EventModel
-from .encounter import ENCOUNTER_TYPES
-from .distance import DISTANCES
-from .fraction import Fraction
+from sample_data.storm.encounter import ENCOUNTER_TYPES
+from sample_data.storm.encounter.distance import DISTANCES
+from models.storm.encounters.fraction import Fraction
 
 
 class Event(EventModel):
