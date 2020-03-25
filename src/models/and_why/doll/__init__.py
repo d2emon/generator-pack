@@ -1,10 +1,10 @@
 import random
 from models.slotted import Slotted, SlotItem
-from models.and_why.slots import SLOTS
+from .. import slots
 
 
 class Doll(Slotted):
-    SLOTS = SLOTS
+    SLOTS = slots.SLOTS
 
     def __init__(self, gender):
         super().__init__()

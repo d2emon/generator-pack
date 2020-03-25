@@ -1,8 +1,7 @@
-from models.and_why import genders
 from models.data_item import DataItem
-from . import egypt
+from . import egypt, groups
 
 
 def fill():
-    DataItem.add_values(genders.MALE, egypt.male)
-    DataItem.add_values(genders.FEMALE, egypt.female)
+    DataItem.add_values(groups.MALE, egypt.male)
+    DataItem.add_values(groups.FEMALE, egypt.female)

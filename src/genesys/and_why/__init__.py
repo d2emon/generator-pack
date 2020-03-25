@@ -1,18 +1,23 @@
-import sample_data
-from models.and_why import Doll as DollModel, genders
+from models.and_why import Doll as DollModel
 from models.data_item import DataItem
+from sample_data.and_why import groups
+from . import genders
+
+
+class ClothingItem(DataItem):
+    GROUPS = {
+        genders.MALE: groups.MALE,
+        genders.FEMALE: groups.FEMALE,
+    }
+
+    @classmethod
+    def by_gender(cls, gender):
+        group_id = cls.GROUPS.get(gender)
+        return [item.value for item in cls.get_by_group(group_id)]
 
 
 class Doll(DollModel):
-    class Genders:
-        MALE = genders.MALE
-        FEMALE = genders.FEMALE
-
-    @classmethod
-    def get_clothing(cls, gender):
-        return [item.value for item in DataItem.get_by_group(gender)]
-
     def fill(self, items=None):
         if items is None:
-            items = self.get_clothing(self.gender)
+            items = ClothingItem.by_gender(self.gender)
         super().fill(items)
