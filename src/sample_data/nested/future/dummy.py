@@ -1,4 +1,4 @@
-from factory.thing import Thing
+from models.thing import Thing
 
 
 class FutureBuilding(Thing):

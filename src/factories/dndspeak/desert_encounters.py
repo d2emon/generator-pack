@@ -1,4 +1,4 @@
-from factory import SimpleItem
+from factories.factory import SimpleItem
 from sample_data import get_from_group
 
 

@@ -1,5 +1,5 @@
+from models.thing import Thing
 from . import dummy
-from factory.thing import Thing
 from ..land.subdivision import Continent
 from ..land.town import City
 

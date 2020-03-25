@@ -1,6 +1,6 @@
+from models.thing import Thing
 from . import dummy
 from ..dummy import Mountain
-from factory.thing import Thing
 from ..subdivision import Region, Land, Continent, Biome
 from . import town
 
