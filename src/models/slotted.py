@@ -1,11 +1,12 @@
 class SlotItem:
-    def __init__(self, slots):
-        self.slots = slots
+    slots = ()
+
+    @classmethod
+    def by_slot(cls, slot, items):
+        return (item for item in items if slot in item.slots)
 
 
 class Slotted:
-    SLOTS = []
-
     def __init__(self):
         self.slots = {}
 

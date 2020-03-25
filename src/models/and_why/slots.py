@@ -1,6 +1,10 @@
-IN_HAND = 1
-SHIELD = 2
-HEAD = 3
-NECK = 4
-TORSO = 5
-HIPS = 6
+from .clothing import Clothing
+
+SLOTS = (
+    Clothing.Slots.IN_HAND,
+    Clothing.Slots.SHIELD,
+    Clothing.Slots.HEAD,
+    Clothing.Slots.NECK,
+    Clothing.Slots.TORSO,
+    Clothing.Slots.HIPS,
+)

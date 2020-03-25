@@ -1,3 +1,5 @@
-from .dndspeak import fill
+from . import and_why, dndspeak
 
-fill()
+
+and_why.fill()
+dndspeak.fill()
