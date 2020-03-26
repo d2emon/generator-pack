@@ -25,3 +25,7 @@ class DataItem:
     @classmethod
     def get_by_group(cls, group_id):
         return cls.get_items(lambda i: i.group_id == group_id)
+
+    @classmethod
+    def get_values_by_group(cls, group_id):
+        return (item.value for item in cls.get_by_group(group_id))

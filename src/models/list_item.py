@@ -2,32 +2,71 @@ import random
 
 
 class SimpleItem:
-    default_data = []
+    class NameGenerator:
+        default = 'Unnamed'
+
+        def __init__(self, data=None):
+            self.__data = data or []
+
+        @property
+        def data(self):
+            if self.__data is None:
+                self.data = self.default
+            return self.__data
+
+        @data.setter
+        def data(self, value):
+            self.__data = value
+
+        def __iter__(self):
+            return self
+
+        def __next__(self):
+            return self.data
+
+    class ItemGenerator:
+        default = []
+
+        def __init__(self, data=None):
+            self.__data = data or []
+
+        @property
+        def data(self):
+            if self.__data is None:
+                self.data = list(self.default)
+            return self.__data
+
+        @data.setter
+        def data(self, value):
+            self.__data = value
+
+        def __iter__(self):
+            return self
+
+        def __next__(self):
+            if not len(self.__data):
+                return None
+            # random.shuffle(self.__data)
+            return random.choice(self.data)
+
     default_name = "Unnamed"
-    __data = None
 
     def __init__(self, name=None):
-        self.name = name or self.default_name
+        self.__name = name
+
+    @property
+    def name(self):
+        if self.__name is None:
+            self.__name = next(self.NameGenerator())
+        return self.__name
 
     def __str__(self):
         return self.name
 
     @classmethod
-    def set_data(cls, data):
-        cls.__data = data
-
-    @classmethod
-    def __next_data(cls):
-        if cls.__data is None:
-            cls.set_data(list(cls.default_data))
-        if not len(cls.__data):
-            return None
-        # random.shuffle(cls.__data)
-        return random.choice(cls.__data)
-
-    @classmethod
     def next(cls):
-        data = cls.__next_data()
-        if data is None:
-            return None
-        return cls(data)
+        return cls.from_data(next(cls.ItemGenerator()))
+
+    @classmethod
+    def from_data(cls, data):
+        return cls(data) if data is not None else None
