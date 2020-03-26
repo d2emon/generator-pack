@@ -2,7 +2,7 @@ from genesys.generator import Generated
 from genesys.generator import ListProvider
 
 
-from fixtures.other import mottos
+from sample_data.fixtures import mottos
 
 
 class Motto(Generated):

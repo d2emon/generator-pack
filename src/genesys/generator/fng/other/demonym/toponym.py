@@ -1,8 +1,8 @@
 from genesys.generator import Generated, ComplexGenerated
 from genesys.generator import ListProvider
 
-from fixtures.other import vowel_sounds, consonants, double_vowel_sounds, double_consonants
-from fixtures.other import endings
+from sample_data.fixtures import vowel_sounds, consonants, double_vowel_sounds, double_consonants
+from sample_data.fixtures import endings
 
 
 single_letter_provider = ListProvider(consonants) + ListProvider(vowel_sounds) + ListProvider(double_consonants)

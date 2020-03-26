@@ -1,7 +1,7 @@
 import pytest
 import random
 
-from fixtures.streets import streets
+from sample_data.fixtures import streets
 from genesys.generator import Street, StreetChain
 
 

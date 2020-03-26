@@ -1,6 +1,6 @@
 from genesys.generator import MarkovGenerator, MarkovChain
 
-from fixtures.streets import streets
+from sample_data.fixtures import streets
 
 
 class StreetChain(MarkovChain):

@@ -1,7 +1,7 @@
 from genesys.generator import ListGenerator, PercentGenerator
 from genesys.generator import Generated
 from genesys.generator import ListData
-from fixtures.media.band import names1, names2, names3, names4, names5
+from sample_data.fixtures import names1, names2, names3, names4, names5
 
 
 class Band(Generated):

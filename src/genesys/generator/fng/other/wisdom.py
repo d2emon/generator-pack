@@ -1,7 +1,7 @@
 from genesys.generator import Generated
 from genesys.generator import ListProvider
 
-from fixtures.other import wisdom
+from sample_data.fixtures.other import wisdom
 
 
 class WisdomQuote(Generated):

@@ -1,5 +1,5 @@
 import random
-from fixtures import generator_data
+from sample_data.fixtures import generator_data
 
 
 GENDER_NEUTRAL = 0

@@ -4,7 +4,8 @@ from genesys.generator import ListGenerated
 from genesys.generator import ProvidersList, ListProvider
 
 
-from fixtures.other import haiku, haiku_middle
+from sample_data.fixtures import haiku_middle
+from sample_data.fixtures.other import haiku
 
 
 class HaikuString(ListGenerated):

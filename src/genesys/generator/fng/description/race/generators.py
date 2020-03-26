@@ -1,6 +1,6 @@
 import random
 
-from fixtures import race
+from sample_data.fixtures import race
 from genesys.generator import StaticData, ListData
 from .generated import Body, Horns, Skin, Divercity
 from .limbs import Arms, WingedArms, ClawedArms, SideFins, DorsalFin, Wings, Legs, Tail

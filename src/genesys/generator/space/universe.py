@@ -1,7 +1,7 @@
 from genesys.generator import ListGenerated
 from genesys.generator import ListData
 
-from fixtures.space import universe
+from sample_data.fixtures.space import universe
 
 
 class Universe(ListGenerated):

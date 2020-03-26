@@ -1,8 +1,7 @@
 from genesys.generator import ListGenerated, ComplexGenerated
 from genesys.generator import ListData
 
-from fixtures.place.amusement_park.first1 import first1
-from fixtures.place.amusement_park import first2, second1, second2
+from sample_data.fixtures.place.amusement_park import first1, first2, second2, second1
 
 
 class BaseAmusementPark(ListGenerated):

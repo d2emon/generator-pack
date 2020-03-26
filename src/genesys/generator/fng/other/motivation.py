@@ -2,7 +2,7 @@ from genesys.generator import Generated
 from genesys.generator import ListProvider
 
 
-from fixtures.other.motivation import motivation
+from sample_data.fixtures import motivation
 
 
 class CharacterGoal(Generated):

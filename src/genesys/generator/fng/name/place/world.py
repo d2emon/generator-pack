@@ -1,8 +1,8 @@
 from genesys.generator import ListGenerated
 from genesys.generator import ListData
 
-from fixtures.place.world.adjective import adjective
-from fixtures.place.world import noun
+from sample_data.fixtures import adjective
+from sample_data.fixtures.place.world import noun
 
 
 class World(ListGenerated):

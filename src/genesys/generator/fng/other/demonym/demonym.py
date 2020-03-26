@@ -1,8 +1,8 @@
 import random
 
 
-from fixtures.other import vowels, double_vowels
-from fixtures.other import endings
+from sample_data.fixtures import vowels, double_vowels
+from sample_data.fixtures import endings
 
 
 BASE_SHORT = 0

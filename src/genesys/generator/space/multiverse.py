@@ -6,7 +6,7 @@ from genesys.generator import TwoPoint
 from genesys.generator import TextGenerator
 
 
-from fixtures.space.multiverse import multiverse
+from sample_data.fixtures import multiverse
 
 
 class UniverseNameGenerator(TextGenerator):

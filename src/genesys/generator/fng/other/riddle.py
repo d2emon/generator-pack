@@ -1,7 +1,7 @@
 from genesys.generator import ListGenerated
 from genesys.generator import ListProvider
 
-from fixtures.other import riddle
+from sample_data.fixtures.other import riddle
 
 
 class Riddle(ListGenerated):

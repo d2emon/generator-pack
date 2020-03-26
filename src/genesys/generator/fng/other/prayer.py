@@ -1,7 +1,7 @@
 from genesys.generator import ListGenerated, ComplexGenerated
 from genesys.generator import GeneratorProvider, ListProvider
 
-from fixtures.other.prayer import aid, forgive, deity
+from sample_data.fixtures.other.prayer import forgive, aid, deity
 
 RANDOM_PRAYER = 0
 FORGIVE_PRAYER = 1

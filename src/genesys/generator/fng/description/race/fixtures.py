@@ -1,4 +1,4 @@
-from fixtures import race
+from sample_data.fixtures import race
 from genesys.generator import StaticData, ListData
 
 

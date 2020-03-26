@@ -1,7 +1,7 @@
 from genesys.generator import ListGenerator
 from genesys.generator import Generated
 from genesys.generator import ListData
-from fixtures.media import names
+from sample_data.fixtures import names
 
 
 class Album(Generated):

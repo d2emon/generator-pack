@@ -2,7 +2,7 @@ from genesys.generator import Generated
 from genesys.generator import ListProvider
 
 
-from fixtures.other.school_subject import school_subjects
+from sample_data.fixtures import school_subjects
 
 
 class SchoolSubject(Generated):

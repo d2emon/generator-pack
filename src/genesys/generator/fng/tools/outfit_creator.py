@@ -1,13 +1,13 @@
 from genesys.generator import ListData
 
-from fixtures.tools import belt
-from fixtures.tools import gloves
-from fixtures.tools import jacket
-from fixtures.tools import pants
-from fixtures.tools.outfit.scarf import scarf
-from fixtures.tools.outfit.shirt import shirt
-from fixtures.tools.outfit.shoes import shoes
-from fixtures.tools import skirt
+from sample_data.fixtures import belt
+from sample_data.fixtures import gloves
+from sample_data.fixtures import jacket
+from sample_data.fixtures import pants
+from sample_data.fixtures.tools.outfit.scarf import scarf
+from sample_data.fixtures.tools.outfit.shirt import shirt
+from sample_data.fixtures import shoes
+from sample_data.fixtures import skirt
 
 
 class Outfit:
