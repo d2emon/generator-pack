@@ -14,6 +14,14 @@ class RandomFactory(SimpleFactory):
         return random.choice(self.data)
 
 
+class DiceFactory(SimpleFactory):
+    def __init__(self, dices):
+        super().__init__(dices)
+
+    def __next__(self):
+        return sum(self.data.roll())
+
+
 class DataItemFactory(RandomFactory):
     def __init__(self, group_id):
         self.group_id = group_id
