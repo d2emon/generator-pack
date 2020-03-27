@@ -1,5 +1,5 @@
-from genesys.generator import AlbumGenerator
-from genesys.generator import BandGenerator
+from factories.generator import AlbumGenerator
+from factories.generator import BandGenerator
 
 from .history import BoxHistory
 

@@ -1,4 +1,4 @@
-from lexicon import Lexicon
+from genesys.lexicon import Lexicon
 
 
 if __name__ == "__main__":
