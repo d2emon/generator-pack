@@ -1,4 +1,4 @@
-from models.afactory.factory import Item, Item1, Item2, SubItem, SubItem1, SubItem2
+from .model import Item, Item1, Item2, SubItem, SubItem1, SubItem2
 
 
 class Factory:

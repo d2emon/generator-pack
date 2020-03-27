@@ -1,4 +1,4 @@
-from models.afactory.builder import Item, Item1
+from .model import Item, Item1
 
 
 class Builder:
