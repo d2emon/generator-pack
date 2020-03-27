@@ -1,6 +1,5 @@
+from factories.providers import ComplexProvider, ListProvider
 from factories.generator import ListGenerated, ComplexGenerated
-from factories.generator import ListProvider, ProvidersList
-
 
 from sample_data.fixtures import beings, places
 from sample_data.fixtures import characters, events
@@ -11,19 +10,19 @@ class BaseConcept(ListGenerated):
 
 
 class ArtConceptPlace(BaseConcept):
-    provider = ProvidersList(*[ListProvider(provider) for provider in places])
+    provider = ComplexProvider(*[ListProvider(provider) for provider in places])
 
 
 class ArtConceptBeing(BaseConcept):
-    provider = ProvidersList(*[ListProvider(provider) for provider in beings])
+    provider = ComplexProvider(*[ListProvider(provider) for provider in beings])
 
 
 class StoryConceptCharacter(BaseConcept):
-    provider = ProvidersList(*[ListProvider(provider) for provider in characters])
+    provider = ComplexProvider(*[ListProvider(provider) for provider in characters])
 
 
 class StoryConceptEvent(BaseConcept):
-    provider = ProvidersList(*[ListProvider(provider) for provider in events])
+    provider = ComplexProvider(*[ListProvider(provider) for provider in events])
 
 
 class ArtConcept(ComplexGenerated):

@@ -1,10 +1,9 @@
-from factories.generator.generator.generated import ListGenerated
 from factories.generator.generator.generator_data import ListData
-
+from models.models import ListModel
 from sample_data.fixtures.space import universe
 
 
-class Universe(ListGenerated):
+class Universe(ListModel):
     data = {'value': ListData(universe)}
 
     def __init__(self, value, position=(0, 0, 0)):

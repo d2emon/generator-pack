@@ -1,4 +1,4 @@
-from factories.data_provider import BaseDataProvider
+from factories.providers.data_provider import BaseDataProvider
 
 
 class DataManager:

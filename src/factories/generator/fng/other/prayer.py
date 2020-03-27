@@ -1,5 +1,5 @@
+from factories.providers import ListProvider, FactoryProvider
 from factories.generator import ListGenerated, ComplexGenerated
-from factories.generator import GeneratorProvider, ListProvider
 
 from sample_data.fixtures.other.prayer import forgive, aid, deity
 
@@ -39,11 +39,11 @@ class Deity(ListGenerated):
 
 
 class BasePrayer(ListGenerated):
-    deity_provider = GeneratorProvider(Deity)
+    deity_provider = FactoryProvider(Deity)
 
     @classmethod
     def generate(cls, deity=None):
-        deity = deity or next(cls.deity_provider.items)
+        deity = deity or next(cls.deity_provider)
         # prayer = super().generate()
         # prayer.deity = deity or cls.deity_provider.generate()
         next_data = {key: next(d) for key, d in cls.providers.items()}

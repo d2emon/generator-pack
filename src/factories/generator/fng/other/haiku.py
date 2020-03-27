@@ -1,9 +1,6 @@
 import random
-
+from factories.providers import ComplexProvider, ListProvider
 from factories.generator import ListGenerated
-from factories.generator import ProvidersList, ListProvider
-
-
 from sample_data.fixtures import haiku_middle
 from sample_data.fixtures.other import haiku
 
@@ -24,24 +21,24 @@ class HaikuString(ListGenerated):
 class Haiku(ListGenerated):
     class HaikuString1(HaikuString):
         providers = [
-            ProvidersList(*[ListProvider(part) for part in haiku[0]]),
-            ProvidersList(*[ListProvider(part) for part in haiku[1]]),
-            ProvidersList(*[ListProvider(part) for part in haiku[2]]),
-            ProvidersList(*[ListProvider(part) for part in haiku[3]]),
-            ProvidersList(*[ListProvider(part) for part in haiku[4]]),
+            ComplexProvider(*[ListProvider(part) for part in haiku[0]]),
+            ComplexProvider(*[ListProvider(part) for part in haiku[1]]),
+            ComplexProvider(*[ListProvider(part) for part in haiku[2]]),
+            ComplexProvider(*[ListProvider(part) for part in haiku[3]]),
+            ComplexProvider(*[ListProvider(part) for part in haiku[4]]),
         ]
 
     class HaikuString2(HaikuString):
         providers = [
-            ProvidersList(*[ListProvider(part) for part in haiku_middle[0]]),
-            ProvidersList(*[ListProvider(part) for part in haiku_middle[1]]),
+            ComplexProvider(*[ListProvider(part) for part in haiku_middle[0]]),
+            ComplexProvider(*[ListProvider(part) for part in haiku_middle[1]]),
         ]
 
     class HaikuString3(HaikuString):
         providers = [
-            ProvidersList(*[ListProvider(part) for part in haiku[0]]),
-            ProvidersList(*[ListProvider(part) for part in haiku[1]]),
-            ProvidersList(*[ListProvider(part) for part in haiku[3]]),
+            ComplexProvider(*[ListProvider(part) for part in haiku[0]]),
+            ComplexProvider(*[ListProvider(part) for part in haiku[1]]),
+            ComplexProvider(*[ListProvider(part) for part in haiku[3]]),
         ]
 
     strings = [

@@ -1,5 +1,5 @@
+from factories.providers import ListProvider
 from factories.generator import ListGenerated
-from factories.generator import ListProvider
 
 from sample_data.fixtures.other import riddle
 

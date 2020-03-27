@@ -1,5 +1,5 @@
+from factories.providers import ListProvider
 from factories.generator import Generated, ComplexGenerated
-from factories.generator import ListProvider
 
 from sample_data.fixtures import vowel_sounds, consonants, double_vowel_sounds, double_consonants
 from sample_data.fixtures import endings
