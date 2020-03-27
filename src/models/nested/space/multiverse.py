@@ -2,7 +2,7 @@ import random
 from factories.name import TextFactory
 from factories.generator.generator.generated import ListGenerated
 from factories.generator.generator.generator_data import ListData
-from factories.generator.generator.mathgen import TwoPoint
+from factories.mathgen import RadiationFactory
 from sample_data.fixtures.space import multiverse
 
 
@@ -76,13 +76,13 @@ class Multiverse(NamedGenerated):
 
     def __init__(self, value=None, generator_data=None, item_id=None):
         super().__init__(value, generator_data, item_id)
-        self.positions = TwoPoint()
+        self.positions = RadiationFactory()
         self._universes = None
 
     @property
     def universes_ids(self):
         if self._children is None:
-            self._children = [self.positions.generate() for _ in range(self.generate_children_count())]
+            self._children = [next(self.positions) for _ in range(self.generate_children_count())]
         return self._children
 
     @property
