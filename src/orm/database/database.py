@@ -1,6 +1,6 @@
 import os
 import uuid
-from config.storm import CONFIG
+from config import CONFIG
 
 
 class DataFile:
