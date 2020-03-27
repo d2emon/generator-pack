@@ -3,7 +3,7 @@ from models.slotted import Slotted, SlotItem
 from .. import slots
 
 
-class Doll(Slotted):
+class DollModel(Slotted):
     SLOTS = slots.SLOTS
 
     def __init__(self, gender):
@@ -38,5 +38,6 @@ class Doll(Slotted):
         return random.choice(available_items) if len(available_items) > 0 else None
 
     def fill(self, items):
+        items = list(items)
         for slot in self.__random_slots():
             self.put_on(self.__random_item(slot, items))

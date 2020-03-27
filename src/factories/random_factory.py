@@ -16,4 +16,5 @@ class RandomFactory(SimpleFactory):
 
 class DataItemFactory(RandomFactory):
     def __init__(self, group_id):
-        super().__init__(DataItem.get_values_by_group(group_id))
+        self.group_id = group_id
+        super().__init__(DataItem.get_values_by_group(self.group_id))

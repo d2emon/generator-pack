@@ -1,2 +1,2 @@
 from .clothing import Clothing
-from .doll import Doll
+from .doll import DollModel
