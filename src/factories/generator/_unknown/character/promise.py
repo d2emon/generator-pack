@@ -1,24 +1,8 @@
-from factories.generator import Generated, ListGenerator
+from factories.generator_factories import ListFactory
+from models.generator_models.character.promise import Promise
 
 
-class Promise(Generated):
-    def __init__(self):
-        self.settlement = "village"
-        self.promisetype = "protected"
-
-    def __repr__(self):
-        # "the " + names10[random10] + " they've " + names11[random11] + " for so long.";
-        if "%s" in self.promisetype:
-            return self.promisetype % (
-                self.settlement,
-            )
-        return "the %s tey've %s for so long" % (
-            self.settlement,
-            self.promisetype,
-        )
-
-
-class PromiseGenerator(ListGenerator):
+class PromiseFactory(ListFactory):
     generated_class = Promise
     settlements = [
         "village",

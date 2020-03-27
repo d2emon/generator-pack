@@ -1,19 +1,8 @@
-from factories.generator import Generated, ListGenerator
+from factories.generator_factories import ListFactory
+from models.generator_models.character.frame import Frame
 
 
-class Frame(Generated):
-    def __init__(self):
-        self.height = "tall among"
-        self.frame = "thin"
-
-    def __repr__(self):
-        return "{{He}} stands %s others, despite {{his}} %s frame." % (
-            self.height,
-            self.frame,
-        )
-
-
-class FrameGenerator(ListGenerator):
+class FrameFactory(ListFactory):
     generated_class = Frame
     heights = [
         "tall among",

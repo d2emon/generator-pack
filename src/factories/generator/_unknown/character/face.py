@@ -1,17 +1,8 @@
-from factories.generator import Generated, ListGenerator
+from factories.generator_factories import ListFactory
+from models.generator_models.character.face import Face
 
 
-class Face(Generated):
-    def __init__(self):
-        self.facetype = "thin"
-        self.expression = "time-worn"
-
-    def __repr__(self):
-        # names4[random4] + ", " + names5[random5] + " face. "
-        return "%s, %s face" % (self.facetype, self.expression)
-
-
-class FaceGenerator(ListGenerator):
+class FaceFactory(ListFactory):
     generated_class = Face
     facetypes = [
         "thin",

@@ -1,9 +1,9 @@
-from factories.generator import MaleHairGenerator, FemaleHairGenerator
-from factories.generator import FaceGenerator
-from factories.generator import EyesGenerator
-from factories.generator import PromiseGenerator
-from factories.generator import NameGenerator
-from factories.generator import Race
+from . import Race
+from ..hair import MaleHairFactory, FemaleHairFactory
+from ..face import FaceFactory
+from ..eyes import EyesFactory
+from ..promise import PromiseFactory
+from ..name import NameFactory
 
 
 elf_hair_colors = [
@@ -21,7 +21,8 @@ elf_hair_colors = [
     "Golden",
 ]  # 1
 
-class ElfMaleHairGenerator(MaleHairGenerator):
+
+class ElfMaleHairFactory(MaleHairFactory):
     colors = elf_hair_colors
     hairtypes = [
         "perfectly groomed hair",
@@ -36,7 +37,7 @@ class ElfMaleHairGenerator(MaleHairGenerator):
     ]  # 2
 
 
-class ElfFemaleHairGenerator(FemaleHairGenerator):
+class ElfFemaleHairFactory(FemaleHairFactory):
     colors = elf_hair_colors
     hairtypes = [
         "perfectly groomed hair",
@@ -54,7 +55,7 @@ class ElfFemaleHairGenerator(FemaleHairGenerator):
     ]
 
 
-class ElfFaceGenerator(FaceGenerator):
+class ElfFaceFactory(FaceFactory):
     facetypes = [
         "thin",
         "chiseled",
@@ -73,7 +74,7 @@ class ElfFaceGenerator(FaceGenerator):
     ]
 
 
-class ElfEyesGenerator(EyesGenerator):
+class ElfEyesFactory(EyesFactory):
     colors = [
         "blue",
         "brown",
@@ -91,7 +92,7 @@ class ElfEyesGenerator(EyesGenerator):
     ]
 
 
-class ElfPromiseGenerator(PromiseGenerator):
+class ElfPromiseFactory(PromiseFactory):
     settlements = [
         "village",
         "lands",
@@ -120,7 +121,7 @@ class ElfPromiseGenerator(PromiseGenerator):
     ]
 
 
-class ElfMaleNameGenerator(NameGenerator):
+class ElfMaleNameFactory(NameFactory):
     firstnames = [
         "Wyninn",
         "Ninleyn",
@@ -155,7 +156,7 @@ class ElfMaleNameGenerator(NameGenerator):
     ]
 
 
-class ElfFemaleNameGenerator(ElfMaleNameGenerator):
+class ElfFemaleNameFactory(ElfMaleNameFactory):
     firstnames = [
         "Ylsysea",
         "Nilerea",
@@ -174,15 +175,15 @@ class Elf(Race):
     name = "Elf"
     plural = "elves"
 
-    male_hair_generator = ElfMaleHairGenerator
-    female_hair_generator = ElfFemaleHairGenerator
+    male_hair_generator = ElfMaleHairFactory
+    female_hair_generator = ElfFemaleHairFactory
 
-    face_generator = ElfFaceGenerator
-    eyes_generator = ElfEyesGenerator
-    promise_generator = ElfPromiseGenerator
+    face_generator = ElfFaceFactory
+    eyes_generator = ElfEyesFactory
+    promise_generator = ElfPromiseFactory
 
-    male_name_generator = ElfMaleNameGenerator
-    female_name_generator = ElfFemaleNameGenerator
+    male_name_generator = ElfMaleNameFactory
+    female_name_generator = ElfFemaleNameFactory
 
 
 class NightElf(Elf):

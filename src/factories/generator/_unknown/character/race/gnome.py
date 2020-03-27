@@ -1,7 +1,7 @@
-from factories.generator import MaleHairGenerator, FemaleHairGenerator
-from factories.generator import FaceGenerator
-from factories.generator import NameGenerator
-from factories.generator import Race
+from . import Race
+from ..hair import MaleHairFactory, FemaleHairFactory
+from ..face import FaceFactory
+from ..name import NameFactory
 
 
 gnome_hair_colors = [
@@ -48,17 +48,17 @@ gnome_hairtypes = [
 ]  # 2
 
 
-class GnomeMaleHairGenerator(MaleHairGenerator):
+class GnomeMaleHairFactory(MaleHairFactory):
     colors = gnome_hair_colors
     hairtypes = gnome_hairtypes
 
 
-class GnomeFemaleHairGenerator(FemaleHairGenerator):
+class GnomeFemaleHairFactory(FemaleHairFactory):
     colors = gnome_hair_colors
     hairtypes = gnome_hairtypes
 
 
-class GnomeFaceGenerator(FaceGenerator):
+class GnomeFaceFactory(FaceFactory):
     facetypes = [
         "thin",
         # "chiseled",
@@ -79,7 +79,7 @@ class GnomeFaceGenerator(FaceGenerator):
     ]
 
 
-class GnomeMaleNameGenerator(NameGenerator):
+class GnomeMaleNameFactory(NameFactory):
     firstnames = [
         "Glinoflonk",
         "Bonlebick",
@@ -106,7 +106,7 @@ class GnomeMaleNameGenerator(NameGenerator):
     ]
 
 
-class GnomeFemaleNameGenerator(GnomeMaleNameGenerator):
+class GnomeFemaleNameFactory(GnomeMaleNameFactory):
     firstnames = [
         "Glinkeefonk",
         "Binfink",
@@ -125,10 +125,10 @@ class Gnome(Race):
     name = "Gnome"
     plural = "gnomes"
 
-    male_hair_generator = GnomeMaleHairGenerator
-    female_hair_generator = GnomeFemaleHairGenerator
+    male_hair_generator = GnomeMaleHairFactory
+    female_hair_generator = GnomeFemaleHairFactory
 
-    face_generator = GnomeFaceGenerator
+    face_generator = GnomeFaceFactory
 
-    male_name_generator = GnomeMaleNameGenerator
-    female_name_generator = GnomeFemaleNameGenerator
+    male_name_generator = GnomeMaleNameFactory
+    female_name_generator = GnomeFemaleNameFactory

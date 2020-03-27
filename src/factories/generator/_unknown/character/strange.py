@@ -1,20 +1,8 @@
-from factories.generator import Generated, ListGenerator
+from factories.generator_factories import ListFactory
+from models.generator_models.character.strange import Strange
 
 
-class Strange(Generated):
-    def __init__(self):
-        self.description = "Alluring"
-        self.weirdnesses = []
-
-    def __repr__(self):
-        weirdness = " or perhaps it's simply ".join(self.weirdnesses)
-        return "There's something %s about {{him}}, perhaps it's %s." % (
-            self.description,
-            weirdness,
-        )
-
-
-class StrangeGenerator(ListGenerator):
+class StrangeFactory(ListFactory):
     generated_class = Strange
     descriptions = [
         "alluring",

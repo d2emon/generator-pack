@@ -1,7 +1,7 @@
-from factories.generator import MaleHairGenerator, FemaleHairGenerator
-from factories.generator import FaceGenerator
-from factories.generator import NameGenerator
-from factories.generator import Race
+from . import Race
+from ..hair import MaleHairFactory, FemaleHairFactory
+from ..face import FaceFactory
+from ..name import NameFactory
 
 
 dwarf_hairtypes = [
@@ -26,15 +26,16 @@ dwarf_hairtypes = [
     "shoulder-length hair",
 ]
 
-class DwarfMaleHairGenerator(MaleHairGenerator):
+
+class DwarfMaleHairFactory(MaleHairFactory):
     hairtypes = dwarf_hairtypes
 
 
-class DwarfFemaleHairGenerator(FemaleHairGenerator):
+class DwarfFemaleHairFactory(FemaleHairFactory):
     hairtypes = dwarf_hairtypes
 
 
-class DwarfFaceGenerator(FaceGenerator):
+class DwarfFaceFactory(FaceFactory):
     facetypes = [
         # "thin",
         # "chiseled",
@@ -55,7 +56,7 @@ class DwarfFaceGenerator(FaceGenerator):
     ]
 
 
-class DwarfMaleNameGenerator(NameGenerator):
+class DwarfMaleNameFactory(NameFactory):
     firstnames = [
         "Bengahdar",
         "Banbrek",
@@ -82,7 +83,7 @@ class DwarfMaleNameGenerator(NameGenerator):
     ]
 
 
-class DwarfFemaleNameGenerator(DwarfMaleNameGenerator):
+class DwarfFemaleNameFactory(DwarfMaleNameFactory):
     firstnames = [
         "Belianyss",
         "Daerahniss",
@@ -101,13 +102,13 @@ class Dwarf(Race):
     name = "Dwarf"
     plural = "dwarves"
 
-    male_hair_generator = DwarfMaleHairGenerator
-    female_hair_generator = DwarfFemaleHairGenerator
+    male_hair_generator = DwarfMaleHairFactory
+    female_hair_generator = DwarfFemaleHairFactory
 
-    face_generator = DwarfFaceGenerator
+    face_generator = DwarfFaceFactory
 
-    male_name_generator = DwarfMaleNameGenerator
-    female_name_generator = DwarfFemaleNameGenerator
+    male_name_generator = DwarfMaleNameFactory
+    female_name_generator = DwarfFemaleNameFactory
 
 
 class Giant(Dwarf):

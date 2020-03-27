@@ -1,22 +1,8 @@
-from factories.generator import Generated, ListGenerator
+from factories.generator_factories import ListFactory
+from models.generator_models.character.name import Name
 
 
-class Name(Generated):
-    def __init__(self):
-        self.firstname = "Adam"
-        self.lastname = "Adwell"
-        self.title = ""
-
-    def __repr__(self):
-        # names18[random18] + " " + names19[random19] + ", a true " + names20[random20]
-        return "%s %s, a true %s" % (
-            self.firstname,
-            self.lastname,
-            self.title,
-        )
-
-
-class NameGenerator(ListGenerator):
+class NameFactory(ListFactory):
     generated_class = Name
     firstnames = []
     lastnames = []
@@ -71,7 +57,7 @@ class NameGenerator(ListGenerator):
         return generated
 
 
-class MaleNameGenerator(NameGenerator):
+class MaleNameFactory(NameFactory):
     firstnames = [
         "Adam",
         "Adan",
@@ -145,7 +131,7 @@ class MaleNameGenerator(NameGenerator):
     ]
 
 
-class FemaleNameGenerator(MaleNameGenerator):
+class FemaleNameFactory(MaleNameFactory):
     firstnames = [
         "Allyson",
         "Allyssa",

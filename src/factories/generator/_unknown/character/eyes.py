@@ -1,24 +1,8 @@
-from factories.generator import Generated, ListGenerator
+from factories.generator_factories import ListFactory
+from models.generator_models.character.eyes import Eyes
 
 
-class Eyes(Generated):
-    def __init__(self):
-        self.style = "Beady"
-        self.color = "blue"
-        self.depth = "deep"
-        self.sight = "wearily"
-
-    def __repr__(self):
-        # names6[random6] + " " + names7[random7] + " eyes, set " + names8[random8] + " within their sockets, watch " + names9[random9]
-        return "%s %s eyes, set %s within their sockets, watch %s" % (
-            self.style,
-            self.color,
-            self.depth,
-            self.sight,
-        )
-
-
-class EyesGenerator(ListGenerator):
+class EyesFactory(ListFactory):
     generated_class = Eyes
     styles = [
         "Beady",

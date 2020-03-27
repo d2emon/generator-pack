@@ -1,114 +1,8 @@
-from factories.generator import Generated, ListGenerator
+from factories.generator_factories import ListFactory
+from models.generator_models.character.special import SpecialSign, Scar, Tattoo, TribalMark, Moles, Freckles, Beard
 
 
-class SpecialSign(Generated):
-    def __init__(self):
-        self.signtype = "A scar"
-        self.memory = "a pleasant memory",
-        self.origin = "a former life"
-
-    @property
-    def description(self):
-        # names12[random12] + " " + names13[random13] + " " + names14[random14] + " " + names15[random15]
-        return self.signtype
-
-    def __repr__(self):
-        # " leaves " + names16[random16] + " of " + names17[random17] + "."
-        return "%s leaves %s of %s." % (
-            self.description,
-            self.memory,
-            self.origin
-        )
-
-
-class Scar(SpecialSign):
-    def __init__(self):
-        SpecialSign.__init__(self)
-        self.place_from = "stretching from just under the right eye"
-        self.place_through = ", running across the nose"
-        self.place_to = "and ending on {{his}} left cheek"
-
-    @property
-    def description(self):
-        return "%s %s%s %s" % (
-            self.signtype,
-            self.place_from,
-            self.place_through,
-            self.place_to,
-        )
-
-
-class Tattoo(SpecialSign):
-    def __init__(self):
-        SpecialSign.__init__(self)
-        self.form = "resembling a shield"
-        self.visibility = "is almost hidden"
-        self.placement = "on the right side of {{his}} neck"
-
-    @property
-    def description(self):
-        return "%s %s %s %s" % (
-            self.signtype,
-            self.form,
-            self.visibility,
-            self.placement,
-        )
-
-
-class TribalMark(SpecialSign):
-    def __init__(self):
-        SpecialSign.__init__(self)
-        self.signtype = "Tribal marks"
-        self.form = "in the form of 1 stripe under {{his}} right eye"
-        self.meaning = "marks {{his}} heritage"
-
-    @property
-    def description(self):
-        return "%s %s %s but, more importantly" % (
-            self.signtype,
-            self.form,
-            self.meaning,
-        )
-
-
-class Moles(SpecialSign):
-    def __init__(self):
-        SpecialSign.__init__(self)
-        self.signtype = "Several moles"
-        self.style = "charmingly"
-        self.placement = "on {{his}} left cheek and"
-
-    @property
-    def description(self):
-        return "%s are spread %s %s" % (
-            self.signtype,
-            self.style,
-            self.placement,
-        )
-
-
-class Freckles(Moles):
-    def __init__(self):
-        SpecialSign.__init__(self)
-        self.signtype = "Freckles"
-
-
-class Beard(SpecialSign):
-    def __init__(self):
-        SpecialSign.__init__(self)
-        self.style = "charmingly"
-        self.placement = "eyes and"
-
-    @property
-    def description(self):
-        return "%s %s compliments {{his}} %s" % (
-            self.signtype,
-            self.style,
-            self.placement,
-        )
-
-
-class SpecialSignGenerator(ListGenerator):
+class SpecialSignFactory(ListFactory):
     generated_class = SpecialSign
     memories = [
         "a pleasant memory",
@@ -195,7 +89,7 @@ class SpecialSignGenerator(ListGenerator):
     ]
 
 
-class ScarGenerator(SpecialSignGenerator):
+class ScarFactory(SpecialSignFactory):
     generated_class = Scar
     signtype = "A scar"
     places_from = [
@@ -265,7 +159,7 @@ class ScarGenerator(SpecialSignGenerator):
         return generated
 
 
-class TattooGenerator(SpecialSignGenerator):
+class TattooFactory(SpecialSignFactory):
     generated_class = Tattoo
     signtype = "A tattoo"
     forms = []
@@ -302,7 +196,7 @@ class TattooGenerator(SpecialSignGenerator):
         return generated
 
 
-class MaleTattooGenerator(TattooGenerator):
+class MaleTattooFactory(TattooFactory):
     forms = [
         "resembling a shield",
         "resembling a sword",
@@ -345,7 +239,7 @@ class MaleTattooGenerator(TattooGenerator):
     ]
 
 
-class FemaleTattooGenerator(TattooGenerator):
+class FemaleTattooFactory(TattooFactory):
     forms = [
         "resembling a rose",
         "resembling a petal",
@@ -391,7 +285,7 @@ class FemaleTattooGenerator(TattooGenerator):
     ]
 
 
-class TribalMarkGenerator(SpecialSignGenerator):
+class TribalMarkFactory(SpecialSignFactory):
     generated_class = TribalMark
     signtype = "Tribal marks"
     forms = [
@@ -443,7 +337,7 @@ class TribalMarkGenerator(SpecialSignGenerator):
         return generated
 
 
-class MolesGenerator(SpecialSignGenerator):
+class MolesFactory(SpecialSignFactory):
     generated_class = Moles
     signtype = "Several moles"
     styles = [
@@ -523,7 +417,7 @@ class MolesGenerator(SpecialSignGenerator):
         return generated
 
 
-class FrecklesGenerator(MolesGenerator):
+class FrecklesFactory(MolesFactory):
     generated_class = Freckles
     signtype = "Freckles"
     styles = [
@@ -588,7 +482,7 @@ class FrecklesGenerator(MolesGenerator):
         return generated
 
 
-class BeardGenerator(SpecialSignGenerator):
+class BeardFactory(SpecialSignFactory):
     generated_class = Beard
     signtype = "A beard"
     styles = [
@@ -657,65 +551,65 @@ class BeardGenerator(SpecialSignGenerator):
         return generated
 
 
-class ScarsGenerator(ScarGenerator):
+class ScarsFactory(ScarFactory):
     signtype = "Scars"
 
 
-class SwordMarkGenerator(ScarGenerator):
+class SwordMarkFactory(ScarFactory):
     signtype = "A sword left a mark"
 
 
-class GunshotMarkGenerator(ScarGenerator):
+class GunshotMarkFactory(ScarFactory):
     signtype = "A gunshot left a mark"
 
 
-class DebryMarkGenerator(ScarGenerator):
+class DebryMarkFactory(ScarFactory):
     signtype = "Fallen debry left a mark"
 
 
-class FireMarkGenerator(ScarGenerator):
+class FireMarkFactory(ScarFactory):
     signtype = "Fire has left a mark"
 
 
-class BirthmarkGenerator(ScarGenerator):
+class BirthmarkFactory(ScarFactory):
     signtype = "A birthmark"
 
 
-class MaleOldTattooGenerator(MaleTattooGenerator):
+class MaleOldTattooFactory(MaleTattooFactory):
     signtype = "An old tattoo"
 
 
-class FemaleOldTattooGenerator(FemaleTattooGenerator):
+class FemaleOldTattooFactory(FemaleTattooFactory):
     signtype = "An old tattoo"
 
 
-class SmoothSkinGenerator(BeardGenerator):
+class SmoothSkinFactory(BeardFactory):
     signtype = "Smooth skin"
 
 
-class SoftSkinGenerator(BeardGenerator):
+class SoftSkinFactory(BeardFactory):
     signtype = "Soft skin"
 
 
-class FairSkinGenerator(BeardGenerator):
+class FairSkinFactory(BeardFactory):
     signtype = "Fair skin"
 
 
-class LargeBeardGenerator(BeardGenerator):
+class LargeBeardFactory(BeardFactory):
     signtype = "A large beard"
 
 
-class DarkStubbleGenerator(BeardGenerator):
+class DarkStubbleFactory(BeardFactory):
     signtype = "Dark stubble"
 
 
-class MoustacheGenerator(BeardGenerator):
+class MoustacheFactory(BeardFactory):
     signtype = "A moustache"
 
 
-class GoateeGenerator(BeardGenerator):
+class GoateeFactory(BeardFactory):
     signtype = "A goatee"
 
 
-class MoustacheAndGoateeGenerator(BeardGenerator):
+class MoustacheAndGoateeFactory(BeardFactory):
     signtype = "A moustache and goatee"

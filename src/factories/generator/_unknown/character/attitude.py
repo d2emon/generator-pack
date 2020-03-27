@@ -1,19 +1,8 @@
-from factories.generator import Generated, ListGenerator
+from factories.generator_factories import ListFactory
+from models.generator_models.character.attitude import Attitude
 
 
-class Attitude(Generated):
-    def __init__(self):
-        self.attitude = "A scar"
-        self.attitude2 = "A scar"
-
-    def __repr__(self):
-        return "people tend to %s, while %s" % (
-            self.attitude,
-            self.attitude2,
-        )
-
-
-class MaleAttitudeGenerator(ListGenerator):
+class MaleAttitudeFactory(ListFactory):
     generated_class = Attitude
     attitudes = [
         "keep their distance",
@@ -85,7 +74,7 @@ class MaleAttitudeGenerator(ListGenerator):
         return generated
 
 
-class FemaleAttitudeGenerator(MaleAttitudeGenerator):
+class FemaleAttitudeFactory(MaleAttitudeFactory):
     attitudes = [
         "keep their distance",
         "flock towards {{him}}",

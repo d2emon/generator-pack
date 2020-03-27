@@ -1,36 +1,36 @@
-from factories.generator import MaleHairGenerator, FemaleHairGenerator
-from factories.generator import FaceGenerator
-from factories.generator import EyesGenerator
-from factories.generator import PromiseGenerator
-from factories.generator import MaleNameGenerator, FemaleNameGenerator
-from factories.generator import MaleAttitudeGenerator, FemaleAttitudeGenerator
+from ..hair import MaleHairFactory, FemaleHairFactory
+from ..face import FaceFactory
+from ..eyes import EyesFactory
+from ..promise import PromiseFactory
+from ..name import MaleNameFactory, FemaleNameFactory
+from ..attitude import MaleAttitudeFactory, FemaleAttitudeFactory
 
 
-class RacialGenerators():
-    hair = MaleHairGenerator
-    face = FaceGenerator
-    eyes = EyesGenerator
-    promise = PromiseGenerator
-    name = MaleNameGenerator
-    attitude = MaleAttitudeGenerator
+class RacialGenerators:
+    hair = MaleHairFactory
+    face = FaceFactory
+    eyes = EyesFactory
+    promise = PromiseFactory
+    name = MaleNameFactory
+    attitude = MaleAttitudeFactory
 
 
-class Race():
+class Race:
     name = "Race"
     plural = "races"
 
-    male_hair_generator = MaleHairGenerator
-    female_hair_generator = FemaleHairGenerator
+    male_hair_generator = MaleHairFactory
+    female_hair_generator = FemaleHairFactory
 
-    face_generator = FaceGenerator
-    eyes_generator = EyesGenerator
-    promise_generator = PromiseGenerator
+    face_generator = FaceFactory
+    eyes_generator = EyesFactory
+    promise_generator = PromiseFactory
 
-    male_name_generator = MaleNameGenerator
-    female_name_generator = FemaleNameGenerator
+    male_name_generator = MaleNameFactory
+    female_name_generator = FemaleNameFactory
 
-    male_attitude_generator = MaleAttitudeGenerator
-    female_attitude_generator = FemaleAttitudeGenerator
+    male_attitude_generator = MaleAttitudeFactory
+    female_attitude_generator = FemaleAttitudeFactory
 
     @classmethod
     def hair_generator(cls, sex=0):

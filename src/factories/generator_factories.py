@@ -23,6 +23,10 @@ class ListFactory:
     def generated(cls):
         return ''
 
+    @classmethod
+    def generate_value(cls, *args, **kwargs):
+        return ''
+
 
 class PercentFactory:
     # factories.generator.PercentGenerator
