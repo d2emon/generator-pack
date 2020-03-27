@@ -1,8 +1,8 @@
 import random
-from factories.generator import NameGenerator, random_generator, GENDER_MALE, GENDER_FEMALE
+from factories.name import NameFactory, random_generator, genders
 
 
-class BanditNameGenerator(NameGenerator):
+class BanditNameGenerator(NameFactory):
     glue = " "
     names = {
         GENDER_MALE: ["Absent","Adamance ","Aide","Angel","Anomaly","Ash","Atlas","Beak","Beast","Bishop","Bling","Blinkey","Blob","Blood","Bolt","Bones","Books","Bookworm","Box","Bravo","Bucks","Buffalo","Bugs","Bullet","Bulletproof","Cable","Captain","Chance","Chaos","Cinders","Cloak","Cloud","Clumsy","Cobalt","Cyclops","Dagger","Dancer","Daydream","Doc","Doctor","Dragonfly","Dust","Elsewhere","Exo","Facade","Face","Fallen","Feather","Feathers","Fiddles","Fix","Flood","Fluke","Freak","Freakshow","Frenzy","Gadget","Gentle","Ghost","Glob","Gloom","Gremlin","Grub","Hawk","Heat","Hermit","Hijack","Hive","Hog","Hunter","Husk","Hybrid","Hydro","Imp","Inn","Ion","Jams","Jester","Jet","Lance","Leech","Longshot","Maggot","Magma","Marsh","Mask","Mercury","Mime","Mist","Moon","Moose","Mopes","Muzzle","Naughty","Needle","Nemo","Newman","Nightmare","Nightowl","Nocturne","Oaf","Oak","Omega","Ooze","Patch","Patches","Penance","Phantom","Pickle","Piggy","Plasma","Prodigy","Puzzle","Puzzles","Pygmy","Pyro","Rain","Random","Rascal","Rat","Riddle","Rig","Rigs","Risk","Roach","Rogue","Rubble","Saber","Scooter","Serpent","Silence","Silver","Skeleton","Sketch","Skins","Skit","Skitters","Sky","Slime","Sly","Smokes","Snail","Snout","Snow","Soot","Specter","Spike","Spikes","Spirit","Spot","Spots","Sprite","Stonewall","Striker","Tadpole","Tags","Tattoo","Thorn","Thunder","Tinder","Toad","Tooth","Triclops","Viper","Weeds","Whisper","Wicked","Wings","Wink","Wither","Worm","Zero"],

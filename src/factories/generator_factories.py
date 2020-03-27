@@ -7,11 +7,6 @@ class ListData:
         return ''
 
 
-class FactoryTemplate:
-    # factories.generator.GeneratorTemplate
-    pass
-
-
 class DataFactory:
     # factories.generator.DataGenerator
     pass

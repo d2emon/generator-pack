@@ -23,10 +23,10 @@ if(i < 3){
 """
 
 import random
-from factories.generator import NameGenerator, random_generator, GENDER_MALE, GENDER_FEMALE
+from factories.name import NameFactory, random_generator, genders
 
 
-class BarbarianNameGenerator(NameGenerator):
+class BarbarianNameGenerator(NameFactory):
     base_data = {
         GENDER_MALE: [
             nm2,

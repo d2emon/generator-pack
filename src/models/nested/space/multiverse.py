@@ -1,5 +1,5 @@
 import random
-from factories.generator import TextGenerator
+from factories.name import TextFactory
 from factories.generator.generator.generated import ListGenerated
 from factories.generator.generator.generator_data import ListData
 from factories.generator.generator.mathgen import TwoPoint
@@ -7,8 +7,9 @@ from sample_data.fixtures.space import multiverse
 
 
 class NamedGenerated(ListGenerated):
-    class UniverseNameGenerator(TextGenerator):
-        block_id = 'multiverse'
+    class UniverseNameFactory(TextFactory):
+        class NamesProvider:
+            block_id = 'universe'
 
     class GeneratedChildren:
         def __init__(self, child_generator, ids=()):
@@ -25,7 +26,7 @@ class NamedGenerated(ListGenerated):
         def __len__(self):
             return len(self.ids)
 
-    name_generator_class = TextGenerator
+    name_generator_class = TextFactory
     _name_generator = None
 
     children_count = ()
@@ -59,16 +60,17 @@ class NamedGenerated(ListGenerated):
     @property
     def children(self):
         if self._children is None:
-            self._children = self.GeneratedChildren(self.UniverseNameGenerator, self.children_ids)
+            self._children = self.GeneratedChildren(self.UniverseNameFactory, self.children_ids)
         return self._children
 
 
 class Multiverse(NamedGenerated):
-    class MultiverseNameGenerator(TextGenerator):
-        block_id = 'multiverse'
+    class MultiverseNameFactory(TextFactory):
+        class NamesProvider:
+            block_id = 'multiverse'
 
     data = {'value': ListData(multiverse)}
-    name_generator = MultiverseNameGenerator
+    name_generator = MultiverseNameFactory
 
     children_count = 10, 30
 

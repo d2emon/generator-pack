@@ -1,4 +1,4 @@
-from factories.generator import NameGenerator, random_generator
+from factories.name import NameFactory, random_generator
 
 
 second_names = ["Aardvark", "Abyssinian", "Addax", "Affenpinscher", "Akbash", "Akita", "Albatross", "Alligator",
@@ -49,7 +49,7 @@ second_names = ["Aardvark", "Abyssinian", "Addax", "Affenpinscher", "Akbash", "A
                 "Woodlouse", "Woodpecker", "Wrasse", "Yak", "Zebra", "Zebu", "Zonkey", "Zorse"]
 
 
-class AnimalSpeciesNameGenerator(NameGenerator):
+class AnimalSpeciesNameGenerator(NameFactory):
     glue = " "
 
 

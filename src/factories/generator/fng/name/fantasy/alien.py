@@ -1,8 +1,8 @@
 import random
-from factories.generator import NameGenerator, random_generator
+from factories.name import NameFactory, random_generator
 
 
-class AlienNameGenerator(NameGenerator):
+class AlienNameFactory(NameFactory):
     @classmethod
     def not_empty_3(cls, parts):
         while parts[2] == parts[0] or parts[2] == parts[4]:

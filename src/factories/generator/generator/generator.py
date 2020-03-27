@@ -3,7 +3,7 @@ import random
 # from utils.loaders import load_lines
 # from .generator_data import StaticData, ListData, FileData
 from .generated import Generated
-from .template import GeneratorTemplate
+from factories.template import FactoryTemplate
 
 
 class Generator:
@@ -83,4 +83,4 @@ class TemplateGenerator(Generator):
 
     @classmethod
     def __next__(cls):
-        return GeneratorTemplate.generate(cls.template)
+        return next(FactoryTemplate(cls.template))

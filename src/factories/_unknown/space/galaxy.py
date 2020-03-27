@@ -1,5 +1,5 @@
 from factories.generator_factories import ListFactory, PercentFactory, TemplateFactory, ListData
-# from ..generator.template import GeneratorTemplate
+# from factories.template import FactoryTemplate
 from models.generator_models.space.galaxy import Galaxy
 
 from sample_data.generator_fixtures.space import fixtures

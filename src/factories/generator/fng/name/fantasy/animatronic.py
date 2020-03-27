@@ -1,8 +1,8 @@
 import random
-from factories.generator import NameGenerator, GENDER_MALE, GENDER_FEMALE
+from factories.name import NameFactory, genders
 
 
-class AnimatronicNameGenerator(NameGenerator):
+class AnimatronicNameGenerator(NameFactory):
     glue = " "
     data = {
         GENDER_MALE: [

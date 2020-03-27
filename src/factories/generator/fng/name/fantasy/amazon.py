@@ -1,4 +1,4 @@
-from factories.generator import NameGenerator, random_generator
+from factories.name import NameFactory, random_generator
 
 
 names1 = ["b", "bl", "br", "c", "chr", "cl", "cr", "d", "dr", "f", "g", "gl", "gr", "h", "j", "k", "kl", "kr", "m", "n",
@@ -17,7 +17,7 @@ names6 = ["adia", "ameia", "anta", "asca", "cabe", "ce", "cleia", "cyone", "cyra
           "yope", "yrbe", "ytie"]
 
 
-class AmazonNameGenerator(NameGenerator):
+class AmazonNameGenerator(NameFactory):
     pass
 
 

@@ -1,7 +1,7 @@
-from genesys.generator import GenderListNameGenerator, GENDER_NEUTRAL, GENDER_FEMALE, GENDER_MALE
+from factories.name import GenderListNameFactory, genders
 
 
-class AngelNameGenerator(GenderListNameGenerator):
+class AngelNameGenerator(GenderListNameFactory):
     names = {
         GENDER_MALE: ["Aarin", "Abaddon", "Abalim", "Abasdarhon", "Abbadon", "Abdiel", "Abrariel", "Abraxos", "Adellum",
                       "Adimus", "Adnachiel", "Adoel", "Adonael", "Adriel", "Afriel", "Aithen", "Akhazriel", "Akriel",
