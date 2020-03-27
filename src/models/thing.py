@@ -1,4 +1,4 @@
-from factories.factory.factories import ThingFactory, MultipleFactory, ProbableFactory, ListFactory
+from factories.thing import ThingFactory, MultipleFactory, ProbableFactory, ListFactory
 
 
 class Thing:

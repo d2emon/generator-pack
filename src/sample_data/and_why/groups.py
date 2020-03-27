@@ -1,4 +1,4 @@
-from genesys.and_why import genders
+# from genesys.and_why import genders
 
-MALE = genders.MALE
-FEMALE = genders.FEMALE
+MALE = 'genders.MALE'
+FEMALE = 'genders.FEMALE'

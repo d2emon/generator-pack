@@ -4,6 +4,9 @@ from sample_data.and_why import groups
 from . import genders
 
 
+print(groups.MALE)
+
+
 class ClothingItem(DataItem):
     GROUPS = {
         genders.MALE: groups.MALE,

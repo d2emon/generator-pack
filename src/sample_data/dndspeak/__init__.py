@@ -5,5 +5,5 @@ from .sailing_conditions import ITEMS as SAILING_CONDITIONS
 
 
 def fill():
-    DataItem.add_values(groups, DESERT_ENCOUNTERS)
-    DataItem.add_values(groups, SAILING_CONDITIONS)
+    DataItem.add_values(groups.DESERT_ENCOUNTERS, DESERT_ENCOUNTERS)
+    DataItem.add_values(groups.SAILING_CONDITIONS, SAILING_CONDITIONS)

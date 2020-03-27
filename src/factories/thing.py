@@ -1,15 +1,20 @@
 import random
+from.factory import SimpleFactory
 
 
-class ThingFactory:
+class ThingFactory(SimpleFactory):
     def __init__(self, generated_class):
         self.generated_class = generated_class
+        super().__init__()
+
+    def __next__(self):
+        return next(self.generate())
 
     def generate(self):
         yield self.generated_class()
 
     def next(self):
-        return next(self.generate())
+        return next(self)
 
     def factory(self):
         return self
