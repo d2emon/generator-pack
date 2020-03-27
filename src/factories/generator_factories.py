@@ -1,5 +1,36 @@
+class ListData:
+    # factories.generator.ListData
+    def __init__(self, *args):
+        self.args = args
+
+    def __next__(self):
+        return ''
+
+
+class FactoryTemplate:
+    # factories.generator.GeneratorTemplate
+    pass
+
+
+class DataFactory:
+    # factories.generator.DataGenerator
+    pass
+
+
 class ListFactory:
     # factories.generator.ListGenerator
+    @classmethod
+    def generated(cls):
+        return ''
+
+
+class PercentFactory:
+    # factories.generator.PercentGenerator
+    pass
+
+
+class TemplateFactory:
+    # factories.generator.TemplateGenerator
     pass
 
 

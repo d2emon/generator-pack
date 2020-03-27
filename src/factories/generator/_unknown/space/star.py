@@ -1,36 +1,17 @@
-from factories.generator import ListGenerator
-from factories.generator import Generated
-
-from .fixtures import suns
-from .planet import PlanetGenerator
-
 import random
+from factories.generator_factories import ListFactory
+from models.generator_models.space.star import Star
+from sample_data.generator_fixtures.space.fixtures import suns
+from .planet import PlanetFactory
 
 
-class Star(Generated):
-    def __init__(self, sun_type=None, blue=False):
-        self.star_type = sun_type
-        self.title = sun_type
-        self.image = sun_type
-        self.blue = blue
-        self.planets = []
-
-    def __repr__(self):
-        return "{}: {} ({}) - {}".format(
-            'Star',
-            self.title,
-            self.blue,
-            self.planets,
-        )
-
-
-class StarGenerator(ListGenerator):
+class StarFactory(ListFactory):
     generated_class = Star
     sun_list = suns[:30]
     blue_sun_list = suns[30:]
 
     @classmethod
-    def __next__(cls, data=[]):
+    def __next__(cls, data=()):
         return random.choice(data)
 
     @classmethod
@@ -59,7 +40,7 @@ class StarGenerator(ListGenerator):
 
         earth = False
         for i in range(planets):
-            planet = PlanetGenerator.generate(i < 6, earth)
+            planet = PlanetFactory.generate(i < 6, earth)
             # curPlanet = planet.slice(0, -2)
             if planet.planet_type.earth:
                 earth = True

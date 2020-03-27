@@ -1,6 +1,8 @@
 class Model:
     # factories.generator.Generated
-    pass
+    def __init__(self):
+        self.value = None
+        self.generated_text = ''
 
 
 class MarkovChain:

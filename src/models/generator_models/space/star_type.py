@@ -1,4 +1,4 @@
-class SunType():
+class SunType:
     id = 0
 
     def __init__(self, title, blue=False):

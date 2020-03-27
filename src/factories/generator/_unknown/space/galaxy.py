@@ -1,28 +1,12 @@
-from factories.generator import ListGenerator, PercentGenerator, TemplateGenerator
-from factories.generator import Generated
-#from ..generator.template import GeneratorTemplate
-from factories.generator import ListData
+from factories.generator_factories import ListFactory, PercentFactory, TemplateFactory, ListData
+# from ..generator.template import GeneratorTemplate
+from models.generator_models.space.galaxy import Galaxy
 
-from . import fixtures
-
-
-class Galaxy(Generated):
-    @property
-    def title(self):
-        return self.value
-
-    @title.setter
-    def title(self, title):
-        self.value = title
-
-    def __repr__(self):
-        return "Galaxy: \"%s\"" % (self.value)
+from sample_data.generator_fixtures.space import fixtures
 
 
-galaxy_names = fixtures.galaxy_names
-
-
-class BaseGalaxyGenerator(ListGenerator):
+class BaseGalaxyGenerator(ListFactory):
+    galaxy_names = fixtures.galaxy_names
     generated_class = Galaxy
     template = "{part1} {part2}"
     data = {
@@ -39,37 +23,32 @@ class BaseGalaxyGenerator(ListGenerator):
         )
 
 
-class GalaxyGenerator(PercentGenerator):
+class GalaxyGenerator(PercentFactory):
     generated_class = Galaxy
 
     class GalaxyGenerator1(BaseGalaxyGenerator):
         data = {
-            'part1': ListData(galaxy_names[0]),
-            'part2': ListData(galaxy_names[1]),
+            'part1': ListData(BaseGalaxyGenerator.galaxy_names[0]),
+            'part2': ListData(BaseGalaxyGenerator.galaxy_names[1]),
         }
-
 
     class GalaxyGenerator2(BaseGalaxyGenerator):
         data = {
-            'part1': ListData(galaxy_names[1]),
-            'part2': ListData(galaxy_names[3]),
+            'part1': ListData(BaseGalaxyGenerator.galaxy_names[1]),
+            'part2': ListData(BaseGalaxyGenerator.galaxy_names[3]),
         }
-
 
     class GalaxyGenerator3(BaseGalaxyGenerator):
         data = {
-            'part1': ListData(galaxy_names[2]),
-            'part2': ListData(galaxy_names[3]),
+            'part1': ListData(BaseGalaxyGenerator.galaxy_names[2]),
+            'part2': ListData(BaseGalaxyGenerator.galaxy_names[3]),
         }
 
-
-    class GalaxyGenerator4(TemplateGenerator, BaseGalaxyGenerator):
+    class GalaxyGenerator4(TemplateFactory, BaseGalaxyGenerator):
         template_str = "{c}{c}-{n}{n}"
 
-
-    class GalaxyGenerator5(TemplateGenerator, BaseGalaxyGenerator):
+    class GalaxyGenerator5(TemplateFactory, BaseGalaxyGenerator):
         template_str = "{c}{c}{c} {n}{n}{c}"
-
 
     subgenerators = {
         30: GalaxyGenerator1,

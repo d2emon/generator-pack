@@ -1,7 +1,7 @@
 import random
 
 
-class PlanetAtmosphere():
+class PlanetAtmosphere:
     def __init__(self, title, exist=True):
         self.title = title
         self.exist = exist
@@ -10,7 +10,7 @@ class PlanetAtmosphere():
         return self.title
 
 
-class PlanetType():
+class PlanetType:
     earth = False
     max_moons = 60
 
@@ -53,7 +53,7 @@ class GasPlanet(PlanetType):
         return "gasPlanet%s" % (self.image)
 
 
-class PlanetSize():
+class PlanetSize:
     min_size = 0.2
     max_size = 11.0
     min_grav = 0.2
@@ -93,7 +93,7 @@ class PlanetSize():
         return random.randrange(self.min_orbit * 10, self.max_orbit * 10) * 0.1
 
 
-class SolarSystemSize():
+class SolarSystemSize:
     def __init__(self, **kwargs):
         self.min_planets = kwargs.get("min_planets", 5)
         self.max_planets = kwargs.get("max_planets", 10)
@@ -103,7 +103,7 @@ class SolarSystemSize():
         return random.randrange(self.min_planets, self.max_planets)
 
 
-class PlanetSubtype():
+class PlanetSubtype:
     min_continents = 1
     max_continents = 16
     min_landmass = 10
