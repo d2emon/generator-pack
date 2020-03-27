@@ -1,4 +1,4 @@
-from media import simulate
+from models.media import simulate
 
 
 def test_media():

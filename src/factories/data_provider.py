@@ -1,0 +1,2 @@
+class BaseDataProvider:
+    pass

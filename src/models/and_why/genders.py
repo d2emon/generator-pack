@@ -1,0 +1,2 @@
+MALE = 'MALE'
+FEMALE = 'FEMALE'

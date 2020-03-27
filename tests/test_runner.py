@@ -1,9 +1,9 @@
 import pytest
 import random
 
-from generator import generators
+from genesys.generator import generators
 
-from generator.fng.other.demonym import Demonym
+from genesys.generator import Demonym
 
 
 @pytest.fixture
