@@ -1,4 +1,4 @@
-from factories.generator._unknown.character import race
+from factories._unknown.character import race
 import random
 
 

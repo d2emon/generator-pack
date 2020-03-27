@@ -1,5 +1,5 @@
 from factories.generator import Generated, DataGenerator
-from factories.generator._unknown.character import Male, Female
+from factories._unknown.character import Male, Female
 from .jacket import JacketGenerator
 from .shirt import ShirtGenerator
 from .belt import BeltGenerator, FemaleBeltGenerator
