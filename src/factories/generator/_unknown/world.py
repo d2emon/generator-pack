@@ -1,12 +1,9 @@
-from factories.generator import ListGenerator
-from factories.generator import Generated
-from factories.generator import FileData
+from factories.generator_factories import ListFactory, FileFactory
+from models.generator_models.world import World
 
 
-class World(Generated):
-    title = "World"
-
-
-class WorldGenerator(ListGenerator):
+class WorldFactory(ListFactory):
     generated_class = World
-    data = { 'name': FileData("data/world.txt") }
+    data = {
+        'name': FileFactory('data/world.txt'),
+    }
