@@ -1,6 +1,6 @@
 from models.models import Model
 from factories.factories.list_factory import ListFactory
-from .sleeves import DressSleevesGenerator
+from .sleeves import DressSleevesFactory
 
 
 class FabricGenerator(ListGenerator):

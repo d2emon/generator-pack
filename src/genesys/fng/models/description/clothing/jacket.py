@@ -1,4 +1,6 @@
 from models.models import Model
+from .material import Material
+from .sleeves import Sleeves
 
 
 class Tie(Model):
@@ -16,10 +18,10 @@ class Tie(Model):
 class Jacket(Model):
     def __init__(self):
         self.name = "jacket"
-        self.sleeves = SleevesGenerator.generate()
+        self.sleeves = Sleeves()
         self.material = Material("leather")
         self.cover = "just below his waist"
-        self.tie = TieGenerator.generate()
+        self.tie = Tie()
         self.neckline = "round neckline"
 
     def __repr__(self):

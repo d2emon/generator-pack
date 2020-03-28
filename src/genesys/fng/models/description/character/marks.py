@@ -1,4 +1,4 @@
-from ..provider.list_item import ListItemProvider
+from genesys.fng.providers.list_item import ListItemProvider
 
 
 class Mark:
@@ -29,7 +29,7 @@ class Moles(Mark):
     places_to = ListItemProvider([])  # 15
 
 
-class Frecles(Mark):
+class Freckles(Mark):
     places_from = ListItemProvider([])  # 13
     places_through = ListItemProvider([])  # 14
     places_to = ListItemProvider([])  # 15

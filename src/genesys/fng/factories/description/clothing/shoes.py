@@ -1,6 +1,6 @@
 from models.models import Model
 from factories.factories.list_factory import ListFactory
-from .material import MaterialGenerator
+from .material import MaterialFactory
 
 
 class ShoesGenerator(ListGenerator):
