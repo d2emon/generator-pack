@@ -1,5 +1,5 @@
 from models.models import Model
-from factories._unknown.character import Male, Female
+from genesys.fng.v1.factories.character import Male, Female
 from ..jacket import JacketGenerator
 from ..shirt import ShirtGenerator
 from ..belt import BeltGenerator, FemaleBeltGenerator
