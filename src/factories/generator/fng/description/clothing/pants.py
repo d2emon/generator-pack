@@ -1,17 +1,6 @@
-# from generator import Generated, ListGenerator
+from models.models import Model
+from factories.factories.list_factory import ListFactory
 from .sleeves import Sleeves, SleevesGenerator
-
-
-class Pants(Sleeves):
-    def __init__(self):
-        self.name = "pants"
-        self.style = "rough"
-
-    def __repr__(self):
-        return "%s %s" % (
-            self.style,
-            self.name,
-        )
 
 
 class PantsGenerator(SleevesGenerator):

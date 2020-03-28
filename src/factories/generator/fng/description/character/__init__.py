@@ -1,110 +1,37 @@
-from factories._unknown.character import race
-import random
+from ..provider import DataProvider
+from .marks import Scar, Birthmark, Moles, Frecles, SmoothSkin, SoftSkin
 
 
-class Mark():
-    types = []  # 12
-    places_from = []  # 13
-    places_through = []  # 14
-    places_to = []  # 15
-    memory_types = []  # 16
-    memory_ofs = []  # 17
+def char_gen():
+    provider = DataProvider()
 
-    def __init__(self, name_id):
-        self.name_id = name_id
-
-
-class Scar(Mark):
-    pass
-
-
-class Birthmark(Mark):
-    places_from = []  # 13
-    places_through = []  # 14
-    places_to = []  # 15
-
-
-class Moles(Mark):
-    places_from = []  # 13
-    places_through = []  # 14
-    places_to = []  # 15
-
-
-class Frecles(Mark):
-    places_from = []  # 13
-    places_through = []  # 14
-    places_to = []  # 15
-    memory_types = []  # 16
-    memory_ofs = []  # 17
-
-
-class SmoothSkin(Mark):
-    places_from = []  # 13
-    places_through = []  # 14
-    places_to = []  # 15
-    memory_types = []  # 16
-    memory_ofs = []  # 17
-
-
-class SoftSkin(Mark):
-    places_from = []  # 13
-    places_through = []  # 14
-    places_to = []  # 15
-    memory_types = []  # 16
-    memory_ofs = []  # 17
-
-
-def charGen():
-    marks = [Scar(i) for i in range(6)] + \
-        [Birthmark(i) for i in range(6, 9)] + \
-        [Moles(9), Frecles(10), SmoothSkin(11), ] + \
-        [SoftSkin(12 + i) for i in range(10)]
-
-    names20 = []
-    races = [race.Human(i) for i in range(3)] + \
-            [race.Elf(i) for i in range(3, 9)] + \
-            [race.Gnome(10), ] + \
-            [race.Troll(11), race.Orc(12), race.Goblin(13)] + \
-            [race.Dwarf(14), race.Giant(15)] + \
-            [race.Race(15 + i) for i in range(10)]
-
-    names22 = []
-    names23 = []
-
-    names24 = []
-    names25 = []
-    names26 = []
-    names27 = []
-    names28 = []
-
-    srace = random.choice(races)
-
-    mark = random.choice(marks)
-    mark_from = random.choice(mark.places_form)
-    mark_through = random.choice(mark.places_through)
-    mark_to = random.choice(mark.places_to)
-    memory_type = random.choice(mark.memory_types)
-    memory_of = random.choice(mark.memory_ofs)
-    first_name = random.choice(srace.first_name)
-    last_name = random.choice(srace.last_name)
-    random20 = random.choice(names20)
-    random22 = random.choice(names22)
-    random23 = random.choice(names23)
-    random24 = random.choice(names24)
-    random25 = random.choice(names25)
-    random26 = random.choice(names26)
+    srace = next(provider.races)
+    mark = next(provider.marks)
+    mark_from = next(mark.places_form)
+    mark_through = next(mark.places_through)
+    mark_to = next(mark.places_to)
+    memory_type = next(mark.memory_types)
+    memory_of = next(mark.memory_ofs)
+    first_name = next(srace.first_name)
+    last_name = next(srace.last_name)
+    random20 = next(provider.names20)
+    random22 = next(provider.names22)
+    random23 = next(provider.names23)
+    random24 = next(provider.names24)
+    random25 = next(provider.names25)
+    random26 = next(provider.names26)
     while random26 == random25:
-        random26 = random.choice(names26)
-    random27 = random.choice(names27)
-    random28 = random.choice(names28)
+        random26 = next(provider.names26)
+    random27 = next(provider.names27)
+    random28 = next(provider.names28)
 
-    head = "%s a %s. %s over %s" % (
+    head = '{} a {}. {} over {}'.format(
         srace.hair,
         srace.face,
         srace.eyes,
         srace.promise,
     )
-    name2 = "%s %s %s %s leaves %s of %s." % (
+    name2 = '{} {} {} {} leaves {} of {}.'.format(
         mark,
         mark_from,
         mark_through,
@@ -112,7 +39,7 @@ def charGen():
         memory_type,
         memory_of,
     )
-    name3 = "This is the face of %s %s, a true %s among %s. He stands %s others, despite his %s frame." % (
+    name3 = 'This is the face of {} {}, a true {} among {}. He stands {} others, despite his {} frame.'.format(
         first_name,
         last_name,
         random20,
@@ -121,7 +48,7 @@ def charGen():
         random22,
         random23,
     )
-    name4 = "There's something %s about him, perhaps it's %s or perhaps it's simply %s. But nonetheless, people tend to %s, while %s." % (
+    name4 = 'There\'s something {} about him, perhaps it\'s {} or perhaps it\'s simply {}. But nonetheless, people tend to {}, while {}.'.format(
         random24,
         random25,
         random26,
@@ -130,7 +57,7 @@ def charGen():
         random28,
     )
 
-    return "\n".join([
+    return '\n'.join([
         head,
         name2,
         name3,

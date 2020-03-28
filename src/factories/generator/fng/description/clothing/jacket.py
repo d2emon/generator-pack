@@ -1,22 +1,12 @@
-from factories.generator import Generated, ListGenerator
+from models.models import Model
+from factories.factories.list_factory import ListFactory
 from .sleeves import SleevesGenerator
 from .material import Material
+from .models.jacket import Tie, Jacket
 
 
-class Tie(Generated):
-    def __init__(self):
-        self.description = "tightly tied with string"
-        self.position = "at the center"
-
-    def __repr__(self):
-        return " ".join([
-            self.description,
-            self.position
-        ])
-
-
-class TieGenerator(ListGenerator):
-    generated_class = Tie
+class TieFactory(ListFactory):
+    model_class = Tie
     descriptions = [
         "tightly tied with string",
         "loosely tied with string",
@@ -45,77 +35,19 @@ class TieGenerator(ListGenerator):
         return generated
 
 
-class Jacket(Generated):
-    def __init__(self):
-        self.name = "jacket"
-        self.sleeves = SleevesGenerator.generate()
-        self.material = Material("leather")
-        self.cover = "just below his waist"
-        self.tie = TieGenerator.generate()
-        self.neckline = "round neckline"
-
-    def __repr__(self):
-        return "%s sleeved, %s jacket" % (
-            self.sleeves.length,
-            self.material,
-        )
-
-    @property
-    def description(self):
-        return "His %s covers him to %s and is %s." % (
-            str(self),
-            self.cover,
-            self.tie,
-        )
-
-
-class JacketGenerator(ListGenerator):
+class JacketFactory(ListFactory):
     generated_class = Jacket
-    materials = [
-        Material("leather"),
-        Material("hide"),
-        Material("furred"),
-        Material("cloth"),
-        Material("animal skin"),
-        Material("silky"),
-        Material("velvety"),
-    ]
-    covers = [
-        "just below his waist",
-        "well below his waist",
-        "just below his groin",
-        "well below his groin",
-        "just below his knees",
-        "well below his knees",
-        "just above his waist",
-        "well above his waist",
-        "just above his groin",
-        "well above his groin",
-        "just above his knees",
-        "well above his knees",
-        "his waist",
-        "his knees",
-        "his groin",
-    ]
-    necklines = [
-        "round neckline",
-        "wide, round neckline",
-        "narrow, round neckline",
-        "deep, round neckline",
-        "wide v-neck",
-        "narrow v-neck",
-        "deep v-neck",
-        "rectangular neckline",
-        "wide, rectangular neckline",
-        "narrow, rectangular neckline",
-        "deep, rectangular neckline",
-    ]
 
-    @classmethod
-    def fill_generated(cls, generated):
-        generated.sleeves = SleevesGenerator.generate()
-        generated.material = cls.generate_value(cls.materials)
-        generated.cover = cls.generate_value(cls.covers)
-        generated.tie = TieGenerator.generate()
-        generated.neckline = cls.generate_value(cls.necklines)
-        return generated
+    def __init__(self, provider):
+        self.provider = provider
+        self.materials = map(Material, provider.materials)
+        self.covers = provider.materials
+        self.necklines = provider.necklines
+
+    def fill_model(self, model):
+        model.sleeves = SleevesGenerator.generate()
+        model.material = next(self.materials)
+        model.cover = next(self.jacket_covers)
+        model.tie = next(TieFactory())
+        model.neckline = next(self.necklines)
+        return model

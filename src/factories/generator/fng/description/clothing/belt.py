@@ -1,26 +1,8 @@
-from factories.generator import Generated, ListGenerator
+from models.models import Model
+from factories.factories.list_factory import ListFactory
 
 
-class Belt(Generated):
-    def __init__(self):
-        self.size = "thin"
-        self.name = "leather belt"
-        self.buckle = "a big belt buckle"
-        self.decoration = "purely decorative and a sign of wealth",
-
-    def __repr__(self):
-        return self.name
-
-    @property
-    def description(self):
-        return "%s %s, which is held together by %s" % (
-            self.size,
-            self.name,
-            self.buckle,
-        )
-
-
-class BeltGenerator(ListGenerator):
+class BeltGenerator(ListFactory):
     generated_class = Belt
     sizes = [
         "thin",
@@ -71,14 +53,6 @@ class BeltGenerator(ListGenerator):
         return generated
 
 
-class FemaleBelt(Belt):
-    def __repr__(self):
-        return " ".join([
-           self.size,
-            self.name,
-        ])
-
-
 class FemaleBeltGenerator(BeltGenerator):
     generated_class = FemaleBelt
     sizes = [
@@ -108,15 +82,6 @@ class FemaleBeltGenerator(BeltGenerator):
         "fairly low",
         "quite low",
     ]
-
-
-class SleeveBand(Belt):
-    def __repr__(self):
-        return "%s, %s %s" % (
-            self.size,
-            self.decoration,
-            self.name,
-        )
 
 
 class SleeveBandGenerator(FemaleBeltGenerator):

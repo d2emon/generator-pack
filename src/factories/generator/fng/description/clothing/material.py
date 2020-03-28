@@ -1,7 +1,8 @@
-from factories.generator import Generated, ListGenerator
+from models.models import Model
+from factories.factories.list_factory import ListFactory
 
 
-class Material(Generated):
+class Material(Model):
     def __init__(self, name="leather", description=None):
         self.name = name
         if description is None:

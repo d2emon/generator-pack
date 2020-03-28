@@ -1,8 +1,9 @@
-from factories.generator import Generated, ListGenerator
+from models.models import Model
+from factories.factories.list_factory import ListFactory
 from .belt import SleeveBandGenerator
 
 
-class SleeveLength():
+class SleeveLength:
     def __init__(self, name="long", is_long= False):
         self.name = name
         self.is_long = is_long
@@ -11,7 +12,7 @@ class SleeveLength():
         return self.name
 
 
-class Sleeves(Generated):
+class Sleeves(Model):
     def __init__(self):
         self.length = SleeveLength("long", True)
         self.width = "incredibly wide"
