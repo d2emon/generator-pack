@@ -1,5 +1,5 @@
 from .collection import Collection
-from ..skills import SKILLS
+from src.rpg.savage_worlds.savage_worlds.skills import SKILLS
 
 
 class CharacterSkills(Collection):

@@ -1,7 +1,7 @@
-from . import dices, races, stats, skills
-from .collections.stats import CharacterStats
-from .collections.skills import CharacterSkills
-from .collections.edges import CharacterEdges
+from src.rpg.savage_worlds.savage_worlds import dices, skills, races
+from src.rpg.savage_worlds.savage_worlds.collections.stats import CharacterStats
+from src.rpg.savage_worlds.savage_worlds.collections.skills import CharacterSkills
+from src.rpg.savage_worlds.savage_worlds.collections.edges import CharacterEdges
 
 
 class Character:

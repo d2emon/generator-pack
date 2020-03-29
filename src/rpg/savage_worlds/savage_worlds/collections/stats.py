@@ -1,5 +1,5 @@
 from .collection import Collection
-from .. import stats, dices
+from .. import dices, stats
 
 
 class CharacterStats(Collection):

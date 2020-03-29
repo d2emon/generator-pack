@@ -1,5 +1,5 @@
-from ..character import Character
-from .. import dices, skills, edge
+from src.rpg.savage_worlds.savage_worlds.character import Character
+from src.rpg.savage_worlds.savage_worlds import dices, skills, edge
 
 
 class MadScientist(Character):

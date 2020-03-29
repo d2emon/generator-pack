@@ -1,4 +1,4 @@
-from . import dices, stats
+from src.rpg.savage_worlds.savage_worlds import dices, stats
 
 
 class Skill(stats.Stat):

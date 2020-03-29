@@ -1,4 +1,4 @@
-from . import dices
+from src.rpg.savage_worlds.savage_worlds import dices
 
 
 class Race:
