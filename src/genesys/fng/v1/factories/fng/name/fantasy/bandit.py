@@ -1,5 +1,5 @@
 import random
-from factories.factory.name import NameFactory, random_generator
+from factories.name import NameFactory, random_generator
 
 
 class BanditNameGenerator(NameFactory):

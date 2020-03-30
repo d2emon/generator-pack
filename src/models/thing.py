@@ -1,4 +1,4 @@
-from factories.thing import ThingFactory, MultipleFactory, ProbableFactory, ListFactory
+from factories.nested.thing import ThingFactory, MultipleFactory, ProbableFactory, ListFactory
 
 
 class Thing:

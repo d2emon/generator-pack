@@ -1,4 +1,4 @@
-from factories.factory.name import GenderListNameFactory
+from factories.name import GenderListNameFactory
 
 
 class ApocalypseNicknameGenerator(GenderListNameFactory):

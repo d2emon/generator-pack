@@ -1,7 +1,3 @@
-from models.models import Model
-from factories.factory.dict_factory import DictFactory
-
-
 class BeltGenerator(ListFactory):
     generated_class = Belt
     sizes = [

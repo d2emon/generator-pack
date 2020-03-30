@@ -1,10 +1,11 @@
-from .factory.factory import Factory
-from .factory.template import TemplateFactory
-from .factory.percent import PercentFactory
-from .factory.dict_factory import DictFactory
-from .factory.list_factory import ListFactory
-from .factory.markov import MarkovFactory
-from .factory.dice import DiceFactory
+from .factory import Factory
+from .dict_factory import DictFactory
+from .list_factory import ListFactory
+from .dice import DiceFactory
+from .markov import MarkovFactory
+from .name import NameFactory
+from .percent import PercentFactory
+from .template import TemplateFactory
 # from ._unknown.motivation import MotivationGenerator
 # from ._unknown.world import WorldGenerator
 # from ._unknown.space.galaxy import GalaxyGenerator

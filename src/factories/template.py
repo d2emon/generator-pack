@@ -1,5 +1,5 @@
 from providers.template import LetterProvider, NumberProvider
-from .factory import Factory
+from factories.factory import Factory
 
 
 class TemplateFactory(Factory):

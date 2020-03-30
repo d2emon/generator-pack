@@ -1,5 +1,5 @@
 import random
-from factories.factory.name import NameFactory
+from factories.name import NameFactory
 
 
 class AnimatronicNameGenerator(NameFactory):

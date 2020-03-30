@@ -1,4 +1,4 @@
-from factories.factory.name import ListNameFactory
+from factories.name import ListNameFactory
 
 
 class AnthousaiNameGenerator(ListNameFactory):
