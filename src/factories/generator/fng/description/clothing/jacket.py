@@ -1,5 +1,5 @@
 from models.models import Model
-from factories.factories.list_factory import ListFactory
+from factories.factory import DictFactory
 from .sleeves import SleevesGenerator
 from .material import Material
 from .models.jacket import Tie, Jacket

@@ -1,5 +1,5 @@
 from models.models import Model
-from factories.factories.list_factory import ListFactory
+from factories.factory import DictFactory
 
 
 class Material(Model):
