@@ -1,5 +1,5 @@
 import random
-from factories.models.point import Point
+from models.models.point import Point
 from ..factory import Factory
 
 

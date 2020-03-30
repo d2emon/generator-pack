@@ -1,4 +1,4 @@
-from factories.providers import ComplexProvider, ListProvider
+from providers import ComplexProvider, ListProvider
 from factories.generator import ListGenerated, ComplexGenerated
 
 from sample_data.fixtures import beings, places

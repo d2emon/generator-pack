@@ -1,4 +1,4 @@
-from factories.providers import ListProvider, FactoryProvider
+from providers import ListProvider, FactoryProvider
 from factories.generator import ListGenerated, ComplexGenerated
 
 from sample_data.fixtures.other.prayer import forgive, aid, deity

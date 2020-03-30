@@ -1,5 +1,5 @@
 import random
-from factories.providers import ComplexProvider, ListProvider
+from providers import ComplexProvider, ListProvider
 from factories.generator import ListGenerated
 from sample_data.fixtures import haiku_middle
 from sample_data.fixtures.other import haiku

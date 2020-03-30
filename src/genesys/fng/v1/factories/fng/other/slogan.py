@@ -1,4 +1,4 @@
-from factories.providers import ListProvider
+from providers import ListProvider
 from factories.generator import Generated
 
 

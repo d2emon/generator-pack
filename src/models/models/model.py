@@ -1,4 +1,4 @@
-from factories.providers import DataProvider
+from providers import DataProvider
 
 
 class Model:
