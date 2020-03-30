@@ -41,7 +41,7 @@ class Factory:
         return self.model()
 
     def value(self):
-        return self.template.format(next(self))
+        return self.template.format(self.data)
 
     def model(self, *args, **kwargs):
         value = self.value()
