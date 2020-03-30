@@ -7,6 +7,20 @@ class Point:
         self.x = x
         self.y = y
 
+    @property
+    def length(self):
+        return math.sqrt(self.x ^ 2 + self.y ^ 2)
+
+    @property
+    def angle(self):
+        return math.atan(self.y / self.x)
+
+    def rotate(self, angle):
+        return self.polar(
+            self.length,
+            self.angle + angle,
+        )
+
     @classmethod
     def polar(cls, radius, angle):
         return cls(
@@ -23,9 +37,6 @@ class Point:
 
     @classmethod
     def diffuse(cls, point1, point2):
-        x1, y1 = point1
-        x2, y2 = point2
-
         percent = random.uniform(100)
         dx = point2.x - point1.x
         dy = point2.y - point1.y
