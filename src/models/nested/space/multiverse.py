@@ -1,6 +1,6 @@
 import random
+from factories.factory import ListFactory
 from factories.name import TextFactory
-from factories.generator.generator_data import ListData
 from factories.mathgen import RadiationFactory
 from models.models import ListModel
 from sample_data.fixtures.space import multiverse
@@ -69,7 +69,7 @@ class Multiverse(NamedGenerated):
         class NamesProvider:
             block_id = 'multiverse'
 
-    data = {'value': ListData(multiverse)}
+    data = {'value': ListFactory(None, multiverse)}
     name_generator = MultiverseNameFactory
 
     children_count = 10, 30

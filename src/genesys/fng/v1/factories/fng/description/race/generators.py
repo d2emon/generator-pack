@@ -1,7 +1,7 @@
 import random
 
 from sample_data.fixtures import race
-from factories.generator import StaticData, ListData
+from factories.factory import Factory, ListFactory
 from .generated import Body, Horns, Skin, Divercity
 from .limbs import Arms, WingedArms, ClawedArms, SideFins, DorsalFin, Wings, Legs, Tail
 
@@ -98,6 +98,7 @@ class BodyGenerator(BasicGenerator):
             part3=next(self.parts[2])
         )
 
+
 class HornsGenerator(BasicGenerator):
     generated_class = Horns
 
@@ -106,11 +107,11 @@ class SkinGenerator(BasicGenerator):
     generated_class = Skin
 
     def __init__(self, **kwargs):
-        self.skins = kwargs.get('skins', ListData(race.skins))
-        self.covers = kwargs.get('covers', StaticData())
-        self.colors = kwargs.get('colors', ListData(race.skin_colors))
+        self.skins = kwargs.get('skins', ListFactory(None, race.skins))
+        self.covers = kwargs.get('covers', Factory())
+        self.colors = kwargs.get('colors', ListFactory(None, race.skin_colors))
         self.color_chances = kwargs.get('color_chances', race.skin_color_chances)
-        self.agings = kwargs.get('agings', ListData(race.agings))
+        self.agings = kwargs.get('agings', ListFactory(None, race.agings))
 
     def generate_colors(self):
         chances = [c for c in self.color_chances if c >= random.randint(100)]
@@ -125,11 +126,12 @@ class SkinGenerator(BasicGenerator):
             'aging': next(self.agings),
         }
 
+
 class DivercityGenerator(BasicGenerator):
     generated_class = Divercity
 
-    divercity = ListData(race.divercities)
-    colors = ListData(race.divercity_colors_data)
+    divercity = ListFactory(race.divercities)
+    colors = ListFactory(race.divercity_colors_data)
 
     def value(self, *args, **kwargs):
         divercity = self.divercity.unique(2)

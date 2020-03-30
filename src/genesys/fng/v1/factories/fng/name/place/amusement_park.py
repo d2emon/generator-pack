@@ -1,5 +1,5 @@
+from factories.factory import ListFactory
 from factories.generator import ListGenerated, ComplexGenerated
-from factories.generator import ListData
 
 from sample_data.fixtures.place.amusement_park import first1, first2, second2, second1
 
@@ -16,8 +16,8 @@ class BaseAmusementPark(ListGenerated):
 
 class AmusementPark1(BaseAmusementPark):
     data = {
-        'first': ListData(first1),
-        'last': ListData(second1),
+        'first': ListFactory(first1),
+        'last': ListFactory(second1),
     }
 
     def __str__(self):
@@ -26,8 +26,8 @@ class AmusementPark1(BaseAmusementPark):
 
 class AmusementPark2(BaseAmusementPark):
     data = {
-        'first': ListData(first2),
-        'last': ListData(second2),
+        'first': ListFactory(first2),
+        'last': ListFactory(second2),
     }
 
 

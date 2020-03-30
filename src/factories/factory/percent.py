@@ -5,9 +5,6 @@ from .factory import Factory
 class PercentFactory(Factory):
     default_value = None
 
-    def __init__(self):
-        super().__init__()
-
     def factory(self, chance=None):
         if chance is None:
             chance = random.uniform(0, 100)

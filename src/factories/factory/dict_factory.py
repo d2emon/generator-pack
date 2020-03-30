@@ -4,8 +4,8 @@ from .template import TemplateFactory
 class DictFactory(TemplateFactory):
     default_template = '{name}'
 
-    def __init__(self):
-        super().__init__()
+    def __init__(self, provider=None):
+        super().__init__(provider)
         self.__template = None
 
     def factory(self, key):

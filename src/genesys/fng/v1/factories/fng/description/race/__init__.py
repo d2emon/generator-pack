@@ -115,8 +115,8 @@ class RaceGenerator:
 
         self.divercity_generator = DivercityGenerator()
 
-        self.appearance_data = ListData(race.appearances)
-        self.quality_data = ListData(race.qualities)
+        self.appearance_data = ListFactory(race.appearances)
+        self.quality_data = ListFactory(race.qualities)
 
     def __next__(self):
         appearance = self.appearance_data.unique(2)

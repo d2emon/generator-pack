@@ -1,3 +1,7 @@
+from os import path
+from utils.loaders import load_lines
+
+
 class FileDataProvider:
     default_filename = ''
 
@@ -6,13 +10,17 @@ class FileDataProvider:
         self.filename = filename or self.default_filename
 
     @property
-    def _file_data(self):
-        raise NotImplementedError()
+    def __file_path(self):
+        return path.abspath(path.join("", self.filename))
+
+    @property
+    def __file_data(self):
+        return load_lines(self.__file_path)
 
     @property
     def data(self):
         if self.__data is None:
-            self.__data = self._file_data
+            self.__data = self.__file_data
         return self.__data
 
     @data.setter

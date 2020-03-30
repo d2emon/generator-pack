@@ -1,4 +1,4 @@
-from factories.generator import ListData
+from factories.factory import ListFactory
 
 from sample_data.fixtures import belt
 from sample_data.fixtures import gloves
@@ -13,14 +13,14 @@ from sample_data.fixtures import skirt
 class Outfit:
     storage = []
 
-    belt_data = ListData(belt)
-    gloves_data = ListData(gloves)
-    jacket_data = ListData(jacket)
-    pants_data = ListData(pants)
-    scarf_data = ListData(scarf)
-    shirt_data = ListData(shirt)
-    shoes_data = ListData(shoes)
-    skirt_data = ListData(skirt)
+    belt_data = ListFactory(belt)
+    gloves_data = ListFactory(gloves)
+    jacket_data = ListFactory(jacket)
+    pants_data = ListFactory(pants)
+    scarf_data = ListFactory(scarf)
+    shirt_data = ListFactory(shirt)
+    shoes_data = ListFactory(shoes)
+    skirt_data = ListFactory(skirt)
 
     def __init__(self):
         self.gender = "male"

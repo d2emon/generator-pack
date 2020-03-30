@@ -1,4 +1,5 @@
-from factories.generator_factories import ListFactory, PercentFactory, TemplateFactory, ListData
+from factories.factory import ListFactory
+from factories.generator_factories import ListFactory, PercentFactory, TemplateFactory
 # from factories.template import FactoryTemplate
 from models.generator_models.space.galaxy import Galaxy
 
@@ -10,13 +11,13 @@ class BaseGalaxyGenerator(ListFactory):
     generated_class = Galaxy
     template = "{part1} {part2}"
     data = {
-        'part1': ListData(galaxy_names[0]),
-        'part2': ListData(galaxy_names[1]),
+        'part1': ListFactory(galaxy_names[0]),
+        'part2': ListFactory(galaxy_names[1]),
     }
 
     @classmethod
     def __next__1(cls):
-        choices = [ListData(n) for n in cls.galaxy_names]
+        choices = [ListFactory(n) for n in cls.galaxy_names]
         return "%s %s" % (
             choices[0].__next__(),
             choices[1].__next__(),
@@ -28,20 +29,20 @@ class GalaxyGenerator(PercentFactory):
 
     class GalaxyGenerator1(BaseGalaxyGenerator):
         data = {
-            'part1': ListData(BaseGalaxyGenerator.galaxy_names[0]),
-            'part2': ListData(BaseGalaxyGenerator.galaxy_names[1]),
+            'part1': ListFactory(BaseGalaxyGenerator.galaxy_names[0]),
+            'part2': ListFactory(BaseGalaxyGenerator.galaxy_names[1]),
         }
 
     class GalaxyGenerator2(BaseGalaxyGenerator):
         data = {
-            'part1': ListData(BaseGalaxyGenerator.galaxy_names[1]),
-            'part2': ListData(BaseGalaxyGenerator.galaxy_names[3]),
+            'part1': ListFactory(BaseGalaxyGenerator.galaxy_names[1]),
+            'part2': ListFactory(BaseGalaxyGenerator.galaxy_names[3]),
         }
 
     class GalaxyGenerator3(BaseGalaxyGenerator):
         data = {
-            'part1': ListData(BaseGalaxyGenerator.galaxy_names[2]),
-            'part2': ListData(BaseGalaxyGenerator.galaxy_names[3]),
+            'part1': ListFactory(BaseGalaxyGenerator.galaxy_names[2]),
+            'part2': ListFactory(BaseGalaxyGenerator.galaxy_names[3]),
         }
 
     class GalaxyGenerator4(TemplateFactory, BaseGalaxyGenerator):
