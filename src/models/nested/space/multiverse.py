@@ -1,6 +1,6 @@
 import random
 from factories.name import TextFactory
-from factories.generator.generator.generator_data import ListData
+from factories.generator.generator_data import ListData
 from factories.mathgen import RadiationFactory
 from models.models import ListModel
 from sample_data.fixtures.space import multiverse

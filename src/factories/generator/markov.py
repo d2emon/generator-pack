@@ -1,8 +1,3 @@
-import random
-
-from .generator_data import GeneratorData
-
-
 class MarkovGenerator:
     chain_class = MarkovChain
     _chain = None
