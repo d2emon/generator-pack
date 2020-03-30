@@ -1,4 +1,4 @@
-from factories.name import NameFactory
+from factories.factory.name import NameFactory
 
 
 class AlienNameGenerator(NameFactory):

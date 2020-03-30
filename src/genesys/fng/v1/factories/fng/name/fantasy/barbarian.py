@@ -23,7 +23,7 @@ if(i < 3){
 """
 
 import random
-from factories.name import NameFactory, random_generator, genders
+from factories.factory.name import NameFactory, random_generator
 
 
 class BarbarianNameGenerator(NameFactory):

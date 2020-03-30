@@ -1,4 +1,4 @@
-from factories.name import ListNameFactory
+from factories.factory.name import ListNameFactory
 
 
 class ArtificialIntelligenceNameGenerator(ListNameFactory):

@@ -1,4 +1,4 @@
-from factories.name import NameFactory, random_generator
+from factories.factory.name import NameFactory, random_generator
 
 
 second_names = ["Aardvark", "Abyssinian", "Addax", "Affenpinscher", "Akbash", "Akita", "Albatross", "Alligator",

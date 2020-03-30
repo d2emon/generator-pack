@@ -1,4 +1,4 @@
-from factories.name import NameFactory, random_generator
+from factories.factory.name import NameFactory, random_generator
 
 
 names1 = ["b", "bl", "br", "c", "chr", "cl", "cr", "d", "dr", "f", "g", "gl", "gr", "h", "j", "k", "kl", "kr", "m", "n",

@@ -1,4 +1,4 @@
-from factories.name import GenderListNameFactory, genders
+from factories.factory.name import GenderListNameFactory
 
 
 class AngelNameGenerator(GenderListNameFactory):
