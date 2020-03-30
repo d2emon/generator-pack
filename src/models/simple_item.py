@@ -1,12 +1,11 @@
-from factories.factory import SimpleFactory
-from factories.random_factory import RandomFactory
+from factories import Factory, ListFactory
 
 
 class SimpleItem:
-    class NameFactory(SimpleFactory):
+    class NameFactory(Factory):
         default = 'Unnamed'
 
-    class DataFactory(RandomFactory):
+    class DataFactory(ListFactory):
         default = []
 
     def __init__(self, name=None):

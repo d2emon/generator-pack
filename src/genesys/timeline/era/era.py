@@ -1,5 +1,5 @@
 from dice.dice import Dice
-from factories.random_factory import RandomFactory, DiceFactory
+from factories import ListFactory, DiceFactory
 from models.data_manager import DataManager
 from models.timeline.event import Event
 
@@ -13,7 +13,7 @@ class Era(DataManager):
         super().__init__()
         self.__count = DiceFactory(self.count_dice)
         self.__year = DiceFactory(self.years_dice)
-        self.__event_generators = RandomFactory(self.events_data)
+        self.__event_generators = ListFactory(None, self.events_data)
 
     @property
     def count(self):

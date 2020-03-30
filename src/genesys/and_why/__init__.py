@@ -1,6 +1,7 @@
-from factories.random_factory import DataItemFactory, RandomFactory
+from factories import ListFactory
 from models.and_why import DollModel, genders
 from models.data_manager import DataManager
+from providers.data_item import DataItemProvider
 from sample_data.and_why import groups
 
 
@@ -8,8 +9,8 @@ class ClothingManager(DataManager):
     class DataProvider(DataManager.DataProvider):
         def __init__(self):
             self.__factories = {
-                genders.MALE: DataItemFactory(groups.MALE),
-                genders.FEMALE: DataItemFactory(groups.FEMALE),
+                genders.MALE: DataItemProvider(groups.MALE),
+                genders.FEMALE: DataItemProvider(groups.FEMALE),
 
             }
 
@@ -29,7 +30,7 @@ class Doll(DollModel):
 class DollManager(DataManager):
     class DataProvider(DataManager.DataProvider):
         def __init__(self):
-            self.__genders = RandomFactory([
+            self.__genders = ListFactory(None, [
                 genders.MALE,
                 genders.FEMALE,
             ])

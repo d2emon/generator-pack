@@ -1,14 +1,14 @@
-from factories.random_factory import DataItemFactory
 from models import dndspeak
 from models.data_manager import DataManager
+from providers.data_item import DataItemProvider
 from sample_data.dndspeak import groups
 
 
 class EncounterManager(DataManager):
     class DataProvider(DataManager.DataProvider):
         def __init__(self):
-            self.__desert_encounters = DataItemFactory(groups.DESERT_ENCOUNTERS)
-            self.__sailing_conditions = DataItemFactory(groups.DESERT_ENCOUNTERS)
+            self.__desert_encounters = DataItemProvider(groups.DESERT_ENCOUNTERS)
+            self.__sailing_conditions = DataItemProvider(groups.DESERT_ENCOUNTERS)
 
         @property
         def desert_encounters(self):
