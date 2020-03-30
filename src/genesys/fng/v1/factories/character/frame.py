@@ -1,8 +1,8 @@
-from factories.generator_factories import ListFactory
+from factories import DictFactory
 from models.generator_models.character.frame import Frame
 
 
-class FrameFactory(ListFactory):
+class FrameFactory(DictFactory):
     generated_class = Frame
     heights = [
         "tall among",

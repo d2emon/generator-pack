@@ -1,8 +1,8 @@
-from factories.generator_factories import ListFactory
+from factories import DictFactory
 from models.generator_models.character.attitude import Attitude
 
 
-class MaleAttitudeFactory(ListFactory):
+class MaleAttitudeFactory(DictFactory):
     generated_class = Attitude
     attitudes = [
         "keep their distance",

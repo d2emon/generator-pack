@@ -1,5 +1,5 @@
 import random
-from factories.generator_factories import DataFactory
+from factories import Factory
 # from .special import SpecialSignGenerator, ScarGenerator, TattooGenerator
 from models.generator_models.character import Character
 from . import special as s
@@ -75,7 +75,7 @@ female_specials = [
 ]
 
 
-class CharacterGenerator(DataFactory):
+class CharacterGenerator(Factory):
     generated_class = Character
     races = races
     male_specials = male_specials

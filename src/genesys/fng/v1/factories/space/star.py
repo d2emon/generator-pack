@@ -1,11 +1,11 @@
 import random
-from factories.generator_factories import ListFactory
+from factories import DictFactory
 from models.generator_models.space.star import Star
 from sample_data.generator_fixtures.space.fixtures import suns
 from .planet import PlanetFactory
 
 
-class StarFactory(ListFactory):
+class StarFactory(DictFactory):
     generated_class = Star
     sun_list = suns[:30]
     blue_sun_list = suns[30:]

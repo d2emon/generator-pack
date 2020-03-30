@@ -1,8 +1,8 @@
-from factories.generator_factories import ListFactory
+from factories import DictFactory
 from models.generator_models.character.face import Face
 
 
-class FaceFactory(ListFactory):
+class FaceFactory(DictFactory):
     generated_class = Face
     facetypes = [
         "thin",

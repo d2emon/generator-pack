@@ -1,8 +1,8 @@
-from factories.generator_factories import ListFactory
+from factories import DictFactory
 from models.generator_models.character.special import SpecialSign, Scar, Tattoo, TribalMark, Moles, Freckles, Beard
 
 
-class SpecialSignFactory(ListFactory):
+class SpecialSignFactory(DictFactory):
     generated_class = SpecialSign
     memories = [
         "a pleasant memory",

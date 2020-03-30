@@ -1,6 +1,6 @@
 import random
 from factories.template import FactoryTemplate
-from factories.generator_factories import DataFactory, ListFactory
+from factories import Factory, DictFactory
 from models.generator_models.space.planet import PlanetType, Planet1, StarSystemType, StarSystem, LifeType, Planet
 from sample_data.generator_fixtures.space.fixtures import atmospheres, environments, maps, non_earthPlanets, allPlanets, planet_names, planet_sizes, planet_name_origins
 from utils.loaders import load_lines
@@ -53,7 +53,7 @@ class PlanetTemplate(FactoryTemplate):
         )
 
 
-class StarSystemFactory(DataFactory):
+class StarSystemFactory(Factory):
     generated_class = StarSystem
     star_colors = load_lines("data/planet/star-color.txt")
     system_types = [StarSystemType(i, s) for i, s in enumerate(load_lines("data/planet/solar-system.txt"))]
@@ -71,7 +71,7 @@ class StarSystemFactory(DataFactory):
         return generated
 
 
-class PlanetFactory1(DataFactory):
+class PlanetFactory1(Factory):
     generated_class = Planet1
     life_types = [
         LifeType(
@@ -205,7 +205,7 @@ class PlanetFactory1(DataFactory):
         return generated
 
 
-class PlanetFactory(ListFactory):
+class PlanetFactory(Factory):
     generated_class = Planet
 
     margin = 5.4

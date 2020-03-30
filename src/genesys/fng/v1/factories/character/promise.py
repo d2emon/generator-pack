@@ -1,8 +1,8 @@
-from factories.generator_factories import ListFactory
+from factories import DictFactory
 from models.generator_models.character.promise import Promise
 
 
-class PromiseFactory(ListFactory):
+class PromiseFactory(DictFactory):
     generated_class = Promise
     settlements = [
         "village",

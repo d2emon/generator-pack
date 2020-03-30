@@ -1,8 +1,8 @@
-from factories.generator_factories import ListFactory
+from factories import DictFactory
 from models.generator_models.character.strange import Strange
 
 
-class StrangeFactory(ListFactory):
+class StrangeFactory(DictFactory):
     generated_class = Strange
     descriptions = [
         "alluring",

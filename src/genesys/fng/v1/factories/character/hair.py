@@ -1,8 +1,8 @@
-from factories.generator_factories import ListFactory
+from factories import DictFactory
 from models.generator_models.character.hair import Hair
 
 
-class HairFactory(ListFactory):
+class HairFactory(DictFactory):
     generated_class = Hair
     colors = [
         "Black",

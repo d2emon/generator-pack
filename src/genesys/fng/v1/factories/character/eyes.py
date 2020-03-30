@@ -1,8 +1,8 @@
-from factories.generator_factories import ListFactory
+from factories import DictFactory
 from models.generator_models.character.eyes import Eyes
 
 
-class EyesFactory(ListFactory):
+class EyesFactory(DictFactory):
     generated_class = Eyes
     styles = [
         "Beady",

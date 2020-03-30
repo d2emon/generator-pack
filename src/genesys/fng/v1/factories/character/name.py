@@ -1,8 +1,8 @@
-from factories.generator_factories import ListFactory
+from factories import DictFactory
 from models.generator_models.character.name import Name
 
 
-class NameFactory(ListFactory):
+class NameFactory(DictFactory):
     generated_class = Name
     firstnames = []
     lastnames = []

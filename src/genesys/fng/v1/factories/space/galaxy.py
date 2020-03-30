@@ -1,12 +1,11 @@
-from factories.factory import ListFactory
-from factories.generator_factories import ListFactory, PercentFactory, TemplateFactory
+from factories import DictFactory, ListFactory, PercentFactory, TemplateFactory
 # from factories.template import FactoryTemplate
 from models.generator_models.space.galaxy import Galaxy
 
 from sample_data.generator_fixtures.space import fixtures
 
 
-class BaseGalaxyGenerator(ListFactory):
+class BaseGalaxyGenerator(DictFactory):
     galaxy_names = fixtures.galaxy_names
     generated_class = Galaxy
     template = "{part1} {part2}"

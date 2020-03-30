@@ -1,5 +1,5 @@
 from models.generator_models.street import StreetChain
-from factories.generator_factories import MarkovFactory
+from factories import MarkovFactory
 
 
 class StreetFactory(MarkovFactory):
