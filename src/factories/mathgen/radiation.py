@@ -1,6 +1,6 @@
 import random
+from factories import Factory
 from models.models.point import Point
-from ..factory import Factory
 
 
 class RadiationFactory(Factory):

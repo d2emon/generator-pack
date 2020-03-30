@@ -1,12 +1,11 @@
 import random
-from factories.template import FactoryTemplate
-from factories import Factory, DictFactory
+from factories import Factory, DictFactory, TemplateFactory
 from models.generator_models.space.planet import PlanetType, Planet1, StarSystemType, StarSystem, LifeType, Planet
 from sample_data.generator_fixtures.space.fixtures import atmospheres, environments, maps, non_earthPlanets, allPlanets, planet_names, planet_sizes, planet_name_origins
 from utils.loaders import load_lines
 
 
-class StarSystemTemplate(FactoryTemplate):
+class StarSystemTemplate(TemplateFactory):
     @classmethod
     def generate_system_type(cls, system_types):
         return random.choice(system_types)
@@ -16,7 +15,7 @@ class StarSystemTemplate(FactoryTemplate):
         return random.randint(system_type.min_planets, system_type.max_planets)
 
 
-class PlanetTemplate(FactoryTemplate):
+class PlanetTemplate(TemplateFactory):
     @classmethod
     def generate2(cls, names):
         return "Планета %s примерно в %s раз больше Земли, а ее гравитация примерно в %s раз выше, чем у Земли." % (
