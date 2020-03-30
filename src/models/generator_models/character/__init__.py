@@ -1,6 +1,6 @@
 from ..generator_models import Model
-from factories._unknown.character import FrameFactory
-from factories._unknown.character.strange import StrangeFactory
+from genesys.fng.v0.character import FrameFactory
+from genesys.fng.v0.character import StrangeFactory
 
 
 class Character(Model):

@@ -1,6 +1,6 @@
 import random
 from factories.factories.factory import Factory
-from factories._unknown.character import Male, Female
+from genesys.fng.v0.character import Male, Female
 from .jacket import JacketFactory
 from .shirt import ShirtGenerator
 from .belt import BeltGenerator, FemaleBeltGenerator
