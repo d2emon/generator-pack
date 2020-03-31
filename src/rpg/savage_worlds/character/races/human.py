@@ -1,8 +1,5 @@
-from src.rpg.savage_worlds.savage_worlds import dices
-
-
-class Race:
-    pass
+from .. import dices
+from .race import Race
 
 
 class Human(Race):

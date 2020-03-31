@@ -1,8 +1,14 @@
 from .intro import *
 
-from .character import *  # 4 5 10 15
-from .equipment import *  # 16 20 25 30 35 40 45
-from .basic_rules import *  # 50 55 60 65 70 75 80
+from .campaigns import space1889
+from .campaigns import deadlands
+from .campaigns import weird_wars
+from .campaigns import solomon_kane
+from .campaigns import rippers
+
+from .character import *
+from .equipment import *  # 50 55 60 65
+from .basic_rules import *  # 66 70 75 80
 from .situationary_rules import *  # 85 90 95 100 105
 from .forces import *  # 107 110 115 120
 from .campaigning import *  # 125 130
