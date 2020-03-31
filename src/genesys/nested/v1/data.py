@@ -1,7 +1,7 @@
 import random
 
 
-from .thing import Thing
+from ..factories import Thing
 from genesys.nested.data.chemistry import CONTENTS as CHEMISTRY_CONTENTS
 from genesys.nested.data.particles import CONTENTS as PARTICLES_CONTENTS
 from genesys.nested.data.space import CONTENTS as SPACE_CONTENTS

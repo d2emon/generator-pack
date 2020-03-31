@@ -1,32 +1,41 @@
 import random
 
 
-class NameGenerator:
-    def __init__(self, data, default="UNNAMED"):
-        if data is None:
-            data = default
-        if not isinstance(data, list):
-            data = data,
+class NameFactory:
+    class DataProvider:
+        default_value = ['UNNAMED']
 
-        if not isinstance(data[0], list):
-            data = data,
-        # self.data = [d if isinstance(d, list) else [d] for d in data]
-        self.data = data
+        def __init__(self, data=None):
+            self.__data = data
+
+        @property
+        def data(self):
+            data = self.__data or self.default_value
+            data = data if isinstance(data, list) else [data]
+            data = data if len(data) > 0 and isinstance(data[0], list) else [data]
+            # self.data = [d if isinstance(d, list) else [d] for d in data]
+            return data
+
+        @property
+        def names(self):
+            return (random.choice(names) for names in self.data)
+
+    def __init__(self, provider=None):
+        self.provider = provider or self.DataProvider()
 
     def __repr__(self):
-        return "<NameGenerator {}>".format(self.data)
+        return "<NameFactory {}>".format(self.provider.data)
 
-    def gen_parts(self):
-        s = "".join(random.choice(n) for n in self.data)
-        return s.split("|")
+    def parts(self):
+        return ''.join(self.provider.names).split('|')
 
-    def generate(self):
-        parts = self.gen_parts()
+    def __next__(self):
+        parts = self.parts()
 
         if len(parts) < 1:
             return None
 
-        if parts[0] in ["*PERSON*", "*MAN*", "*WOMAN*"]:
+        if parts[0] in ['*PERSON*', '*MAN*', '*WOMAN*']:
             """
             //Generates a first name + last name, compiled from the 100 most popular names in the USA. Yes, every person in the universe is an American.
             if (this.name=="*PERSON*") var gender=Choose([0,1]);
@@ -100,6 +109,8 @@ class NameGenerator:
 		],1.5);
 		this.name=str;
 	}
+        """
+        """
 	else if (this.name=="*SADTHOUGHT*")
 	{
 		var str="";
@@ -114,6 +125,8 @@ class NameGenerator:
 		],1.4);
 		this.name=str;
 	}
+        """
+        """
 	else if (this.name=="*HAPPYTHOUGHT*")
 	{
 		var str="";
@@ -126,6 +139,8 @@ class NameGenerator:
 		],1.4);
 		this.name=str;
 	}
+        """
+        """
 	else if (this.name=="*MEDIEVAL MEMORY*")
 	{
 		var str="";
@@ -137,6 +152,8 @@ class NameGenerator:
 		],1.5);
 		this.name=str;
 	}
+        """
+        """
 	else if (this.name=="*MEDIEVAL THOUGHT*")
 	{
 		var str="";
@@ -145,6 +162,8 @@ class NameGenerator:
 		],1.1);
 		this.name=str;
 	}
+        """
+        """
 	else if (this.name=="*ANCIENT MEMORY*")
 	{
 		var str="";
@@ -156,6 +175,8 @@ class NameGenerator:
 		],1.5);
 		this.name=str;
 	}
+        """
+        """
 	else if (this.name=="*ANCIENT THOUGHT*")
 	{
 		var str="";
@@ -164,6 +185,8 @@ class NameGenerator:
 		],1.1);
 		this.name=str;
 	}
+        """
+        """
 	else if (this.name=="*FUTURE MEMORY*")
 	{
 		var str="";
@@ -176,6 +199,8 @@ class NameGenerator:
 		],1.5);
 		this.name=str;
 	}
+        """
+        """
 	else if (this.name=="*FUTURE THOUGHT*")
 	{
 		var str="";
@@ -184,6 +209,8 @@ class NameGenerator:
 		],1.5);
 		this.name=str;
 	}
+        """
+        """
 	else if (this.name=="*PAINTING*")
 	{
 		//Paintings ! Most of these end up sounding rather disturbing, I wonder why ?
@@ -208,6 +235,8 @@ class NameGenerator:
 
 		this.name=str;
 	}
+        """
+        """
 	else if (this.name=="*NOTE*")
 	{
 		//Notes found hidden in people's pockets, etc. Can contain recipes, laundry bills, or creepy observations.
@@ -220,6 +249,8 @@ class NameGenerator:
 		]);
 		this.name='"'+str+'"';
 	}
+        """
+        """
 	else if (this.name=="*BOOK*")
 	{
 		//This is probably my favorite name generator.
@@ -235,6 +266,8 @@ class NameGenerator:
 		if (Rand(0,10)==0) str+=", "+Choose(["Part","Tome","Volume"])+" "+Choose(["I","II","III","IV","V","VI","VII","VIII","IX","X"]);
 		this.name=Title(str);
 	}
+        """
+        """
 	else if (this.name=="*CHAR*")
 	{
 		var str="";
@@ -245,6 +278,8 @@ class NameGenerator:
 		if (Rand(0,30)==0) str=str.toUpperCase();
 		this.name=str;
 	}
+        """
+        """
 	else if (this.name=="*MONUMENT*")
 	{
 		var str="";
@@ -256,6 +291,5 @@ class NameGenerator:
 	}
         """
 
-        # return "".join(parts[0:2]).title()
-        title = "".join(parts[0:2])
-        return title[0].upper() + title[1:]
+        name = ''.join(parts[0:2])
+        return name[0].upper() + name[1:]

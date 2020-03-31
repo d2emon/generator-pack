@@ -1,7 +1,6 @@
 import random
 
-from genesys.nested.v1.thing import Generator, Thing
-from genesys.nested.v1.children import ChildGenerator
+from genesys.nested.factories import Factory, Thing, ChildFactory
 # from ..name import NameGenerator
 
 from genesys.nested.data.space.v1.dyson import DysonSphere, DysonSurface, DysonSegment
