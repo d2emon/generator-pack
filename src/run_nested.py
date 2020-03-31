@@ -3,7 +3,7 @@ import sys
 from genesys.generator import Item
 
 
-# from nested.tag import Tag, get_DOM
+# from v1.tag import Tag, get_DOM
 
 
 def show_all():
