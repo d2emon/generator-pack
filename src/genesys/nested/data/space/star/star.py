@@ -1,17 +1,18 @@
-from nestedg.mixins import EncounteredMixin
-from nestedg.model import Model
-from nestedg.data import unknown, lookups
-from nestedg.data.materials import elements
-from . import planet
+from ... import unknown
+from genesys.nested.models import Model
+from genesys.nested.models.mixins import EncounteredMixin
+from ... import lookups
+from ...chemistry import elements
+from .. import planet
 
 
 class Star(Model, EncounteredMixin):
     contents = Model.children_property(elements.Hydrogen, elements.Helium)
 
-    class BaseGenerator(Model.BaseGenerator):
+    class BaseFactory(Model.BaseFactory):
         default = lookups.stars
 
-    class ChildrenGenerator(Model.ChildrenGenerator):
+    class ChildrenFactory(Model.ChildrenFactory):
         def children_classes(self):
             yield unknown.Ghost.probable(0.1)
             yield unknown.SpaceMonster.probable(0.2)
@@ -27,7 +28,7 @@ class StarSystem(Model):
     dyson_surfaces = Model.children_property(unknown.DysonSurface)
     orbits = Model.children_property(planet.Planet, planet.AsteroidBelt, unknown.DysonSurface)
 
-    class ChildrenGenerator(Model.ChildrenGenerator):
+    class ChildrenFactory(Model.ChildrenFactory):
         @classmethod
         def _generate_inhabited(cls):
             yield planet.VisitorPlanet.probable(5)
@@ -55,15 +56,7 @@ class StarSystem(Model):
             yield from planet.AsteroidBelt.multiple(0, 2)
 
 
-class DysonSphere(StarSystem):
-    class ChildrenGenerator(StarSystem.ChildrenGenerator):
-        @classmethod
-        def _generate_inhabited(cls):
-            yield unknown.DysonSurface
-            yield from planet.FuturePlanet.multiple(1, 8)
-
-
 class SingleStar(StarSystem):
-    class ChildrenGenerator(StarSystem.ChildrenGenerator):
+    class ChildrenFactory(StarSystem.ChildrenFactory):
         def children_classes(self):
             yield Star

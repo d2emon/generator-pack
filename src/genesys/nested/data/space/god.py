@@ -1,22 +1,22 @@
-from nestedg.model import Model
-from nestedg.data import unknown, lookups
-
-from nestedg.data.people import Body
-from nestedg.data.people.clothing import ClothingSet
+from .. import unknown
+from genesys.nested.models import Model
+from ..person.people import Body
+from ..person.people.clothing import ClothingSet
+from .. import lookups
 
 
 class D2emonThoughts(unknown.Thoughts):
-    class BaseGenerator(Model.BaseGenerator):
+    class BaseFactory(Model.BaseFactory):
         default = lookups.d2emon_thoughts
 
 
 class D2emonPsyche(Model):
     thoughts = Model.child_property(unknown.Thoughts)
 
-    class NameGenerator(Model.NameGenerator):
+    class NameFactory(Model.NameFactory):
         default = 'psyche'
 
-    class ChildrenGenerator(Model.ChildrenGenerator):
+    class ChildrenFactory(Model.ChildrenFactory):
         def children_classes(self):
             yield D2emonThoughts
 
@@ -27,10 +27,10 @@ class D2emon(Model):
     clothes = Model.child_property(ClothingSet)
     computer = Model.child_property(unknown.Computer)
 
-    class NameGenerator(Model.NameGenerator):
+    class NameFactory(Model.NameFactory):
         default = 'psyche'
 
-    class ChildrenGenerator(Model.ChildrenGenerator):
+    class ChildrenFactory(Model.ChildrenFactory):
         def children_classes(self):
             yield Body
             yield D2emonPsyche
