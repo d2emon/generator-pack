@@ -1,3 +1,9 @@
+# from .space import CONTENTS as SPACE_CONTENTS
+
+# # universe stuff
+# Things.from_contents(SPACE_CONTENTS)
+
+
 import random
 
 from genesys.nested.factories import Factory, Thing, ChildFactory
