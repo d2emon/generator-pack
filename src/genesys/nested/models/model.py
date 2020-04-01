@@ -1,107 +1,91 @@
 import random
-from ..factories import Things
+from genesys.nested.factories.data import NameFactory, BaseFactory, ChildrenFactory
 
 
-class Model:
-    MODELS = []
+class GeneratingModel:
+    @classmethod
+    def probable(cls, probability=100):
+        return cls if random.uniform(0, 100) < probability else None
 
-    def __init__(self, factory=None, parent=None):
-        self.__name = None
-        self.__children = None
-        self.__image = None
-        self.parent = None
+    @classmethod
+    def multiple(cls, min_items=1, max_items=None):
+        count = random.randint(min_items, max_items) if max_items is not None else min_items
+        for _ in range(count):
+            yield cls
 
-        self.factory = factory
+    @classmethod
+    def choice(cls, items):
+        return random.choice(items) if len(items) > 0 else None
 
-        self.set_parent(parent)
 
-        self.template = None
+class Model(GeneratingModel):
+    class NameFactory(NameFactory):
+        pass
 
-        self.__position = None
+    class BaseFactory(NameFactory):
+        pass
+
+    class ChildrenFactory(ChildrenFactory):
+        pass
+
+    def __init__(self, name=None, base=None, children=None):
+        self.__name = name
+        self.__base = base
+        self.__children = children
+
+    @property
+    def default_name(self):
+        return self.__class__.__name__
 
     @property
     def name(self):
         if self.__name is None:
-            self.__name = next(self.factory.name_factory)
+            self.__name = self.base or self.NameFactory.next(self.default_name)
         return self.__name
 
-    @property
-    def image(self):
-        return self.factory.name
+    @name.setter
+    def name(self, value):
+        self.__name = value
 
     @property
-    def position(self):
-        if self.__position is None:
-            self.__position = next(self.factory.position_factory)
-        return self.__position
+    def base(self):
+        if self.__base is None:
+            self.__base = self.BaseFactory.next(None)
+        return self.__base
 
-    def set_parent(self, parent=None):
-        self.parent = parent
-
-    def add_child(self, child):
-        if child is None:
-            return
-
-        if self.__children is None:
-            self.__children = []
-
-        self.__children.append(child)
-        child.set_parent(self)
+    @base.setter
+    def base(self, value):
+        self.__base = value
 
     @property
     def children(self):
         if self.__children is None:
-            self.__children = []
-            for child in self.generate_children():
-                self.add_child(child)
-            random.shuffle(self.__children)
+            self.__children = self.ChildrenFactory.next([])
         return self.__children
 
-    def generate_children(self, *args, **kwargs):
-        def by_name(thing_name):
-            if name is None:
-                return None
+    @children.setter
+    def children(self, value):
+        self.__children = value
 
-            thing = Things.get_thing(thing_name)
-            if thing is None:
-                print("NO CHILD", thing_name)
-                return None
-
-            return Model.generate(thing.name)
-
-        # print("GROW", args, kwargs)
-
-        custom = self.factory.custom_factory()
-        if custom is not None:
-            for name in custom:
-                yield by_name(name)
-            return
-
-        yield from (by_name(name) for factory in Things.get_factories(self.factory.name) for name in next(factory))
+    def __str__(self):
+        return self.name
 
     def __repr__(self):
-        desc = '{} "{}"\t-\t'.format(self.parent.factory.name, self.parent.name) if self.parent else ''
-        return ' '.join([
-            desc,
-            self.factory.name,
-            '\"{}\"'.format(self.name),
-        ])
+        return "<{} \"{}\">".format(self.__class__.__name__, str(self))
+
+    def children_by_class(self, *child_classes):
+        return (child for child in self.children if isinstance(child, child_classes))
 
     @classmethod
-    def get_factory(cls, name='error'):
-        return Things.get_thing(name) or Things.get_thing('error')
+    def children_property(cls, *child_classes, doc=None):
+        def get_children(self):
+            return list(self.children_by_class(child_classes))
+
+        return property(get_children, None, None, doc)
 
     @classmethod
-    def generate(cls, factory_name, parent=None):
-        model = cls(
-            factory=cls.get_factory(factory_name),
-            parent=parent,
-        )
-        cls.MODELS.append(model)
-        return model
+    def child_property(cls, *child_classes, doc=None):
+        def get_child(self):
+            return next(self.children_by_class(child_classes), None)
 
-    def describe_gen(self, **kwargs):
-        return self.factory.description_factory({
-            **kwargs,
-            'children': kwargs['children'] or self.children
-        })
+        return property(get_child, None, None, doc)

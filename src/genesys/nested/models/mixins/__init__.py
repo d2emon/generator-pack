@@ -1,5 +1,5 @@
-from nestedg.data import unknown
-from nestedg.model import Model
+from genesys.nested.data.v3.data import unknown
+from .. import Model
 
 
 class EncounteredMixin:
@@ -11,16 +11,8 @@ class EncounteredMixin:
         unknown.SpaceMonster,
     )
 
-    @property
-    def children(self):
-        raise NotImplementedError()
-
 
 class TerraformedMixin:
     continents = Model.children_property(unknown.Continent)
     oceans = Model.children_property(unknown.Ocean)
     sky = Model.child_property(unknown.Sky)
-
-    @property
-    def children(self):
-        raise NotImplementedError()
