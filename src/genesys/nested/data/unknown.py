@@ -1,4 +1,4 @@
-from nestedg.model import Model
+from ..models import Model
 
 
 Bacteria = Model

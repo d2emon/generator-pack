@@ -1,4 +1,4 @@
-from genesys.nested.data.v3.data import unknown
+from ...data import unknown
 from .. import Model
 
 
