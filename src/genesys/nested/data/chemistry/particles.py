@@ -1,4 +1,18 @@
-from nestedg.model import Model
+"""
+- Atom
+- Hydrogen Atom
+- Proton
+- Neutron
+- Electron
+- Up Quark
+- Down Quark
+- Qwubble
+
+- Quark
+
+new Thing("molecule",["atom"],["molecules"]);
+"""
+from genesys.nested.models import Model
 
 
 class Qwubble(Model):
@@ -8,6 +22,8 @@ class Qwubble(Model):
 
 
 class Quark(Model):
+    qwubbles = Model.children_property(Qwubble)
+
     @classmethod
     def children_classes(cls):
         yield Qwubble
@@ -21,16 +37,14 @@ class DownQuark(Quark):
     pass
 
 
-class Electron(Model):
-    @classmethod
-    def children_classes(cls):
-        yield Qwubble
+class Electron(Quark):
+    pass
 
 
 class Particle(Model):
     quarks = Model.children_property(Quark)
 
-    class ChildrenGenerator(Model.ChildrenGenerator):
+    class ChildrenFactory(Model.ChildrenFactory):
         up_quarks = 1
         down_quarks = 1
 
@@ -40,24 +54,25 @@ class Particle(Model):
 
 
 class Proton(Particle):
-    class ChildrenGenerator(Particle.ChildrenGenerator):
+    class ChildrenFactory(Particle.ChildrenFactory):
         up_quarks = 2
         down_quarks = 1
 
 
 class Neutron(Particle):
-    class ChildrenGenerator(Particle.ChildrenGenerator):
+    class ChildrenFactory(Particle.ChildrenFactory):
         up_quarks = 1
         down_quarks = 2
 
 
 class Atom(Model):
-    particles = Model.children_property(Particle)
+    core = Model.children_property(Particle)
+    electrons = Model.children_property(Electron)
 
-    class NameGenerator(Model.NameGenerator):
+    class NameFactory(Model.NameFactory):
         default = 'atoms'
 
-    class ChildrenGenerator(Model.ChildrenGenerator):
+    class ChildrenFactory(Model.ChildrenFactory):
         has_neutron = True
 
         def children_classes(self):
@@ -68,5 +83,5 @@ class Atom(Model):
 
 
 class HydrogenAtom(Atom):
-    class ChildrenGenerator(Atom.ChildrenGenerator):
+    class ChildrenFactory(Atom.ChildrenFactory):
         has_neutron = True

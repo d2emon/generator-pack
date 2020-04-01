@@ -1,4 +1,4 @@
-//basic materials and particles
+//basic chemistry and particles
 //(these are very rough simplifications, don't hold all the inaccuracies against me)
 new Thing("diamond",["carbon"]);
 new Thing("oil",["lipids"]);

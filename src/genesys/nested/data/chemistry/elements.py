@@ -1,7 +1,7 @@
-from . import particles
+from .particles import Atom, HydrogenAtom
 
 
-def element(atom=particles.Atom):
+def element(atom=Atom):
     class ChemicalElement(atom):
         pass
 
@@ -9,7 +9,7 @@ def element(atom=particles.Atom):
 
 
 elements = {
-    'H': element(particles.HydrogenAtom),
+    'H': element(HydrogenAtom),
     'He': element(),
 
     # Li
@@ -87,7 +87,4 @@ elements = {
     # At
     # Rn
 }
-
-
-def reaction(*components):
-    return map(lambda component: elements.get(component), components)
+# alright, I'm not doing the whole periodic table.

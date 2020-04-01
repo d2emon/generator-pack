@@ -530,7 +530,7 @@ function Toggle(what)
 //			It can be either an array containing other arrays (the name will be patched up from an element of each array) or an identifier for the Name function, like *BOOK*.
 //			A name generator of [["blue ","red "],["frog","toad"]] will produce names such as "blue frog" or "red toad".
 
-//basic materials and particles
+//basic chemistry and particles
 //(these are very rough simplifications, don't hold all the inaccuracies against me)
 new Thing("diamond",["carbon"]);
 new Thing("oil",["lipids"]);
