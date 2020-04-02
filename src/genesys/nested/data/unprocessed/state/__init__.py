@@ -1,7 +1,7 @@
-from genesys.nested.factories import Thing, ChildFactory
+from genesys.nested.factories import Thing
 
-from genesys.nested.data.terrain import Biome
-from ..room import Building
+from genesys.nested.data.unprocessed.terrain import Biome
+from genesys.nested.data.unprocessed.room import Building
 
 
 class Continent(Thing):

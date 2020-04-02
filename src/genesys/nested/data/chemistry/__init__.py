@@ -40,12 +40,13 @@ Basic chemistry and particles
 - Ash
 - Oil
 """
-from genesys.nested.models import Model
 from .rocks import *
 from .elements import *
 from .matter import *
 from .organics import *
 from .particles import *
+from genesys.nested.models import Model
+
 
 
 class Fire(Model):

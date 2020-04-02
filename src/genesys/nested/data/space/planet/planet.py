@@ -3,7 +3,7 @@ from genesys.nested.models.mixins import TerraformedMixin
 from .planet_like import PlanetLike
 from .moon import Moon, TerraformedMoon
 from ...chemistry import Rock, Ice
-from ...future.planet import FutureMoon
+from genesys.nested.data.unprocessed.future.planet import FutureMoon
 
 
 class Planet(PlanetLike):

@@ -2,48 +2,48 @@ from .chemistry import *
 from .space import *
 # from .biology.life import CONTENTS as LIFE_CONTENTS
 # from .biology.monsters import CONTENTS as MONSTERS_CONTENTS
-from .biology.cell import *
-from .biology.body import *
-from .biology.brain import *
-from .biology.cloth import *
-from .biology.vegetation import *
-from .biology.life import *
-from .biology.single_celled import *
-from .biology.sea_life import *
-from .biology.worms import *
-from .biology.insects import *
-from .biology.monsters import *
-from .biology.amphibians import *
-from .biology.reptiles import *
-from .biology.birds import *
-from .biology.mammals import *
+from genesys.nested.data.unprocessed.biology import *
+from genesys.nested.data.unprocessed.biology.body import *
+from genesys.nested.data.unprocessed.biology.brain import *
+from genesys.nested.data.unprocessed.biology import *
+from genesys.nested.data.unprocessed.biology import *
+from genesys.nested.data.unprocessed.biology.life import *
+from genesys.nested.data.unprocessed.biology import *
+from genesys.nested.data.unprocessed.biology import *
+from genesys.nested.data.unprocessed.biology import *
+from genesys.nested.data.unprocessed.biology import *
+from genesys.nested.data.unprocessed.biology import *
+from genesys.nested.data.unprocessed.biology.amphibians import *
+from genesys.nested.data.unprocessed.biology.reptiles import *
+from genesys.nested.data.unprocessed.biology import *
+from genesys.nested.data.unprocessed.biology import *
 # from .terrain import CONTENTS as TERRAIN_CONTENTS
 # from .state import CONTENTS as STATE_CONTENTS
-from .terrain.subdivisions import *
-from .state.towns import *
-from .state.buildings import *
-from .state.farms import *
-from .state.offices import *
-from .state.shops import *
-from .state.museums import *
-from .state.services import *
-from .state.war import *
-from .state.hospitals import *
-from .state.laboratory import *
-from .state.cemeteries import *
-from .state.infrastructure import *
+from genesys.nested.data.unprocessed.terrain.subdivisions import *
+from genesys.nested.data.unprocessed.state.towns import *
+from genesys.nested.data.unprocessed.state.buildings import *
+from genesys.nested.data.unprocessed.state.farms import *
+from genesys.nested.data.unprocessed.state import *
+from genesys.nested.data.unprocessed.state import *
+from genesys.nested.data.unprocessed.state import *
+from genesys.nested.data.unprocessed.state import *
+from genesys.nested.data.unprocessed.state import *
+from genesys.nested.data.unprocessed.state import *
+from genesys.nested.data.unprocessed.state.laboratory import *
+from genesys.nested.data.unprocessed.state import *
+from genesys.nested.data.unprocessed.state import *
 # from .room import CONTENTS as ROOM_CONTENTS
 # from .furniture import CONTENTS as FURNITURE_CONTENTS
-from .furniture.computers import *
+from genesys.nested.data.unprocessed.furniture import *
 
 # from .person import CONTENTS as PERSON_CONTENTS
 # from .medieval import CONTENTS as MEDIEVAL_CONTENTS
-from .food import *
-from .visitors import *
-from .dungeons import *
-from .future import *
-from .caveman import *
-from .meta import *
+from genesys.nested.data.unprocessed.food import *
+from genesys.nested.data.unprocessed.visitors import *
+from genesys.nested.data.unprocessed.dungeons import *
+from genesys.nested.data.unprocessed.future import *
+from genesys.nested.data.unprocessed.caveman import *
+from genesys.nested.data.unprocessed.meta import *
 
 # to add :
 # cows,fungi,more shops,temples,more buildings,paintings,internal organs,phones,lamps,abandoned plants/castles,

@@ -1,7 +1,7 @@
 from .. import unknown
 from genesys.nested.models import Model
-from ..person.people import Body
-from ..person.people.clothing import ClothingSet
+from genesys.nested.data.unprocessed.person import Body
+from genesys.nested.data.unprocessed.person.people.clothing import ClothingSet
 from .. import lookups
 
 

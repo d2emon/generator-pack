@@ -1,5 +1,4 @@
-from genesys.nested.factories import ChildFactory
-from genesys.nested.data.person import ClothingSet, Person
+from genesys.nested.data.unprocessed.person import ClothingSet, Person
 
 
 # medieval people

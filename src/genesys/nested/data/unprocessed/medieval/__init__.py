@@ -1,6 +1,6 @@
-from genesys.nested.factories import Thing, ChildFactory
+from genesys.nested.factories import Thing
 
-from genesys.nested.data.state import Continent, Country, Region, City, Village, ResidentialArea, Building
+from genesys.nested.data.unprocessed.state import Continent, Country, Region, City, Village, ResidentialArea, Building
 
 from .person import CONTENTS as PERSON_CONTENTS
 
