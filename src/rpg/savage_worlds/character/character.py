@@ -3,6 +3,7 @@ from . import races
 from .collections.edges import CharacterEdges
 from .collections.skills import CharacterSkills
 from .collections.stats import CharacterStats
+from .development import ranks
 
 
 class Character:
@@ -21,6 +22,7 @@ class Character:
         # Equipment
         self.equipment = []
         self.__money = 500
+        self.__xp = 0
 
     # Stats
     agility = property(lambda self: self.__stats.agility)
@@ -43,6 +45,11 @@ class Character:
     extra_traits = property(lambda self: self.race.extra_trait)
     run = property(lambda self: self.race.run)
 
+    # Development
+    xp = property(lambda self: self.__xp)
+    rank = property(lambda self: ranks.rank(self.__xp))
+    level_ups = property(lambda self: int(self.xp / 5))
+
     # Actions
     def use_agility(self, modifier=0):
         return self.agility.check(modifier)
@@ -52,3 +59,6 @@ class Character:
 
     def general_knowledge(self, modifier=0):
         return self.smarts.check(modifier)
+
+    def add_xp(self, value):
+        self.__xp += value

@@ -1,5 +1,5 @@
 from .collection import Collection
-from rpg.savage_worlds.savage_worlds.edge import Edge, Hindrance
+from rpg.savage_worlds.character.edges.edge import Edge, Hindrance
 
 
 class CharacterEdges(Collection):

@@ -1,6 +1,6 @@
 from .. import dices
 from ..character import Character
-from src.rpg.savage_worlds.savage_worlds import edge
+from ..edges import edge
 from ..traits import skills
 
 
