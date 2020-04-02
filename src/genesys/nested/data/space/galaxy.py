@@ -1,8 +1,9 @@
-from .. import unknown
+from ..unknown import GalacticLife
 from genesys.nested.models import Model
 from genesys.nested.models.mixins import EncounteredMixin
 from .nebula import Nebula
-from .star import StarSystem
+from .star import StarSystem, DysonSphere
+from .black_hole import BlackHole
 
 
 class GalaxyPart(Model, EncounteredMixin):
@@ -22,8 +23,8 @@ class GalaxyPart(Model, EncounteredMixin):
             yield None
 
         def children_classes(self):
-            yield unknown.GalacticLife.probable(self.life_probability)
-            yield from [star.DysonSphere.probable(probability) for probability in self.dyson_sphere_probabilities]
+            yield GalacticLife.probable(self.life_probability)
+            yield from [DysonSphere.probable(probability) for probability in self.dyson_sphere_probabilities]
             yield from StarSystem.multiple(self.min_star_systems, self.max_star_systems)
             yield from Nebula.multiple(self.min_nebula, self.max_nebula)
             yield from self.black_holes()

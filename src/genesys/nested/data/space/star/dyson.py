@@ -1,6 +1,6 @@
-from ... import unknown
+from ...unknown import DysonSurface
 from .star import StarSystem
-from .. import planet
+from ..planet import FuturePlanet
 # from genesys.nested.factories import Thing, ChildFactory
 
 
@@ -8,7 +8,7 @@ class DysonSphere(StarSystem):
     class ChildrenFactory(StarSystem.ChildrenFactory):
         @classmethod
         def _generate_inhabited(cls):
-            yield unknown.DysonSurface
+            yield DysonSurface
             yield from planet.FuturePlanet.multiple(1, 8)
 
 

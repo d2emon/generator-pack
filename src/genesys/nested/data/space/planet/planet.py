@@ -1,9 +1,10 @@
-from ... import unknown
+from ...unknown import GalacticLife, VisitorCity, VisitorInstallation, Continent, Ocean, Sky, TerraformedSky,\
+    FutureContinent, FutureSky, MedievalContinent, AncientContinent
+from genesys.nested.data.unprocessed.future.planet import FutureMoon
 from genesys.nested.models.mixins import TerraformedMixin
 from .planet_like import PlanetLike
 from .moon import Moon, TerraformedMoon
 from ...chemistry import Rock, Ice
-from genesys.nested.data.unprocessed.future.planet import FutureMoon
 
 
 class Planet(PlanetLike):
@@ -25,7 +26,7 @@ class BarrenPlanet(Planet):
         life_probability = 10
 
         def children_classes(self):
-            yield unknown.GalacticLife.probable(self.life_probability)
+            yield GalacticLife.probable(self.life_probability)
             yield Rock
             yield Ice
             yield Planet.ChildrenFactory.children_classes(self)
@@ -36,8 +37,8 @@ class VisitorPlanet(BarrenPlanet):
         life_probability = 100
 
         def children_classes(self):
-            yield from unknown.VisitorCity.multiple(1, 8)
-            yield from unknown.VisitorInstallation.multiple(2, 6)
+            yield from VisitorCity.multiple(1, 8)
+            yield from VisitorInstallation.multiple(2, 6)
             yield BarrenPlanet.ChildrenFactory.children_classes(self)
 
 
@@ -45,15 +46,15 @@ class TelluricPlanet(Planet, TerraformedMixin):
     class ChildrenFactory(Planet.ChildrenFactory):
         @classmethod
         def _continents(cls):
-            yield from unknown.Continent.multiple(2, 7)
+            yield from Continent.multiple(2, 7)
 
         @classmethod
         def _oceans(cls):
-            yield from unknown.Ocean.multiple(1, 7)
+            yield from Ocean.multiple(1, 7)
 
         @classmethod
         def _sky(cls):
-            yield unknown.Sky
+            yield Sky
 
         @classmethod
         def _moons(cls):
@@ -71,11 +72,11 @@ class FuturePlanet(TelluricPlanet):
     class ChildrenFactory(TelluricPlanet.ChildrenFactory):
         @classmethod
         def _continents(cls):
-            yield from unknown.FutureContinent.multiple(2, 7)
+            yield from FutureContinent.multiple(2, 7)
 
         @classmethod
         def _sky(cls):
-            yield unknown.FutureSky
+            yield FutureSky
 
         @classmethod
         def _moons(cls):
@@ -86,7 +87,7 @@ class TerraformedPlanet(TelluricPlanet):
     class ChildrenFactory(TelluricPlanet.ChildrenFactory):
         @classmethod
         def _sky(cls):
-            yield unknown.TerraformedSky
+            yield TerraformedSky
 
         @classmethod
         def _moons(cls):
@@ -97,12 +98,12 @@ class MedievalPlanet(TelluricPlanet):
     class ChildrenFactory(TelluricPlanet.ChildrenFactory):
         @classmethod
         def _continents(cls):
-            yield from unknown.MedievalContinent.multiple(2, 4)
-            yield from unknown.AncientContinent.multiple(0, 3)
+            yield from MedievalContinent.multiple(2, 4)
+            yield from AncientContinent.multiple(0, 3)
 
 
 class AncientPlanet(TelluricPlanet):
     class ChildrenFactory(TelluricPlanet.ChildrenFactory):
         @classmethod
         def _continents(cls):
-            yield from unknown.AncientContinent.multiple(2, 7)
+            yield from AncientContinent.multiple(2, 7)

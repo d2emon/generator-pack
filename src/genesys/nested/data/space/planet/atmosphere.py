@@ -1,4 +1,4 @@
-from ... import unknown
+from ...unknown import GalacticLife
 from genesys.nested.models import Model
 from genesys.nested.models.mixins import EncounteredMixin
 from ...chemistry import elements, Water, Ammonia, Methane
@@ -21,7 +21,7 @@ class GasGiantAtmosphere(Atmosphere):
     class ChildrenFactory(Model.ChildrenFactory):
         def children_classes(self):
             # Encounters
-            yield unknown.GalacticLife.probable(10)
+            yield GalacticLife.probable(10)
             # Contents
             yield elements['He']
             yield elements['H']

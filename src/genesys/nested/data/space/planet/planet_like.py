@@ -1,4 +1,4 @@
-from ... import unknown
+from ...unknown import SpaceMonster, Continent, Ocean, VisitorCity, VisitorInstallation
 from genesys.nested.models import Model
 from genesys.nested.models.mixins import EncounteredMixin
 from .atmosphere import Atmosphere
@@ -23,7 +23,7 @@ class PlanetCore(Model, EncounteredMixin):
     class ChildrenFactory(Model.ChildrenFactory):
         def children_classes(self):
             # Encounters
-            yield unknown.SpaceMonster.probable(0.5)
+            yield SpaceMonster.probable(0.5)
             # Contents
             yield elements['Fe']
             yield Rock
@@ -34,9 +34,9 @@ class PlanetCore(Model, EncounteredMixin):
 class PlanetLike(Orbit):
     atmosphere = Model.child_property(Atmosphere)
     core = Model.child_property(PlanetCore)
-    land = Model.children_property(Rock, unknown.Continent)
-    water = Model.children_property(Ice, unknown.Ocean)
-    visited = Model.children_property(unknown.VisitorCity, unknown.VisitorInstallation)
+    land = Model.children_property(Rock, Continent)
+    water = Model.children_property(Ice, Ocean)
+    visited = Model.children_property(VisitorCity, VisitorInstallation)
 
     class ChildrenFactory(Model.ChildrenFactory):
         def children_classes(self):

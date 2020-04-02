@@ -48,7 +48,6 @@ from .particles import *
 from genesys.nested.models import Model
 
 
-
 class Fire(Model):
     atoms = Model.child_property(Atom)
 

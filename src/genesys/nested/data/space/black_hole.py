@@ -1,11 +1,11 @@
-from .. import unknown
+from ..unknown import Pasta, Crustacean
 from genesys.nested.models import Model
 from genesys.nested.models.mixins import EncounteredMixin
 from .. import lookups
 
 
 class GlobalItem(Model):
-    universe = Model.child_property(unknown.Model)
+    universe = Model.child_property(Model)
 
     class ChildrenFactory(Model.ChildrenFactory):
         def children_classes(self):
@@ -37,7 +37,7 @@ class EndOfUniverseNote(Model):
 
     class ChildrenFactory(Model.ChildrenFactory):
         def children_classes(self):
-            yield unknown.Pasta.probable(0.1)
+            yield Pasta.probable(0.1)
 
     def read(self):
         return self.BaseFactory.next()
@@ -53,7 +53,7 @@ class BlackHole(Portal, EncounteredMixin):
     class ChildrenFactory(Portal.ChildrenFactory):
         def children_classes(self):
             yield EndOfUniverseNote.probable(0.5)
-            yield unknown.Crustacean.probable(0.2)
+            yield Crustacean.probable(0.2)
             yield WhiteHole
 
     @property

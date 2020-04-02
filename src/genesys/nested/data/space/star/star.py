@@ -1,9 +1,10 @@
-from ... import unknown
+from ...unknown import Ghost, SpaceMonster, DysonSurface
 from genesys.nested.models import Model
 from genesys.nested.models.mixins import EncounteredMixin
 from ... import lookups
 from ...chemistry import elements
-from .. import planet
+from ..planet import Planet, BarrenPlanet, VisitorPlanet, FuturePlanet, TerraformedPlanet, MedievalPlanet, \
+    AncientPlanet, AsteroidBelt, GasGiant
 
 
 class Star(Model, EncounteredMixin):
@@ -14,8 +15,8 @@ class Star(Model, EncounteredMixin):
 
     class ChildrenFactory(Model.ChildrenFactory):
         def children_classes(self):
-            yield unknown.Ghost.probable(0.1)
-            yield unknown.SpaceMonster.probable(0.2)
+            yield Ghost.probable(0.1)
+            yield SpaceMonster.probable(0.2)
             yield elements.Hydrogen
             yield elements.Helium
 
@@ -23,37 +24,37 @@ class Star(Model, EncounteredMixin):
 class StarSystem(Model):
     star = Model.child_property(Star)
     stars = Model.children_property(Star)
-    planets = Model.children_property(planet.Planet)
-    asteroid_belts = Model.children_property(planet.AsteroidBelt)
-    dyson_surfaces = Model.children_property(unknown.DysonSurface)
-    orbits = Model.children_property(planet.Planet, planet.AsteroidBelt, unknown.DysonSurface)
+    planets = Model.children_property(Planet)
+    asteroid_belts = Model.children_property(AsteroidBelt)
+    dyson_surfaces = Model.children_property(DysonSurface)
+    orbits = Model.children_property(Planet, AsteroidBelt, DysonSurface)
 
     class ChildrenFactory(Model.ChildrenFactory):
         @classmethod
         def _generate_inhabited(cls):
-            yield planet.VisitorPlanet.probable(5)
-            yield planet.FuturePlanet.probable(10)
-            yield planet.TerraformedPlanet.probable(50)
-            yield planet.TerraformedPlanet.probable(20)
-            yield planet.TerraformedPlanet.probable(10)
-            yield planet.MedievalPlanet.probable(30)
-            yield planet.MedievalPlanet.probable(20)
-            yield planet.AncientPlanet.probable(50)
-            yield planet.AncientPlanet.probable(30)
-            yield planet.AncientPlanet.probable(10)
+            yield VisitorPlanet.probable(5)
+            yield FuturePlanet.probable(10)
+            yield TerraformedPlanet.probable(50)
+            yield TerraformedPlanet.probable(20)
+            yield TerraformedPlanet.probable(10)
+            yield MedievalPlanet.probable(30)
+            yield MedievalPlanet.probable(20)
+            yield AncientPlanet.probable(50)
+            yield AncientPlanet.probable(30)
+            yield AncientPlanet.probable(10)
 
         def children_classes(self):
             yield Star
             yield Star.probable(3)
             yield from self._generate_inhabited()
-            yield planet.BarrenPlanet.probable(60)
-            yield planet.BarrenPlanet.probable(40)
-            yield planet.BarrenPlanet.probable(20)
-            yield planet.GasGiant.probable(60)
-            yield planet.GasGiant.probable(40)
-            yield planet.GasGiant.probable(20)
-            yield planet.GasGiant.probable(10)
-            yield from planet.AsteroidBelt.multiple(0, 2)
+            yield BarrenPlanet.probable(60)
+            yield BarrenPlanet.probable(40)
+            yield BarrenPlanet.probable(20)
+            yield GasGiant.probable(60)
+            yield GasGiant.probable(40)
+            yield GasGiant.probable(20)
+            yield GasGiant.probable(10)
+            yield from AsteroidBelt.multiple(0, 2)
 
 
 class SingleStar(StarSystem):

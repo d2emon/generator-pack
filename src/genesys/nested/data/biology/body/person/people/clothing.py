@@ -3,7 +3,7 @@ Cloth stuff
 """
 from nestedg.data import unknown, materials
 from nestedg.model import Model
-from .body import DeadSkin, Sweat, Keratin, SkinCell
+from genesys.nested.data.biology.body.body import DeadSkin, Sweat, Keratin, SkinCell
 
 
 class Leather(Model):
@@ -152,50 +152,3 @@ class Pants(Clothing):
     @classmethod
     def _generate_name(cls):
         return cls.choice(cls.pants_types)
-
-
-class ClothingSet(Model):
-    model_name = 'clothing'
-
-    @classmethod
-    def children_classes(cls):
-        yield Hat.probable(2)
-        yield Glasses.probable(20)
-        yield Pants.probable(98)
-        yield Shirt.probable(98)
-        yield Coat.probable(50)
-        yield Socks.probable(80)
-        yield Shoes.probable(80)
-        yield Underwear.probable(99)
-
-    @property
-    def hat(self):
-        return next(self.filter_children(Hat))
-
-    @property
-    def glasses(self):
-        return next(self.filter_children(Glasses))
-
-    @property
-    def pants(self):
-        return next(self.filter_children(Pants))
-
-    @property
-    def shirt(self):
-        return next(self.filter_children(Shirt))
-
-    @property
-    def coat(self):
-        return next(self.filter_children(Coat))
-
-    @property
-    def socks(self):
-        return next(self.filter_children(Socks))
-
-    @property
-    def shoes(self):
-        return next(self.filter_children(Shoes))
-
-    @property
-    def underwear(self):
-        return next(self.filter_children(Underwear))

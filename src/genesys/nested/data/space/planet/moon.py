@@ -1,8 +1,8 @@
-from ... import unknown
+from ...unknown import Ghost, Continent, Ocean, Sky
 from genesys.nested.models.mixins import TerraformedMixin
 from .planet_like import PlanetLike
-from ... import lookups
 from ...chemistry import Rock
+from ... import lookups
 
 
 class Moon(PlanetLike):
@@ -11,7 +11,7 @@ class Moon(PlanetLike):
 
     class ChildrenFactory(PlanetLike.ChildrenFactory):
         def children_classes(self):
-            yield unknown.Ghost.probable(0.1)
+            yield Ghost.probable(0.1)
             yield Rock
             yield from PlanetLike.ChildrenFactory.children_classes(self)
 
@@ -22,7 +22,7 @@ class TerraformedMoon(Moon, TerraformedMixin):
 
     class ChildrenFactory(Moon.ChildrenFactory):
         def children_classes(self):
-            yield from unknown.Continent.multiple(1, 4)
-            yield from unknown.Ocean.multiple(1, 4)
-            yield unknown.Sky
+            yield from Continent.multiple(1, 4)
+            yield from Ocean.multiple(1, 4)
+            yield Sky
             yield from PlanetLike.ChildrenFactory.children_classes(self)

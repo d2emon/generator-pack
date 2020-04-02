@@ -1,4 +1,4 @@
-from .. import unknown
+from ..unknown import GalacticLife
 from genesys.nested.models import Model
 from genesys.nested.models.mixins import EncounteredMixin
 from .. import lookups
@@ -31,7 +31,7 @@ class Nebula(Model, EncounteredMixin):
 
     class ChildrenFactory(Model.ChildrenFactory):
         def children_classes(self):
-            yield unknown.GalacticLife.probable(15)
+            yield GalacticLife.probable(15)
             yield SingleStar.probable(2)
             yield SingleStar.probable(2)
             yield SingleStar.probable(2)

@@ -1,22 +1,6 @@
 from .chemistry import *
 from .space import *
-# from .biology.life import CONTENTS as LIFE_CONTENTS
-# from .biology.monsters import CONTENTS as MONSTERS_CONTENTS
-from genesys.nested.data.unprocessed.biology import *
-from genesys.nested.data.unprocessed.biology.body import *
-from genesys.nested.data.unprocessed.biology.brain import *
-from genesys.nested.data.unprocessed.biology import *
-from genesys.nested.data.unprocessed.biology import *
-from genesys.nested.data.unprocessed.biology.life import *
-from genesys.nested.data.unprocessed.biology import *
-from genesys.nested.data.unprocessed.biology import *
-from genesys.nested.data.unprocessed.biology import *
-from genesys.nested.data.unprocessed.biology import *
-from genesys.nested.data.unprocessed.biology import *
-from genesys.nested.data.unprocessed.biology.amphibians import *
-from genesys.nested.data.unprocessed.biology.reptiles import *
-from genesys.nested.data.unprocessed.biology import *
-from genesys.nested.data.unprocessed.biology import *
+from .biology import *
 # from .terrain import CONTENTS as TERRAIN_CONTENTS
 # from .state import CONTENTS as STATE_CONTENTS
 from genesys.nested.data.unprocessed.terrain.subdivisions import *
