@@ -1,74 +1,15 @@
-from genesys.nested.factories import Thing, ChildFactory
-
-
-# terrain stuff
-
-
-class Ocean(Thing):
-    child_generators = [
-        ChildGenerator("sea water"),
-        ChildGenerator("sea life"),
-        ChildGenerator("beach,10-20"),
-        [
-            ChildGenerator("iceberg", (2, 6)),
-            ChildGenerator(),
-            ChildGenerator(),
-            ChildGenerator(),
-            ChildGenerator()
-        ],
-        ChildGenerator("abyss"),
-    ]
-
-
-class Sea(Thing):
-    child_generators = [
-        ChildGenerator("sea water"),
-        ChildGenerator("sea life"),
-        ChildGenerator("beach", (2, 6)),
-    ]
-    names_data = [
-        ["great","wide","big","old","young","large","small","dead","shallow","deep","red","yellow","green","blue",
-         "orange","brown","grey","black","white","purple","shady","bright","silver"],
-        [" sea"]
-    ]
-
-
-class SeaWater(Thing):
-    child_generators = [
-        ChildGenerator("water"),
-        ChildGenerator("salt"),
-    ]
-
-
-class Iceberg(Thing):
-    child_generators = [
-        ChildGenerator("bear", probability=30),
-        ChildGenerator("bear", probability=10),
-        ChildGenerator("ice"),
-    ]
-
-
-class Beach(Thing):
-    child_generators = [
-        ChildGenerator("beach life"),
-        ChildGenerator("sand"),
-    ]
-
-
-class Abyss(Thing):
-    child_generators = [
-        ChildGenerator("sand"),
-        ChildGenerator("abyss life"),
-    ]
-
-
-class Sand(Thing):
-    child_generators = [ChildGenerator("silica")]
-
-
 """
-new Thing("soil",[["worm,0-2","",""],["insect,0-2","",""],"silica"],"dirt");
-new Thing("mud",[["worm,0-2","",""],["insect,0-2","",""],"water","silica"]);
+Terrain Stuff
+
+- Ocean
+- Sea
+- Sea Water
+- Iceberg
+- Beach
+- Abyss
+- Sand
+- Soil
+- Mud
 
 new Thing("river",["river life","water","soil","mud"],["river","stream","brook","creek"]);
 new Thing("lake",["lake life","water","soil","mud"],["lake","lagoon","pond","marsh","creek","cove"]);
@@ -83,7 +24,17 @@ new Thing("ancient forest",["fire,0.5%","caveman settlement,40%","ancient forest
 new Thing("ancient jungle",["fire,0.5%","caveman settlement,40%","ancient jungle life","river,0-2","jungle trees","grass","humus","soil"],["jungle","rainforest"]);
 new Thing("ancient mountain",["caveman settlement,40%","ancient mountain life","ancient cave,30%","ancient cave,20%","ancient cave,10%","river,0-3","lake,0-1","trees","soil","rock","snow,40%"],["mountain","peak","hill","volcano","bluff","cliff","mesa","plateau"]);
 new Thing("ancient cave",["caveman settlement,65%","wall painting,50%","wall painting,30%","wall painting,30%",".cave"],["cave","cavern","grotto"]);
+
+new Thing("future sky",["sprowseship,4-12",".sky"],"sky");
+new Thing("terraformed sky",["plane,1-8","rocketship,20%",".sky"],"sky");
+new Thing("sky",["visitor ship,10%","meteorite,3%","sky life","precipitation,50%","cloud,2-8","oxygen","carbon","ozone"],"sky");
+new Thing("meteorite",["space animal,6%","ice,60%","rock","iron,40%"],"meteorite");
+new Thing("ozone",["oxygen"]);
+new Thing("cloud",["water"]);
+new Thing("precipitation",["water"],["rain","snow","hail","mist","fog","drizzle","storm"]);
 """
+from .water import *
+from genesys.nested.factories import Thing, ChildFactory
 
 
 class Sky(Thing):

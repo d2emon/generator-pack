@@ -1,6 +1,7 @@
 from ..models import Model
 
 
+Bear = Model
 Button = Model
 Coin = Model
 Computer = Model
@@ -13,10 +14,10 @@ DysonSurface = Model
 Ghost = Model
 Glass = Model
 Handgun = Model
+Insect = Model
 Lint = Model
 Metal = Model
 Note = Model
-Ocean = Model
 Pasta = Model
 Pen = Model
 Sky = Model
@@ -34,26 +35,12 @@ AncientContinent = Continent
 
 
 # Biology
+AbyssLife = Model
+BeachLife = Model
 Bacteria = Model
 Crustacean = Model
 GalacticLife = Model
+SeaLife = Model
 SpaceAnimal = Model
 SpaceMonster = Model
 Worm = Model
-
-
-####
-
-
-class Keratin(NestedItem):
-    @classmethod
-    def get_children(cls):
-        yield materials.Proteins
-
-
-class Sweat(NestedItem):
-    @classmethod
-    def get_children(cls):
-        yield materials.Water
-        yield materials.Salt
-        yield materials.Glucids

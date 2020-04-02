@@ -6,7 +6,7 @@ from .person import *
 from .cloth import *
 # from .terrain import CONTENTS as TERRAIN_CONTENTS
 # from .state import CONTENTS as STATE_CONTENTS
-from genesys.nested.data.unprocessed.terrain.subdivisions import *
+from genesys.nested.data.terrain import *
 from genesys.nested.data.unprocessed.state.towns import *
 from genesys.nested.data.unprocessed.state.buildings import *
 from genesys.nested.data.unprocessed.state.farms import *
