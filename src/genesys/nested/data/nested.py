@@ -16,24 +16,6 @@
 
 ----
 
-new Thing("abomination",["abomination body","abomination psyche"],"*PERSON*| (abomination)");//nonononononono
-new Thing("abomination psyche",["abomination thoughts","memories"],"psyche");
-new Thing("abomination thoughts",["black hole,0.01%","abomination thought"],"thoughts");
-new Thing("abomination thought",[],["P-please...","Don't look at me...","Please... kill me...","Kill... me...","Why would I ever ask for this...","I only wish for death.","I only long for death now.","I only demand... death...","End my misery... I beg you...","This is a mockery of existence...","I miss her so much...","I miss him so much...","I miss my family...","Why would they do that to me...","How could they do this to me...","What have I become...","I feel... different...","I can't feel... anything...","I can't... see anything..."]);
-new Thing("abomination body",["abomination head","abomination head,5%","abomination torso",["arm,0-8","arm,0-4"],["leg,0-8","leg,0-4"],"crustacean claw,2%","stinger,2%","weird soft organ,10%","weird soft organ,10%","weird hard organ,10%","weird hard organ,10%"],"misshapen body");
-new Thing("abomination head",["mouth,0-2","nose,0-2","eye,0-8","ear,0-4","skull,90%","weird soft organ,20%","weird hard organ,20%","head hair,65%",".body part"],"misshapen head");
-new Thing("abomination torso",["chest","chest,10%","pelvis","pelvis,10%","weird soft organ,20%","weird hard organ,20%",".body part"],"misshapen torso");
-
-//brain stuff
-new Thing("psyche",["thoughts","memories"],"psyche");
-new Thing("thoughts",["black hole,0.01%",["sad thought,2-4","happy thought,2-4"]]);
-new Thing("sad thought",[],["*SADTHOUGHT*"]);
-new Thing("happy thought",[],["*HAPPYTHOUGHT*"]);
-new Thing("memories",["memory,2-4"]);
-new Thing("memory",[],["*MEMORY*"]);
-
-----
-
 //terrain stuff
 new Thing("ocean",["sea water","sea life","beach,10-20",["iceberg,2-6","","","",""],"abyss"]);
 new Thing("sea",["sea water","sea life","beach,2-6"],[["great","wide","big","old","young","large","small","dead","shallow","deep","red","yellow","green","blue","orange","brown","grey","black","white","purple","shady","bright","silver"],[" sea"]]);

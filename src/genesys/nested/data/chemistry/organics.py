@@ -1,6 +1,6 @@
 from .particles import Atom
 from .elements import elements
-from .matter import Molecule, Matter, Salt
+from .matter import Molecule, Matter, Salt, Water
 
 
 class OrganicMolecule(Molecule):
@@ -59,6 +59,7 @@ class OrganicMatter(Matter):
     proteins = Matter.children_property(Proteins)
     lipids = Matter.children_property(Lipids)
     glucids = Matter.children_property(Glucids)
+    water = Matter.children_property(Water)
     salt = Matter.children_property(Salt)
     polymers = Matter.children_property(Polymers)
 
@@ -101,6 +102,20 @@ class Oil(OrganicMatter):
     class ChildrenFactory(Matter.ChildrenFactory):
         def children_classes(self):
             yield Lipids
+
+
+class Keratin(OrganicMatter):
+    class ChildrenFactory(OrganicMatter.ChildrenFactory):
+        def children_classes(self):
+            yield Proteins
+
+
+class Sweat(OrganicMatter):
+    class ChildrenFactory(OrganicMatter.ChildrenFactory):
+        def children_classes(self):
+            yield Water
+            yield Salt
+            yield Glucids
 
 
 class Ash(Matter):

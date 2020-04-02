@@ -1,6 +1,7 @@
-from ....unknown import Bacteria, Keratin
+from ....unknown import Bacteria
 from genesys.nested.models import Model
 from ..skin import Dandruff
+from ....chemistry import Keratin
 from .... import lookups
 
 

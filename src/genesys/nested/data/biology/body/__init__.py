@@ -26,12 +26,6 @@ Body Stuff
 
 - Brain Cell
 
-- Clothing Set
-- Man
-- Woman
-- Person
-- Corpse
-
 - Body
 - Torso
 - Chest
@@ -78,7 +72,6 @@ from .blood import *
 from .skin import *
 from .skeleton import *
 from .head import *
-from .person import *
 from .body import *
 from .torso import *
 from .arm import *

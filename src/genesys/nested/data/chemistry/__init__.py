@@ -39,6 +39,8 @@ Basic chemistry and particles
 
 - Ash
 - Oil
+- Keratin
+- Sweat
 """
 from .rocks import *
 from .elements import *

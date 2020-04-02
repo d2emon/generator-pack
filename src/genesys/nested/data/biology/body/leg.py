@@ -1,5 +1,6 @@
-from ...unknown import Dust, Sweat, Keratin
+from ...unknown import Dust
 from .body_parts import BodyPart
+from ...chemistry import Keratin, Sweat
 
 
 class Knee(BodyPart):

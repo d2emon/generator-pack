@@ -1,6 +1,7 @@
 from genesys.nested.data.unknown import Computer
 from genesys.nested.models import Model
-from .biology import Body, Thoughts, ClothingSet
+from .biology import Body, Thoughts
+from .cloth import ClothingSet
 from . import lookups
 
 
