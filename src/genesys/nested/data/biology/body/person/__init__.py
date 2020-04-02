@@ -1,8 +1,9 @@
-from ....unknown import Psyche, Worm
+from ....unknown import Worm
 from .people.clothing import Hat, Glasses, Pants, Shirt, Coat, Socks, Shoes, Underwear
 from genesys.nested.models import Model
 from ..blood import Blood
 from ..body import Body
+from ...brain import Psyche
 
 
 class ClothingSet(Model):

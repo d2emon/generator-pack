@@ -1,8 +1,7 @@
-from ..unknown import Thoughts, Computer
+from genesys.nested.data.unknown import Computer
 from genesys.nested.models import Model
-from genesys.nested.data.biology.body.person import Body
-from genesys.nested.data.biology.body.person.people.clothing import ClothingSet
-from .. import lookups
+from .biology import Body, Thoughts, ClothingSet
+from . import lookups
 
 
 class D2emonThoughts(Thoughts):

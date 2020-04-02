@@ -1,5 +1,6 @@
 from .chemistry import *
 from .space import *
+from .god import *
 from .biology import *
 # from .terrain import CONTENTS as TERRAIN_CONTENTS
 # from .state import CONTENTS as STATE_CONTENTS

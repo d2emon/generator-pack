@@ -7,9 +7,9 @@
 - Abomination Head
 - Abomination Torso
 """
-from ...unknown import Psyche, Memories, Thoughts, Thought, CrustaceanClaw, Stinger, WeirdHardOrgan, WeirdSoftOrgan
-from ...space import BlackHole
+from ...unknown import CrustaceanClaw, Stinger, WeirdHardOrgan, WeirdSoftOrgan
 from ..body import Person, Body, Head, Mouth, Nose, Eye, Ear, Skull, HeadHair, Torso, Chest, Pelvis, Arm, Leg
+from ..brain import Psyche, Thoughts, Thought, Memories
 from ... import lookups
 
 
@@ -96,8 +96,8 @@ class AbominationThoughts(Thoughts):
         default = 'thoughts'
 
     class ChildrenFactory(Thoughts.ChildrenFactory):
-        def children_classes(self):
-            yield BlackHole.probable(0.01)
+        @classmethod
+        def fill_thoughts(cls):
             yield AbominationThought
 
 

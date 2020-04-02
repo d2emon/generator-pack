@@ -44,7 +44,6 @@ from .nebula import *
 from .star import *
 from .planet import *
 from .black_hole import *
-from .god import *
 
 from genesys.nested.models import Model
 from .. import lookups
