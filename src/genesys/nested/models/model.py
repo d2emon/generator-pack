@@ -5,7 +5,7 @@ from .tree import TreeModel
 
 class Placeholder:
     def __init__(self, builder):
-        self.builder = builder
+        self.builder = builder()
         self.__model = None
 
     def __build(self):
@@ -22,6 +22,8 @@ class Placeholder:
 
 
 class Model(GeneratingModel, TreeModel):
+    default_name = None
+
     class NameFactory(NameFactory):
         pass
 
@@ -34,6 +36,7 @@ class Model(GeneratingModel, TreeModel):
     def __init__(self, name=None, base=None, children=None, parent=None):
         super().__init__(name, children, parent)
         self.__base = base
+        self.__children = children
 
     def __build_name(self):
         # super().name = self.base or self.NameFactory.next(self.default_name)
@@ -45,8 +48,8 @@ class Model(GeneratingModel, TreeModel):
         return super().name
 
     @property
-    def default_name(self):
-        return self.__class__.__name__
+    def __default_name(self):
+        return self.default_name or self.__class__.__name__
 
     @property
     def base(self):
@@ -62,6 +65,18 @@ class Model(GeneratingModel, TreeModel):
     # def name(self):
     #     return super().name or self.__build_name()
 
-    # @property
-    # def children(self):
-    #     return super().children or self.__build_children()
+    @property
+    def children(self):
+        if self.__children is None:
+            self.__children = []
+        if any(isinstance(child, Placeholder) for child in self.__children):
+            self.__children = [child.model for child in self.__children]
+        return self.__children
+
+    @children.setter
+    def children(self, value):
+        self.__children = value
+
+    @property
+    def model(self):
+        return self

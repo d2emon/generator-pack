@@ -21,6 +21,15 @@ class ThingBuilder:
         def __next__(self):
             return None
 
+    class BaseFactory(ProviderFactory):
+        @property
+        def data(self):
+            return []
+
+        def __next__(self):
+            data = self.data
+            return random.choice(data) if len(data) > 0 else None
+
     class ChildrenFactory(ProviderFactory):
         def builders(self):
             yield from []
@@ -34,6 +43,7 @@ class ThingBuilder:
         self.provider = provider or self.DataProvider()
         self.thing = None
         self.name_factory = self.NameFactory(self.provider)
+        self.base_factory = self.BaseFactory(self.provider)
         self.children_factory = self.ChildrenFactory(self.provider)
 
     def create_thing(self, **kwargs):
@@ -41,11 +51,13 @@ class ThingBuilder:
 
     @property
     def default_name(self):
-        return self.model.__name__
+        return self.model.default_name or self.model.__name__
+
+    def __build_base(self):
+        return next(self.base_factory)
 
     def __build_name(self):
-        # return self.base or next(self.name_factory) or self.default_name
-        return next(self.name_factory) or self.default_name
+        return self.__build_base() or next(self.name_factory) or self.default_name
 
     def __build_children(self):
         return next(self.children_factory)
@@ -55,8 +67,6 @@ class ThingBuilder:
             name=self.__build_name(),
             children=self.__build_children(),
         )
-        print(self.__build_name())
-        print(self.__build_children())
         return self.thing
 
     @classmethod
