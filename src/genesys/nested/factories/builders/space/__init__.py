@@ -3,7 +3,7 @@ from genesys.nested.factories.thing_builder import ThingBuilder
 from genesys.nested.data import lookups
 
 
-class SuperclusterBuilder(ThingBuilder):
+class Supercluster(ThingBuilder):
     model = models.Supercluster
 
     class ChildrenFactory(ThingBuilder.ChildrenFactory):
@@ -12,25 +12,23 @@ class SuperclusterBuilder(ThingBuilder):
             yield from []
 
 
-class UniverseBuilder(ThingBuilder):
+class Universe(ThingBuilder):
     model = models.Universe
 
     class ChildrenFactory(ThingBuilder.ChildrenFactory):
         def builders(self):
-            yield from SuperclusterBuilder.multiple(10, 30)
+            yield from Supercluster.multiple(10, 30)
 
 
 class MultiverseBuilder(ThingBuilder):
     model = models.Multiverse
 
     class DataProvider:
-        multiverses = lookups.multiverses.values
+        multiverse = lookups.multiverses.values
 
     class BaseFactory(ThingBuilder.BaseFactory):
-        @property
-        def data(self):
-            return self.provider.multiverses
+        data = property(lambda self: self.provider.multiverse)
 
     class ChildrenFactory(ThingBuilder.ChildrenFactory):
         def builders(self):
-            yield from UniverseBuilder.multiple(10, 30)
+            yield from Universe.multiple(10, 30)

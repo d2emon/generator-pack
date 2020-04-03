@@ -20,9 +20,16 @@ class Placeholder:
     def model(self, value):
         self.__model = value
 
+    @property
+    def placeholder(self):
+        return self
+
 
 class Model(GeneratingModel, TreeModel):
     default_name = None
+
+    class Factory:
+        pass
 
     class NameFactory(NameFactory):
         pass
@@ -80,3 +87,7 @@ class Model(GeneratingModel, TreeModel):
     @property
     def model(self):
         return self
+
+    @property
+    def placeholder(self):
+        return Placeholder(self.Factory)

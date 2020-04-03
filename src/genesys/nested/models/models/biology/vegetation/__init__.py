@@ -1,10 +1,13 @@
 """
-//vegetation
-new Thing("plant cell",[".cell"],["plant cells"]);
-new Thing("grass",["grass blade,50-100"]);
-new Thing("grass blade",["grass thoughts,2%","dew,6%","worm,3%","insect,6%","plant cell"]);
-new Thing("grass thoughts",["grass thought,1"],"thought");
-new Thing("grass thought",[],[":D",":O","D:",":|",":]",">:0"]);
+Vegetation
+
+- Plant Cell
+
+- Grass
+- Grass Blade
+- Grass Thoughts
+- Grass Thought
+
 new Thing("trees",["tree,20-50"]);
 new Thing("tree",["tree thoughts,2%","tree trunk","branches","leaves","nest,5%","nest,2%","fruits,20%","flowers,20%"],["larch","fir","oak","birch","pine","sequoia","cedar","spruce","ash","poplar","elm","sycamore","willow","mahogany","laurel","orange tree","lemon tree","palm tree","coconut tree","pear tree","apple tree","walnut tree","olive tree"]);
 new Thing("tree thoughts",["tree thought,1"],"thought");
@@ -24,3 +27,10 @@ new Thing("jungle tree",[".tree"],["tree"]);
 new Thing("humus",["insect,0-3","worm,0-3","twig,0-3","leaf,0-6","organic matter","dirt"]);
 new Thing("nest",["bird,50%","egg shell,20%","bird egg,0-6","twig,6-12"]);
 """
+from .grass import *
+from .trees import *
+from ..cell import Cell
+
+
+class PlantCell(Cell):
+    default_name = 'plant cells'
