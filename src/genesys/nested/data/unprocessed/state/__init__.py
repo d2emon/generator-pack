@@ -1,6 +1,6 @@
 from genesys.nested.factories import Thing
 
-from genesys.nested.data.terrain import Biome
+from genesys.nested.models.models.terrain import Biome
 from genesys.nested.data.unprocessed.room import Building
 
 

@@ -1,4 +1,5 @@
-from ...data import unknown
+from ..models import unknown
+from genesys.nested.models.models.terrain import Ocean, Sky
 from .. import Model
 
 
@@ -14,5 +15,5 @@ class EncounteredMixin:
 
 class TerraformedMixin:
     continents = Model.children_property(unknown.Continent)
-    oceans = Model.children_property(unknown.Ocean)
-    sky = Model.child_property(unknown.Sky)
+    oceans = Model.children_property(Ocean)
+    sky = Model.child_property(Sky)

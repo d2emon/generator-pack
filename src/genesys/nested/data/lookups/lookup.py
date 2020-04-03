@@ -1,4 +1,4 @@
-from nestedg.model import Model
+from genesys.nested.models import Model
 
 
 class Lookup:
@@ -6,7 +6,7 @@ class Lookup:
         self.values = values
 
     def lookup(self):
-        class LookupGenerator(Model.BaseGenerator):
+        class LookupGenerator(Model.BaseFactory):
             default = self.values
 
         return LookupGenerator
