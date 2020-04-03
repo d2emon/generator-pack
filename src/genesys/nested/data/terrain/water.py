@@ -1,38 +1,7 @@
-from ..unknown import Bear, SeaLife, AbyssLife, BeachLife, Worm, Insect
+from ..unknown import Bear, SeaLife, AbyssLife, BeachLife, RiverLife, LakeLife
 from genesys.nested.models import Model
-from ..chemistry import Water, Salt, Ice, WaterState, Silica
-
-
-class Soil(Model):
-    class ChildrenFactory(Model.ChildrenFactory):
-        class NameFactory(Model.NameFactory):
-            default = 'dirt'
-
-        def children_classes(self):
-            yield from Model.BaseFactory([
-                Worm.multiple(0, 2),
-                None,
-                None,
-            ]).next()
-            yield from Model.BaseFactory([
-                Insect.multiple(0, 2),
-                None,
-                None,
-            ]).next()
-            yield Silica
-
-
-class Mud(Soil):
-    class ChildrenFactory(Soil.ChildrenFactory):
-        def children_classes(self):
-            yield from super().children_classes()
-            yield Water
-
-
-class Sand(Model):
-    class ChildrenFactory(Model.ChildrenFactory):
-        def children_classes(self):
-            yield Silica
+from .soil import Sand, Soil, Mud
+from ..chemistry import Water, Salt, Ice, WaterState
 
 
 class Abyss(Model):
@@ -82,7 +51,7 @@ class Sea(Model):
 
 
 class Ocean(Sea):
-    class ChildrenFactory(Model.ChildrenFactory):
+    class ChildrenFactory(Sea.ChildrenFactory):
         def children_classes(self):
             yield SeaWater
             yield SeaLife
@@ -95,3 +64,27 @@ class Ocean(Sea):
                 None,
             ]).next()
             yield Abyss
+
+
+class River(Model):
+    class BaseFactory(Model.BaseFactory):
+        default = ['river', 'stream', 'brook', 'creek']
+
+    class ChildrenFactory(Model.ChildrenFactory):
+        def children_classes(self):
+            yield RiverLife
+            yield Water
+            yield Soil
+            yield Mud
+
+
+class Lake(Model):
+    class BaseFactory(Model.BaseFactory):
+        default = ['lake', 'lagoon', 'pond', 'marsh', 'creek', 'cove']
+
+    class ChildrenFactory(Model.ChildrenFactory):
+        def children_classes(self):
+            yield LakeLife
+            yield Water
+            yield Soil
+            yield Mud
