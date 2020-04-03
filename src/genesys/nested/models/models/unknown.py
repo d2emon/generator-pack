@@ -2,6 +2,8 @@ from genesys.nested.models import Model
 
 
 Bear = Model
+Bird = Model
+BirdEgg = Model
 Button = Model
 CavemanSettlement = Model
 Coin = Model
@@ -9,10 +11,12 @@ Computer = Model
 Continent = Model
 Crumbs = Model
 CrustaceanClaw = Model
+Dirt = Model
 Donut = Model
 DragonLair = Model
 Dust = Model
 DysonSurface = Model
+EggShell = Model
 Ghost = Model
 Glass = Model
 Handgun = Model
@@ -26,12 +30,14 @@ Plane = Model
 Rocketship = Model
 Sprowseship = Model
 Stinger = Model
+Sugar = Model
 VisitorCity = Model
 VisitorInstallation = Model
 VisitorShip = Model
 WallPainting = Model
 WeirdHardOrgan = Model
 WeirdSoftOrgan = Model
+Wood = Model
 
 FutureContinent = Continent
 MedievalContinent = Continent

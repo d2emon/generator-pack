@@ -27,10 +27,6 @@ new Thing("jungle tree",[".tree"],["tree"]);
 new Thing("humus",["insect,0-3","worm,0-3","twig,0-3","leaf,0-6","organic matter","dirt"]);
 new Thing("nest",["bird,50%","egg shell,20%","bird egg,0-6","twig,6-12"]);
 """
+from .cells import *
 from .grass import *
 from .trees import *
-from ..cell import Cell
-
-
-class PlantCell(Cell):
-    default_name = 'plant cells'

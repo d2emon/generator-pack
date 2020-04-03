@@ -1,5 +1,4 @@
 import random
-from genesys.nested.models import Placeholder, Model
 
 
 class ProviderFactory:
@@ -35,9 +34,7 @@ class ThingBuilder:
             yield from []
 
         def __next__(self):
-            return [Placeholder(builder) for builder in self.builders() if builder is not None]
-
-    model = Model
+            return [model.placeholder() for model in self.builders() if model is not None]
 
     def __init__(self, provider=None):
         self.provider = provider or self.DataProvider()
@@ -63,11 +60,10 @@ class ThingBuilder:
         return next(self.children_factory)
 
     def build(self):
-        self.thing = self.create_thing(
-            name=self.__build_name(),
-            children=self.__build_children(),
-        )
-        return self.thing
+        return {
+            # 'name': self.__build_name(),
+            'children': self.__build_children(),
+        }
 
     @classmethod
     def probable(cls, probability=100):

@@ -4,12 +4,13 @@ from .tree import TreeModel
 
 
 class Placeholder:
-    def __init__(self, builder):
+    def __init__(self, model_class, builder):
+        self.model_class = model_class
         self.builder = builder()
         self.__model = None
 
     def __build(self):
-        self.__model = self.builder.build()
+        self.__model = self.model_class(**self.builder.build())
         return self.__model
 
     @property
@@ -75,7 +76,7 @@ class Model(GeneratingModel, TreeModel):
     @property
     def children(self):
         if self.__children is None:
-            self.__children = []
+            self.__children = self.__build_children()
         if any(isinstance(child, Placeholder) for child in self.__children):
             self.__children = [child.model for child in self.__children]
         return self.__children
@@ -88,6 +89,6 @@ class Model(GeneratingModel, TreeModel):
     def model(self):
         return self
 
-    @property
-    def placeholder(self):
-        return Placeholder(self.Factory)
+    @classmethod
+    def placeholder(cls):
+        return Placeholder(cls, cls.Factory)
