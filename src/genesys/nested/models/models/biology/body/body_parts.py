@@ -1,4 +1,5 @@
 from genesys.nested.models.models.unknown import Bacteria
+from genesys.nested.factories.thing_builder import ThingBuilder
 from genesys.nested.models import Model
 from .blood import BloodVessels
 from .skin import Skin
@@ -13,35 +14,39 @@ class BodyPart(Model):
     fat = Model.child_property(Fat)
     muscles = Model.child_property(Muscles)
 
-    class ChildrenFactory(Model.ChildrenFactory):
-        has_bones = True
-        has_skin = True
+    class Factory(ThingBuilder):
+        class ChildrenFactory(ThingBuilder.ChildrenFactory):
+            has_bones = True
+            has_skin = True
 
-        def children_classes(self):
-            yield Bacteria.probable(30)
-            yield Bacteria.probable(10)
-            if self.has_skin:
-                yield Skin
-            yield BloodVessels
-            if self.has_bones:
-                yield Bones
-            yield Fat
-            yield Muscles
+            def builders(self):
+                yield Bacteria.probable(30)
+                yield Bacteria.probable(10)
+                if self.has_skin:
+                    yield Skin
+                yield BloodVessels
+                if self.has_bones:
+                    yield Bones
+                yield Fat
+                yield Muscles
 
 
 class SoftBodyPart(BodyPart):
-    class ChildrenFactory(BodyPart.ChildrenFactory):
-        has_bones = False
-        has_skin = True
+    class Factory(BodyPart.Factory):
+        class ChildrenFactory(BodyPart.Factory.ChildrenFactory):
+            has_bones = False
+            has_skin = True
 
 
 class SkinlessBodyPart(BodyPart):
-    class ChildrenFactory(BodyPart.ChildrenFactory):
-        has_bones = True
-        has_skin = False
+    class Factory(BodyPart.Factory):
+        class ChildrenFactory(BodyPart.Factory.ChildrenFactory):
+            has_bones = True
+            has_skin = False
 
 
 class SkinlessSoftBodyPart(BodyPart):
-    class ChildrenFactory(BodyPart.ChildrenFactory):
-        has_bones = False
-        has_skin = False
+    class Factory(BodyPart.Factory):
+        class ChildrenFactory(BodyPart.Factory.ChildrenFactory):
+            has_bones = False
+            has_skin = False

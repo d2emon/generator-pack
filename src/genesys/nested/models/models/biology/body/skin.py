@@ -1,17 +1,16 @@
 from genesys.nested.models.models.unknown import Bacteria, Dust
+from genesys.nested.factories.thing_builder import ThingBuilder
 from genesys.nested.models import Model
 from ..cell import Cell
 from genesys.nested.models.models.chemistry import Sweat
 
 
 class SkinCell(Cell):
-    class NameFactory(Model.NameFactory):
-        default = 'skin cells'
+    default_name = 'skin cells'
 
 
 class DeadSkin(SkinCell):
-    class NameFactory(Model.NameFactory):
-        default = 'skin cell'
+    default_name = 'skin cell'
 
 
 class Pores(Model):
@@ -19,20 +18,22 @@ class Pores(Model):
     cells = Model.children_property(Cell)
     sweat = Model.child_property(Sweat)
 
-    class ChildrenFactory(Model.ChildrenFactory):
-        def children_classes(self):
-            yield Bacteria.multiple(1, 3)
-            yield SkinCell
-            yield DeadSkin.probable(50)
-            yield Sweat.probable(40)
+    class Factory(ThingBuilder):
+        class ChildrenFactory(ThingBuilder.ChildrenFactory):
+            def builders(self):
+                yield Bacteria.multiple(1, 3)
+                yield SkinCell
+                yield DeadSkin.probable(50)
+                yield Sweat.probable(40)
 
 
 class Scar(Model):
     cells = Model.child_property(Cell)
 
-    class ChildrenFactory(Model.ChildrenFactory):
-        def children_classes(self):
-            yield DeadSkin
+    class Factory(ThingBuilder):
+        class ChildrenFactory(ThingBuilder.ChildrenFactory):
+            def builders(self):
+                yield DeadSkin
 
 
 class Skin(Model):
@@ -43,20 +44,22 @@ class Skin(Model):
     dust = Model.child_property(Dust)
     sweat = Model.child_property(Sweat)
 
-    class ChildrenFactory(Model.ChildrenFactory):
-        def children_classes(self):
-            yield Bacteria.multiple(1, 3)
-            yield Scar.probable(0.5)
-            yield Pores
-            yield SkinCell
-            yield DeadSkin
-            yield Dust.probable(20)
-            yield Sweat.probable(20)
+    class Factory(ThingBuilder):
+        class ChildrenFactory(ThingBuilder.ChildrenFactory):
+            def builders(self):
+                yield Bacteria.multiple(1, 3)
+                yield Scar.probable(0.5)
+                yield Pores
+                yield SkinCell
+                yield DeadSkin
+                yield Dust.probable(20)
+                yield Sweat.probable(20)
 
 
 class Dandruff(Model):
     cells = Model.child_property(Cell)
 
-    class ChildrenFactory(Model.ChildrenFactory):
-        def children_classes(self):
-            yield DeadSkin
+    class Factory(ThingBuilder):
+        class ChildrenFactory(ThingBuilder.ChildrenFactory):
+            def builders(self):
+                yield DeadSkin

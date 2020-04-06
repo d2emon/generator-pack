@@ -2,32 +2,39 @@ from ...unknown import Insect, Worm
 from genesys.nested.factories.thing_builder import ThingBuilder
 from genesys.nested.models import Model
 from .cells import PlantCell
+from ..brain import Thoughts, Thought
 from ...chemistry import Dew
 
 
-class GrassThought(Model):
-    class Factory(ThingBuilder):
+class GrassThought(Thought):
+    class Factory(Thought.Factory):
         class DataProvider:
             grass_thought = [':D', ':O', 'D:', ':|', ':]', '>:0']
 
-        class BaseFactory(ThingBuilder.BaseFactory):
+        class BaseFactory(Thought.Factory.BaseFactory):
             data = property(lambda self: self.provider.grass_thought)
 
-        class ChildrenFactory(ThingBuilder.ChildrenFactory):
+        class ChildrenFactory(Thought.Factory.ChildrenFactory):
             def builders(self):
                 yield None
 
 
-class GrassThoughts(Model):
+class GrassThoughts(Thoughts):
     default_name = 'thoughts'
 
-    class Factory(ThingBuilder):
-        class ChildrenFactory(ThingBuilder.ChildrenFactory):
+    class Factory(Thoughts.Factory):
+        class ChildrenFactory(Thoughts.Factory.ChildrenFactory):
             def builders(self):
                 yield from GrassThought.multiple(1)
 
 
 class GrassBlade(Model):
+    cells = Model.child_property(PlantCell)
+    thoughts = Model.child_property(GrassThoughts)
+    dew = Model.child_property(Dew)
+    worms = Model.children_property(Worm)
+    insects = Model.children_property(Insect)
+
     class Factory(ThingBuilder):
         class ChildrenFactory(ThingBuilder.ChildrenFactory):
             def builders(self):
@@ -39,6 +46,8 @@ class GrassBlade(Model):
 
 
 class Grass(Model):
+    grass_blades = Model.children_property(GrassBlade)
+
     class Factory(ThingBuilder):
         class ChildrenFactory(ThingBuilder.ChildrenFactory):
             def builders(self):

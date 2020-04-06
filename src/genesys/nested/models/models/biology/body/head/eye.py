@@ -1,3 +1,4 @@
+from genesys.nested.factories.thing_builder import ThingBuilder
 from genesys.nested.models import Model
 from ....chemistry import Water, Salt
 from ..body_parts import SoftBodyPart
@@ -10,10 +11,11 @@ class Tear(Model):
     water = Model.child_property(Water)
     salt = Model.child_property(Salt)
 
-    class ChildrenFactory(Model.ChildrenFactory):
-        def children_classes(self):
-            yield Water
-            yield Salt
+    class Factory(ThingBuilder):
+        class ChildrenFactory(ThingBuilder.ChildrenFactory):
+            def builders(self):
+                yield Water
+                yield Salt
 
 
 class Eyelashes(Hair):
@@ -23,14 +25,14 @@ class Eyelashes(Hair):
 class EyeFlesh(SoftBodyPart):
     water = SoftBodyPart.child_property(Water)
 
-    class NameFactory(SoftBodyPart.NameFactory):
-        default = 'eyeball'
+    default_name = 'eyeball'
 
-    class ChildrenFactory(SoftBodyPart.ChildrenFactory):
-        def children_classes(self):
-            yield Water
-            yield BloodVessels
-            yield Fat
+    class Factory(SoftBodyPart.Factory):
+        class ChildrenFactory(SoftBodyPart.Factory.ChildrenFactory):
+            def builders(self):
+                yield Water
+                yield BloodVessels
+                yield Fat
 
 
 class Eye(SoftBodyPart):
@@ -38,8 +40,9 @@ class Eye(SoftBodyPart):
     eye_flesh = SoftBodyPart.child_property(EyeFlesh)
     tear = SoftBodyPart.child_property(Tear)
 
-    class ChildrenFactory(SoftBodyPart.ChildrenFactory):
-        def children_classes(self):
-            yield Eyelashes
-            yield EyeFlesh
-            yield Tear.probable(2)
+    class Factory(SoftBodyPart.Factory):
+        class ChildrenFactory(SoftBodyPart.Factory.ChildrenFactory):
+            def builders(self):
+                yield Eyelashes
+                yield EyeFlesh
+                yield Tear.probable(2)

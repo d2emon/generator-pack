@@ -5,24 +5,25 @@ from ...cell import Cell
 
 
 class BrainCell(Cell):
-    class NameFactory(Cell.NameFactory):
-        default = 'brain cells'
+    default_name = 'brain cells'
 
 
 class Brain(SoftBodyPart):
     bacterias = SoftBodyPart.children_property(Bacteria)
     cells = SoftBodyPart.child_property(BrainCell)
 
-    class ChildrenFactory(SoftBodyPart.ChildrenFactory):
-        def children_classes(self):
-            yield Bacteria.probable(20)
-            yield BrainCell
+    class Factory(SoftBodyPart.Factory):
+        class ChildrenFactory(SoftBodyPart.Factory.ChildrenFactory):
+            def builders(self):
+                yield Bacteria.probable(20)
+                yield BrainCell
 
 
 class Skull(Bones):
     brain = Bones.child_property(Brain)
 
-    class ChildrenFactory(Bones.ChildrenFactory):
-        def children_classes(self):
-            yield Brain
-            yield from super().children_classes()
+    class Factory(Bones.Factory):
+        class ChildrenFactory(Bones.Factory.ChildrenFactory):
+            def builders(self):
+                yield Brain
+                yield from super().builders()

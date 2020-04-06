@@ -5,19 +5,19 @@ from ...chemistry import Keratin, Sweat
 
 
 class ArmpitHair(Hair):
-    class NameFactory(SoftBodyPart.NameFactory):
-        default = 'hair'
+    default_name = 'hair'
 
 
 class Armpit(SoftBodyPart):
     hair = SoftBodyPart.child_property(Hair)
     sweat = SoftBodyPart.child_property(Sweat)
 
-    class ChildrenFactory(SoftBodyPart.ChildrenFactory):
-        def children_classes(self):
-            yield ArmpitHair
-            yield Sweat.probable(80)
-            yield from super().children_classes()
+    class Factory(SoftBodyPart.Factory):
+        class ChildrenFactory(SoftBodyPart.Factory.ChildrenFactory):
+            def builders(self):
+                yield ArmpitHair
+                yield Sweat.probable(80)
+                yield from super().builders()
 
 
 class Elbow(BodyPart):
@@ -28,28 +28,31 @@ class Fingernail(BodyPart):
     dust = BodyPart.child_property(Dust)
     keratin = BodyPart.child_property(Keratin)
 
-    class ChildrenFactory(BodyPart.ChildrenFactory):
-        def children_classes(self):
-            yield Dust.probable(30)
-            yield Keratin
+    class Factory(BodyPart.Factory):
+        class ChildrenFactory(BodyPart.Factory.ChildrenFactory):
+            def builders(self):
+                yield Dust.probable(30)
+                yield Keratin
 
 
 class Finger(BodyPart):
     nail = BodyPart.child_property(Fingernail)
 
-    class ChildrenFactory(BodyPart.ChildrenFactory):
-        def children_classes(self):
-            yield Fingernail
-            yield from super().children_classes()
+    class Factory(BodyPart.Factory):
+        class ChildrenFactory(BodyPart.Factory.ChildrenFactory):
+            def builders(self):
+                yield Fingernail
+                yield from super().builders()
 
 
 class Hand(BodyPart):
     fingers = BodyPart.children_property(Finger)
 
-    class ChildrenFactory(BodyPart.ChildrenFactory):
-        def children_classes(self):
-            yield from Finger.multiple(5)
-            yield from super().children_classes()
+    class Factory(BodyPart.Factory):
+        class ChildrenFactory(BodyPart.Factory.ChildrenFactory):
+            def builders(self):
+                yield from Finger.multiple(5)
+                yield from super().builders()
 
 
 class Arm(BodyPart):
@@ -57,9 +60,10 @@ class Arm(BodyPart):
     elbow = BodyPart.child_property(Elbow)
     armpit = BodyPart.child_property(Armpit)
 
-    class ChildrenFactory(BodyPart.ChildrenFactory):
-        def children_classes(self):
-            yield Hand
-            yield Elbow
-            yield Armpit
-            yield from super().children_classes()
+    class Factory(BodyPart.Factory):
+        class ChildrenFactory(BodyPart.Factory.ChildrenFactory):
+            def builders(self):
+                yield Hand
+                yield Elbow
+                yield Armpit
+                yield from super().builders()

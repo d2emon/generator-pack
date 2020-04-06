@@ -2,18 +2,35 @@ from ...unknown import Insect, Worm, Wood, Sugar, Dirt, Bird, BirdEgg, EggShell
 from genesys.nested.factories.thing_builder import ThingBuilder
 from genesys.nested.models import Model
 from .cells import PlantCell
+from ..brain import Thoughts, Thought
 from ...chemistry import Dew, OrganicMatter
 
 
 class Twig(Model):
+    cells = Model.child_property(PlantCell)
+
     class Factory(ThingBuilder):
         class ChildrenFactory(ThingBuilder.ChildrenFactory):
             def builders(self):
                 yield PlantCell
 
 
-class TreeThought(Model):
+class Nest(Model):
+    bird = Model.child_property(Bird)
+    eggs = Model.children_property(EggShell, BirdEgg)
+    twigs = Model.children_property(Twig)
+
     class Factory(ThingBuilder):
+        class ChildrenFactory(ThingBuilder.ChildrenFactory):
+            def builders(self):
+                yield Bird.probable(50)
+                yield EggShell.probable(20)
+                yield from BirdEgg.multiple(0, 6)
+                yield from Twig.multiple(6, 12)
+
+
+class TreeThought(Thought):
+    class Factory(Thought.Factory):
         class DataProvider:
             grass_thought = [
                 'Well. What is this all about.', 'So. What\'s the hurry?', 'Whoah. Slow down.',
@@ -22,44 +39,60 @@ class TreeThought(Model):
                 'Yes. I remember you. I remember all of you.'
             ]
 
-        class BaseFactory(ThingBuilder.BaseFactory):
+        class BaseFactory(Thought.Factory.BaseFactory):
             data = property(lambda self: self.provider.grass_thought)
 
-        class ChildrenFactory(ThingBuilder.ChildrenFactory):
+        class ChildrenFactory(Thought.Factory.ChildrenFactory):
             def builders(self):
                 yield None
 
 
-class TreeThoughts(Model):
+class TreeThoughts(Thoughts):
     default_name = 'thoughts'
 
-    class Factory(ThingBuilder):
-        class ChildrenFactory(ThingBuilder.ChildrenFactory):
+    class Factory(Thoughts.Factory):
+        class ChildrenFactory(Thoughts.Factory.ChildrenFactory):
             def builders(self):
                 yield from TreeThought.multiple(1)
 
 
-class Bark(Model):
+class TreePart(Model):
+    dew = Model.child_property(Dew)
+    worms = Model.children_property(Worm)
+    insects = Model.children_property(Insect)
+
     class Factory(ThingBuilder):
-        class ChildrenFactory(ThingBuilder.ChildrenFactory):
+        pass
+
+
+class Bark(TreePart):
+    wood = Model.child_property(Wood)
+
+    class Factory(TreePart.Factory):
+        class ChildrenFactory(TreePart.Factory.ChildrenFactory):
             def builders(self):
                 yield Insect.probable(10)
                 yield Worm.probable(10)
                 yield Wood
 
 
-class TreeTrunk(Model):
-    class Factory(ThingBuilder):
-        class ChildrenFactory(ThingBuilder.ChildrenFactory):
+class TreeTrunk(TreePart):
+    bark = Model.child_property(Bark)
+    wood = Model.child_property(Wood)
+
+    class Factory(TreePart.Factory):
+        class ChildrenFactory(TreePart.Factory.ChildrenFactory):
             def builders(self):
                 yield Insect.probable(4)
                 yield Wood
                 yield Bark
 
 
-class Leaf(Model):
-    class Factory(ThingBuilder):
-        class ChildrenFactory(ThingBuilder.ChildrenFactory):
+class Leaf(TreePart):
+    cells = Model.child_property(PlantCell)
+
+    class Factory(TreePart.Factory):
+        class ChildrenFactory(TreePart.Factory.ChildrenFactory):
             def builders(self):
                 yield Dew.probable(6)
                 yield Insect.probable(6)
@@ -67,15 +100,20 @@ class Leaf(Model):
 
 
 class Leaves(Model):
+    leaves = Model.children_property(Leaf)
+
     class Factory(ThingBuilder):
         class ChildrenFactory(ThingBuilder.ChildrenFactory):
             def builders(self):
                 yield from Leaf.multiple(50, 100)
 
 
-class Branch(Model):
-    class Factory(ThingBuilder):
-        class ChildrenFactory(ThingBuilder.ChildrenFactory):
+class Branch(TreePart):
+    cells = Model.child_property(PlantCell)
+    leaves = Model.children_property(Leaf)
+
+    class Factory(TreePart.Factory):
+        class ChildrenFactory(TreePart.Factory.ChildrenFactory):
             def builders(self):
                 yield Insect.probable(6)
                 yield Leaf.probable(10)
@@ -83,15 +121,20 @@ class Branch(Model):
 
 
 class Branches(Model):
+    branches = Model.children_property(Branch)
+
     class Factory(ThingBuilder):
         class ChildrenFactory(ThingBuilder.ChildrenFactory):
             def builders(self):
                 yield from Branch.multiple(10, 30)
 
 
-class Fruits(Model):
-    class Factory(ThingBuilder):
-        class ChildrenFactory(ThingBuilder.ChildrenFactory):
+class Fruits(TreePart):
+    cells = Model.child_property(PlantCell)
+    sugar = Model.child_property(Sugar)
+
+    class Factory(TreePart.Factory):
+        class ChildrenFactory(TreePart.Factory.ChildrenFactory):
             def builders(self):
                 yield Worm.probable(5)
                 yield PlantCell
@@ -99,6 +142,9 @@ class Fruits(Model):
 
 
 class Pollen(Model):
+    cells = Model.child_property(PlantCell)
+    sugar = Model.child_property(Sugar)
+
     class Factory(ThingBuilder):
         class ChildrenFactory(ThingBuilder.ChildrenFactory):
             def builders(self):
@@ -106,9 +152,12 @@ class Pollen(Model):
                 yield Sugar
 
 
-class Flowers(Model):
-    class Factory(ThingBuilder):
-        class ChildrenFactory(ThingBuilder.ChildrenFactory):
+class Flowers(TreePart):
+    cells = Model.child_property(PlantCell)
+    pollen = Model.child_property(Pollen)
+
+    class Factory(TreePart.Factory):
+        class ChildrenFactory(TreePart.Factory.ChildrenFactory):
             def builders(self):
                 yield Insect.probable(5)
                 yield PlantCell
@@ -116,6 +165,14 @@ class Flowers(Model):
 
 
 class Tree(Model):
+    thoughts = Model.child_property(Thoughts)
+    trunk = Model.child_property(TreeTrunk)
+    branches = Model.child_property(Branches)
+    leaves = Model.child_property(Leaves)
+    nests = Model.children_property(Nest)
+    fruits = Model.child_property(Fruits)
+    flowers = Model.child_property(Flowers)
+
     class Factory(ThingBuilder):
         class DataProvider:
             tree = [
@@ -141,26 +198,35 @@ class Tree(Model):
 
 
 class Trees(Model):
+    trees = Model.children_property(Tree)
+
     class Factory(ThingBuilder):
         class ChildrenFactory(ThingBuilder.ChildrenFactory):
             def builders(self):
                 yield from Tree.multiple(20, 50)
 
 
-class JungleTree(Model):
+class JungleTree(Tree):
     default_name = 'tree'
 
 
-class JungleTrees(Model):
+class JungleTrees(Trees):
     default_name = 'trees'
 
-    class Factory(ThingBuilder):
-        class ChildrenFactory(Trees.ChildrenFactory):
+    class Factory(Trees.Factory):
+        class ChildrenFactory(Trees.Factory.ChildrenFactory):
             def builders(self):
                 yield from JungleTree.multiple(20, 150)
 
 
 class Humus(Model):
+    insects = Model.children_property(Insect)
+    worms = Model.children_property(Worm)
+    twigs = Model.children_property(Twig)
+    leaves = Model.children_property(Leaf)
+    organic = Model.child_property(OrganicMatter)
+    dirt = Model.child_property(Dirt)
+
     class Factory(ThingBuilder):
         class ChildrenFactory(ThingBuilder.ChildrenFactory):
             def builders(self):
@@ -170,13 +236,3 @@ class Humus(Model):
                 yield from Leaf.multiple(0, 6)
                 yield OrganicMatter
                 yield Dirt
-
-
-class Nest(Model):
-    class Factory(ThingBuilder):
-        class ChildrenFactory(ThingBuilder.ChildrenFactory):
-            def builders(self):
-                yield Bird.probable(50)
-                yield EggShell.probable(20)
-                yield from BirdEgg.multiple(0, 6)
-                yield from Twig.multiple(6, 12)

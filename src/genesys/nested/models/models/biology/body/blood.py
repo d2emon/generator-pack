@@ -1,26 +1,28 @@
 from genesys.nested.models.models.unknown import Bacteria
+from genesys.nested.factories.thing_builder import ThingBuilder
 from genesys.nested.models import Model
 from ..cell import Cell
 
 
 class BloodCell(Cell):
-    class NameFactory(Model.NameFactory):
-        default = 'blood cells'
+    default_name = 'blood cells'
 
 
 class Blood(Model):
     cells = Model.child_property(Cell)
 
-    class ChildrenFactory(Model.ChildrenFactory):
-        def children_classes(self):
-            yield BloodCell
+    class Factory(ThingBuilder):
+        class ChildrenFactory(ThingBuilder.ChildrenFactory):
+            def builders(self):
+                yield BloodCell
 
 
 class BloodVessels(Model):
     blood = Model.child_property(Cell)
     bacterias = Model.children_property(Bacteria)
 
-    class ChildrenFactory(Model.ChildrenFactory):
-        def children_classes(self):
-            yield Bacteria.probable(30)
-            yield Blood
+    class Factory(ThingBuilder):
+        class ChildrenFactory(ThingBuilder.ChildrenFactory):
+            def builders(self):
+                yield Bacteria.probable(30)
+                yield Blood
