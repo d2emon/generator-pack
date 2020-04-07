@@ -1,7 +1,8 @@
-from genesys.nested.models.models.unknown import Bear, SeaLife, AbyssLife, BeachLife, RiverLife, LakeLife
+from genesys.nested.models.models.unknown import Bear
 from genesys.nested.models import Model
 from .soil import Sand, Soil, Mud
-from genesys.nested.models.models.chemistry import Water, Salt, Ice, WaterState
+from ..chemistry import Water, Salt, Ice, WaterState
+from ..biology import SeaLife, AbyssLife, BeachLife, RiverLife, LakeLife
 
 
 class Abyss(Model):

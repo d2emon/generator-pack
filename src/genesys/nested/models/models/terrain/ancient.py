@@ -1,9 +1,10 @@
-from genesys.nested.models.models.unknown import AncientLandLife, AncientForestLife, AncientJungleLife, AncientMountainLife, Trees, JungleTrees,\
-    Humus, Grass, CavemanSettlement, WallPainting
+from genesys.nested.models.models.unknown import CavemanSettlement, WallPainting
 from .soil import Soil
 from .water import River, Lake
 from .land import Plain, Forest, Jungle, Mountain, Cave
-from genesys.nested.models.models.chemistry import Fire, Snow, Rock
+from ..chemistry import Fire, Snow, Rock
+from ..biology import AncientLandLife, AncientForestLife, AncientJungleLife, AncientMountainLife, Trees, JungleTrees,\
+    Humus, Grass
 
 
 class AncientPlain(Plain):

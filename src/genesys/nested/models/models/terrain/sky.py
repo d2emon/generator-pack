@@ -1,6 +1,7 @@
-from genesys.nested.models.models.unknown import VisitorShip, SkyLife, Plane, Rocketship, Sprowseship, SpaceAnimal
+from genesys.nested.models.models.unknown import VisitorShip, Plane, Rocketship, Sprowseship, SpaceAnimal
 from genesys.nested.models import Model
-from genesys.nested.models.models.chemistry import Ice, Rock, WaterState, elements
+from ..chemistry import Ice, Rock, WaterState, elements
+from ..biology import SkyLife
 
 
 class Meteorite(Model):

@@ -1,9 +1,9 @@
-from genesys.nested.models.models.unknown import GalacticLife
 from genesys.nested.models import Model
 from genesys.nested.models.mixins import EncounteredMixin
 from .nebula import Nebula
 from .star import StarSystem, DysonSphere
 from .black_hole import BlackHole
+from ..biology import GalacticLife
 
 
 class GalaxyPart(Model, EncounteredMixin):

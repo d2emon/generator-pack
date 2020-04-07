@@ -1,9 +1,6 @@
 from genesys.nested.models import Model
 
 
-Bear = Model
-Bird = Model
-BirdEgg = Model
 Button = Model
 CavemanSettlement = Model
 Coin = Model
@@ -20,8 +17,8 @@ EggShell = Model
 Ghost = Model
 Glass = Model
 Handgun = Model
-Insect = Model
 Lint = Model
+MedievalPerson = Model
 Metal = Model
 Note = Model
 Pasta = Model
@@ -46,25 +43,35 @@ FutureMoon = Model
 
 
 # Biology
-AncientForestLife = Model
-AncientJungleLife = Model
-AncientLandLife = Model
-AncientMountainLife = Model
-AbyssLife = Model
-BeachLife = Model
+Amphibian = Model
+Anthill = Model
 Bacteria = Model
-CaveLife = Model
+Bear = Model
+Beehive = Model
+Bird = Model
+BirdEgg = Model
+Cat = Model
+Caveman = Model
+Cetacean = Model
+Clam = Model
+Cnidaria = Model
 Crustacean = Model
-ForestLife = Model
-GalacticLife = Model
-JungleLife = Model
-JungleTrees = Model
-LakeLife = Model
-LandLife = Model
-MountainLife = Model
-RiverLife = Model
-SeaLife = Model
-SkyLife = Model
+Dinosaur = Model
+Dragon = Model
+Fish = Model
+HerbivorousMammal = Model
+Horse = Model
+Insect = Model
+Mollusk = Model
+Monkey = Model
+Plancton = Model
+Poultry = Model
+PredatoryMammal = Model
+Reptile = Model
+SeaMonster = Model
+Shark = Model
+SmallMammal = Model
+Snake = Model
 SpaceAnimal = Model
 SpaceMonster = Model
 Worm = Model

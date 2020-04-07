@@ -1,7 +1,7 @@
-from genesys.nested.models.models.unknown import GalacticLife
 from genesys.nested.models import Model
 from genesys.nested.models.mixins import EncounteredMixin
-from genesys.nested.models.models.chemistry import elements, Water, Ammonia, Methane
+from ...chemistry import elements, Water, Ammonia, Methane
+from ...biology import GalacticLife
 
 
 class Atmosphere(Model, EncounteredMixin):

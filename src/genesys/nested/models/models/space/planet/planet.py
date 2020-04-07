@@ -1,10 +1,11 @@
-from genesys.nested.models.models.unknown import GalacticLife, VisitorCity, VisitorInstallation, Continent, FutureContinent, \
+from genesys.nested.models.models.unknown import VisitorCity, VisitorInstallation, Continent, FutureContinent, \
     MedievalContinent, AncientContinent, FutureMoon
 from genesys.nested.models.mixins import TerraformedMixin
 from .planet_like import PlanetLike
 from .moon import Moon, TerraformedMoon
-from genesys.nested.models.models.chemistry import Rock, Ice
-from genesys.nested.models.models.terrain import Ocean, Sky, TerraformedSky, FutureSky
+from ...chemistry import Rock, Ice
+from ...terrain import Ocean, Sky, TerraformedSky, FutureSky
+from ...biology import GalacticLife
 
 
 class Planet(PlanetLike):

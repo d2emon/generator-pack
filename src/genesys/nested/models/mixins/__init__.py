@@ -1,12 +1,13 @@
 from ..models import unknown
 from genesys.nested.models.models.terrain import Ocean, Sky
+from genesys.nested.models.models.biology import GalacticLife
 from .. import Model
 
 
 class EncounteredMixin:
     encounters = Model.children_property(
         unknown.Crustacean,
-        unknown.GalacticLife,
+        GalacticLife,
         unknown.Ghost,
         unknown.SpaceAnimal,
         unknown.SpaceMonster,

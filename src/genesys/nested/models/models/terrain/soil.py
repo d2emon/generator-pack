@@ -1,6 +1,6 @@
 from genesys.nested.models.models.unknown import Worm, Insect
 from genesys.nested.models import Model
-from genesys.nested.models.models.chemistry import Water, Silica
+from ..chemistry import Water, Silica
 
 
 class Soil(Model):

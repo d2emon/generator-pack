@@ -1,9 +1,9 @@
-from genesys.nested.models.models.unknown import LandLife, ForestLife, JungleLife, MountainLife, CaveLife, Trees, JungleTrees, Humus, Grass,\
-    DragonLair
+from genesys.nested.models.models.unknown import DragonLair
 from genesys.nested.models import Model
 from .soil import Soil
 from .water import River, Lake
-from genesys.nested.models.models.chemistry import Fire, Snow, Rock, elements
+from ..chemistry import Fire, Snow, Rock, elements
+from ..biology import LandLife, ForestLife, JungleLife, MountainLife, CaveLife, Trees, JungleTrees, Humus, Grass
 
 
 class Plain(Model):

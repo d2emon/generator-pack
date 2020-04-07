@@ -1,9 +1,9 @@
-from genesys.nested.models.models.unknown import GalacticLife
 from genesys.nested.models import Model
 from genesys.nested.models.mixins import EncounteredMixin
-from genesys.nested.data import lookups
-from genesys.nested.models.models.chemistry import elements, Matter, Atom, Water, Ammonia
 from .star import StarSystem, SingleStar
+from ..chemistry import elements, Matter, Atom, Water, Ammonia
+from ..biology import GalacticLife
+from genesys.nested.data import lookups
 
 
 class InterstellarCloud(Matter):
