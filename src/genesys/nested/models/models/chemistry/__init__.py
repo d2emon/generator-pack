@@ -47,16 +47,3 @@ from .elements import *
 from .matter import *
 from .organics import *
 from .particles import *
-from genesys.nested.models import Model
-
-
-class Fire(Model):
-    atoms = Model.child_property(Atom)
-
-    class ChildrenFactory(Model.ChildrenFactory):
-        def children_classes(self):
-            yield elements['C']
-            yield elements['O']
-
-
-# Things.add_thing("portal",["universe"])

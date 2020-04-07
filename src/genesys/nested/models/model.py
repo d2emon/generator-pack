@@ -1,4 +1,4 @@
-from genesys.nested.factories.data import NameFactory, BaseFactory, ChildrenFactory
+from genesys.nested.factories.thing_builder import ThingBuilder
 from .generating import GeneratingModel
 from .tree import TreeModel
 
@@ -29,16 +29,7 @@ class Placeholder:
 class Model(GeneratingModel, TreeModel):
     default_name = None
 
-    class Factory:
-        pass
-
-    class NameFactory(NameFactory):
-        pass
-
-    class BaseFactory(BaseFactory):
-        pass
-
-    class ChildrenFactory(ChildrenFactory):
+    class Factory(ThingBuilder):
         pass
 
     def __init__(self, name=None, base=None, children=None, parent=None):
@@ -46,13 +37,12 @@ class Model(GeneratingModel, TreeModel):
         self.__base = base
         self.__children = children
 
-    def __build_name(self):
-        # super().name = self.base or self.NameFactory.next(self.default_name)
-        # return super().name
-        return 'NAME'
+    def __build_base(self):
+        self.__base = next(self.Factory().base_factory)
+        return self.__base
 
     def __build_children(self):
-        super().children = self.ChildrenFactory.next([])
+        super().children = next(self.Factory().children_factory)
         return super().name
 
     @property
@@ -61,17 +51,11 @@ class Model(GeneratingModel, TreeModel):
 
     @property
     def base(self):
-        if self.__base is None:
-            self.__base = self.BaseFactory.next(None)
-        return self.__base
+        return self.__base or self.__build_base()
 
     @base.setter
     def base(self, value):
         self.__base = value
-
-    # @property
-    # def name(self):
-    #     return super().name or self.__build_name()
 
     @property
     def children(self):

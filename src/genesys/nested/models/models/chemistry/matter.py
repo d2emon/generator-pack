@@ -21,12 +21,12 @@ from .elements import elements
 class Molecule(Model):
     atoms = Model.child_property(Atom)
 
-    class NameFactory(Model.NameFactory):
-        default = 'molecules'
+    default_name = 'molecules'
 
-    class ChildrenFactory(Model.ChildrenFactory):
-        def children_classes(self):
-            yield Atom
+    class Factory(Model.Factory):
+        class ChildrenFactory(Model.Factory.ChildrenFactory):
+            def builders(self):
+                yield Atom
 
     @classmethod
     def from_atoms(cls, *components):
@@ -38,17 +38,19 @@ class Matter(Molecule):
 
 
 class Water(Matter):
-    class ChildrenFactory(Model.ChildrenFactory):
-        def children_classes(self):
-            yield from Matter.from_atoms('H', 'O')
+    class Factory(Matter.Factory):
+        class ChildrenFactory(Matter.Factory.ChildrenFactory):
+            def builders(self):
+                yield from Matter.from_atoms('H', 'O')
 
 
 class WaterState(Model):
     water = Model.child_property(Water)
 
-    class ChildrenFactory(Model.ChildrenFactory):
-        def children_classes(self):
-            yield Water
+    class Factory(Model.Factory):
+        class ChildrenFactory(Model.Factory.ChildrenFactory):
+            def builders(self):
+                yield Water
 
 
 class Dew(WaterState):
@@ -66,24 +68,28 @@ class Snowflakes(WaterState):
 class Snow(Model):
     flakes = Model.child_property(Snowflakes)
 
-    class ChildrenFactory(Model.ChildrenFactory):
-        def children_classes(self):
-            yield Snowflakes
+    class Factory(Model.Factory):
+        class ChildrenFactory(Model.Factory.ChildrenFactory):
+            def builders(self):
+                yield Snowflakes
 
 
 class Salt(Matter):
-    class ChildrenFactory(Model.ChildrenFactory):
-        def children_classes(self):
-            yield from Matter.from_atoms('Na', 'Cl')
+    class Factory(Matter.Factory):
+        class ChildrenFactory(Matter.Factory.ChildrenFactory):
+            def builders(self):
+                yield from Matter.from_atoms('Na', 'Cl')
 
 
 class Silica(Matter):
-    class ChildrenFactory(Model.ChildrenFactory):
-        def children_classes(self):
-            yield from Matter.from_atoms('Si', 'O')
+    class Factory(Matter.Factory):
+        class ChildrenFactory(Matter.Factory.ChildrenFactory):
+            def builders(self):
+                yield from Matter.from_atoms('Si', 'O')
 
 
 class Steel(Matter):
-    class ChildrenFactory(Matter.ChildrenFactory):
-        def children_classes(self):
-            yield from Matter.from_atoms('Fe', 'C')
+    class Factory(Matter.Factory):
+        class ChildrenFactory(Model.Factory.ChildrenFactory):
+            def builders(self):
+                yield from Matter.from_atoms('Fe', 'C')

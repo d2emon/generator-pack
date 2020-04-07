@@ -9,8 +9,6 @@
 - Qwubble
 
 - Quark
-
-new Thing("molecule",["atom"],["molecules"]);
 """
 from genesys.nested.models import Model
 
@@ -24,9 +22,10 @@ class Qwubble(Model):
 class Quark(Model):
     qwubbles = Model.children_property(Qwubble)
 
-    @classmethod
-    def children_classes(cls):
-        yield Qwubble
+    class Factory(Model.Factory):
+        class ChildrenFactory(Model.Factory.ChildrenFactory):
+            def builders(self):
+                yield Qwubble
 
 
 class UpQuark(Quark):
@@ -44,44 +43,48 @@ class Electron(Quark):
 class Particle(Model):
     quarks = Model.children_property(Quark)
 
-    class ChildrenFactory(Model.ChildrenFactory):
-        up_quarks = 1
-        down_quarks = 1
+    class Factory(Model.Factory):
+        class ChildrenFactory(Model.Factory.ChildrenFactory):
+            up_quarks = 1
+            down_quarks = 1
 
-        def children_classes(self):
-            yield from UpQuark.multiple(self.up_quarks)
-            yield from DownQuark.multiple(self.down_quarks)
+            def builders(self):
+                yield from UpQuark.multiple(self.up_quarks)
+                yield from DownQuark.multiple(self.down_quarks)
 
 
 class Proton(Particle):
-    class ChildrenFactory(Particle.ChildrenFactory):
-        up_quarks = 2
-        down_quarks = 1
+    class Factory(Particle.Factory):
+        class ChildrenFactory(Particle.Factory.ChildrenFactory):
+            up_quarks = 2
+            down_quarks = 1
 
 
 class Neutron(Particle):
-    class ChildrenFactory(Particle.ChildrenFactory):
-        up_quarks = 1
-        down_quarks = 2
+    class Factory(Particle.Factory):
+        class ChildrenFactory(Particle.Factory.ChildrenFactory):
+            up_quarks = 1
+            down_quarks = 2
 
 
 class Atom(Model):
     core = Model.children_property(Particle)
     electrons = Model.children_property(Electron)
 
-    class NameFactory(Model.NameFactory):
-        default = 'atoms'
+    default_name = 'atoms'
 
-    class ChildrenFactory(Model.ChildrenFactory):
-        has_neutron = True
+    class Factory(Model.Factory):
+        class ChildrenFactory(Model.Factory.ChildrenFactory):
+            has_neutron = True
 
-        def children_classes(self):
-            yield Proton
-            if self.has_neutron:
-                yield Neutron
-            yield Electron
+            def builders(self):
+                yield Proton
+                if self.has_neutron:
+                    yield Neutron
+                yield Electron
 
 
 class HydrogenAtom(Atom):
-    class ChildrenFactory(Atom.ChildrenFactory):
-        has_neutron = True
+    class Factory(Model.Factory):
+        class ChildrenFactory(Model.Factory.ChildrenFactory):
+            has_neutron = True
