@@ -7,9 +7,9 @@
 - Abomination Head
 - Abomination Torso
 """
-from genesys.nested.models.models.unknown import CrustaceanClaw, Stinger, WeirdHardOrgan, WeirdSoftOrgan
 from genesys.nested.factories.thing_builder import ThingBuilder
 from ..body import Body, Head, Mouth, Nose, Eye, Ear, Skull, HeadHair, Torso, Chest, Pelvis, Arm, Leg
+from ..animal_body import WeirdHardOrgan, WeirdSoftOrgan, CrustaceanClaw, Stinger
 from ..brain import Psyche, Thoughts, Thought, Memories
 from ...person import Person
 from genesys.nested.data import lookups
@@ -50,7 +50,7 @@ class AbominationTorso(Torso):
                 yield Pelvis.probable(10)
                 yield WeirdSoftOrgan.probable(20)
                 yield WeirdHardOrgan.probable(20)
-                yield from super().children_classes()
+                yield from super().builders()
 
 
 class AbominationBody(Body):
