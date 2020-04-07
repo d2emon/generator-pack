@@ -1,7 +1,7 @@
 """
 //insects (arachnids etc too)
 new Thing("insect",["insect body","insect thoughts"],["ant","bee","wasp","hornet","ladybug","cockroach","termite","beetle","dung beetle","scarab beetle","bumblebee","spider","scorpion","tarantula","praying mantis","butterfly","moth","fly","cricket","mole cricket","cicada","weevil","stick insect","aphid","flea","lice","firefly","gnat","stinkbug","grasshopper","silverfish","locust","earwig"]);
-new Thing("insect body",["simple eye,2-8","brain",["insect leg,6","insect leg,8"],["insect claw,2",""],"exoskeleton","stinger,30%",["insect wing,2","insect wing,4","",""],["antenna,2",""],"flesh"],"body");//spiders with wings. because yeah
+new Thing("insect body",["simple eye,2-8","mind",["insect leg,6","insect leg,8"],["insect claw,2",""],"exoskeleton","stinger,30%",["insect wing,2","insect wing,4","",""],["antenna,2",""],"flesh"],"body");//spiders with wings. because yeah
 new Thing("insect thoughts",["insect thought,2-3"],["thoughts"]);
 new Thing("insect thought",[],["skitter","skitter skitter","squirm squirm","crawl crawl","buzz","big noisy things","small tasty things","too much sun","not enough sun","need water","need food","need shelter","food please","mating please","must defend nest","intruder detected","must spawn eggs","hey hey","let's be bros","no stomp please","go away"]);
 new Thing("social insect",["insect body","social insect thoughts"],["worker","soldier","drone"]);

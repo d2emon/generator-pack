@@ -62,7 +62,7 @@ class WeirdSoftOrgan(SkinlessSoftBodyPart):
             ]
             organs = [
                 'grasper', 'tendril', 'stinger', 'claw', 'tentacle', 'sac', 'egg sac', 'pouch', 'organ',
-                'specialized organ', 'bulb', 'brain bulb', 'gland', 'epiderm', 'sucker', 'pod', 'pseudolimb',
+                'specialized organ', 'bulb', 'mind bulb', 'gland', 'epiderm', 'sucker', 'pod', 'pseudolimb',
                 'nervous bulb', 'external muscle', 'structure', 'orifice', 'proboscis', 'tail',
             ]
 

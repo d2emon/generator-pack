@@ -5,7 +5,7 @@ from ...cell import Cell
 
 
 class BrainCell(Cell):
-    default_name = 'brain cells'
+    default_name = 'mind cells'
 
 
 class Brain(SoftBodyPart):

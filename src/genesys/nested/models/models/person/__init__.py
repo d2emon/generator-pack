@@ -8,7 +8,7 @@ from ..unknown import Worm
 from genesys.nested.models import Model
 from ..biology.body import Blood
 from ..biology.body import Body
-from ..biology.brain import Psyche
+from ..biology.mind import Psyche
 from ..cloth import ClothingSet
 
 

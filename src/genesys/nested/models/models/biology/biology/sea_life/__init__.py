@@ -8,7 +8,7 @@ new Thing("plankton thought",[],["hello :)","yes hi :)","how are you :)","it's s
 
 //clams
 new Thing("clam",["clam body","clam thoughts"],["oyster","mussel","scallop"]);
-new Thing("clam body",["clam shell","clam shell","brain","soft flesh"],"body");
+new Thing("clam body",["clam shell","clam shell","mind","soft flesh"],"body");
 new Thing("clam thoughts",["clam thought,1-3"],["thoughts"]);
 new Thing("clam thought",[],["what","wait","hold on","wait why","i don't","stay clam and carry on","oh no","why this","that's","no","yes","wait no","but","haha what","please explain","that's not","i'm confused","please why","slurp","okay","okay what","what is this","what's that"]);
 
@@ -26,13 +26,13 @@ new Thing("mollusk thought",[],["party time","is it party time now","party now o
 
 //crustaceans
 new Thing("crustacean",["crustacean body","crustacean thoughts"],["shrimp","prawn","langoustine","lobster","rock lobster","crab","spider crab","crayfish","krill","triops","copepod"]);
-new Thing("crustacean body",["simple eye,2-6","brain","crustacean leg,6-8","crustacean claw,2","crustacean shell","soft flesh"],"body");
+new Thing("crustacean body",["simple eye,2-6","mind","crustacean leg,6-8","crustacean claw,2","crustacean shell","soft flesh"],"body");
 new Thing("crustacean thoughts",["crustacean thought,2-3"],["thoughts"]);
 new Thing("crustacean thought",[],["skitter skitter","crawl crawl","dig dig","grab grab","gotta eat","gotta skitter","gotta catch food","gotta hide","gotta breed","breed breed","under the sea"]);
 
 //fish; getting those from http://homepages.cwi.nl/~sjoerd/fishlist.html just because I can
 new Thing("fish",["fish body","fish thoughts"],["anchovy","sardine","mackerel","tuna","albacore","herring","bream","bass","perch","mullet","brill","plaice","sole","angler","dab","flounder","skate","cod","haddock","pollack","whiting","pike","perch","trout","carp","eel","lamprey","salmon","catfish","dogfish","swordfish","sailfish","pufferfish","sunfish","manta ray","stingray"]);
-new Thing("fish body",["simple eye,2","brain","mouth","fish fin,2-6","fish skin","fish tail","flesh","worm,5%"],"body");
+new Thing("fish body",["simple eye,2","mind","mouth","fish fin,2-6","fish skin","fish tail","flesh","worm,5%"],"body");
 new Thing("fish thoughts",["fish thought,2-3"],["thoughts"]);
 new Thing("fish thought",[],["blup","bloop","blwap","blep","gotta eat","gotta swim","gotta get food","gotta hide","gotta breed","oooh shiny"]);
 

@@ -1,7 +1,7 @@
 from .cell import *
 from .body import *
 from .abomination import *
-from .brain import *
+from .mind import *
 from .vegetation import *
 from .life import *
 # from .biology.life import CONTENTS as LIFE_CONTENTS
