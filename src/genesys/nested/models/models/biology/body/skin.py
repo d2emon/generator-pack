@@ -1,7 +1,8 @@
-from genesys.nested.models.models.unknown import Bacteria, Dust
+from genesys.nested.models.models.unknown import Dust
 from genesys.nested.factories.thing_builder import ThingBuilder
 from genesys.nested.models import Model
 from ..cell import Cell
+from ..single_celled import Bacteria
 from genesys.nested.models.models.chemistry import Sweat
 
 

@@ -1,9 +1,9 @@
-from genesys.nested.models.models.unknown import Bacteria
 from genesys.nested.factories.thing_builder import ThingBuilder
 from genesys.nested.models import Model
 from .blood import BloodVessels
 from .skin import Skin
 from .skeleton import Bones, Fat, Muscles
+from ..single_celled import Bacteria
 
 
 class BodyPart(Model):

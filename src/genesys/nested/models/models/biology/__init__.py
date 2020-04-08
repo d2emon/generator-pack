@@ -4,5 +4,7 @@ from .abomination import *
 from .mind import *
 from .vegetation import *
 from .life import *
-# from .biology.life import CONTENTS as LIFE_CONTENTS
+from .animal_body import *
+from .organism import *
+from .single_celled import *
 # from .biology.monsters import CONTENTS as MONSTERS_CONTENTS

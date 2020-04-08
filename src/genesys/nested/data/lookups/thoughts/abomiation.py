@@ -1,4 +1,4 @@
-from .lookup import Lookup
+from ..lookup import Lookup
 
 
 abomination_thoughts = Lookup(

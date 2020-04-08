@@ -1,7 +1,7 @@
-from genesys.nested.models.models.unknown import Bacteria
 from ..body_parts import SoftBodyPart
 from ..skeleton import Bones
 from ...cell import Cell
+from ...single_celled import Bacteria
 
 
 class BrainCell(Cell):

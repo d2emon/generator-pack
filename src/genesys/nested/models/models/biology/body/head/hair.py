@@ -1,7 +1,7 @@
-from genesys.nested.models.models.unknown import Bacteria
 from genesys.nested.factories.thing_builder import ThingBuilder
 from genesys.nested.models import Model
 from ..skin import Dandruff
+from ...single_celled import Bacteria
 from ....chemistry import Keratin
 from genesys.nested.data import lookups
 

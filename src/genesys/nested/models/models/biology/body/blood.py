@@ -1,7 +1,7 @@
-from genesys.nested.models.models.unknown import Bacteria
 from genesys.nested.factories.thing_builder import ThingBuilder
 from genesys.nested.models import Model
 from ..cell import Cell
+from ..single_celled import Bacteria
 
 
 class BloodCell(Cell):

@@ -12,7 +12,23 @@ class ProviderFactory:
         raise NotImplementedError()
 
 
+class ListFactory:
+    default = []
+
+    def __init__(self, data):
+        self.data = data or self.default
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        data = self.data
+        return random.choice(data) if len(data) > 0 else None
+
+
 class ThingBuilder:
+    data_provider_class = None
+
     class DataProvider:
         pass
 
@@ -21,13 +37,17 @@ class ThingBuilder:
             return None
 
     class BaseFactory(ProviderFactory):
-        @property
-        def data(self):
-            return []
+        @classmethod
+        def factory(cls, data):
+            class SubFactory(ListFactory):
+                @property
+                def data(self):
+                    return data
+
+            return SubFactory
 
         def __next__(self):
-            data = self.data
-            return random.choice(data) if len(data) > 0 else None
+            raise NotImplementedError()
 
     class ChildrenFactory(ProviderFactory):
         def builders(self):
@@ -37,7 +57,8 @@ class ThingBuilder:
             return [model.placeholder() for model in self.builders() if model is not None]
 
     def __init__(self, provider=None):
-        self.provider = provider or self.DataProvider()
+        data_provider_class = self.data_provider_class or self.DataProvider
+        self.provider = provider or data_provider_class()
         self.thing = None
         self.name_factory = self.NameFactory(self.provider)
         self.base_factory = self.BaseFactory(self.provider)

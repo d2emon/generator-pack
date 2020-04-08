@@ -1,4 +1,4 @@
-from genesys.nested.models import Model
+from genesys.nested.factories.thing_builder import ListFactory
 
 
 class Lookup:
@@ -6,7 +6,10 @@ class Lookup:
         self.values = values
 
     def lookup(self):
-        class LookupGenerator(Model.BaseFactory):
-            default = self.values
+        values = self.values
 
-        return LookupGenerator
+        class LookupFactory(ListFactory):
+            def __init__(self):
+                super().__init__(values)
+
+        return LookupFactory

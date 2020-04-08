@@ -41,7 +41,6 @@ FutureMoon = Model
 # Biology
 Amphibian = Model
 Anthill = Model
-Bacteria = Model
 Bear = Model
 Beehive = Model
 Bird = Model
