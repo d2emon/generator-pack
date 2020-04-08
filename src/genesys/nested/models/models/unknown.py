@@ -63,4 +63,3 @@ SmallMammal = Model
 Snake = Model
 SpaceAnimal = Model
 SpaceMonster = Model
-Worm = Model

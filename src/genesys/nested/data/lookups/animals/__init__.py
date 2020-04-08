@@ -7,3 +7,4 @@ from .fish import fishes, fish_thoughts
 from .mollusk import mollusks, mollusk_thoughts
 from .plankton import plankton, plankton_thoughts
 from .shark import sharks, shark_thoughts
+from .worm import worms, worm_thoughts

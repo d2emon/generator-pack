@@ -13,4 +13,5 @@ from .mollusk import *
 from .crustacean import *
 from .fish import *
 from .mammal import *
+from .worm import *
 # from .biology.monsters import CONTENTS as MONSTERS_CONTENTS

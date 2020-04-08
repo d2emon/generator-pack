@@ -4,11 +4,11 @@
 - Person
 - Corpse
 """
-from ..unknown import Worm
 from genesys.nested.models import Model
 from ..biology.body import Blood
 from ..biology.body import Body
 from ..biology.mind import Psyche
+from ..biology.worm import Worm
 from ..cloth import ClothingSet
 
 
