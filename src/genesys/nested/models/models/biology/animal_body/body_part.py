@@ -2,6 +2,7 @@ from genesys.nested.models.models.unknown import Feathers
 from genesys.nested.factories.thing_builder import ThingBuilder
 from genesys.nested.models import Model
 from ..body import Bones, BodyPart, SkinlessBodyPart, SkinlessSoftBodyPart, EyeFlesh, Teeth, Skin, Nose
+from ..organism import BasicBody
 from ...chemistry import Keratin, Chitin, WaterState
 
 
@@ -102,7 +103,11 @@ class Wing(BodyPart):
                 yield from super().builders()
 
 
-class Tentacle(SkinlessSoftBodyPart):
+class Limb(BodyPart):
+    pass
+
+
+class Tentacle(Limb, SkinlessSoftBodyPart):
     pass
 
 
@@ -126,3 +131,14 @@ class Tail(BodyPart):
 
 class Jelly(WaterState):
     pass
+
+
+class AnimalBody(BasicBody):
+    eyes = BasicBody.children_property(SimpleEye)
+    mouth = BasicBody.child_property(SimpleMouth)
+    skin = BasicBody.child_property(Exoskeleton)
+    limbs = BasicBody.child_property(Limb)
+    flesh = BasicBody.child_property(SoftFlesh)
+    liquid = BasicBody.child_property(Jelly)
+
+    default_name = 'body'

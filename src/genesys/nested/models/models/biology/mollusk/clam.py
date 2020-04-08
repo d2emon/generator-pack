@@ -7,9 +7,8 @@ Clams
 - Clam Thought
 """
 from genesys.nested.models.models.unknown import Mind
+from .mollusk import Mollusk, MolluskBody, MolluskThoughts, MolluskThought
 from ..animal_body import SoftFlesh, ClamShell
-from ..mind import SimpleThoughts, Thought
-from ..organism import Organism, BasicBody
 from genesys.nested.data import lookups
 
 
@@ -18,11 +17,14 @@ class DataProvider:
     clam = lookups.clams
 
 
-class ClamBody(BasicBody):
-    class Factory(BasicBody.Factory):
+class ClamBody(MolluskBody):
+    shell = MolluskBody.children_property(ClamShell)
+    liquid = MolluskBody.child_property(Mind)
+
+    class Factory(MolluskBody.Factory):
         data_provider_class = DataProvider
 
-        class ChildrenFactory(BasicBody.Factory.ChildrenFactory):
+        class ChildrenFactory(MolluskBody.Factory.ChildrenFactory):
             def builders(self):
                 yield ClamShell
                 yield ClamShell
@@ -30,31 +32,31 @@ class ClamBody(BasicBody):
                 yield SoftFlesh
 
 
-class ClamThought(Thought):
-    class Factory(Thought.Factory):
+class ClamThought(MolluskThought):
+    class Factory(MolluskThought.Factory):
         data_provider_class = DataProvider
 
-        class BaseFactory(Thought.Factory.BaseFactory):
-            thoughts = property(lambda self: self.provider.plankton_thought)
+        class BaseFactory(MolluskThought.Factory.BaseFactory):
+            thoughts = property(lambda self: self.provider.clam_thought)
 
 
-class ClamThoughts(SimpleThoughts):
-    class Factory(SimpleThoughts.Factory):
+class ClamThoughts(MolluskThoughts):
+    class Factory(MolluskThoughts.Factory):
         data_provider_class = DataProvider
 
-        class ChildrenFactory(SimpleThoughts.Factory.ChildrenFactory):
+        class ChildrenFactory(MolluskThoughts.Factory.ChildrenFactory):
             def builders(self):
                 yield from ClamThought.multiple(1, 3)
 
 
-class Clam(Organism):
-    class Factory(Organism.Factory):
+class Clam(Mollusk):
+    class Factory(Mollusk.Factory):
         data_provider_class = DataProvider
 
-        class BaseFactory(Organism.Factory.BaseFactory):
+        class BaseFactory(Mollusk.Factory.BaseFactory):
             def __next__(self):
                 return next(self.provider.plankton)
 
-        class ChildrenFactory(Organism.Factory.ChildrenFactory):
+        class ChildrenFactory(Mollusk.Factory.ChildrenFactory):
             body_class = ClamBody
             mind_class = ClamThoughts

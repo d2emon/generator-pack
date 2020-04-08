@@ -1,6 +1,7 @@
 from genesys.nested.models.models.chemistry import elements, Atom
 from ..body_parts import SoftBodyPart, BodyPart
 from ..skeleton import Muscles
+from ...animal_body import SimpleMouth
 
 
 class Tongue(SoftBodyPart):
@@ -20,12 +21,12 @@ class Teeth(BodyPart):
                 yield elements['P']
 
 
-class Mouth(SoftBodyPart):
-    teeth = SoftBodyPart.child_property(Teeth)
-    tongue = SoftBodyPart.child_property(Tongue)
+class Mouth(SimpleMouth):
+    teeth = SimpleMouth.child_property(Teeth)
+    tongue = SimpleMouth.child_property(Tongue)
 
-    class Factory(SoftBodyPart.Factory):
-        class ChildrenFactory(SoftBodyPart.Factory.ChildrenFactory):
+    class Factory(SimpleMouth.Factory):
+        class ChildrenFactory(SimpleMouth.Factory.ChildrenFactory):
             def builders(self):
                 yield Teeth
                 yield Tongue

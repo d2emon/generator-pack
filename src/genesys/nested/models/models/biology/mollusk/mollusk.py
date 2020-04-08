@@ -1,59 +1,60 @@
 """
-Plankton
+Mollusk
 
-- Plankton
-- Plankton Body
-- Plankton Thoughts
-- Plankton Thought
+- Mollusk
+- Mollusk Body
+- Mollusk Thoughts
 """
-from ..animal_body import AnimalBody, SimpleEye, SimpleMouth, Exoskeleton, Jelly, SoftFlesh
+from ..animal_body import AnimalBody, SimpleEye, Tentacle, SoftFlesh, Jelly
+from ..body import Mouth
 from ..mind import SimpleThoughts, Thought
 from ..organism import Organism
 from genesys.nested.data import lookups
 
 
 class DataProvider:
-    plankton_thought = lookups.plankton_thoughts
-    plankton = lookups.plankton
+    mollusk_thought = lookups.mollusk_thoughts
+    mollusk = lookups.mollusks
 
 
-class PlanktonBody(AnimalBody):
+class MolluskBody(AnimalBody):
     class Factory(AnimalBody.Factory):
         data_provider_class = DataProvider
 
         class ChildrenFactory(AnimalBody.Factory.ChildrenFactory):
             def builders(self):
-                yield from SimpleEye.multiple(0, 3)
-                yield SimpleMouth
-                yield Exoskeleton
+                yield from SimpleEye.multiple(2)
+                yield Mouth
+                yield from Tentacle.multiple(6, 8)
                 yield Jelly
                 yield SoftFlesh
 
 
-class PlanktonThought(Thought):
+class MolluskThought(Thought):
     class Factory(Thought.Factory):
         data_provider_class = DataProvider
 
         class BaseFactory(Thought.Factory.BaseFactory):
-            thoughts = property(lambda self: self.provider.plankton_thought)
+            thoughts = property(lambda self: self.provider.mollusk_thought)
 
 
-class PlanktonThoughts(SimpleThoughts):
+class MolluskThoughts(SimpleThoughts):
     class Factory(SimpleThoughts.Factory):
         data_provider_class = DataProvider
 
         class ChildrenFactory(SimpleThoughts.Factory.ChildrenFactory):
-            thought_class = PlanktonThought
+            def builders(self):
+                yield from MolluskThought.multiple(2)
 
 
-class Plankton(Organism):
+class Mollusk(Organism):
     class Factory(Organism.Factory):
         data_provider_class = DataProvider
 
         class BaseFactory(Organism.Factory.BaseFactory):
             def __next__(self):
-                return next(self.provider.plankton)
+                return next(self.provider.mollusk)
 
         class ChildrenFactory(Organism.Factory.ChildrenFactory):
-            body_class = PlanktonBody
-            mind_class = PlanktonThoughts
+            body_class = MolluskBody
+            mind_class = MolluskThoughts

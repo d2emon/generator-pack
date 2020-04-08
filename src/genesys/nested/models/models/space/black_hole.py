@@ -1,6 +1,7 @@
-from genesys.nested.models.models.unknown import Pasta, Crustacean
+from genesys.nested.models.models.unknown import Pasta
 from genesys.nested.models import Model
 from genesys.nested.models.mixins import EncounteredMixin
+from ..biology import Crustacean
 from genesys.nested.data import lookups
 
 

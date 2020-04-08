@@ -1,4 +1,4 @@
-from .body_part import Exoskeleton
+from .body_part import Exoskeleton, Limb
 from ..body import BodyPart, Muscles, Fat
 from ...chemistry import Chitin
 
@@ -7,7 +7,7 @@ class CrustaceanBodyPart(BodyPart):
     chitin = BodyPart.child_property(Chitin)
 
 
-class CrustaceanLeg(CrustaceanBodyPart):
+class CrustaceanLeg(Limb, CrustaceanBodyPart):
     default_name = 'leg'
 
     class Factory(CrustaceanBodyPart.Factory):

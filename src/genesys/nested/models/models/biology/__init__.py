@@ -8,4 +8,7 @@ from .animal_body import *
 from .organism import *
 from .single_celled import *
 from .plankton import *
+from .cnidaria import *
+from .mollusk import *
+from .crustacean import *
 # from .biology.monsters import CONTENTS as MONSTERS_CONTENTS
