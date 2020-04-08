@@ -1,36 +1,36 @@
 """
-Plankton
+Clams
 
-- Plankton
-- Plankton Body
-- Plankton Thoughts
-- Plankton Thought
+- Clam
+- Clam Body
+- Clam Thoughts
+- Clam Thought
 """
-from ..animal_body import SimpleEye, SimpleMouth, Exoskeleton, Jelly, SoftFlesh
+from genesys.nested.models.models.unknown import Mind
+from ..animal_body import SoftFlesh, ClamShell
 from ..mind import SimpleThoughts, Thought
 from ..organism import Organism, BasicBody
 from genesys.nested.data import lookups
 
 
 class DataProvider:
-    plankton_thought = lookups.plankton_thoughts
-    plankton = lookups.plankton
+    clam_thought = lookups.clam_thoughts
+    clam = lookups.clams
 
 
-class PlanktonBody(BasicBody):
+class ClamBody(BasicBody):
     class Factory(BasicBody.Factory):
         data_provider_class = DataProvider
 
         class ChildrenFactory(BasicBody.Factory.ChildrenFactory):
             def builders(self):
-                yield from SimpleEye.multiple(0, 3)
-                yield SimpleMouth
-                yield Exoskeleton
-                yield Jelly
+                yield ClamShell
+                yield ClamShell
+                yield Mind
                 yield SoftFlesh
 
 
-class PlanktonThought(Thought):
+class ClamThought(Thought):
     class Factory(Thought.Factory):
         data_provider_class = DataProvider
 
@@ -38,15 +38,16 @@ class PlanktonThought(Thought):
             thoughts = property(lambda self: self.provider.plankton_thought)
 
 
-class PlanktonThoughts(SimpleThoughts):
+class ClamThoughts(SimpleThoughts):
     class Factory(SimpleThoughts.Factory):
         data_provider_class = DataProvider
 
         class ChildrenFactory(SimpleThoughts.Factory.ChildrenFactory):
-            thought_class = PlanktonThought
+            def builders(self):
+                yield from ClamThought.multiple(1, 3)
 
 
-class Plankton(Organism):
+class Clam(Organism):
     class Factory(Organism.Factory):
         data_provider_class = DataProvider
 
@@ -55,5 +56,5 @@ class Plankton(Organism):
                 return next(self.provider.plankton)
 
         class ChildrenFactory(Organism.Factory.ChildrenFactory):
-            body_class = PlanktonBody
-            mind_class = PlanktonThoughts
+            body_class = ClamBody
+            mind_class = ClamThoughts

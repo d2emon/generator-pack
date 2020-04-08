@@ -7,7 +7,7 @@ Single-celled Organisms
 - BacteriaThought
 """
 from ..cell import Cell
-from ..mind import Thoughts, Thought
+from ..mind import SimpleThoughts, Thought
 from ..organism import Organism, BasicBody
 from genesys.nested.data import lookups
 
@@ -30,11 +30,11 @@ class BacteriaThought(Thought):
             thoughts = property(lambda self: self.provider.bacteria_thought)
 
 
-class BacteriaThoughts(Thoughts):
-    class Factory(Thoughts.Factory):
+class BacteriaThoughts(SimpleThoughts):
+    class Factory(SimpleThoughts.Factory):
         data_provider_class = DataProvider
 
-        class ChildrenFactory(Thoughts.Factory.ChildrenFactory):
+        class ChildrenFactory(SimpleThoughts.Factory.ChildrenFactory):
             thought_class = BacteriaThought
 
 

@@ -1,6 +1,10 @@
-from ..lookup import Lookup
+from genesys.nested.data.lookups.lookup import Lookup
 
 
+plankton = Lookup(
+    'jellyfish larva', 'coral polyp', 'diatom', 'urchin larva', 'starfish larva', 'salp', 'rotifer', 'pteropod',
+    'clione',
+)
 plankton_thoughts = Lookup(
     'hello :)', 'yes hi :)', 'how are you :)', 'it\'s sunny today :)', 'what a nice day :)',
     'aaah I could just float away :)', 'I am fine thank you :)', 'yes I think so :)', 'how fun :)',

@@ -1,9 +1,11 @@
-from ...unknown import Bird, Poultry, Fish, Shark, Crustacean, Cnidaria, Worm, Mollusk, Clam, Plancton, Reptile, \
-    Amphibian, Snake, SmallMammal, HerbivorousMammal, PredatoryMammal, Monkey, Bear, Horse, Cat, Dinosaur, \
-    MedievalPerson, Caveman, Dragon, SpaceAnimal, Insect, SeaMonster, Cetacean, Anthill, Beehive, SpaceMonster
+from ...unknown import Bird, Poultry, Fish, Shark, Crustacean, Cnidaria, Worm, Mollusk, Reptile, Amphibian, Snake,\
+    SmallMammal, HerbivorousMammal, PredatoryMammal, Monkey, Bear, Horse, Cat, Dinosaur, MedievalPerson, Caveman, \
+    Dragon, SpaceAnimal, Insect, SeaMonster, Cetacean, Anthill, Beehive, SpaceMonster
 from genesys.nested.factories.thing_builder import ThingBuilder
 from genesys.nested.models import Model
 from ..vegetation import Tree, GrassBlade
+from ..plankton import Plankton
+from ..clam import Clam
 from ...person import Person
 
 
@@ -24,7 +26,7 @@ class Life(Model):
                 Worm,
                 Mollusk,
                 Clam,
-                Plancton,
+                Plankton,
                 Reptile,
                 Amphibian,
                 Snake,
@@ -62,7 +64,7 @@ class SeaLife(Life):
                 yield from Cnidaria.multiple(1, 4)
                 yield from Mollusk.multiple(1, 4)
                 yield from Clam.multiple(1, 4)
-                yield from Plancton.multiple(2, 8)
+                yield from Plankton.multiple(2, 8)
 
 
 class AbyssLife(SeaLife):
@@ -77,7 +79,7 @@ class AbyssLife(SeaLife):
                 yield from Cnidaria.multiple(2, 5)
                 yield from Mollusk.multiple(2, 5)
                 yield from Clam.multiple(2, 5)
-                yield from Plancton.multiple(2, 8)
+                yield from Plankton.multiple(2, 8)
 
 
 class BeachLife(Life):
@@ -101,7 +103,7 @@ class RiverLife(Life):
             def builders(self):
                 yield from Fish.multiple(5, 15)
                 yield from Crustacean.multiple(0, 10)
-                yield from Plancton.multiple(2, 8)
+                yield from Plankton.multiple(2, 8)
                 yield from Bird.multiple(0, 5)
                 yield from SmallMammal.multiple(0, 2)
                 yield from Amphibian.multiple(0, 5)
@@ -119,7 +121,7 @@ class LakeLife(Life):
                 yield from Amphibian.multiple(0, 5)
                 yield from Crustacean.multiple(0, 10)
                 yield from Bird.multiple(0, 5)
-                yield from Plancton.multiple(5, 15)
+                yield from Plankton.multiple(5, 15)
                 yield from SmallMammal.multiple(0, 2)
                 yield from Reptile.multiple(0, 1)
                 yield from Snake.multiple(0, 1)
