@@ -4,6 +4,7 @@ from .clam import clams, clam_thoughts
 from .cnidaria import cnidarias, cnidaria_thoughts
 from .crustacean import crustaceans, crustacean_thoughts
 from .fish import fishes, fish_thoughts
+from .insect import anthill, beehive, insects, insect_thoughts, social_insects, social_insect_thoughts
 from .mollusk import mollusks, mollusk_thoughts
 from .plankton import plankton, plankton_thoughts
 from .shark import sharks, shark_thoughts

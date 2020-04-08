@@ -1,7 +1,8 @@
-from ...unknown import Insect, Wood, Sugar, Dirt, Bird, BirdEgg, EggShell
+from ...unknown import Wood, Sugar, Dirt, Bird, BirdEgg, EggShell
 from genesys.nested.factories.thing_builder import ThingBuilder
 from genesys.nested.models import Model
 from .cells import PlantCell
+from ..insect import Insect
 from ..mind import Thoughts, Thought
 from ..worm import Worm
 from ...chemistry import Dew, OrganicMatter
