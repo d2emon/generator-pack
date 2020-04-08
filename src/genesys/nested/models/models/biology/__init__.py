@@ -11,4 +11,6 @@ from .plankton import *
 from .cnidaria import *
 from .mollusk import *
 from .crustacean import *
+from .fish import *
+from .mammal import *
 # from .biology.monsters import CONTENTS as MONSTERS_CONTENTS

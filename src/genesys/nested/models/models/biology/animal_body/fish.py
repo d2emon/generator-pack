@@ -1,26 +1,26 @@
-from .body_part import Scales
-from ..body import BodyPart, Muscles, Skin
+from .body_part import Scales, Limb, Tail
+from ..body import Muscles, Skin
 
 
-class FishFin(BodyPart):
-    scales = BodyPart.child_property(Scales)
+class FishFin(Limb):
+    scales = Limb.child_property(Scales)
 
     default_name = 'fin'
 
-    class Factory(BodyPart.Factory):
-        class ChildrenFactory(BodyPart.Factory.ChildrenFactory):
+    class Factory(Limb.Factory):
+        class ChildrenFactory(Limb.Factory.ChildrenFactory):
             def builders(self):
                 yield Muscles
                 yield Scales
 
 
-class FishTail(BodyPart):
-    scales = BodyPart.child_property(Scales)
+class FishTail(Tail):
+    scales = Tail.child_property(Scales)
 
     default_name = 'tail'
 
-    class Factory(BodyPart.Factory):
-        class ChildrenFactory(BodyPart.Factory.ChildrenFactory):
+    class Factory(Tail.Factory):
+        class ChildrenFactory(Tail.Factory.ChildrenFactory):
             def builders(self):
                 yield Muscles
                 yield Scales

@@ -1,7 +1,8 @@
+from .body_part import Limb
 from ..body import BodyPart, Muscles, Skin
 
 
-class CetaceanFlipper(BodyPart):
+class CetaceanFlipper(Limb):
     default_name = 'flipper'
 
     class Factory(BodyPart.Factory):
@@ -11,7 +12,7 @@ class CetaceanFlipper(BodyPart):
                 yield Skin
 
 
-class CetaceanFin(BodyPart):
+class CetaceanFin(Limb):
     default_name = 'fin'
 
     class Factory(BodyPart.Factory):
