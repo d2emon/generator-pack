@@ -3,7 +3,7 @@ from .mind import Psyche
 
 
 class BasicBody(Model):
-    pass
+    default_name = 'body'
 
 
 class Organism(Model):

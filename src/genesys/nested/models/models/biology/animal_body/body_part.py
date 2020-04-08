@@ -2,7 +2,7 @@ from genesys.nested.models.models.unknown import Feathers
 from genesys.nested.factories.thing_builder import ThingBuilder
 from genesys.nested.models import Model
 from ..body import Bones, BodyPart, SkinlessBodyPart, SkinlessSoftBodyPart, EyeFlesh, Teeth, Skin, Nose
-from ...chemistry import Keratin
+from ...chemistry import Keratin, Chitin, WaterState
 
 
 class Skeleton(Model):
@@ -12,6 +12,17 @@ class Skeleton(Model):
         class ChildrenFactory(ThingBuilder.ChildrenFactory):
             def builders(self):
                 yield Bones
+
+
+class Exoskeleton(Skin):
+    chitin = BodyPart.child_property(Chitin)
+
+    default_name = 'exoskeleton'
+
+    class Factory(Skin.Factory):
+        class ChildrenFactory(Skin.Factory.ChildrenFactory):
+            def builders(self):
+                yield Chitin
 
 
 class Scales(Skin):
@@ -110,4 +121,8 @@ class Snout(Nose):
 
 
 class Tail(BodyPart):
+    pass
+
+
+class Jelly(WaterState):
     pass

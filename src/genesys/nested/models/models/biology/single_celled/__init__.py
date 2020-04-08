@@ -1,5 +1,10 @@
 """
 Single-celled Organisms
+
+- Bacteria
+- BacteriaBody
+- BacteriaThoughts
+- BacteriaThought
 """
 from ..cell import Cell
 from ..mind import Thoughts, Thought
@@ -22,8 +27,7 @@ class BacteriaThought(Thought):
         data_provider_class = DataProvider
 
         class BaseFactory(Thought.Factory.BaseFactory):
-            def __next__(self):
-                return next(self.provider.bacteria_thought)
+            thoughts = property(lambda self: self.provider.bacteria_thought)
 
 
 class BacteriaThoughts(Thoughts):
@@ -31,8 +35,7 @@ class BacteriaThoughts(Thoughts):
         data_provider_class = DataProvider
 
         class ChildrenFactory(Thoughts.Factory.ChildrenFactory):
-            def builders(self):
-                yield from BacteriaThought.multiple(1)
+            thought_class = BacteriaThought
 
 
 class Bacteria(Organism):

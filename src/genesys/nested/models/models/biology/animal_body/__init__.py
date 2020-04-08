@@ -64,5 +64,4 @@ from .insect import *
 from .reptile import *
 from .bird import *
 from .venom import *
-from .jelly import *
 from .mammal import *

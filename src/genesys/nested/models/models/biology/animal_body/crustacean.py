@@ -1,3 +1,4 @@
+from .body_part import Exoskeleton
 from ..body import BodyPart, Muscles, Fat
 from ...chemistry import Chitin
 
@@ -21,10 +22,5 @@ class CrustaceanClaw(CrustaceanLeg):
     default_name = 'claw'
 
 
-class CrustaceanShell(CrustaceanBodyPart):
+class CrustaceanShell(Exoskeleton):
     default_name = 'shell'
-
-    class Factory(CrustaceanBodyPart.Factory):
-        class ChildrenFactory(CrustaceanBodyPart.Factory.ChildrenFactory):
-            def builders(self):
-                yield Chitin

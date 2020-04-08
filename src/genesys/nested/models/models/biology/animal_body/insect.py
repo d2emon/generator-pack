@@ -4,10 +4,6 @@ from .venom import Venom
 from ...chemistry import Chitin, Dew
 
 
-class Exoskeleton(CrustaceanShell):
-    default_name = 'exoskeleton'
-
-
 class InsectLeg(CrustaceanLeg):
     pass
 

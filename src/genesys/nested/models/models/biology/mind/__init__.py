@@ -23,8 +23,12 @@ class Memories(Model):
 
 
 class Thought(Model):
-    class Factory(ThingBuilder):
-        pass
+    class Factory(Model.Factory):
+        class BaseFactory(Model.Factory.BaseFactory):
+            thoughts = property(lambda self: (thought for thought in []))
+
+            def __next__(self):
+                return next(self.thoughts)
 
 
 class SadThought(Thought):
@@ -35,12 +39,22 @@ class HappyThought(Thought):
     default_name = '*HAPPYTHOUGHT*'
 
 
-class Thoughts(Model):
+class SimpleThoughts(Model):
     thoughts = Model.children_property(Thought)
+
+    class Factory(Model.Factory):
+        class ChildrenFactory(Model.Factory.ChildrenFactory):
+            thought_class = Thought
+
+            def builders(self):
+                yield from self.thought_class.multiple(1)
+
+
+class Thoughts(SimpleThoughts):
     black_hole = Model.child_property(BlackHole)
 
-    class Factory(ThingBuilder):
-        class ChildrenFactory(ThingBuilder.ChildrenFactory):
+    class Factory(SimpleThoughts.Factory):
+        class ChildrenFactory(SimpleThoughts.Factory.ChildrenFactory):
             @classmethod
             def fill_thoughts(cls):
                 yield from SadThought.multiple(2, 4)

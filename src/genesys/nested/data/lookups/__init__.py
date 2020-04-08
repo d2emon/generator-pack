@@ -6,5 +6,6 @@ from .interstellar_cloud import interstellar_clouds
 from .moon import moons
 from .multiverse import multiverses
 from .nucleotides import nucleotides
+from .plankton import plankton
 from .star import stars
 from .terraformed_moon import terraformed_moons
