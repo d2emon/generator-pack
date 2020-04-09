@@ -33,7 +33,7 @@ class Model(GeneratingModel, TreeModel):
         pass
 
     def __init__(self, name=None, base=None, children=None, parent=None):
-        super().__init__(name, children, parent)
+        super().__init__(name or self.__default_name, children, parent)
         self.__base = base
         self.__children = children
 
@@ -76,3 +76,7 @@ class Model(GeneratingModel, TreeModel):
     @classmethod
     def placeholder(cls):
         return Placeholder(cls, cls.Factory)
+
+    @classmethod
+    def build(cls):
+        return cls.placeholder().model

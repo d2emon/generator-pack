@@ -1,23 +1,22 @@
 """
 Brain Stuff
 """
-from genesys.nested.factories.thing_builder import ThingBuilder
 from genesys.nested.models import Model
-from genesys.nested.models.models.space import BlackHole
+# from ...space.black_hole import BlackHole
 
 
 class Memory(Model):
     default_name = '*MEMORY*'
 
-    class Factory(ThingBuilder):
+    class Factory(Model.Factory):
         pass
 
 
 class Memories(Model):
     memories = Model.children_property(Memory)
 
-    class Factory(ThingBuilder):
-        class ChildrenFactory(ThingBuilder.ChildrenFactory):
+    class Factory(Model.Factory):
+        class ChildrenFactory(Model.Factory.ChildrenFactory):
             def builders(self):
                 yield from Memory.multiple(2, 4)
 
@@ -51,7 +50,7 @@ class SimpleThoughts(Model):
 
 
 class Thoughts(SimpleThoughts):
-    black_hole = Model.child_property(BlackHole)
+    # black_hole = Model.child_property(BlackHole)
 
     class Factory(SimpleThoughts.Factory):
         class ChildrenFactory(SimpleThoughts.Factory.ChildrenFactory):
@@ -61,7 +60,7 @@ class Thoughts(SimpleThoughts):
                 yield from HappyThought.multiple(2, 4)
 
             def builders(self):
-                yield BlackHole.probable(0.01)
+                # yield BlackHole.probable(0.01)
                 yield from self.fill_thoughts()
 
 
@@ -70,8 +69,8 @@ class Psyche(Model):
     memories = Model.child_property(Memories)
     contents = Model.children_property(Thoughts, Memories)
 
-    class Factory(ThingBuilder):
-        class ChildrenFactory(ThingBuilder.ChildrenFactory):
+    class Factory(Model.Factory):
+        class ChildrenFactory(Model.Factory.ChildrenFactory):
             def builders(self):
                 yield Thoughts
                 yield Memories

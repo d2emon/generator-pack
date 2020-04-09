@@ -1,9 +1,10 @@
-from .chemistry import *
+# from .chemistry import *
 from .space import *
-from .biology import *
-from .person import *
-from .cloth import *
-from.terrain import *
+# from .biology import *
+# from .person import *
+# from .cloth import *
+# from.terrain import *
+
 # # from .state import CONTENTS as STATE_CONTENTS
 # from genesys.nested.data.unprocessed.state.towns import *
 # from genesys.nested.data.unprocessed.state.buildings import *

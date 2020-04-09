@@ -10,18 +10,18 @@ class Hair(Model):
     bacterias = Model.child_property(Bacteria)
     keratin = Model.child_property(Keratin)
 
-    class Factory(ThingBuilder):
-        class ChildrenFactory(ThingBuilder.ChildrenFactory):
+    class Factory(Model.Factory):
+        class ChildrenFactory(Model.Factory.ChildrenFactory):
             def builders(self):
                 yield Bacteria.probable(30)
                 yield Keratin
 
 
 class HeadHair(Hair):
-    class BaseFactory(Model.BaseFactory):
-        default = lookups.hair
-
     class Factory(Hair.Factory):
+        class BaseFactory(Hair.Factory.BaseFactory):
+            default = lookups.hair
+
         class ChildrenFactory(Hair.Factory.ChildrenFactory):
             def builders(self):
                 yield Dandruff
