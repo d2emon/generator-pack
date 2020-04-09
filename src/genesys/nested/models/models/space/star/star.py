@@ -1,10 +1,11 @@
-from genesys.nested.models.models.unknown import Ghost, SpaceMonster, DysonSurface
+from genesys.nested.models.models.unknown import Ghost, DysonSurface
 from genesys.nested.models import Model
 from genesys.nested.models.mixins import EncounteredMixin
 from genesys.nested.data import lookups
-from genesys.nested.models.models.chemistry import elements, Atom
 from ..planet import Planet, BarrenPlanet, VisitorPlanet, FuturePlanet, TerraformedPlanet, MedievalPlanet, \
     AncientPlanet, AsteroidBelt, GasGiant
+from ...biology import SpaceMonster
+from ...chemistry import elements, Atom
 
 
 class Star(Model, EncounteredMixin):

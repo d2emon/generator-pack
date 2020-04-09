@@ -1,5 +1,5 @@
 from ...unknown import Bird, Poultry, Reptile, Amphibian, Snake, SmallMammal, HerbivorousMammal, PredatoryMammal,\
-    Monkey, Bear, Horse, Cat, Dinosaur, MedievalPerson, Caveman, Dragon, SpaceAnimal, SeaMonster, SpaceMonster
+    Monkey, Bear, Horse, Cat, Dinosaur, MedievalPerson, Caveman, Dragon
 from genesys.nested.factories.thing_builder import ThingBuilder
 from genesys.nested.models import Model
 from ..cnidaria import Cnidaria
@@ -8,6 +8,7 @@ from ..fish import Fish, Shark
 from ..insect import Insect, Anthill, Beehive
 from ..mammal import Cetacean
 from ..mollusk import Clam, Mollusk
+from ..monsters import SeaMonster, SpaceMonster, SpaceAnimal
 from ..plankton import Plankton
 from ..vegetation import Tree, GrassBlade
 from ..worm import Worm

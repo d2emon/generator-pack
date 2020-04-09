@@ -1,9 +1,10 @@
-from genesys.nested.models.models.unknown import SpaceMonster, Continent, VisitorCity, VisitorInstallation
+from genesys.nested.models.models.unknown import Continent, VisitorCity, VisitorInstallation
 from genesys.nested.models import Model
 from genesys.nested.models.mixins import EncounteredMixin
 from .atmosphere import Atmosphere
-from genesys.nested.models.models.chemistry import elements, Rock, Ice, Diamond, Magma
-from genesys.nested.models.models.terrain import Ocean
+from ...biology import SpaceMonster
+from ...chemistry import elements, Rock, Ice, Diamond, Magma
+from ...terrain import Ocean
 
 
 class Orbit(Model, EncounteredMixin):

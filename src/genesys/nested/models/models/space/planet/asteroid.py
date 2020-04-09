@@ -1,8 +1,7 @@
-from genesys.nested.models.models.unknown import SpaceAnimal
 from genesys.nested.models.mixins import EncounteredMixin
 from .planet_like import PlanetLike, Orbit
 from ...chemistry import Rock, Ice
-from ...biology import GalacticLife
+from ...biology import GalacticLife, SpaceAnimal
 
 
 class Asteroid(PlanetLike):
