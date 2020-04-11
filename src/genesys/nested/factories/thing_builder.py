@@ -32,9 +32,9 @@ class ThingBuilder:
     class DataProvider:
         pass
 
-    class NameFactory(ProviderFactory):
-        def __next__(self):
-            return None
+    # class NameFactory(ProviderFactory):
+    #     def __next__(self):
+    #         return None
 
     class BaseFactory(ProviderFactory):
         @classmethod
@@ -49,40 +49,41 @@ class ThingBuilder:
         def __next__(self):
             raise NotImplementedError()
 
-    class ChildrenFactory(ProviderFactory):
-        def builders(self):
-            yield from []
-
-        def __next__(self):
-            return [model.placeholder() for model in self.builders() if model is not None]
+    # class ChildrenFactory(ProviderFactory):
+    #     def builders(self):
+    #         yield from []
+    #
+    #     def __next__(self):
+    #         return [model.placeholder() for model in self.builders() if model is not None]
 
     def __init__(self, provider=None):
         data_provider_class = self.data_provider_class or self.DataProvider
         self.provider = provider or data_provider_class()
         self.thing = None
-        self.name_factory = self.NameFactory(self.provider)
-        self.base_factory = self.BaseFactory(self.provider)
-        self.children_factory = self.ChildrenFactory(self.provider)
-
-    def create_thing(self, **kwargs):
-        return self.model(**kwargs)
+        # self.name_factory = self.NameFactory(self.provider)
+        # self.base_factory = self.BaseFactory(self.provider)
+        # self.children_factory = self.ChildrenFactory(self.provider)
 
     @property
-    def default_name(self):
-        return self.model.default_name or self.model.__name__
+    def name(self):
+        while True:
+            yield None
 
-    def __build_base(self):
-        return next(self.base_factory)
+    def children(self):
+        yield from []
 
-    def __build_name(self):
-        return self.__build_base() or next(self.name_factory) or self.default_name
+    # def __build_base(self):
+    #     return next(self.base_factory)
+
+    # def __build_name(self):
+    #     return self.__build_base() or next(self.name_factory)
 
     def __build_children(self):
-        return next(self.children_factory)
+        return [model.placeholder() for model in self.children() if model is not None]
 
     def build(self):
         return {
-            # 'name': self.__build_name(),
+            'name': next(self.name),
             'children': self.__build_children(),
         }
 

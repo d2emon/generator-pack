@@ -1,46 +1,46 @@
 from .particles import Atom, HydrogenAtom
 
 
-def element(atom=Atom):
+def element(name, atom=Atom):
     class ChemicalElement(atom):
-        pass
+        default_name = name
 
     return ChemicalElement
 
 
 elements = {
-    'H': element(HydrogenAtom),
-    'He': element(),
+    'H': element('H', HydrogenAtom),
+    'He': element('He'),
 
     # Li
     # Be
     # B
-    'C': element(),
-    'N': element(),
-    'O': element(),
+    'C': element('C'),
+    'N': element('N'),
+    'O': element('O'),
     # F
     # Ne
 
-    'Na': element(),
+    'Na': element('Na'),
     # Mg
-    'Al': element(),
-    'Si': element(),
-    'P': element(),
-    'S': element(),
-    'Cl': element(),
+    'Al': element('Al'),
+    'Si': element('Si'),
+    'P': element('P'),
+    'S': element('S'),
+    'Cl': element('Cl'),
     # Ar
 
-    'K': element(),
-    'Ca': element(),
+    'K': element('K'),
+    'Ca': element('Ca'),
     # Sc
     # Ti
     # V
     # Cr
     # Mn
-    'Fe': element(),
+    'Fe': element('Fe'),
     # Co
     # Ni
-    'Cu': element(),
+    'Cu': element('Cu'),
     # Zn
     # Ga
     # Ge
@@ -59,7 +59,7 @@ elements = {
     # Ru
     # Rh
     # Pd
-    'Ag': element(),
+    'Ag': element('Ag'),
     # Cd
     # In
     # Sn
@@ -78,10 +78,10 @@ elements = {
     # Os
     # Ir
     # Pt
-    'Au': element(),
+    'Au': element('Au'),
     # Hg
     # Tl
-    'Pb': element(),
+    'Pb': element('Pb'),
     # Bi
     # Po
     # At

@@ -31,13 +31,6 @@ class Glucids(OrganicMolecule):
     default_name = 'glucose'
 
 
-class Ammonia(Matter):
-    class Factory(Matter.Factory):
-        class ChildrenFactory(Matter.Factory.ChildrenFactory):
-            def builders(self):
-                yield from Matter.from_atoms('N', 'H')
-
-
 class Methane(Matter):
     class Factory(Matter.Factory):
         class ChildrenFactory(Matter.Factory.ChildrenFactory):

@@ -1,16 +1,20 @@
 from genesys.nested.models.models.unknown import Pasta
 from genesys.nested.models import Model
 from genesys.nested.models.mixins import EncounteredMixin
-from ..biology import Crustacean
+# from ..biology import Crustacean
 from genesys.nested.data import lookups
 
 
 class GlobalItem(Model):
-    universe = Model.child_property(Model)
+    @property
+    def universe(self):
+        from . import Universe
 
-    class ChildrenFactory(Model.ChildrenFactory):
-        def children_classes(self):
-            from genesys.nested.models.models.space import Universe
+        return next(self.children_by_class(Universe), None)
+
+    class Factory(Model.Factory):
+        def children(self):
+            from . import Universe
 
             yield Universe
 
@@ -31,17 +35,19 @@ class Portal(GlobalItem):
 
 
 class EndOfUniverseNote(Model):
-    contents = Model.children_property(Model)
+    contents = Model.children_property(Pasta)
 
-    class BaseFactory(Model.BaseFactory):
-        default = lookups.end_of_universe_notes
+    class Factory(Model.Factory):
+        class DataProvider:
+            end_of_universe_note = lookups.end_of_universe_notes
 
-    class ChildrenFactory(Model.ChildrenFactory):
-        def children_classes(self):
+        name = property(lambda self: self.provider.end_of_universe_note)
+
+        def children(self):
             yield Pasta.probable(0.1)
 
     def read(self):
-        return self.BaseFactory.next()
+        return self.name
 
 
 class WhiteHole(Portal):
@@ -50,11 +56,12 @@ class WhiteHole(Portal):
 
 class BlackHole(Portal, EncounteredMixin):
     white_hole = Portal.child_property(WhiteHole)
+    note = Portal.child_property(EndOfUniverseNote)
 
-    class ChildrenFactory(Portal.ChildrenFactory):
-        def children_classes(self):
+    class Factory(Model.Factory):
+        def children(self):
             yield EndOfUniverseNote.probable(0.5)
-            yield Crustacean.probable(0.2)
+            # yield Crustacean.probable(0.2)
             yield WhiteHole
 
     @property
@@ -65,4 +72,6 @@ class BlackHole(Portal, EncounteredMixin):
         return self.children
 
     def enter(self):
+        if self.note is not None:
+            print(self.note)
         return self.white_hole

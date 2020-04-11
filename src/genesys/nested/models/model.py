@@ -4,13 +4,18 @@ from .tree import TreeModel
 
 
 class Placeholder:
-    def __init__(self, model_class, builder):
+    def __init__(self, model_class, builder, **params):
         self.model_class = model_class
         self.builder = builder()
         self.__model = None
+        self.params = params
 
     def __build(self):
-        self.__model = self.model_class(**self.builder.build())
+        params = {
+            **self.builder.build(),
+            **self.params,
+        }
+        self.__model = self.model_class(**params)
         return self.__model
 
     @property
@@ -37,30 +42,30 @@ class Model(GeneratingModel, TreeModel):
         self.__base = base
         self.__children = children
 
-    def __build_base(self):
-        self.__base = next(self.Factory().base_factory)
-        return self.__base
+    # def __build_base(self):
+    #     self.__base = next(self.Factory().base_factory)
+    #     return self.__base
 
-    def __build_children(self):
-        super().children = next(self.Factory().children_factory)
-        return super().name
+    # def __build_children(self):
+    #     self.__children = next(self.Factory().children_factory)
+    #     return self.__children
 
     @property
     def __default_name(self):
         return self.default_name or self.__class__.__name__
 
-    @property
-    def base(self):
-        return self.__base or self.__build_base()
+    # @property
+    # def base(self):
+    #     return self.__base or self.__build_base()
 
-    @base.setter
-    def base(self, value):
-        self.__base = value
+    # @base.setter
+    # def base(self, value):
+    #     self.__base = value
 
     @property
     def children(self):
-        if self.__children is None:
-            self.__children = self.__build_children()
+        # if self.__children is None:
+        #     self.__children = self.__build_children()
         if any(isinstance(child, Placeholder) for child in self.__children):
             self.__children = [child.model for child in self.__children]
         return self.__children
@@ -69,14 +74,20 @@ class Model(GeneratingModel, TreeModel):
     def children(self, value):
         self.__children = value
 
+    def add_child(self, child):
+        self.__children.append(child)
+
     @property
     def model(self):
         return self
 
     @classmethod
-    def placeholder(cls):
-        return Placeholder(cls, cls.Factory)
+    def placeholder(cls, **kwargs):
+        return Placeholder(cls, cls.Factory, **kwargs)
 
     @classmethod
-    def build(cls):
-        return cls.placeholder().model
+    def build(cls, parent=None, **kwargs):
+        model = cls.placeholder(**kwargs).model
+        if parent is not None:
+            parent.add_child(model)
+        return model

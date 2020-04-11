@@ -14,8 +14,8 @@
 - Steel
 """
 from genesys.nested.models import Model
-from .particles import Atom
 from .elements import elements
+from .particles import Atom
 
 
 class Molecule(Model):
@@ -24,9 +24,8 @@ class Molecule(Model):
     default_name = 'molecules'
 
     class Factory(Model.Factory):
-        class ChildrenFactory(Model.Factory.ChildrenFactory):
-            def builders(self):
-                yield Atom
+        def children(self):
+            yield Atom
 
     @classmethod
     def from_atoms(cls, *components):
@@ -39,57 +38,62 @@ class Matter(Molecule):
 
 class Water(Matter):
     class Factory(Matter.Factory):
-        class ChildrenFactory(Matter.Factory.ChildrenFactory):
-            def builders(self):
-                yield from Matter.from_atoms('H', 'O')
+        def children(self):
+            yield from Matter.from_atoms('H', 'O')
 
 
-class WaterState(Model):
-    water = Model.child_property(Water)
-
-    class Factory(Model.Factory):
-        class ChildrenFactory(Model.Factory.ChildrenFactory):
-            def builders(self):
-                yield Water
-
-
-class Dew(WaterState):
-    pass
+# class WaterState(Model):
+#     water = Model.child_property(Water)
+#
+#     class Factory(Model.Factory):
+#         class ChildrenFactory(Model.Factory.ChildrenFactory):
+#             def builders(self):
+#                 yield Water
 
 
-class Ice(WaterState):
-    pass
+# class Dew(WaterState):
+#     pass
 
 
-class Snowflakes(WaterState):
-    pass
+# class Ice(WaterState):
+#     pass
 
 
-class Snow(Model):
-    flakes = Model.child_property(Snowflakes)
-
-    class Factory(Model.Factory):
-        class ChildrenFactory(Model.Factory.ChildrenFactory):
-            def builders(self):
-                yield Snowflakes
+# class Snowflakes(WaterState):
+#     pass
 
 
-class Salt(Matter):
+# class Snow(Model):
+#     flakes = Model.child_property(Snowflakes)
+#
+#     class Factory(Model.Factory):
+#         class ChildrenFactory(Model.Factory.ChildrenFactory):
+#             def builders(self):
+#                 yield Snowflakes
+
+
+class Ammonia(Matter):
     class Factory(Matter.Factory):
-        class ChildrenFactory(Matter.Factory.ChildrenFactory):
-            def builders(self):
-                yield from Matter.from_atoms('Na', 'Cl')
+        def children(self):
+            yield from Matter.from_atoms('N', 'H')
 
 
-class Silica(Matter):
-    class Factory(Matter.Factory):
-        class ChildrenFactory(Matter.Factory.ChildrenFactory):
-            def builders(self):
-                yield from Matter.from_atoms('Si', 'O')
+# class Salt(Matter):
+#     class Factory(Matter.Factory):
+#         class ChildrenFactory(Matter.Factory.ChildrenFactory):
+#             def builders(self):
+#                 yield from Matter.from_atoms('Na', 'Cl')
 
 
-class Steel(Matter):
-    class Factory(Matter.Factory):
-        class ChildrenFactory(Model.Factory.ChildrenFactory):
-            def builders(self):
-                yield from Matter.from_atoms('Fe', 'C')
+# class Silica(Matter):
+#     class Factory(Matter.Factory):
+#         class ChildrenFactory(Matter.Factory.ChildrenFactory):
+#             def builders(self):
+#                 yield from Matter.from_atoms('Si', 'O')
+
+
+# class Steel(Matter):
+#     class Factory(Matter.Factory):
+#         class ChildrenFactory(Model.Factory.ChildrenFactory):
+#             def builders(self):
+#                 yield from Matter.from_atoms('Fe', 'C')
