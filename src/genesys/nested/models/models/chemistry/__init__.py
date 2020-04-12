@@ -44,6 +44,8 @@ Basic chemistry and particles
 """
 from .rocks import *
 from .elements import *
+from .fire import *
 from .matter import *
+from .water import *
 from .organics import *
 from .particles import *

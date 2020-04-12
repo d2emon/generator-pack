@@ -5,12 +5,7 @@
 - Rock
 - Silica
 - Salt
-- Water
 - Fire
-- Dew
-- Ice
-- Snow
-- Snowflakes
 - Steel
 """
 from genesys.nested.models import Model
@@ -38,52 +33,16 @@ class Matter(Molecule):
     default_name = None
 
 
-class Water(Matter):
-    class Factory(Matter.Factory):
-        def children(self):
-            yield from Matter.from_atoms('H', 'O')
-
-
-class WaterState(Model):
-    water = Model.child_property(Water)
-
-    class Factory(Model.Factory):
-        def children(self):
-            yield Water
-
-
-class Dew(WaterState):
-    pass
-
-
-class Ice(WaterState):
-    pass
-
-
-class Snowflakes(WaterState):
-    pass
-
-
-# class Snow(Model):
-#     flakes = Model.child_property(Snowflakes)
-#
-#     class Factory(Model.Factory):
-#         class ChildrenFactory(Model.Factory.ChildrenFactory):
-#             def builders(self):
-#                 yield Snowflakes
-
-
 class Ammonia(Matter):
     class Factory(Matter.Factory):
         def children(self):
             yield from Matter.from_atoms('N', 'H')
 
 
-# class Salt(Matter):
-#     class Factory(Matter.Factory):
-#         class ChildrenFactory(Matter.Factory.ChildrenFactory):
-#             def builders(self):
-#                 yield from Matter.from_atoms('Na', 'Cl')
+class Salt(Matter):
+    class Factory(Matter.Factory):
+        def children(self):
+            yield from Matter.from_atoms('Na', 'Cl')
 
 
 class Silica(Matter):
@@ -92,8 +51,7 @@ class Silica(Matter):
             yield from Matter.from_atoms('Si', 'O')
 
 
-# class Steel(Matter):
-#     class Factory(Matter.Factory):
-#         class ChildrenFactory(Model.Factory.ChildrenFactory):
-#             def builders(self):
-#                 yield from Matter.from_atoms('Fe', 'C')
+class Steel(Matter):
+    class Factory(Matter.Factory):
+        def children(self):
+            yield from Matter.from_atoms('Fe', 'C')
