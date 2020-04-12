@@ -1,8 +1,8 @@
 from genesys.nested.models import Model
 from genesys.nested.models.mixins import EncounteredMixin
 from .star import StarSystem, SingleStar
-from ..chemistry import elements, Matter, Atom, Water, Ammonia
 # from ..biology import GalacticLife
+from ..chemistry import elements, Matter, Atom, Water, Ammonia
 from genesys.nested.data import lookups
 
 

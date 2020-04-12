@@ -42,8 +42,8 @@ Basic chemistry and particles
 - Keratin
 - Sweat
 """
-# from .rocks import *
+from .rocks import *
 from .elements import *
 from .matter import *
-# from .organics import *
-# from .particles import *
+from .organics import *
+from .particles import *

@@ -1,10 +1,9 @@
 from genesys.nested.models.models.unknown import Continent, VisitorCity, VisitorInstallation
 from genesys.nested.models import Model
 from genesys.nested.models.mixins import EncounteredMixin
-# from .atmosphere import Atmosphere
+from .atmosphere import Atmosphere
 # from ...biology import SpaceMonster
-from ...chemistry import elements, Atom
-# from ...chemistry import elements, Rock, Ice, Diamond, Magma, Atom
+from ...chemistry import elements, Atom, Diamond, Ice, Magma, Rock
 # from ...terrain import Ocean
 
 
@@ -15,9 +14,7 @@ class Orbit(Model, EncounteredMixin):
 class PlanetCore(Model, EncounteredMixin):
     contents = Model.children_property(
         Atom,
-        # Rock,
-        # Diamond,
-        # Magma,
+        Rock,
     )
 
     default_name = 'core'
@@ -29,21 +26,29 @@ class PlanetCore(Model, EncounteredMixin):
 
         def rocks(self):
             yield elements['Fe']
-            # yield Rock
-            # yield Diamond.probable(2)
-            # yield Magma
+            yield Rock
+            yield Diamond.probable(2)
+            yield Magma
 
         def children(self):
             yield from self.life()
             yield from self.rocks()
 
 
+class Plate(Model):
+    class Factory(Model.Factory):
+        def children(self):
+            yield Rock
+            yield Ice
+
+
 class PlanetLike(Orbit):
-    # atmosphere = Model.child_property(Atmosphere)
+    atmosphere = Model.child_property(Atmosphere)
     core = Model.child_property(PlanetCore)
-    # land = Model.children_property(Rock, Continent)
-    # water = Model.children_property(Ice, Ocean)
-    # visited = Model.children_property(VisitorCity, VisitorInstallation)
+    plates = Model.children_property(Plate)
+    land = Model.children_property(Continent)
+    # water = Model.children_property(Ocean)
+    visited = Model.children_property(VisitorCity, VisitorInstallation)
 
     class Factory(Orbit.Factory):
         def atmosphere(self):
@@ -52,7 +57,23 @@ class PlanetLike(Orbit):
         def biosphere(self):
             yield None
 
-        def children(self):
+        def core(self):
             yield PlanetCore
+
+        def plates(self):
+            yield from Plate.multiple(2, 7)
+            yield from Plate.multiple(1, 7)
+
+        def sky(self):
+            yield None
+
+        def visited(self):
+            yield None
+
+        def children(self):
+            yield from self.core()
             yield from self.atmosphere()
             yield from self.biosphere()
+            yield from self.plates()
+            yield from self.sky()
+            yield from self.visited()

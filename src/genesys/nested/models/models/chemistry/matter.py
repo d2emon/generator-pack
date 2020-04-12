@@ -35,6 +35,8 @@ class Molecule(Model):
 class Matter(Molecule):
     molecules = Model.child_property(Atom, Molecule)
 
+    default_name = None
+
 
 class Water(Matter):
     class Factory(Matter.Factory):
@@ -42,25 +44,24 @@ class Water(Matter):
             yield from Matter.from_atoms('H', 'O')
 
 
-# class WaterState(Model):
-#     water = Model.child_property(Water)
-#
-#     class Factory(Model.Factory):
-#         class ChildrenFactory(Model.Factory.ChildrenFactory):
-#             def builders(self):
-#                 yield Water
+class WaterState(Model):
+    water = Model.child_property(Water)
+
+    class Factory(Model.Factory):
+        def children(self):
+            yield Water
 
 
-# class Dew(WaterState):
-#     pass
+class Dew(WaterState):
+    pass
 
 
-# class Ice(WaterState):
-#     pass
+class Ice(WaterState):
+    pass
 
 
-# class Snowflakes(WaterState):
-#     pass
+class Snowflakes(WaterState):
+    pass
 
 
 # class Snow(Model):
@@ -85,11 +86,10 @@ class Ammonia(Matter):
 #                 yield from Matter.from_atoms('Na', 'Cl')
 
 
-# class Silica(Matter):
-#     class Factory(Matter.Factory):
-#         class ChildrenFactory(Matter.Factory.ChildrenFactory):
-#             def builders(self):
-#                 yield from Matter.from_atoms('Si', 'O')
+class Silica(Matter):
+    class Factory(Matter.Factory):
+        def children(self):
+            yield from Matter.from_atoms('Si', 'O')
 
 
 # class Steel(Matter):
