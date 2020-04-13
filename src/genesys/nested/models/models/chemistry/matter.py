@@ -41,6 +41,10 @@ class Matter(Molecule):
     def from_molecules(cls, *components):
         return cls(children=components)
 
+    @classmethod
+    def from_atoms(cls, *components):
+        return cls.from_molecules(*Molecule.from_atoms(*components))
+
 
 class Gas(Matter):
     pass

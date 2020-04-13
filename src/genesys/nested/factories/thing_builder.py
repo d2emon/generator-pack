@@ -88,15 +88,22 @@ class ThingBuilder:
         }
 
     @classmethod
-    def probable(cls, probability=100):
-        return cls if random.uniform(0, 100) < probability else None
+    def check_probability(cls, probability=100):
+        return random.uniform(0, 100) < probability
 
     @classmethod
-    def multiple(cls, min_items=1, max_items=None):
-        count = random.randint(min_items, max_items) if max_items is not None else min_items
-        for _ in range(count):
-            yield cls
+    def get_count(cls, min_items=1, max_items=None):
+        return random.randint(min_items, max_items) if max_items is not None else min_items
 
     @classmethod
     def choice(cls, items):
         return random.choice(items) if len(items) > 0 else None
+
+    @classmethod
+    def probable(cls, probability=100):
+        return cls if cls.check_probability(probability) else None
+
+    @classmethod
+    def multiple(cls, min_items=1, max_items=None):
+        for _ in range(cls.get_count(min_items, max_items)):
+            yield cls

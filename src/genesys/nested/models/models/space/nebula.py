@@ -1,6 +1,6 @@
 from genesys.nested.models import Model
 from genesys.nested.models.mixins import EncounteredMixin
-from .life import GalacticLife
+from .life import GalacticLife, NebulaLife
 from .star import StarSystem, SingleStar
 from ..chemistry import Ammonia, Gas, Matter, Steam
 from genesys.nested.data import lookups
@@ -35,7 +35,7 @@ class Nebula(Model, EncounteredMixin):
     class Factory(Model.Factory):
         @classmethod
         def life(cls):
-            yield GalacticLife.probable(15)
+            yield NebulaLife
 
         @classmethod
         def stars(cls):

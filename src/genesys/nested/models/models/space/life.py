@@ -1,92 +1,83 @@
 from genesys.nested.models.models.unknown import Ghost
-from genesys.nested.models import Model
 # from ..biology import Crustacean, GalacticLife, SpaceMonster
+from ..biology import Life
 
 
-class BlackHoleLife(Model):
-    life = Model.child_property(Model)
-
-    class Factory(Model.Factory):
+class BlackHoleLife(Life):
+    class Factory(Life.Factory):
         def children(self):
             # yield Crustacean.probable(0.2)
             yield None
 
 
-class GalacticLife(Model):
-    life = Model.child_property(Model)
+class GalacticLife(Life):
+    class Factory(Life.Factory):
+        probability = 100
 
-    class Factory(Model.Factory):
         def children(self):
-            # yield GalacticLife
+            if not self.check_probability(self.probability):
+                return
+            # yield SpaceMonster.probable(1)
+            # yield from SpaceAnimal.multiple(1, 12)
             yield None
 
 
-class StarLife(Model):
-    life = Model.child_property(Model)
+class GalaxyCenterLife(GalacticLife):
+    class Factory(GalacticLife.Factory):
+        probability = 0
 
-    class Factory(Model.Factory):
+
+class GalaxyArmLife(GalacticLife):
+    class Factory(GalacticLife.Factory):
+        probability = 5
+
+
+class NebulaLife(GalacticLife):
+    class Factory(GalacticLife.Factory):
+        probability = 15
+
+
+class StarLife(GalacticLife):
+    class Factory(GalacticLife.Factory):
         def children(self):
             yield Ghost.probable(0.1)
             # yield SpaceMonster.probable(0.2)
 
 
-class PlanetCoreLife(Model):
-    life = Model.child_property(Model)
-
-    class Factory(Model.Factory):
+class PlanetCoreLife(GalacticLife):
+    class Factory(GalacticLife.Factory):
         def children(self):
             # yield SpaceMonster.probable(0.5)
             yield None
 
 
-class GasGiantLife(Model):
-    life = Model.child_property(Model)
-
-    class Factory(Model.Factory):
-        def children(self):
-            # yield GalacticLife.probable(10)
-            yield None
+class GasGiantLife(GalacticLife):
+    class Factory(GalacticLife.Factory):
+        probability = 10
 
 
-class BarrenPlanetLife(Model):
-    life = Model.child_property(Model)
-
-    class Factory(Model.Factory):
-        def children(self):
-            # yield GalacticLife.probable(10)
-            yield None
+class BarrenPlanetLife(GalacticLife):
+    class Factory(GalacticLife.Factory):
+        probability = 10
 
 
-class VisitorPlanetLife(Model):
-    life = Model.child_property(Model)
-
-    class Factory(Model.Factory):
-        def children(self):
-            # yield GalacticLife.probable(100)
-            yield None
+class VisitorPlanetLife(GalacticLife):
+    pass
 
 
-class MoonLife(Model):
-    life = Model.child_property(Model)
-
-    class Factory(Model.Factory):
+class MoonLife(GalacticLife):
+    class Factory(GalacticLife.Factory):
         def children(self):
             yield Ghost.probable(0.1)
 
 
-class AsteroidLife(Model):
-    life = Model.child_property(Model)
-
-    class Factory(Model.Factory):
+class AsteroidLife(GalacticLife):
+    class Factory(GalacticLife.Factory):
         def children(self):
             # yield SpaceAnimal.probable(0.5)
             yield None
 
 
-class AsteroidBeltLife(Model):
-    life = Model.child_property(Model)
-
-    class Factory(Model.Factory):
-        def children(self):
-            # yield GalacticLife.probable(20)
-            yield None
+class AsteroidBeltLife(GalacticLife):
+    class Factory(GalacticLife.Factory):
+        probability = 20
