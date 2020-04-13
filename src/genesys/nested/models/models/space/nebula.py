@@ -1,13 +1,13 @@
 from genesys.nested.models import Model
 from genesys.nested.models.mixins import EncounteredMixin
+from .life import GalacticLife
 from .star import StarSystem, SingleStar
-# from ..biology import GalacticLife
-from ..chemistry import elements, Matter, Atom, Water, Ammonia
+from ..chemistry import Ammonia, Gas, Matter, Steam
 from genesys.nested.data import lookups
 
 
 class InterstellarCloud(Matter):
-    contents = Model.children_property(Matter, Atom)
+    gases = Model.children_property(Gas)
 
     class Factory(Matter.Factory):
         class DataProvider:
@@ -16,25 +16,38 @@ class InterstellarCloud(Matter):
         name = property(lambda self: self.provider.interstellar_cloud)
 
         def children(self):
-            yield elements['He']
-            yield elements['H']
-            yield elements['C'].probable(80)
-            yield Water.probable(5)
+            yield Gas.from_atoms('He')
+            yield Gas.from_atoms('H')
+            yield Gas.from_atoms('C').probable(80)
+            yield Steam.probable(5)
             yield Ammonia.probable(5)
-            yield elements['N'].probable(5)
-            yield elements['Fe'].probable(5)
-            yield elements['S'].probable(5)
-            yield elements['O'].probable(15)
+            yield Gas.from_atoms('N').probable(5)
+            yield Gas.from_atoms('Fe').probable(5)
+            yield Gas.from_atoms('S').probable(5)
+            yield Gas.from_atoms('O').probable(15)
 
 
 class Nebula(Model, EncounteredMixin):
+    life = Model.child_property(GalacticLife)
     stars = Model.children_property(StarSystem)
     clouds = Model.children_property(InterstellarCloud)
 
     class Factory(Model.Factory):
-        def children(self):
-            # yield GalacticLife.probable(15)
+        @classmethod
+        def life(cls):
+            yield GalacticLife.probable(15)
+
+        @classmethod
+        def stars(cls):
             yield SingleStar.probable(2)
             yield SingleStar.probable(2)
             yield SingleStar.probable(2)
+
+        @classmethod
+        def clouds(cls):
             yield from InterstellarCloud.multiple(1, 6)
+
+        def children(self):
+            yield from self.life()
+            yield from self.stars()
+            yield from self.clouds()

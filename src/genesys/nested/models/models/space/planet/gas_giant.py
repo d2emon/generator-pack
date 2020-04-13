@@ -6,16 +6,20 @@ from .planet_like import PlanetCore
 
 class GasGiant(Planet):
     class Factory(Planet.Factory):
-        def atmosphere(self):
+        @classmethod
+        def atmosphere(cls):
             yield GasGiantAtmosphere
 
-        def core(self):
+        @classmethod
+        def core(cls):
             yield PlanetCore.probable(50)
 
-        def moons(self):
+        @classmethod
+        def moons(cls):
             yield from Moon.multiple(0, 3)
             yield TerraformedMoon.probable(20)
             yield TerraformedMoon.probable(10)
 
-        def plates(self):
+        @classmethod
+        def plates(cls):
             yield None

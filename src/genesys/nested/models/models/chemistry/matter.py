@@ -27,13 +27,26 @@ class Molecule(Model):
         return map(lambda component: elements.get(component), components)
 
 
+SOLID = 0
+LIQUID = 1
+GAS = 2
+
+
 class Matter(Molecule):
     molecules = Model.child_property(Atom, Molecule)
 
     default_name = None
 
+    @classmethod
+    def from_molecules(cls, *components):
+        return cls(children=components)
 
-class Ammonia(Matter):
+
+class Gas(Matter):
+    pass
+
+
+class Ammonia(Gas):
     class Factory(Matter.Factory):
         def children(self):
             yield from Matter.from_atoms('N', 'H')

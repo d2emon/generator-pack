@@ -4,7 +4,7 @@ from genesys.nested.models.mixins import TerraformedMixin
 from .atmosphere import Atmosphere
 from .moon import Moon, TerraformedMoon
 from .planet_like import PlanetLike
-# from ...biology import GalacticLife
+from ..life import BarrenPlanetLife, VisitorPlanetLife
 # from ...terrain import Ocean, Sky, TerraformedSky, FutureSky
 
 
@@ -12,7 +12,8 @@ class Planet(PlanetLike):
     moons = PlanetLike.children_property(Moon)
 
     class Factory(PlanetLike.Factory):
-        def moons(self):
+        @classmethod
+        def moons(cls):
             yield Moon.probable(40)
             yield Moon.probable(20)
             yield Moon.probable(10)
@@ -26,76 +27,89 @@ class BarrenPlanet(Planet):
     default_name = 'telluric planet'
 
     class Factory(Planet.Factory):
-        life_probability = 10
-
-        def biosphere(self):
-            # yield GalacticLife.probable(self.life_probability)
-            yield None
+        @classmethod
+        def biosphere(cls):
+            yield BarrenPlanetLife
 
 
 class VisitorPlanet(BarrenPlanet):
     class Factory(Planet.Factory):
-        life_probability = 100
+        @classmethod
+        def biosphere(cls):
+            yield VisitorPlanetLife
 
-        def visited(self):
+        @classmethod
+        def visited(cls):
             yield from VisitorCity.multiple(1, 8)
             yield from VisitorInstallation.multiple(2, 6)
 
 
 class TelluricPlanet(Planet, TerraformedMixin):
     class Factory(Planet.Factory):
-        def atmosphere(self):
+        @classmethod
+        def atmosphere(cls):
             yield Atmosphere
 
-        def continents(self):
+        @classmethod
+        def continents(cls):
             yield from Continent.multiple(2, 7)
 
-        def oceans(self):
+        @classmethod
+        def oceans(cls):
             # yield from Ocean.multiple(1, 7)
             yield None
 
-        def plates(self):
-            yield from self.continents()
-            yield from self.oceans()
+        @classmethod
+        def plates(cls):
+            yield from cls.continents()
+            yield from cls.oceans()
 
-        def sky(self):
+        @classmethod
+        def sky(cls):
             # yield Sky
             yield None
 
 
 class FuturePlanet(TelluricPlanet):
     class Factory(TelluricPlanet.Factory):
-        def continents(self):
+        @classmethod
+        def continents(cls):
             yield from FutureContinent.multiple(2, 7)
 
-        def sky(self):
+        @classmethod
+        def sky(cls):
             # yield FutureSky
             yield None
 
-        def moons(self):
+        @classmethod
+        def moons(cls):
             yield from super().moons()
             yield FutureMoon.probable(30)
 
 
 class TerraformedPlanet(TelluricPlanet):
     class Factory(TelluricPlanet.Factory):
-        def sky(self):
+        @classmethod
+        def sky(cls):
             # yield TerraformedSky
             yield None
 
-        def moons(self):
+        @classmethod
+        def moons(cls):
             yield from super().moons()
             yield TerraformedMoon.probable(30)
 
 
 class MedievalPlanet(TelluricPlanet):
     class Factory(TelluricPlanet.Factory):
-        def continents(self):
+        @classmethod
+        def continents(cls):
             yield from MedievalContinent.multiple(2, 4)
             yield from AncientContinent.multiple(0, 3)
 
 
 class AncientPlanet(TelluricPlanet):
     class Factory(TelluricPlanet.Factory):
-        def continents(self):
+        @classmethod
+        def continents(cls):
             yield from AncientContinent.multiple(2, 7)

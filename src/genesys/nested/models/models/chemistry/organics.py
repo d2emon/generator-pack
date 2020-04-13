@@ -1,12 +1,12 @@
 from genesys.nested.factories.thing_builder import ListFactory
-from .matter import Matter, Molecule, Salt
+from .matter import Gas, Matter, Molecule, Salt
 from .water import Water
 
 
-class Methane(Matter):
-    class Factory(Matter.Factory):
+class Methane(Gas):
+    class Factory(Gas.Factory):
         def children(self):
-            yield from Matter.from_atoms('C', 'H')
+            yield from Gas.from_atoms('C', 'H')
 
 
 class OrganicMolecule(Molecule):

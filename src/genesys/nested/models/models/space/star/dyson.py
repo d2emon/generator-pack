@@ -6,7 +6,7 @@ from ..planet import FuturePlanet
 class DysonSphere(StarSystem):
     class Factory(StarSystem.Factory):
         @classmethod
-        def _generate_inhabited(cls):
+        def inhabited(cls):
             yield DysonSurface
             yield from FuturePlanet.multiple(1, 8)
 

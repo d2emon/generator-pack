@@ -2,8 +2,8 @@ from genesys.nested.models.models.unknown import Continent, VisitorCity, Visitor
 from genesys.nested.models import Model
 from genesys.nested.models.mixins import EncounteredMixin
 from .atmosphere import Atmosphere
-# from ...biology import SpaceMonster
-from ...chemistry import elements, Atom, Diamond, Ice, Magma, Rock
+from ..life import PlanetCoreLife
+from ...chemistry import Diamond, Ice, Iron, Magma, Rock
 # from ...terrain import Ocean
 
 
@@ -12,30 +12,32 @@ class Orbit(Model, EncounteredMixin):
 
 
 class PlanetCore(Model, EncounteredMixin):
-    contents = Model.children_property(
-        Atom,
-        Rock,
-    )
+    life = Model.children_property(PlanetCoreLife)
+    minerals = Model.children_property(Rock)
 
     default_name = 'core'
 
-    class Factory(Orbit.Factory):
-        def life(self):
-            # yield SpaceMonster.probable(0.5)
-            yield None
+    class Factory(Model.Factory):
+        @classmethod
+        def life(cls):
+            yield PlanetCoreLife
 
-        def rocks(self):
-            yield elements['Fe']
+        @classmethod
+        def minerals(cls):
+            yield Iron
             yield Rock
             yield Diamond.probable(2)
             yield Magma
 
         def children(self):
             yield from self.life()
-            yield from self.rocks()
+            yield from self.minerals()
 
 
 class Plate(Model):
+    minerals = Model.children_property(Rock)
+    ice = Model.children_property(Ice)
+
     class Factory(Model.Factory):
         def children(self):
             yield Rock
@@ -44,30 +46,38 @@ class Plate(Model):
 
 class PlanetLike(Orbit):
     atmosphere = Model.child_property(Atmosphere)
+    biosphere = Model.child_property(Model)
     core = Model.child_property(PlanetCore)
     plates = Model.children_property(Plate)
+    # sky = Model.children_property(Sky)
     land = Model.children_property(Continent)
     # water = Model.children_property(Ocean)
     visited = Model.children_property(VisitorCity, VisitorInstallation)
 
     class Factory(Orbit.Factory):
-        def atmosphere(self):
+        @classmethod
+        def atmosphere(cls):
             yield None
 
-        def biosphere(self):
+        @classmethod
+        def biosphere(cls):
             yield None
 
-        def core(self):
+        @classmethod
+        def core(cls):
             yield PlanetCore
 
-        def plates(self):
+        @classmethod
+        def plates(cls):
             yield from Plate.multiple(2, 7)
             yield from Plate.multiple(1, 7)
 
-        def sky(self):
+        @classmethod
+        def sky(cls):
             yield None
 
-        def visited(self):
+        @classmethod
+        def visited(cls):
             yield None
 
         def children(self):

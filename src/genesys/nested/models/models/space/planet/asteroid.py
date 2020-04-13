@@ -13,11 +13,12 @@ class AsteroidPlate(Plate):
 
 class Asteroid(PlanetLike):
     class Factory(PlanetLike.Factory):
-        def biosphere(self):
-            # yield SpaceAnimal.probable(0.5)
+        @classmethod
+        def biosphere(cls):
             yield None
 
-        def plates(self):
+        @classmethod
+        def plates(cls):
             yield AsteroidPlate
 
 
@@ -25,9 +26,17 @@ class AsteroidBelt(Orbit, EncounteredMixin):
     asteroids = Orbit.children_property(Asteroid)
 
     class Factory(Orbit.Factory):
-        def children(self):
-            # yield GalacticLife.probable(20)
+        @classmethod
+        def life(cls):
+            yield None
+
+        @classmethod
+        def asteroids(cls):
             yield from Asteroid.multiple(10, 30)
+
+        def children(self):
+            yield from self.life()
+            yield from self.asteroids()
 
 
 class Earth(AsteroidBelt):

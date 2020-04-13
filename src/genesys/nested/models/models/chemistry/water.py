@@ -6,7 +6,7 @@
 - Snowflakes
 """
 from genesys.nested.models import Model
-from .matter import Matter
+from .matter import Gas, Matter
 
 
 class Water(Matter):
@@ -21,6 +21,10 @@ class WaterState(Model):
     class Factory(Model.Factory):
         def children(self):
             yield Water
+
+
+class Steam(WaterState, Gas):
+    pass
 
 
 class Dew(WaterState):

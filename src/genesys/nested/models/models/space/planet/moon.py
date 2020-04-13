@@ -19,10 +19,12 @@ class Moon(PlanetLike):
 
         name = property(lambda self: self.provider.moon)
 
-        def biosphere(self):
+        @classmethod
+        def biosphere(cls):
             yield Ghost.probable(0.1)
 
-        def plates(self):
+        @classmethod
+        def plates(cls):
             yield MoonPlate
 
 
@@ -33,10 +35,12 @@ class TerraformedMoon(Moon, TerraformedMixin):
 
         name = property(lambda self: self.provider.terraformed_moon)
 
-        def plates(self):
+        @classmethod
+        def plates(cls):
             yield from Continent.multiple(1, 4)
             # yield from Ocean.multiple(1, 4)
 
-        def sky(self):
+        @classmethod
+        def sky(cls):
             # yield Sky
             yield None

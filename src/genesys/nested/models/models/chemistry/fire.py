@@ -20,6 +20,3 @@ class Ash(Matter):
         def children(self):
             yield OrganicMatter
             yield elements['C']
-
-
-# Things.add_thing("portal",["universe"])

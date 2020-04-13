@@ -24,3 +24,9 @@ class Diamond(Rock):
 
 class Magma(Rock):
     pass
+
+
+class Iron(Rock):
+    class Factory(Matter.Factory):
+        def children(self):
+            yield elements['Fe']

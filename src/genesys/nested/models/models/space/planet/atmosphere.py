@@ -1,41 +1,40 @@
 from genesys.nested.models import Model
 from genesys.nested.models.mixins import EncounteredMixin
+from ..life import GasGiantLife
 # from ...biology import GalacticLife
-from ...chemistry import elements, Water, Ammonia, Methane
+from ...chemistry import elements, Ammonia, Gas, Steam, Water, Methane
 
 
 class Atmosphere(Model, EncounteredMixin):
-    gases = Model.children_property(
-        elements['He'],
-        elements['H'],
-        Water,
-        Ammonia,
-        Methane,
-    )
+    life = Model.child_property(GasGiantLife)
+    gases = Model.children_property(Gas)
 
     default_name = 'atmosphere'
 
     class Factory(Model.Factory):
-        def encounters(self):
+        @classmethod
+        def life(cls):
             yield None
 
-        def gases(self):
+        @classmethod
+        def gases(cls):
             yield None
 
         def children(self):
-            yield from self.encounters()
+            yield from self.life()
             yield from self.gases()
 
 
 class GasGiantAtmosphere(Atmosphere):
     class Factory(Atmosphere.Factory):
-        def encounters(self):
-            # yield GalacticLife.probable(10)
-            yield None
+        @classmethod
+        def life(cls):
+            yield GasGiantLife
 
-        def gases(self):
-            yield elements['He']
-            yield elements['H']
-            yield Water.probable(50)
+        @classmethod
+        def gases(cls):
+            yield Gas.from_atoms('He')
+            yield Gas.from_atoms('H')
+            yield Steam.probable(50)
             yield Ammonia.probable(50)
             yield Methane.probable(50)
