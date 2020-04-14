@@ -1,17 +1,13 @@
-from genesys.nested.models import Model
-from genesys.nested.models.mixins import EncounteredMixin
-from ..life import GasGiantLife
-# from ...biology import GalacticLife
-from ...chemistry import elements, Ammonia, Gas, Steam, Water, Methane
+from ..life import GasGiantLife, Habitat
+from ...chemistry import Ammonia, Gas, Steam, Methane
 
 
-class Atmosphere(Model, EncounteredMixin):
-    life = Model.child_property(GasGiantLife)
-    gases = Model.children_property(Gas)
+class Atmosphere(Habitat):
+    gases = Habitat.children_property(Gas)
 
     default_name = 'atmosphere'
 
-    class Factory(Model.Factory):
+    class Factory(Habitat.Factory):
         @classmethod
         def life(cls):
             yield None

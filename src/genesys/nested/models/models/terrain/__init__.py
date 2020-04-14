@@ -36,9 +36,9 @@ Terrain Stuff
 """
 from .water import *
 from .soil import *
-from .land import *
-from .ancient import *
-from .sky import *
+# from .land import *
+# from .ancient import *
+# from .sky import *
 
 
 # class Biome(Thing):

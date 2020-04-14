@@ -1,7 +1,7 @@
 from genesys.nested.models.models.unknown import Pasta
 from genesys.nested.models import Model
 from genesys.nested.models.mixins import EncounteredMixin
-from .life import BlackHoleLife
+from .life import BlackHoleLife, Habitat
 from genesys.nested.data import lookups
 
 
@@ -54,9 +54,8 @@ class WhiteHole(Portal):
     pass
 
 
-class BlackHole(Portal, EncounteredMixin):
+class BlackHole(Portal, Habitat):
     note = Portal.child_property(EndOfUniverseNote)
-    life = Portal.child_property(BlackHoleLife)
     white_hole = Portal.child_property(WhiteHole)
 
     class Factory(Model.Factory):

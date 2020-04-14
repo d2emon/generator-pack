@@ -1,15 +1,13 @@
 from genesys.nested.models.models.unknown import DysonSurface
 from genesys.nested.models import Model
-from genesys.nested.models.mixins import EncounteredMixin
-from ..life import StarLife
+from ..life import Habitat, StarLife
 from ..planet import AncientPlanet, AsteroidBelt, BarrenPlanet, FuturePlanet, GasGiant, MedievalPlanet, Orbit, \
     Planet, TerraformedPlanet, VisitorPlanet
 from ...chemistry import elements, Atom
 from genesys.nested.data import lookups
 
 
-class Star(Model, EncounteredMixin):
-    life = Model.child_property(StarLife)
+class Star(Habitat):
     matter = Model.children_property(Atom)
 
     class Factory(Model.Factory):

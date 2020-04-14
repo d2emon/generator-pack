@@ -5,6 +5,7 @@ from .atmosphere import Atmosphere
 from .moon import Moon, TerraformedMoon
 from .planet_like import PlanetLike
 from ..life import BarrenPlanetLife, VisitorPlanetLife
+from ...terrain import Ocean
 # from ...terrain import Ocean, Sky, TerraformedSky, FutureSky
 
 
@@ -56,8 +57,7 @@ class TelluricPlanet(Planet, TerraformedMixin):
 
         @classmethod
         def oceans(cls):
-            # yield from Ocean.multiple(1, 7)
-            yield None
+            yield from Ocean.multiple(1, 7)
 
         @classmethod
         def plates(cls):

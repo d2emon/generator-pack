@@ -12,7 +12,7 @@ from .matter import Gas, Matter
 class Water(Matter):
     class Factory(Matter.Factory):
         def children(self):
-            yield from Matter.from_atoms('H', 'O')
+            yield Matter.from_atoms('H', 'O')
 
 
 class WaterState(Model):

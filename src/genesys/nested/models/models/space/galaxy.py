@@ -1,18 +1,16 @@
 from genesys.nested.models import Model
-from genesys.nested.models.mixins import EncounteredMixin
 from .black_hole import BlackHole
-from .life import GalacticLife, GalaxyArmLife, GalaxyCenterLife
+from .life import GalaxyArmLife, GalaxyCenterLife, Habitat
 from .nebula import Nebula
 from .star import StarSystem, DysonSphere
 
 
-class GalaxyPart(Model, EncounteredMixin):
-    stars = Model.children_property(StarSystem)
-    nebulas = Model.children_property(Nebula)
-    black_holes = Model.children_property(BlackHole)
-    life = Model.child_property(GalacticLife)
+class GalaxyPart(Habitat):
+    stars = Habitat.children_property(StarSystem)
+    nebulas = Habitat.children_property(Nebula)
+    black_holes = Habitat.children_property(BlackHole)
 
-    class Factory(Model.Factory):
+    class Factory(Habitat.Factory):
         dyson_sphere_probabilities = 4, 2
         min_star_systems = 20
         max_star_systems = 20
@@ -25,7 +23,7 @@ class GalaxyPart(Model, EncounteredMixin):
 
         @classmethod
         def life(cls):
-            yield GalacticLife
+            yield None
 
         @classmethod
         def nebulas(cls):

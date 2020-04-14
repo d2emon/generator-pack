@@ -5,7 +5,7 @@ from .organics import OrganicMatter
 
 
 class Fire(Model):
-    atoms = Model.child_property(Atom)
+    content = Model.child_property(Atom)
 
     class Factory(Model.Factory):
         def children(self):
@@ -14,9 +14,9 @@ class Fire(Model):
 
 
 class Ash(Matter):
-    contents = Matter.children_property(OrganicMatter, Atom)
+    contents = Matter.children_property(Matter)
 
     class Factory(Matter.Factory):
         def children(self):
             yield OrganicMatter
-            yield elements['C']
+            yield Matter.from_atoms('C')

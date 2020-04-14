@@ -59,6 +59,10 @@ class Life(Model):
             yield next(self.life_types())
 
 
+class Habitat(Model):
+    life = Model.child_property(Life)
+
+
 class SeaLife(Life):
     class Factory(Life.Factory):
         def children(self):

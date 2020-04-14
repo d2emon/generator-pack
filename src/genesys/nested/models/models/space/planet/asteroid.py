@@ -1,6 +1,5 @@
-from genesys.nested.models.mixins import EncounteredMixin
 from .planet_like import Orbit, PlanetLike, Plate
-# from ...biology import GalacticLife, SpaceAnimal
+from ..life import AsteroidLife, AsteroidBeltLife
 from ...chemistry import Ice, Rock
 
 
@@ -15,20 +14,20 @@ class Asteroid(PlanetLike):
     class Factory(PlanetLike.Factory):
         @classmethod
         def biosphere(cls):
-            yield None
+            yield AsteroidLife
 
         @classmethod
         def plates(cls):
             yield AsteroidPlate
 
 
-class AsteroidBelt(Orbit, EncounteredMixin):
+class AsteroidBelt(Orbit):
     asteroids = Orbit.children_property(Asteroid)
 
     class Factory(Orbit.Factory):
         @classmethod
         def life(cls):
-            yield None
+            yield AsteroidBeltLife
 
         @classmethod
         def asteroids(cls):

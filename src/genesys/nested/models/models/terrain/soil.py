@@ -1,35 +1,49 @@
+from genesys.nested.factories.thing_builder import ListFactory
 from genesys.nested.models import Model
 from ..chemistry import Water, Silica
-from ..biology import Worm, Insect
+from ..biology import Habitat
+# from ..biology import Worm, Insect
 
 
-class Soil(Model):
-    class ChildrenFactory(Model.ChildrenFactory):
-        class NameFactory(Model.NameFactory):
-            default = 'dirt'
+class Soil(Habitat):
+    silica = Habitat.child_property(Silica)
+    water = Habitat.child_property(Water)
 
-        def children_classes(self):
-            yield from Model.BaseFactory([
-                Worm.multiple(0, 2),
-                None,
-                None,
-            ]).next()
-            yield from Model.BaseFactory([
-                Insect.multiple(0, 2),
-                None,
-                None,
-            ]).next()
+    default_name = 'dirt'
+
+    class Factory(Model.Factory):
+        @classmethod
+        def life(cls):
+            yield from next(ListFactory([
+                # Worm.multiple(0, 2),
+                [],
+                [],
+            ]))
+            yield from next(ListFactory([
+                # Insect.multiple(0, 2),
+                [],
+                [],
+            ]))
+            yield None
+
+        def children(self):
+            yield from self.life()
             yield Silica
 
 
 class Mud(Soil):
-    class ChildrenFactory(Soil.ChildrenFactory):
-        def children_classes(self):
-            yield from super().children_classes()
+    default_name = None
+
+    class Factory(Soil.Factory):
+        def children(self):
+            yield from super().children()
             yield Water
 
 
 class Sand(Soil):
-    class ChildrenFactory(Soil.ChildrenFactory):
-        def children_classes(self):
-            yield Silica
+    default_name = None
+
+    class Factory(Soil.Factory):
+        @classmethod
+        def life(cls):
+            yield None

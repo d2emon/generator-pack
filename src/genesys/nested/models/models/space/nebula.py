@@ -1,6 +1,5 @@
 from genesys.nested.models import Model
-from genesys.nested.models.mixins import EncounteredMixin
-from .life import GalacticLife, NebulaLife
+from .life import Habitat, NebulaLife
 from .star import StarSystem, SingleStar
 from ..chemistry import Ammonia, Gas, Matter, Steam
 from genesys.nested.data import lookups
@@ -27,8 +26,7 @@ class InterstellarCloud(Matter):
             yield Gas.from_atoms('O').probable(15)
 
 
-class Nebula(Model, EncounteredMixin):
-    life = Model.child_property(GalacticLife)
+class Nebula(Habitat):
     stars = Model.children_property(StarSystem)
     clouds = Model.children_property(InterstellarCloud)
 

@@ -1,7 +1,9 @@
-from genesys.nested.models.models.unknown import Ghost, Continent
+from genesys.nested.models.models.unknown import Continent
 from genesys.nested.models.mixins import TerraformedMixin
 from .planet_like import PlanetLike, Plate
+from ..life import MoonLife
 from ...chemistry import Rock
+from ...terrain import Ocean
 # from ...terrain import Ocean, Sky
 from genesys.nested.data import lookups
 
@@ -21,7 +23,7 @@ class Moon(PlanetLike):
 
         @classmethod
         def biosphere(cls):
-            yield Ghost.probable(0.1)
+            yield MoonLife
 
         @classmethod
         def plates(cls):
@@ -38,7 +40,7 @@ class TerraformedMoon(Moon, TerraformedMixin):
         @classmethod
         def plates(cls):
             yield from Continent.multiple(1, 4)
-            # yield from Ocean.multiple(1, 4)
+            yield from Ocean.multiple(1, 4)
 
         @classmethod
         def sky(cls):

@@ -52,23 +52,18 @@ class OrganicMatter(Matter):
     polymers = Matter.children_property(Polymers)
 
     class Factory(Matter.Factory):
-        @classmethod
-        def components(cls):
-            yield from ListFactory([
+        def children(self):
+            yield from next(ListFactory([
                 Proteins,
                 Lipids,
                 Glucids,
-            ])
-            yield from ([
+            ]))
+            yield from next(ListFactory([
                 Proteins,
                 Lipids,
                 Glucids,
                 None,
-            ])
-
-        def children(self):
-            for component in self.components():
-                yield from next(component)
+            ]))
             yield Salt.probable(30)
 
 

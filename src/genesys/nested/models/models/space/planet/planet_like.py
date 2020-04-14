@@ -1,23 +1,21 @@
 from genesys.nested.models.models.unknown import Continent, VisitorCity, VisitorInstallation
 from genesys.nested.models import Model
-from genesys.nested.models.mixins import EncounteredMixin
 from .atmosphere import Atmosphere
-from ..life import PlanetCoreLife
+from ..life import Habitat, PlanetCoreLife
 from ...chemistry import Diamond, Ice, Iron, Magma, Rock
-# from ...terrain import Ocean
+from ...terrain import Ocean
 
 
-class Orbit(Model, EncounteredMixin):
+class Orbit(Habitat):
     pass
 
 
-class PlanetCore(Model, EncounteredMixin):
-    life = Model.children_property(PlanetCoreLife)
-    minerals = Model.children_property(Rock)
+class PlanetCore(Habitat):
+    minerals = Habitat.children_property(Rock)
 
     default_name = 'core'
 
-    class Factory(Model.Factory):
+    class Factory(Habitat.Factory):
         @classmethod
         def life(cls):
             yield PlanetCoreLife
@@ -51,7 +49,7 @@ class PlanetLike(Orbit):
     plates = Model.children_property(Plate)
     # sky = Model.children_property(Sky)
     land = Model.children_property(Continent)
-    # water = Model.children_property(Ocean)
+    water = Model.children_property(Ocean)
     visited = Model.children_property(VisitorCity, VisitorInstallation)
 
     class Factory(Orbit.Factory):

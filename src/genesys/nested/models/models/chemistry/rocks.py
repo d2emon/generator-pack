@@ -1,25 +1,23 @@
-from genesys.nested.models import Model
-from .elements import elements, Atom
 from .matter import Matter, Silica
 
 
 class Rock(Matter):
-    contents = Model.children_property(Silica, Atom)
+    contents = Matter.children_property(Matter)
 
     class Factory(Matter.Factory):
         def children(self):
             yield Silica
-            yield elements['Al'].probable(30)
-            yield elements['Fe'].probable(20)
-            yield elements['K'].probable(20)
-            yield elements['Na'].probable(50)
-            yield elements['Ca'].probable(50)
+            yield Matter.from_atoms('Al').probable(30)
+            yield Matter.from_atoms('Fe').probable(20)
+            yield Matter.from_atoms('K').probable(20)
+            yield Matter.from_atoms('Na').probable(50)
+            yield Matter.from_atoms('Ca').probable(50)
 
 
 class Diamond(Rock):
     class Factory(Matter.Factory):
         def children(self):
-            yield elements['C']
+            yield Matter.from_atoms('C')
 
 
 class Magma(Rock):
@@ -29,4 +27,4 @@ class Magma(Rock):
 class Iron(Rock):
     class Factory(Matter.Factory):
         def children(self):
-            yield elements['Fe']
+            yield Matter.from_atoms('Fe')
