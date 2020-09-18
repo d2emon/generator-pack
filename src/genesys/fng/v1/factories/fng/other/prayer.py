@@ -136,6 +136,6 @@ class Prayer(ComplexGenerated):
     def generate(cls, deity=None):
         prayer = super().generate()
         prayer.deity = deity or cls.deity_provider.generate()
-        # next_data = {key: next(d) for key, d in cls.provider.items()}
+        # next_data = {key: next(d) for key, d in cls.providers.items()}
         # return cls(deity, **next_data)
         return prayer

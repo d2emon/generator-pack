@@ -1,12 +1,16 @@
-from factories.factory import Factory
+from .factory import Factory
 
 
 class DiceFactory(Factory):
-    default_data = None
-
     def __init__(self, dices=None):
-        super().__init__()
-        self.data = dices
+        super().__init__(dices)
 
-    def __next__(self):
-        return sum(self.data.roll())
+    def model(self, *args, **kwargs):
+        """
+        Roll dice
+
+        :param args: Roll args
+        :param kwargs: Roll kwargs
+        :return: Roll result
+        """
+        return sum(self.provider.roll())

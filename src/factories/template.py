@@ -1,33 +1,30 @@
-from providers.template import LetterProvider, NumberProvider
-from factories.factory import Factory
+from .factory import Factory
 
 
 class TemplateFactory(Factory):
-    class DataProvider:
-        @property
-        def replacers(self):
-            return {
-                '{c}': LetterProvider(),
-                '{n}': NumberProvider(),
-            }
-
-    default_template = '{c}{n}'
-
     def __init__(self, provider=None):
         super().__init__(provider)
+        self.template = '{c}{n}'
         self.__text = None
 
-    def value(self):
-        template = self.template
-        replacers = self.provider.replacers
-        for k, v in replacers.items():
-            while k in template:
-                template = template.replace(k, next(v), 1)
-        return template
+    @property
+    def model(self, *args, **kwargs):
+        """
+        Apply providers for templates
 
-    def strip(self):
-        return self.value().strip()
+        :param args: Provider args
+        :param kwargs: Provider.kwargs
+        :return: Text from factory data
+        """
+        return self.provider.text(self.template)
 
     @classmethod
     def glue(cls, parts, glue=""):
-        return glue.join(next(i) for i in parts).capitalize()
+        """
+        Glue parts into one text
+
+        :param parts: Text parts
+        :param glue: Glue
+        :return: Glued text
+        """
+        return glue.join(next(i) for i in parts)

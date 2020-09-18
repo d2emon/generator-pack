@@ -8,11 +8,19 @@ from sample_data.generator_fixtures.space import fixtures
 class BaseGalaxyGenerator(DictFactory):
     galaxy_names = fixtures.galaxy_names
     generated_class = Galaxy
-    template = "{part1} {part2}"
+    template =
     data = {
         'part1': ListFactory(galaxy_names[0]),
         'part2': ListFactory(galaxy_names[1]),
     }
+
+    @property
+    def text(self):
+        """
+        Generate text from factory data
+        :return: str
+        """
+        return f"{self.data['part1']} {self.data['part2']}"
 
     @classmethod
     def __next__1(cls):

@@ -1,50 +1,38 @@
 from models.models import Model
+from .providers import DataProvider
 
 
 class Factory:
-    class DataProvider:
-        pass
-
-    default_data = {}
-    default_template = '{}'
-    model_class = Model
-
     def __init__(self, provider=None):
-        self.__data = None
-        self.__template = None
-        self.provider = provider or self.DataProvider()
-
-    @property
-    def data(self):
-        if self.__data is None:
-            self.__data = self.default_data
-        return self.__data
-
-    @data.setter
-    def data(self, value):
-        self.__data = value
-
-    @property
-    def template(self):
-        if self.__template is None:
-            self.__template = self.default_template
-        return self.__template
-
-    @template.setter
-    def template(self, value):
-        self.__template = value
+        self.provider = provider or DataProvider()
+        self.data = None
+        self.model_class = Model
 
     def __iter__(self):
+        """
+        Factory iterator
+
+        :return: Factory
+        """
         return self
 
     def __next__(self):
+        """
+        Generate model with default params
+
+        :return: Model
+        """
         return self.model()
 
-    def value(self):
-        return self.template.format(self.data)
-
     def model(self, *args, **kwargs):
-        value = self.value()
+        """
+        Generate model
+
+        :param args: Model args
+        :param kwargs: Model kwargs
+        :return: Generated model
+        """
+        value = str(self.data)
         return value and self.model_class(
             value=value,
             # *args,

@@ -2,15 +2,21 @@ from .template import TemplateFactory
 
 
 class DictFactory(TemplateFactory):
-    default_template = '{name}'
+    def model(self, *args, **kwargs):
+        """
+        Get values from all factories
 
-    def __init__(self, provider=None):
-        super().__init__(provider)
-        self.__template = None
+        :param args:
+        :param kwargs:
+        :return: Values from all factories
+        """
+        return {key: next(factory) for key, factory in self.data.items()}
 
     def factory(self, key):
-        return self.data.get(key)
+        """
+        Get item from data
 
-    def value(self):
-        data = {key: next(factory) for key, factory in self.data.items()}
-        return self.template.format(**data)
+        :param key: Item Key
+        :return: Item from data
+        """
+        return self.data.get(key)

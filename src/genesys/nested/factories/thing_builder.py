@@ -60,9 +60,9 @@ class ThingBuilder:
         data_provider_class = self.data_provider_class or self.DataProvider
         self.provider = provider or data_provider_class()
         self.thing = None
-        # self.name_factory = self.NameFactory(self.provider)
-        # self.base_factory = self.BaseFactory(self.provider)
-        # self.children_factory = self.ChildrenFactory(self.provider)
+        # self.name_factory = self.NameFactory(self.providers)
+        # self.base_factory = self.BaseFactory(self.providers)
+        # self.children_factory = self.ChildrenFactory(self.providers)
 
     @property
     def name(self):
