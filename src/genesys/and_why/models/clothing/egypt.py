@@ -1,5 +1,5 @@
 from .clothing import Clothing
-from .. import slots
+from ... import slots
 
 
 class Accessory(Clothing):

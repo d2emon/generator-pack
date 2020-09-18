@@ -1,5 +1,4 @@
-from models.and_why import clothing
-
+from ..models import clothing
 
 female = [
     clothing.Accessory('Чаша'),

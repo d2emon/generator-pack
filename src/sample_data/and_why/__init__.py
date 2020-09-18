@@ -1,5 +1,5 @@
 from orm.models.data_item import DataItem
-from . import egypt, groups
+from genesys.and_why.sample_data import egypt, groups
 
 
 def fill():

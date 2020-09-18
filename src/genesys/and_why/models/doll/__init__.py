@@ -1,13 +1,13 @@
 import random
 from orm.models.slotted import Slotted, SlotItem
-from .. import slots
+from ... import slots
 
 
 class DollModel(Slotted):
     SLOTS = slots.SLOTS
 
-    def __init__(self, gender):
-        super().__init__()
+    def __init__(self, gender, **fields):
+        super().__init__(**fields)
         self.gender = gender
 
     def pop(self, item):
