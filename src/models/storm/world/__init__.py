@@ -1,10 +1,10 @@
-from orm.model import Model
+from orm.models.model import DbModel
 from sample_data.storm.worlds import worlds
 from .shape import WorldShape
 from .world_type import WorldType
 
 
-class World(Model):
+class World(DbModel):
     database = worlds
     fields = [
         'size',

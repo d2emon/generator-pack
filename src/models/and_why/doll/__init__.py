@@ -1,5 +1,5 @@
 import random
-from models.slotted import Slotted, SlotItem
+from orm.models.slotted import Slotted, SlotItem
 from .. import slots
 
 

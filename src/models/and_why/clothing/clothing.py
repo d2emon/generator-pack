@@ -1,4 +1,4 @@
-from models.slotted import SlotItem
+from orm.models.slotted import SlotItem
 
 
 class Clothing(SlotItem):

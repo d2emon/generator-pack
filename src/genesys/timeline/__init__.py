@@ -11,7 +11,7 @@ that you’d expect to read about in the history scrolls. And, since events ofte
 age, you’ll note that the number of these turning points decreases as one travels back along the setting’s timeline.
 The implication is that the more distant the era, the more pivotal the events.
 """
-from models.data_manager import DataManager
+from providers.data_manager import DataManager
 from models import timeline
 from . import era
 

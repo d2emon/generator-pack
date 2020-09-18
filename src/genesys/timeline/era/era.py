@@ -1,6 +1,6 @@
 from dice.dice import Dice
 from factories import ListFactory, DiceFactory
-from models.data_manager import DataManager
+from providers.data_manager import DataManager
 from models.timeline.event import Event
 
 

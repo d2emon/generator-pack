@@ -1,5 +1,5 @@
 from models import dndspeak
-from models.data_manager import DataManager
+from providers.data_manager import DataManager
 from providers import RandomItemProvider
 from sample_data.dndspeak import groups
 

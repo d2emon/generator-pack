@@ -1,6 +1,6 @@
 from factories import ListFactory
 from models.and_why import DollModel, genders
-from models.data_manager import DataManager
+from providers.data_manager import DataManager
 from providers import RandomItemProvider
 from sample_data.and_why import groups
 

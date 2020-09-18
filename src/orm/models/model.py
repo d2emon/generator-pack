@@ -1,12 +1,31 @@
 class Model:
-    database = None
-    fields = []
     children = {}
 
     def __init__(self, **fields):
         self.uuid = None
-        for k, v in fields.items():
-            self.__setattr__(k, v)
+        for field, value in fields.items():
+            self.__setattr__(field, value)
+
+    def with_children(self):
+        """
+        Fill model with random children
+
+        :return:
+        """
+        for k, v in self.children.items():
+            if self.__getattribute__(k) is None:
+                self.__setattr__(k, v.random())
+
+        return self
+
+    @classmethod
+    def random(cls):
+        return cls().with_children()
+
+
+class DbModel(Model):
+    database = None
+    fields = []
 
     def __serialize(self):
         """
@@ -17,7 +36,7 @@ class Model:
         result = {}
         for field in (self.fields + list(self.children.keys())):
             value = self.__getattribute__(field)
-            result[field] = value if not isinstance(value, Model) else value.uuid
+            result[field] = value if not isinstance(value, self.__class__) else value.uuid
         return result
 
     @classmethod
@@ -36,16 +55,6 @@ class Model:
         """
         self.database.update(self.__serialize())
         self.database.save()
-
-    def fill_children(self):
-        """
-        Fill model with random children
-
-        :return:
-        """
-        for k, v in self.children.items():
-            if self.__getattribute__(k) is None:
-                self.__setattr__(k, v.random())
 
     # Get data
     @classmethod
@@ -86,9 +95,4 @@ class Model:
         :return: Model
         """
         record = cls.__deserialize(cls.database.random())
-        if not record:
-            return None
-
-        record.fill_children()
-
-        return record
+        return record and record.with_children()
