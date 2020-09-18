@@ -1,17 +1,20 @@
 import sys
 
-from genesys.generator import Item
+from genesys.afactory.model import Item
 
 
 # from v1.tag import Tag, get_DOM
 
 
+ITEMS = []
+
+
 def show_all():
-    global ITEMS
     print("-" * 20)
     for c in ITEMS:
         print(c)
     print("-" * 20)
+
 
 def show_item(items):
     print(items)
@@ -34,8 +37,8 @@ def show_item(items):
     return items[1:]
 
 
-def main(args):
-    print("Building...")
+def main(*args):
+    print('Building...')
 
     # clean_things()
 
@@ -44,6 +47,7 @@ def main(args):
 
     data = args
     while True:
+        print(data or 'NO DATA')
         if len(data) <= 0:
             data = [input()]
 
@@ -54,5 +58,5 @@ def main(args):
 
 
 if __name__ == "__main__":
-    args = sys.argv[1:]
-    main(args)
+    sys_args = sys.argv[1:]
+    main(*sys_args)
