@@ -1,6 +1,6 @@
 import os
 import uuid
-from config import CONFIG
+from config import DB_CONFIG
 
 
 class DataFile:
@@ -19,7 +19,7 @@ class Database:
 
     def __init__(self, **config):
         self.config = {
-            **CONFIG,
+            **DB_CONFIG,
             **config,
         }
         self._data = None
