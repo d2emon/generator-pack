@@ -11,8 +11,11 @@ class Street:
 
 
 class StreetFactory(MarkovFactory):
-    def __init__(self):
-        super().__init__(StreetChain)
+    def __init__(self, provider=None):
+        super().__init__(provider or StreetChain)
+
+    def model_class(self):
+        return Street
 
     def model(self, *args, **kwargs):
         """
@@ -22,4 +25,4 @@ class StreetFactory(MarkovFactory):
         :param kwargs: Chain kwargs
         :return: Street
         """
-        return Street(super().model(*args, **kwargs))
+        return self.model_class(super().model(*args, **kwargs))
