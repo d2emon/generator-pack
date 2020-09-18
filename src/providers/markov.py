@@ -9,31 +9,43 @@ class MarkovChain(DataProvider):
         raise NotImplementedError()
 
 
+class MarkovUnit:
+    def __init__(self, prev, value):
+        self.prev = prev
+        self.value = value
+
+
 class MarkovDataProvider:
     prepend = ' '
     append = '\n'
 
-    @classmethod
-    def __parse_item(cls, value, offset, item_length):
-        first_char_id = offset - item_length
-        last_char_id = offset + item_length
+    def __init__(self, unit_length=2):
+        self.unit_length = unit_length
 
-        prepend = ''
-        if first_char_id < 0:
-            prepend = cls.prepend * (0 - first_char_id)
-            first_char_id = 0
+    @property
+    def starter(self):
+        return self.prepend * self.unit_length
 
-        append = ''
-        if last_char_id >= len(value):
-            append = value[offset:] + cls.append * (last_char_id - len(value))
-            last_char_id = len(value)
+    def __parse_unit(self, text, character_id):
+        first_id = character_id - self.unit_length
+        if first_id < 0:
+            prepend = self.prepend * (0 - first_id)
+            first_id = 0
+        else:
+            prepend = ''
 
-        initial_string = prepend + value[first_char_id:offset]
-        final_string = value[offset:last_char_id] + append
-        return initial_string, final_string
+        last_id = character_id + self.unit_length
+        if last_id > len(text):
+            append = text[character_id:last_id] + self.append * (last_id - len(text))
+            last_id = len(text)
+        else:
+            append = ''
 
-    @classmethod
-    def parse_string(cls, value, item_length):
-        # value = (self.start_char * length) + value + (self.break_char * length)
-        chain = [cls.__parse_item(value, offset, item_length) for offset in range(len(value))]
-        return {key: block for key, block in chain}
+        return MarkovUnit(
+            prepend + text[first_id:character_id],
+            text[character_id:last_id] + append,
+        )
+
+    def parse_string(self, text):
+        for item_id in range(len(text)):
+            yield self.__parse_unit(text, item_id)
