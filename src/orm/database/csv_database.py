@@ -1,11 +1,25 @@
 import csv
-from orm.database import DataFile, Database
+from config import DB_CONFIG
+from .file_database import DataFile, FileDatabase
 
 
 class CSVDataFile(DataFile):
+    def __init__(self, filename, fields=None):
+        super().__init__(filename)
+        self.fields = fields
+
+    def __prepare(self, record):
+        """
+        Inject uuid to record
+
+        :param record: Record
+        :return: Injected record
+        """
+        return {field: record[field_id] for field_id, field in enumerate(self.fields)}
+
     def load(self):
         with open(self.filename, 'r') as f:
-            yield from list(csv.reader(f))
+            yield from map(self.__prepare, csv.reader(f))
 
     def save(self, data):
         with open(self.filename, 'w') as f:
@@ -14,18 +28,11 @@ class CSVDataFile(DataFile):
                 writer.writerow(record)
 
 
-class CSVDatabase(Database):
-    data_file_class = CSVDataFile
+class CSVDatabase(FileDatabase):
+    def __init__(self, filename='', fields=None, **config):
+        super().__init__(filename, **config)
+        self.fields = fields or []
 
-    def __init__(self, **config):
-        super().__init__(**config)
-        self.fields = config.get('fields', [])
-
-    def load(self):
-        self._data = [
-            {
-                name: row[field_id]
-                for field_id, name in enumerate(self.fields)
-            }
-            for row in self.data_file.load()
-        ]
+    @property
+    def data_file(self):
+        return CSVDataFile(self.filename, self.fields)

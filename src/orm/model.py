@@ -1,6 +1,3 @@
-import random
-
-
 class Model:
     database = None
     fields = []
@@ -11,8 +8,12 @@ class Model:
         for k, v in fields.items():
             self.__setattr__(k, v)
 
-    # Serializing
     def __serialize(self):
+        """
+        Serialize model fields
+
+        :return: Dict with model data
+        """
         result = {}
         for field in (self.fields + list(self.children.keys())):
             value = self.__getattribute__(field)
@@ -21,39 +22,73 @@ class Model:
 
     @classmethod
     def __deserialize(cls, data=None):
+        """
+        Deserizlize model from dict
+
+        :param data: Dict with model data
+        :return: Deserialized model
+        """
         return cls(**data) if data is not None else None
 
-    # Save data
     def save(self):
+        """
+        Save serialized model to database
+        """
         self.database.update(self.__serialize())
         self.database.save()
 
+    def fill_children(self):
+        """
+        Fill model with random children
+
+        :return:
+        """
+        for k, v in self.children.items():
+            if self.__getattribute__(k) is None:
+                self.__setattr__(k, v.random())
+
     # Get data
     @classmethod
-    def __all(cls, query=lambda item: True):
-        return filter(query, cls.database.data)
-
-    @classmethod
     def all(cls, query=lambda item: True):
-        return map(cls.__deserialize, cls.__all(query))
+        """
+        Get all models from db
+
+        :param query: Db query
+        :return: Deserialized model
+        """
+        return map(cls.__deserialize, cls.database.all(query))
 
     @classmethod
     def first(cls, query=lambda item: True):
-        return next(cls.all(query), None)
+        """
+        Get first model from db
+
+        :param query: Db query
+        :return: Deserialized model
+        """
+        return cls.__deserialize(cls.database.first())
 
     @classmethod
     def get(cls, item_id):
-        return cls.first(lambda item: item.get('uuid') == item_id)
+        """
+        Get model by item id
+
+        :param item_id: Model uuid
+        :return: Deserialized model
+        """
+        return cls.__deserialize(cls.database.get(item_id))
 
     @classmethod
     def random(cls):
-        records = list(cls.all())
-        record = random.choice(records) if len(records) > 0 else cls()
+        """
+        Get random model from db with random children
+
+        :return: Model
+        """
+        record = cls.__deserialize(cls.database.random())
         if not record:
             return None
 
-        for k, v in cls.children.items():
-            if record.__getattribute__(k) is None:
-                record.__setattr__(k, v.random())
+        record.fill_children()
 
         return record

@@ -1,64 +1,78 @@
-import os
+import random
 import uuid
-from config import DB_CONFIG
-
-
-class DataFile:
-    def __init__(self, filename):
-        self.filename = filename
-
-    def load(self):
-        raise NotImplementedError()
-
-    def save(self, data):
-        raise NotImplementedError()
 
 
 class Database:
-    data_file_class = None
-
     def __init__(self, **config):
-        self.config = {
-            **DB_CONFIG,
-            **config,
-        }
-        self._data = None
-
-    @property
-    def filename(self):
-        filename = self.config.get('filename')
-        return os.path.join(self.config['DATABASE_ROOT'], filename) if filename else None
-
-    @property
-    def data_file(self):
-        return self.data_file_class(self.filename)
+        self.config = config
 
     @property
     def data(self):
-        if self._data is None:
-            self.load()
-        self._data = [self.__inject_uuid(**record) for record in self._data]
-        return self._data
-
-    def load(self):
-        self._data = list(self.data_file.load())
-        return self._data
-
-    def save(self):
-        self.data_file.save(self.data)
+        """
+        :return: Data from db
+        """
+        raise NotImplementedError()
 
     def update(self, fields):
+        """
+        Update record by uuid or create new record
+
+        :param fields: Fields to update
+        :return:
+        """
         item_id = fields.get('uuid')
         if item_id is None:
-            self._data.append(fields)
+            self.data.append(fields)
             return
 
         for item in filter(lambda i: i.get('uuid') == item_id, self.data):
             item.update(fields)
 
-    @classmethod
-    def __inject_uuid(cls, **record):
+    def prepare(self, record):
+        """
+        Prepare loaded record
+
+        :param record: Record
+        :return: Prepared record
+        """
         return {
             'uuid': record.get('uuid', str(uuid.uuid4())),
             **record,
         }
+
+    # For models
+    def all(self, query=lambda item: True):
+        """
+        Get all data from db
+
+        :param query: Db query
+        :return: Filtered data
+        """
+        return filter(query, self.data)
+
+    def first(self, query=lambda item: True):
+        """
+        Get first data from db
+
+        :param query: Db query
+        :return: Data
+        """
+        return next(self.all(query), None)
+
+    def get(self, item_id):
+        """
+        Get item by uuid
+
+        :param item_id: uuid
+        :return: Data
+        """
+        return self.first(lambda item: item.get('uuid') == item_id)
+
+    def random(self):
+        """
+        Get random data from db
+
+        :return: Data
+        """
+        records = list(self.all())
+        record = random.choice(records) if len(records) > 0 else None

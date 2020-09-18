@@ -1,15 +1,11 @@
-from orm.database import DataFile, Database
-
-
-class MemoryDataFile(DataFile):
-    __data = []
-
-    def load(self):
-        yield from self.__data
-
-    def save(self, data):
-        self.__data = list(data)
+from .database import Database
 
 
 class MemoryDatabase(Database):
-    data_file_class = MemoryDataFile
+    def __init__(self, **config):
+        super().__init__(**config)
+        self.__data = []
+
+    @property
+    def data(self):
+        return self.__data
