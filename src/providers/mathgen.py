@@ -1,7 +1,11 @@
 import random
+from .provider import DataProvider
 
 
-class MathDataProvider:
+class MathDataProvider(DataProvider):
+    def __next__(self):
+        return random.uniform(0, 100)
+
     @property
     def radius(self):
         while True:

@@ -9,6 +9,9 @@ class TextDataProvider(DataProvider):
     groups = ListItemProvider([])
     data = {}
 
+    def __next__(self):
+        return self.parts()
+
     @property
     def block(self):
         """
@@ -64,7 +67,7 @@ class NameDataProvider(TextDataProvider):
         return [next(part) for part in self.factory(race_id)]
 
 
-class ListDataProvider(NameDataProvider):
+class DictDataProvider(NameDataProvider):
     # default = []
     data = ListItemProvider([])
 
@@ -91,7 +94,7 @@ class ListDataProvider(NameDataProvider):
         return next(data) if data is not None else []
 
 
-class GenderDataProvider(ListDataProvider):
+class GenderDataProvider(DictDataProvider):
     # default = {}
     data = {}
 

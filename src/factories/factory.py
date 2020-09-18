@@ -1,5 +1,4 @@
 from models.models import Model
-from .providers import DataProvider
 
 
 class Factory:
@@ -8,7 +7,7 @@ class Factory:
     """
 
     def __init__(self, provider=None):
-        self.provider = provider or DataProvider()
+        self.provider = provider
         self.data = None
 
     @property
