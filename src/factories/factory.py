@@ -3,10 +3,17 @@ from .providers import DataProvider
 
 
 class Factory:
+    """
+    Generate value
+    """
+
     def __init__(self, provider=None):
         self.provider = provider or DataProvider()
         self.data = None
-        self.model_class = Model
+
+    @property
+    def model_class(self):
+        return Model
 
     def __iter__(self):
         """

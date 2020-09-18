@@ -2,6 +2,10 @@ from .factory import Factory
 
 
 class TemplateFactory(Factory):
+    """
+    Generate text from template
+    """
+
     def __init__(self, provider=None):
         super().__init__(provider)
         self.template = '{c}{n}'

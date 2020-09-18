@@ -1,15 +1,10 @@
 from factories.factory import Factory
 
 
-class MarkovChain:
-    def generate(self, length=32, *args, **kwargs):
-        raise NotImplementedError()
-
-
 class MarkovFactory(Factory):
-    def __init__(self, provider=None, chain=None):
-        super().__init__(provider)
-        self.chain = chain or MarkovChain()
+    """
+    Generate value from markov chain
+    """
 
     def model(self, *args, **kwargs):
         """
@@ -19,4 +14,4 @@ class MarkovFactory(Factory):
         :param kwargs: Chain kwargs
         :return: Values from markov chain
         """
-        return self.chain.generate(*args, **kwargs)
+        return self.provider.generate(*args, **kwargs)

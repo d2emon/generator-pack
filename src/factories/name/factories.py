@@ -4,6 +4,10 @@ from ..factory import Factory
 
 
 class TextFactory(Factory):
+    """
+    Generate name from data
+    """
+
     def model(self, group_id=None, *args, **kwargs):
         """
         Get name
@@ -17,6 +21,10 @@ class TextFactory(Factory):
 
 
 class NameFactory(TextFactory):
+    """
+    Generate name by race
+    """
+
     gender = genders.NEUTRAL
 
     def model(self, race_id=None, *args, **kwargs):
@@ -32,6 +40,10 @@ class NameFactory(TextFactory):
 
 
 class ListNameFactory(NameFactory):
+    """
+    Generate name by gender
+    """
+
     def model(self, gender=genders.NEUTRAL, *args, **kwargs):
         """
         Get name

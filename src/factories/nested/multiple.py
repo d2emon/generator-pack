@@ -3,6 +3,10 @@ from .thing import ThingFactory
 
 
 class MultipleFactory(ThingFactory):
+    """
+    Generate multiple items
+    """
+
     def __init__(
         self,
         provider=None,

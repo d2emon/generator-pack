@@ -3,6 +3,10 @@ from ..factory import Factory
 
 
 class RadiationFactory(Factory):
+    """
+    Generate radiated point
+    """
+
     def __init__(
         self,
         provider=None,

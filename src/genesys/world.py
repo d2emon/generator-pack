@@ -4,7 +4,12 @@ from providers.file_provider import FileProvider
 
 
 class WorldFactory(DictFactory):
-    generated_class = World
-    data = {
-        'name': FileProvider('data/world.txt'),
-    }
+    def __init__(self, provider=None):
+        super().__init__(provider)
+        self.data = {
+            'name': FileProvider('data/world.txt'),
+        }
+
+    @property
+    def model_class(self):
+        return World

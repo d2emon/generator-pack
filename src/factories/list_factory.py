@@ -3,9 +3,13 @@ from .factory import Factory
 
 
 class ListFactory(Factory):
-    def __init__(self, provider=None):
+    """
+    Generate random value from list
+    """
+
+    def __init__(self, provider=None, data=None):
         super().__init__(provider)
-        self.data = []
+        self.data = data or []
 
     def model(self, *args, **kwargs):
         """

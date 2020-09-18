@@ -11,21 +11,21 @@ class Era(DataManager):
 
     def __init__(self):
         super().__init__()
-        self.__count = DiceFactory(self.count_dice)
-        self.__year = DiceFactory(self.years_dice)
-        self.__event_generators = ListFactory(None, self.events_data)
+        self.__count_factory = DiceFactory(self.count_dice)
+        self.__year_factory = DiceFactory(self.years_dice)
+        self.__event_factory = ListFactory(None, self.events_data)
 
     @property
     def count(self):
-        return self.__count
+        return self.__count_factory
 
     @property
     def year(self):
-        return self.__year
+        return self.__year_factory
 
     @property
     def event_generators(self):
-        return self.__event_generators
+        return self.__event_factory
 
     def events(self):
         for _ in range(next(self.count)):

@@ -3,6 +3,10 @@ from .thing import ThingFactory
 
 
 class ProbableFactory(ThingFactory):
+    """
+    Generate probable item
+    """
+
     def __init__(
         self,
         provider=None,

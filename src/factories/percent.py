@@ -3,6 +3,10 @@ from .factory import Factory
 
 
 class PercentFactory(Factory):
+    """
+    Generate value from factories with percents
+    """
+
     default_value = None
 
     def factory(self, chance=None):

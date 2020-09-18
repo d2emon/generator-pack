@@ -2,6 +2,10 @@ from .template import TemplateFactory
 
 
 class DictFactory(TemplateFactory):
+    """
+    Generate values from dictionary with factories
+    """
+
     def model(self, *args, **kwargs):
         """
         Get values from all factories
