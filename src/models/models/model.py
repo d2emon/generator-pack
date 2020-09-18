@@ -1,11 +1,4 @@
-from providers import DataProvider
-
-
 class Model:
-    class DataProvider(DataProvider):
-        def __next__(self):
-            return None
-
     fields = []
     generator = None
 
@@ -30,7 +23,7 @@ class Model:
 
     @classmethod
     def provider(cls):
-        return DataProvider()
+        raise NotImplementedError()
 
     @classmethod
     def generate(cls):
