@@ -1,10 +1,8 @@
-class Model:
+from orm.models import Model as BaseModel
+
+
+class Model(BaseModel):
     # factories.generator.Generated
     def __init__(self):
         self.value = None
         self.generated_text = ''
-
-
-class MarkovChain:
-    # factories.generator.MarkovChain
-    pass
