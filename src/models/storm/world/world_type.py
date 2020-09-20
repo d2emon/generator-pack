@@ -1,10 +1,10 @@
 import random
-from orm.model import Model
+from orm.models.model import DbModel
 from sample_data.storm.worlds import types
 from .size import WorldSize
 
 
-class WorldType(Model):
+class WorldType(DbModel):
     database = types
     fields = [
         'world_type',

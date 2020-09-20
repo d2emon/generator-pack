@@ -1,0 +1,14 @@
+from ..lookup import Lookup
+
+
+d2emon_thoughts = Lookup(
+    'OH MY GOD WHAT ARE YOU DOING HERE TURN BACK IMMEDIATELY',
+    'WHAT IS WRONG WITH YOU',
+    'WHAT THE HELL GO AWAY',
+    'WHAT ARE YOU DOING OH GOD',
+    'WHY THE HELL ARE YOU HERE',
+    'I DO WHAT I WANT OKAY',
+    'NO I DON\'T CARE GO AWAY',
+    'WHAT DID I EVEN DO TO YOU',
+    'OH NO WHY THIS',
+)

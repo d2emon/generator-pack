@@ -1,5 +1,5 @@
 from sample_data.fixtures import race
-from factories.factory import Factory, ListFactory
+from factories import Factory, ListFactory
 
 
 class RaceFixtures:

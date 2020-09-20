@@ -1,7 +1,5 @@
+import config
 import os
-
-
-ROOT_PATH = os.path.abspath(os.path.join(os.path.curdir))
 
 
 def load_lines(filename):
@@ -10,12 +8,11 @@ def load_lines(filename):
     :param filename:
     :return:
     """
-    full_filename = os.path.join(ROOT_PATH, filename)
+    full_filename = os.path.join(config.CURRENT_PATH, filename)
 
-    lines = []
     with open(full_filename, "r", encoding='utf-8') as f:
-        lines = [line.strip() for line in f]
-    return lines
+        for line in f:
+            yield line.strip()
 
 
 def load_text(filename):

@@ -2,5 +2,7 @@ from ..factory import Factory
 
 
 class ThingFactory(Factory):
-    def value(self):
-        return None
+    """
+    Base factory for nested
+    """
+    pass

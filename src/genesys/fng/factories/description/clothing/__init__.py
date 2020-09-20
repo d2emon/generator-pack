@@ -17,8 +17,8 @@ class BaseClothingFactory(Factory):
 
     def __next__(self):
         return MaleClothing(
-            # race=next(self.provider.races)
-            # mark = next(self.provider.marks)
+            # race=next(self.providers.races)
+            # mark = next(self.providers.marks)
             jacket=next(JacketFactory()),
             shirt=next(ShirtFactory()),
             belt=next(BeltFactory()),

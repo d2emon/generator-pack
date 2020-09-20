@@ -1,5 +1,5 @@
 import json
-from orm.database import DataFile, Database
+from .file_database import DataFile, FileDatabase
 
 
 class JSONDataFile(DataFile):
@@ -12,5 +12,7 @@ class JSONDataFile(DataFile):
             json.dump(list(data), f)
 
 
-class JSONDatabase(Database):
-    data_file_class = JSONDataFile
+class JSONDatabase(FileDatabase):
+    @property
+    def data_file(self):
+        return JSONDataFile(self.filename)

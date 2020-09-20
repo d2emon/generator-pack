@@ -1,21 +1,40 @@
 import random
-from factories.factory import Factory
+from .factory import Factory
 
 
 class ListFactory(Factory):
-    default_data = []
+    """
+    Generate random value from list
+    """
 
     def __init__(self, provider=None, data=None):
         super().__init__(provider)
-        self.data = data
+        self.data = data or []
 
-    def value(self):
+    def model(self, *args, **kwargs):
+        """
+        Select random item
+
+        :param args: Roll args
+        :param kwargs: Roll kwargs
+        :return: Random item
+        """
         return random.choice(self.data)
 
     def unique(self, count=1):
+        """
+        Select random items
+
+        :param count: Number of items to select
+        :return: Random items
+        """
         data = [*self.data]
         random.shuffle(data)
-        return (item for item in data[:count])
+        for item in data[:count]:
+            yield item
 
     def __len__(self):
+        """
+        :return: Data length
+        """
         return len(self.data)

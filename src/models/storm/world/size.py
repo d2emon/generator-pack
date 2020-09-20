@@ -1,9 +1,9 @@
 import random
-from orm.model import Model
+from orm.models.model import DbModel
 from sample_data.storm.worlds import sizes
 
 
-class WorldSize(Model):
+class WorldSize(DbModel):
     database = sizes
     fields = [
         'name',

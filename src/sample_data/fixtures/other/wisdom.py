@@ -122,7 +122,7 @@ wisdom = [
     "Let your dreams, not your nightmares, define who you are.\nLet your hopes, not your hurts, shape your future. (Robert H. Schuller)",
     "A stranger can only become trustworthy by first putting your trust in this person.\nThe only way to make a man trustworthy is to trust him. (Henry L. Stimson)",
     "Trust in all your senses to avoid being blinded by one.\nMen trust their ears less than their eyes. (Herodotus)",
-    "Don't trust those who speak without showing their intentions.\nNever trust anything that can think for itself if you can't see where it keeps its brain. (J. K. Rowling)",
+    "Don't trust those who speak without showing their intentions.\nNever trust anything that can think for itself if you can't see where it keeps its mind. (J. K. Rowling)",
     "You can't control how people treat you, but you can control how you react.\nHow people treat you is their karma; how you react is yours. (Wayne Dyer)",
     "When none challenge your ideas it is especially important to closely evaluate them.\nWhatever you do in life, surround yourself with smart people who'll argue with you. (John Wooden)",
 ]

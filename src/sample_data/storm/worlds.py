@@ -1,6 +1,5 @@
 import os
-from orm.database.json_database import JSONDatabase
-from orm.database.csv_database import CSVDatabase
+from orm.database import CSVDatabase, JSONDatabase
 
 
 BASE_DIR = 'worlds'

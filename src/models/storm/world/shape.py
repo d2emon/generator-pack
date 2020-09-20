@@ -1,8 +1,8 @@
-from orm.model import Model
+from orm.models.model import DbModel
 from sample_data.storm.worlds import shapes
 
 
-class WorldShape(Model):
+class WorldShape(DbModel):
     database = shapes
     fields = [
         'name',
