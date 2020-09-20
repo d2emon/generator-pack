@@ -5,8 +5,7 @@ from utils.loaders import load_lines
 
 class FileProvider(ListProvider):
     def __init__(self, filename=""):
-        path = os.path.abspath(os.path.join('..', 'factories', filename))
-        super().__init__(load_lines(path))
+        super().__init__(list(load_lines(filename)))
 
 
 class FileDataProvider(ListDataProvider):

@@ -14,7 +14,8 @@ class DictFactory(TemplateFactory):
         :param kwargs:
         :return: Values from all factories
         """
-        return {key: next(factory) for key, factory in self.data.items()}
+        data = {key: next(factory) for key, factory in self.data.items()}
+        return self.model_class(*args, **data, **kwargs) if self.model_class is not None else data
 
     def factory(self, key):
         """
