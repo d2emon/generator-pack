@@ -14,15 +14,9 @@ class WorldDataProvider:
 
 
 class World(Model):
-    title = "World"
     fields = [
         'name',
     ]
-
-    def __init__(self, **fields):
-        super().__init__(**fields)
-        self.value = None
-        self.generated_text = ''
 
     def __str__(self):
         return str(self['name'])
