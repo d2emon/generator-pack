@@ -1,14 +1,18 @@
-import random
-from orm.models.slotted import Slotted, SlotItem
-from ... import slots
+from orm.models.slotted import Slotted
+from ...sample_data.genders import DEFAULT
 
 
-class DollModel(Slotted):
-    SLOTS = slots.SLOTS
+class Doll(Slotted):
+    fields = [
+        'gender',
+    ]
 
-    def __init__(self, gender, **fields):
-        super().__init__(**fields)
-        self.gender = gender
+    def __init__(self, gender=None, **fields):
+        super().__init__(gender=gender or DEFAULT, **fields)
+
+    @property
+    def gender(self):
+        return self['gender']
 
     def pop(self, item):
         if item is None:
@@ -28,16 +32,3 @@ class DollModel(Slotted):
 
     def put_on(self, item):
         self.push(item)
-
-    def __random_slots(self):
-        return (slot for slot in self.SLOTS if random.randrange(100) < 75)
-
-    @classmethod
-    def __random_item(cls, slot, items):
-        available_items = list(SlotItem.by_slot(slot, items))
-        return random.choice(available_items) if len(available_items) > 0 else None
-
-    def fill(self, items):
-        items = list(items)
-        for slot in self.__random_slots():
-            self.put_on(self.__random_item(slot, items))

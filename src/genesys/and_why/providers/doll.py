@@ -1,17 +1,13 @@
-from providers import DataProvider
 from factories import ListFactory
-from utils import genders
+from ..sample_data.genders import GENDERS, MALE, FEMALE
 
 
-class DollDataProvider(DataProvider):
+class DollDataProvider:
+    MALE = MALE
+    FEMALE = FEMALE
+
     def __init__(self):
-        self.__genders = ListFactory(None, [
-            genders.MALE,
-            genders.FEMALE,
-        ])
-
-    def __next__(self):
-        raise NotImplementedError()
+        self.__genders = ListFactory(None, GENDERS)
 
     @property
     def genders(self):

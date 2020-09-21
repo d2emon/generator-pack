@@ -1,18 +1,16 @@
-from utils import genders
-from providers import DataProvider, RandomItemProvider
-from ..sample_data import groups
+from providers import RandomItemProvider
+from ..sample_data.genders import GENDERS
+from ..sample_data import fill
 
 
-class ClothingDataProvider(DataProvider):
+class ClothingDataProvider:
+    __filled = False
+
     def __init__(self):
-        self.__factories = {
-            genders.MALE: RandomItemProvider(groups.MALE),
-            genders.FEMALE: RandomItemProvider(groups.FEMALE),
+        self.__factories = {gender: RandomItemProvider(gender) for gender in GENDERS}
+        if not self.__filled:
+            fill()
+            self.__filled = True
 
-        }
-
-    def __next__(self):
-        raise NotImplementedError()
-
-    def gender_factory(self, gender):
+    def by_gender(self, gender):
         return self.__factories[gender]

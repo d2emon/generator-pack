@@ -8,6 +8,14 @@ class DataItem(Model):
     ]
     items = []
 
+    @property
+    def group_id(self):
+        return self['group_id']
+
+    @property
+    def value(self):
+        return self['value']
+
     def save(self):
         self.items.append(self)
 

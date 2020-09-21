@@ -29,11 +29,11 @@ class Slotted(Model):
 
     def pop(self, item):
         if item is not None:
-            self.__fill_slots(item, None)
+            self.__fill_slots(item.slots, None)
 
     def push(self, item):
         if item is not None:
-            self.__fill_slots(item, item)
+            self.__fill_slots(item.slots, item)
 
     def release(self, *slots):
         for slot in slots:
