@@ -44,3 +44,7 @@ class Factory:
             # *args,
             **kwargs,
         )
+
+    def items(self, items_count=5):
+        for _ in range(items_count):
+            yield next(self)
