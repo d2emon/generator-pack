@@ -1,11 +1,12 @@
-from factories import Factory
+from factories import ModelFactory
 from ..models import Doll
 
 
-class DollFactory(Factory):
+class DollFactory(ModelFactory):
+    @property
+    def data(self):
+        return None
+
     @property
     def model_class(self):
         return Doll
-
-    def model(self, *args, **kwargs):
-        return self.model_class(*args, **kwargs)

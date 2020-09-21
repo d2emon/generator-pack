@@ -22,18 +22,23 @@ class RadiationFactory(Factory):
         :param end_point: Ending point for radiation
         :param speed: Radiation speed
         """
-        super().__init__(provider)
+        super().__init__()
+        self.__provider = provider
         self.start_point = start_point or Point.polar(
-            next(self.provider.radius),
-            next(self.provider.angle),
+            next(self.__provider.radius),
+            next(self.__provider.angle),
         )
         self.end_point = end_point or Point.polar(
-            next(self.provider.radius),
+            next(self.__provider.radius),
             0,  # next(self.providers.angle),
         )
-        self.speed = speed or next(self.provider.speed)
+        self.speed = speed or next(self.__provider.speed)
 
-    def model(self, time=None, *args, **kwargs):
+    @property
+    def data(self):
+        return self.__provider
+
+    def build(self, time=None, *args, **kwargs):
         """
         Get point by time
 
@@ -43,7 +48,7 @@ class RadiationFactory(Factory):
         :return: Point
         """
         if time is None:
-            time = next(self.provider.time)
+            time = next(self.data.time)
 
         return Point.diffuse(
             self.start_point,

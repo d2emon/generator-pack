@@ -1,16 +1,33 @@
-from factories.factory import Factory
+from orm.models import MarkovChain
+from .model import ModelFactory
 
 
-class MarkovFactory(Factory):
+class MarkovFactory(ModelFactory):
     """
     Generate value from markov chain
     """
 
-    def __init__(self, provider=None, max_length=32):
-        super().__init__(provider)
+    def __init__(self, provider, max_length=32):
+        super().__init__()
+        self.__data = provider
         self.max_length = max_length
 
-    def model(self, *args, **kwargs):
+    @property
+    def data(self):
+        return self.__data
+
+    @property
+    def model_class(self):
+        return MarkovChain
+
+    def fill(self, chain):
+        while len(chain) < self.max_length:
+            unit = self.data[str(chain.last)]
+            if unit is None:
+                return
+            chain.append(unit)
+
+    def build(self, *args, **kwargs):
         """
         Get Markov chain
 
@@ -18,11 +35,7 @@ class MarkovFactory(Factory):
         :param kwargs: Chain kwargs
         :return: Markov chain
         """
-        chain = self.model_class(self.provider)
+        chain = self.model_class(*args, **kwargs)
         chain.reset()
-        while len(chain) < self.max_length:
-            unit = self.provider[str(chain.last)]
-            if unit is None:
-                return chain
-            chain.append(unit)
+        self.fill(chain)
         return chain

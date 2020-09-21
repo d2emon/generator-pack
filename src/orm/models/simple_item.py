@@ -1,12 +1,11 @@
-from factories import Factory, ListFactory
 from .model import Model
 
 
 class SimpleItem(Model):
-    class NameFactory(Factory):
+    class NameFactory:
         default = 'Unnamed'
 
-    class DataFactory(ListFactory):
+    class DataFactory:
         default = []
 
     __name_factory = None

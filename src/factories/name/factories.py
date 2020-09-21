@@ -1,14 +1,28 @@
 from models.models.name import Name
 from sample_data import genders
-from ..factory import Factory
+from ..model import ModelFactory
 
 
-class TextFactory(Factory):
+class TextFactory(ModelFactory):
     """
     Generate name from data
     """
+    def __init__(self, provider):
+        super().__init__()
+        self.__data = provider
 
-    def model(self, group_id=None, *args, **kwargs):
+    @property
+    def model_class(self):
+        return Name
+
+    @property
+    def data(self):
+        return self.__data
+
+    def model(self, **kwargs):
+        return self.model_class(*self.data.parts(**kwargs), generator=self)
+
+    def build(self, group_id=None, *args, **kwargs):
         """
         Get name
 
@@ -17,7 +31,7 @@ class TextFactory(Factory):
         :param kwargs: Name kwargs
         :return: Name
         """
-        return Name(*self.provider.parts(group_id=group_id, **kwargs), generator=self)
+        return self.model(group_id=group_id, **kwargs)
 
 
 class NameFactory(TextFactory):
@@ -27,7 +41,7 @@ class NameFactory(TextFactory):
 
     gender = genders.NEUTRAL
 
-    def model(self, race_id=None, *args, **kwargs):
+    def build(self, race_id=None, *args, **kwargs):
         """
         Get name
 
@@ -36,7 +50,7 @@ class NameFactory(TextFactory):
         :param kwargs: Name kwargs
         :return: Name
         """
-        return Name(*self.provider.parts(race_id=race_id, **kwargs), generator=self)
+        return self.model(race_id=race_id, **kwargs)
 
 
 class ListNameFactory(NameFactory):
@@ -44,7 +58,7 @@ class ListNameFactory(NameFactory):
     Generate name by gender
     """
 
-    def model(self, gender=genders.NEUTRAL, *args, **kwargs):
+    def build(self, gender=genders.NEUTRAL, *args, **kwargs):
         """
         Get name
 
@@ -53,4 +67,4 @@ class ListNameFactory(NameFactory):
         :param kwargs: Name kwargs
         :return: Name
         """
-        return Name(*self.provider.get_parts(gender=gender, **kwargs), generator=self)
+        return self.model(gender=gender, **kwargs)

@@ -1,18 +1,15 @@
-from models.models import Model
-
-
 class Factory:
     """
     Generate value
     """
 
-    def __init__(self, provider=None):
-        self.provider = provider
-        self.data = None
+    # def __init__(self, provider=None):
+    #     self.provider = provider
+    #     self.data = None
 
     @property
-    def model_class(self):
-        return Model
+    def data(self):
+        raise NotImplementedError()
 
     def __iter__(self):
         """
@@ -24,27 +21,30 @@ class Factory:
 
     def __next__(self):
         """
-        Generate model with default params
+        Generate result with default params
 
-        :return: Model
+        :return: Result
         """
-        return self.model()
+        return self.build()
 
-    def model(self, *args, **kwargs):
+    def build(self, *args, **kwargs):
         """
-        Generate model
+        Generate result
 
-        :param args: Model args
-        :param kwargs: Model kwargs
-        :return: Generated model
+        :param args: Build args
+        :param kwargs: Build kwargs
+        :return: Result
         """
-        value = str(self.data)
-        return value and self.model_class(
-            value=value,
-            # *args,
-            **kwargs,
-        )
+        return str(self.data) or None
 
-    def items(self, items_count=5):
-        for _ in range(items_count):
-            yield next(self)
+    def items(self, count=5, *args, **kwargs):
+        """
+        Generate multiple results
+
+        :param count: Number of results
+        :param args: Build args
+        :param kwargs: Build kwargs
+        :return: Results
+        """
+        for _ in range(count):
+            yield self.build(*args, **kwargs)

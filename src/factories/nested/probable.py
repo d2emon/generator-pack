@@ -9,36 +9,42 @@ class ProbableFactory(ThingFactory):
 
     def __init__(
         self,
-        provider=None,
         probability=100,
     ):
         """
         Probable factory constructor
 
-        :param provider: Data providers
         :param probability: Item probability
         """
-        super().__init__(provider)
+        super().__init__()
         self.probability = probability
 
-    def probable(self):
+    @property
+    def data(self):
+        raise NotImplementedError()
+
+    def probable(self, probability=None):
         """
         Have chance to generate
 
+        :param probability: Probability of model
         :return: If generation is needed
         """
         if self.probability <= 0:
             return False
         if self.probability >= 100:
             return True
-        return random.uniform(0, 100) <= self.probability
+        if probability is None:
+            probability = random.uniform(0, 100)
+        return probability <= self.probability
 
-    def model(self, *args, **kwargs):
+    def build(self, probability=None, *args, **kwargs):
         """
         Get model if needed
 
+        :param probability: Probability of model
         :param args: Model args
         :param kwargs: Model kwargs
         :return: Model
         """
-        return next(super()) if self.probable() else None
+        return next(super()) if self.probable(probability) else None

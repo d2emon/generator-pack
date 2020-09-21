@@ -7,11 +7,17 @@ class ListFactory(Factory):
     Generate random value from list
     """
 
-    def __init__(self, provider=None, data=None):
-        super().__init__(provider)
-        self.data = data or []
+    @property
+    def data(self):
+        raise NotImplementedError()
 
-    def model(self, *args, **kwargs):
+    def __len__(self):
+        """
+        :return: Data length
+        """
+        return len(self.data)
+
+    def build(self, *args, **kwargs):
         """
         Select random item
 
@@ -28,13 +34,7 @@ class ListFactory(Factory):
         :param count: Number of items to select
         :return: Random items
         """
-        data = [*self.data]
-        random.shuffle(data)
-        for item in data[:count]:
+        values = [*self.data]
+        random.shuffle(values)
+        for item in values[:count]:
             yield item
-
-    def __len__(self):
-        """
-        :return: Data length
-        """
-        return len(self.data)

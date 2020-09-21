@@ -1,8 +1,11 @@
-from ..factory import Factory
+from ..model import ModelFactory
 
 
-class ThingFactory(Factory):
+class ThingFactory(ModelFactory):
     """
     Base factory for nested
     """
-    pass
+
+    @property
+    def data(self):
+        raise NotImplementedError()
