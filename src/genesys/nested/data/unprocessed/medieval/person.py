@@ -1,4 +1,4 @@
-from genesys.nested.models.models.person import ClothingSet, Person
+from generated.nested_v2.models.person import ClothingSet, Person
 
 
 # medieval people

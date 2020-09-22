@@ -1,44 +1,40 @@
-from genesys.nested.factories.thing_builder import ThingBuilder
-from .generating import GeneratingModel
+from ..factories.thing_builder import ThingBuilder
+from genesys.nested.models.mixins.generating import GeneratingModel
 from .tree import TreeModel
+from .placeholder import Placeholder
 
 
-class Placeholder:
-    def __init__(self, model_class, builder, **params):
-        self.model_class = model_class
-        self.builder = builder()
-        self.__model = None
-        self.params = params
+class ModelBuilder:
+    class Factory(ThingBuilder):
+        pass
 
-    def __build(self):
-        params = {
-            **self.builder.build(),
-            **self.params,
-        }
-        self.__model = self.model_class(**params)
-        return self.__model
+    @classmethod
+    def placeholder(cls, **kwargs):
+        return Placeholder(cls, cls.Factory, **kwargs)
 
-    @property
-    def model(self):
-        return self.__model or self.__build()
-
-    @model.setter
-    def model(self, value):
-        self.__model = value
-
-    @property
-    def placeholder(self):
-        return self
+    @classmethod
+    def build(cls, parent=None, **kwargs):
+        model = cls.placeholder(**kwargs).model
+        if parent is not None:
+            parent.add_child(model)
+        return model
 
 
 class Model(GeneratingModel, TreeModel):
     default_name = None
 
-    class Factory(ThingBuilder):
-        pass
-
-    def __init__(self, name=None, base=None, children=None, parent=None):
-        super().__init__(name or self.__default_name, children, parent)
+    def __init__(
+        self,
+        name=None,
+        base=None,
+        children=None,
+        parent=None,
+    ):
+        super().__init__(
+            name or self.__default_name,
+            children,
+            parent,
+        )
         self.__base = base
         self.__children = children
 
@@ -74,20 +70,6 @@ class Model(GeneratingModel, TreeModel):
     def children(self, value):
         self.__children = value
 
-    def add_child(self, child):
-        self.__children.append(child)
-
     @property
     def model(self):
         return self
-
-    @classmethod
-    def placeholder(cls, **kwargs):
-        return Placeholder(cls, cls.Factory, **kwargs)
-
-    @classmethod
-    def build(cls, parent=None, **kwargs):
-        model = cls.placeholder(**kwargs).model
-        if parent is not None:
-            parent.add_child(model)
-        return model

@@ -1,5 +1,5 @@
 import random
-from ..utils import camel_case_to_spaces
+from utils.camel_case import camel_case_to_spaces
 from .children import ChildFactory
 from .name import NameFactory
 
