@@ -1,4 +1,4 @@
-class CyberpunkQuestGenerator:
+class CyberpunkQuestFactory:
     @classmethod
     def generate_quest_giver(cls):
         """
