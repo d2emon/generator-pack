@@ -1,6 +1,6 @@
 from factories import Factory
 from .slot import SlotFactory
-from ..managers import ClothingManager
+from ..managers import DollManager
 
 
 class ClothingFactory(Factory):
@@ -8,7 +8,7 @@ class ClothingFactory(Factory):
         super().__init__()
         self.__data = provider
         self.__slot_factory = SlotFactory(provider)
-        self.__manager = ClothingManager()
+        self.__manager = DollManager(provider)
 
     @property
     def data(self):

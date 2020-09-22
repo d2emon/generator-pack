@@ -6,10 +6,12 @@ class ListFactory(Factory):
     """
     Generate random value from list
     """
+    def __init__(self, data=()):
+        self.__data = data
 
     @property
     def data(self):
-        raise NotImplementedError()
+        return self.__data
 
     def __len__(self):
         """

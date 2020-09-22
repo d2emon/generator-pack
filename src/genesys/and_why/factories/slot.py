@@ -1,7 +1,7 @@
 import random
 from factories import ListFactory
 from orm.models.slotted import SlotItem
-from genesys.and_why.models.slots import SLOTS
+from ..models.slots import SLOTS
 
 
 class SlotFactory(ListFactory):

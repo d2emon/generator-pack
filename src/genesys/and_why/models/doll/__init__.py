@@ -1,5 +1,5 @@
 from orm.models.slotted import Slotted
-from ...sample_data.genders import DEFAULT
+from ...data.genders import DEFAULT
 
 
 class Doll(Slotted):
