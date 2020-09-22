@@ -1,7 +1,7 @@
 from genesys.fng.factories.factory import Factory
 from genesys.fng.models.description.clothing import MaleClothing, FemaleClothing
 from genesys.fng.providers.description.clothing import DataProvider
-from models.generator_models.character.sex import Male, Female
+from genesys.generator_models.character import Male, Female
 
 from .jacket import JacketFactory
 from .shirt import ShirtFactory

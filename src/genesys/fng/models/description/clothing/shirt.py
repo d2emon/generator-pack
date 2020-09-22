@@ -1,4 +1,4 @@
-from models.models import Model
+from orm.models.models import Model
 
 
 class Shirt(Model):

@@ -1,5 +1,5 @@
 from factories import DictFactory
-from models.generator_models.character.attitude import Attitude
+from genesys.generator_models.character import Attitude
 
 
 class MaleAttitudeFactory(DictFactory):

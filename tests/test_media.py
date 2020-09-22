@@ -1,4 +1,4 @@
-from models.media import simulate
+from genesys.media import simulate
 
 
 def test_media():

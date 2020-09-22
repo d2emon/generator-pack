@@ -1,5 +1,5 @@
 from factories import DictFactory
-from models.generator_models.character.eyes import Eyes
+from genesys.generator_models.character import Eyes
 
 
 class EyesFactory(DictFactory):

@@ -1,5 +1,5 @@
 from factories import DictFactory
-from models.generator_models.character.special import SpecialSign, Scar, Tattoo, TribalMark, Moles, Freckles, Beard
+from genesys.generator_models.character import SpecialSign, Scar, Tattoo, TribalMark, Moles, Freckles, Beard
 
 
 class SpecialSignFactory(DictFactory):

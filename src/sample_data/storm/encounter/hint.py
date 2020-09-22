@@ -1,4 +1,4 @@
-from models.storm.encounters.encounter import Encounter
+from genesys.storm.storm import Encounter
 
 
 class HintEncounter(Encounter):

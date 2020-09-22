@@ -1,5 +1,5 @@
 from factories import DictFactory
-from models.generator_models.character.promise import Promise
+from genesys.generator_models.character.promise import Promise
 
 
 class PromiseFactory(DictFactory):

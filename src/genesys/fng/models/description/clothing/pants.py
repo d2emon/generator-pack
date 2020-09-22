@@ -1,6 +1,3 @@
-from models.models import Model
-
-
 class Pants(Sleeves):
     def __init__(self):
         self.name = "pants"

@@ -1,6 +1,6 @@
 from factories import DictFactory, ListFactory, PercentFactory, TemplateFactory
 # from factories.template import FactoryTemplate
-from models.generator_models.space.galaxy import Galaxy
+from genesys.generator_models.space import Galaxy
 
 from sample_data.generator_fixtures.space import fixtures
 

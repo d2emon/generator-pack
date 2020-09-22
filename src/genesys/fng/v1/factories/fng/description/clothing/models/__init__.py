@@ -1,4 +1,4 @@
-from models.models import Model
+from orm.models.models import Model
 from genesys.fng.v1.factories.character import Male, Female
 from ..jacket import JacketGenerator
 from ..shirt import ShirtGenerator

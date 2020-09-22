@@ -1,4 +1,4 @@
-from models.models.point import Point
+from orm.models.models import Point
 from ..factory import Factory
 
 

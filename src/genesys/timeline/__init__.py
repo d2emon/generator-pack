@@ -12,8 +12,7 @@ age, you’ll note that the number of these turning points decreases as one trav
 The implication is that the more distant the era, the more pivotal the events.
 """
 from providers.data_manager import DataManager
-from models import timeline
-from . import era
+from . import era, timeline
 
 
 class TimelineManager(DataManager):

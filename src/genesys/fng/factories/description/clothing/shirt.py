@@ -1,4 +1,3 @@
-from models.models import Model
 from factories.factories.list_factory import ListFactory
 from genesys.fng.models.description.clothing.shirt import Shirt
 from .sleeves import SleevesFactory

@@ -1,8 +1,3 @@
-from models.models import Model
-from factories.factory import DictFactory
-from .sleeves import DressSleevesFactory
-
-
 class FabricGenerator(ListGenerator):
     generated_class = Fabric
     descriptions = [

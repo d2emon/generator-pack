@@ -1,4 +1,4 @@
-from models.models.name import Name
+from orm.models.models import Name
 from sample_data import genders
 from ..model import ModelFactory
 

@@ -1,9 +1,9 @@
 import random
 from factories import Factory
 # from .special import SpecialSignGenerator, ScarGenerator, TattooGenerator
-from models.generator_models.character import Character
+from genesys.generator_models.character import Character
 from . import special as s
-from models.generator_models.character.sex import Male, Female
+from genesys.generator_models.character import Male, Female
 from .race import Race, Human, Vampire, Werewolf
 from .race.elf import Elf, NightElf, BloodElf, HighElf, WoodElf, DarkElf
 from .race.gnome import Gnome

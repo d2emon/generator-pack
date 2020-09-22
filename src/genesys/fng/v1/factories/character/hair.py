@@ -1,5 +1,5 @@
 from factories import DictFactory
-from models.generator_models.character.hair import Hair
+from genesys.generator_models.character import Hair
 
 
 class HairFactory(DictFactory):

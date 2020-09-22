@@ -1,4 +1,4 @@
-from models.rpg.pc import PlayerCharacter as BasePlayerCharacter
+from genesys.rpg.rpg.pc import PlayerCharacter as BasePlayerCharacter
 
 
 class PlayerCharacter(BasePlayerCharacter):

@@ -1,7 +1,7 @@
 from dice.dice import Dice
 from factories import ListFactory, DiceFactory
 from providers.data_manager import DataManager
-from models.timeline.event import Event
+from genesys.timeline.timeline import Event
 
 
 class Era(DataManager):

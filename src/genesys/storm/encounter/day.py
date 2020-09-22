@@ -1,4 +1,4 @@
-from models.storm.encounters.day import Day as DayModel
+from genesys.storm.storm import Day as DayModel
 
 
 class Day(DayModel):

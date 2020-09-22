@@ -1,5 +1,5 @@
 from factories import DictFactory
-from models.generator_models.character.name import Name
+from genesys.generator_models.character import Name
 
 
 class NameFactory(DictFactory):

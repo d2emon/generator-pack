@@ -1,8 +1,3 @@
-from models.models import Model
-from factories.factory import DictFactory
-from .sleeves import Sleeves, SleevesFactory
-
-
 class PantsGenerator(SleevesGenerator):
     generated_class = Pants
     styles = [

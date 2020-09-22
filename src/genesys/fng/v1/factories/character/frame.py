@@ -1,5 +1,5 @@
 from factories import DictFactory
-from models.generator_models.character.frame import Frame
+from genesys.generator_models.character import Frame
 
 
 class FrameFactory(DictFactory):

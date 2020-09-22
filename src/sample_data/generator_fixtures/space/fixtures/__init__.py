@@ -1,5 +1,5 @@
-from models.generator_models.space.star_type import SunType
-from models.generator_models.space.planet_subs import PlanetAtmosphere, EarthPlanet, LayerPlanet, TerPlanet, MoonPlanet, GasPlanet, PlanetSize, SolarSystemSize, PlanetSubtype
+from genesys.generator_models.space import SunType
+from genesys.generator_models.space import PlanetAtmosphere, EarthPlanet, LayerPlanet, TerPlanet, MoonPlanet, GasPlanet, PlanetSize, SolarSystemSize, PlanetSubtype
 
 
 galaxy_names = [
