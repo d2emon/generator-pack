@@ -1,9 +1,9 @@
 import random
 from dice.dice import Dice
-from genesys.storm.storm import Event as EventModel
+from ..history.encounters.event import Event as EventModel
+from ..history.encounters.fraction import Fraction
 from sample_data.storm.encounter import ENCOUNTER_TYPES
 from sample_data.storm.encounter.distance import DISTANCES
-from genesys.storm.storm import Fraction
 
 
 class Event(EventModel):

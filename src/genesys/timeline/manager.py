@@ -1,6 +1,6 @@
 from providers.data_manager import DataManager
+from generated.history import Timeline
 from .provider import DataProvider
-from .model import TimelineModel
 
 
 class TimelineManager(DataManager):
@@ -9,4 +9,4 @@ class TimelineManager(DataManager):
 
     @classmethod
     def timeline(cls):
-        return TimelineModel(cls.get_provider().timeline)
+        return Timeline(*cls.get_provider().timeline)

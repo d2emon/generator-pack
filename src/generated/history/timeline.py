@@ -1,5 +1,5 @@
-class TimelineModel:
-    def __init__(self, events):
+class Timeline:
+    def __init__(self, *events):
         self.__events = list(events)
 
     @property

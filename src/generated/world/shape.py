@@ -1,4 +1,4 @@
-from orm.models.model import DbModel
+from orm.models import DbModel
 from sample_data.storm.worlds import shapes
 
 

@@ -1,7 +1,7 @@
 from dice.dice import Dice
 from factories import ListFactory, DiceFactory
+from generated.history import Event
 from providers.data_manager import DataManager
-from ..model import Event
 
 
 class Era(DataManager):

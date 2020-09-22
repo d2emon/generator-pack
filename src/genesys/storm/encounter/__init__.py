@@ -108,8 +108,7 @@
 """
 # from config.storm import CONFIG
 from dice.dice import Dice
-from .day import Day
-from .event import DailyEvent, NightlyEvent
+from generated.encounter import Day, DailyEvent, NightlyEvent
 
 
 class EncountersManager:

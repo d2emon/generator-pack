@@ -12,8 +12,8 @@ age, you’ll note that the number of these turning points decreases as one trav
 The implication is that the more distant the era, the more pivotal the events.
 """
 from .era import Era, Prehistory, Ancient, Past, Modern
+from .manager import TimelineManager
 from .provider import DataProvider
-from .model import TimelineModel
 
 
 
