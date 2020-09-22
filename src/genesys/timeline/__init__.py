@@ -11,45 +11,11 @@ that you’d expect to read about in the history scrolls. And, since events ofte
 age, you’ll note that the number of these turning points decreases as one travels back along the setting’s timeline.
 The implication is that the more distant the era, the more pivotal the events.
 """
-from providers.data_manager import DataManager
-from . import era, timeline
+from .era import Era, Prehistory, Ancient, Past, Modern
+from .provider import DataProvider
+from .model import TimelineModel
 
 
-class TimelineManager(DataManager):
-    class DataProvider(DataManager.DataProvider):
-        def __init__(self):
-            # self.__desert_encounters = DataItemFactory(groups.DESERT_ENCOUNTERS)
-            self.__prehistory = era.Prehistory()
-            self.__ancient = era.Ancient()
-            self.__past = era.Past()
-            self.__modern = era.Modern()
-
-        @property
-        def prehistory(self):
-            return self.__prehistory
-
-        @property
-        def ancient(self):
-            return self.__ancient
-
-        @property
-        def past(self):
-            return self.__past
-
-        @property
-        def modern(self):
-            return self.__modern
-
-        @property
-        def timeline(self):
-            yield from self.prehistory.events()
-            yield from self.ancient.events()
-            yield from self.past.events()
-            yield from self.modern.events()
-
-    @classmethod
-    def timeline(cls):
-        return timeline.TimelineModel(cls.get_provider().timeline)
 
 
 """
