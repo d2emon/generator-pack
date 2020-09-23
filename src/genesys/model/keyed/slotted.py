@@ -1,4 +1,4 @@
-from .model import Model
+from genesys.model.keyed.model import Model
 
 
 class SlotItem(Model):

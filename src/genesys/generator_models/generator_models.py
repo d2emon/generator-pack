@@ -1,8 +1,9 @@
-from orm.models import Model as BaseModel
+from genesys.model.model import Model as BaseModel
 
 
 class Model(BaseModel):
     # factories.generator.Generated
     def __init__(self):
+        super().__init__()
         self.value = None
         self.generated_text = ''

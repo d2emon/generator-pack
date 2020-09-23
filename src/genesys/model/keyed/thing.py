@@ -1,6 +1,6 @@
 from factories import ListFactory
 from factories.nested import ThingFactory, MultipleFactory, ProbableFactory
-from .simple_item import SimpleItem
+from genesys.model.keyed.simple_item import SimpleItem
 
 
 class Thing(SimpleItem):

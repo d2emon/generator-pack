@@ -1,5 +1,5 @@
 import random
-from orm.models.markov import MarkovUnit
+from genesys.model.keyed.markov import MarkovUnit
 # from .provider import DataProvider
 
 

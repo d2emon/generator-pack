@@ -1,6 +1,6 @@
 import random
 from factories import ListFactory
-from orm.models.slotted import SlotItem
+from genesys.model.keyed.slotted import SlotItem
 from ..models.slots import SLOTS
 
 

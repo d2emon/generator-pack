@@ -1,4 +1,4 @@
-from orm.models.slotted import Slotted
+from genesys.model.keyed.slotted import Slotted
 from ...data.genders import DEFAULT
 
 

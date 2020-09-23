@@ -1,4 +1,4 @@
-from orm.models.models import Model
+from genesys.model.models import Model
 
 
 class Material(Model):

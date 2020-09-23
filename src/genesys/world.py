@@ -1,7 +1,7 @@
 import os
 from factories import DictFactory
 from providers.file_provider import FileProvider
-from orm.models import Model
+from genesys.model.keyed import Model
 
 
 class WorldDataProvider:

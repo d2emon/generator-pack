@@ -1,4 +1,4 @@
-from orm.models import Model, MarkovChain
+from genesys.model.keyed import Model, MarkovChain
 
 
 class Street(Model):
