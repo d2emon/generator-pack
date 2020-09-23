@@ -1,6 +1,7 @@
-from .model import Model
+from .descriptive_model import DescriptiveModel
 
 
-class ListModel(Model):
+class ListModel(DescriptiveModel):
+    @property
     def description(self):
         return " ".join(self.value)

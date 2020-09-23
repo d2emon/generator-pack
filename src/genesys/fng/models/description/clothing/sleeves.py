@@ -1,4 +1,4 @@
-from genesys.model.models import Model
+from .clothing_model import ClothingModel
 
 
 class SleeveLength:
@@ -6,19 +6,19 @@ class SleeveLength:
         self.name = name
         self.is_long = is_long
 
-    def __repr__(self):
+    def __str__(self):
         return self.name
 
 
-class Sleeves(Model):
-    def __init__(self):
-        super().__init__()
+class Sleeves(ClothingModel):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
         self.length = SleeveLength("long", True)
         self.width = "incredibly wide"
         self.reach = "his hands"
         self.decoration = "a single thread lining from top to bottom"
 
-    def __repr__(self):
+    def __str__(self):
         return "%s and reach down to %s, they're decorated with %s" % (
             self.width,
             self.reach,

@@ -1,14 +1,12 @@
-from genesys.model.models import Model
+from .clothing_model import ClothingModel
 
 
-class Material(Model):
+class Material(ClothingModel):
     def __init__(self, name="leather", description=None):
+        super().__init__()
         self.name = name
-        if description is None:
-            self.description = self.name
-        else:
-            self.description = description
+        self.description = description or name
         self.rarity = "rare"
 
-    def __repr__(self):
+    def __str__(self):
         return self.name

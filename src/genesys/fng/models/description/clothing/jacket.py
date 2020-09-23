@@ -1,22 +1,24 @@
-from genesys.model.models import Model
+from .clothing_model import ClothingModel
 from .material import Material
 from .sleeves import Sleeves
 
 
-class Tie(Model):
-    def __init__(self):
-        self.description = "tightly tied with string"
+class Tie(ClothingModel):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.__description = "tightly tied with string"
         self.position = "at the center"
 
-    def __repr__(self):
+    def __str__(self):
         return " ".join([
-            self.description,
+            self.__description,
             self.position
         ])
 
 
-class Jacket(Model):
-    def __init__(self):
+class Jacket(ClothingModel):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
         self.name = "jacket"
         self.sleeves = Sleeves()
         self.material = Material("leather")
@@ -24,7 +26,7 @@ class Jacket(Model):
         self.tie = Tie()
         self.neckline = "round neckline"
 
-    def __repr__(self):
+    def __str__(self):
         return "%s sleeved, %s jacket" % (
             self.sleeves.length,
             self.material,

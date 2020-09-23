@@ -1,13 +1,14 @@
-from genesys.model.models import Model
+from .clothing_model import ClothingModel
 
 
-class Shoes(Model):
-    def __init__(self):
+class Shoes(ClothingModel):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
         self.name = "shoes"
         self.material = MaterialGenerator.generate()
         self.design = ""
 
-    def __repr__(self):
+    def __str__(self):
         return "%s %s" % (
             self.material.description,
             self.name,

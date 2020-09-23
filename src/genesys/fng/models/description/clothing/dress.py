@@ -1,20 +1,22 @@
-from genesys.model.models import Model
+from .clothing_model import ClothingModel
 
 
-class Fabric(Model):
-    def __init__(self):
+class Fabric(ClothingModel):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
         self.description = "comfortable"
         self.fabric = "buttoned up fabric"
 
-    def __repr__(self):
+    def __str__(self):
         return ", ".join([
             self.description,
             self.fabric
         ])
 
 
-class Dress(Model):
-    def __init__(self):
+class Dress(ClothingModel):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
         self.name = "dress"
         self.style = "delicate"
         self.fabric = FabricGenerator.generate()
@@ -31,7 +33,7 @@ class Dress(Model):
 
         self.outline = "edges"
 
-    def __repr__(self):
+    def __str__(self):
         return "%s dress flows from top to bottom and has a %s" % (
             self.style,
             self.neckline,

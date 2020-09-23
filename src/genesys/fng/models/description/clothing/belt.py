@@ -1,14 +1,15 @@
-from genesys.model.models import Model
+from .clothing_model import ClothingModel
 
 
-class Belt(Model):
-    def __init__(self):
+class Belt(ClothingModel):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
         self.size = "thin"
         self.name = "leather belt"
         self.buckle = "a big belt buckle"
         self.decoration = "purely decorative and a sign of wealth",
 
-    def __repr__(self):
+    def __str__(self):
         return self.name
 
     @property
@@ -21,15 +22,15 @@ class Belt(Model):
 
 
 class FemaleBelt(Belt):
-    def __repr__(self):
+    def __str__(self):
         return " ".join([
-           self.size,
+            self.size,
             self.name,
         ])
 
 
 class SleeveBand(Belt):
-    def __repr__(self):
+    def __str__(self):
         return "%s, %s %s" % (
             self.size,
             self.decoration,

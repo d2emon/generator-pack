@@ -1,18 +1,14 @@
 import random
-from .model import Model
+from .descriptive_model import DescriptiveModel
 
 
-class ComplexModel(Model):
+class ComplexModel(DescriptiveModel):
     factories = dict()
 
     @classmethod
-    def factory(cls, chance=0):
-        for c in sorted(cls.factories.keys()):
-            if c >= chance:
-                return cls.factories[c]
-        return None
+    def by_chance(cls, chance=0.0):
+        return next((cls.factories[c] for c in sorted(cls.factories.keys()) if c >= chance), None)
 
     @classmethod
-    def generate(cls):
-        factory = cls.factory(random.randint(0, 100))
-        return factory.generate() if factory is not None else None
+    def factory(cls):
+        return cls.by_chance(random.uniform(0, 100))

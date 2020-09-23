@@ -1,4 +1,4 @@
-from genesys.model.models import Model
+from genesys.model.models import DescriptiveModel
 from genesys.fng.v1.factories.character import Male, Female
 from ..jacket import JacketGenerator
 from ..shirt import ShirtGenerator
@@ -8,7 +8,7 @@ from ..shoes import ShoesGenerator
 from ..dress import DressGenerator
 
 
-class Clothing(Model):
+class Clothing(DescriptiveModel):
     # frame_generator = FrameGenerator
     # strange_generator = StrangeGenerator
 
@@ -79,6 +79,7 @@ class Clothing(Model):
 
 class MaleClothing(Clothing):
     def __init__(self, **kwargs):
+        super().__init__()
         self.sex = Male
         self.generate()
 
@@ -127,6 +128,7 @@ class MaleClothing(Clothing):
 
 class FemaleClothing(Clothing):
     def __init__(self, **kwargs):
+        super().__init__()
         self.sex = Female
         self.generate()
 
