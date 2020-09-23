@@ -5,7 +5,7 @@
 - Snow
 - Snowflakes
 """
-from ..model import Model
+from genesys.model.model import Model
 from .matter import Gas, Matter
 
 

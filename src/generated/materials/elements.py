@@ -2,7 +2,7 @@
 - Nucleus
 - Atom
 """
-from ..model import Model
+from genesys.model.model import Model
 from .particles import Electron, Proton, Neutron
 
 

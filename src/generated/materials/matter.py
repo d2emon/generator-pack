@@ -8,7 +8,7 @@
 - Fire
 - Steel
 """
-from ..model import Model
+from genesys.model.model import Model
 from .elements import Atom
 
 

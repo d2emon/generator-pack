@@ -1,4 +1,3 @@
-from ..model import Model
 from .matter import Gas, Matter, Molecule
 from .minerals import Salt
 from .water import Water

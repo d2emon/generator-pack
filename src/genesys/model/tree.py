@@ -1,16 +1,11 @@
 class TreeModel:
-    def __init__(self, name=None, children=None, parent=None):
-        self.__name = name
-        self.__children = children
+    def __init__(
+        self,
+        *children,
+        parent=None,
+    ):
+        self.__children = list(children)
         self.__parent = parent
-
-    @property
-    def name(self):
-        return self.__name
-
-    @name.setter
-    def name(self, value):
-        self.__name = value
 
     @property
     def children(self):
@@ -26,16 +21,18 @@ class TreeModel:
 
     @parent.setter
     def parent(self, value):
-        self.__parent = value
+        if self.__parent is not None:
+            self.__parent.remove_child(self)
 
-    def __str__(self):
-        return str(self.name)
-
-    def __repr__(self):
-        return "<{} \"{}\">".format(self.__class__.__name__, str(self))
+        value.add_child(self)
 
     def add_child(self, child):
         self.__children.append(child)
+        child.parent = self
+
+    def remove_child(self, child):
+        self.__children.remove(child)
+        child.parent = None
 
     def children_by_class(self, *child_classes):
         return (child for child in self.children if isinstance(child, child_classes))

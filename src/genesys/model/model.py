@@ -1,9 +1,8 @@
-from genesys.nested.models.tree import TreeModel
+from .named import NamedModel
+from .tree import TreeModel
 
 
-class Model(TreeModel):
-    default_name = None
-
+class Model(TreeModel, NamedModel):
     def __init__(
         self,
         name=None,
@@ -13,15 +12,11 @@ class Model(TreeModel):
         **kwargs,
     ):
         super().__init__(
-            name or self.__default_name,
-            list(children),
-            parent,
+            *children,
+            parent=parent,
         )
+        NamedModel.__init__(self, name)
         self.__placeholders = list(placeholders)
-
-    @property
-    def __default_name(self):
-        return self.default_name or self.__class__.__name__
 
     @property
     def children(self):

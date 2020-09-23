@@ -8,7 +8,7 @@
 - DownQuark
 - Qwubble
 """
-from ..model import Model
+from genesys.model.model import Model
 
 
 class Qwubble(Model):

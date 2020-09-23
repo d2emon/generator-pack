@@ -1,4 +1,4 @@
-from ..model import Model
+from genesys.model.model import Model
 
 
 class Portal(Model):

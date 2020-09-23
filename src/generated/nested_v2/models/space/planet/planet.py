@@ -1,6 +1,6 @@
 from generated.nested_v2.models import VisitorCity, VisitorInstallation, Continent, FutureContinent, \
     MedievalContinent, AncientContinent, FutureMoon
-from genesys.nested.models.mixins import TerraformedMixin
+from genesys.model.mixins import TerraformedMixin
 from .atmosphere import Atmosphere
 from .moon import Moon, TerraformedMoon
 from .planet_like import PlanetLike

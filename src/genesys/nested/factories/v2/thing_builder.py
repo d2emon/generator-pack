@@ -1,4 +1,5 @@
 import random
+from genesys.model.placeholder import Placeholder
 
 
 class ProviderFactory:
@@ -79,12 +80,12 @@ class ThingBuilder:
     #     return self.__build_base() or next(self.name_factory)
 
     def __build_children(self):
-        return [model.placeholder() for model in self.children() if model is not None]
+        return [model.Factory(model) for model in self.children() if model is not None]
 
     def build(self):
         return {
             'name': next(self.name),
-            'children': self.__build_children(),
+            'children': [Placeholder(factory) for factory in self.__build_children()],
         }
 
     @classmethod
