@@ -1,5 +1,5 @@
 from ..life import GasGiantLife, Habitat
-from generated.chemistry import Ammonia, Gas, Steam, Methane
+from generated.materials.chemistry import Ammonia, Gas, Steam, Methane
 
 
 class Atmosphere(Habitat):

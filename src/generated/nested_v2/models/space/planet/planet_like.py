@@ -2,7 +2,8 @@ from generated.nested_v2.models import Continent, VisitorCity, VisitorInstallati
 from genesys.nested.models import Model
 from .atmosphere import Atmosphere
 from ..life import Habitat, PlanetCoreLife
-from generated.chemistry import Diamond, Ice, Iron, Magma, Rock
+from generated.materials.chemistry import Ice
+from generated.materials import Diamond, Iron, Magma, Rock
 from ...terrain import Ocean
 
 

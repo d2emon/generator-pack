@@ -1,6 +1,6 @@
 from .body_part import Exoskeleton, Limb
 from ..body import BodyPart, Muscles, Fat
-from generated.chemistry import Chitin
+from generated.materials.chemistry import Chitin
 
 
 class CrustaceanBodyPart(BodyPart):

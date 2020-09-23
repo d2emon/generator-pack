@@ -1,11 +1,11 @@
 from ...unknown import Wood, Sugar, Dirt, Bird, BirdEgg, EggShell
-from genesys.nested.factories.thing_builder import ThingBuilder
+from genesys.nested.factories.v2.thing_builder import ThingBuilder
 from genesys.nested.models import Model
 from .cells import PlantCell
 from ..insect import Insect
 from ..mind import Thoughts, Thought
 from ..worm import Worm
-from generated.chemistry import Dew, OrganicMatter
+from generated.materials.chemistry import Dew, OrganicMatter
 
 
 class Twig(Model):

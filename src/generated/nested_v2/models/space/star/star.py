@@ -3,7 +3,7 @@ from genesys.nested.models import Model
 from ..life import Habitat, StarLife
 from ..planet import AncientPlanet, AsteroidBelt, BarrenPlanet, FuturePlanet, GasGiant, MedievalPlanet, Orbit, \
     Planet, TerraformedPlanet, VisitorPlanet
-from generated.chemistry import elements, Atom
+from generated.materials.chemistry import elements, Atom
 from genesys.nested.data import lookups
 
 

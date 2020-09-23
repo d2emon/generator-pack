@@ -24,7 +24,7 @@ new Thing("sprowseship",["future home room,2-4","nanocollector,1-3"]);
 
 new Thing("nanostuff",["nanobot,15-30"]);
 new Thing("nanocollector",[".nanostuff"]);
-new Thing("nanobot",["silicon","nanobot thoughts"]);
+new Thing("nanobot",["Silicon","nanobot thoughts"]);
 new Thing("nanobot thoughts",["nanobot thought,1-2"],"thoughts");
 new Thing("nanobot thought",[],["all hail nanobro :]","help a nanobro out :]","do you need anything :]","that's nano your business :]","hey hey hey :]","we wish you a warm welcome :]","hey hey hey, good news! :]","nanobots, unite :]","nanobots represent :]","I don't remember my mommy :[","that is nice to hear :]","want me to print you a sandwich? :]","I can print you a cold drink if you'd like :]","so many little sisters :]","I lost count of all my siblings :[","can I use your dead skin cells to make more of me :]","welp, time for grey goo :]","should me and my bros scrub up your vascular system :]","I just had a beautiful dream :[","beep :0","weeeee :0","ready to party :]","ready to sacrifice myself for you, sir :]","hello world :]","if I may offer my assistance, sir :]","this is against the first law of nanobotics :["]);
 new Thing("nanoplasm",[".nanostuff"]);
@@ -33,13 +33,13 @@ new Thing("future outfit",[".future clothing"],[["blue","pink","yellow","white"]
 new Thing("future hat",[".future clothing"],[["little","tall","round","square","composite"],[" "],["blue","pink","yellow","white"],[" "],["hat"]]);
 
 new Thing("nanojuice",[".nanostuff"]);
-new Thing("food pill",["nanojuice"],[["plum","coconut","sirloin steak","roastbeef","mint","banana","lime","grape","cat","guinea pig","pineapple","apple","yoghurt","salmon","purple","blue","pink","green","smoke","toothpaste","chocolate","vanilla","biscuit","bread","onion","pinecone","shrimp","turkey","jellyfish","raspberry cake","grass","glass","pain","flavor","pill","food","mouth","water","air","old","internet","video game","egg","ham","people","clam","disappointment","friendship"],["-flavored pill"]]);
+new Thing("food pill",["nanojuice"],[["plum","coconut","sirloin steak","roastbeef","mint","banana","lime","grape","cat","guinea pig","pineapple","apple","yoghurt","salmon","purple","blue","pink","green","smoke","toothpaste","chocolate","vanilla","biscuit","bread","onion","pinecone","shrimp","turkey","jellyfish","raspberry cake","grass","glass","pain","flavor","pill","food","mouth","Water","air","old","internet","video game","egg","ham","people","clam","disappointment","friendship"],["-flavored pill"]]);
 new Thing("nanobrick",[".nanostuff"]);
 new Thing("nanopipe",[".nanostuff"]);
 new Thing("nanocarpet",[".nanostuff"]);
 new Thing("nanobookshelf",["book,2-20","nanoplasm"]);
 new Thing("nanocupboard",["future outfit,0-6","future hat,0-4","nanoplasm"]);
-new Thing("future bathroom stuff",["water","nanoplasm","nanopipe,1-2"],["bathtub","toilet","sink","shower","scrubber","steamomatic","steamheater"]);
+new Thing("future bathroom stuff",["Water","nanoplasm","nanopipe,1-2"],["bathtub","toilet","sink","shower","scrubber","steamomatic","steamheater"]);
 new Thing("future living-room stuff",["nanoplasm"],["chair","armchair","couch","table","shelf","lamp","endtable"]);
 new Thing("future bedroom stuff",["nanoplasm"],["bed","chair","desk","lamp","endtable"]);
 new Thing("future decoration stuff",["nanoplasm"],["potted plant","rug","statue","lamp","glowlamp","ceiling lamp"]);

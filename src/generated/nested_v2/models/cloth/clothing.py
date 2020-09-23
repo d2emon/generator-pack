@@ -2,7 +2,7 @@ from generated.nested_v2.models import Dust, Crumbs, Lint, Donut, Coin, Pen, But
 from genesys.nested.models import Model
 from .fabric import Cloth, Textile, Leather
 from generated.nested_v2.models.biology import DeadSkin
-from generated.chemistry import Sweat, Plastic
+from generated.materials.chemistry import Sweat, Plastic
 
 
 class Clothing(Cloth):

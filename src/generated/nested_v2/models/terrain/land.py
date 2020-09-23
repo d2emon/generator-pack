@@ -2,7 +2,8 @@ from generated.nested_v2.models import DragonLair
 from genesys.nested.models import Model
 from .soil import Soil
 from .water import River, Lake
-from generated.chemistry import Fire, Snow, Rock, elements
+from generated.materials.chemistry import Fire, Snow, elements
+from generated.materials import Rock
 from ..biology import LandLife, ForestLife, JungleLife, MountainLife, CaveLife, Trees, JungleTrees, Humus, Grass
 
 

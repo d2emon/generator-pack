@@ -35,7 +35,7 @@ class TreeModel:
         return "<{} \"{}\">".format(self.__class__.__name__, str(self))
 
     def add_child(self, child):
-        self.children.append(child)
+        self.__children.append(child)
 
     def children_by_class(self, *child_classes):
         return (child for child in self.children if isinstance(child, child_classes))

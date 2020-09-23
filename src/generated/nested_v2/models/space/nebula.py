@@ -1,7 +1,7 @@
 from genesys.nested.models import Model
 from .life import Habitat, NebulaLife
 from .star import StarSystem, SingleStar
-from generated.chemistry import Ammonia, Gas, Matter, Steam
+from generated.materials.chemistry import Ammonia, Gas, Matter, Steam
 from genesys.nested.data import lookups
 
 

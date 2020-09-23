@@ -8,9 +8,9 @@ Cell stuff
 - Genetic Code
 - Nucleotide
 """
-from genesys.nested.factories.thing_builder import ThingBuilder
+from genesys.nested.factories.v2.thing_builder import ThingBuilder
 from genesys.nested.models import Model
-from generated.chemistry import elements, Proteins, Lipids, Glucids, OrganicMolecule, OrganicMatter, Atom
+from generated.materials.chemistry import elements, Proteins, Lipids, Glucids, OrganicMolecule, OrganicMatter, Atom
 from genesys.nested.data import lookups
 
 

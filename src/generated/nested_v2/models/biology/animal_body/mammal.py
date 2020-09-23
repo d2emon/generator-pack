@@ -1,6 +1,6 @@
 from .body_part import Snout, Tail, Flesh
 from ..body import Hair, BodyPart, Mouth, Nose, Eye, Ear, Skull
-from generated.chemistry import Keratin
+from generated.materials.chemistry import Keratin
 
 
 class Fur(Hair):

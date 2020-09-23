@@ -1,7 +1,7 @@
 from .body_part import Scales, Wing
 from .crustacean import CrustaceanLeg, CrustaceanClaw, CrustaceanBodyPart
 from .venom import Venom
-from generated.chemistry import Chitin, Dew
+from generated.materials.chemistry import Chitin, Dew
 
 
 class InsectLeg(CrustaceanLeg):

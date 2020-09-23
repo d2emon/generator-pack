@@ -17,7 +17,7 @@
 #               array) or an identifier for the Name function, like *BOOK*.
 #           A name generator of [["blue ","red "],["frog","toad"]] will produce names such as "blue frog" or "red toad".
 
-from .materials import *
+from ..materials import *
 from .universe import *
 from .cell import *
 from .body import *

@@ -1,6 +1,6 @@
 from generated.nested_v2.models import Dust
 from .body_parts import BodyPart
-from generated.chemistry import Keratin, Sweat
+from generated.materials.chemistry import Keratin, Sweat
 
 
 class Knee(BodyPart):

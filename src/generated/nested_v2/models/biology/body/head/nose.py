@@ -1,6 +1,6 @@
-from genesys.nested.factories.thing_builder import ThingBuilder
+from genesys.nested.factories.v2.thing_builder import ThingBuilder
 from genesys.nested.models import Model
-from generated.chemistry import OrganicMatter
+from generated.materials.chemistry import OrganicMatter
 from ..body_parts import BodyPart, SoftBodyPart
 from .hair import Hair
 

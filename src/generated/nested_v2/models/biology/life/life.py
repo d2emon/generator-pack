@@ -1,6 +1,4 @@
-from ...unknown import Bird, Poultry, Reptile, Amphibian, Snake, SmallMammal, HerbivorousMammal, PredatoryMammal,\
-    Monkey, Bear, Horse, Cat, Dinosaur, MedievalPerson, Caveman, Dragon
-from genesys.nested.factories.thing_builder import ListFactory
+from genesys.nested.factories.v2.thing_builder import ListFactory
 from genesys.nested.models import Model
 # from ..cnidaria import Cnidaria
 # from ..crustacean import Crustacean

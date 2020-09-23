@@ -1,4 +1,4 @@
-from genesys.nested.factories.thing_builder import ThingBuilder
+from genesys.nested.factories.v2.thing_builder import ThingBuilder
 from genesys.nested.models import Model
 from .torso import Torso
 from .arm import Arm

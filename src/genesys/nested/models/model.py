@@ -1,4 +1,4 @@
-from ..factories.thing_builder import ThingBuilder
+from genesys.nested.factories.v2.thing_builder import ThingBuilder
 from genesys.nested.models.mixins.generating import GeneratingModel
 from .tree import TreeModel
 from .placeholder import Placeholder

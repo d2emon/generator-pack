@@ -1,6 +1,6 @@
-from genesys.nested.factories.thing_builder import ListFactory
+from genesys.nested.factories.v2.thing_builder import ListFactory
 from genesys.nested.models import Model
-from generated.chemistry import Water, Silica
+from generated.materials.chemistry import Water, Silica
 from ..biology import Habitat
 # from ..biology import Worm, Insect
 

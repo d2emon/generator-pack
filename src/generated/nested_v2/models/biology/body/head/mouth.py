@@ -1,4 +1,4 @@
-from generated.chemistry import elements, Atom
+from generated.materials.chemistry import elements, Atom
 from ..body_parts import SoftBodyPart, BodyPart
 from ..skeleton import Muscles
 from ...animal_body import SimpleMouth

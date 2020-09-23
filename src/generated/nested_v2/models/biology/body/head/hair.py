@@ -1,7 +1,7 @@
 from genesys.nested.models import Model
 from ..skin import Dandruff
 from ...single_celled import Bacteria
-from generated.chemistry import Keratin
+from generated.materials.chemistry import Keratin
 from genesys.nested.data import lookups
 
 

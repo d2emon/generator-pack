@@ -1,7 +1,7 @@
 from generated.nested_v2.models import Lint, Pasta
 from .body_parts import BodyPart, SoftBodyPart
 from .skin import Skin
-from generated.chemistry import Sweat
+from generated.materials.chemistry import Sweat
 
 
 class Butt(BodyPart):

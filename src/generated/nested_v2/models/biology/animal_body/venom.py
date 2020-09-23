@@ -1,4 +1,4 @@
-from generated.chemistry import elements, Proteins, Lipids, OrganicMatter
+from generated.materials.chemistry import elements, Proteins, Lipids, OrganicMatter
 
 
 class Venom(OrganicMatter):

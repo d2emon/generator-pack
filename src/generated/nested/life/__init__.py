@@ -29,24 +29,24 @@ new Thing("fish tail",["muscles","scales"],"tail");
 new Thing("fish skin",["scales"],"skin");
 new Thing("cetacean flipper",["muscles","skin"],"flipper");
 new Thing("cetacean fin",["muscles","skin"],"fin");
-new Thing("crustacean claw",["chitin","muscles","fat"],"claw");
-new Thing("crustacean leg",["chitin","muscles","fat"],"leg");
-new Thing("crustacean shell",["chitin"],"shell");
-new Thing("clam shell",["calcium"],"shell");
+new Thing("crustacean claw",["Chitin","muscles","fat"],"claw");
+new Thing("crustacean leg",["Chitin","muscles","fat"],"leg");
+new Thing("crustacean shell",["Chitin"],"shell");
+new Thing("clam shell",["Calcium"],"shell");
 new Thing("simple eye",[".eye flesh"],"eye");
-new Thing("exoskeleton",["chitin"],"exoskeleton");
-new Thing("insect leg",["chitin","muscles","fat"],"leg");
-new Thing("insect claw",["chitin","muscles","fat"],"claw");
-new Thing("stinger",["chitin","venom"],"stinger");
-new Thing("antenna",["chitin"],"antenna");
-new Thing("insect wing",[["chitin","scales"],"dew,2%"],"wing");
+new Thing("exoskeleton",["Chitin"],"exoskeleton");
+new Thing("insect leg",["Chitin","muscles","fat"],"leg");
+new Thing("insect claw",["Chitin","muscles","fat"],"claw");
+new Thing("stinger",["Chitin","venom"],"stinger");
+new Thing("antenna",["Chitin"],"antenna");
+new Thing("insect wing",[["Chitin","scales"],"Dew,2%"],"wing");
 new Thing("wing",["feathers",".body part"],"wing");
 new Thing("reptile wing",["scales",".body part"],"wing");
 new Thing("bird wing",["feathers",".body part"],"wing");
 new Thing("bird leg",["feathers",".body part"],"leg");
 new Thing("bird tail",["feathers",".body part"],"tail");
-new Thing("venom",["proteins","lipids,40%","nitrogen,40%","sodium,40%","chlorine,40%"],"venom");
-new Thing("jelly",["water"]);
+new Thing("venom",["Proteins","Lipids,40%","Nitrogen,40%","Sodium,40%","Chlorine,40%"],"venom");
+new Thing("jelly",["Water"]);
 
 new Thing("weird soft organ",[".skinless soft body part"],[["fleshy","thick","slimy","scaly","furry","fuzzy","feathery","sharp","pointy","thorny","bulbous","leathery","hidden","soft","bubbling","distorted","shapeless","porous","spongiform","liquid-filled","foamy","smoking","oozing","drooling","shivering","quivering","pulsing"],[" "],["grasper","tendril","stinger","claw","tentacle","sac","egg sac","pouch","organ","specialized organ","bulb","brain bulb","gland","epiderm","sucker","pod","pseudolimb","nervous bulb","external muscle","structure","orifice","proboscis","tail"]]);
 new Thing("weird hard organ",[".skinless body part"],[["fleshy","thick","slimy","scaly","furry","fuzzy","sharp","pointy","thorny","bulbous","hidden","flexible","plated","armored","metallic","distorted","shapeless","porous","spongiform","liquid-filled","foamy","smoking","oozing","drooling"],[" "],["carapace","shell","bone structure","skull","grasper","stinger","claw","organ","specialized organ","sucker","pod","pseudolimb","structure"]]);
@@ -145,7 +145,7 @@ new Thing("social insect",["insect body","social insect thoughts"],["worker","so
 new Thing("insect queen",["insect body","social insect thoughts"],["queen"]);
 new Thing("anthill",["social insect,10-30","insect queen","insect egg,2-10","dirt"],["anthill","termite mound"]);
 new Thing("beehive",["social insect,10-30","insect queen","insect egg,2-10","paper"],["beehive","wasp nest","hornet nest"]);
-new Thing("insect egg",["egg thoughts","egg shell","soft flesh","organic matter"],"egg");
+new Thing("insect egg",["egg thoughts","egg shell","soft flesh","OrganicMatter"],"egg");
 new Thing("social insect thoughts",["social insect thought,1-2"],["thoughts"]);
 new Thing("social insect thought",[],["hello intruder","you should stay away intruder","intruder we may be forced to chop you up into little pieces if you stay here","this is no place for you intruder","why don't you go back to your intruder nest with all the other intruders","we have no need for intruders right now","hey intruder ever heard of personal space","sorry intruder but you're kind of in the way","intruder that's enough now","intruder why don't you come back another time","sorry intruder we're all super-busy here","hey intruder you're like very big so please don't stay here","i trophallaxized a girl and i liked it"]);
 
@@ -191,10 +191,10 @@ new Thing("dragon",["dragon body","dragon thoughts"],[["fire","ice","forst","arc
 new Thing("dragon thoughts",["dragon thought,1-2"],["thoughts"]);
 new Thing("dragon thought",[],["You shouldn't be here.","Leave. Now.","You need to leave.","Well well well. What do we have here?","I will make quick work of you.","You smell like food. Are you food?","I will eat your mind before I eat your body.","You'll be dead before you realize what's happening to you.","They... they took my egg...","My treasure. Must protect my treasure!","I guard, undisturbed.","I'm older than most of these mountains.","I've seen things you wouldn't believe.","Leave at once, mortal.","Turn back if you value your life.","Act with great care now, for this is the very last thing you'll ever do.","Knights in armor cook just like canned beans.","People seem to value treasure more than their own life.","There's no honor, no valor nowadays.","I'm on fire today.","Ooooh burn."]);
 new Thing("dragon body",["reptile head","pyrolith","scales","reptile leg,4",["reptile wing,2",""],"tail","flesh"],"body");
-new Thing("pyrolith",["rock"]);
+new Thing("pyrolith",["Rock"]);
 new Thing("dragon lair",["dragon,98%","medieval servant,10%","dragon nest,40%","pile of treasure,90%","medieval corpse,0-3"]);
 new Thing("dragon nest",["egg shell,20%","dragon egg,0-3","pile of treasure"]);
-new Thing("dragon egg",["egg thoughts","egg shell","soft flesh","organic matter"],"dragon egg");
+new Thing("dragon egg",["egg thoughts","egg shell","soft flesh","OrganicMatter"],"dragon egg");
 
 //birds
 new Thing("bird",["bird body","bird thoughts"],["pigeon","starling","swallow","robin","sparrow","eagle","vulture","hawk","condor","osprey","buzzard","crane","bustard","pheasant","woodpecker","seagull","albatross","petrel","grebe","flamingo","stork","ibis","heron","swan","magpie","crow","raven","jay","chough","quail","grouse","partridge","egret","pelican","cormorant","avocet","lapwing","plover","curlew","gull","tern","skua","guillemot","auk","sandgrouse","dove","parrot","lorikeet","cockatoo","parakeet","macaw","turaco","cuckoo","coucal","owl","snowy owl","frogmouth","nightjar","swift","hummingbird","quetzal","toucan","shrike","wren","oriole","fantail","paradise bird","lark","skylark","warbler","babbler","thrasher","mockingbird","lyrebird","bluebird","thrush","nightingale","sunbird","finch","kingfisher","trogon","pitta","manakin","chickadee","sula"]);//not putting in tits or boobies
@@ -203,8 +203,8 @@ new Thing("bird thoughts",["bird thought,1-2"],["thoughts"]);
 new Thing("bird thought",[],["caw","caw caw",":V",":V caw","you think i care","yeah bring it","like for real","come say that to my face","chirp","so high right now","pooping on people, from far above, doop-dee-doop","do i care, no i don't, doop-dee-doop","me and my mates are gonna ruin your day","can i peck your face","please can i peck at you just a bit","everything i sing is super-lewd","i'm a lewd dude","so yeah","i am bird hi","i'm pretty fly","hey can i steal that","what now","that's not what your mom said last night","yes that's right","yes indeed","see what happens","oh god what happen","riveting","aw yiss","bred crums yisss","i am the birdest","bird and bird accessories","hey have you heard","turns out i'm the word"]);
 new Thing("poultry thoughts",["poultry thought,1-2"],["thoughts"]);
 new Thing("poultry thought",[],["cluck","bwucluck",":U",":U cluck","i'm gonna strut around a bit while bobbing my head like that","i got weird feet why","you think i care","like for real","yeah bring it","come say that to my face","why do i poop on my feet","oh my god i have the best voice","i'm like super-good at songs okay","let me sing you something plz","so yeah","i am bird hi","this is most fowl","yeah i got laid when i was born, what now gurl","what now","that's not what your mom said last night","yes that's right","yes indeed","see what happens","oh god what happen","riveting","aw yiss","bred crums yisss","i am the birdest","bird and bird accessories","hey have you heard","turns out i'm the word"]);
-new Thing("bird egg",["egg thoughts","egg shell","soft flesh","organic matter"],"egg");
-new Thing("egg shell",["calcium"],"shell");
+new Thing("bird egg",["egg thoughts","egg shell","soft flesh","OrganicMatter"],"egg");
+new Thing("egg shell",["Calcium"],"shell");
 new Thing("egg thoughts",["egg thought"],"thought");
 new Thing("egg thought",[],[["...","...","...","...","I...","the...","a...","ah..."]]);
 

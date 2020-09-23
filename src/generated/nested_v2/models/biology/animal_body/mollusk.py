@@ -1,4 +1,4 @@
-from generated.chemistry import elements, Matter
+from generated.materials.chemistry import elements, Matter
 
 
 class ClamShell(Matter):

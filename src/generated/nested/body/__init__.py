@@ -13,11 +13,11 @@ new Thing("pores",["bacteria,1-3","skin cell","dead skin,50%","sweat,40%"],"pore
 new Thing("skin cell",[".cell"],["skin cells"]);
 new Thing("dead skin",["skin cell"]);
 new Thing("bone",[".bones"],"bone");
-new Thing("bones",["bone cell","calcium"],"bones");
+new Thing("bones",["bone cell","Calcium"],"bones");
 new Thing("bone cell",[".cell"],["bone cells"]);
 new Thing("muscles",["muscle cell"],"muscles");
 new Thing("muscle cell",[".cell"],["muscle cells"]);
-new Thing("fat",["lipids"],"fat");
+new Thing("fat",["Lipids"],"fat");
 new Thing("brain cell",[".cell"],["brain cells"]);
 new Thing("dandruff",["dead skin"]);
 
@@ -48,9 +48,9 @@ new Thing("toenail",["dust,40%","keratin"],"toenail");
 new Thing("knee",[".body part"],"knee");
 new Thing("head",["mouth","nose","eye,99%","eye,99%","ear,2","skull","head hair,85%",".body part"],"head");
 new Thing("eye",["eyelashes","eye flesh","tear,2%"],"eye");
-new Thing("eye flesh",["water","blood vessels","fat"],"eyeball");
+new Thing("eye flesh",["Water","blood vessels","fat"],"eyeball");
 new Thing("eyelashes",[".hair"],"eyelashes");
-new Thing("tear",["water","salt"]);
+new Thing("tear",["Water","Salt"]);
 new Thing("ear",[".soft body part"],"ear");
 new Thing("brain",["bacteria,20%","brain cell"],"brain");
 new Thing("skull",["brain",".bones"]);
@@ -59,9 +59,9 @@ new Thing("hair",["bacteria,30%","keratin"],"hair");
 new Thing("nose",["nostril,2",".body part"],"nose");
 new Thing("nostril",["nostril hair","boogers,0-1",".soft body part"],"nostril");
 new Thing("nostril hair",[".hair"],"nostril hair");
-new Thing("boogers",["organic matter"]);
+new Thing("boogers",["OrganicMatter"]);
 new Thing("mouth",["teeth","tongue"],"mouth");
-new Thing("teeth",["calcium","phosphorus"],"teeth");
+new Thing("teeth",["Calcium","Phosphorus"],"teeth");
 new Thing("tongue",["muscles"],"tongue");
 
 new Thing("abomination",["abomination body","abomination psyche"],"*PERSON*| (abomination)");//nonononononono

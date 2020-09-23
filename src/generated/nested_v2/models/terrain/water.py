@@ -1,10 +1,10 @@
 from generated.nested_v2.models import Bear
-from genesys.nested.factories.thing_builder import ListFactory
+from genesys.nested.factories.v2.thing_builder import ListFactory
 from genesys.nested.models import Model
 from .soil import Sand, Soil
 from ..biology import Habitat
 # from ..biology import SeaLife, AbyssLife, BeachLife, RiverLife, LakeLife
-from generated.chemistry import Water, Salt, Ice, WaterState
+from generated.materials.chemistry import Water, Salt, Ice, WaterState
 
 
 class Oceanic(Habitat):

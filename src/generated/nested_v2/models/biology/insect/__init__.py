@@ -14,13 +14,13 @@ Insects (arachnids etc too)
 - Social Insect Thought
 """
 from generated.nested_v2.models import Mind, Paper, Dirt, EggShell, EggThoughts
-from genesys.nested.factories.thing_builder import ListFactory
+from genesys.nested.factories.v2.thing_builder import ListFactory
 from genesys.nested.models import Model
 from ..animal_body import AnimalBody, SimpleEye, InsectLeg, InsectClaw, InsectWing, Exoskeleton, Stinger, Antenna, \
     Flesh, SoftFlesh
 from ..mind import SimpleThoughts, Thought
 from ..organism import Organism
-from generated.chemistry import OrganicMatter
+from generated.materials.chemistry import OrganicMatter
 from genesys.nested.data import lookups
 
 

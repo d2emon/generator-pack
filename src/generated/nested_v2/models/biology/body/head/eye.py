@@ -1,6 +1,6 @@
-from genesys.nested.factories.thing_builder import ThingBuilder
+from genesys.nested.factories.v2.thing_builder import ThingBuilder
 from genesys.nested.models import Model
-from generated.chemistry import Water, Salt
+from generated.materials.chemistry import Water, Salt
 from ..body_parts import SoftBodyPart
 from ..blood import BloodVessels
 from ..skeleton import Fat

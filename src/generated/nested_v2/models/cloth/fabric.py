@@ -1,6 +1,6 @@
 from genesys.nested.models import Model
 from generated.nested_v2.models.biology import SkinCell
-from generated.chemistry import Keratin
+from generated.materials.chemistry import Keratin
 
 
 class TextileFibre(Model):

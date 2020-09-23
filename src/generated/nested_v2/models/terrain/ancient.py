@@ -2,7 +2,8 @@ from generated.nested_v2.models import CavemanSettlement, WallPainting
 from .soil import Soil
 from .water import River, Lake
 from .land import Plain, Forest, Jungle, Mountain, Cave
-from generated.chemistry import Fire, Snow, Rock
+from generated.materials.chemistry import Fire, Snow
+from generated.materials import Rock
 from ..biology import AncientLandLife, AncientForestLife, AncientJungleLife, AncientMountainLife, Trees, JungleTrees,\
     Humus, Grass
 

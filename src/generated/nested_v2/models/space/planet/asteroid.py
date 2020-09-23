@@ -1,6 +1,7 @@
 from .planet_like import Orbit, PlanetLike, Plate
 from ..life import AsteroidLife, AsteroidBeltLife
-from generated.chemistry import Ice, Rock
+from generated.materials.chemistry import Ice
+from generated.materials import Rock
 
 
 class AsteroidPlate(Plate):
