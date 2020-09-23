@@ -1,0 +1,5101 @@
+$name : My Big Overly Detailed Character Generator
+$author : HatedLove6
+$picture : http://i.imgur.com/y784uLO.png
+$description : This is my personal go-to character generator that randomly generates physical descriptions and traits for human characters.  If you’ve stumbled upon this, you’ll probably not understand what some of the traits mean unless you’ve done as extensive note-taking as I have, and even then it might still be confusing, but if you can understand it, then go right ahead and use this as much as you would like.  This is just to get me started, and I can change whatever doesn't make sense.
+$amount : 1
+$button : Another!
+
+$body part
+Abdomen
+Ankle
+Biceps
+Calf
+Cheek
+Chest
+Chin
+Collarbone
+Crown
+Ear
+Elbow
+Eye
+Eyebrow
+Foot
+Fingers
+Forehead
+Groin
+Hand
+Head
+Jaw
+Knee
+Mouth
+Navel
+Neck
+Nose
+Shoulder
+Thigh
+Throat
+Ribs
+Toes
+Tricep
+Wrist
+Philtrum
+Back
+Butt
+Shoulder-blade
+Spine
+Earlobe
+Ear Cartilage
+Eyelid
+Lip
+Tragus
+Knuckle
+Palm
+Nail
+Toe
+Heel
+
+$month
+January [january]
+February [february]
+March [march]
+April [april]
+May [may]
+June [june]
+July [july]
+August [august]
+September [september]
+October [october]
+November [november]
+December [december]
+
+$january
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+
+$february
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+
+$march
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+
+$april
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+
+$may
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+
+$june
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+
+$july
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+
+$august
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+
+$september
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+
+$october
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+
+$november
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+
+$december
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+
+$hour
+00:
+01:
+02:
+03:
+04:
+05:
+06:
+07:
+08:
+09:
+10:
+11:
+12:
+13:
+14:
+15:
+16:
+17:
+18:
+19:
+20:
+21:
+22:
+23:
+
+$minute
+00
+01
+02
+03
+04
+05
+06
+07
+08
+09
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+
+$sex
+male
+female
+intersex - [intersex] {3%}
+
+$intersex
+Complete Androgen Insensitivity Syndrome (CAIS)
+Partial Androgen Insensitivity Syndrome (PAIS)
+5-Alpha-Reductase Deficiency (5-ARD)
+Swyer Syndrome/Mixed Gonadal Dysgenisis (MGD)
+Leydig Cell Hypoplasia
+Persistent Mullerian Duct Syndrome
+Hypospadias
+Aposthia
+Buried Penis
+Epispadias
+Micropenis
+Diphallia
+Polyorchidism
+Cryptorchidism
+De la Chapelle/XX Male Syndrome
+MRKH/Vaginal Agenesis
+XX Gonadal Dysgenesis
+Uterus Didelphys
+Progestin Induced Virilization
+Congenital Adrenal Hyperplasia (CAH)
+Ovo-testes
+Aphallia
+Aromatase Deficiency
+Cloacal Extrophy
+Klinefelter Syndrome, 48, XXYY Syndrome
+Turner Syndrome (Monosomy X)
+XY/XO Mosaics and XY-Turner's Syndrome
+Kallmann Syndrome/Hypogonadotropic Hypogonadism (HH)
+Triple-X Syndrome (also Tetrasomy X)
+Jacobs/XYY Syndrome
+Chimera XX/XY
+
+$gender identity
+Cis
+Transgender
+Agender
+Bigender
+Androgyne
+Fluid
+
+$rom o
+Aromantic
+Biromantic
+Heteroromantic
+Homoromantic
+Polyromantic
+Questioning
+
+$sex o
+Heterosexual
+Homosexual
+Bisexual
+Polysexual
+Asexual
+
+$height feet
+4'
+5'
+6'
+
+$height inches
+0"
+1"
+2"
+3"
+4"
+5"
+6"
+7"
+8"
+9"
+10"
+11"
+
+$vbt
+short torso long legged vertical body type
+balanced vertical body type
+long torso short legged vertical body type
+
+$hbs
+with a trapezoid/hourglass horizontal body shape
+with an hourglass horizontal body shape
+with an inverted triangle horizontal body shape
+with a rectangle horizontal body shape
+with a triangle horizontal body shape
+with an oval horizontal body shape
+
+$breasts
+flat
+size A
+size B
+size C
+size D
+size D+
+
+$breast shape
+round
+slender
+east west
+tear drop
+asymmetric
+side set
+bell
+
+$arm length
+short
+even
+long
+
+$skin tone
+I
+I - II
+II
+II - III
+III
+III - IV
+IV
+IV - V
+V
+V - VI
+VI
+
+$skin tone cartoon
+I
+I - II
+II
+II - III
+III
+III - IV
+IV
+IV - V
+V
+V - VI
+VI
+red I
+red I - II
+red II
+red II - III
+red III
+red III - IV
+red IV
+red IV - V
+red V
+red V - VI
+red VI
+orange I
+orange I - II
+orange II
+orange II - III
+orange III
+orange III - IV
+orange IV
+orange IV - V
+orange V
+orange V - VI
+orange VI
+yellow I
+yellow I - II
+yellow II
+yellow II - III
+yellow III
+yellow III - IV
+yellow IV
+yellow IV - V
+yellow V
+yellow V - VI
+yellow VI
+green I
+green I - II
+green II
+green II - III
+green III
+green III - IV
+green IV
+green IV - V
+green V
+green V - VI
+green VI
+blue I
+blue I - II
+blue II
+blue II - III
+blue III
+blue III - IV
+blue IV
+blue IV - V
+blue V
+blue V - VI
+blue VI
+purple I
+purple I - II
+purple II
+purple II - III
+purple III
+purple III - IV
+purple IV
+purple IV - V
+purple V
+purple V - VI
+purple VI
+grey I
+grey I - II
+grey II
+grey II - III
+grey III
+grey III - IV
+grey IV
+grey IV - V
+grey V
+grey V - VI
+grey VI
+black
+white
+
+$hairline width
+narrow
+medium-wide
+very wide
+
+$hairline smoothness
+even
+uneven
+symmetrical
+
+$hairline shape
+clover
+curved
+M
+square
+receding
+widow's peak
+
+$hairline extra
+bump
+
+indentations
+protrusions
+a shadow
+a veil of tears
+
+$hair length
+bald
+shaved
+extra short
+short
+short-medium
+medium
+medium-long
+long
+extra long
+
+$hair texture
+straight
+2A wavy
+2B wavy
+2C wavy
+3A curly
+3B curly
+3C curly
+4A Kinky
+4B Kinky
+4C Kinky
+
+$hair color
+black
+brown
+grey
+salt and pepper
+red
+blond(e)
+white
+
+$hair color cartoon
+black
+brown
+grey
+salt and pepper
+red
+blond(e)
+orange
+green
+blue
+violet
+pink
+white
+
+$face shape
+diamond
+inverted triangle
+oblong
+oval
+rectangle
+round
+square
+triangle
+
+$forehead height
+extremely low
+low
+medium
+high
+disproportionately height
+
+$forehead width
+narrow
+prominent
+broad/wide
+
+$forehead shape
+convex
+flat
+protrubences
+round
+slanted
+
+$brow shape
+smooth/flat
+prominent
+prominent with a dip
+
+$eyebrow set
+high-set
+medium-set
+low-set
+
+$eyebrow placement
+unibrow
+connected
+close
+medium
+wide
+
+$eyebrow shape
+full and thick
+bushy
+bushy and messy
+connects to hairline
+thin
+sparse to nonexistent
+
+$eyebrow angle
+different heights
+even
+lower inner
+higher inner
+
+$eye size
+small
+proportionate
+large
+
+$eye space
+close-set
+even-set
+wide-apart
+
+$eye angle
+upturned
+even
+downturned
+
+$eye shape
+mongoloid with absent eyelid crease
+mongoloid with partial eyelid crease
+mongoloid with multiple eyelid crease
+mongoloid with tapering eyelid crease
+mongoloid with tapering eyelid crease with lateral flare
+mongoloid with parallel eyelid crease
+prominent almond
+prominent round
+deep-set almond
+deep-set round
+hooded almond
+hooded round
+
+$eye mutation
+complete heterochromia
+central iridium heterochromia
+sectoral heterochromia
+Iris nevi
+Iris nevus
+none
+
+$eye color
+blue
+green
+brown
+black
+red/pink
+violet
+grey
+
+$eye color cartoon
+blue
+green
+brown
+black
+red/pink
+violet
+red
+yellow
+orange
+pink
+white
+grey
+
+$eye sight
+blind
+needs glasses
+needs reading glasses
+needs driving glasses
+uses contacts
+is slightly farsighted
+is slightly nearsighted
+Doesn't need any corrections
+
+$nose size
+small
+proportionate
+large
+
+$nose set
+high-set
+medium-set
+low-set
+
+$nose shape
+concave
+hook
+flat/broad
+injured
+straight
+wavy silhouette
+wavy bridge
+
+$nose tip
+rounded
+fleshy
+split-tip
+
+$nostril size
+narrow
+proportionate
+open
+
+$ear size
+small
+average
+large
+different sized
+
+$ear set
+low
+average
+high
+right ear higher
+left ear higher
+
+$ear position
+forward facing
+flat to head
+closer to cheekbones
+set back
+
+$ear shape
+long
+pointed/fawn
+protruding inner ear
+round
+square
+wide conch
+
+$ear helix
+pinched
+round
+thick
+thin/none
+too thin with no roundness
+
+$ear marks
+bumps
+
+lines next to tragus
+
+$ear lobes
+attached
+big
+fleshy
+long
+short
+soft
+thick and dangling
+
+$ear cartilage
+fragile
+tight and firm
+too tight or firm
+
+$philtrum length
+short
+medium
+long
+
+$philtrum depth
+smooth
+medium
+deep
+
+$philtrum other
+
+
+
+
+horizontal lines
+
+
+$mouth length
+wide
+medium
+narrow
+
+$mouth set
+straight
+crooked
+
+$mouth position
+upturned
+even
+downturned
+up on the right side
+up on the left side
+
+$lip size
+full
+thin
+thin top lip
+thin bottom lip
+
+$lip set
+protruding top lip
+even
+protruding bottom lip
+
+$cbvd
+shallow
+medium
+deep
+
+$cbw
+narrow
+normal
+wide
+flat
+
+$peaks
+pointed
+rounded
+smooth
+
+$bottom
+pointed
+rounded
+smooth
+
+$ariol
+puffy
+round
+flat
+
+$relaxed mouth
+open
+half open
+closed
+
+$cheekbone
+high
+angle-down
+large
+flat
+
+$cheek shape
+curved
+full, fleshy,
+hollow
+indented
+round, high
+sagging
+
+$jaw shape
+broad
+narrow
+prominent
+
+$jaw slack
+clenched
+slacked
+dropped
+
+$jaw set
+overbite
+even-bite
+underbite
+cross-bite
+open-bite
+
+$chin size
+very small
+small
+long
+broad
+extremely large
+
+$chin shape
+extremely square
+jutting
+pointed
+round
+square
+straight
+turned-up
+
+$chin markings
+dimple
+
+cleft
+
+$hand size
+big
+medium
+small
+
+$palm shape
+wide
+square
+narrow
+
+$palm arch
+low index finger
+norman
+perpendicular
+tudor
+uneven
+
+$finger length
+long
+even
+short
+
+$finger shape
+pointed
+conical
+square
+spatulate
+
+$nail shape
+almond [almond size]
+narrow vertical [narrow vertical size]
+oval [oval size]
+round [round size]
+square [square size]
+triangular [triangular size]
+
+$almond size
+water
+fire
+
+$narrow vertical size
+vertical
+claw
+
+$oval size
+large
+medium
+small
+
+$round size
+large
+small
+high corn kernel
+
+$square size
+large
+medium
+oblong
+wide oblong
+medium with oval base
+
+$triangular size
+spatulate
+wedge
+shell
+high shell
+
+$feet size
+large
+medium
+small
+
+$feet arch
+inside/medial
+neutral
+to outside/lateral
+
+$feet shape
+egyptian
+greek
+square
+
+$yin tong lines
+1
+2
+3
+
+$natural anomalies
+acne/pockmarks
+birthmark [birth mark type]
+cataracts {5%}
+disease {10%}
+fa ling lines {10%} [fa ling lines]
+freckles [freckles placement]
+genetic mutation
+moles
+
+birthmark and freckles [baf]
+
+$birth mark type
+salmon patch
+port wine
+strawberry
+cavernous
+venous
+mole
+atypical mole
+mongolian spot
+cafe-au-lait spot
+
+$freckles placement
+back
+cheeks
+face
+shoulder
+shoulder-blade
+back and cheeks
+back and face
+back and shoulders
+cheeks and shoulders
+cheeks and shoulder-blades
+face and shoulders
+face and shoulder-blades
+back, cheeks, and shoulders
+back, cheeks, and shoulder-blades
+back, face, and shoulders
+face, shoulders, and shoulder-blades
+everywhere
+
+$baf
+salmon patch  birthmarks and freckles on their back
+salmon patch  birthmarks and freckles on their cheeks
+salmon patch  birthmarks and freckles on their face
+salmon patch  birthmarks and freckles on their shoulder
+salmon patch  birthmarks and freckles on their shoulder-blades
+salmon patch  birthmarks and freckles on their back and cheeks
+salmon patch  birthmarks and freckles on their back and face
+salmon patch  birthmarks and freckles on their back and shoulders
+salmon patch  birthmarks and freckles on their cheeks and shoulder-blades
+salmon patch  birthmarks and freckles on their cheeks and shoulders
+salmon patch  birthmarks and freckles on their face and shoulders
+salmon patch  birthmarks and freckles on their face and shoulder-blades
+salmon patch  birthmarks and freckles on their back, cheeks, and shoulders
+salmon patch  birthmarks and freckles on their back, cheeks, and shoulder-blades
+salmon patch  birthmarks and freckles on their back, face, and shoulders
+salmon patch  birthmarks and freckles on their face, shoulders, and shoulder-blades
+salmon patch  birthmarks and freckles everywhere
+port wine  birthmarks and freckles on their back
+port wine  birthmarks and freckles on their cheeks
+port wine  birthmarks and freckles on their face
+port wine  birthmarks and freckles on their shoulder
+port wine  birthmarks and freckles on their shoulder-blades
+port wine  birthmarks and freckles on their back and cheeks
+port wine  birthmarks and freckles on their back and face
+port wine  birthmarks and freckles on their back and shoulders
+port wine  birthmarks and freckles on their cheeks and shoulder-blades
+port wine  birthmarks and freckles on their cheeks and shoulders
+port wine  birthmarks and freckles on their face and shoulders
+port wine  birthmarks and freckles on their face and shoulder-blades
+port wine  birthmarks and freckles on their back, cheeks, and shoulders
+port wine  birthmarks and freckles on their back, cheeks, and shoulder-blades
+port wine  birthmarks and freckles on their back, face, and shoulders
+port wine  birthmarks and freckles on their face, shoulders, and shoulder-blades
+port wine  birthmarks and freckles everywhere
+strawberry  birthmarks and freckles on their back
+strawberry  birthmarks and freckles on their cheeks
+strawberry  birthmarks and freckles on their face
+strawberry  birthmarks and freckles on their shoulder
+strawberry  birthmarks and freckles on their shoulder-blades
+strawberry  birthmarks and freckles on their back and cheeks
+strawberry  birthmarks and freckles on their back and face
+strawberry  birthmarks and freckles on their back and shoulders
+strawberry  birthmarks and freckles on their cheeks and shoulder-blades
+strawberry  birthmarks and freckles on their cheeks and shoulders
+strawberry  birthmarks and freckles on their face and shoulders
+strawberry  birthmarks and freckles on their face and shoulder-blades
+strawberry  birthmarks and freckles on their back, cheeks, and shoulders
+strawberry  birthmarks and freckles on their back, cheeks, and shoulder-blades
+strawberry  birthmarks and freckles on their back, face, and shoulders
+strawberry  birthmarks and freckles on their face, shoulders, and shoulder-blades
+strawberry  birthmarks and freckles everywhere
+cavernous  birthmarks and freckles on their back
+cavernous  birthmarks and freckles on their cheeks
+cavernous  birthmarks and freckles on their face
+cavernous  birthmarks and freckles on their shoulder
+cavernous  birthmarks and freckles on their shoulder-blades
+cavernous  birthmarks and freckles on their back and cheeks
+cavernous  birthmarks and freckles on their back and face
+cavernous  birthmarks and freckles on their back and shoulders
+cavernous  birthmarks and freckles on their cheeks and shoulder-blades
+cavernous  birthmarks and freckles on their cheeks and shoulders
+cavernous  birthmarks and freckles on their face and shoulders
+cavernous  birthmarks and freckles on their face and shoulder-blades
+cavernous  birthmarks and freckles on their back, cheeks, and shoulders
+cavernous  birthmarks and freckles on their back, cheeks, and shoulder-blades
+cavernous  birthmarks and freckles on their back, face, and shoulders
+cavernous  birthmarks and freckles on their face, shoulders, and shoulder-blades
+cavernous  birthmarks and freckles everywhere
+venous  birthmarks and freckles on their back
+venous  birthmarks and freckles on their cheeks
+venous  birthmarks and freckles on their face
+venous  birthmarks and freckles on their shoulder
+venous  birthmarks and freckles on their shoulder-blades
+venous  birthmarks and freckles on their back and cheeks
+venous  birthmarks and freckles on their back and face
+venous  birthmarks and freckles on their back and shoulders
+venous  birthmarks and freckles on their cheeks and shoulder-blades
+venous  birthmarks and freckles on their cheeks and shoulders
+venous  birthmarks and freckles on their face and shoulders
+venous  birthmarks and freckles on their face and shoulder-blades
+venous  birthmarks and freckles on their back, cheeks, and shoulders
+venous  birthmarks and freckles on their back, cheeks, and shoulder-blades
+venous  birthmarks and freckles on their back, face, and shoulders
+venous  birthmarks and freckles on their face, shoulders, and shoulder-blades
+venous  birthmarks and freckles everywhere
+mole  birthmarks and freckles on their back
+mole  birthmarks and freckles on their cheeks
+mole  birthmarks and freckles on their face
+mole  birthmarks and freckles on their shoulder
+mole  birthmarks and freckles on their shoulder-blades
+mole  birthmarks and freckles on their back and cheeks
+mole  birthmarks and freckles on their back and face
+mole  birthmarks and freckles on their back and shoulders
+mole  birthmarks and freckles on their cheeks and shoulder-blades
+mole  birthmarks and freckles on their cheeks and shoulders
+mole  birthmarks and freckles on their face and shoulders
+mole  birthmarks and freckles on their face and shoulder-blades
+mole  birthmarks and freckles on their back, cheeks, and shoulders
+mole  birthmarks and freckles on their back, cheeks, and shoulder-blades
+mole  birthmarks and freckles on their back, face, and shoulders
+mole  birthmarks and freckles on their face, shoulders, and shoulder-blades
+mole  birthmarks and freckles everywhere
+atypical mole  birthmarks and freckles on their back
+atypical mole  birthmarks and freckles on their cheeks
+atypical mole  birthmarks and freckles on their face
+atypical mole  birthmarks and freckles on their shoulder
+atypical mole  birthmarks and freckles on their shoulder-blades
+atypical mole  birthmarks and freckles on their back and cheeks
+atypical mole  birthmarks and freckles on their back and face
+atypical mole  birthmarks and freckles on their back and shoulders
+atypical mole  birthmarks and freckles on their cheeks and shoulder-blades
+atypical mole  birthmarks and freckles on their cheeks and shoulders
+atypical mole  birthmarks and freckles on their face and shoulders
+atypical mole  birthmarks and freckles on their face and shoulder-blades
+atypical mole  birthmarks and freckles on their back, cheeks, and shoulders
+atypical mole  birthmarks and freckles on their back, cheeks, and shoulder-blades
+atypical mole  birthmarks and freckles on their back, face, and shoulders
+atypical mole  birthmarks and freckles on their face, shoulders, and shoulder-blades
+atypical mole  birthmarks and freckles everywhere
+mongolian  birthmarks and freckles on their back
+mongolian  birthmarks and freckles on their cheeks
+mongolian  birthmarks and freckles on their face
+mongolian  birthmarks and freckles on their shoulder
+mongolian  birthmarks and freckles on their shoulder-blades
+mongolian  birthmarks and freckles on their back and cheeks
+mongolian  birthmarks and freckles on their back and face
+mongolian  birthmarks and freckles on their back and shoulders
+mongolian  birthmarks and freckles on their cheeks and shoulder-blades
+mongolian  birthmarks and freckles on their cheeks and shoulders
+mongolian  birthmarks and freckles on their face and shoulders
+mongolian  birthmarks and freckles on their face and shoulder-blades
+mongolian  birthmarks and freckles on their back, cheeks, and shoulders
+mongolian  birthmarks and freckles on their back, cheeks, and shoulder-blades
+mongolian  birthmarks and freckles on their back, face, and shoulders
+mongolian  birthmarks and freckles on their face, shoulders, and shoulder-blades
+mongolian  birthmarks and freckles everywhere
+cafe au lait  birthmarks and freckles on their back
+cafe au lait  birthmarks and freckles on their cheeks
+cafe au lait  birthmarks and freckles on their face
+cafe au lait  birthmarks and freckles on their shoulder
+cafe au lait  birthmarks and freckles on their shoulder-blades
+cafe au lait  birthmarks and freckles on their back and cheeks
+cafe au lait  birthmarks and freckles on their back and face
+cafe au lait  birthmarks and freckles on their back and shoulders
+cafe au lait  birthmarks and freckles on their cheeks and shoulder-blades
+cafe au lait  birthmarks and freckles on their cheeks and shoulders
+cafe au lait  birthmarks and freckles on their face and shoulders
+cafe au lait  birthmarks and freckles on their face and shoulder-blades
+cafe au lait  birthmarks and freckles on their back, cheeks, and shoulders
+cafe au lait  birthmarks and freckles on their back, cheeks, and shoulder-blades
+cafe au lait  birthmarks and freckles on their back, face, and shoulders
+cafe au lait  birthmarks and freckles on their face, shoulders, and shoulder-blades
+cafe au lait  birthmarks and freckles everywhere
+
+$fa ling lines
+good length and depth
+disappointment lines
+over-purpose lines
+left side is longer and deeper
+starvation lines
+long and low lines
+
+$unnatural anomalies
+body modification [body modification]
+piercing [piercing material]
+amputation [prosthetic type]
+scars [scar type]
+tattoo [tattoo color]
+none
+
+$body modification
+bifurcated tongue
+clothing: [bmc]
+implants: [implant type]
+plastic or cosmetic surgery: [pocs]
+teeth filing
+
+$bmc
+corset
+brass neck rings
+
+$pocs
+leg lengthening
+lotus feet
+botox
+breast augmentation / reduction
+brow lift
+chemical peel
+dermabrasion
+face lift
+blepharoplasty
+breast lift
+buttock augmentation / reduction
+buttock lift
+radiesse
+restylane
+juvederm
+Endermologie
+Thermage
+Sclerotherapy
+Facial Scar Revision
+forehead lift
+arm lift
+hair replacement
+intense pulsed light treatment
+laser hair removal
+laser vein treatment
+laser skin resurfacing
+labiaplasty
+liposuction
+mentoplasty
+chin augmentation / reduction
+microdermabrasion
+necklift
+otoplasy
+rhinoplasty
+rhytidectomy
+thighplasty
+thread lift
+tummy tuck
+
+$implant type
+subdermal implant
+skull implant
+extraocular implant
+corebone implant
+
+$piercing material
+plastic [piercing type 1]
+glass [piercing type 2]
+gold [piercing type 3]
+bone [piercing type 4]
+wood [piercing type 5]
+silver [piercing type 6]
+stone [piercing type 7]
+silicone [piercing type 8]
+acrylic [piercing type 9]
+porcelain [piercing type 10]
+horn [piercing type 11]
+
+$piercing type 1
+plug [piercing placement 1]
+gauge [piercing placement 2]
+cuff [piercing placement 3]
+piercing [piercing placement 4]
+clip-on [piercing placement 5]
+
+$piercing type 2
+plug [piercing placement 1]
+gauge [piercing placement 2]
+cuff [piercing placement 3]
+piercing [piercing placement 4]
+clip-on [piercing placement 5]
+
+$piercing type 3
+plug [piercing placement 1]
+gauge [piercing placement 2]
+cuff [piercing placement 3]
+piercing [piercing placement 4]
+clip-on [piercing placement 5]
+
+$piercing type 4
+plug [piercing placement 1]
+gauge [piercing placement 2]
+cuff [piercing placement 3]
+piercing [piercing placement 4]
+clip-on [piercing placement 5]
+
+$piercing type 5
+plug [piercing placement 1]
+gauge [piercing placement 2]
+cuff [piercing placement 3]
+piercing [piercing placement 4]
+clip-on [piercing placement 5]
+
+$piercing type 6
+plug [piercing placement 1]
+gauge [piercing placement 2]
+cuff [piercing placement 3]
+piercing [piercing placement 4]
+clip-on [piercing placement 5]
+
+$piercing type 7
+plug [piercing placement 1]
+gauge [piercing placement 2]
+cuff [piercing placement 3]
+piercing [piercing placement 4]
+clip-on [piercing placement 5]
+
+$piercing type 8
+plug [piercing placement 1]
+gauge [piercing placement 2]
+cuff [piercing placement 3]
+piercing [piercing placement 4]
+clip-on [piercing placement 5]
+
+$piercing type 9
+plug [piercing placement 1]
+gauge [piercing placement 2]
+cuff [piercing placement 3]
+piercing [piercing placement 4]
+clip-on [piercing placement 5]
+
+$piercing type 10
+plug [piercing placement 1]
+gauge [piercing placement 2]
+cuff [piercing placement 3]
+piercing [piercing placement 4]
+clip-on [piercing placement 5]
+
+$piercing type 11
+plug [piercing placement 1]
+gauge [piercing placement 2]
+cuff [piercing placement 3]
+piercing [piercing placement 4]
+clip-on [piercing placement 5]
+
+$piercing placement 1
+lobe
+upper lobe
+auricle
+conch
+inner conch
+outer conch
+helix
+industrial
+tragus
+rook
+snug
+orbital
+anti-tragus
+daith
+graduate lobe
+transverse lobe
+forward helix
+ear weave
+nostril
+septum
+bridge
+nasalang
+high nostril
+vertical nose tip
+eyebrow
+anti-eyebrow
+angel lip
+vertical lip
+canine/shark bites
+dahlia/joker bites
+dolphin bites
+horizontal lip
+labret
+medusa
+snake bite
+cyber lip
+spider/viper bite
+vertical labret
+poisonous snake lip
+anti-bite lip
+tongue
+monroe or madonna lip
+navel
+mammary tip
+eyelid
+chest
+corset
+dermal/micro dermal
+neck and nape
+venus/christina (female)
+clitoral (female)
+fourchette (female)
+guiche (male)
+horizontal clitoral hood (female)
+inner labia (female)
+outer labia (female)
+triangle piercing (female)
+vertical clitoral hood (female)
+ampallang (male)
+anal
+apadravya (male)
+dorsal frenum (male)
+dydoe (male)
+frenum (male)
+jacob's lader (male)
+kuno (male)
+lorum (male)
+prince albert (male)
+reverse prince albert (male)
+scrotal ladder (male)
+scrotum/hafada (male)
+third eye
+cheek
+dental
+frowny
+gum
+horizontal tongue
+smiley
+tongue web
+uvula
+vampire
+venom
+jestrum
+dimple
+ashley
+low nostril
+austin bar
+horizontal eyebrow
+intraocular
+rhino
+teardrop
+septril
+lobret
+
+$piercing placement 2
+lobe
+upper lobe
+auricle
+conch
+inner conch
+outer conch
+helix
+industrial
+tragus
+rook
+snug
+orbital
+anti-tragus
+daith
+graduate lobe
+transverse lobe
+forward helix
+ear weave
+nostril
+septum
+bridge
+nasalang
+high nostril
+vertical nose tip
+eyebrow
+anti-eyebrow
+angel lip
+vertical lip
+canine/shark bites
+dahlia/joker bites
+dolphin bites
+horizontal lip
+labret
+medusa
+snake bite
+cyber lip
+spider/viper bite
+vertical labret
+poisonous snake lip
+anti-bite lip
+tongue
+monroe or madonna lip
+navel
+mammary tip
+eyelid
+chest
+corset
+dermal/micro dermal
+neck and nape
+venus/christina (female)
+clitoral (female)
+fourchette (female)
+guiche (male)
+horizontal clitoral hood (female)
+inner labia (female)
+outer labia (female)
+triangle piercing (female)
+vertical clitoral hood (female)
+ampallang (male)
+anal
+apadravya (male)
+dorsal frenum (male)
+dydoe (male)
+frenum (male)
+jacob's lader (male)
+kuno (male)
+lorum (male)
+prince albert (male)
+reverse prince albert (male)
+scrotal ladder (male)
+scrotum/hafada (male)
+third eye
+cheek
+dental
+frowny
+gum
+horizontal tongue
+smiley
+tongue web
+uvula
+vampire
+venom
+jestrum
+dimple
+ashley
+low nostril
+austin bar
+horizontal eyebrow
+intraocular
+rhino
+teardrop
+septril
+lobret
+
+$piercing placement 3
+lobe
+upper lobe
+auricle
+conch
+inner conch
+outer conch
+helix
+industrial
+tragus
+rook
+snug
+orbital
+anti-tragus
+daith
+graduate lobe
+transverse lobe
+forward helix
+ear weave
+nostril
+septum
+bridge
+nasalang
+high nostril
+vertical nose tip
+eyebrow
+anti-eyebrow
+angel lip
+vertical lip
+canine/shark bites
+dahlia/joker bites
+dolphin bites
+horizontal lip
+labret
+medusa
+snake bite
+cyber lip
+spider/viper bite
+vertical labret
+poisonous snake lip
+anti-bite lip
+tongue
+monroe or madonna lip
+navel
+mammary tip
+eyelid
+chest
+corset
+dermal/micro dermal
+neck and nape
+venus/christina (female)
+clitoral (female)
+fourchette (female)
+guiche (male)
+horizontal clitoral hood (female)
+inner labia (female)
+outer labia (female)
+triangle piercing (female)
+vertical clitoral hood (female)
+ampallang (male)
+anal
+apadravya (male)
+dorsal frenum (male)
+dydoe (male)
+frenum (male)
+jacob's lader (male)
+kuno (male)
+lorum (male)
+prince albert (male)
+reverse prince albert (male)
+scrotal ladder (male)
+scrotum/hafada (male)
+third eye
+cheek
+dental
+frowny
+gum
+horizontal tongue
+smiley
+tongue web
+uvula
+vampire
+venom
+jestrum
+dimple
+ashley
+low nostril
+austin bar
+horizontal eyebrow
+intraocular
+rhino
+teardrop
+septril
+lobret
+
+$piercing placement 4
+lobe
+upper lobe
+auricle
+conch
+inner conch
+outer conch
+helix
+industrial
+tragus
+rook
+snug
+orbital
+anti-tragus
+daith
+graduate lobe
+transverse lobe
+forward helix
+ear weave
+nostril
+septum
+bridge
+nasalang
+high nostril
+vertical nose tip
+eyebrow
+anti-eyebrow
+angel lip
+vertical lip
+canine/shark bites
+dahlia/joker bites
+dolphin bites
+horizontal lip
+labret
+medusa
+snake bite
+cyber lip
+spider/viper bite
+vertical labret
+poisonous snake lip
+anti-bite lip
+tongue
+monroe or madonna lip
+navel
+mammary tip
+eyelid
+chest
+corset
+dermal/micro dermal
+neck and nape
+venus/christina (female)
+clitoral (female)
+fourchette (female)
+guiche (male)
+horizontal clitoral hood (female)
+inner labia (female)
+outer labia (female)
+triangle piercing (female)
+vertical clitoral hood (female)
+ampallang (male)
+anal
+apadravya (male)
+dorsal frenum (male)
+dydoe (male)
+frenum (male)
+jacob's lader (male)
+kuno (male)
+lorum (male)
+prince albert (male)
+reverse prince albert (male)
+scrotal ladder (male)
+scrotum/hafada (male)
+third eye
+cheek
+dental
+frowny
+gum
+horizontal tongue
+smiley
+tongue web
+uvula
+vampire
+venom
+jestrum
+dimple
+ashley
+low nostril
+austin bar
+horizontal eyebrow
+intraocular
+rhino
+teardrop
+septril
+lobret
+
+$piercing placement 5
+lobe
+upper lobe
+auricle
+conch
+inner conch
+outer conch
+helix
+industrial
+tragus
+rook
+snug
+orbital
+anti-tragus
+daith
+graduate lobe
+transverse lobe
+forward helix
+ear weave
+nostril
+septum
+bridge
+nasalang
+high nostril
+vertical nose tip
+eyebrow
+anti-eyebrow
+angel lip
+vertical lip
+canine/shark bites
+dahlia/joker bites
+dolphin bites
+horizontal lip
+labret
+medusa
+snake bite
+cyber lip
+spider/viper bite
+vertical labret
+poisonous snake lip
+anti-bite lip
+tongue
+monroe or madonna lip
+navel
+mammary tip
+eyelid
+chest
+corset
+dermal/micro dermal
+neck and nape
+venus/christina (female)
+clitoral (female)
+fourchette (female)
+guiche (male)
+horizontal clitoral hood (female)
+inner labia (female)
+outer labia (female)
+triangle piercing (female)
+vertical clitoral hood (female)
+ampallang (male)
+anal
+apadravya (male)
+dorsal frenum (male)
+dydoe (male)
+frenum (male)
+jacob's lader (male)
+kuno (male)
+lorum (male)
+prince albert (male)
+reverse prince albert (male)
+scrotal ladder (male)
+scrotum/hafada (male)
+third eye
+cheek
+dental
+frowny
+gum
+horizontal tongue
+smiley
+tongue web
+uvula
+vampire
+venom
+jestrum
+dimple
+ashley
+low nostril
+austin bar
+horizontal eyebrow
+intraocular
+rhino
+teardrop
+septril
+lobret
+
+$prosthetic type
+electrically-powered prosthetic [amputated limb 1]
+cosmetic restoration prosthetic [amputated limb 2]
+body-powered prosthetic [amputated limb 3]
+activity-specific prosthetic [amputated limb 4]
+hybrid prosthetic [amputated limb 5]
+no prosthetic [amputated limb 6]
+
+$amputated limb 1
+below the knee
+above the knee
+below the elbow
+above the elbow
+
+$amputated limb 2
+below the knee
+above the knee
+below the elbow
+above the elbow
+
+$amputated limb 3
+below the knee
+above the knee
+below the elbow
+above the elbow
+
+$amputated limb 4
+below the knee
+above the knee
+below the elbow
+above the elbow
+
+$amputated limb 5
+below the knee
+above the knee
+below the elbow
+above the elbow
+
+$amputated limb 6
+below the knee
+above the knee
+below the elbow
+above the elbow
+
+$scar type
+burn
+chemical
+animal mauling
+insect bites
+cuts
+illness or disease
+skin-graft
+scarification [scarification type]
+
+$scarification type
+Branded [scarification design 1]
+Ink rubbed [scarification design 2]
+Skin Removal / Skinned [scarification design 3]
+Packed [scarification design 4]
+Hatched [scarification design 5]
+Abrasion [scarification design 6]
+
+$scarification design 1
+floral [scarification placement 1]
+lace [scarification placement 2]
+geometric [scarification placement 3]
+animal [scarification placement 4]
+symbol [scarification placement 5]
+words [scarification placement 6]
+age rings [scarification placement 7]
+
+$scarification design 2
+floral [scarification placement 1]
+lace [scarification placement 2]
+geometric [scarification placement 3]
+animal [scarification placement 4]
+symbol [scarification placement 5]
+words [scarification placement 6]
+age rings [scarification placement 7]
+
+$scarification design 3
+floral [scarification placement 1]
+lace [scarification placement 2]
+geometric [scarification placement 3]
+animal [scarification placement 4]
+symbol [scarification placement 5]
+words [scarification placement 6]
+age rings [scarification placement 7]
+
+$scarification design 4
+floral [scarification placement 1]
+lace [scarification placement 2]
+geometric [scarification placement 3]
+animal [scarification placement 4]
+symbol [scarification placement 5]
+words [scarification placement 6]
+age rings [scarification placement 7]
+
+$scarification design 5
+floral [scarification placement 1]
+lace [scarification placement 2]
+geometric [scarification placement 3]
+animal [scarification placement 4]
+symbol [scarification placement 5]
+words [scarification placement 6]
+age rings [scarification placement 7]
+
+$scarification design 6
+floral [scarification placement 1]
+lace [scarification placement 2]
+geometric [scarification placement 3]
+animal [scarification placement 4]
+symbol [scarification placement 5]
+words [scarification placement 6]
+age rings [scarification placement 7]
+
+$scarification placement 1
+abdomen
+bicep
+calf
+chest
+collarbone
+jaw
+navel
+shoulder
+shoulder-blades
+thigh
+tricep
+back
+butt
+ribs
+
+$scarification placement 2
+abdomen
+bicep
+calf
+chest
+collarbone
+jaw
+navel
+shoulder
+shoulder-blades
+thigh
+tricep
+back
+butt
+ribs
+
+$scarification placement 3
+abdomen
+bicep
+calf
+chest
+collarbone
+jaw
+navel
+shoulder
+shoulder-blades
+thigh
+tricep
+back
+butt
+ribs
+
+$scarification placement 4
+abdomen
+bicep
+calf
+chest
+collarbone
+jaw
+navel
+shoulder
+shoulder-blades
+thigh
+tricep
+back
+butt
+ribs
+
+$scarification placement 5
+abdomen
+bicep
+calf
+chest
+collarbone
+jaw
+navel
+shoulder
+shoulder-blades
+thigh
+tricep
+back
+butt
+ribs
+
+$scarification placement 6
+abdomen
+bicep
+calf
+chest
+collarbone
+jaw
+navel
+shoulder
+shoulder-blades
+thigh
+tricep
+back
+butt
+ribs
+
+$scarification placement 7
+abdomen
+bicep
+calf
+chest
+collarbone
+jaw
+navel
+shoulder
+shoulder-blades
+thigh
+tricep
+back
+butt
+ribs
+
+$tattoo color
+black [tattoo style 1]
+black and Gray [tattoo style 1]
+gray wash [tattoo style 1]
+white [tattoo style 1]
+blacklight [tattoo style 1]
+color [tattoo style 1]
+
+$tattoo style 1
+Watercolor
+Cross stitch
+Stippling
+Traditional/Old School
+New School
+Asian
+Script/Text
+Biomechanical
+Tribal
+Realism
+Neo-Traditional
+Geometric
+Stick and Poke
+Blackwork
+Polka
+Realistic Trash Polka
+Surrealism
+Abstract
+Religious
+Haida
+Stonework
+Portrait
+Lace
+Mandala
+Celtic knot
+Nordic knot
+Fusion
+Nordic
+Optical Illusion
+Braille
+stained glass
+
+$tattoo style 2
+Watercolor
+Cross stitch
+Stippling
+Traditional/Old School
+New School
+Asian
+Script/Text
+Biomechanical
+Tribal
+Realism
+Neo-Traditional
+Geometric
+Stick and Poke
+Blackwork
+Polka
+Realistic Trash Polka
+Surrealism
+Abstract
+Religious
+Haida
+Stonework
+Portrait
+Lace
+Mandala
+Celtic knot
+Nordic knot
+Fusion
+Nordic
+Optical Illusion
+Braille
+stained glass
+
+$tattoo style 3
+Watercolor
+Cross stitch
+Stippling
+Traditional/Old School
+New School
+Asian
+Script/Text
+Biomechanical
+Tribal
+Realism
+Neo-Traditional
+Geometric
+Stick and Poke
+Blackwork
+Polka
+Realistic Trash Polka
+Surrealism
+Abstract
+Religious
+Haida
+Stonework
+Portrait
+Lace
+Mandala
+Celtic knot
+Nordic knot
+Fusion
+Nordic
+Optical Illusion
+Braille
+stained glass
+
+$tattoo style 4
+Watercolor
+Cross stitch
+Stippling
+Traditional/Old School
+New School
+Asian
+Script/Text
+Biomechanical
+Tribal
+Realism
+Neo-Traditional
+Geometric
+Stick and Poke
+Blackwork
+Polka
+Realistic Trash Polka
+Surrealism
+Abstract
+Religious
+Haida
+Stonework
+Portrait
+Lace
+Mandala
+Celtic knot
+Nordic knot
+Fusion
+Nordic
+Optical Illusion
+Braille
+stained glass
+
+$tattoo style 5
+Watercolor
+Cross stitch
+Stippling
+Traditional/Old School
+New School
+Asian
+Script/Text
+Biomechanical
+Tribal
+Realism
+Neo-Traditional
+Geometric
+Stick and Poke
+Blackwork
+Polka
+Realistic Trash Polka
+Surrealism
+Abstract
+Religious
+Haida
+Stonework
+Portrait
+Lace
+Mandala
+Celtic knot
+Nordic knot
+Fusion
+Nordic
+Optical Illusion
+Braille
+stained glass
+
+$tattoo style 6
+Watercolor
+Cross stitch
+Stippling
+Traditional/Old School
+New School
+Asian
+Script/Text
+Biomechanical
+Tribal
+Realism
+Neo-Traditional
+Geometric
+Stick and Poke
+Blackwork
+Polka
+Realistic Trash Polka
+Surrealism
+Abstract
+Religious
+Haida
+Stonework
+Portrait
+Lace
+Mandala
+Celtic knot
+Nordic knot
+Fusion
+Nordic
+Optical Illusion
+Braille
+stained glass
+
+$tattoo placement
+abdomen
+ankle
+bicep
+calf
+cheek
+chest
+collarbone
+ear
+eye
+feet
+fingers
+hand
+jaw
+navel
+neck
+shoulder
+shoulder-blades
+thigh
+throat
+toes
+tricep
+wrist
+back
+butt
+spine
+ribs
+
+$hobbies
+3D printing
+Air sports
+Acting
+Amateur radio
+Aqua-lung
+Archery
+Astronomy
+BASE jumping
+Backpacking
+Badminton
+Baseball
+Basketball
+Baton Twirling
+Beekeeping
+Billiards
+Bird watching
+Blacksmithing
+Board games
+Board sports
+Bodybuilding
+Book restoration
+Bowling
+Boxing
+Brazilian jiu-jitsu
+Breakdancing
+Bridge
+Cabaret
+Calligraphy
+Candle making
+Cheerleading
+Chess
+Climbing
+Collecting [collecting]
+Color guard
+Computer programming
+Coffee roasting
+Cooking
+Collecting
+Coloring
+Cosplaying
+Couponing
+Creative writing
+Cricket
+Crocheting
+Cryptography
+Curling
+Cycling
+Dance
+Darts
+Debate
+Digital arts
+Disc golf
+Dogsport
+Dowsing
+Drama
+Drawing
+Driving
+Do it yourself
+Electronics
+Embroidery
+Equestrianism
+Fashion
+Exhibition drill
+Fenching
+Field hockey
+Figure skating
+Fishing
+Fishkeeping
+Flag football
+Flower arranging
+Flying
+Flying disc
+Footbag
+Foraging
+Foreign language learning
+Gaming
+Gambling
+Gardening
+Genealogy
+Geocaching
+Geology
+Ghost hunting
+Glassblowing
+Go (game)
+Golfing
+Gongoozling
+Graffiti
+Gunsmithing
+Gymnastics
+Handball
+Herping
+Hiking
+Homebrewing
+Hooping
+Horseback riding
+Hunting
+Hurling (sport)
+Ice hockey
+Ice skating
+Inline skating
+Jewelry making
+Jigsaw puzzles
+Jogging
+Judo
+Juggling
+Jukskei
+Kart racing
+Kayaking
+Kite flying
+Kitesurfing
+Knapping
+Knife throwing
+Knitting
+Kabaddi
+Knife making
+LARPing
+Lacemaking
+Lacrosse
+Lapidary
+Laser tag
+Learning
+Leather crafting
+Lego building
+Letterboxing
+Listening to music
+Lockpicking
+Machining
+Macrame
+Magic
+Mahjong
+Marbles
+Metal detecting
+Metalworking
+Meteorology
+Microscopy
+Model building
+Motor sports
+Mountain biking
+Mountaineering
+Mushroom hunting
+Netball
+Nordic skating
+Orienteering
+Origami
+Paintball
+Painting
+Parkour
+People watching
+Pet
+Photography
+Pigeon racing
+Playing musical instruments [music]
+Poi
+Poker
+Polo
+Pottery
+Puzzles
+Quilting
+Racquetball
+Rafting
+Rappelling
+Rappin
+Reading
+Rock climbing
+Roller derby
+Roller skating
+Rugby
+Running
+Sailing
+Scouting
+Scrapbooking
+Scuba diving
+Sculling/Rowing
+Sculpting
+Sewing
+Shooting
+Shopping
+Singing
+Skateboarding
+Sketching
+Skiing
+Skimboarding
+Skydiving
+Slacklining
+Slot car racing
+Snowboarding
+Soapmaking
+Soccer
+Sports
+Squash
+Stand-up comedy
+Stone skipping
+Sudoku
+Surfing
+Swimming
+Taekwondo
+Table football
+Table tennis
+Tai chi
+Taxidermy
+Tennis
+Tour skating
+Travelling
+Triathlon
+Ultimate Frisbee
+Urban exploration
+Vacation
+Vehicle restoration
+Video gaming
+Volleyball
+Vulture Culture
+Watching movies
+Water sports
+Web surfing
+Weightlifting
+Whittling
+Wood carving
+Woodworking
+Worldbuilding
+Yoga
+Yo-yoing
+
+$collecting
+action figures
+antiques
+art
+books
+cards
+coins
+comic books
+stamps
+postcards
+elements
+movies
+records
+cars
+weapons
+plants
+fossils
+insects
+stones
+sea glass
+rocks
+seashells
+marbles
+
+$music
+agung a tamlang
+cajon
+castanets
+clapsticks
+handpan/hang
+marimba
+steelpan
+triangle
+woodblock
+xylophone
+agida
+alcahuete
+apinti
+arobapa
+ashiko
+assotor
+baboula
+balaban
+balsie
+bamboula
+bari
+barrel drum
+barriles
+bass drum
+bodhran
+bongo drums
+boobam
+candombe
+chenda
+conga
+cuica
+dabakan
+daf
+davul
+dhaa
+dhimay
+dhol
+dholak
+dimdi
+djembe
+dollu
+dunun
+drum kit
+gran cassa
+goblet drum
+hira-daiko
+llimba drum
+ingoma
+janggu
+kakko
+kanjira
+kendang
+khol
+lambeg drum
+madhalam
+madal
+maddale
+maktoum
+mridangam
+naqara
+naqareh
+o-daiko
+okedo-daiko
+ocaban
+pakhavaj
+pandero
+piccolo
+sabar
+samphor
+shime-jishi daiko
+snare
+surdo
+tabla
+taiko
+talking drum
+tsukeshime-daiko
+tsuzumi
+tambor huacana
+tamboril
+tamborita
+tan-tan
+taphon
+thavil
+timpani
+tom-tom
+tombak
+repique
+tupan
+uchiwa-daiko
+celesta
+crystallophone
+glasschord
+glass armonica
+hydraulophone
+marimba
+plasmaphone
+pyrophone
+quintephone
+asadullah
+sea organ
+shishi odoshi
+suikinkutsu
+wobble board
+accordina
+accordion
+accordola
+air horn
+alboka
+alphorn
+alto horn
+arghul
+armonica
+atenteben
+bagpipe
+balaban
+bandoneon
+bansuri
+baritone horn
+bassoon
+bawu
+bayan
+bazooka
+beatboxing
+bifora
+birbyne
+blul
+bombarde
+buccina
+bugle
+bullroarer
+calliope
+castrato
+chalumeau
+cimbasso
+clarinet
+clarytone
+concertina
+conch
+cornamuse
+cornet
+cornett
+cornu
+corrugaphone
+cromorne
+crumhorn
+danso
+didgerido
+diple
+dizi
+double bell euphonium
+doulophone
+duduk
+dulcian
+dulzaina
+Dung-dkar
+dzhamara
+english horn
+euphonium
+fife
+firebird
+fiscorn
+flabiol
+flageolet
+flatt trumpet
+flugelhorn
+flumpet
+flute
+folgerphone
+french horn
+fujara
+gaida
+garmon
+gemshorn
+gralla
+guan
+hano
+harmoneon
+harmonica
+harmonium
+heckelphone
+helicon
+horagai
+hosaphone
+hotchiku
+hulusi
+hun
+inci
+irish flute
+jug
+kagurabue
+kalaleng
+kaval
+kazoo
+ken bau
+key bugle
+khene
+khloy
+khlui
+komabue
+koncavka
+kortholt
+koudi
+kuhlohorn
+launeddas
+livenka
+lusheng
+mangtong
+lituus
+mellophone
+melodica
+melodeon
+mezzo-soprano
+mijwiz
+mizmar
+musette de cour
+nadaswaram
+nagak
+ney
+nguru
+nohkan
+nose flute
+oboe
+ocarina
+octavin
+ophicleide
+paixiao
+palendag
+pan flute
+pasiyak
+pavari
+pibgorn
+picco pipe
+piccolo
+piccolo trumpet
+pipe organ
+pitch pipe
+pocket cornet
+pocket trumpet
+post horn
+pu
+pulalu
+Quena
+quinticlave
+rackett
+rauschpfeife
+recorder
+reed contrabass
+reed organ
+rhaita
+robero
+roman tuba
+ryuteki
+saenghwang
+sackbut
+samponia
+saratovskaya garmonika
+sarrusophone
+saxophone
+Saxhorn
+saxotromba
+saxtuba
+schwyzerorgeli
+serpent
+shakuhachi
+shankha
+shawm
+shehnai
+sheng
+shinobue
+shofar
+sho
+shvi
+siku
+siren
+slide trumpet
+slide whistle
+sodina
+sopila
+sorna
+sousaphone
+sralai
+sudrophone
+suling
+suona
+superbone
+swordblade
+tabor pipe
+taepyeongso
+tarogato
+tenora
+tible
+tin whistle
+tonette
+trikiti
+trombone
+tromboon
+trompeta china
+trumpet
+tuba
+tube trumpet
+tumpong
+tungso
+tutek
+txistu
+uilleann pipes
+venu
+vibrandoneon
+vienna horn
+vuvuzela
+wagner tuba
+washint
+whip
+whistle
+willow flute
+xiao
+xun
+yotar
+yu
+zhaleika
+zufolo
+zugtrompette
+zurna
+aeolian harp
+ajaen
+appalachian dulcimer
+archlute
+arpeggione
+autoharp
+baglama
+balalaika
+bandolon
+bandura
+bandurria
+banjo
+banjo mandolin
+banjo ukulele
+barbat
+baryton
+berimbau
+biwa
+bordonua
+bouzouki
+cavaquinho
+cello
+chapman stick
+charango
+cimbalom
+cuatro
+citole
+cittern
+clavichord
+crwth
+cumbus
+dahu
+dan bau
+dab day
+dan gao
+dan nguyet
+dan tam thap luc
+dan tranh
+dan ty ba
+diddley bow
+dihu
+domra
+double-neck guitjo
+double bass
+dutar
+duxianquin
+ektara
+erhu
+erxian
+esraj
+faglong
+fegereng
+fiddle
+fortepiano
+gayageum
+gehu
+geomungo
+gopuz
+gottuvadhyam
+guitar
+gittern
+gusli
+guqin
+guzheng
+haegeum
+hammered dulcimer
+hardanger fiddle
+harmonico
+harp
+harpischord
+hegelong
+huluhu
+huqin
+hurdy-gurdy
+igil
+irish bouzouki
+jarana de son jarocho
+jarana huasteca
+jarana mosquito
+jarana segunda
+jarana tercera
+jiaohu
+kabosy
+kadlong
+kamancha
+kantele
+kemenche
+khim
+kobza
+kokle
+kokyu
+komungo
+kora
+koto
+kubing
+kydyapi
+langeleik
+laruan
+leiqin
+lirone
+lokanga
+lute
+lyra
+lyre
+maguhu
+mando-bass
+mandocello
+mandola
+mandolin
+mandora
+mandore
+marovany
+mohan veena
+morin khuur
+nyckelharpa
+octave mandolin
+octobass
+oud
+piano
+piccolo violino
+piccolo cello
+pipa
+piwancha
+portuguese guitar
+psaltery
+ravanahatha
+rebec
+requinto jarocho
+ruan
+rudra vina
+sallameh
+sanshin
+santoor
+sanxian
+sarangi
+sarod
+saung
+saw sam sai
+saz
+se
+shamisen
+setar
+sitar
+sitarla
+stroh violin
+sopranino mandolin
+tamburitza
+tanpura
+tar
+tea chest bass
+tembur
+tenor viola
+theorbo
+timple
+tres
+tro
+trumpet marine
+tsymbaly
+tuhu
+ukulele
+soprano ukulele
+tenor ukulele
+concert ukulele
+cigar box ukulele
+baritone ukulele
+valiha
+veena
+vertical viola
+vichitra vina
+vielle
+vihuela
+viol
+viola da gamba
+viola
+viola d'amore
+violin
+violotta
+washtub bass
+whamola
+xalam
+xenorphica
+yayli tanbur
+yazheng
+yangqin
+zhonghu
+zhuihu
+zither
+alphasphere
+audiocubes
+croix sonore
+denis d'or
+dubreq stylophone
+drum machine
+eigenharp
+electronic organ
+EWI
+fingerboard synthesizer
+hammond organ
+jammer keyboard
+keytar
+kraakdoos
+laser harp
+mellotron
+MIDI keyboard
+ondes martenot
+omnichord
+sampler
+skoog
+synclavier
+synthesizer
+teleharmonium
+tembur
+tenori-on
+theremin
+turntable
+
+$mb first
+Extrovert (E)
+Introvert (I)
+Ambivert (E/I)
+
+$mb second
+Sensing (S)
+Intuition (N)
+Sensing/Intuition (S/N)
+
+$mb third
+Thinking (T)
+Feeling (F)
+Thinking/Feeling (T/F)
+
+$mb fourth
+Judging (J)
+Perceiving (P)
+Judging/Perceiving (J/P)
+
+$big5o
+Not at all open to new experiences.
+Not very open to new experiences.
+Neutral to new experiences.
+Open to new experiences.
+Very open to new experiences.
+
+$big5c
+Not at all honest nor hardworking.
+Not very honest or hardworking.
+Neutral to honesty and hard work.
+Relatively honest and hardworking.
+Very honest and hardworking.
+
+$big5a
+Doesn't at all adjust their attitude or behavior to suit others.
+Rarely adjusts their attitude or behavior to suit others.
+Sometimes adjusts their attitude or behavior to suit others.
+Regularly adjusts their attitude or behavior to suit others.
+Always adjusts their attitude or behavior to suit others.
+
+$big5n
+Doesn't show their emotions at all to strangers.
+Rarely ever shows their emotions to strangers.
+Sometimes shows their emotions to strangers.
+Regularly shows their emotions to strangers.
+Wears their heart on their sleeves all the time, even to strangers.
+
+$ma primary
+
+Lawful Good
+Neutral Good
+Chaotic Good
+Lawful Neutral
+Chaotic Neutral
+Lawful Evil
+Neutral Evil
+Chaotic Evil
+
+$ma secondary
+
+Lawful Good
+Neutral Good
+Chaotic Good
+Lawful Neutral
+Chaotic Neutral
+Lawful Evil
+Neutral Evil
+Chaotic Evil
+
+$la primary
+
+Eros
+Ludus
+Storge
+
+$la secondary
+
+Pragma
+Mania
+Agape
+
+$style
+Secure
+Anxious/Preoccupied
+Dismissing
+Fearful-avoidant
+
+$a first
+Caregiver
+Creator
+Explorer
+Hero
+Innocent
+Jester
+Lover
+Magician
+Outlaw
+Regular Gal/Guy
+Ruler
+Sage
+
+$a second
+
+Caregiver
+Creator
+Explorer
+Hero
+Innocent
+Jester
+Lover
+Magician
+Outlaw
+Regular Gal/Guy
+Ruler
+Sage
+
+$enneagram primary
+Reformer
+Helper
+Achiever
+Individualist
+Investigator
+Loyalist
+Enthusiast
+Challenger
+Peacemaker
+
+$enneagram secondary
+
+Reformer
+Helper
+Achiever
+Individualist
+Investigator
+Loyalist
+Enthusiast
+Challenger
+Peacemaker
+
+$holland primary
+Artistic/Creator
+Conventional/Organizer
+Enterprising/Persuader
+Investigative/Thinker
+Realistic/Doer
+Social/Helper
+
+$holland secondary
+
+Artistic/Creator
+Conventional/Organizer
+Enterprising/Persuader
+Investigative/Thinker
+Realistic/Doer
+Social/Helper
+
+$philosophy
+Absolutism
+Absurdism
+Aestheticism
+Altruism
+Anarchism
+Anthropocentrism
+Asceticism
+Atheism
+Atomism
+Authoritarianism
+Captialism
+Collectivism
+Compatibilism
+Consequentialism
+Constructivism
+Contextualism
+Cynicism
+Deconstructionism
+Deductionism
+Deism
+Deontologism
+Determinism
+Dialetheism
+Dogma
+Dualism
+Dynamism
+Eclecticism
+Egalitarianism
+Egoism
+Emotivism
+Empiricism
+Epiphenomenalism
+Eternalism
+Ethnocentrism
+Eudaimonism
+Existentialism
+Externalism
+Extropianism
+Feminism
+Finalism
+Formalism
+Free Will
+Hedonism
+Historicism
+Holism
+Humanism
+Hylozoism
+Idealism
+Illusionism
+Indeterminism
+Individualism
+Inductivism
+Innatism
+Instrumentalism
+Legalism
+Marxism
+Materialism
+Mechanism
+Meliorism
+Monism
+Mysticism
+Naturalism
+Nihilism
+Nominalism
+Objectivism
+Occasionalism
+Optimism
+Pacifism
+Pantheism
+Perspectivism
+Pessimism
+Phenomenalism
+Plural
+Positivism
+Pragmatism
+Rationalism
+Realism
+Reconstructivism
+Reductionism
+Relativism
+Secularism
+Skepticism
+Socialism
+Solipsism
+Spiritualism
+Stoicism
+Structuralism
+Subjectivism
+Symbolism
+Syncretism
+Theism
+Totalitarianism
+Transhumanism
+Universalism
+Utilitarianism
+Utopianism
+Vitalism
+
+$color
+deep red
+brick red
+bright red
+bright pink
+dusty pink
+light pink
+peach
+coral
+vibrant orange
+ginger
+terra cotta
+chocolate brown
+coffee brown
+earth brown
+gold
+amber
+golden yellow
+bright yellow
+light yellow
+chartreuse
+light green
+olive green
+lime
+dark green
+foliage green
+bright green
+emerald
+aqua
+turquoise
+teal
+sky blue
+light blue
+periwinkle
+bright blue
+deep blue
+lavender
+mauve
+amethyst
+blue purples
+red purple
+neutral grey
+charcoal grey
+taupe
+ivory
+silver
+black
+white
+
+$underwear
+bikini panties
+boxers
+bra
+briefs
+camisole
+chemise
+dressing gown
+knickers
+lingerie
+thong
+vest underwear
+
+$clothing pattern
+color [color]
+dots
+floral
+stripes
+animal print
+
+$bra type
+balcony
+padded
+plunge
+seamless
+strapless
+T-shirt
+underwire
+
+$length
+3/4
+full
+knee
+mini
+
+$chemise neckline
+boat
+scoop
+square
+swan
+sweetheart
+V-neck
+
+$chemise collar
+
+cape
+
+$chemise sleeves
+
+strappy
+
+$dressing gown sleeve length
+long
+short
+
+$dressing gown style
+tie-on
+wrap-around
+
+$dressing gown collar
+convertible
+shawl
+
+$sock type
+socks
+stockings
+
+$sock style
+crew
+liner
+double layer
+trainer
+
+$stocking type
+fishnet
+garter
+seamed
+
+$stocking style
+garter
+pantyhose
+
+$swimwear
+bikini
+sarong
+costume
+shorts
+tankini
+trunks
+
+$fit
+fitted
+padded
+
+$bikini style
+slip-on
+tie-string
+wrap around
+
+$bikini neckline
+halter
+square
+sweetheart
+
+$bikini straps
+bandeau
+strapless
+strappy
+
+$bottom style
+classic bikini
+hipster
+string
+high-waist
+shorts
+classic bikini with skirt
+hipster with skirt
+high-waist with skirt
+shorts with skirt
+
+$sarong style
+with ties
+without ties
+
+$swimming costume neckline
+halter
+square
+scoop
+V-neck
+
+$swimming costume straps
+straps
+strapless
+
+$tankini neckline
+scoop
+square
+V-neck
+
+$length
+3/4
+full
+knee
+mini
+
+$nightwear type
+nightgown
+pajamas
+shirt and shorts
+feetie/onsie
+underwear
+nudity
+
+$sleeve length
+long
+short
+sleeveless
+strappy
+
+$nightgown neckline
+scoop
+sweetheart
+V-neck
+
+$nightgown style
+slip-on
+wrap-around
+
+$pajama neckline
+scoop
+V
+
+$pajama style
+buttons
+drawstrings
+elasticated
+wrap-around
+
+$s+s style
+buttoned
+drawstring
+elasticated
+
+$footwear
+boots
+sandals
+shoes
+slippers [slipper type]
+trainers
+
+$boot type
+combat
+football
+hiking
+ugg
+wellington
+
+$boot toe
+cap
+closed
+
+$boot heel
+covered
+flat
+high
+platform
+small
+stilleto
+
+$boot height
+ankle
+knee
+thigh
+
+$boot style
+laced
+slip-on
+zip
+
+$boot pattern
+
+studs
+buckles
+
+$sandal type
+espadrille
+fisherman
+flip-flop
+
+$sandal heel
+flat
+high
+
+$sandal style
+buckled
+side
+slip-on
+velcro
+
+$shoe type
+ballerina flats
+clogs
+hiking
+loafer
+mary jane
+monkstrap
+two piece
+mules
+oxfords
+moccasins
+
+$shoe heel
+covered
+flat
+high
+platform
+small
+stilleto
+
+$shoe style
+laced
+slip-on
+velcro
+zip
+
+$shoe toe
+apron
+bicycle
+cap
+closed
+open
+peep
+plain
+pointed
+
+$shoe pattern
+slingback
+strappy
+T-strap
+brogue
+derby
+wingtip
+
+$slipper type
+ugg boots
+toe [slipper toe]
+full
+
+$slipper toe
+open
+closed
+
+$trainer heel
+flat
+platform
+
+$trainer style
+laced
+velcro
+
+$tops
+blouse
+cheongsam
+corset
+jumper
+kurta
+polo shirt
+shirt [shirt]
+sweatshirt
+T-shirt
+tunic
+turtleneck
+vest
+
+$blouse collar
+poet
+turnover
+
+$blouse sleeves
+bell
+cap
+puffed
+
+$blouse sleeve length
+long
+short
+
+$blouse style
+buttons
+wrap-around
+
+$blouse pattern
+plain [color]
+dots
+floral
+gathered
+pleats
+ruffle
+stripes
+
+$cheongsam sleeve length
+long
+3/4
+short
+sleeveless
+
+$cheongsam style
+center
+side
+
+$cheongsam pattern
+animal design
+color [color]
+floral
+pattern
+
+$jumper style
+slip-on
+wrap-around
+
+$jumper fit
+baggy
+fitted
+
+$jumper sleeves
+bell
+raglan
+set-in
+
+$jumper neckline
+off the shoulder
+one shoulder
+polo
+V-neck
+
+$shirt sleeve length
+long
+short
+
+$shirt style
+single cuffed
+double cuffed
+
+$shirt collar
+2 button
+2 button cut away
+2 button Italian
+2 button down
+3 button down
+British
+button down
+classic
+classic narrow
+convertible
+cut away
+hidden button
+St. Tropez
+turnover
+wingtip
+
+$shirt pattern
+plain [color]
+layered
+pleated
+striped
+
+$sweatshirt sleeves
+raglan
+set-in
+
+$sweatshirt neckline
+boat
+V-neck
+
+$tshirt type
+football
+rugby
+hockey
+tennis
+plain
+
+$tshirt length
+long
+short
+sleeveless
+
+$tshirt neckline
+V-neck
+scoop
+
+$tshirt pattern
+plain [color]
+dots
+floral
+logo
+stripes
+
+$tshirt fit
+fitted
+baggy
+
+$tunic sleeve length
+long
+short
+
+$tunic style
+button
+slip-on
+
+$tunic collar
+
+turnover
+
+$turtleneck
+turnover
+polo
+
+$vest style
+button
+elasticated
+tie-on
+hook and eye
+slip-on
+smocking
+wrap around
+combination
+
+$vest fit
+baggy
+fit
+
+$vest neckline
+boat
+cowl
+halter
+keyhole
+off the shoulder
+one shoulder
+scoop
+square
+sweetheart
+V-neck
+
+$vest collar
+
+poet
+convertible
+shawl
+
+$vest pattern
+plain [color]
+dots
+double breasted
+floral
+layered
+ruffled
+sequined
+single breasted
+gathered
+pleated
+stripes
+
+$jacket type 1
+blazer
+cardigan
+coat
+hoody
+jacket [jacket type 2]
+waterproof
+
+$blazer type
+uniform
+dinner jacket
+
+$blazer collar
+convertible
+shawl
+
+$blazer vents
+center
+sides
+multi
+
+$blazer pattern
+color
+stripes
+
+$cardigan style
+buttons
+slip-on
+tie-on/wrap
+
+$cardigan pattern
+color
+stripes
+
+$coat collar
+cape
+stand-up
+
+$coat style
+combination
+hook and eye
+zip
+
+$jacket type 2
+anorak
+harrington
+
+$jacket collar
+band
+stand-up
+turnover
+
+$jacket style
+buttons
+combination
+zip
+
+$bottoms
+cargos
+jeans
+kilt
+shorts
+skirts
+tights
+trousers
+
+$cargos style
+buttons
+combination
+drawstring
+zip
+
+$jeans legs
+bootcut
+flare
+skinny
+straight
+
+$jeans length
+3/4
+full
+
+$jeans fit
+baggy
+fitted
+
+$jeans style
+button
+combination
+zip
+
+$kilt style
+relaxed
+great
+fancy highland
+great winter
+fly plaid
+relaxed great back
+
+$shorts fabric
+cotton
+denim
+leather
+lycra
+polyester
+corduroy
+
+$short length
+cut-offs
+knee
+mini
+
+$short type
+athletic
+bermuda
+board shorts
+football
+hockey
+netball
+rugby
+swimming
+tennis
+walking
+
+$short style
+buttons
+combination
+drawstring
+elasticated
+zip
+
+$shorts pattern
+acid
+floral
+logo
+plain
+ripped
+worn
+
+$skirt shape
+A-line
+pencil
+circle
+straight
+
+$skirt length
+3/4
+full
+knee
+mini
+
+$skirt style
+buttons
+combination
+drawstring
+elasticated
+hook and eye
+tie-on/wrap
+wrap around
+zip
+
+$skirt pattern
+color
+floral
+dots
+stripes
+ruffled
+handkerchief hem
+layered
+pleated
+sequined
+gathered
+
+$trouser length
+3/4
+full
+
+$trouser leg
+boot cut
+skinny
+straight
+
+$trouser fit
+baggy
+fitted
+
+$trouser style
+buttons
+combination
+drawstring
+elasticated
+hook and eye
+zip
+
+$trouser pattern
+color
+floral
+ripped
+stripe
+worn
+
+$full body
+ball gown
+catsuit
+cheongsam
+dinner jacket
+dress
+dungarees
+jogging suit
+overalls
+robe
+romper
+shellsuit
+suit
+tailcoat
+tracksuit
+
+$ball gown sleeves
+strapless
+strappy
+sleeveless
+
+$ball gown neckline
+off the shoulder
+square
+sweetheart
+
+$ball gown pattern
+beaded
+gathered
+color [color]
+layered
+sequined
+backless
+beaded and backless
+gathered and backless
+layered and backless
+sequined and backless
+
+$cheongsam sleeve length
+long
+3/4
+short
+sleeveless
+
+$cheongsam style
+center
+side
+
+$cheongsam length
+full
+3/4
+knee
+mini
+
+$cheongsam pattern
+animal design
+color [color]
+floral
+pattern
+
+$dress type
+evening
+sundress
+
+$dress sleeve length
+short
+strapless
+long
+
+$dress sleeves
+bell
+cap
+puffed
+strappy
+sleeveless
+
+$dress neckline
+boat
+cowl
+halter
+off the shoulder
+one shoulder
+scoop
+square
+sweetheart
+V-neck
+
+$dress collar
+
+band
+poet
+
+$dress skirt type
+A-line
+circle
+pencil
+straight
+
+$dress length
+3/4
+full
+knee
+mini
+
+$dress style
+button
+elasticated
+tie-on/wrap
+wrap around
+zip
+
+$dress pattern
+handkerchief hem
+pleated
+beaded
+crinkle
+floral
+ruffled
+gathered
+layered
+color [color]
+sequined
+backless
+handkerchief hem and backless
+pleated and backless
+beaded and backless
+crinkled and backless
+floral and backless
+ruffled and backless
+gathered and backless
+layered and backless
+sequined and backless
+
+$tracksuit fit
+baggy
+fitted
+
+$accessories
+bag [bag type]
+belt
+cufflinks
+cummerbund
+hair accessory
+hat
+jewellery
+kaftan
+pashmina
+gloves
+neckwear
+poncho
+scarf
+shawl
+sunglasses
+
+$bag type
+backpack
+bucket
+clutch
+duffel
+evening
+satchel
+tote
+drawstring
+
+$bag style
+buttons
+drawstring
+buckle
+magnet
+zip
+
+$bag pattern
+beaded
+color
+dot
+floral
+logo
+sequined
+striped
+
+$belt type
+tie-on
+buckle
+
+$belt pattern
+color
+dots
+floral
+stripes
+studs
+
+$glove fabric
+leather
+lycra
+polyester
+satin
+suede
+wool
+lace
+
+$glove length
+long
+medium
+short
+
+$glove fingers
+fingers
+knuckles
+fingerless
+
+$glove pattern
+color
+floral
+ribbon
+stripe
+
+
+$hat type
+bandana
+beanie [beanie type]
+beret [beret type]
+bonnet
+bowler [bowler type]
+bucket
+cowboy [cowboy hat type]
+cap [cap type]
+cloche
+fedora [fedora type]
+top hat
+trapper
+
+$beanie type
+skull cap
+cuffed
+earflap
+visor
+ski mask
+animal
+
+$beret type
+official
+wool knit
+children
+
+$bowler type
+original
+cat ears
+
+$cap type
+baseball
+flat
+
+$cowboy hat type
+cattleman
+cutter
+ridge top
+dakota
+mountie
+gus
+pinchfront
+boss of the plains
+telescope
+
+$fedora type
+classic
+safari
+pork pie
+trilby
+
+$hat pattern
+color
+floral
+stripes
+feathers
+
+$jewelry material
+gold
+plastic
+silver
+wooden
+bone
+
+$jewelry type
+anklet
+bracelet
+choker
+necklace
+rings
+piercing [pierced body part]
+
+$pierced body part
+abdomen
+cheek
+chest
+ears
+groin
+mouth
+nose
+
+$neckwear
+ascot
+bolo
+bow tie
+cravat
+scarf
+skinny tie
+tie
+tulip tie
+neck tab
+
+$tie knots
+four in hand
+half windsor
+full windsor
+nicky
+kelvin
+oriental
+pratt
+St. Andrew
+balthus
+hanover
+plattsburgh
+grantchester
+victoria
+cafe
+eldredge
+trinity
+christensen
+
+$scarf fabric
+cotton
+fur
+satin
+silk
+wool
+
+$scarf pattern
+color
+floral
+striped
+
+$scarf knots
+halter top
+half bow epaulette
+fancy braid
+scarf boa
+carmen miranda
+wrap and tie
+rosette scarf belt
+shoulder duster
+double scarf loop knot
+scarf bustier
+twisty scarf loop
+cowboy bolo tie
+infinity scarf twist
+boho loop tie
+girly windsor
+bisous bow tie
+belted scarf
+skinny scarf necklace
+ascot wrap
+knot row
+double scarf boho tie
+slip knot
+rosette neck wrap
+hollywood hills
+DIY circle scarf
+layered knot
+simple tie
+chain knot
+neck tie knot
+double knot wrap
+muffler II
+square knot
+scarf belt
+double loop
+four in hand
+knotted scarf
+neck wrap
+fake knot
+double wrap french knot
+bow tie
+half bow
+infinity loop knot
+half bow II
+loop and tuck scarf
+infinity scarf shrug
+pan am
+loose wrap
+muffler
+double wrap neck
+cape wrap
+
+$severity
+major
+neutral
+minor
+
+$addiction
+gambler
+sex
+alcohol
+prescription drugs (opioids, oxycotten, vicadin, etc.)
+street drugs (meth, cocaine, ecstasy, etc.)
+pain
+water
+tobacco
+natural grown drugs (morning glory seeds, etc.)
+stealing
+starting fires
+food
+pornography
+gaming/internet
+work
+exercise
+self-harming
+shopping
+spiritual obsession
+cosmetic surgery
+adrenaline/risky behavior
+love
+activity [hobbies]
+
+$aversion
+animals
+cleaning oneself
+noise (specific)
+heights
+flying
+open places
+enclosed spaces
+crossing streets
+sharp objects
+pain
+men
+women
+people
+water
+spiders
+thunder and lightning
+isolation
+falling
+needles
+chemicals
+bats
+colors (in general)
+color (specific)
+time
+food
+cemeteries
+defecation
+clowns
+technology
+cats
+dogs
+making decisions
+demons
+dentists
+body defects
+female genitalia
+male genitalia
+vomiting
+crowds
+the youthful
+sex
+blushing
+being too cold
+being too hot
+cohabitation
+being laughed at
+bridges
+aging
+the elderly
+balloons
+public speaking
+nudity
+bad breath
+being touched
+obtaining pleasure
+sunlight
+blood
+traveling
+firearms
+sleep
+fish
+buttons
+tornadoes/hurricanes
+cooking
+bees
+mice
+germs
+death/dead
+progress
+being unable to contact anyone/out of cell phone reach
+hospitals
+contracting a disease
+returning home
+numbers
+darkness
+dreams
+snakes
+being stared at
+odors
+everything
+babies and children
+swallowing
+medications
+ghosts
+love
+being afraid
+loud sounds
+beards
+pornography
+firearms
+radioactivity
+trains or railroads
+mirrors
+buried alive
+speaking on the phone
+disfigured people
+childbirth or pregnancy
+invasive medical procedures
+being poisoned
+syringe needles
+strangers
+religion
+new things/activities
+
+$fear
+animals
+cleaning oneself
+noise (specific)
+heights
+flying
+open places
+enclosed spaces
+crossing streets
+sharp objects
+pain
+men
+women
+people
+water
+spiders
+thunder and lightning
+isolation
+falling
+needles
+chemicals
+bats
+colors (in general)
+color (specific)
+time
+food
+cemeteries
+defecation
+clowns
+technology
+cats
+dogs
+making decisions
+demons
+dentists
+body defects
+female genitalia
+male genitalia
+vomiting
+crowds
+the youthful
+sex
+blushing
+being too cold
+being too hot
+cohabitation
+being laughed at
+bridges
+aging
+the elderly
+balloons
+public speaking
+nudity
+bad breath
+being touched
+obtaining pleasure
+sunlight
+blood
+traveling
+firearms
+sleep
+fish
+buttons
+tornadoes/hurricanes
+cooking
+bees
+mice
+germs
+death/dead
+progress
+being unable to contact anyone/out of cell phone reach
+hospitals
+contracting a disease
+returning home
+numbers
+darkness
+dreams
+snakes
+being stared at
+odors
+everything
+babies and children
+swallowing
+medications
+ghosts
+love
+being afraid
+loud sounds
+beards
+pornography
+firearms
+radioactivity
+trains or railroads
+mirrors
+buried alive
+speaking on the phone
+disfigured people
+childbirth or pregnancy
+invasive medical procedures
+being poisoned
+syringe needles
+strangers
+religion
+
+$immorality
+having a child outside of marriage
+sex outside of marriage
+divorce
+using human embryos for medical researched
+polygamy/polyamory
+cloning
+suicide
+birth control
+gambling
+pornography
+abortion
+wearing fur
+adultery
+infidelity
+death penalty
+doctor-assisted suicide
+animal testing
+sex between teenagers
+an unmarried woman having a baby
+taking shortcuts in work
+lying
+badmouthing or spreading gossip
+blaming others
+hiding other people’s mistakes
+taking other people’s credit
+overselling themselves
+boastful behavior
+idolatry
+disrespecting their parents
+disrespecting religion/philosophy
+coveting behavior
+promiscuity
+victimless theft
+being inhospitable
+being insincere
+bullying behavior
+manipulative behavior
+pessimistic
+tax avoidance
+hiking prices of life-saving devices/medicine
+verbally abusing someone because of a small mistake
+being a hypocrite
+punishing people who help themselves
+not cleaning after themselves
+taking pleasure in someone else’s failure
+giving false compliments
+staying in dead-end relationships just until the “one” comes along
+self-medicating
+medicating with illegal substances that do help relieve their conditions
+encouraging others in destructive behaviors
+borrowing without permission
+forcing opinions/ideations on others
+
+$incompetence
+staying calm in a stressful environment
+setting goals
+handling customers
+being a leader
+showing empathy
+being open-minded
+asking for help
+self-control
+patience
+saying “no”
+being objective
+being dependable
+being committed
+avoiding needless confrontation
+facing their problems
+being independent
+working as a team
+setting personal boundaries
+accepting help
+having self-control
+respecting others’ opinions
+being grateful
+letting things go
+being polite
+good judge of character's
+follows the rules
+learning from past mistakes
+dieting
+remembering passwords
+paperwork
+cooking
+accepting criticism
+making decisions
+letting others decide
+activity [hobbies]
+
+$poor judgement
+doesn’t fact-check before spreading it
+indecisive
+making a decision before gathering all of the information
+can’t plan three steps ahead
+using outdated information
+overly dependent on someone/people
+refusing to rely on other people’s input
+making decisions based solely on what others have told themselves
+failing at communication when making a decisions
+
+$moderation
+Very strong
+Good
+Average
+Poor
+Very weak
+
+$phrase
+<h1>Your Character:</h1><br><h2>BODY:</h2><br><b>Sex:</b> [sex].<br><br><b>Gender Identity:</b> [gender identity].<br><br><b>Romantic Orientation:</b> [rom o].<br><br><b>Sexual Orientation:</b> [sex o].<br><br><b>Height:</b> [height feet] [height inches].<br><br><b>Body Shape:</b> [vbt] [hbs], [breasts] [breast shape] breasts if the character is a female or intersex, and [arm length] arms. <br><br> <b>Skin:</b> [skin tone], or [skin tone cartoon] if the character has dyed their skin, is a humanoid creature, or for a cartoon. <br><br><b>Hands:</b> [hand size] [palm shape] hands with a/n [palm arch] arch, [finger length] [finger shape] fingers, with [nail shape] nails.<br><br><b>Feet:</b> [feet size] [feet shape] feet with [feet arch] arch.<br><br><h2>FACE:</h2><br><b>Face Shape:</b> [face shape] face shape.<br><br><b>Hair:</b> [hairline width] [hairline smoothness] [hairline shape] hairline with [hairline extra].  [Hair length] [hair texture] [hair color] hair, or [hair color cartoon] hair if the hair is dyed, the character is a humanoid creature, or it’s for a cartoon.<br><br><b>Forehead and Brow:</b> [forehead height] [forehead width] [forehead shape] forehead with a [brow shape] brow.<br><br><b>Eyebrows:</b> [eyebrow set] [eyebrow placement] [eyebrow shape] eyebrows with a/n [eyebrow angle] angle.<br><br><b>Yin Tong Lines:</b> [yin tong lines].<br><br><b>Eyes:</b> [eye size] [eye space] [eye angle] eyes that are [eye shape] in shape, and has a [eye mutation] mutation with a [eye color] coloration (along with [eye color] if the mutation calls for a second color), or [eye color cartoon] coloration (along with [eye color cartoon] if a second color is needed) if the character is using colored contacts, is a humanoid creature, or is for a cartoon.<br><br><b>Eye sight:</b> [eye sight].<br><br><b>Nose:</b> [nose size] [nose set] [nose shape] nose with a [nose tip] tip and [nostril size] nostrils.<br><br><b>Ears:</b> [ear size] [ear shape] ears at a [ear set] set that’s [ear position] with a [ear cartilage] [ear helix] helix, [ear marks] and [ear lobes] lobes.<br><br><b>Mouth:</b> [philtrum length] [philtrum depth] philtrum with [philtrum other].  Has a [mouth length] [mouth set] [mouth position] mouth with [lip size] and [lip set] lips.  The cupid’s bow has a [cbvd] [cbw] V with [peaks] peaks and [bottom] bottom.  The ariol is [ariol].  When relaxed, the mouth is [relaxed mouth].<br><br><b>Cheeks:</b> [cheekbone] [cheek shape] cheeks.<br><br><b>Jaw:</b> [jaw slack] [jaw shape] jaws with a/n [jaw set].<br><br><b>Chin:</b> [chin size] [chin shape] chin with a [chin markings].<br><br><h2>ANOMALIES:</h2><br><h3>Natural Anomalies:</h3>[natural anomalies].  If birthmark, or moles is chosen, it’s on the [body part].<br><br><h3>Unnatural Anomalies:</h3>[unnatural anomalies].  If tattoo is chosen, it’s  on the [tattoo placement].<br><br><h2>CLOTHING:</h2><br><h3>Underwear:</h3> [color] (and [color] if a second color is needed) [clothing pattern] [underwear].<br>If a bra is chosen, it is a [bra type] bra.  <br>If chemise is chosen, it's [length] length with [chemise neckline] neckline and [chemise collar] collar.  <br>If dressing gown is chosen, it's [length] length with [dressing gown sleeve length] length sleeves that's [dressing gown style] and has [dressing gown collar] collar.<br><br><h3>Socks:</h3> [color] (and [color] if a second color is needed) [clothing pattern] [sock style].<br>If stockings are chosen, it's [stocking type] [stocking style].<br><br><h3>Swimwear:</h3> [color] (and [color] if a second color is needed) [clothing pattern] [swimwear].<br>If bikini is chosen, it's a [fit] bikini, that is a [bikini style] with a [bikini neckline] neckline and is [bikini straps].  The bikini bottoms are [bottom style].  <br>If sarong is chosen, it's [sarong style].  <br>If swimming costume is chosen, its [fit] with a [swimming costume neckline] neckline and is/has [swimming costume straps].  <br>If tankini is chosen, it has a [tankini neckline] neckline, and has [bottom style] bottoms. <br><br><h3>Nightwear:</h3> [color] (and [color] if a second color is needed) [clothing pattern] [nightwear type].<br>If nudity is chosen, then don't read any farther.  <br>If underwear is chosen, look into the underwear section, and don't read any farther.  <br>If nightgown is chosen, it's a [nightgown style] nightgown with a [nightgown neckline] neckline, and [sleeve length] sleeves.  <br>If pajamas is chosen, it's [pajama style], and has a [pajama neckline] neckline.  <br>If shirt and shorts are chosen, then the shirt or shorts are [s+s style]. <br><br><h3>Footwear:</h3> [color] (and [color] if a second color is needed) [clothing pattern] [footwear].<br>If boots are chosen, they're [boot height] height [boot type] boots that are [boot style] with [boot toe] toe, [boot heel] heel, and has [boot pattern].  <br>If sandals are chosen, they are [sandal type] sandals with [sandal heel] heel and is [sandal style].  <br>If shoes are chosen, they are [shoe style] [shoe type], with [shoe heel] heel (unless they are flats or are a shoe with a flat heel), [shoe toe] toe, and has a [shoe pattern], unless they are flats or clogs. <br>If trainers are chosen, they are [trainer style] shoes with a [trainer heel] heel.<br><br><h3>Tops:</h3> [color] (and [color] if a second color is needed) [clothing pattern] [tops].<br>If blouse was chosen, it is a [blouse style] blouse with a [blouse collar] collar and [blouse sleeve length] [blouse sleeves] sleeves with [blouse pattern].  <br>If cheongsam is chosen, it's a [cheongsam sleeve length] sleeved shirt with the fastenings on the [cheongsam style] side, and has a [cheongsam pattern] pattern.  <br>If jumper was chosen, it's a [jumper fit] [jumper style] with a [jumper neckline] neckline and [jumper sleeves] sleeves.  <br>If shirt was chosen, it's [shirt style], with [shirt sleeve length] sleeves, [shirt collar] collar, and is [shirt pattern].  <br>If sweatshirt was chosen, it has a [sweatshirt neckline] neckline with [sweatshirt sleeves] sleeves.  <br>If T-shirt was chosen, it's a [tshirt fit] [tshirt type] shirt with [tshirt neckline] neckline.  <br>If tunic was chosen, it's [tunic style], with [tunic sleeve length] sleeves, and [tunic collar] collar.  <br>If turtleneck is chosen, it has [turtleneck] collar.  <br>If vest was chosen, it's [vest fit] [vest style] with [vest neckline] neckline and a [vest collar] collar, and is [vest pattern].<br><br><h3>Jackets:</h3> [color] (and [color] if a second color is needed) [clothing pattern] [jacket type 1].<br>If blazer is chosen, it is a [blazer type] with a [blazer collar] collar, [blazer vents], and is in a [blazer pattern] pattern.  <br>If cardigan is chosen, it is a [cardigan style] with [cardigan pattern].  <br>If coat was chosen, it's a [coat style] with a [coat collar] collar.  <br>If jacket was chosen, it's a [jacket style] jacket with a [jacket collar] collar.<br><br><h3>Bottoms:</h3> [color] (and [color] if a second color is needed) [clothing pattern] [bottoms].<br>If cargos were chosen, it's [cargos style].  <br>If jeans were chosen, it's [jeans fit] [jeans length] [jeans legs] that's [jeans style].  <br>If kilt is chosen, you're character's favorite way to wear it is in the [kilt style] style.  <br>If shorts were chosen, they are [short style] [short type] [short length] shorts with [shorts pattern] pattern.  <br>If skirt was chosen, it is a [skirt style] [skirt length] [skirt shape] skirt that's [skirt pattern].<br><br><h3>Full Body:</h3> [color] (and [color] if a second color is needed) [clothing pattern] [full body].<br>If ball gown was chosen, it is a [ball gown sleeves] [ball gown neckline] neck dress that's [ball gown pattern].  <br>If cheongsam is chosen, it's a [cheongsam length] length dress, [cheongsam sleeve length] sleeves with the fastenings on the [cheongsam style] and has a [cheongsam pattern] pattern.  <br>If dress is chosen, it is a[n] [dress style] [dress type] dress with [dress sleeve length] [dress sleeves] sleeves, a [dress neckline] neckline, with a [dress collar] collar, and a[n] [dress length] [dress skirt type] skirt that is/has a[n] [dress pattern].  <br>If tracksuit was chosen, it's [tracksuit fit].<br><br><h3>Accessories:</h3>[color] (and [color] if a second color is needed) [clothing pattern] [accessories].<br>If bag is chosen, it is a [bag type] with [bag style] fastenings, and is/has a[n] [bag pattern].  <br>If belt is chosen, it is a [belt type] type that's [belt pattern].  <br>If gloves were chosen, they're [glove length] [glove fingers] that's [glove pattern].  <br>If hat was chosen, it's a [hat type] that's [hat pattern].  <br>If jewelry is chosen, it's a [jewelry material] [jewelry type].  <br>If neckwear is chosen, it's [neckwear].  <br>If a tie or skinny tie was chosen, it's usually in a [tie knots] knot.  <br>If scarf was chosen, it's [scarf pattern] in a [scarf knots] knot.<br><br><h2>PERSONALITY:</h2><br><b>Myers-Briggs Personality:</b> [mb first] [mb second] [mb third] [mb fourth]<br><br><b>Openness:</b> [big5o]<br><br><b>Conscientiousness:</b> [big5c]<br><br><b>Agreeableness:</b> [big5a]<br><br><b>Neuroticism:</b> [big5n]<br><br><b>Moral Alignment Type:</b> [ma primary] - [ma secondary]<br><br><b>Love Attitude Style:</b> [la primary] - [la secondary]<br><br><b>Attachment Style:</b> [style]<br><br><b>Archetype:</b> [a first] - [a second]<br><br><b>Enneagram:</b> [enneagram primary] - [enneagram secondary]<br><br><b>Holland Code:</b> [holland primary] - [holland secondary]<br><br><h3>Flaws:</h3><br><b>Addiction:</b> [severity] [addiction]<br><b>Aversion:</b> [severity] [aversion]<br><b>Fear:</b> [severity] [fear]<br><b>Immorality:</b> [severity] [immorality]<br><b>Incompetency:</b> [severity] [incompetence]<br><b>Poor Judgement:</b> [severity] [poor judgement]<br><br><h3>Strengths:</h3><br><b>WISDOM:</b><br><b>Creativity:</b> [moderation]<br><b>Curiosity:</b> [moderation]<br><b>Judgement:</b> [moderation]<br><b>Love-of-Learning:</b> [moderation]<br><b>Perspective:</b> [moderation]<br><br><b>COURAGE:</b><br><b>Bravery:</b> [moderation]<br><b>Honesty:</b> [moderation]<br><b>Perseverance:</b> [moderation]<br><b>Zest:</b> [moderation]<br><br><b>HUMANITY:</b><br><b>Kindness:</b> [moderation]<br><b>Love:</b> [moderation]<br><b>Social Intelligence:</b> [moderation]<br><br><b>JUSTICE:</b><br><b>Fairness:</b> [moderation]<br><b>Leadership:</b> [moderation]<br><b>Teamwork:</b> [moderation]<br><br><b>TEMPERANCE:</b><br><b>Forgiveness:</b> [moderation]<br><b>Humility:</b> [moderation]<br><b>Prudence:</b> [moderation]<br><b>Self-Regulation:</b> [moderation]<br><br><b>TRANSCENDENCE:</b><br><b>Appreciation of Beauty:</b> [moderation]<br><b>Gratitude:</b> [moderation]<br><b>Hope:</b> [moderation]<br><b>Humor:</b> [moderation]<br><b>Spirituality:</b> [moderation]<br><br><b>Philosophies:</b> [philosophy], [philosophy], and [philosophy]<br><br><b>Hobbies:</b> [hobbies], [hobbies], [hobbies], [hobbies], and [hobbies].<br><br><br><br>
