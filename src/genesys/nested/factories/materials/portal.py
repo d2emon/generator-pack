@@ -1,9 +1,9 @@
-from generated.materials import Portal
+from generated import materials
 from ..factory import Factory
 
 
 class PortalFactory(Factory):
-    default_model = Portal
+    default_model = materials.Portal
 
     def children(self):
         # from ..space import Universe

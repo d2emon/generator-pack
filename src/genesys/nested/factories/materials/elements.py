@@ -1,10 +1,10 @@
-from generated.materials import Atom, Nucleus
-from ..factory import Factory, create_factory
+from generated import materials
+from ..factory import Factory
 from .particles import ProtonFactory, NeutronFactory, ElectronFactory
 
 
 class NucleusFactory(Factory):
-    default_model = Nucleus
+    default_model = materials.Nucleus
 
     def __init__(
         self,
@@ -23,7 +23,7 @@ class NucleusFactory(Factory):
 
 
 class AtomFactory(Factory):
-    default_model = Atom
+    default_model = materials.Atom
     protons = 1
     neutrons = 1
     electrons = 1
@@ -41,7 +41,7 @@ class HydrogenAtomFactory(AtomFactory):
 
 
 def element_factory(name, factory=AtomFactory):
-    return create_factory(factory, Atom, name)
+    return factory.create_factory(materials.Atom, name)
 
 
 element_factories = {

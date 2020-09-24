@@ -43,13 +43,13 @@ class Factory:
             yield self
 
     @classmethod
-    def factory(cls, *factories):
+    def select_factory(cls, *factories):
         return random.choice(factories) if len(factories) else None
 
+    @classmethod
+    def create_factory(cls, model, default=None):
+        class NewFactory(cls):
+            model_class = model
+            default_name = default
 
-def create_factory(factory, model, default=None):
-    class NewFactory(factory):
-        model_class = model
-        default_name = default
-
-    return NewFactory
+        return NewFactory

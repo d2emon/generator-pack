@@ -1,24 +1,31 @@
-from generated.materials import Salt, Silica, Rock, Diamond, Magma, Carbon, Iron
+from generated import materials
 from ..factory import Factory
 from .matter import MoleculeFactory
 
 
+class AmmoniaFactory(Factory):
+    default_model = materials.Ammonia
+
+    def children(self):
+        yield MoleculeFactory.from_elements('N', 'H')
+
+
 class SilicaFactory(MoleculeFactory):
-    default_model = Silica
+    default_model = materials.Silica
 
     def children(self):
         yield from self.elements('Si', 'O')
 
 
 class SaltFactory(MoleculeFactory):
-    default_model = Salt
+    default_model = materials.Salt
 
     def children(self):
         yield from self.elements('Na', 'Cl')
 
 
 class RockFactory(Factory):
-    default_model = Rock
+    default_model = materials.Rock
 
     def children(self):
         yield SilicaFactory
@@ -29,26 +36,23 @@ class RockFactory(Factory):
         yield MoleculeFactory.from_elements('Ca').probable(50)
 
 
-class DiamondFactory(RockFactory):
-    default_model = Diamond
+class CarbonFactory(RockFactory):
+    default_model = materials.Carbon
 
     def children(self):
         yield MoleculeFactory.from_elements('C')
+
+
+class DiamondFactory(CarbonFactory):
+    default_model = materials.Diamond
 
 
 class MagmaFactory(RockFactory):
-    default_model = Magma
-
-
-class CarbonFactory(RockFactory):
-    default_model = Carbon
-
-    def children(self):
-        yield MoleculeFactory.from_elements('C')
+    default_model = materials.Magma
 
 
 class IronFactory(RockFactory):
-    default_model = Iron
+    default_model = materials.Iron
 
     def children(self):
         yield MoleculeFactory.from_elements('Fe')

@@ -6,7 +6,11 @@
 - Magma
 - Iron
 """
-from .matter import Matter, Molecule
+from .matter import Gas, Matter, Molecule
+
+
+class Ammonia(Gas):
+    pass
 
 
 class Salt(Matter):

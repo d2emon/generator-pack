@@ -1,9 +1,9 @@
-from generated.materials import Particle, Proton, Neutron, Electron, Quark, UpQuark, DownQuark, Qwubble
+from generated import materials
 from ..factory import Factory
 
 
 class QwubbleFactory(Factory):
-    default_model = Qwubble
+    default_model = materials.Qwubble
 
     def children(self):
         # from ..space import Multiverse
@@ -13,26 +13,26 @@ class QwubbleFactory(Factory):
 
 
 class QuarkFactory(Factory):
-    default_model = Quark
+    default_model = materials.Quark
 
     def children(self):
         yield QwubbleFactory()
 
 
 class UpQuarkFactory(QuarkFactory):
-    default_model = UpQuark
+    default_model = materials.UpQuark
 
 
 class DownQuarkFactory(QuarkFactory):
-    default_model = DownQuark
+    default_model = materials.DownQuark
 
 
 class ElectronFactory(QuarkFactory):
-    default_model = Electron
+    default_model = materials.Electron
 
 
 class ParticleFactory(Factory):
-    default_model = Particle
+    default_model = materials.Particle
     up_quarks = 1
     down_quarks = 1
 
@@ -42,12 +42,12 @@ class ParticleFactory(Factory):
 
 
 class ProtonFactory(ParticleFactory):
-    default_model = Proton
+    default_model = materials.Proton
     up_quarks = 2
     down_quarks = 1
 
 
 class NeutronFactory(ParticleFactory):
-    default_model = Neutron
+    default_model = materials.Neutron
     up_quarks = 1
     down_quarks = 2

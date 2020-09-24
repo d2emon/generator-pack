@@ -1,10 +1,10 @@
-from generated.materials import Molecule, Ammonia, Silica, Steel
+from generated import materials
 from ..factory import Factory
 from .elements import element_factories
 
 
 class MoleculeFactory(Factory):
-    default_model = Molecule
+    default_model = materials.Molecule
 
     @classmethod
     def elements(cls, *elements):
@@ -19,15 +19,8 @@ class MoleculeFactory(Factory):
         return cls.from_atoms(*cls.elements(*elements))
 
 
-class AmmoniaFactory(Factory):
-    default_model = Ammonia
-
-    def children(self):
-        yield MoleculeFactory.from_elements('N', 'H')
-
-
 class SteelFactory(Factory):
-    default_model = Steel
+    default_model = materials.Steel
 
     def children(self):
         yield MoleculeFactory.from_elements('Fe', 'C')

@@ -29,9 +29,5 @@ class Gas(Matter):
     state = Matter.GAS
 
 
-class Ammonia(Gas):
-    pass
-
-
 class Steel(Matter):
     pass

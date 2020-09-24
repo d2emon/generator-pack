@@ -1,61 +1,60 @@
-from generated.materials import OrganicMolecule, Methane, Chitin, Proteins, Lipids, Glucids, Alcohol, Polymers,\
-    OrganicMatter, Oil, Polymeric, Plastic, Rubber
+from generated import materials
 from ..factory import Factory
 from .matter import MoleculeFactory
 from .minerals import SaltFactory
 
 
 class OrganicMoleculeFactory(MoleculeFactory):
-    default_model = OrganicMolecule
+    default_model = materials.OrganicMolecule
 
     def children(self):
         yield from self.elements('C', 'H', 'O')
 
 
-class MetaneFactory(OrganicMoleculeFactory):
-    default_model = Methane
+class MethaneFactory(OrganicMoleculeFactory):
+    default_model = materials.Methane
 
     def children(self):
         yield from self.elements('C', 'H')
 
 
 class ChitinFactory(OrganicMoleculeFactory):
-    default_model = Chitin
+    default_model = materials.Chitin
 
     def children(self):
         yield from self.elements('C', 'H', 'N', 'O')
 
 
 class ProteinsFactory(OrganicMoleculeFactory):
-    default_model = Proteins
+    default_model = materials.Proteins
 
 
 class LipidsFactory(OrganicMoleculeFactory):
-    default_model = Lipids
+    default_model = materials.Lipids
 
 
 class GlucidsFactory(OrganicMoleculeFactory):
-    default_model = Glucids
+    default_model = materials.Glucids
 
 
 class AlcoholFactory(OrganicMoleculeFactory):
-    default_model = Alcohol
+    default_model = materials.Alcohol
 
 
 class PolymersFactory(OrganicMoleculeFactory):
-    default_model = Polymers
+    default_model = materials.Polymers
 
 
-class OrganicMatterFactory(Factory):
-    default_model = OrganicMatter
+class OrganicFactory(Factory):
+    default_model = materials.OrganicMatter
 
     def children(self):
-        yield self.factory(
+        yield self.select_factory(
             ProteinsFactory(),
             LipidsFactory(),
             GlucidsFactory(),
         )
-        yield self.factory(
+        yield self.select_factory(
             ProteinsFactory(),
             LipidsFactory(),
             GlucidsFactory(),
@@ -64,23 +63,23 @@ class OrganicMatterFactory(Factory):
         yield SaltFactory().probable(30)
 
 
-class OilFactory(OrganicMatterFactory):
-    default_model = Oil
+class OilFactory(OrganicFactory):
+    default_model = materials.Oil
 
     def children(self):
         yield LipidsFactory()
 
 
-class PolymericFactory(OrganicMatterFactory):
-    default_model = Polymeric
+class PolymericFactory(OrganicFactory):
+    default_model = materials.Polymeric
 
     def children(self):
         yield PolymersFactory()
 
 
 class PlasticFactory(PolymericFactory):
-    default_model = Plastic
+    default_model = materials.Plastic
 
 
 class RubberFactory(PolymericFactory):
-    default_model = Rubber
+    default_model = materials.Rubber
