@@ -1,4 +1,3 @@
-from generated.materials.matter import Matter
 from generated.materials import Water, Dew, Ice, Snowflakes, Snow
 from .matter import MoleculeFactory
 from ..factory import Factory

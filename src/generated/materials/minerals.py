@@ -1,49 +1,37 @@
-from .matter import Matter
+"""
+- Salt
+- Silica
+- Rock
+- Diamond
+- Magma
+- Iron
+"""
+from .matter import Matter, Molecule
 
 
-class Rock:
-    contents = Matter.children_property(Matter)
-
-    def __init__(self, **kwargs):
-        self.contents = [
-            kwargs.get('Si'),
-            kwargs.get('Al'),  # 30
-            kwargs.get('Fe'),  # 20
-            kwargs.get('K'),  # 20
-            kwargs.get('Na'),  # 50
-            kwargs.get('Ca'),  # 50
-        ]
+class Salt(Matter):
+    pass
 
 
-class Silica(Rock):
-    def __init__(self, **kwargs):
-        super().__init__()
-        self.contents = [
-            kwargs.get('Si'),
-            kwargs.get('O'),
-        ]
+class Silica(Molecule):
+    pass
+
+
+class Rock(Matter):
+    pass
 
 
 class Diamond(Rock):
-    def __init__(self, **kwargs):
-        super().__init__()
-        self.contents = [
-            kwargs.get('C'),
-        ]
+    pass
 
 
 class Magma(Rock):
     pass
 
 
-class Iron(Rock):
+class Carbon(Rock):
     pass
 
 
-class Salt(Matter):
-    def __init__(self, **kwargs):
-        super().__init__()
-        self.contents = [
-            kwargs.get('Ch'),
-            kwargs.get('Na'),
-        ]
+class Iron(Rock):
+    pass

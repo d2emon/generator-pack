@@ -42,6 +42,10 @@ class Factory:
         for _ in range(count):
             yield self
 
+    @classmethod
+    def factory(cls, *factories):
+        return random.choice(factories) if len(factories) else None
+
 
 def create_factory(factory, model, default=None):
     class NewFactory(factory):

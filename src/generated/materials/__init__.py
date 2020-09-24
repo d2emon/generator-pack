@@ -14,7 +14,7 @@ from .fire import Ash
 from .water import Dew
 from .water import Ice
 from .water import Snow
-from .water import Snowflakes  # --
+from .water import Snowflakes
 from .matter import Ammonia
 from .organics import Methane
 # from .elements import elements
@@ -25,15 +25,14 @@ from .organics import Rubber
 from .organics import Polymers
 from .organics import Alcohol
 
-# new Thing("carbon",[".atom"]);
+from .minerals import Carbon
 # new Thing("sodium",[".atom"]);
 # new Thing("chlorine",[".atom"]);
 # new Thing("oxygen",[".atom"]);
 # new Thing("helium",[".atom"]);
-# new Thing("potassium",[".atom"]);  # --
+# new Thing("potassium",[".atom"]);
 # new Thing("aluminium",[".atom"]);
 from .minerals import Iron
-# new Thing("iron",[".atom"]);
 # new Thing("copper",[".atom"]);
 # new Thing("lead",[".atom"]);
 from .matter import Steel
@@ -51,18 +50,21 @@ from .organics import Proteins
 from .organics import Lipids
 from .organics import Glucids
 from .organics import OrganicMatter
-from .elements import Atom  # --
+from .elements import Atom
 from .matter import Molecule
 from .particles import Proton
-from .particles import Neutron  # --
-from .particles import Electron  # --
-from .particles import UpQuark  # --
-from .particles import DownQuark  # --
-from .particles import Qwubble  # --
+from .particles import Neutron
+from .particles import Electron
+from .particles import UpQuark
+from .particles import DownQuark
+from .particles import Qwubble
 from .portal import Portal
 
-from .elements import Nucleus
 from .particles import Particle, Quark
+from .elements import Nucleus
+from .matter import Matter, Gas
+from .water import WaterState, Steam
+from .organics import OrganicMolecule, Polymeric
 
 """
 Basic chemistry and particles

@@ -1,11 +1,8 @@
 """
 - Molecule
-- Diamond
-- Magma
-- Rock
-- Silica
-- Salt
-- Fire
+- Matter
+- Gas
+- Ammonia
 - Steel
 """
 from genesys.model.model import Model
@@ -18,7 +15,7 @@ class Molecule(Model):
     atoms = Model.children_property(Atom)
 
 
-class Matter(Molecule):
+class Matter(Model):
     SOLID = 0
     LIQUID = 1
     GAS = 2

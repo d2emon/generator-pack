@@ -19,20 +19,21 @@ class TreeModel:
     def parent(self):
         return self.__parent
 
-    @parent.setter
-    def parent(self, value):
-        if self.__parent is not None:
-            self.__parent.remove_child(self)
-
-        value.add_child(self)
+    # @parent.setter
+    # def parent(self, value):
+    #     if self.__parent is not None:
+    #         self.__parent.remove_child(self)
+    #
+    #     value.add_child(self)
 
     def add_child(self, child):
         self.__children.append(child)
-        child.parent = self
+        child.__parent = self
 
     def remove_child(self, child):
-        self.__children.remove(child)
-        child.parent = None
+        if child in self.__children:
+            self.__children.remove(child)
+        child.__parent = None
 
     def children_by_class(self, *child_classes):
         return (child for child in self.children if isinstance(child, child_classes))

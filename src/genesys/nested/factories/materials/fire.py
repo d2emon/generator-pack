@@ -1,17 +1,20 @@
-from generated.materials.elements import elements
-from generated.materials.matter import Matter
-from generated.materials.organics import OrganicMatter
-from .matter import MatterFactory
+from generated.materials import Fire, Ash
 from ..factory import Factory
+from .matter import MoleculeFactory
+from .minerals import CarbonFactory
+from .organics import OrganicMatterFactory
 
 
 class FireFactory(Factory):
+    default_model = Fire
+
     def children(self):
-        yield elements['C']
-        yield elements['O']
+        yield from MoleculeFactory.elements('C', 'O')
 
 
-class Factory(MatterFactory):
+class AshFactory(Factory):
+    default_model = Ash
+
     def children(self):
-        yield OrganicMatter
-        yield Matter.from_atoms('C')
+        yield OrganicMatterFactory()
+        yield CarbonFactory()
