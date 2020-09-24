@@ -3,7 +3,7 @@ from genesys.model.model import Model
 # from genesys.nested.data import lookups
 # from generated.universe.space.life import Habitat, StarLife
 from ..materials import Atom
-from .planet import Planet
+from .planet import Planet, Orbit
 
 
 class Star(Model):
@@ -14,7 +14,7 @@ class Star(Model):
 class StarSystem(Model):
     main_star = Model.child_property(Star)
     stars = Model.children_property(Star)
-    # orbits = Model.children_property(Orbit)
+    orbits = Model.children_property(Orbit)
     planets = Model.children_property(Planet)
     # asteroid_belts = Model.children_property(AsteroidBelt)
     # dyson_surfaces = Model.children_property(DysonSurface)

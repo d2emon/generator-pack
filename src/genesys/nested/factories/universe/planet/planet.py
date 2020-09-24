@@ -1,8 +1,8 @@
 from generated import universe
-from ...factory import Factory
+from .planet_like import PlanetLikeFactory
 
 
-class PlanetFactory(Factory):
+class PlanetFactory(PlanetLikeFactory):
     # PlanetLike
     default_model = universe.Planet
 
