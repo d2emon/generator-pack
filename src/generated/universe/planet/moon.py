@@ -1,3 +1,4 @@
+from genesys.model.model import Model
 from generated.nested_v2.models import Continent
 from genesys.model.mixins import TerraformedMixin
 from .planet_like import PlanetLike, Plate

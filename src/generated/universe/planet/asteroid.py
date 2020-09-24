@@ -1,3 +1,4 @@
+from genesys.model.model import Model
 from .planet_like import Orbit, PlanetLike, Plate
 from generated.universe.space.life import AsteroidLife, AsteroidBeltLife
 from generated.materials.chemistry import Ice

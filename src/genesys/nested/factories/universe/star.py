@@ -1,6 +1,8 @@
 from generated import universe
 from ..factory import Factory
 from ..materials import MoleculeFactory
+from .planet import BarrenPlanetFactory, VisitorPlanetFactory, FuturePlanetFactory, TerraformedPlanetFactory, \
+    MedievalPlanetFactory, AncientPlanetFactory
 
 
 class StarFactory(Factory):
@@ -38,24 +40,23 @@ class StarSystemFactory(Factory):
         yield StarFactory().probable(3)
 
     def inhabited(self):
-        # yield VisitorPlanet.probable(5)
-        # yield FuturePlanet.probable(10)
-        # yield FuturePlanet.probable(10)
-        # yield TerraformedPlanet.probable(50)
-        # yield TerraformedPlanet.probable(20)
-        # yield TerraformedPlanet.probable(10)
-        # yield MedievalPlanet.probable(30)
-        # yield MedievalPlanet.probable(20)
-        # yield AncientPlanet.probable(50)
-        # yield AncientPlanet.probable(30)
-        # yield AncientPlanet.probable(10)
-        yield None
+        yield VisitorPlanetFactory().probable(5)
+        yield FuturePlanetFactory().probable(10)
+        yield FuturePlanetFactory().probable(10)
+        yield TerraformedPlanetFactory().probable(50)
+        yield TerraformedPlanetFactory().probable(20)
+        yield TerraformedPlanetFactory().probable(10)
+        yield MedievalPlanetFactory().probable(30)
+        yield MedievalPlanetFactory().probable(20)
+        yield AncientPlanetFactory().probable(50)
+        yield AncientPlanetFactory().probable(30)
+        yield AncientPlanetFactory().probable(10)
 
     def orbits(self):
         yield from self.inhabited()
-        # yield BarrenPlanet.probable(60)
-        # yield BarrenPlanet.probable(40)
-        # yield BarrenPlanet.probable(20)
+        yield BarrenPlanetFactory().probable(60)
+        yield BarrenPlanetFactory().probable(40)
+        yield BarrenPlanetFactory().probable(20)
         # yield GasGiant.probable(60)
         # yield GasGiant.probable(40)
         # yield GasGiant.probable(20)
@@ -81,5 +82,4 @@ class SingleStarFactory(StarSystemFactory):
 class DysonSphereFactory(StarSystemFactory):
     def inhabited(self):
         # yield DysonSurface
-        # yield from FuturePlanet.multiple(1, 8)
-        yield None
+        yield from FuturePlanetFactory().multiple(1, 8)

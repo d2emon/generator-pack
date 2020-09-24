@@ -1,13 +1,13 @@
 from genesys.model.model import Model
 from .nebula import Nebula
+from .star import StarSystem
 # from .black_hole import BlackHole
 # from .life import GalaxyArmLife, GalaxyCenterLife, Habitat
-# from .star import StarSystem, DysonSphere
 
 
 class GalaxyPart(Model):
     # Habitat
-    # stars = Habitat.children_property(StarSystem)
+    stars = Model.children_property(StarSystem)
     nebulas = Model.children_property(Nebula)
     # black_holes = Habitat.children_property(BlackHole)
 

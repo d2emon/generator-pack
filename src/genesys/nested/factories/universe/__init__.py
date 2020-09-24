@@ -2,6 +2,7 @@ from .universe import SuperclusterFactory, UniverseFactory, MultiverseFactory
 from .galaxy import SpaceFactory, GalaxyArmFactory, GalaxyCenterFactory, GalaxyFactory
 from .nebula import InterstellarCloudFactory, NebulaFactory
 from .star import StarFactory, StarSystemFactory, SingleStarFactory, DysonSphereFactory
+from .planet import *
 
 
 FACTORIES = {
@@ -16,14 +17,14 @@ FACTORIES = {
     'star system': StarSystemFactory(),
     'dyson sphere': DysonSphereFactory(),
     'star': StarFactory(),
-    # 'planet",[".terraformed planet"],"telluric planet");
-    # 'barren planet",["galactic life,10%","Rock","Ice,50%",".planet composition"],"telluric planet");
-    # 'visitor planet",["visitor city,1-8","visitor installation,2-6","galactic life","Rock","Ice,50%",".planet composition"],"telluric planet");
-    # 'future planet",["future continent,2-7","ocean,1-7","future sky",".future moon,30%",".planet composition"],"telluric planet");
-    # 'terraformed planet",["continent,2-7","ocean,1-7","terraformed sky",".terraformed moon,30%",".planet composition"],"telluric planet");
-    # 'medieval planet",["medieval continent,2-4","ancient continent,0-3","ocean,1-7","sky",".planet composition"],"telluric planet");
-    # 'ancient planet",["ancient continent,2-7","ocean,1-7","sky",".planet composition"],"telluric planet");
-    # 'planet composition",["planet core","moon,40%","moon,20%","moon,10%"],"planet");
+    'planet': PlanetFactory(),
+    'barren planet': BarrenPlanetFactory(),
+    'visitor planet': VisitorPlanetFactory(),
+    'future planet': FuturePlanetFactory(),
+    'terraformed planet': FuturePlanetFactory(),
+    'medieval planet': FuturePlanetFactory(),
+    'ancient planet': FuturePlanetFactory(),
+    'planet composition': PlanetCompositionFactory(),
     # 'moon",["ghost,0.1%","Rock","planet core"],[["young","old","large","small","pale","white","dark","black","old"],[" moon"]]);
     # 'terraformed moon",[".planet composition","continent,1-4","ocean,1-4","sky"],[["young","old","large","small","pale","white","dark","black","old","green","lush","blue","city","colonized","life"],[" moon"]]);
     # 'asteroid belt",["galactic life,20%","asteroid,10-30"]);

@@ -1,3 +1,4 @@
+from genesys.model.model import Model
 from generated.universe.space.life import GasGiantLife, Habitat
 from generated.materials.chemistry import Ammonia, Gas, Steam, Methane
 

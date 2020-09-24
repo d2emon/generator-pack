@@ -1,3 +1,4 @@
+from genesys.model.model import Model
 from .atmosphere import GasGiantAtmosphere
 from .moon import Moon, TerraformedMoon
 from .planet import Planet

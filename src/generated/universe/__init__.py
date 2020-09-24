@@ -1,10 +1,6 @@
 """
 Universe stuff
 
-- StarSystem
-- DysonSphere
-- Star
-- Planet
 - Barren Planet
 - Visitor Planet
 - Future Planet
@@ -34,9 +30,9 @@ Universe stuff
 from .universe import Supercluster, Universe, Multiverse
 from .galaxy import GalaxyPart, GalaxyArm, GalaxyCenter, Galaxy
 from .nebula import InterstellarCloud, Nebula
-from .star import Star, StarSystem, DysonSphere
+from .star import Star, StarSystem
+from .planet import *
 
-# from .planet import *
 # from .black_hole import *
 # from genesys.nested.models import Model
 # from genesys.nested.data import lookups

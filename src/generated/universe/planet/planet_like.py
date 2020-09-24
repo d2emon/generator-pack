@@ -1,5 +1,5 @@
+from genesys.model.model import Model
 from generated.nested_v2.models import Continent, VisitorCity, VisitorInstallation
-from genesys.nested.models import Model
 from .atmosphere import Atmosphere
 from generated.universe.space.life import Habitat, PlanetCoreLife
 from generated.materials.chemistry import Ice
