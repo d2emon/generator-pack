@@ -1,6 +1,6 @@
+from genesys.model.model import Model
 from generated.nested_v2.models import Pasta
-from genesys.nested.models import Model
-from .life import BlackHoleLife, Habitat
+from generated.universe.space.life import BlackHoleLife, Habitat
 from genesys.nested.data import lookups
 
 

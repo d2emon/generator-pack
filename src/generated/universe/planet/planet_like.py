@@ -1,10 +1,10 @@
 from generated.nested_v2.models import Continent, VisitorCity, VisitorInstallation
 from genesys.nested.models import Model
 from .atmosphere import Atmosphere
-from ..life import Habitat, PlanetCoreLife
+from generated.universe.space.life import Habitat, PlanetCoreLife
 from generated.materials.chemistry import Ice
 from generated.materials import Diamond, Iron, Magma, Rock
-from ...terrain import Ocean
+from generated.nested_v2.models.terrain import Ocean
 
 
 class Orbit(Habitat):

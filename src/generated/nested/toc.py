@@ -17,41 +17,6 @@
 #               array) or an identifier for the Name function, like *BOOK*.
 #           A name generator of [["blue ","red "],["frog","toad"]] will produce names such as "blue frog" or "red toad".
 
-from ..materials import *
-from .universe import *
-from .cell import *
-from .body import *
-from .brain import *
-from .cloth import *
-from .terrain import *
-from .vegetation import *
-from .life import *
-from .world_subdivisions import *
-from .towns import *
-from .buildings import *
-from .farms import *
-from .offices import *
-from .small_shops import *
-from .museums import *
-from .services import *
-from .war_stuff import *
-from .hospitals import *
-from .data_expunged import *
-from .cemeteries import *
-from .infrastructure import *
-from .rooms import *
-from .furniture import *
-from .computers import *
-from .food import *
-from .visitors import *
-from .medieval_and_ancient import *
-from .medieval_people import *
-from .medieval_towns import *
-from .dungeons import *
-from .future_stuff import *
-from .caveman_stuff import *
-from .meta import *
-
 # to add :
 
 # cows, fungi, more shops, temples, more buildings, paintings, internal organs, phones, lamps, abandoned plants/castles,

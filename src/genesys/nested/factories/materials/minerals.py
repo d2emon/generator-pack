@@ -3,11 +3,9 @@ from ..factory import Factory
 from .matter import MoleculeFactory
 
 
-class AmmoniaFactory(Factory):
-    default_model = materials.Ammonia
-
+class AmmoniaMoleculeFactory(MoleculeFactory):
     def children(self):
-        yield MoleculeFactory.from_elements('N', 'H')
+        yield from self.elements('N', 'H')
 
 
 class SilicaFactory(MoleculeFactory):
@@ -22,6 +20,13 @@ class SaltFactory(MoleculeFactory):
 
     def children(self):
         yield from self.elements('Na', 'Cl')
+
+
+class AmmoniaFactory(Factory):
+    default_model = materials.Ammonia
+
+    def children(self):
+        yield AmmoniaMoleculeFactory()
 
 
 class RockFactory(Factory):

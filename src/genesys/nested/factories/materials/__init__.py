@@ -1,15 +1,16 @@
 from .elements import NucleusFactory, AtomFactory, HydrogenAtomFactory, element_factories
 from .fire import FireFactory, AshFactory
 from .matter import MoleculeFactory, SteelFactory
-from .minerals import AmmoniaFactory, SilicaFactory, SaltFactory, RockFactory, DiamondFactory, MagmaFactory, \
-    CarbonFactory, IronFactory
+from .minerals import AmmoniaMoleculeFactory, AmmoniaFactory, SilicaFactory, SaltFactory, RockFactory, DiamondFactory, \
+    MagmaFactory, CarbonFactory, IronFactory
 from .organics import OrganicMoleculeFactory, MethaneFactory, ChitinFactory, ProteinsFactory, LipidsFactory,\
     GlucidsFactory, AlcoholFactory, PolymersFactory, OrganicFactory, OilFactory, PolymericFactory, PlasticFactory, \
     RubberFactory
 from .particles import ParticleFactory, ProtonFactory, NeutronFactory, QuarkFactory, UpQuarkFactory, DownQuarkFactory, \
     ElectronFactory, QwubbleFactory
 from .portal import PortalFactory
-from .water import WaterFactory, WaterStateFactory, DewFactory, IceFactory, SnowflakesFactory, SnowFactory
+from .water import WaterMoleculeFactory, WaterFactory, SteamFactory, DewFactory, IceFactory, SnowflakesFactory, \
+    SnowFactory
 
 
 FACTORIES = {

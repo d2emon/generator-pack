@@ -4,8 +4,8 @@ from genesys.model.mixins import TerraformedMixin
 from .atmosphere import Atmosphere
 from .moon import Moon, TerraformedMoon
 from .planet_like import PlanetLike
-from ..life import BarrenPlanetLife, VisitorPlanetLife
-from ...terrain import Ocean
+from generated.universe.space.life import BarrenPlanetLife, VisitorPlanetLife
+from generated.nested_v2.models.terrain import Ocean
 # from ...terrain import Ocean, Sky, TerraformedSky, FutureSky
 
 

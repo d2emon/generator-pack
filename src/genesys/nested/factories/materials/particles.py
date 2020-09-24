@@ -6,10 +6,9 @@ class QwubbleFactory(Factory):
     default_model = materials.Qwubble
 
     def children(self):
-        # from ..space import Multiverse
+        from ..universe import MultiverseFactory
 
-        # yield from Multiverse.multiple(1, 5)
-        yield from []
+        yield from MultiverseFactory().multiple(1, 5)
 
 
 class QuarkFactory(Factory):

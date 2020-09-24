@@ -3,27 +3,29 @@ from .matter import MoleculeFactory
 from ..factory import Factory
 
 
+class WaterMoleculeFactory(MoleculeFactory):
+    def children(self):
+        yield from self.elements('H', 'O')
+
+
 class WaterFactory(Factory):
-    default_model = materials.Water
-
     def children(self):
-        yield MoleculeFactory.from_elements('H', 'O')
+        yield WaterMoleculeFactory()
 
 
-class WaterStateFactory(Factory):
-    def children(self):
-        yield WaterFactory()
+class SteamFactory(WaterFactory):
+    default_model = materials.Steam
 
 
-class DewFactory(WaterStateFactory):
+class DewFactory(WaterFactory):
     default_model = materials.Dew
 
 
-class IceFactory(WaterStateFactory):
+class IceFactory(WaterFactory):
     default_model = materials.Ice
 
 
-class SnowflakesFactory(WaterStateFactory):
+class SnowflakesFactory(WaterFactory):
     default_model = materials.Snowflakes
 
 

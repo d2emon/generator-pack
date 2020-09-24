@@ -1,5 +1,5 @@
+from genesys.model.model import Model
 from generated.nested_v2.models import Computer
-from genesys.nested.models import Model
 from generated.nested_v2.models.biology import Body, Thoughts
 from generated.nested_v2.models.cloth import ClothingSet
 from genesys.nested.data import lookups

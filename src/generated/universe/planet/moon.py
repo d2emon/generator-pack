@@ -1,9 +1,9 @@
 from generated.nested_v2.models import Continent
 from genesys.model.mixins import TerraformedMixin
 from .planet_like import PlanetLike, Plate
-from ..life import MoonLife
+from generated.universe.space.life import MoonLife
 from generated.materials import Rock
-from ...terrain import Ocean
+from generated.nested_v2.models.terrain import Ocean
 # from ...terrain import Ocean, Sky
 from genesys.nested.data import lookups
 

@@ -8,32 +8,26 @@
 - Snow
 """
 from genesys.model.model import Model
-from .matter import Gas, Matter
+from .matter import Matter
 
 
 class Water(Matter):
     state = Matter.LIQUID
 
 
-class WaterState(Model):
-    state = Matter.LIQUID
-
-    water = Model.child_property(Water)
-
-
-class Steam(WaterState, Gas):
+class Steam(Water):
     state = Matter.GAS
 
 
-class Dew(WaterState):
+class Dew(Water):
     state = Matter.LIQUID
 
 
-class Ice(WaterState):
+class Ice(Water):
     state = Matter.SOLID
 
 
-class Snowflakes(WaterState):
+class Snowflakes(Water):
     state = Matter.SOLID
 
 

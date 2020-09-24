@@ -6,7 +6,6 @@ class PortalFactory(Factory):
     default_model = materials.Portal
 
     def children(self):
-        # from ..space import Universe
+        from ..universe import UniverseFactory
 
-        # yield UniverseFactory()
-        yield from []
+        yield from UniverseFactory()

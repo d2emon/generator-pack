@@ -1,5 +1,5 @@
 from .planet_like import Orbit, PlanetLike, Plate
-from ..life import AsteroidLife, AsteroidBeltLife
+from generated.universe.space.life import AsteroidLife, AsteroidBeltLife
 from generated.materials.chemistry import Ice
 from generated.materials import Rock
 
