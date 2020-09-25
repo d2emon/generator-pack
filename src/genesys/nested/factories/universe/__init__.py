@@ -17,22 +17,22 @@ FACTORIES = {
     'star system': StarSystemFactory(),
     'dyson sphere': DysonSphereFactory(),
     'star': StarFactory(),
-    'planet': PlanetFactory(),
+    'planet': DefaultPlanetFactory(),
     'barren planet': BarrenPlanetFactory(),
     'visitor planet': VisitorPlanetFactory(),
     'future planet': FuturePlanetFactory(),
     'terraformed planet': FuturePlanetFactory(),
     'medieval planet': FuturePlanetFactory(),
     'ancient planet': FuturePlanetFactory(),
-    'planet composition': PlanetCompositionFactory(),
-    # 'moon",["ghost,0.1%","Rock","planet core"],[["young","old","large","small","pale","white","dark","black","old"],[" moon"]]);
-    # 'terraformed moon",[".planet composition","continent,1-4","ocean,1-4","sky"],[["young","old","large","small","pale","white","dark","black","old","green","lush","blue","city","colonized","life"],[" moon"]]);
-    # 'asteroid belt",["galactic life,20%","asteroid,10-30"]);
-    # 'earth",[".asteroid belt"],"Earth");
-    # 'asteroid",["space animal,0.5%","Rock","Ice,30%"],"asteroid");
-    # 'gas giant",["gas giant atmosphere","planet core,50%","moon,0-3","terraformed moon,20%","terraformed moon,10%"]);
-    # 'gas giant atmosphere",["galactic life,10%","Helium","Hydrogen","Water,50%","Ammonia,50%","Methane,50%"],"atmosphere");
-    # 'planet core",["space monster,0.5%","Iron","Rock","Diamond,2%","Magma"],"core");
+    'planet composition': PlanetFactory(),
+    'moon': MoonFactory(),
+    'terraformed moon': TerraformedMoonFactory(),
+    'asteroid belt': AsteroidBeltFactory(),
+    'earth': EarthFactory(),
+    'asteroid': AsteroidFactory(),
+    'gas giant': GasGiantFactory(),
+    'gas giant atmosphere': GasGiantAtmosphereFactory(),
+    'planet core': PlanetCoreFactory(),
 
     # 'black hole",["inside the black hole"]);
     # 'inside the black hole",["end of universe note,0.5%","crustacean,0.2%","white hole"]);

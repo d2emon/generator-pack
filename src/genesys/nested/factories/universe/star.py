@@ -1,8 +1,8 @@
 from generated import universe
 from ..factory import Factory
 from ..materials import MoleculeFactory
-from .planet import BarrenPlanetFactory, VisitorPlanetFactory, FuturePlanetFactory, TerraformedPlanetFactory, \
-    MedievalPlanetFactory, AncientPlanetFactory
+from .planet import BarrenOrbitFactory, VisitorOrbitFactory, FutureOrbitFactory, TerraformedOrbitFactory, \
+    MedievalOrbitFactory, AncientOrbitFactory, AsteroidBeltFactory, GasGiantOrbitFactory
 
 
 class StarFactory(Factory):
@@ -40,28 +40,28 @@ class StarSystemFactory(Factory):
         yield StarFactory().probable(3)
 
     def inhabited(self):
-        yield VisitorPlanetFactory().probable(5)
-        yield FuturePlanetFactory().probable(10)
-        yield FuturePlanetFactory().probable(10)
-        yield TerraformedPlanetFactory().probable(50)
-        yield TerraformedPlanetFactory().probable(20)
-        yield TerraformedPlanetFactory().probable(10)
-        yield MedievalPlanetFactory().probable(30)
-        yield MedievalPlanetFactory().probable(20)
-        yield AncientPlanetFactory().probable(50)
-        yield AncientPlanetFactory().probable(30)
-        yield AncientPlanetFactory().probable(10)
+        yield VisitorOrbitFactory().probable(5)
+        yield FutureOrbitFactory().probable(10)
+        yield FutureOrbitFactory().probable(10)
+        yield TerraformedOrbitFactory().probable(50)
+        yield TerraformedOrbitFactory().probable(20)
+        yield TerraformedOrbitFactory().probable(10)
+        yield MedievalOrbitFactory().probable(30)
+        yield MedievalOrbitFactory().probable(20)
+        yield AncientOrbitFactory().probable(50)
+        yield AncientOrbitFactory().probable(30)
+        yield AncientOrbitFactory().probable(10)
 
     def orbits(self):
         yield from self.inhabited()
-        yield BarrenPlanetFactory().probable(60)
-        yield BarrenPlanetFactory().probable(40)
-        yield BarrenPlanetFactory().probable(20)
-        # yield GasGiant.probable(60)
-        # yield GasGiant.probable(40)
-        # yield GasGiant.probable(20)
-        # yield GasGiant.probable(10)
-        # yield from AsteroidBelt.multiple(0, 2)
+        yield BarrenOrbitFactory().probable(60)
+        yield BarrenOrbitFactory().probable(40)
+        yield BarrenOrbitFactory().probable(20)
+        yield GasGiantOrbitFactory().probable(60)
+        yield GasGiantOrbitFactory().probable(40)
+        yield GasGiantOrbitFactory().probable(20)
+        yield GasGiantOrbitFactory().probable(10)
+        yield from AsteroidBeltFactory().multiple(0, 2)
 
     def children(self):
         yield from self.stars()
@@ -82,4 +82,4 @@ class SingleStarFactory(StarSystemFactory):
 class DysonSphereFactory(StarSystemFactory):
     def inhabited(self):
         # yield DysonSurface
-        yield from FuturePlanetFactory().multiple(1, 8)
+        yield from FutureOrbitFactory().multiple(1, 8)

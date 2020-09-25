@@ -1,7 +1,6 @@
-from .planet import Planet, BarrenPlanet, VisitorPlanet, TelluricPlanet, FuturePlanet, TerraformedPlanet, \
-    MedievalPlanet, AncientPlanet
-from .planet_like import Orbit
-# from .atmosphere import *
-# from .moon import *
-# from .asteroid import *
-# from .gas_giant import *
+from .core import PlanetCore
+from .plate import Plate
+from .atmosphere import Atmosphere
+from .body import PlanetLike, Asteroid, Moon, TerraformedMoon
+from .planet import Planet, BarrenPlanet, TelluricPlanet, GasGiant
+from .orbit import Orbit, PlanetOrbit, AsteroidBelt

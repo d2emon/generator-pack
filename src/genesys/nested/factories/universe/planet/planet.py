@@ -1,39 +1,39 @@
 from generated import universe
-from .planet_like import PlanetLikeFactory
+from .body import PlanetLikeFactory, MoonFactory, TerraformedMoonFactory
+from .core import PlanetCoreFactory
+from .plate import PlateFactory
+from .atmosphere import AtmosphereFactory, GasGiantAtmosphereFactory
 
 
 class PlanetFactory(PlanetLikeFactory):
-    # PlanetLike
     default_model = universe.Planet
-
-    def visited(self):
-        yield None
+    default_name = 'planet'
 
     @classmethod
     def moons(cls):
-        # yield Moon.probable(40)
-        # yield Moon.probable(20)
-        # yield Moon.probable(10)
-        yield None
+        yield MoonFactory().probable(40)
+        yield MoonFactory().probable(20)
+        yield MoonFactory().probable(10)
 
     def children(self):
-        # ".terraformed planet"
         yield from super().children()
         yield from self.moons()
 
 
 class BarrenPlanetFactory(PlanetFactory):
+    default_model = universe.BarrenPlanet
+
     def biosphere(self):
         # "galactic life,10%"
         # yield BarrenPlanetLife
         yield None
 
-    def children(self):
-        yield from self.visited()
-        yield from self.biosphere()
-        # "Rock"
-        # "Ice,50%"
-        # ".planet composition"
+    def plates(self):
+        yield PlateFactory()
+
+    @classmethod
+    def moons(cls):
+        yield None
 
 
 class VisitorPlanetFactory(BarrenPlanetFactory):
@@ -47,29 +47,12 @@ class VisitorPlanetFactory(BarrenPlanetFactory):
         # yield from VisitorInstallation.multiple(2, 6)
         yield None
 
-    def children(self):
-        yield from self.visited()
-        yield from self.biosphere()
-        # "Rock"
-        # "Ice,50%"
-        # ".planet composition"
 
+class TelluricPlanetFactory(PlanetFactory):
+    default_model = universe.TelluricPlanet
 
-class PlanetCompositionFactory(BarrenPlanetFactory):
-    default_name = 'planet'
-
-    def children(self):
-        # "planet core"
-        # "moon,40%"
-        # "moon,20%"
-        # "moon,10%"
-        yield None
-
-
-class TelluricPlanetFactory(PlanetCompositionFactory):
     def atmosphere(self):
-        # yield Atmosphere
-        yield None
+        yield AtmosphereFactory()
 
     def biosphere(self):
         yield None
@@ -90,18 +73,6 @@ class TelluricPlanetFactory(PlanetCompositionFactory):
         # yield Sky
         yield None
 
-    def moons(self):
-        yield None
-
-    def children(self):
-        yield from self.visited()
-        yield from self.atmosphere()
-        yield from self.biosphere()
-        yield from self.plates()
-        yield from self.sky()
-        yield from self.moons()
-        yield from super().children()
-
 
 class FuturePlanetFactory(TelluricPlanetFactory):
     def continents(self):
@@ -113,7 +84,6 @@ class FuturePlanetFactory(TelluricPlanetFactory):
         yield None
 
     def moons(self):
-        # ".future moon,30%"
         yield from super().moons()
         # yield FutureMoon.probable(30)
 
@@ -128,9 +98,12 @@ class TerraformedPlanetFactory(TelluricPlanetFactory):
         yield None
 
     def moons(self):
-        # ".terraformed moon,30%"
         yield from super().moons()
-        # yield TerraformedMoon.probable(30)
+        yield TerraformedMoonFactory().probable(30)
+
+
+class DefaultPlanetFactory(TerraformedPlanetFactory):
+    pass
 
 
 class MedievalPlanetFactory(TelluricPlanetFactory):
@@ -143,4 +116,22 @@ class MedievalPlanetFactory(TelluricPlanetFactory):
 class AncientPlanetFactory(TelluricPlanetFactory):
     def continents(self):
         # yield from AncientContinent.multiple(2, 7)
+        yield None
+
+
+class GasGiantFactory(PlanetFactory):
+    default_model = universe.GasGiant
+
+    def atmosphere(self):
+        yield GasGiantAtmosphereFactory()
+
+    def core(self):
+        yield PlanetCoreFactory().probable(50)
+
+    def moons(self):
+        yield from MoonFactory().multiple(0, 3)
+        yield TerraformedMoonFactory().probable(20)
+        yield TerraformedMoonFactory().probable(10)
+
+    def plates(self):
         yield None
