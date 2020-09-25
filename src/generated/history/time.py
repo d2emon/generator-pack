@@ -1,5 +1,5 @@
 class Time:
-    def __init__(self, hours=0, minutes=0, max_time=None):
+    def __init__(self, hours=0, minutes=0):
         self.__minutes = minutes + hours * 60
         self.max_time = None
 

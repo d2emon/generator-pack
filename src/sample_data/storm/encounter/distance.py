@@ -1,5 +1,5 @@
 from dice.dice import Dice
-from genesys.storm.storm import Distance
+from generated.history.encounters.distance import Distance
 
 
 DISTANCES = [

@@ -1,4 +1,4 @@
-from genesys.storm.storm import Encounter
+from generated.history.encounters.encounter import Encounter
 
 
 class HintEncounter(Encounter):

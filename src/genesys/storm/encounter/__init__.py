@@ -107,40 +107,37 @@
 12	Дружелюбная / Эй, давай дружить	Он согласен
 """
 # from config.storm import CONFIG
-from dice.dice import Dice
-from generated.encounter import Day, DailyEvent, NightlyEvent
+from .factory import EncounterFactory
 
 
 class EncountersManager:
     def __init__(self, **config):
-        # next_roll = CONFIG.get('roll_on_double', False)
-        self.roll_on_double = config.get('roll_on_double', True)
-
-    @classmethod
-    def __additional_events(cls, roll_on_double=False):
-        dice1, dice2 = Dice(count=2).roll()
-
-        if dice1 % 2:
-            yield NightlyEvent()
-        else:
-            yield DailyEvent()
-
-        if (dice1 == dice2) and roll_on_double:
-            yield from cls.__additional_events(roll_on_double)
+        self.__factory = EncounterFactory(
+            roll_on_double=config.get('roll_on_double', True)
+        )
 
     @classmethod
     def events_for_day(cls, roll_on_double=False):
-        yield DailyEvent()
-        yield NightlyEvent()
-        yield from cls.__additional_events(roll_on_double)
+        return EncounterFactory(roll_on_double=roll_on_double)(None)
 
-    def encounters(self, days_count=1, start_at_day=True, end_at_night=True):
-        days = (Day(day_id, self.events_for_day(self.roll_on_double)) for day_id in range(days_count))
-        for d in days:
-            print('=' * 80)
-            print('День {} из {}'.format(d.day_id + 1, days_count))
+    @classmethod
+    def show_day(cls, day):
+        # show_daily = day_id > 1 or start_at_day,
+        # show_nightly = day_id < total or end_at_night,
+
+        # for event in day.get_events(daily=show_daily, nightly=show_nightly):
+        for event in day.events:
             print('-' * 80)
-            d.show(
-                show_daily=d.day_id > 0 or start_at_day,
-                show_nightly=d.day_id < days_count - 1 or end_at_night,
-            )
+            print(event)
+
+    @classmethod
+    def show_days(cls, *days):
+        for day in days:
+            print('=' * 80)
+            print(day)
+            cls.show_day(day)
+        print('=' * 80)
+
+    def encounters(self, count=1, **kwargs):
+        days = (self.__factory(f'День {day_id + 1} из {count}', **kwargs) for day_id in range(count))
+        self.show_days(*days)

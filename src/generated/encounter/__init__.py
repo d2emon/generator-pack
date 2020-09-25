@@ -1,2 +1,2 @@
 from .day import Day
-from .event import Event, DailyEvent, NightlyEvent
+from .event import Event, EncounterEvent, DailyEvent, NightlyEvent
