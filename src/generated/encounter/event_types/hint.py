@@ -1,9 +1,9 @@
-from generated.history.encounters.encounter import Encounter
+from generated.encounter import Encounter
+from generated.history.time import Time
 
 
 class HintEncounter(Encounter):
-    is_daily = True
-    is_nightly = False
+    allowed_at = [Time.DAY]
     description = "Подсказка – вы получили относительно ценную информацию. " \
                   "Узнали о том, что поблизости чудовища, что рядом находится " \
                   "деревня, что недавно здесь проходил путешественник и т.п."

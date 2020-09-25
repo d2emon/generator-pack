@@ -1,9 +1,9 @@
-from generated.history.encounters.encounter import Encounter
+from generated.encounter import Encounter
+from generated.history.time import Time
 
 
 class ClashEncounter(Encounter):
-    is_daily = True
-    is_nightly = True
+    allowed_at = [Time.DAY, Time.NIGHT]
     description = "Столкновение – хо-хо, а вот и орки. В смысле, сейчас будет драка."
     """
     Возможное столкновение – при неблагоприятных условиях, плохих бросках, 
@@ -18,8 +18,7 @@ class ClashEncounter(Encounter):
 
 class MeetEncounter(ClashEncounter):
     # http://stormtower.ru/interesnyie-mesta/tipyi-landshafta-dlya-odinochnyih-i-massovyih-srazheniy.html
-    is_daily = True
-    is_nightly = True
+    allowed_at = [Time.DAY, Time.NIGHT]
     description = "Путевая встреча – не связанное с «военными действиями» " \
                   "событие, характерное для этой местности. Встреча с " \
                   "купеческими караванами на дороге или с дровосеком в лесу – " \
@@ -27,8 +26,7 @@ class MeetEncounter(ClashEncounter):
 
 
 class HaltEncounter(ClashEncounter):
-    is_daily = True
-    is_nightly = False
+    allowed_at = [Time.DAY]
     description = "Привал – если вы сейчас же не сделаете привал (короткий, на " \
                   "1 час), то или лошадь захромает, или уровень усталости " \
                   "группы повысится."

@@ -1,9 +1,9 @@
-from generated.history.encounters.encounter import Encounter
+from generated.encounter import Encounter
+from generated.history.time import Time
 
 
 class DelayEncounter(Encounter):
-    is_daily = True
-    is_nightly = False
+    allowed_at = [Time.DAY]
     description = "Задержка в пути — что-то пошло не так и вы потеряли время, " \
                   "заблудились, вынуждены идти кружным путем, подвернули ногу " \
                   "и т.п."

@@ -1,4 +1,10 @@
 class Time:
+    DAY = 'DAY'
+    NIGHT = 'NIGHT'
+
+    # mile = 20
+    mile = 6
+
     def __init__(self, hours=0, minutes=0):
         self.__minutes = minutes + hours * 60
         self.max_time = None
@@ -25,7 +31,7 @@ class Time:
 
     @property
     def distance(self):
-        return int(self.minutes / 6)
+        return int(self.minutes / self.mile)
 
     def __str__(self):
         text = []

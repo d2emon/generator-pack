@@ -1,4 +1,5 @@
 from generated.history.with_events import WithEvents
+from generated.history.time import Time
 
 
 class Day(WithEvents):
@@ -12,11 +13,11 @@ class Day(WithEvents):
 
     @property
     def daily(self):
-        return self.filtered_events(lambda e: e.is_daily)
+        return self.filtered_events(lambda e: e.time_of_day == Time.DAY)
 
     @property
     def nightly(self):
-        return self.filtered_events(lambda e: e.is_nightly)
+        return self.filtered_events(lambda e: e.time_of_day == Time.NIGHT)
 
     @property
     def events(self):
