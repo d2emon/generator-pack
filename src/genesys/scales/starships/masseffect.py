@@ -1,0 +1,32 @@
+from .starship import Starship
+
+
+MassEffect = [
+    Starship("Turian Fighter", 8.80, "Mass Effect"),
+    Starship("Trident Fighter", 14.37, "Mass Effect"),
+    Starship("Cerberus Shuttle", 15, "Mass Effect"),
+    Starship("Mantis Gunship", 15.50, "Mass Effect"),
+    Starship("SSV Normandy SR-1", 155, "Mass Effect"),
+    Starship("Reaper Destroyer", 169, "Mass Effect"),
+    Starship("SSV Normandy SR-2", 216, "Mass Effect"),
+    Starship("Destroyer", 340, "Mass Effect"),
+    Starship("Geth Cruiser", 365, "Mass Effect"),
+    Starship("Turian Hierarchy Cruiser", 500, "Mass Effect"),
+    Starship("Asari Cruiser", 559, "Mass Effect"),
+    Starship("Quarian Cruiser", 643, "Mass Effect"),
+    Starship("Everest Class Dreadnought", 888, "Mass Effect"),
+    Starship("Geth Dreadnought", 1066, "Mass Effect"),
+    Starship("Collector Cruiser", 1890, "Mass Effect"),
+    Starship("Destiny Ascension", 1900, "Mass Effect"),
+    Starship("Reaper", 2000, "Mass Effect"),
+    Starship("Harbinger", 2170, "Mass Effect"),
+    Starship("Quarian Lifeship", 2817, "Mass Effect"),
+    Starship("Minuteman Station", 9100, "Mass Effect"),
+    Starship("Cronos Base", 9240, "Mass Effect"),
+    Starship("The Crucible", 10000, "Mass Effect"),
+    Starship("Collector Base", 11800, "Mass Effect"),
+    Starship("Mass Relay", 15000, "Mass Effect"),
+    Starship("Geth Heretic Station", 20000, "Mass Effect"),
+    Starship("Citadel", 44700, "Mass Effect"),
+    Starship("Omega", 44700, "Mass Effect"),
+]

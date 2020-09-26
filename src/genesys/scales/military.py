@@ -1,0 +1,55 @@
+from .scalable import Scalable
+
+
+class Military(Scalable):
+    def __init__(self, name, size, scale=0):
+        Scalable.__init__(self, name, size, scale)
+
+
+MILITARY = [
+    Military(".45 caliber bullet", 3.2, -2),
+    Military("M67 Grenade", 9, -2),
+    Military("Mk II Grenade", 11.1, -2),
+    Military(".50 caliber bullet", 13.8, -2),
+    Military("M18A1 Claymore", 21.6, -2),
+    Military("Beretta M9", 21.7, -2),
+    Military("M4 Carbine", 84, -2),
+    Military("US AT-4", 102, -2),
+    Military("M-249", 103, -2),
+    Military("Barrett", 110, -2),
+    Military("M2 Broening", 165, -2),
+    Military("Soldier", 1.8),
+    Military("AGM-65 Maverick", 2.49),
+    Military("AIM-9 Sidewinder", 3.02),
+    Military("Fat Man", 3.3),
+    Military("Humvee (HMMWV)", 4.57),
+    Military("M2 Bradley", 6.55),
+    Military("MTVR", 7.9),
+    Military("MQ-1 Predator", 8.23),
+    Military("M101 Howitzer", 9.1),
+    Military("M1 Abrams", 9.77),
+    Military("Oshkosh M1120 LHS", 10.17),
+    Military("UGM-133 Trident II", 13.57),
+    Military("F-16 Fighting Falcon", 15.06),
+    Military("F-35 Lightning", 15.67),
+    Military("A-10 Thunderbolt II", 16.26),
+    Military("V-22 Osprey", 17.5),
+    Military("AH-64 Apache", 17.73),
+    Military("F/A-18E/F Super Hornet", 18.31),
+    Military("F-22 Raptor", 18.90),
+    Military("F-15 Eagle", 19.43),
+    Military("UH-60 Black Hawk", 19.76),
+    Military("B-2 Spirit", 21),
+    Military("CH-47 Chinook", 30.1),
+    Military("HGM-25A Titan I", 31),
+    Military("B-52 Stratofortress", 48.5),
+    Military("C-17 Globemaster", 53),
+    Military("C-5 Galaxy", 75.31),
+    Military("Balao-Class Submarine", 95),
+    Military("Virginia-Class Submarine", 115),
+    Military("Arleigh Burke-Class Destroyer", 154),
+    Military("Ohio-Class Submarine", 170),
+    Military("Ticonderoga-Class Cruiser", 173),
+    Military("Nimitz-Class Aircraft Carrier", 332.8),
+    Military("Gerald R. Ford-Class Aircraft Carrier", 337),
+]
