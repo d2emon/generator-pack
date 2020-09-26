@@ -1,7 +1,7 @@
 from providers import ListProvider
 from factories.generator import Generated
 
-from sample_data.fixtures.other import battlecry
+from genesys.fixtures.fixtures.other import battlecry
 
 
 class BattleCry(Generated):

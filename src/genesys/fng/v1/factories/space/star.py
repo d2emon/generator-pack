@@ -1,7 +1,7 @@
 import random
 from factories import DictFactory
 from genesys.generator_models.space import Star
-from sample_data.generator_fixtures.space.fixtures import suns
+from genesys.fixtures.generator_fixtures.space import suns
 from .planet import PlanetFactory
 
 

@@ -2,7 +2,7 @@ from factories import DictFactory, ListFactory, PercentFactory, TemplateFactory
 # from factories.template import FactoryTemplate
 from genesys.generator_models.space import Galaxy
 
-from sample_data.generator_fixtures.space import fixtures
+from genesys.fixtures.generator_fixtures.space import fixtures
 
 
 class BaseGalaxyGenerator(DictFactory):

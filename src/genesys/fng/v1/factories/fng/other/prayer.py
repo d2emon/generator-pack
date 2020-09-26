@@ -1,7 +1,8 @@
 from providers import ListProvider, FactoryProvider
 from factories.generator import ListGenerated, ComplexGenerated
 
-from sample_data.fixtures.other.prayer import forgive, aid, deity
+from genesys.fixtures.fixtures.other.prayer import forgive, deity
+from genesys.fixtures.fixtures.other.prayer import aid
 
 RANDOM_PRAYER = 0
 FORGIVE_PRAYER = 1

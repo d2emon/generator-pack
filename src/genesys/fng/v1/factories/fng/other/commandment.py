@@ -1,7 +1,7 @@
 from providers import ListProvider
 from factories.generator import Generated
 
-from sample_data.fixtures.other import commandment
+from genesys.fixtures.fixtures.other import commandment
 
 
 class ReligiousCommandment(Generated):

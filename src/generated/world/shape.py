@@ -1,5 +1,5 @@
 from orm.models import DbModel
-from sample_data.storm.worlds import shapes
+from genesys.storm.data.storm import shapes
 
 
 class WorldShape(DbModel):

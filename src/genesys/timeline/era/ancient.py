@@ -1,5 +1,5 @@
 from dice.dice import Dice
-from sample_data import timeline
+from ..data import timeline
 from .era import Era
 
 

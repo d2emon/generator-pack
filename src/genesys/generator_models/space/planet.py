@@ -1,4 +1,4 @@
-from sample_data.generator_fixtures.space.fixtures import planet_sizes
+from genesys.fixtures.generator_fixtures.space import planet_sizes
 from utils.loaders import load_lines
 from ..generator_models import Model
 

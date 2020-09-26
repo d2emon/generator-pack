@@ -1,5 +1,5 @@
 from providers import MarkovProvider
-from sample_data.fixtures.streets import streets
+from genesys.fixtures.fixtures.streets import streets
 
 
 class StreetUnitProvider(MarkovProvider):

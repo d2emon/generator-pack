@@ -1,8 +1,8 @@
 import random
 
 
-from sample_data.fixtures import vowels, double_vowels
-from sample_data.fixtures import endings
+from genesys.fixtures.fixtures import vowels, double_vowels
+from genesys.fixtures.fixtures import endings
 
 
 BASE_SHORT = 0

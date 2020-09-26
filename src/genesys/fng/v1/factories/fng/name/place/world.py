@@ -1,8 +1,8 @@
 from factories.factory import ListFactory
 from factories.generator import ListGenerated
 
-from sample_data.fixtures import adjective
-from sample_data.fixtures.place.world import noun
+from genesys.fixtures.fixtures import adjective
+from genesys.fixtures.fixtures.place.world import noun
 
 
 class World(ListGenerated):

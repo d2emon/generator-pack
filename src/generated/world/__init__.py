@@ -1,5 +1,5 @@
 from orm.models import DbModel
-from sample_data.storm.worlds import worlds
+from genesys.storm.data.storm import worlds
 from .shape import WorldShape
 from .size import WorldSize
 from .world_type import WorldType

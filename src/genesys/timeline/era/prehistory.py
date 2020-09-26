@@ -1,6 +1,6 @@
 from dice.dice import Dice
 from .era import Era
-from sample_data import timeline
+from ..data import timeline
 
 
 class Prehistory(Era):

@@ -1,7 +1,8 @@
 from factories.factory import ListFactory
 from factories.generator import ListGenerated, ComplexGenerated
 
-from sample_data.fixtures.place.amusement_park import first1, first2, second2, second1
+from genesys.fixtures.fixtures.place.amusement_park import first1, second2
+from genesys.fixtures.fixtures.place.amusement_park import second1, first2
 
 
 class BaseAmusementPark(ListGenerated):

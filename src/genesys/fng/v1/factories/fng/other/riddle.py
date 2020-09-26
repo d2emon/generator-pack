@@ -1,7 +1,7 @@
 from providers import ListProvider
 from factories.generator import ListGenerated
 
-from sample_data.fixtures.other import riddle
+from genesys.fixtures.fixtures.other import riddle
 
 
 class Riddle(ListGenerated):

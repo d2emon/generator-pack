@@ -1,6 +1,6 @@
 import random
 from orm.models import DbModel
-from sample_data.storm.worlds import types
+from genesys.storm.data.storm import types
 from .size import WorldSize
 
 

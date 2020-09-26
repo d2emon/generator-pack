@@ -1,4 +1,4 @@
-from sample_data.fixtures import race
+from genesys.fixtures.fixtures import race
 from factories import Factory, ListFactory
 
 

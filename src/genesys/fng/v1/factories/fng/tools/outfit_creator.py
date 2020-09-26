@@ -1,13 +1,13 @@
 from factories.factory import ListFactory
 
-from sample_data.fixtures import belt
-from sample_data.fixtures import gloves
-from sample_data.fixtures import jacket
-from sample_data.fixtures import pants
-from sample_data.fixtures.tools.outfit.scarf import scarf
-from sample_data.fixtures.tools.outfit.shirt import shirt
-from sample_data.fixtures import shoes
-from sample_data.fixtures import skirt
+from genesys.fixtures.fixtures import belt
+from genesys.fixtures.fixtures import gloves
+from genesys.fixtures.fixtures import jacket
+from genesys.fixtures.fixtures import pants
+from genesys.fixtures.fixtures.tools import scarf
+from genesys.fixtures.fixtures.tools import shirt
+from genesys.fixtures.fixtures import shoes
+from genesys.fixtures.fixtures import skirt
 
 
 class Outfit:
