@@ -1,4 +1,4 @@
-from .scalable import Scalable
+from genesys.model.sized import Sized as Scalable
 
 from .sotu import SOTU
 from .starships import STARSHIPS

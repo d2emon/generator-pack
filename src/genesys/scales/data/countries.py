@@ -1,6 +1,5 @@
 import math
-
-from .scalable import Scalable
+from genesys.model.sized import Sized as Scalable
 
 
 class Country(Scalable):

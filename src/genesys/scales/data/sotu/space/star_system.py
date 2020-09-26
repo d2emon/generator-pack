@@ -1,4 +1,4 @@
-from scale.scalable import Scalable, Distance
+from genesys.model.sized import Sized as Scalable, Distance
 from .galaxy import LightYears
 
 
