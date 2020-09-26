@@ -1,5 +1,4 @@
-# from dice.dice import Dice
-from ..data.dice import Dice
+from dice.dice import Dice
 from generated.encounter import Day
 from .event import DailyEventFactory, NightlyEventFactory
 

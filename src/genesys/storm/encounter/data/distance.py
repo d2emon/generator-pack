@@ -1,5 +1,4 @@
-# from dice.dice import Dice
-from .dice import Dice
+from dice.dice import Dice
 from generated.encounter import DistanceGroup
 from generated.history.time import Time
 

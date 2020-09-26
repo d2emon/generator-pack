@@ -1,6 +1,5 @@
 import random
-# from dice.dice import Dice
-from ..data.dice import Dice
+from dice.dice import Dice
 from generated.encounter import Event, DailyEvent, NightlyEvent
 from generated.history.time import Time
 from generated.encounter.fraction import Fraction
