@@ -49,12 +49,12 @@ class OrganicFactory(Factory):
     default_model = materials.OrganicMatter
 
     def children(self):
-        yield self.select_factory(
+        yield self.select_item(
             ProteinsFactory(),
             LipidsFactory(),
             GlucidsFactory(),
         )
-        yield self.select_factory(
+        yield self.select_item(
             ProteinsFactory(),
             LipidsFactory(),
             GlucidsFactory(),

@@ -1,5 +1,5 @@
 from genesys.model.model import Model
-from .body import PlanetLike
+from .planet.body import PlanetLike
 # from generated.universe.space.life import Habitat
 
 

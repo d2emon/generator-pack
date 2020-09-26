@@ -1,5 +1,6 @@
 from generated import universe
 from ...factory import Factory
+from ...temporary import AsteroidLifeFactory, MoonLifeFactory, ContinentFactory, OceanFactory, SkyFactory
 from .plate import AsteroidPlateFactory, MoonPlateFactory
 from .core import PlanetCoreFactory
 
@@ -40,9 +41,7 @@ class AsteroidFactory(PlanetLikeFactory):
     default_model = universe.Asteroid
 
     def biosphere(self):
-        # "space animal,0.5%"
-        # yield AsteroidLife
-        yield None
+        yield AsteroidLifeFactory()
 
     def plates(self):
         yield AsteroidPlateFactory()
@@ -50,19 +49,13 @@ class AsteroidFactory(PlanetLikeFactory):
 
 class MoonFactory(PlanetLikeFactory):
     default_model = universe.Moon
+    names = ["young", "old", "large", "small", "pale", "white", "dark", "black", "old"]
 
-    # class DataProvider:
-    #     moon = lookups.moons
-
-    # name = property(lambda self: self.provider.moon)
-
-    # ["young","old","large","small","pale","white","dark","black","old"],
-    # [" moon"]
+    def generate_name(self):
+        return f"{self.select_item(self.names)} moon"
 
     def biosphere(self):
-        # "ghost,0.1%"
-        # yield MoonLife
-        yield None
+        yield MoonLifeFactory()
 
     def plates(self):
         yield MoonPlateFactory()
@@ -70,29 +63,17 @@ class MoonFactory(PlanetLikeFactory):
 
 class TerraformedMoonFactory(MoonFactory):
     default_model = universe.TerraformedMoon
-
-    # class DataProvider:
-    #     terraformed_moon = lookups.terraformed_moons
-
-    # name = property(lambda self: self.provider.terraformed_moon)
-
-    # ["young", "old", "large", "small", "pale", "white", "dark", "black", "old", "green", "lush", "blue", "city",
-    # "colonized", "life"],
-    #
-    # [" moon"]
+    names = [
+        "young", "old", "large", "small", "pale", "white", "dark", "black", "old", "green", "lush", "blue", "city",
+        "colonized", "life",
+    ]
 
     def biosphere(self):
         yield None
 
     def plates(self):
-        # yield from Continent.multiple(1, 4)
-        # yield from Ocean.multiple(1, 4)
-        yield None
+        yield from ContinentFactory().multiple(1, 4)
+        yield from OceanFactory().multiple(1, 4)
 
     def sky(self):
-        # yield Sky
-        yield None
-
-    def children(self):
-        # ".planet composition"
-        yield from super().children()
+        yield SkyFactory()

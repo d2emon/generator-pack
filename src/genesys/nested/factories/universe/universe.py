@@ -19,17 +19,17 @@ class UniverseFactory(Factory):
 
 class MultiverseFactory(Factory):
     default_model = universe.Multiverse
+    names = [
+        "multiverse", "lasagnaverse", "doughnutverse", "towelverse", "baconverse", "sharkverse", "nestedverse",
+        "tastyverse", "upverse", "downverse", "layerverse", "clusterverse", "metaverse", "quantiverse", "paraverse",
+        "epiverse", "alterverse", "hypoverse", "dimensioverse", "planiverse", "pluriverse", "polyverse", "maniverse",
+        "stackoverse", "antiverse", "superverse", "upperverse", "maxiverse", "megaverse", "babyverse", "tinyverse",
+        "retroverse", "ultraverse", "topoverse", "otherverse", "bubbleverse", "esreverse", "versiverse", "'verse",
+        "cookieverse", "grandmaverse",
+    ]
 
-    # ["multiverse","lasagnaverse","doughnutverse","towelverse","baconverse","sharkverse","nestedverse","tastyverse",
-    # "upverse","downverse","layerverse","clusterverse","metaverse","quantiverse","paraverse","epiverse","alterverse",
-    # "hypoverse","dimensioverse","planiverse","pluriverse","polyverse","maniverse","stackoverse","antiverse",
-    # "superverse","upperverse","maxiverse","megaverse","babyverse","tinyverse","retroverse","ultraverse","topoverse",
-    # "otherverse","bubbleverse","esreverse","versiverse","'verse","cookieverse","grandmaverse"]
-
-    # class DataProvider:
-    #     multiverse = lookups.multiverses
-
-    # name = property(lambda self: self.provider.multiverse)
+    def generate_name(self):
+        return self.select_item(self.names)
 
     def children(self):
         yield from UniverseFactory().multiple(10, 30)

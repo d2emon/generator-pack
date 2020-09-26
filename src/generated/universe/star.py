@@ -3,7 +3,7 @@ from genesys.model.model import Model
 # from genesys.nested.data import lookups
 # from generated.universe.space.life import Habitat, StarLife
 from ..materials import Atom
-from .planet import Orbit, PlanetOrbit, AsteroidBelt
+from .orbit import Orbit, PlanetOrbit, AsteroidBelt
 
 
 class Star(Model):

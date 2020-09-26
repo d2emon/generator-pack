@@ -12,8 +12,11 @@ class Factory:
         placeholders=(),
     ):
         self.model = model or self.default_model
-        self.name = name or self.default_name
+        self.name = name
         self.placeholders = placeholders
+
+    def generate_name(self):
+        return self.default_name
 
     def children(self):
         yield from self.placeholders
@@ -27,7 +30,7 @@ class Factory:
         **kwargs,
     ):
         return self.model(
-            name=name or self.name,
+            name=name or self.name or self.generate_name(),
             *children,
             parent=parent,
             placeholders=placeholders or self.children(),
@@ -43,8 +46,8 @@ class Factory:
             yield self
 
     @classmethod
-    def select_factory(cls, *factories):
-        return random.choice(factories) if len(factories) else None
+    def select_item(cls, *items):
+        return random.choice(items) if len(items) else None
 
     @classmethod
     def create_factory(cls, model, default=None):

@@ -1,7 +1,7 @@
 from genesys.model.model import Model
 from .nebula import Nebula
 from .star import StarSystem
-# from .black_hole import BlackHole
+from .black_hole import BlackHole
 # from .life import GalaxyArmLife, GalaxyCenterLife, Habitat
 
 
@@ -9,7 +9,7 @@ class GalaxyPart(Model):
     # Habitat
     stars = Model.children_property(StarSystem)
     nebulas = Model.children_property(Nebula)
-    # black_holes = Habitat.children_property(BlackHole)
+    black_holes = Model.children_property(BlackHole)
 
 
 class GalaxyArm(GalaxyPart):
@@ -17,7 +17,7 @@ class GalaxyArm(GalaxyPart):
 
 
 class GalaxyCenter(GalaxyPart):
-    # eye = Model.child_property(BlackHole)
+    eye = GalaxyPart.child_property(BlackHole)
 
     default_name = 'galactic center'
 

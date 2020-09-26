@@ -1,8 +1,12 @@
 from generated import universe
+from ...temporary import BarrenPlanetLifeFactory, VisitorPlanetLifeFactory, VisitorCityFactory, \
+    VisitorInstallationFactory, ContinentFactory, FutureContinentFactory, MedievalContinentFactory, \
+    AncientContinentFactory, OceanFactory, SkyFactory, FutureSkyFactory, TerraformedSkyFactory, \
+    FutureMoonFactory
+from ..atmosphere import AtmosphereFactory, GasGiantAtmosphereFactory
 from .body import PlanetLikeFactory, MoonFactory, TerraformedMoonFactory
 from .core import PlanetCoreFactory
 from .plate import PlateFactory
-from .atmosphere import AtmosphereFactory, GasGiantAtmosphereFactory
 
 
 class PlanetFactory(PlanetLikeFactory):
@@ -24,9 +28,7 @@ class BarrenPlanetFactory(PlanetFactory):
     default_model = universe.BarrenPlanet
 
     def biosphere(self):
-        # "galactic life,10%"
-        # yield BarrenPlanetLife
-        yield None
+        yield BarrenPlanetLifeFactory()
 
     def plates(self):
         yield PlateFactory()
@@ -38,14 +40,11 @@ class BarrenPlanetFactory(PlanetFactory):
 
 class VisitorPlanetFactory(BarrenPlanetFactory):
     def biosphere(self):
-        # "galactic life"
-        # yield VisitorPlanetLife
-        yield None
+        yield VisitorPlanetLifeFactory()
 
     def visited(self):
-        # yield from VisitorCity.multiple(1, 8)
-        # yield from VisitorInstallation.multiple(2, 6)
-        yield None
+        yield from VisitorCityFactory().multiple(1, 8)
+        yield from VisitorInstallationFactory().multiple(2, 6)
 
 
 class TelluricPlanetFactory(PlanetFactory):
@@ -58,44 +57,34 @@ class TelluricPlanetFactory(PlanetFactory):
         yield None
 
     def continents(self):
-        # yield from Continent.multiple(2, 7)
-        yield None
+        yield from ContinentFactory().multiple(2, 7)
 
     def oceans(self):
-        # yield from Ocean.multiple(1, 7)
-        yield None
+        yield from OceanFactory().multiple(1, 7)
 
     def plates(self):
         yield from self.continents()
         yield from self.oceans()
 
     def sky(self):
-        # yield Sky
-        yield None
+        yield SkyFactory()
 
 
 class FuturePlanetFactory(TelluricPlanetFactory):
     def continents(self):
-        # yield from FutureContinent.multiple(2, 7)
-        yield None
+        yield from FutureContinentFactory().multiple(2, 7)
 
     def sky(self):
-        # yield FutureSky
-        yield None
+        yield FutureSkyFactory()
 
     def moons(self):
         yield from super().moons()
-        # yield FutureMoon.probable(30)
+        yield FutureMoonFactory().probable(30)
 
 
 class TerraformedPlanetFactory(TelluricPlanetFactory):
-    def continents(self):
-        # "continent,2-7"
-        yield None
-
     def sky(self):
-        # yield TerraformedSky
-        yield None
+        yield TerraformedSkyFactory()
 
     def moons(self):
         yield from super().moons()
@@ -108,15 +97,13 @@ class DefaultPlanetFactory(TerraformedPlanetFactory):
 
 class MedievalPlanetFactory(TelluricPlanetFactory):
     def continents(self):
-        # yield from MedievalContinent.multiple(2, 4)
-        # yield from AncientContinent.multiple(0, 3)
-        yield None
+        yield from MedievalContinentFactory().multiple(2, 4)
+        yield from AncientContinentFactory().multiple(0, 3)
 
 
 class AncientPlanetFactory(TelluricPlanetFactory):
     def continents(self):
-        # yield from AncientContinent.multiple(2, 7)
-        yield None
+        yield from AncientContinentFactory().multiple(2, 7)
 
 
 class GasGiantFactory(PlanetFactory):

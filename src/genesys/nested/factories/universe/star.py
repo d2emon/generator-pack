@@ -1,27 +1,23 @@
 from generated import universe
 from ..factory import Factory
+from ..temporary import StarLifeFactory, DysonSurfaceFactory
 from ..materials import MoleculeFactory
-from .planet import BarrenOrbitFactory, VisitorOrbitFactory, FutureOrbitFactory, TerraformedOrbitFactory, \
+from .orbit import BarrenOrbitFactory, VisitorOrbitFactory, FutureOrbitFactory, TerraformedOrbitFactory, \
     MedievalOrbitFactory, AncientOrbitFactory, AsteroidBeltFactory, GasGiantOrbitFactory
 
 
 class StarFactory(Factory):
     default_model = universe.Star
+    names = [
+        "white", "faint", "yellow", "red", "blue", "green", "purple", "bright", "double", "twin", "triple", "old",
+        "young", "dying", "small", "giant", "large", "pale", "dark", "hell", "horrific", "twisted", "spectral",
+    ]
 
-    # class DataProvider:
-    #     star = lookups.stars
-
-    # name = property(lambda self: self.provider.star)
-
-    # ["white","faint","yellow","red","blue","green","purple","bright","double","twin","triple","old","young","dying",
-    # "small","giant","large","pale","dark","hell","horrific","twisted","spectral"],
-    # [" star"]
+    def generate_name(self):
+        return f"{self.select_item(self.names)} star"
 
     def life(self):
-        # "ghost,0.1%"
-        # "space monster,0.2%"
-        # yield StarLife
-        yield None
+        yield StarLifeFactory()
 
     def matter(self):
         yield MoleculeFactory.from_elements('H')
@@ -81,5 +77,5 @@ class SingleStarFactory(StarSystemFactory):
 
 class DysonSphereFactory(StarSystemFactory):
     def inhabited(self):
-        # yield DysonSurface
+        yield DysonSurfaceFactory()
         yield from FutureOrbitFactory().multiple(1, 8)

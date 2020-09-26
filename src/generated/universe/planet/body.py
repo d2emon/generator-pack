@@ -1,6 +1,6 @@
 from genesys.model.model import Model
 from genesys.model.mixins import TerraformedMixin
-from .atmosphere import Atmosphere
+from ..atmosphere import Atmosphere
 from .plate import Plate
 from .core import PlanetCore
 # from generated.nested_v2.models import Continent, VisitorCity, VisitorInstallation, Ocean

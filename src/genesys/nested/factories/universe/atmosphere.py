@@ -1,6 +1,7 @@
 from generated import universe
-from ...factory import Factory
-from ...materials import MoleculeFactory, SteamFactory, AmmoniaFactory, MethaneFactory
+from ..factory import Factory
+from ..materials import MoleculeFactory, SteamFactory, AmmoniaFactory, MethaneFactory
+from ..temporary import GasGiantLifeFactory
 
 
 class AtmosphereFactory(Factory):
@@ -20,9 +21,7 @@ class AtmosphereFactory(Factory):
 
 class GasGiantAtmosphereFactory(AtmosphereFactory):
     def life(self):
-        # "galactic life,10%"
-        # yield GasGiantLife
-        yield None
+        yield GasGiantLifeFactory()
 
     def gases(self):
         yield MoleculeFactory.from_elements('He')

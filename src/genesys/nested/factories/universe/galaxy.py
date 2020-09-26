@@ -1,7 +1,9 @@
 from generated import universe
 from ..factory import Factory
+from ..temporary import GalaxyArmLifeFactory, GalaxyCenterLifeFactory
 from .nebula import NebulaFactory
 from .star import StarSystemFactory, DysonSphereFactory
+from .black_hole import BlackHoleFactory
 
 
 class SpaceFactory(Factory):
@@ -37,27 +39,21 @@ class GalaxyArmFactory(SpaceFactory):
     default_model = universe.GalaxyArm
 
     def life(self):
-        # "galactic life,5%"
-        # yield GalaxyArmLife
-        yield None
+        yield GalaxyArmLifeFactory()
 
     def black_holes(self):
-        # yield BlackHole.probable(20)
-        # yield BlackHole.probable(20)
-        yield None
+        yield BlackHoleFactory().probable(20)
+        yield BlackHoleFactory().probable(20)
 
 
 class GalaxyCenterFactory(SpaceFactory):
     default_model = universe.GalaxyCenter
 
     def life(self):
-        # "galactic life,10%"
-        # yield GalaxyCenterLife
-        yield None
+        yield GalaxyCenterLifeFactory()
 
     def black_holes(self):
-        # yield BlackHole
-        yield None
+        yield BlackHoleFactory()
 
 
 class GalaxyFactory(Factory):

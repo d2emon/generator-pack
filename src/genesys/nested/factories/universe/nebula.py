@@ -1,23 +1,21 @@
 from generated import universe
 from ..factory import Factory
+from ..temporary import NebulaLifeFactory
 from ..materials import MoleculeFactory, SteamFactory, AmmoniaFactory
 from .star import SingleStarFactory
 
 
 class InterstellarCloudFactory(Factory):
     default_model = universe.InterstellarCloud
+    names = [
+        "a bright pink", "a faint", "a fading", "a pale", "a fluo", "a glowing", "a green", "a bright green",
+        "a dark brown", "a brooding", "a magenta", "a bright red", "a dark red", "a blueish", "a deep blue",
+        "a turquoise", "a teal", "a golden", "a multicolored", "a silver", "a dramatic", "a luminous", "a colossal",
+        "a purple", "a gold-trimmed", "an opaline", "a silvery", "a shimmering",
+    ]
 
-    # class DataProvider:
-    #     interstellar_cloud = lookups.interstellar_clouds
-
-    # name = property(lambda self: self.provider.interstellar_cloud)
-
-    # ["a bright pink","a faint","a fading","a pale","a fluo","a glowing","a green","a bright green","a dark brown",
-    # "a brooding","a magenta","a bright red","a dark red","a blueish","a deep blue","a turquoise","a teal","a golden",
-    # "a multicolored","a silver","a dramatic","a luminous","a colossal","a purple","a gold-trimmed","an opaline",
-    # "a silvery","a shimmering"],
-    # [" "],
-    # ["interstellar cloud"]
+    def generate_name(self):
+        return f"{self.select_item(self.names)} interstellar cloud"
 
     def children(self):
         yield MoleculeFactory.from_elements('He')
@@ -36,9 +34,7 @@ class NebulaFactory(Factory):
 
     @classmethod
     def life(cls):
-        # "galactic life,15%"
-        # yield NebulaLife
-        yield None
+        yield NebulaLifeFactory()
 
     @classmethod
     def stars(cls):

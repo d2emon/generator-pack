@@ -1,7 +1,8 @@
 from generated import universe
-from ...factory import Factory
-from .body import AsteroidFactory
-from .planet import BarrenPlanetFactory, VisitorPlanetFactory, FuturePlanetFactory, TerraformedPlanetFactory, \
+from ..factory import Factory
+from ..temporary import AsteroidBeltLifeFactory
+from .planet.body import AsteroidFactory
+from .planet.planet import BarrenPlanetFactory, VisitorPlanetFactory, FuturePlanetFactory, TerraformedPlanetFactory, \
     MedievalPlanetFactory, AncientPlanetFactory, GasGiantFactory
 
 
@@ -62,9 +63,7 @@ class AsteroidBeltFactory(OrbitFactory):
     default_model = universe.AsteroidBelt
 
     def life(self):
-        # "galactic life,20%"
-        # yield AsteroidBeltLife
-        yield None
+        yield AsteroidBeltLifeFactory()
 
     def planets(self):
         yield from AsteroidFactory().multiple(10, 30)

@@ -2,7 +2,14 @@ from .universe import SuperclusterFactory, UniverseFactory, MultiverseFactory
 from .galaxy import SpaceFactory, GalaxyArmFactory, GalaxyCenterFactory, GalaxyFactory
 from .nebula import InterstellarCloudFactory, NebulaFactory
 from .star import StarFactory, StarSystemFactory, SingleStarFactory, DysonSphereFactory
+from .orbit import OrbitFactory, PlanetOrbitFactory, BarrenOrbitFactory, VisitorOrbitFactory, FutureOrbitFactory, \
+    TerraformedOrbitFactory, MedievalOrbitFactory, AncientOrbitFactory, GasGiantFactory, AsteroidBeltFactory, \
+    EarthFactory
 from .planet import *
+from .atmosphere import AtmosphereFactory, GasGiantAtmosphereFactory
+from .black_hole import EndOfUniverseNoteFactory, EverythingFactory, Answer42Factory, WhiteHoleFactory, \
+    InsideTheBlackHoleFactory, BlackHoleFactory
+from .god import D2emonThoughtsFactory, D2emonPsycheFactory, D2emonFactory, GodFactory
 
 
 FACTORIES = {
@@ -34,14 +41,14 @@ FACTORIES = {
     'gas giant atmosphere': GasGiantAtmosphereFactory(),
     'planet core': PlanetCoreFactory(),
 
-    # 'black hole",["inside the black hole"]);
-    # 'inside the black hole",["end of universe note,0.5%","crustacean,0.2%","white hole"]);
-    # 'white hole",["universe"]);
-    # '42",["universe"]);
-    # 'everything",["universe"]);
-    # 'end of universe note",["pasta,0.1%"],["Help! I'm trapped in a universe factory!","Okay, you can stop clicking now.","I want to get off Mr Orteil's Wild Ride","my sides"]);
-    # 'orteil",["body","orteil psyche","clothing set","computer"],"Orteil");//I do what I want
-    # 'god",[".orteil"],"Orteil");//I'm a fucking god
-    # 'orteil psyche",["orteil thoughts"],"psyche");
-    # 'orteil thoughts",[],["OH MY GOD WHAT ARE YOU DOING HERE TURN BACK IMMEDIATELY","WHAT IS WRONG WITH YOU","WHAT THE HELL GO AWAY","WHAT ARE YOU DOING OH GOD","WHY THE HELL ARE YOU HERE","I DO WHAT I WANT OKAY","NO I DON'T CARE GO AWAY","WHAT DID I EVEN DO TO YOU","OH NO WHY THIS","OKAY JUST <a href=\"http://orteil.deviantart.com\">GO THERE ALREADY</a>","<a href=\"http://twitter.com/orteil42\">WHATEVER</a>"]);
+    'black hole': BlackHoleFactory(),
+    'inside the black hole': InsideTheBlackHoleFactory(),
+    'white hole': WhiteHoleFactory(),
+    '42': Answer42Factory(),
+    'everything': EverythingFactory(),
+    'end of universe note': EndOfUniverseNoteFactory(),
+    'orteil': D2emonFactory(),
+    'god': GodFactory(),
+    'orteil psyche': D2emonPsycheFactory(),
+    'orteil thoughts': D2emonThoughtsFactory(),
 }
