@@ -1,3 +1,7 @@
+"""
+- Star
+- StarSystem
+"""
 from genesys.model.model import Model
 # from generated.nested_v2.models import DysonSurface
 # from genesys.nested.data import lookups

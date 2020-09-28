@@ -1,3 +1,9 @@
+"""
+- PlanetLike
+- Asteroid
+- Moon
+- TerraformedMoon
+"""
 from genesys.model.model import Model
 from genesys.model.mixins import TerraformedMixin
 from ..atmosphere import Atmosphere

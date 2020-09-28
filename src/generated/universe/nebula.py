@@ -1,3 +1,7 @@
+"""
+- InterstellarCloud
+- Nebula
+"""
 from genesys.model.model import Model
 from ..materials import Gas
 from .star import StarSystem

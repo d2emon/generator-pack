@@ -1,3 +1,9 @@
+"""
+- GalaxyPart
+- GalaxyArm
+- GalaxyCenter
+- Galaxy
+"""
 from genesys.model.model import Model
 from .nebula import Nebula
 from .star import StarSystem

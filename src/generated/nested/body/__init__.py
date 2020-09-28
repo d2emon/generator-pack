@@ -66,7 +66,7 @@ new Thing("tongue",["muscles"],"tongue");
 
 new Thing("abomination",["abomination body","abomination psyche"],"*PERSON*| (abomination)");//nonononononono
 new Thing("abomination psyche",["abomination thoughts","memories"],"psyche");
-new Thing("abomination thoughts",["black hole,0.01%","abomination thought"],"thoughts");
+new Thing("abomination thoughts",["BlackHole,0.01%","abomination thought"],"thoughts");
 new Thing("abomination thought",[],["P-please...","Don't look at me...","Please... kill me...","Kill... me...","Why would I ever ask for this...","I only wish for death.","I only long for death now.","I only demand... death...","End my misery... I beg you...","This is a mockery of existence...","I miss her so much...","I miss him so much...","I miss my family...","Why would they do that to me...","How could they do this to me...","What have I become...","I feel... different...","I can't feel... anything...","I can't... see anything..."]);
 new Thing("abomination body",["abomination head","abomination head,5%","abomination torso",["arm,0-8","arm,0-4"],["leg,0-8","leg,0-4"],"crustacean claw,2%","stinger,2%","weird soft organ,10%","weird soft organ,10%","weird hard organ,10%","weird hard organ,10%"],"misshapen body");
 new Thing("abomination head",["mouth,0-2","nose,0-2","eye,0-8","ear,0-4","skull,90%","weird soft organ,20%","weird hard organ,20%","head hair,65%",".body part"],"misshapen head");

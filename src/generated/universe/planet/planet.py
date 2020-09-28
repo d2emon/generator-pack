@@ -1,3 +1,9 @@
+"""
+- Planet (Unused)
+- BarrenPlanet
+- TelluricPlanet
+- GasGiant
+"""
 from genesys.model.model import Model
 from genesys.model.mixins import TerraformedMixin
 from .body import PlanetLike, Moon

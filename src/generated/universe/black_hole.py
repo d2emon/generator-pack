@@ -1,3 +1,11 @@
+"""
+- EndOfUniverseNote
+- Everything (Unused)
+- Answer42 (Unused)
+- WhiteHole
+- InsideTheBlackHole
+- BlackHole
+"""
 from genesys.model.model import Model
 from ..materials import Portal
 
