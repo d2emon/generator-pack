@@ -1,9 +1,9 @@
+from ...cloth import ClothingSetFactory
 from .body_parts import BodyPartFactory, SoftBodyPartFactory, SkinlessBodyPartFactory, SkinlessSoftBodyPartFactory
 from .blood import BloodCellFactory, BloodFactory, BloodVesselsFactory
 from .skin import SkinCellFactory, DeadSkinFactory, PoresFactory, ScarFactory, SkinFactory
 from .skeleton import BoneCellFactory, BonesFactory, BoneFactory, MuscleCellFactory, MuscleFactory, FatFactory
 from .head import *
-from .cloth import *
 from .person import *
 from .body import BodyFactory
 from .torso import TorsoFactory, ChestFactory, BellybuttonFactory, NippleFactory, PelvisFactory, NaughtyBitsFactory, \

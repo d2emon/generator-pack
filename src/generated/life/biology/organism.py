@@ -1,5 +1,5 @@
 from genesys.nested.models import Model
-from generated.life.mind import Psyche
+from generated.mind import Psyche
 
 
 class BasicBody(Model):

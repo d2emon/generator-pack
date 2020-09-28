@@ -8,7 +8,7 @@ Crustaceans
 """
 from generated.nested_v2.models import Mind
 from ..animal_body import AnimalBody, SimpleEye, SoftFlesh, CrustaceanLeg, CrustaceanClaw, CrustaceanShell
-from generated.life.mind import SimpleThoughts, Thought
+from generated.mind import SimpleThoughts, Thought
 from ..organism import Organism
 from genesys.nested.data import lookups
 

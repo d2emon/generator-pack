@@ -7,7 +7,7 @@ Single-celled Organisms
 - BacteriaThought
 """
 from generated.life.cell import Cell
-from generated.life.mind import SimpleThoughts, Thought
+from generated.mind import SimpleThoughts, Thought
 from ..organism import Organism, BasicBody
 from genesys.nested.data import lookups
 

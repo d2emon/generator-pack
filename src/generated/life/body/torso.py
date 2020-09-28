@@ -12,7 +12,6 @@ from .body_parts import BodyPart
 
 class Butt(BodyPart):
     # pasta = BodyPart.children_property(Pasta)
-    # sweat = BodyPart.children_property(Sweat)
     pass
 
 

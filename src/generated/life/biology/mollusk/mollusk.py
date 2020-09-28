@@ -7,7 +7,7 @@ Mollusk
 """
 from ..animal_body import AnimalBody, SimpleEye, Tentacle, SoftFlesh, Jelly
 from generated.life.body.body import Mouth
-from generated.life.mind import SimpleThoughts, Thought
+from generated.mind import SimpleThoughts, Thought
 from ..organism import Organism
 from genesys.nested.data import lookups
 

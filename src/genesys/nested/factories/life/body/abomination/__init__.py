@@ -115,7 +115,6 @@ class AbominationPsycheFactory(Factory):
 
 class AbominationFactory(PersonFactory):
     default_model = life.Abomination
-    # new Thing("abomination",["abomination body","abomination psyche"],);//nonononononono
 
     def children(self):
         yield AbominationBodyFactory()

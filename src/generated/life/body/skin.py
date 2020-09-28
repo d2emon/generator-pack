@@ -6,6 +6,7 @@
 - Skin
 """
 from genesys.model.model import Model
+from ...materials import Sweat
 from ..cell import Cell
 
 
@@ -20,7 +21,7 @@ class DeadSkin(SkinCell):
 class Pores(Model):
     # bacterias = Model.children_property(Bacteria)
     cells = Model.children_property(Cell)
-    # sweat = Model.child_property(Sweat)
+    sweat = Model.child_property(Sweat)
 
 
 class Scar(Model):
@@ -33,4 +34,4 @@ class Skin(Model):
     pores = Model.child_property(Pores)
     cells = Model.children_property(Cell)
     # dust = Model.child_property(Dust)
-    # sweat = Model.child_property(Sweat)
+    sweat = Model.child_property(Sweat)

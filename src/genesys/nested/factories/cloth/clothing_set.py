@@ -1,9 +1,9 @@
-from generated import life
-from ....factory import Factory
+from generated import cloth
+from genesys.nested.factories.factory import Factory
 
 
 class ClothingSetFactory(Factory):
-    default_model = life.ClothingSet
+    default_model = cloth.ClothingSet
 
     def children(self):
         # yield Hat.probable(2)

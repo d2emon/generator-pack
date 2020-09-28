@@ -3,7 +3,6 @@ from .blood import BloodCell, Blood, BloodVessels
 from .skin import Skin, Scar, Pores, DeadSkin, SkinCell
 from .skeleton import Bone, Bones, BoneCell, Muscles, MuscleCell, Fat
 from .head import *
-from .cloth import *
 from .person import *
 from .body import Body
 from .torso import Torso, Chest, Bellybutton, Nipple, Pelvis, NaughtyBits, Butt

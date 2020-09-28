@@ -5,6 +5,7 @@
 - Foot
 - Leg
 """
+from ...materials import Sweat, Keratin
 from .body_parts import BodyPart
 
 
@@ -14,8 +15,7 @@ class Knee(BodyPart):
 
 class Toenail(BodyPart):
     # dust = BodyPart.child_property(Dust)
-    # keratin = BodyPart.child_property(Keratin)
-    pass
+    keratin = BodyPart.child_property(Keratin)
 
 
 class Toe(BodyPart):
@@ -24,7 +24,6 @@ class Toe(BodyPart):
 
 class Foot(BodyPart):
     toes = BodyPart.children_property(Toe)
-    # sweat = BodyPart.child_property(Sweat)
 
 
 class Leg(BodyPart):

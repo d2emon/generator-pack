@@ -9,7 +9,7 @@ Cetaceans
 """
 from ..animal_body import AnimalBody, Flesh, CetaceanFin, CetaceanFlipper, Tail
 from generated.life.body.body import Head, Mouth, Eye, Skin, Skull
-from generated.life.mind import SimpleThoughts, Thought
+from generated.mind import SimpleThoughts, Thought
 from ..organism import Organism
 from genesys.nested.data import lookups
 

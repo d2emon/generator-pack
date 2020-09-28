@@ -1,4 +1,5 @@
 from generated import life
+from ...materials import SweatFactory
 from .body_parts import BodyPartFactory, SoftBodyPartFactory
 from .skin import SkinFactory
 
@@ -6,7 +7,7 @@ from .skin import SkinFactory
 class ButtFactory(BodyPartFactory):
     def children(self):
         # yield Pasta.probable(0.01)
-        # yield Sweat.probable(50)
+        yield SweatFactory().probable(50)
         yield from super().children()
 
 

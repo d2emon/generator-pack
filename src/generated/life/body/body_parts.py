@@ -2,6 +2,7 @@
 - BodyPart
 """
 from genesys.model.model import Model
+from ...materials import Sweat
 from .blood import BloodVessels
 from .skin import Skin
 from .skeleton import Bones, Muscles, Fat
@@ -14,3 +15,4 @@ class BodyPart(Model):
     bones = Model.child_property(Bones)
     fat = Model.child_property(Fat)
     muscles = Model.child_property(Muscles)
+    sweat = Model.child_property(Sweat)

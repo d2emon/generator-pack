@@ -1,7 +1,7 @@
 from generated import life
 from ....factory import Factory
-from ...mind import PsycheFactory
-from ..cloth import ClothingSetFactory
+from ....mind import PsycheFactory
+from ....cloth import ClothingSetFactory
 from ..blood import BloodFactory
 from ..body import BodyFactory
 

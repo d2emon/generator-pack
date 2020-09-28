@@ -1,5 +1,6 @@
 from generated import life
 from ...factory import Factory
+from ...materials import SweatFactory
 from ..cell import CellFactory
 
 
@@ -25,7 +26,7 @@ class PoresFactory(Factory):
         # yield Bacteria.multiple(1, 3)
         yield SkinCellFactory()
         yield DeadSkinFactory().probable(50)
-        # yield Sweat.probable(40)
+        yield SweatFactory().probable(40)
 
 
 class SkinFactory(Factory):
@@ -38,4 +39,4 @@ class SkinFactory(Factory):
         yield SkinCellFactory()
         yield DeadSkinFactory()
         # yield Dust.probable(20)
-        # yield Sweat.probable(20)
+        yield SweatFactory().probable(20)

@@ -2,7 +2,7 @@ from genesys.nested.factories.v2.thing_builder import ThingBuilder
 from genesys.nested.models import Model
 from .cells import PlantCell
 from ..insect import Insect
-from generated.life.mind import Thoughts, Thought
+from generated.mind import Thoughts, Thought
 from ..worm import Worm
 from generated.materials.chemistry import Dew
 

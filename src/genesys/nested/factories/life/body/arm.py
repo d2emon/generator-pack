@@ -1,5 +1,5 @@
 from generated import life
-from ...factory import Factory
+from ...materials import SweatFactory, KeratinFactory
 from .body_parts import BodyPartFactory, SoftBodyPartFactory
 from .head import HairFactory
 
@@ -13,7 +13,7 @@ class ArmpitFactory(SoftBodyPartFactory):
 
     def children(self):
         yield ArmpitHairFactory()
-        # yield Sweat.probable(80)
+        yield SweatFactory().probable(80)
         yield from super().children()
 
 
@@ -26,8 +26,7 @@ class FingernailFactory(BodyPartFactory):
 
     def children(self):
         # yield Dust.probable(30)
-        # yield Keratin
-        yield None
+        yield KeratinFactory()
 
 
 class FingerFactory(BodyPartFactory):

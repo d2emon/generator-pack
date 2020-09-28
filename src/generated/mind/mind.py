@@ -25,7 +25,7 @@ class Thoughts(PsycheElement):
 
     @property
     def black_hole(self):
-        from ...universe import BlackHole
+        from ..universe import BlackHole
 
         return self.children_by_class(BlackHole)
 

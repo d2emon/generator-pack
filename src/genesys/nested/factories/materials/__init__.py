@@ -5,7 +5,7 @@ from .minerals import AmmoniaMoleculeFactory, AmmoniaFactory, SilicaFactory, Sal
     MagmaFactory, CarbonFactory, IronFactory
 from .organics import OrganicMoleculeFactory, MethaneFactory, ChitinFactory, ProteinsFactory, LipidsFactory,\
     GlucidsFactory, AlcoholFactory, PolymersFactory, OrganicFactory, OilFactory, PolymericFactory, PlasticFactory, \
-    RubberFactory
+    RubberFactory, KeratinFactory, SweatFactory
 from .particles import ParticleFactory, ProtonFactory, NeutronFactory, QuarkFactory, UpQuarkFactory, DownQuarkFactory, \
     ElectronFactory, QwubbleFactory
 from .portal import PortalFactory

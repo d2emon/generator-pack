@@ -1,5 +1,6 @@
 from generated import life
 from ....factory import Factory
+from ....materials import KeratinFactory
 from ..skin import DeadSkinFactory
 
 
@@ -15,8 +16,7 @@ class HairFactory(Factory):
 
     def children(self):
         # yield Bacteria.probable(30)
-        # yield Keratin
-        yield None
+        yield KeratinFactory()
 
 
 class HeadHairFactory(HairFactory):

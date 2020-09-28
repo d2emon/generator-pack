@@ -7,6 +7,7 @@
 - Hand
 - Arm
 """
+from ...materials import Sweat, Keratin
 from .body_parts import BodyPart
 from .head import Hair
 
@@ -17,7 +18,6 @@ class ArmpitHair(Hair):
 
 class Armpit(BodyPart):
     hair = BodyPart.child_property(Hair)
-    # sweat = BodyPart.child_property(Sweat)
 
 
 class Elbow(BodyPart):
@@ -26,8 +26,7 @@ class Elbow(BodyPart):
 
 class Fingernail(BodyPart):
     # dust = BodyPart.child_property(Dust)
-    # keratin = BodyPart.child_property(Keratin)
-    pass
+    keratin = BodyPart.child_property(Keratin)
 
 
 class Finger(BodyPart):

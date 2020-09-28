@@ -1,20 +1,20 @@
-from generated import life
-from ..factory import Factory
+from generated import mind
+from genesys.nested.factories.factory import Factory
 
 
 class MemoryFactory(Factory):
-    default_model = life.Memory
+    default_model = mind.Memory
 
 
 class MemoriesFactory(Factory):
-    default_model = life.Memories
+    default_model = mind.Memories
 
     def children(self):
         yield MemoryFactory().multiple(2, 4)
 
 
 class ThoughtFactory(Factory):
-    default_model = life.Thought
+    default_model = mind.Thought
 
 
 class SadThoughtFactory(ThoughtFactory):
@@ -26,7 +26,7 @@ class HappyThoughtFactory(ThoughtFactory):
 
 
 class ThoughtsFactory(Factory):
-    default_model = life.Thoughts
+    default_model = mind.Thoughts
 
     def children(self):
         from ..universe import BlackHoleFactory
@@ -37,7 +37,7 @@ class ThoughtsFactory(Factory):
 
 
 class PsycheFactory(Factory):
-    default_model = life.Psyche
+    default_model = mind.Psyche
 
     def children(self):
         yield ThoughtsFactory()

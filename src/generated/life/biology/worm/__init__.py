@@ -7,7 +7,7 @@ Worm
 - Worm Thought
 """
 from ..animal_body import AnimalBody, SimpleMouth, SoftFlesh
-from generated.life.mind import SimpleThoughts, Thought
+from generated.mind import SimpleThoughts, Thought
 from ..organism import Organism
 from genesys.nested.data import lookups
 

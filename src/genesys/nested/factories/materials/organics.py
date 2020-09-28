@@ -2,6 +2,7 @@ from generated import materials
 from ..factory import Factory
 from .matter import MoleculeFactory
 from .minerals import SaltFactory
+from .water import WaterMoleculeFactory
 
 
 class OrganicMoleculeFactory(MoleculeFactory):
@@ -83,3 +84,19 @@ class PlasticFactory(PolymericFactory):
 
 class RubberFactory(PolymericFactory):
     default_model = materials.Rubber
+
+
+class KeratinFactory(OrganicFactory):
+    default_model = materials.Keratin
+
+    def children(self):
+        yield ProteinsFactory()
+
+
+class SweatFactory(OrganicFactory):
+    default_model = materials.Sweat
+
+    def children(self):
+        yield WaterMoleculeFactory()
+        yield SaltFactory()
+        yield GlucidsFactory()
