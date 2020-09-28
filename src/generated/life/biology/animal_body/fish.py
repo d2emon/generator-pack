@@ -1,5 +1,5 @@
 from .body_part import Scales, Limb, Tail
-from ..body import Muscles, Skin
+from generated.life.body.body import Muscles, Skin
 
 
 class FishFin(Limb):

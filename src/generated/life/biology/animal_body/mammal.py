@@ -1,5 +1,5 @@
 from .body_part import Snout, Tail, Flesh
-from ..body import Hair, BodyPart, Mouth, Nose, Eye, Ear, Skull
+from generated.life.body.body import Hair, BodyPart, Mouth, Nose, Eye, Ear, Skull
 from generated.materials.chemistry import Keratin
 
 

@@ -14,7 +14,7 @@ from genesys.nested.factories.v2.thing_builder import ListFactory
 from .monster import Monster, MonsterBody, MonsterThoughts, MonsterThought
 from ..animal_body import SimpleEye, CrustaceanLeg, CrustaceanClaw, Tentacle, FishFin, Stinger, Mouth, Beak, Skull, \
     WeirdSoftOrgan, WeirdHardOrgan, MammalLeg, InsectWing, Flesh, Snout, Whiskers
-from ..body import Eye
+from generated.life.body.body import Eye
 from genesys.nested.data import lookups
 
 

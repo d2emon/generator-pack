@@ -1,5 +1,5 @@
 from .body_part import Exoskeleton, Limb
-from ..body import BodyPart, Muscles, Fat
+from generated.life.body.body import BodyPart, Muscles, Fat
 from generated.materials.chemistry import Chitin
 
 

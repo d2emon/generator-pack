@@ -1,6 +1,6 @@
 from generated.nested_v2.models import Feathers
 from .body_part import Wing, Flesh
-from ..body import BodyPart, Bones, Eye, Skull
+from generated.life.body.body import BodyPart, Bones, Eye, Skull
 
 
 class BirdWing(Wing):

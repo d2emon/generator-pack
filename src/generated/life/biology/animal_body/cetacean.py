@@ -1,5 +1,5 @@
 from .body_part import Limb
-from ..body import BodyPart, Muscles, Skin
+from generated.life.body.body import BodyPart, Muscles, Skin
 
 
 class CetaceanFlipper(Limb):

@@ -3,7 +3,7 @@
 new Thing("medieval clothing set",["medieval hat,30%","medieval pants,98%","medieval shirt,98%","medieval coat,50%","medieval shoes,80%","medieval underwear,99%"],"clothing");
 new Thing("medieval man",[".medieval person"],"*MEDIEVAL MAN*");
 new Thing("medieval woman",[".medieval person"],"*MEDIEVAL WOMAN*");
-new Thing("medieval person",["body","medieval psyche","medieval clothing set"],"*MEDIEVAL PERSON*");
+new Thing("medieval person",["Body","medieval psyche","medieval clothing set"],"*MEDIEVAL PERSON*");
 
 new Thing("medieval psyche",["medieval thoughts","medieval memories"],"psyche");
 new Thing("medieval thoughts",["BlackHole,0.01%",["medieval thought,2-3"]],"thoughts");
@@ -33,6 +33,6 @@ new Thing("medieval king",[".medieval person"],[["*MEDIEVAL MAN*| ("],["king","e
 new Thing("medieval queen",[".medieval person"],[["*MEDIEVAL WOMAN*| ("],["queen","empress","princess"],[")"]]);
 new Thing("wizard",[".medieval person"],[["*MEDIEVAL PERSON*| ("],["court","battle","rogue","corrupt","druid","bard","adept","thaumaturgist","shaman","healing","ice","frost","snow","arcane","lightning","thunder","earth","earthquake","nature","animal","shape-shifting","death","undeath","spark","fire","lava","locust","poison","rainbow","mist","fog","dust","air","wind","cloud","tornado","shark","punch","kick","song","skeleton","psycho","illusion","flying","summoner","thief","barbarian","dragon","gem","sky","star","dark","paladin","luck","time","space","blade"],[" "],["mage","magician","wizard"],[")"]]);
 new Thing("medieval gravedigger",[".medieval person","shovel,30%"],"*MEDIEVAL PERSON*| (gravedigger)");
-new Thing("medieval corpse",["body","medieval clothing set","blood,35%","worm,20%","worm,10%"],"*MEDIEVAL PERSON*| (dead)");
+new Thing("medieval corpse",["Body","medieval clothing set","Blood,35%","worm,20%","worm,10%"],"*MEDIEVAL PERSON*| (dead)");
 
 """

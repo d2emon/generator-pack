@@ -13,7 +13,7 @@ new Thing("dungeon life",[".dungeon monster","insect,10%"],"life");
 new Thing("dungeon monster",[["dragon","ghost,1-3","ghost,1-3","wizard","humanoid creature,1-3","humanoid creature,1-3","fairy,1-3","fairy,1-3","giant bug,1-3","giant bug,1-3","small creature,1-6","small creature,1-6","snake,1-3","bear","space animal,1-3","sea monster"]]);
 new Thing("humanoid creature",["medieval weapon,50%","medieval weapon,10%","helmet,30%","armor,40%","armor,20%","armor,10%","medieval clothing set","mammal body","creature thoughts"],[["fel","giant","cursed","undead","decaying","numb","magic-using","steel","obsidian","tribal","berserker","ranger","caster","necromancer","vampiric","master","chieftain","mutated","possessed"],[" "],["goblin","troll","gremlin","gnome","dwarf","catperson","sharkperson","dogperson","footface","cephalite","demon","imp","minotaur","gemperson","zombie"]]);
 new Thing("fairy",["fairy body","creature thoughts"],["fairy","pixie","fey","sugarfey","angel","ladyfly"]);
-new Thing("fairy body",[["bird wing,2","insect wing,2"],".body"],"body");
+new Thing("fairy body",[["bird wing,2","insect wing,2"],".Body"],"body");
 new Thing("small creature",["mammal body","creature thoughts"],[["giant","feral","mutated","distorted","rabid","plated","armored","stalking","dashing","mangy"],[" "],["rat","sloth","dog","behemoth","wolf","boar","mindsucker","brainblower","oaf"]]);
 new Thing("giant bug",["insect body","creature thoughts"],[["giant","huge","poisonous","mutated","distorted","magic","plated","armored","stalking","dashing"],[" "],["spider","scorpion","mantis","moth","crab","tarantula"]]);
 new Thing("creature thoughts",["creature thought,1-2"],["thoughts"]);

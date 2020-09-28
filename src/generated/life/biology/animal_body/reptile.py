@@ -1,5 +1,5 @@
 from .body_part import Scales, Wing, Tail, Flesh
-from ..body import BodyPart
+from generated.life.body.body import BodyPart
 
 
 class ReptileBodyPart(BodyPart):

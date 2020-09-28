@@ -1,12 +1,12 @@
 """
 //cloth stuff
 new Thing("cloth",["textile"]);
-new Thing("leather",["skin cell"]);
+new Thing("leather",["SkinCell"]);
 new Thing("textile",["textile fibre"]);
 new Thing("textile fibre",["keratin"],["textile fibres"]);
 new Thing("keratin",["Proteins"]);
 new Thing("sweat",["Water","Salt","Glucids"]);
-new Thing("clothing",["textile","dead skin,40%","sweat,15%"]);
+new Thing("clothing",["textile","DeadSkin,40%","sweat,15%"]);
 new Thing("pocket",["dust,20%","crumbs,20%","lint,30%","donut,1%","coin,20%","coin,20%","coin,10%","pen,10%","pen,2%","button,10%","button,5%","button,1%","note,15%","note,5%","handgun,0.4%","pasta,0.2%","textile"]);
 
 new Thing("pants",["pocket,0-4",".clothing"],["pants","trousers","sweatpants","bermuda shorts","shorts","jeans","cargo pants"]);

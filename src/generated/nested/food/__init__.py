@@ -21,7 +21,7 @@ new Thing("ice cream",["milk","sugar","Ice"],[["strawberry","vanilla","cherry","
 new Thing("cheese",["milk","yeast","mold,30%"],[["roquefort","cheddar","gouda","edam","colby","mozarella","processed cheese","stilton","goat cheese","gorgonzola","brie","camembert"]]);
 new Thing("roast",[".meat","spices"],[["chicken","beef","pork","duck","mutton"],[" roast"]]);
 new Thing("spices",[".organic matter"],[["pepper","garlic","onions","rosemary","sage","thyme"]]);
-new Thing("meat",["blood vessels,5%","bones,5%","fat,50%","muscles","Salt"]);
+new Thing("meat",["BloodVessels,5%","Bones,5%","Fat,50%","Muscles","Salt"]);
 new Thing("tomato sauce",["Glucids","meat,20%","Salt"]);
 new Thing("pasta",["Salt","Glucids","cheese,5%","tomato sauce,20%"],["spaghetti","noodles","fusilli","fettuccine","fettuce","tagliatelle","cannelloni","penne","rigatoni","farfalle","tortelloni","ravioli","gnocchi"]);
 new Thing("pastry",["sugar","Salt","dough"],"pastry");

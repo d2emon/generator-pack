@@ -1,7 +1,7 @@
 from generated.nested_v2.models import Feathers
 from genesys.nested.factories.v2.thing_builder import ThingBuilder
 from genesys.nested.models import Model
-from ..body import Bones, BodyPart, SkinlessBodyPart, SkinlessSoftBodyPart, EyeFlesh, Teeth, Skin, Nose
+from generated.life.body.body import Bones, BodyPart, SkinlessBodyPart, SkinlessSoftBodyPart, EyeFlesh, Teeth, Skin, Nose
 from ..organism import BasicBody
 from generated.materials.chemistry import Keratin, Chitin, WaterState
 

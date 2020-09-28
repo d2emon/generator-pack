@@ -1,4 +1,4 @@
-from generated.nested_v2.models.person import ClothingSet, Person
+from generated.life.body.person import ClothingSet, Person
 
 
 # medieval people
