@@ -5,10 +5,10 @@
 - Corpse
 """
 from genesys.nested.models import Model
-from ..biology.body import Blood
-from ..biology.body import Body
-from ..biology.mind import Psyche
-from ..biology.worm import Worm
+from generated.life.biology import Blood
+from generated.life.biology import Body
+from generated.life.biology.mind import Psyche
+from generated.life.biology import Worm
 from ..cloth import ClothingSet
 
 

@@ -1,4 +1,4 @@
-from generated.nested_v2.models.biology import Life, Habitat
+from generated.life.biology import Life
 
 
 class GalacticLife(Life):

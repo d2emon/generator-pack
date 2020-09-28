@@ -1,4 +1,4 @@
-from ...unknown import Wood, Sugar, Dirt, Bird, BirdEgg, EggShell
+from generated.nested_v2.models.unknown import Wood, Sugar, Dirt, Bird, BirdEgg, EggShell
 from genesys.nested.factories.v2.thing_builder import ThingBuilder
 from genesys.nested.models import Model
 from .cells import PlantCell

@@ -1,7 +1,7 @@
 from genesys.nested.factories.v2.thing_builder import ThingBuilder
 from genesys.nested.models import Model
 from generated.materials.chemistry import elements, Lipids
-from ..cell import Cell
+from generated.life.cell import Cell
 
 
 class BoneCell(Cell):

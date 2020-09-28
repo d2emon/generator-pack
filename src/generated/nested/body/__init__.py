@@ -6,19 +6,19 @@ new Thing("skinless body part",["bacteria,30%","bacteria,10%","blood vessels","b
 new Thing("skinless soft body part",["bacteria,30%","bacteria,10%","blood vessels","fat","muscles"],"body part");
 new Thing("blood vessels",["bacteria,30%","blood"],"blood vessels");
 new Thing("blood",["blood cell"],"blood");
-new Thing("blood cell",[".cell"],["blood cells"]);
+new Thing("blood cell",[".Cell"],["blood cells"]);
 new Thing("skin",["bacteria,1-3","scar,0.5%","pores","skin cell","dead skin","dust,20%","sweat,20%"],"skin");
 new Thing("scar",["dead skin"]);
 new Thing("pores",["bacteria,1-3","skin cell","dead skin,50%","sweat,40%"],"pores");
-new Thing("skin cell",[".cell"],["skin cells"]);
+new Thing("skin cell",[".Cell"],["skin cells"]);
 new Thing("dead skin",["skin cell"]);
 new Thing("bone",[".bones"],"bone");
 new Thing("bones",["bone cell","Calcium"],"bones");
-new Thing("bone cell",[".cell"],["bone cells"]);
+new Thing("bone cell",[".Cell"],["bone cells"]);
 new Thing("muscles",["muscle cell"],"muscles");
-new Thing("muscle cell",[".cell"],["muscle cells"]);
+new Thing("muscle cell",[".Cell"],["muscle cells"]);
 new Thing("fat",["Lipids"],"fat");
-new Thing("brain cell",[".cell"],["brain cells"]);
+new Thing("brain cell",[".Cell"],["brain cells"]);
 new Thing("dandruff",["dead skin"]);
 
 new Thing("clothing set",["hat,2%","glasses,20%","pants,98%","shirt,98%","coat,50%","socks,80%","shoes,80%","underwear,99%"],"clothing");

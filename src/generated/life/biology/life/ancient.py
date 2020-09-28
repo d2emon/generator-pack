@@ -1,4 +1,4 @@
-from ...unknown import Dinosaur
+from generated.nested_v2.models.unknown import Dinosaur
 from .life import LandLife, ForestLife, JungleLife, MountainLife
 
 

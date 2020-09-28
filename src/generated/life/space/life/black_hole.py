@@ -1,4 +1,4 @@
-from generated.nested_v2.models.biology import Life
+from generated.life.biology import Life
 
 
 class BlackHoleLife(Life):

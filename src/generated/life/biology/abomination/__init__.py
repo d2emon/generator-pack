@@ -11,7 +11,7 @@ from genesys.nested.factories.v2.thing_builder import ThingBuilder
 from ..body import Body, Head, Mouth, Nose, Eye, Ear, Skull, HeadHair, Torso, Chest, Pelvis, Arm, Leg
 from ..animal_body import WeirdHardOrgan, WeirdSoftOrgan, CrustaceanClaw, Stinger
 from ..mind import Psyche, Thoughts, Thought, Memories
-from ...person import Person
+from generated.nested_v2.models.person import Person
 from genesys.nested.data import lookups
 
 

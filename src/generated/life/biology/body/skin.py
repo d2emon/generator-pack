@@ -1,7 +1,7 @@
 from generated.nested_v2.models import Dust
 from genesys.nested.factories.v2.thing_builder import ThingBuilder
 from genesys.nested.models import Model
-from ..cell import Cell
+from generated.life.cell import Cell
 from ..single_celled import Bacteria
 from generated.materials.chemistry import Sweat
 

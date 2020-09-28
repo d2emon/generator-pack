@@ -15,7 +15,7 @@ new Thing("juice",["Water","sugar"],[["apple","pear","banana","tomato","pineappl
 new Thing("soda",["Water","sugar"],[["apple","pineapple","grape","orange","purple","brown"],[" soda"]]);
 new Thing("can",["Water","sugar","Salt","mold,3%","metal"],[["canned "],["apple bits","pear bits","tomatoes","pineapple","pumpkin","carrots","meat","pork","beef","peas","mushrooms","olives","fish","burger","corn"]]);
 new Thing("cookie box",["sugar","Salt,70%","mold,3%","cardboard"],[["box of "],["cheesy","cheese","sugar","cream","milk","milky","whole-grain","frosted","glazed","apple","nut","fruit","chocolate","butter","oat","wheat","corn","animal-shaped","meat","crunchy","crispy"],[" "],["puffs","poofs","cookies","biscuits","rolls","pops","snacks","crackers","cereals","pies","tarts"]]);
-new Thing("yeast",[".cell"]);
+new Thing("yeast",[".Cell"]);
 new Thing("yoghurt",["milk","sugar","yeast"],[["strawberry","vanilla","cherry","pear","plain"],[" yoghurt"]]);
 new Thing("ice cream",["milk","sugar","Ice"],[["strawberry","vanilla","cherry","chocolate"],[" ice cream"]]);
 new Thing("cheese",["milk","yeast","mold,30%"],[["roquefort","cheddar","gouda","edam","colby","mozarella","processed cheese","stilton","goat cheese","gorgonzola","brie","camembert"]]);

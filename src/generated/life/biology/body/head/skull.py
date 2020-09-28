@@ -1,6 +1,6 @@
 from ..body_parts import SoftBodyPart
 from ..skeleton import Bones
-from ...cell import Cell
+from generated.life.cell import Cell
 from ...single_celled import Bacteria
 
 

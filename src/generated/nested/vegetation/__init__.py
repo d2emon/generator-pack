@@ -1,6 +1,6 @@
 """
 //vegetation
-new Thing("plant cell",[".cell"],["plant cells"]);
+new Thing("plant cell",[".Cell"],["plant cells"]);
 new Thing("grass",["grass blade,50-100"]);
 new Thing("grass blade",["grass thoughts,2%","Dew,6%","worm,3%","insect,6%","plant cell"]);
 new Thing("grass thoughts",["grass thought,1"],"thought");

@@ -1,4 +1,4 @@
-from ..cell import Cell
+from generated.life.cell import Cell
 
 
 class PlantCell(Cell):

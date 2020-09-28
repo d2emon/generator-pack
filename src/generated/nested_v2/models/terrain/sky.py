@@ -2,7 +2,7 @@ from generated.nested_v2.models import VisitorShip, Plane, Rocketship, Sprowsesh
 from genesys.nested.models import Model
 from generated.materials.chemistry import Gas, Ice, WaterState, elements
 from generated.materials import Rock
-from ..biology import Habitat
+from generated.life.biology import Habitat
 # from ..biology import SkyLife, SpaceAnimal
 
 
