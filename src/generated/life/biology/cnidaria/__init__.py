@@ -7,7 +7,7 @@ Cnidarias
 - Cnidaria Thought
 """
 from ..animal_body import AnimalBody, SimpleMouth, Jelly, SoftFlesh
-from ..mind import SimpleThoughts, Thought
+from generated.life.mind import SimpleThoughts, Thought
 from ..organism import Organism
 from genesys.nested.data import lookups
 

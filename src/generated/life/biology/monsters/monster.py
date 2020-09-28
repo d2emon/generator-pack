@@ -3,7 +3,7 @@ from genesys.nested.factories.v2.thing_builder import ListFactory
 from ..animal_body import AnimalBody, SimpleEye, CrustaceanLeg, CrustaceanClaw, CrustaceanShell, Tentacle, FishFin, \
     Stinger, Exoskeleton, Fur, Scales, Mouth, Beak, Skull, WeirdSoftOrgan, WeirdHardOrgan
 from generated.life.body.body import Eye
-from ..mind import SimpleThoughts, Thought
+from generated.life.mind import SimpleThoughts, Thought
 from ..organism import Organism
 
 

@@ -5,6 +5,7 @@
 - Corpse
 """
 from genesys.model.model import Model
+from ...mind import Psyche
 from ..cloth import ClothingSet
 from ..blood import Blood
 from ..body import Body
@@ -14,7 +15,7 @@ class Person(Model):
     default_name = '*PERSON*'
 
     body = Model.child_property(Body)
-    # psyche = Model.child_property(Psyche)
+    psyche = Model.child_property(Psyche)
     clothing = Model.child_property(ClothingSet)
 
     # @property

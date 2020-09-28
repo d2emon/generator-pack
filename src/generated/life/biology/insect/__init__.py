@@ -18,7 +18,7 @@ from genesys.nested.factories.v2.thing_builder import ListFactory
 from genesys.nested.models import Model
 from ..animal_body import AnimalBody, SimpleEye, InsectLeg, InsectClaw, InsectWing, Exoskeleton, Stinger, Antenna, \
     Flesh, SoftFlesh
-from ..mind import SimpleThoughts, Thought
+from generated.life.mind import SimpleThoughts, Thought
 from ..organism import Organism
 from generated.materials.chemistry import OrganicMatter
 from genesys.nested.data import lookups
