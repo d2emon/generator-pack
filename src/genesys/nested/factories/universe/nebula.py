@@ -15,7 +15,7 @@ class InterstellarCloudFactory(Factory):
     ]
 
     def generate_name(self):
-        return f"{self.select_item(self.names)} interstellar cloud"
+        return f"{self.select_item(*self.names)} interstellar cloud"
 
     def children(self):
         yield MoleculeFactory.from_elements('He')

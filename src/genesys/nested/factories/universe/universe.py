@@ -29,7 +29,7 @@ class MultiverseFactory(Factory):
     ]
 
     def generate_name(self):
-        return self.select_item(self.names)
+        return self.select_item(*self.names)
 
     def children(self):
         yield from UniverseFactory().multiple(10, 30)

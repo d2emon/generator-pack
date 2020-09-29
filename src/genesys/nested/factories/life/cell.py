@@ -10,7 +10,7 @@ class NucleotideFactory(Factory):
     names = ["A", "T", "G", "C"]
 
     def generate_name(self):
-        return self.select_item(self.names)
+        return self.select_item(*self.names)
 
     def children(self):
         yield OrganicMoleculeFactory()

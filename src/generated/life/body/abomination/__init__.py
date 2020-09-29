@@ -8,6 +8,7 @@
 - Abomination Torso
 """
 from genesys.model.model import Model
+from ....mind import Thought, Thoughts, Memory, Memories, Psyche
 from ..person import Person
 from ..head import Head
 from ..torso import Torso
@@ -37,18 +38,15 @@ class AbominationBody(Body):
     # hard_organs = Body.children_property(WeirdHardOrgan)
 
 
-class AbominationThought(Model):
-    # Thought
+class AbominationThought(Thought):
     pass
 
 
-class AbominationThoughts(Model):
-    # Thoughts
+class AbominationThoughts(Thoughts):
     default_name = 'thoughts'
 
 
-class AbominationPsyche(Model):
-    # Psyche
+class AbominationPsyche(Psyche):
     default_name = 'psyche'
 
 

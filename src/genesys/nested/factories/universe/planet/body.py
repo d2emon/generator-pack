@@ -1,6 +1,7 @@
 from generated import universe
 from ...factory import Factory
-from ...temporary import AsteroidLifeFactory, MoonLifeFactory, ContinentFactory, OceanFactory, SkyFactory
+from ...temporary import AsteroidLifeFactory, MoonLifeFactory, ContinentFactory
+from ...terrain import OceanFactory, SkyFactory
 from .plate import AsteroidPlateFactory, MoonPlateFactory
 from .core import PlanetCoreFactory
 

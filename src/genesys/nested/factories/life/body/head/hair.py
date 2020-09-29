@@ -24,7 +24,7 @@ class HeadHairFactory(HairFactory):
     names = ["brown", "black", "gray", "light", "blonde", "red", "dark"]
 
     def generate_name(self):
-        return f"{self.select_item(self.names)} hair"
+        return f"{self.select_item(*self.names)} hair"
 
     def children(self):
         yield DandruffFactory()

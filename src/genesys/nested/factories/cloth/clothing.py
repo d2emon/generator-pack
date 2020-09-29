@@ -44,7 +44,7 @@ class PantsFactory(ClothingFactory):
     ]
 
     def generate_name(self):
-        return self.select_item(self.names)
+        return self.select_item(*self.names)
 
     def children(self):
         yield PocketFactory().multiple(0, 4)
@@ -58,7 +58,7 @@ class ShirtFactory(ClothingFactory):
     ]
 
     def generate_name(self):
-        return self.select_item(self.names)
+        return self.select_item(*self.names)
 
 
 class UnderwearFactory(ClothingFactory):
@@ -72,7 +72,7 @@ class CoatFactory(ClothingFactory):
     ]
 
     def generate_name(self):
-        return self.select_item(self.names)
+        return self.select_item(*self.names)
 
     def children(self):
         yield PocketFactory().multiple(0, 4)
@@ -100,7 +100,7 @@ class ShoesFactory(ClothingFactory):
     ]
 
     def generate_name(self):
-        return self.select_item(self.names)
+        return self.select_item(*self.names)
 
     def children(self):
         yield LeatherFactory().probable(40)
@@ -114,7 +114,7 @@ class HatFactory(ClothingFactory):
     ]
 
     def generate_name(self):
-        return self.select_item(self.names)
+        return self.select_item(*self.names)
 
 
 class GlassesFactory(ClothingFactory):
@@ -124,7 +124,7 @@ class GlassesFactory(ClothingFactory):
     ]
 
     def generate_name(self):
-        return self.select_item(self.names)
+        return self.select_item(*self.names)
 
     def children(self):
         yield PlasticFactory()

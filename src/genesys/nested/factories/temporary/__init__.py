@@ -94,26 +94,6 @@ class FutureContinentFactory(Factory):
         yield None
 
 
-class OceanFactory(Factory):
-    def children(self):
-        yield None
-
-
-class SkyFactory(Factory):
-    def children(self):
-        yield None
-
-
-class FutureSkyFactory(Factory):
-    def children(self):
-        yield None
-
-
-class TerraformedSkyFactory(Factory):
-    def children(self):
-        yield None
-
-
 class VisitorCityFactory(Factory):
     def children(self):
         yield None
@@ -130,16 +110,6 @@ class FutureMoonFactory(Factory):
 
 
 class PastaFactory(Factory):
-    def children(self):
-        yield None
-
-
-class BodyFactory(Factory):
-    def children(self):
-        yield None
-
-
-class ClothingSetFactory(Factory):
     def children(self):
         yield None
 

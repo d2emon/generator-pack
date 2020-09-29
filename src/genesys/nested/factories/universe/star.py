@@ -14,7 +14,7 @@ class StarFactory(Factory):
     ]
 
     def generate_name(self):
-        return f"{self.select_item(self.names)} star"
+        return f"{self.select_item(*self.names)} star"
 
     def life(self):
         yield StarLifeFactory()

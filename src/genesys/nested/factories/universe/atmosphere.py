@@ -1,7 +1,14 @@
-from generated import universe
+from generated import universe, terrain
 from ..factory import Factory
 from ..materials import MoleculeFactory, SteamFactory, AmmoniaFactory, MethaneFactory
 from ..temporary import GasGiantLifeFactory
+
+
+class OzoneFactory(MoleculeFactory):
+    default_model = terrain.Ozone
+
+    def children(self):
+        yield from self.elements('O')
 
 
 class AtmosphereFactory(Factory):
@@ -12,7 +19,9 @@ class AtmosphereFactory(Factory):
         yield None
 
     def gases(self):
-        yield None
+        yield MoleculeFactory.from_elements('O')
+        yield MoleculeFactory.from_elements('C')
+        yield OzoneFactory()
 
     def children(self):
         yield from self.life()

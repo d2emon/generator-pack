@@ -11,7 +11,7 @@ class EndOfUniverseNoteFactory(Factory):
     ]
 
     def generate_name(self):
-        return self.select_item(self.notes)
+        return self.select_item(*self.notes)
 
     def children(self):
         yield PastaFactory().probable(0.1)
