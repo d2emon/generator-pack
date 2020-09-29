@@ -6,7 +6,7 @@ new Thing("shovel",["wood","metal"]);
 new Thing("cemetery shed",["gravedigger,0-2","table,20%","tv,20%","fridge,30%","chair,0-2","shovel,0-3","Corpse,1%","ghost,1%",".building"],"shed");
 new Thing("mausoleum",["tourist,8%","coffin,1-6","ghost,4%",["concrete","Rock","marble"]]);
 new Thing("grave",["coffin","coffin,5%","worm,0-2","insect,0-1",["concrete","Rock","marble"],"dirt"]);
-new Thing("coffin",["Person,0.2%","Corpse,98%","Corpse,2%","ghost,2%","worm,0-3","insect,0-2","wood","cloth","nails"]);
+new Thing("coffin",["Person,0.2%","Corpse,98%","Corpse,2%","ghost,2%","worm,0-3","insect,0-2","wood","Сloth","nails"]);
 
 new Thing("ectoplasm",["Proton,3-7"],[["purple","fetid","green","yellow","blood-red","shiny","wispy","sparkly"],[" "],["ectoplasm"]]);
 new Thing("ghost",["ghost body","ghost thoughts"],[["depressed","sad","lonely","wailing","screaming","stretching","clinking","sneezing","breathing","screeching","spinning","gasping","moaning","regretful","remorseful","vengeful","friendly neighborhood","skeletal","tentacled","conjoined","grasping","slimy","floating","mournful"],[" "],["ghost","spirit","apparition","phantom","poltergeist","specter","hauntling"]]);

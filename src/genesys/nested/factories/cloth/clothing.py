@@ -1,6 +1,6 @@
 from generated import cloth
 from ..factory import Factory
-from ..materials import SweatFactory
+from ..materials import SweatFactory, PlasticFactory
 from ..life.body.skin import DeadSkinFactory
 from .fabric import TextileFactory, LeatherFactory
 
@@ -39,9 +39,12 @@ class PocketFactory(Factory):
 
 class PantsFactory(ClothingFactory):
     default_model = cloth.Pants
+    names = [
+        'pants', 'trousers', 'sweatpants', 'bermuda shorts', 'shorts', 'jeans', 'cargo pants',
+    ]
 
-    # class BaseFactory(Clothing.BaseFactory):
-    #      default = ['pants', 'trousers', 'sweatpants', 'bermuda shorts', 'shorts', 'jeans', 'cargo pants']
+    def generate_name(self):
+        return self.select_item(self.names)
 
     def children(self):
         yield PocketFactory().multiple(0, 4)
@@ -50,9 +53,12 @@ class PantsFactory(ClothingFactory):
 
 class ShirtFactory(ClothingFactory):
     default_model = cloth.Shirt
+    names = [
+        'shirt', 'sweater', 't-shirt',
+    ]
 
-    # class BaseFactory(Clothing.BaseFactory):
-    #     default = ['shirt', 'sweater', 't-shirt']
+    def generate_name(self):
+        return self.select_item(self.names)
 
 
 class UnderwearFactory(ClothingFactory):
@@ -60,11 +66,67 @@ class UnderwearFactory(ClothingFactory):
 
 
 class CoatFactory(ClothingFactory):
-    # class BaseFactory(Clothing.BaseFactory):
-    #     default = ['coat', 'jacket', 'hoodie']
+    default_model = cloth.Coat
+    names = [
+        'coat', 'jacket', 'hoodie',
+    ]
 
-    @classmethod
-    def children_classes(cls):
+    def generate_name(self):
+        return self.select_item(self.names)
+
+    def children(self):
         yield PocketFactory().multiple(0, 4)
         yield LeatherFactory().probable(30)
         yield from super().children()
+
+
+class CozyVonPocketworthFactory(CoatFactory):
+    default_name = 'Cozy von Pocketworth'
+
+    def children(self):
+        yield PocketFactory().multiple(20, 40)
+        yield LeatherFactory().probable(30)
+        yield from super().children()
+
+
+class SocksFactory(ClothingFactory):
+    default_model = cloth.Socks
+
+
+class ShoesFactory(ClothingFactory):
+    default_model = cloth.Shoes
+    names = [
+        'shoes', 'boots', 'sneakers', 'sandals',
+    ]
+
+    def generate_name(self):
+        return self.select_item(self.names)
+
+    def children(self):
+        yield LeatherFactory().probable(40)
+        yield PlasticFactory()
+
+
+class HatFactory(ClothingFactory):
+    default_model = cloth.Hat
+    names = [
+        'cap', 'hat', 'hat', 'hat', 'hat', 'beret', 'party hat', 'top-hat',
+    ]
+
+    def generate_name(self):
+        return self.select_item(self.names)
+
+
+class GlassesFactory(ClothingFactory):
+    default_model = cloth.Glasses
+    names = [
+        'glasses', 'glasses', 'glasses', 'sunglasses', 'monocle', 'ski mask',
+    ]
+
+    def generate_name(self):
+        return self.select_item(self.names)
+
+    def children(self):
+        yield PlasticFactory()
+        # yield Glass
+        # yield Metal.probable(10)

@@ -12,6 +12,6 @@ new Thing("wound",["Blood","worm,5%"],"wound");
 new Thing("ammo pack",["bullet,0-20",["metal","Plastic"]]);
 new Thing("grenade",["Iron","TNT",["metal","Plastic"]]);
 new Thing("TNT",["Carbon","Hydrogen","Oxygen","Nitrogen"],"TNT");
-new Thing("gas mask",["metal","Polymers","cloth"]);
+new Thing("gas mask",["metal","Polymers","Сloth"]);
 new Thing("bullet wound",["Blood","worm,5%","bullet,50%","bullet,30%","bullet,10%","bullet,2%"],"wound");
 """

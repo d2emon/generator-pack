@@ -18,37 +18,37 @@ class Person(Model):
     psyche = Model.child_property(Psyche)
     clothing = Model.child_property(ClothingSet)
 
-    # @property
-    # def hat(self):
-    #     return self.clothing.hat
+    @property
+    def hat(self):
+        return self.clothing.hat
 
-    # @property
-    # def glasses(self):
-    #     return self.clothing.glasses
+    @property
+    def glasses(self):
+        return self.clothing.glasses
 
-    # @property
-    # def pants(self):
-    #     return self.clothing.pants
+    @property
+    def pants(self):
+        return self.clothing.pants
 
-    # @property
-    # def shirt(self):
-    #     return self.clothing.shirt
+    @property
+    def shirt(self):
+        return self.clothing.shirt
 
-    # @property
-    # def coat(self):
-    #     return self.clothing.coat
+    @property
+    def coat(self):
+        return self.clothing.coat
 
-    # @property
-    # def socks(self):
-    #     return self.clothing.socks
+    @property
+    def socks(self):
+        return self.clothing.socks
 
-    # @property
-    # def shoes(self):
-    #     return self.clothing.shoes
+    @property
+    def shoes(self):
+        return self.clothing.shoes
 
-    # @property
-    # def underwear(self):
-    #     return self.clothing.underwear
+    @property
+    def underwear(self):
+        return self.clothing.underwear
 
 
 class Corpse(Person):

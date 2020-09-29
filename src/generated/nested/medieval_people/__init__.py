@@ -11,12 +11,12 @@ new Thing("medieval thought",[],["*MEDIEVAL THOUGHT*"]);
 new Thing("medieval memories",["medieval memory,2-4"],"memories");
 new Thing("medieval memory",[],["*MEDIEVAL MEMORY*"]);
 
-new Thing("medieval clothing",[["leather","cloth"]],["clothing"]);
+new Thing("medieval clothing",[["Leather","Cloth"]],["clothing"]);
 new Thing("medieval pants",[".medieval clothing"],["pants"]);
 new Thing("medieval shirt",[".medieval clothing"],["shirt"]);
 new Thing("medieval underwear",[".medieval clothing"],["underwear"]);
 new Thing("medieval coat",[".medieval clothing"],["coat","cloak","cape","robe","mantle"]);
-new Thing("medieval shoes",["leather,50%","wood"],["shoes","clogs"]);
+new Thing("medieval shoes",["Leather,50%","wood"],["shoes","clogs"]);
 new Thing("medieval hat",[".medieval clothing"],["hat","hood","headdress"]);
 new Thing("armor",["metal"],["chain-mail armor","plate armor","lamellar armor","scale armor","brigandine","cuirass","gauntlets","pauldrons","spaulders","vambraces","greaves"]);
 new Thing("helmet",["metal"],["helm","helmet"]);

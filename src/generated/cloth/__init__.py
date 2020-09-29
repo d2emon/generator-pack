@@ -22,4 +22,4 @@ Cloth stuff
 """
 from .clothing_set import ClothingSet
 from .fabric import Fabric, Cloth, Leather, Textile, TextileFibre
-from .clothing import Clothing, Pocket, Pants, Shirt, Underwear
+from .clothing import Clothing, Pocket, Pants, Shirt, Underwear, Coat, Socks, Shoes, Hat, Glasses
