@@ -1,6 +1,7 @@
 from generated import universe
 from ..factory import Factory
-from ..temporary import PastaFactory, BlackHoleLifeFactory
+from ..life import BlackHoleLifeFactory
+from ..temporary import PastaFactory
 
 
 class EndOfUniverseNoteFactory(Factory):

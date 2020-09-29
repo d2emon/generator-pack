@@ -1,6 +1,6 @@
 from generated import universe
 from ..factory import Factory
-from ..temporary import NebulaLifeFactory
+from ..life import NebulaLifeFactory
 from ..materials import MoleculeFactory, SteamFactory, AmmoniaFactory
 from .star import SingleStarFactory
 

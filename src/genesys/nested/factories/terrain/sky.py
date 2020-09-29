@@ -1,5 +1,6 @@
 from generated import terrain
 from ..factory import Factory
+from ..life import SkyLifeFactory
 from ..materials import RockFactory, IronFactory, IceFactory, SteamFactory, WaterFactory
 
 
@@ -39,8 +40,7 @@ class SkyFactory(Factory):
 
     @classmethod
     def life(cls):
-        # yield SkyLife
-        yield None
+        yield SkyLifeFactory()
 
     @classmethod
     def precipitations(cls):

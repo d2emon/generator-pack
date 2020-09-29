@@ -3,7 +3,6 @@
 # from .abomination import *
 # from .mind import *
 # from .vegetation import *
-from .life import *
 # from .animal_body import *
 # from .organism import *
 # from .single_celled import *

@@ -1,5 +1,5 @@
 # terrain stuff
-from .water import Ocean, Sea, SeaWater, Iceberg, Beach, Abyss, River, Lake
+from .water import WaterBody, Ocean, Sea, SeaWater, Iceberg, Beach, Abyss, River, Lake
 from .soil import Sand, Soil, Mud
 from .land import Landscape, Plain, Forest, Jungle, Mountain, Cave
 from .sky import Sky, Meteorite, Ozone, Cloud, Precipitation

@@ -5,14 +5,14 @@
 - Galaxy
 """
 from genesys.model.model import Model
+from ..life import Life
 from .nebula import Nebula
 from .star import StarSystem
 from .black_hole import BlackHole
-# from .life import GalaxyArmLife, GalaxyCenterLife, Habitat
 
 
 class GalaxyPart(Model):
-    # Habitat
+    life = Model.child_property(Life)
     stars = Model.children_property(StarSystem)
     nebulas = Model.children_property(Nebula)
     black_holes = Model.children_property(BlackHole)

@@ -10,6 +10,7 @@
 """
 from genesys.model.model import Model
 from ..materials import Ice, Salt, Water
+from ..life import Life
 from .soil import Soil
 
 
@@ -29,9 +30,13 @@ class SeaWater(Water):
     salt = Water.child_property(Salt)
 
 
-class Sea(Model):
-    # Habitat
+class WaterBody(Model):
+    life = Model.child_property(Life)
+    soil = Model.children_property(Soil)
     water = Model.child_property(Water)
+
+
+class Sea(WaterBody):
     beaches = Model.children_property(Beach)
 
 
@@ -40,11 +45,9 @@ class Ocean(Sea):
     icebergs = Sea.children_property(Iceberg)
 
 
-class River(Model):
-    soil = Model.children_property(Soil)
-    water = Model.child_property(Water)
+class River(WaterBody):
+    pass
 
 
-class Lake(Model):
-    soil = Model.children_property(Soil)
-    water = Model.child_property(Water)
+class Lake(WaterBody):
+    pass

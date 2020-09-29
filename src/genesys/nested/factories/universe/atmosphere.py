@@ -1,7 +1,7 @@
 from generated import universe, terrain
 from ..factory import Factory
 from ..materials import MoleculeFactory, SteamFactory, AmmoniaFactory, MethaneFactory
-from ..temporary import GasGiantLifeFactory
+from ..life import GasGiantLifeFactory
 
 
 class OzoneFactory(MoleculeFactory):
@@ -14,7 +14,6 @@ class OzoneFactory(MoleculeFactory):
 class AtmosphereFactory(Factory):
     default_model = universe.Atmosphere
 
-    # Habitat
     def life(self):
         yield None
 

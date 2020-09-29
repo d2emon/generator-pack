@@ -1,3 +1,5 @@
+from ..life import AncientLandLifeFactory, AncientForestLifeFactory, AncientJungleLifeFactory, \
+    AncientMountainLifeFactory
 from .land import PlainFactory, ForestFactory, JungleFactory, MountainFactory, CaveFactory
 
 
@@ -5,24 +7,21 @@ class AncientPlainFactory(PlainFactory):
     @classmethod
     def life(cls):
         # yield CavemanSettlement.probable(40)
-        # yield AncientLandLife
-        yield None
+        yield AncientLandLifeFactory()
 
 
 class AncientForestFactory(ForestFactory):
     @classmethod
     def life(cls):
         # yield CavemanSettlement.probable(40)
-        # yield AncientForestLife
-        yield None
+        yield AncientForestLifeFactory()
 
 
 class AncientJungleFactory(JungleFactory):
     @classmethod
     def life(cls):
         # yield CavemanSettlement.probable(40)
-        # yield AncientJungleLife
-        yield None
+        yield AncientJungleLifeFactory()
 
 
 class AncientCaveFactory(CaveFactory):
@@ -42,8 +41,7 @@ class AncientMountainFactory(MountainFactory):
     @classmethod
     def life(cls):
         # yield CavemanSettlement.probable(40)
-        # yield AncientMountainLife
-        yield None
+        yield AncientMountainLifeFactory()
 
     @classmethod
     def cave(cls):

@@ -1,5 +1,6 @@
 from generated import life
 from ....factory import Factory
+from ....mind import MemoriesFactory
 from ..person import PersonFactory
 from ..body import BodyFactory
 from ..torso import TorsoFactory, ChestFactory, PelvisFactory
@@ -110,7 +111,7 @@ class AbominationPsycheFactory(Factory):
 
     def children(self):
         yield AbominationThoughtsFactory()
-        # yield MemoriesFactory()
+        yield MemoriesFactory()
 
 
 class AbominationFactory(PersonFactory):

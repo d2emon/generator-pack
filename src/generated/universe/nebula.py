@@ -4,6 +4,7 @@
 """
 from genesys.model.model import Model
 from ..materials import Gas
+from ..life import Life
 from .star import StarSystem
 
 
@@ -12,6 +13,6 @@ class InterstellarCloud(Gas):
 
 
 class Nebula(Model):
-    # Habitat
+    life = Model.child_property(Life)
     stars = Model.children_property(StarSystem)
     clouds = Model.children_property(InterstellarCloud)

@@ -1,6 +1,7 @@
 from generated import terrain
 from ..factory import Factory
 from ..materials import WaterFactory, SaltFactory, IceFactory
+from ..life import AbyssLifeFactory, BeachLifeFactory, SeaLifeFactory, RiverLifeFactory, LakeLifeFactory
 from .soil import SandFactory, SoilFactory, MudFactory
 
 
@@ -9,7 +10,7 @@ class AbyssFactory(Factory):
 
     def children(self):
         yield SandFactory()
-        # yield AbyssLife
+        yield AbyssLifeFactory()
 
 
 class BeachFactory(Factory):
@@ -17,7 +18,7 @@ class BeachFactory(Factory):
 
     def children(self):
         yield SandFactory()
-        # yield BeachLife
+        yield BeachLifeFactory()
 
 
 class IcebergFactory(Factory):
@@ -53,13 +54,12 @@ class SeaFactory(Factory):
 
     @classmethod
     def life(cls):
-        # yield SeaLife
+        yield SeaLifeFactory()
         yield None
 
     @classmethod
     def beaches(cls):
-        # yield from Beach.multiple(2, 6)
-        yield None
+        yield from BeachFactory().multiple(2, 6)
 
     def children(self):
         yield from self.water()
@@ -72,8 +72,7 @@ class OceanFactory(SeaFactory):
 
     @classmethod
     def beaches(cls):
-        # yield from Beach.multiple(10, 20)
-        yield None
+        yield from BeachFactory().multiple(10, 20)
 
     @classmethod
     def icebergs(cls):
@@ -87,8 +86,7 @@ class OceanFactory(SeaFactory):
 
     @classmethod
     def abyss(cls):
-        # yield Abyss
-        yield None
+        yield AbyssFactory()
 
     def children(self):
         yield from super().children()
@@ -104,7 +102,7 @@ class RiverFactory(Factory):
         return self.select_item(*self.names)
 
     def children(self):
-        # yield RiverLife
+        yield RiverLifeFactory()
         yield WaterFactory()
         yield SoilFactory()
         yield MudFactory()
@@ -118,7 +116,7 @@ class LakeFactory(Factory):
         return self.select_item(*self.names)
 
     def children(self):
-        # yield LakeLife
+        yield LakeLifeFactory()
         yield WaterFactory()
         yield SoilFactory()
         yield MudFactory()

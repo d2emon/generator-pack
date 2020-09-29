@@ -8,7 +8,7 @@ Single-celled Organisms
 """
 from generated.life.cell import Cell
 from generated.mind import SimpleThoughts, Thought
-from ..organism import Organism, BasicBody
+from generated.life.biology.organism import Organism, BasicBody
 from genesys.nested.data import lookups
 
 

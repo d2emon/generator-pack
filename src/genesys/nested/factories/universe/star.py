@@ -1,6 +1,7 @@
 from generated import universe
 from ..factory import Factory
-from ..temporary import StarLifeFactory, DysonSurfaceFactory
+from ..temporary import DysonSurfaceFactory
+from ..life import StarLifeFactory
 from ..materials import MoleculeFactory
 from .orbit import BarrenOrbitFactory, VisitorOrbitFactory, FutureOrbitFactory, TerraformedOrbitFactory, \
     MedievalOrbitFactory, AncientOrbitFactory, AsteroidBeltFactory, GasGiantOrbitFactory

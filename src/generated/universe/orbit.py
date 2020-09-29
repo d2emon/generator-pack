@@ -5,12 +5,12 @@
 - ?Earth (Unused)
 """
 from genesys.model.model import Model
+from ..life import Life
 from .planet.body import PlanetLike
-# from generated.universe.space.life import Habitat
 
 
 class Orbit(Model):
-    # Habitat
+    life = Model.child_property(Life)
     planets = Model.children_property(PlanetLike)
 
 

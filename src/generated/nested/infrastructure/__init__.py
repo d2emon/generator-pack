@@ -1,6 +1,6 @@
 """
 //infrastructure
-new Thing("street",["traffic accident,1%","urban life","Person,0-5","driven car,0-20","driven bike,0-3","car,0-5","road","pavement"],[["*PERSON*|"],[" "],["street","avenue","boulevard","road","alley","bend","drive","place","hill","plaza"]]);
+new Thing("street",["traffic accident,1%","UrbanLife","Person,0-5","driven car,0-20","driven bike,0-3","car,0-5","road","pavement"],[["*PERSON*|"],[" "],["street","avenue","boulevard","road","alley","bend","drive","place","hill","plaza"]]);
 new Thing("road",[["asphalt","stone"]]);
 new Thing("pavement",["note,3%","coin,4%","stone","dirt,5%"]);
 

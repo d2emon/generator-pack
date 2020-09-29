@@ -9,6 +9,7 @@
 """
 from genesys.model.model import Model
 from ..materials import Gas, Steam, Water
+from ..life import Life
 
 
 class Meteorite(Model):
@@ -30,6 +31,7 @@ class Precipitation(Water):
 class Sky(Model):
     # Habitat
     # transport = Model.children_property(VisitorShip)
+    life = Model.child_property(Life)
     meteorites = Model.children_property(Meteorite)
     precipitations = Model.children_property(Precipitation)
     clouds = Model.children_property(Cloud)

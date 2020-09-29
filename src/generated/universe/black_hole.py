@@ -8,6 +8,7 @@
 """
 from genesys.model.model import Model
 from ..materials import Portal
+from ..life import Life
 
 
 class EndOfUniverseNote(Model):
@@ -38,13 +39,12 @@ class WhiteHole(Portal):
 
 
 class InsideTheBlackHole(Model):
-    # Habitat
+    life = Model.child_property(Life)
     note = Model.child_property(EndOfUniverseNote)
     white_hole = Model.child_property(WhiteHole)
 
 
 class BlackHole(Portal):
-    # Habitat
     inside = Portal.child_property(InsideTheBlackHole)
 
     @property

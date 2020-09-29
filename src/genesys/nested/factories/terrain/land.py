@@ -1,7 +1,8 @@
 from generated import terrain
 from ..factory import Factory
 from ..materials import FireFactory, SnowFactory, RockFactory, IronFactory
-from ..life import GrassFactory, TreesFactory, JungleTreesFactory, HumusFactory
+from ..life import GrassFactory, TreesFactory, JungleTreesFactory, HumusFactory, LandLifeFactory, ForestLifeFactory, \
+    JungleLifeFactory, MountainLifeFactory, CaveLifeFactory
 from .water import RiverFactory, LakeFactory
 from .soil import SoilFactory
 
@@ -49,8 +50,7 @@ class PlainFactory(LandscapeFactory):
 
     @classmethod
     def life(cls):
-        # yield LandLife
-        yield None
+        yield LandLifeFactory()
 
 
 class ForestFactory(LandscapeFactory):
@@ -63,8 +63,7 @@ class ForestFactory(LandscapeFactory):
 
     @classmethod
     def life(cls):
-        # yield ForestLife
-        yield None
+        yield ForestLifeFactory()
 
     @classmethod
     def water(cls):
@@ -92,8 +91,7 @@ class JungleFactory(ForestFactory):
 
     @classmethod
     def life(cls):
-        # yield JungleLife
-        yield None
+        yield JungleLifeFactory()
 
     @classmethod
     def vegetation(cls):
@@ -113,9 +111,8 @@ class CaveFactory(LandscapeFactory):
 
     @classmethod
     def life(cls):
-        # yield CaveLife
+        yield CaveLifeFactory()
         # yield DragonLair.probable(1)
-        yield None
 
     @classmethod
     def water(cls):
@@ -146,8 +143,7 @@ class MountainFactory(LandscapeFactory):
 
     @classmethod
     def life(cls):
-        # yield MountainLife
-        yield None
+        yield MountainLifeFactory()
 
     @classmethod
     def vegetation(cls):
