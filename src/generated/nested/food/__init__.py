@@ -27,7 +27,7 @@ new Thing("pasta",["Salt","Glucids","cheese,5%","tomato sauce,20%"],["spaghetti"
 new Thing("pastry",["sugar","Salt","dough"],"pastry");
 new Thing("pie",[["fruit jam","meat"],".pastry"],"pie");
 new Thing("cake",[".pastry"],[["chocolate","white chocolate","chestnut","fruit","huge","impressive","ornate","glazed","colorful","cheese","nut","delicious"],[" cake"]]);
-new Thing("fruit jam",["plant cell","sugar"]);
+new Thing("fruit jam",["PlantCell","sugar"]);
 new Thing("donut box",["donut,0-12","cardboard"],"doughnut box");
 new Thing("donut",[".pastry"],[["vanilla ","strawberry ","raspberry ","cherry ","chocolate ","coconut ","cream ","cinnamon ","bacon ","sprinkly ","frosted ","glazed ","powdered ",""],["doughnut"]]);
 new Thing("sugar",["Glucids"]);

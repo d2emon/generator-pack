@@ -3,7 +3,7 @@
 new Thing("farm",["Fire,0.3%","house,1-3","farmer,1-4","field,1-8","horse,30%","horse,30%","horse,30%","poultry,0-3","grain silo,0-2","barn,0-2","warehouse,0-2","storage shed,0-2"]);
 new Thing("field",["grain","insect,5%","bird,10%","bird,5%","haystack,30%"],["wheat field","corn field","soy field","rice field","oat field","peanut field","tomato field","grape field","barley field","canola field","rye field","flower field"]);
 new Thing("farmer",[".Person"],"*PERSON*| (farmer)");
-new Thing("grain",["plant cell"]);
+new Thing("grain",["PlantCell"]);
 new Thing("grain silo",["metal","grain"]);
 new Thing("warehouse",["worker,0-2","small mammal,8%","ghost,0.3%","machine,0-4",".building"]);
 new Thing("barn",[".building"]);

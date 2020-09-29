@@ -8,6 +8,7 @@
 """
 from genesys.model.model import Model
 from ..materials import Fire, Snow, Rock
+from ..life import Grass, Trees
 from .water import River, Lake
 from .soil import Soil
 
@@ -17,7 +18,8 @@ class Landscape(Model):
     # yield LandLife
     rivers = Model.children_property(River)
     lakes = Model.children_property(Lake)
-    # yield Grass
+    grass = Model.children_property(Grass)
+    trees = Model.children_property(Trees)
     soil = Model.children_property(Soil)
     snow = Model.child_property(Snow)
 

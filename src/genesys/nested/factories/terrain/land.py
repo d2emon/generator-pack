@@ -1,6 +1,7 @@
 from generated import terrain
 from ..factory import Factory
 from ..materials import FireFactory, SnowFactory, RockFactory, IronFactory
+from ..life import GrassFactory, TreesFactory, JungleTreesFactory, HumusFactory
 from .water import RiverFactory, LakeFactory
 from .soil import SoilFactory
 
@@ -20,8 +21,7 @@ class LandscapeFactory(Factory):
 
     @classmethod
     def vegetation(cls):
-        # yield Grass
-        yield None
+        yield GrassFactory()
 
     @classmethod
     def soil(cls):
@@ -72,13 +72,12 @@ class ForestFactory(LandscapeFactory):
 
     @classmethod
     def vegetation(cls):
-        # yield Trees
-        # yield Grass
-        yield None
+        yield TreesFactory()
+        yield GrassFactory()
 
     @classmethod
     def soil(cls):
-        # yield Humus
+        yield HumusFactory()
         yield SoilFactory()
 
 
@@ -98,9 +97,8 @@ class JungleFactory(ForestFactory):
 
     @classmethod
     def vegetation(cls):
-        # yield JungleTrees
-        # yield Grass
-        yield None
+        yield JungleTreesFactory()
+        yield GrassFactory()
 
 
 class CaveFactory(LandscapeFactory):
@@ -153,8 +151,7 @@ class MountainFactory(LandscapeFactory):
 
     @classmethod
     def vegetation(cls):
-        # yield Trees
-        yield None
+        yield TreesFactory()
 
     @classmethod
     def soil(cls):
