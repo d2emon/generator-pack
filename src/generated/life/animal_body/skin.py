@@ -4,9 +4,11 @@
 - Pores
 - Scar
 - Skin
+- Scales
+- Exoskeleton
 """
 from genesys.model.model import Model
-from ...materials import Sweat
+from ...materials import Sweat, Keratin, Chitin
 from ..cell import Cell
 
 
@@ -35,3 +37,11 @@ class Skin(Model):
     cells = Model.children_property(Cell)
     # dust = Model.child_property(Dust)
     sweat = Model.child_property(Sweat)
+
+
+class Scales(Model):
+    keratin = Model.child_property(Keratin)
+
+
+class Exoskeleton(Skin):
+    chitin = Skin.child_property(Chitin)

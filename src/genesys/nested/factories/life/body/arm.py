@@ -1,7 +1,7 @@
 from generated import life
 from ...materials import SweatFactory, KeratinFactory
-from .body_parts import BodyPartFactory, SoftBodyPartFactory
-from .head import HairFactory
+from ..animal_body.body_parts import BodyPartFactory, SoftBodyPartFactory
+from ..animal_body.hair import HairFactory
 
 
 class ArmpitHairFactory(HairFactory):

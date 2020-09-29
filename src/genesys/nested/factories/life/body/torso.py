@@ -1,7 +1,7 @@
 from generated import life
 from ...materials import SweatFactory
-from .body_parts import BodyPartFactory, SoftBodyPartFactory
-from .skin import SkinFactory
+from ..animal_body.body_parts import BodyPartFactory, SoftBodyPartFactory
+from ..animal_body.skin import SkinFactory
 
 
 class ButtFactory(BodyPartFactory):

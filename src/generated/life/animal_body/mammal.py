@@ -1,3 +1,4 @@
+from genesys.model.model import Model
 from .body_part import Snout, Tail, Flesh
 from generated.life.body.body import Hair, BodyPart, Mouth, Nose, Eye, Ear, Skull
 from generated.materials.chemistry import Keratin

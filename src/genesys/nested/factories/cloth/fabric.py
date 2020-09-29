@@ -28,6 +28,6 @@ class LeatherFactory(Factory):
     default_model = cloth.Leather
 
     def children(self):
-        from ..life.body.skin import SkinCellFactory
+        from genesys.nested.factories.life.animal_body.skin import SkinCellFactory
 
         yield SkinCellFactory()

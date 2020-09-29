@@ -4,7 +4,7 @@
 - Mouth
 """
 from ....materials import Molecule
-from ..body_parts import BodyPart
+from ...animal_body.body_parts import BodyPart
 
 
 class Tongue(BodyPart):

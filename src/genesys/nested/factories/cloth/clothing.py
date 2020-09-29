@@ -1,7 +1,7 @@
 from generated import cloth
 from ..factory import Factory
 from ..materials import SweatFactory, PlasticFactory
-from ..life.body.skin import DeadSkinFactory
+from genesys.nested.factories.life.animal_body.skin import DeadSkinFactory
 from .fabric import TextileFactory, LeatherFactory
 
 

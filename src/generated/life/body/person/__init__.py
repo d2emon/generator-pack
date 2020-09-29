@@ -7,7 +7,7 @@
 from genesys.model.model import Model
 from ....mind import Psyche
 from ....cloth import ClothingSet
-from ..blood import Blood
+from generated.life.animal_body.blood import Blood
 from ..body import Body
 
 

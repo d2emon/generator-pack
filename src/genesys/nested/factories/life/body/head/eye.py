@@ -1,10 +1,9 @@
 from generated import life
 from ....factory import Factory
 from ....materials import WaterFactory, SaltFactory
-from ..body_parts import SoftBodyPartFactory
-from ..blood import BloodVesselsFactory
-from ..skeleton import FatFactory
-from .hair import HairFactory
+from ...animal_body.body_parts import SoftBodyPartFactory
+from ...animal_body.hair import HairFactory
+from ...animal_body.eye import EyeFleshFactory
 
 
 class TearFactory(Factory):
@@ -17,15 +16,6 @@ class TearFactory(Factory):
 
 class EyelashesFactory(HairFactory):
     default_model = life.Eyelashes
-
-
-class EyeFleshFactory(SoftBodyPartFactory):
-    default_model = life.EyeFlesh
-
-    def children(self):
-        yield WaterFactory()
-        yield BloodVesselsFactory()
-        yield FatFactory()
 
 
 class EyeFactory(SoftBodyPartFactory):

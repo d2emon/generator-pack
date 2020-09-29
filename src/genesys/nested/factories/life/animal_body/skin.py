@@ -1,6 +1,6 @@
 from generated import life
 from ...factory import Factory
-from ...materials import SweatFactory
+from ...materials import SweatFactory, KeratinFactory, ChitinFactory
 from ..cell import CellFactory
 
 
@@ -40,3 +40,17 @@ class SkinFactory(Factory):
         yield DeadSkinFactory()
         # yield Dust.probable(20)
         yield SweatFactory().probable(20)
+
+
+class ScalesFactory(Factory):
+    default_model = life.Scales
+
+    def children(self):
+        yield KeratinFactory()
+
+
+class ExoskeletonFactory(SkinFactory):
+    default_model = life.Exoskeleton
+
+    def children(self):
+        yield ChitinFactory()

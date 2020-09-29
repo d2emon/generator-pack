@@ -7,7 +7,7 @@ Cetaceans
 - Cetacean Head
 - Cetacean Body
 """
-from generated.life.biology.animal_body import AnimalBody, Flesh, CetaceanFin, CetaceanFlipper, Tail
+from generated.life.animal_body import AnimalBody, Flesh, CetaceanFin, CetaceanFlipper, Tail
 from generated.life.body.body import Head, Mouth, Eye, Skin, Skull
 from generated.mind import SimpleThoughts, Thought
 from generated.life.biology.organism import Organism

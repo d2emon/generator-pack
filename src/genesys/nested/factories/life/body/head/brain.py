@@ -1,6 +1,6 @@
 from generated import life
 from ...cell import CellFactory
-from ..body_parts import SoftBodyPartFactory
+from ...animal_body.body_parts import SoftBodyPartFactory
 
 
 class BrainCellFactory(CellFactory):

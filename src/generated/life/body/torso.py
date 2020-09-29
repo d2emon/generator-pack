@@ -7,7 +7,7 @@
 - Chest
 - Torso
 """
-from .body_parts import BodyPart
+from ..animal_body.body_parts import BodyPart
 
 
 class Butt(BodyPart):

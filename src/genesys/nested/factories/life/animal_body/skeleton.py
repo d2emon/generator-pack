@@ -36,3 +36,10 @@ class FatFactory(Factory):
 
     def children(self):
         yield LipidsFactory()
+
+
+class SkeletonFactory(Factory):
+    default_model = life.Skeleton
+
+    def children(self):
+        yield BonesFactory()

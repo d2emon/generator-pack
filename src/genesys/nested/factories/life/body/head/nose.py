@@ -1,8 +1,8 @@
 from generated import life
 from ....factory import Factory
 from ....materials import OrganicFactory
-from ..body_parts import BodyPartFactory, SoftBodyPartFactory
-from .hair import HairFactory
+from ...animal_body.body_parts import BodyPartFactory, SoftBodyPartFactory
+from ...animal_body.hair import HairFactory
 
 
 class BoogersFactory(Factory):

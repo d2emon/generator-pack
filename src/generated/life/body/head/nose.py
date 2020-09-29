@@ -6,8 +6,8 @@
 """
 from genesys.model.model import Model
 from ....materials import OrganicMatter
-from ..body_parts import BodyPart
-from .hair import Hair
+from ...animal_body.body_parts import BodyPart
+from ...animal_body.hair import Hair
 
 
 class Boogers(Model):

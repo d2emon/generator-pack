@@ -1,6 +1,6 @@
 from generated import life
 from ...materials import SweatFactory, KeratinFactory
-from .body_parts import BodyPartFactory
+from ..animal_body.body_parts import BodyPartFactory
 
 
 class KneeFactory(BodyPartFactory):

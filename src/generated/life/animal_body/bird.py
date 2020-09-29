@@ -1,34 +1,22 @@
-from generated.nested_v2.models import Feathers
-from .body_part import Wing, Flesh
-from generated.life.body.body import BodyPart, Bones, Eye, Skull
+from genesys.model.model import Model
+from .limb import Limb, Wing
 
 
-class BirdWing(Wing):
+class BirdLimb(Limb):
+    # feathers = Limb.child_property(Feathers)
     pass
 
 
-class BirdBodyPart(BodyPart):
-    feathers = BodyPart.child_property(Feathers)
+class BirdWing(BirdLimb):
+    default_name = 'wing'
 
 
-class BirdLeg(BirdBodyPart):
+class BirdLeg(BirdLimb):
     default_name = 'leg'
 
-    class Factory(BirdBodyPart.Factory):
-        class ChildrenFactory(BirdBodyPart.Factory.ChildrenFactory):
-            def builders(self):
-                yield Feathers
-                yield super().builders()
 
-
-class BirdTail(BirdBodyPart):
+class BirdTail(BirdLimb):
     default_name = 'tail'
-
-    class Factory(BirdBodyPart.Factory):
-        class ChildrenFactory(BirdBodyPart.Factory.ChildrenFactory):
-            def builders(self):
-                yield Feathers
-                yield super().builders()
 
 
 class Beak(Bones):

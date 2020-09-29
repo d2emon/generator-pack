@@ -1,0 +1,2 @@
+class Snout(Nose):
+    pass

@@ -1,6 +1,6 @@
 from generated import life
 from ...factory import Factory
-from .blood import BloodVesselsFactory
+from ..body.blood import BloodVesselsFactory
 from .skeleton import BonesFactory, MuscleFactory, FatFactory
 from .skin import SkinFactory
 
@@ -36,3 +36,13 @@ class SkinlessBodyPartFactory(BodyPartFactory):
 class SkinlessSoftBodyPartFactory(BodyPartFactory):
     has_bones = False
     has_skin = False
+
+
+class FleshFactory(SkinlessBodyPartFactory):
+    default_model = life.Flesh
+    has_bones = True
+
+
+class SoftFleshFactory(FleshFactory):
+    default_model = life.Flesh
+    has_bones = False

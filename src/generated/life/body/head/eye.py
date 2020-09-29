@@ -4,9 +4,10 @@
 - EyeFlesh
 - Eye
 """
-from ....materials import Water, OrganicMatter
-from ..body_parts import BodyPart
-from .hair import Hair
+from ....materials import OrganicMatter
+from ...animal_body.body_parts import BodyPart
+from ...animal_body.hair import Hair
+from ...animal_body.eye import EyeFlesh
 
 
 class Tear(OrganicMatter):
@@ -15,12 +16,6 @@ class Tear(OrganicMatter):
 
 class Eyelashes(Hair):
     pass
-
-
-class EyeFlesh(BodyPart):
-    default_name = 'eyeball'
-
-    water = BodyPart.child_property(Water)
 
 
 class Eye(BodyPart):

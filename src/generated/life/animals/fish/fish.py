@@ -7,7 +7,7 @@ Fish
 - Fish Thought
 """
 from generated.nested_v2.models import Mind
-from generated.life.biology.animal_body import AnimalBody, SimpleEye, FishFin, FishSkin, FishTail, Flesh
+from generated.life.animal_body import AnimalBody, SimpleEye, FishFin, FishSkin, FishTail, Flesh
 from generated.life.body.body import Mouth
 from generated.mind import SimpleThoughts, Thought
 from generated.life.biology.organism import Organism

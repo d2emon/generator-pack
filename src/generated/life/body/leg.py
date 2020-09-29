@@ -5,8 +5,9 @@
 - Foot
 - Leg
 """
-from ...materials import Sweat, Keratin
-from .body_parts import BodyPart
+from ...materials import Keratin
+from ..animal_body.body_parts import BodyPart
+from ..animal_body.limb import Limb
 
 
 class Knee(BodyPart):
@@ -26,6 +27,6 @@ class Foot(BodyPart):
     toes = BodyPart.children_property(Toe)
 
 
-class Leg(BodyPart):
+class Leg(Limb):
     foot = BodyPart.child_property(Foot)
     knee = BodyPart.child_property(Knee)

@@ -1,4 +1,6 @@
-from .body_part import Scales, Wing, Tail, Flesh
+from genesys.model.model import Model
+from .limb import Wing
+from .body_part import Scales, Tail, Flesh
 from generated.life.body.body import BodyPart
 
 
@@ -7,17 +9,8 @@ class ReptileBodyPart(BodyPart):
 
 
 class ReptileWing(Wing):
-    scales = Wing.child_property(Scales)
-
     default_name = 'wing'
-
-    class Factory(Wing.Factory):
-        class ChildrenFactory(Wing.Factory.ChildrenFactory):
-            has_feathers = False
-
-            def builders(self):
-                yield Scales
-                yield super().builders()
+    scales = Wing.child_property(Scales)
 
 
 class ReptileHead(ReptileBodyPart):

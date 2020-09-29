@@ -5,10 +5,11 @@
 - MuscleCell
 - Muscles
 - Fat
+- Skeleton
 """
 from genesys.model.model import Model
-from ..cell import Cell
 from ...materials import Molecule, OrganicMatter
+from ..cell import Cell
 
 
 class BoneCell(Cell):
@@ -34,3 +35,7 @@ class Muscles(Model):
 
 class Fat(OrganicMatter):
     pass
+
+
+class Skeleton(Model):
+    bones = Model.child_property(Bones)

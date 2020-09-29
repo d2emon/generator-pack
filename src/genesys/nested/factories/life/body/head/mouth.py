@@ -1,7 +1,7 @@
 from generated import life
-from ..body_parts import BodyPartFactory
-from ..skeleton import MuscleFactory
 from ....materials import MoleculeFactory
+from ...animal_body.body_parts import BodyPartFactory
+from ...animal_body.skeleton import MuscleFactory
 
 
 class TongueFactory(BodyPartFactory):

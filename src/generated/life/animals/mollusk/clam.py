@@ -8,7 +8,7 @@ Clams
 """
 from generated.nested_v2.models import Mind
 from .mollusk import Mollusk, MolluskBody, MolluskThoughts, MolluskThought
-from generated.life.biology.animal_body import SoftFlesh, ClamShell
+from generated.life.animal_body import SoftFlesh, ClamShell
 from genesys.nested.data import lookups
 
 

@@ -13,7 +13,7 @@
 """
 from genesys.model.model import Model
 from ..materials import Sweat, Plastic
-from ..life.body.skin import DeadSkin
+from generated.life.animal_body.skin import DeadSkin
 from .fabric import Cloth
 
 

@@ -5,7 +5,7 @@ Mollusk
 - Mollusk Body
 - Mollusk Thoughts
 """
-from generated.life.biology.animal_body import AnimalBody, SimpleEye, Tentacle, SoftFlesh, Jelly
+from generated.life.animal_body import AnimalBody, SimpleEye, Tentacle, SoftFlesh, Jelly
 from generated.life.body.body import Mouth
 from generated.mind import SimpleThoughts, Thought
 from generated.life.biology.organism import Organism

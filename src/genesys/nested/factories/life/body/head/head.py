@@ -1,12 +1,33 @@
 from generated import life
-from ..body_parts import BodyPartFactory
-from ..skeleton import BonesFactory
+from ....factory import Factory
+from ...animal_body.body_parts import BodyPartFactory
+from ...animal_body.skeleton import BonesFactory
+from ...animal_body.skin import DeadSkinFactory
+from ...animal_body.hair import HairFactory
 from .brain import BrainFactory
 from .eye import EyeFactory
 from .ear import EarFactory
-from .hair import HeadHairFactory
 from .nose import NoseFactory
 from .mouth import MouthFactory
+
+
+class DandruffFactory(Factory):
+    default_model = life.Dandruff
+
+    def children(self):
+        yield DeadSkinFactory()
+
+
+class HeadHairFactory(HairFactory):
+    default_model = life.HeadHair
+    names = ["brown", "black", "gray", "light", "blonde", "red", "dark"]
+
+    def generate_name(self):
+        return f"{self.select_item(*self.names)} hair"
+
+    def children(self):
+        yield DandruffFactory()
+        yield from super().children()
 
 
 class SkullFactory(BodyPartFactory):
