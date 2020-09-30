@@ -1,2 +1,2 @@
-class Snout(Nose):
-    pass
+# class Snout(Nose):
+#     pass

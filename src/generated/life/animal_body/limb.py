@@ -10,8 +10,8 @@ class Wing(BodyPart):
     pass
 
 
-class Tentacle(Limb, SkinlessSoftBodyPart):
-    pass
+# class Tentacle(Limb, SkinlessSoftBodyPart):
+#     pass
 
 
 class Tail(BodyPart):

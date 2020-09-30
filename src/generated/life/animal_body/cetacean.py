@@ -1,7 +1,7 @@
-from .limb import Limb
+from .limb import Limb, Tail
 
 
-class CetaceanFlipper(Limb):
+class CetaceanFlipper(Tail):
     default_name = 'flipper'
 
 

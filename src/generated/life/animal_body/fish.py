@@ -1,5 +1,5 @@
 from genesys.model.model import Model
-from .limb import Limb
+from .limb import Limb, Tail
 from .skin import Skin, Scales
 
 
@@ -8,7 +8,7 @@ class FishFin(Limb):
     scales = Model.child_property(Scales)
 
 
-class FishTail(Limb):
+class FishTail(Tail):
     default_name = 'tail'
     scales = Model.child_property(Scales)
 
