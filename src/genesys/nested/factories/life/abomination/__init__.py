@@ -1,11 +1,11 @@
-from generated import life, mind
-from ...factory import Factory
+from generated import life
 from ...mind import PsycheFactory, ThoughtsFactory, ThoughtFactory
-from ..animal_body import WeirdSoftOrganFactory, WeirdHardOrganFactory, CrustaceanClawFactory, StingerFactory
+from ..animal_body import WeirdSoftOrganFactory, WeirdHardOrganFactory, CrustaceanClawFactory, StingerFactory, \
+    MouthFactory, NoseFactory, EarFactory, EyeFactory, SkullFactory
 from ..body.person import PersonFactory
 from ..body.body import BodyFactory
 from ..body.torso import TorsoFactory, ChestFactory, PelvisFactory
-from ..body.head import HeadFactory, MouthFactory, NoseFactory, EarFactory, EyeFactory, SkullFactory, HeadHairFactory
+from ..body.head import HeadFactory, HeadHairFactory
 from ..body.arm import ArmFactory
 from ..body.leg import LegFactory
 

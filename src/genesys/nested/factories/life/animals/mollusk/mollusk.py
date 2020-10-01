@@ -1,6 +1,9 @@
 from generated import life
 from ....mind import ThoughtFactory, ThoughtsFactory, PsycheFactory
-from ...animal_body import SimpleEyeFactory, MouthFactory, TentacleFactory, JellyFactory, SoftFleshFactory
+from ...animal_body.head import SimpleEyeFactory, MouthFactory
+from ...animal_body.limb import TentacleFactory
+from ...animal_body.jelly import JellyFactory
+from ...animal_body.body_parts import SoftFleshFactory
 from ..animal import AnimalFactory, AnimalBodyFactory
 
 

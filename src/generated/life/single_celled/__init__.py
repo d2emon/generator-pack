@@ -4,13 +4,15 @@ Single-celled Organisms
 - Bacteria
 - BacteriaBody
 """
-from ..animals.animal import Animal
+from genesys.model.model import Model
 from ..cell import Cell
+from ...mind import Psyche
 
 
 class BacteriaBody(Cell):
     default_name = 'body'
 
 
-class Bacteria(Animal):
-    body = Animal.child_property(BacteriaBody)
+class Bacteria(Model):
+    body = Model.child_property(BacteriaBody)
+    psyche = Model.child_property(Psyche)

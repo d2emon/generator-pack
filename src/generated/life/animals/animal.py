@@ -4,7 +4,11 @@
 """
 from genesys.model.model import Model
 from ...mind import Psyche
-from ..animal_body import SimpleEye, SimpleMouth, Exoskeleton, Flesh, Jelly
+from ..animal_body.head.eye import SimpleEye
+from ..animal_body.head.mouth import SimpleMouth
+from ..animal_body.skin import Exoskeleton
+from ..animal_body.body_parts import Flesh
+from ..animal_body.jelly import Jelly
 
 
 class AnimalBody(Model):

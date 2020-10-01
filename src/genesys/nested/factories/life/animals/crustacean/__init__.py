@@ -2,8 +2,10 @@ from generated import life
 from ....factory import Factory
 from ....materials import ChitinFactory
 from ....mind import ThoughtFactory, ThoughtsFactory, PsycheFactory
-from ...animal_body import SimpleEyeFactory, ExoskeletonFactory, SoftFleshFactory, MuscleFactory, FatFactory, \
-    BrainFactory
+from ...animal_body.head import SimpleEyeFactory, BrainFactory
+from ...animal_body.skin import ExoskeletonFactory
+from ...animal_body.body_parts import SoftFleshFactory
+from ...animal_body.skeleton import MuscleFactory, FatFactory
 from ..animal import AnimalFactory, AnimalBodyFactory
 
 

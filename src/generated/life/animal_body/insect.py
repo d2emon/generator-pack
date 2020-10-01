@@ -6,7 +6,7 @@
 - InsectWing
 """
 from ...materials import Chitin, Dew
-from ..animals.crustacean import CrustaceanLeg, CrustaceanClaw, CrustaceanLimb
+from ..animals.crustacean import CrustaceanLeg, CrustaceanClaw
 from .limb import Wing
 from .skin import Scales
 from .venom import Venom
@@ -20,11 +20,11 @@ class InsectClaw(CrustaceanClaw):
     pass
 
 
-class Stinger(CrustaceanLimb):
-    venom = CrustaceanLimb.child_property(Venom)
+class Stinger(CrustaceanLeg):
+    venom = CrustaceanLeg.child_property(Venom)
 
 
-class Antenna(CrustaceanLimb):
+class Antenna(CrustaceanLeg):
     pass
 
 
