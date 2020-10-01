@@ -16,10 +16,10 @@ from .plankton import PlanktonThoughtFactory, PlanktonThoughtsFactory, PlanktonP
 # new Thing("plankton thought",[],["hello :)","yes hi :)","how are you :)","it's sunny today :)","what a nice day :)","aaah I could just float away :)","I am fine thank you :)","yes I think so :)","how fun :)","do you catch my drift :)","so many cousins :)","I'm a little lost :)","no pressure :)","that's okay :)","what a nice thing to say :)","you should stay over :)","my place or your place :)","why are you still here :)","there's a big world to explore :)","I don't even know where I'm going :)","here I go! :)","am I really going where I decide to go, or am I just being pushed around by the current? :)","oh no :(","can't you feel them coming? :(","they're slowly rising from deep below :(","it's slowly coming this way :(","I'm different :(","ravioli, ravioli :)","give me the formuoli :)","oh,..."]);
 
 //clams
-new Thing("clam",["clam body","clam thoughts"],["oyster","mussel","scallop"]);
-new Thing("clam body",["clam shell","clam shell","brain","soft flesh"],"body");
-new Thing("clam thoughts",["clam thought,1-3"],["thoughts"]);
-new Thing("clam thought",[],["what","wait","hold on","wait why","i don't","stay clam and carry on","oh no","why this","that's","no","yes","wait no","but","haha what","please explain","that's not","i'm confused","please why","slurp","okay","okay what","what is this","what's that"]);
+# new Thing("clam",["clam body","clam thoughts"],["oyster","mussel","scallop"]);
+# new Thing("clam body",["clam shell","clam shell","brain","soft flesh"],"body");
+# new Thing("clam thoughts",["clam thought,1-3"],["thoughts"]);
+# new Thing("clam thought",[],["what","wait","hold on","wait why","i don't","stay clam and carry on","oh no","why this","that's","no","yes","wait no","but","haha what","please explain","that's not","i'm confused","please why","slurp","okay","okay what","what is this","what's that"]);
 
 //cnidaria
 new Thing("cnidaria",["cnidaria body","cnidaria thoughts"],["urchin","starfish","sea cucumber","sea anemon","coral","box jelly","jellyfish","hydra","man'o'war","sponge","sea nettle","siphonophore","ctenophore","tunicate","trichordate"]);//urchins and starfish and sponges are unrelated to cnidarians but I don't really care

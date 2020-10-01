@@ -1,2 +1,2 @@
-from .clam import *
-from .mollusk import *
+from .clam import ClamShell, ClamBody, Clam
+from .mollusk import MolluskBody, Mollusk

@@ -5,6 +5,8 @@ from ..animal import AnimalFactory, AnimalBodyFactory
 
 
 class PlanktonBodyFactory(AnimalBodyFactory):
+    default_model = life.PlanktonBody
+
     @classmethod
     def eyes(cls):
         yield from SimpleEyeFactory().multiple(0, 3)
