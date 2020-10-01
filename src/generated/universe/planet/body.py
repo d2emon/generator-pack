@@ -18,7 +18,7 @@ class PlanetLike(Model):
     biosphere = Model.child_property(Life)
     core = Model.child_property(PlanetCore)
     plates = Model.children_property(Plate)
-    sky = Model.children_property(Sky)
+    sky = Model.child_property(Sky)
     # land = Model.children_property(Continent)
     water = Model.children_property(Ocean)
     # visited = Model.children_property(VisitorCity, VisitorInstallation)

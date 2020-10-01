@@ -41,6 +41,7 @@ class Sea(WaterBody):
 
 
 class Ocean(Sea):
+    default_name = 'ocean'
     abyss = Sea.child_property(Abyss)
     icebergs = Sea.children_property(Iceberg)
 

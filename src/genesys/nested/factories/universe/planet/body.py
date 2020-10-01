@@ -53,7 +53,7 @@ class MoonFactory(PlanetLikeFactory):
     names = ["young", "old", "large", "small", "pale", "white", "dark", "black", "old"]
 
     def generate_name(self):
-        return f"{self.select_item(self.names)} moon"
+        return f"{self.select_item(*self.names)} moon"
 
     def biosphere(self):
         yield MoonLifeFactory()

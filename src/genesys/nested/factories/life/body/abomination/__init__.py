@@ -1,4 +1,4 @@
-from generated import life
+from generated import life, mind
 from ....factory import Factory
 from ....mind import MemoriesFactory
 from ..person import PersonFactory
@@ -82,7 +82,7 @@ class AbominationBodyFactory(BodyFactory):
 
 
 class AbominationThoughtFactory(Factory):
-    default_model = life.AbominationThought
+    default_model = mind.Thought
     thoughts = [
         "P-please...", "Don't look at me...", "Please... kill me...", "Kill... me...",
         "Why would I ever ask for this...", "I only wish for death.", "I only long for death now.",
@@ -97,7 +97,7 @@ class AbominationThoughtFactory(Factory):
 
 
 class AbominationThoughtsFactory(Factory):
-    default_model = life.AbominationThoughts
+    default_model = mind.Thoughts
 
     def children(self):
         from ....universe import BlackHoleFactory
@@ -107,7 +107,7 @@ class AbominationThoughtsFactory(Factory):
 
 
 class AbominationPsycheFactory(Factory):
-    default_model = life.AbominationPsyche
+    default_model = mind.Psyche
 
     def children(self):
         yield AbominationThoughtsFactory()

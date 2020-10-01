@@ -68,7 +68,11 @@ class SeaFactory(Factory):
 
 
 class OceanFactory(SeaFactory):
+    default_name = 'ocean'
     default_model = terrain.Ocean
+
+    def generate_name(self):
+        return self.default_name
 
     @classmethod
     def beaches(cls):

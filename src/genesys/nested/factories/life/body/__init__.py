@@ -5,6 +5,7 @@ from ..animal_body.hair import HairFactory
 from ..animal_body.skin import SkinCellFactory, DeadSkinFactory, PoresFactory, ScarFactory, SkinFactory
 from ..animal_body.skeleton import BoneCellFactory, BonesFactory, BoneFactory, MuscleCellFactory, MuscleFactory, \
     FatFactory
+from ..animal_body.eye import EyeFleshFactory
 from .blood import BloodCellFactory, BloodFactory, BloodVesselsFactory
 from .head import *
 from .person import *

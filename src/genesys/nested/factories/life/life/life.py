@@ -219,17 +219,17 @@ class GalacticLifeFactory(LifeFactory):
 
 class GalaxyArmLifeFactory(LifeFactory):
     def children(self):
-        yield from GalacticLifeFactory().probable(5)
+        yield GalacticLifeFactory().probable(5)
 
 
 class GalaxyCenterLifeFactory(LifeFactory):
     def children(self):
-        yield from GalacticLifeFactory().probable(10)
+        yield GalacticLifeFactory().probable(10)
 
 
 class NebulaLifeFactory(LifeFactory):
     def children(self):
-        yield from GalacticLifeFactory().probable(15)
+        yield GalacticLifeFactory().probable(15)
 
 
 class BlackHoleLifeFactory(LifeFactory):
@@ -253,7 +253,7 @@ class PlanetCoreLifeFactory(LifeFactory):
 
 class BarrenPlanetLifeFactory(LifeFactory):
     def children(self):
-        yield from GalacticLifeFactory().probable(10)
+        yield GalacticLifeFactory().probable(10)
 
 
 class VisitorPlanetLifeFactory(GalacticLifeFactory):
@@ -262,7 +262,7 @@ class VisitorPlanetLifeFactory(GalacticLifeFactory):
 
 class GasGiantLifeFactory(LifeFactory):
     def children(self):
-        yield from GalacticLifeFactory().probable(10)
+        yield GalacticLifeFactory().probable(10)
 
 
 class AsteroidLifeFactory(LifeFactory):
@@ -273,7 +273,7 @@ class AsteroidLifeFactory(LifeFactory):
 
 class AsteroidBeltLifeFactory(LifeFactory):
     def children(self):
-        yield from GalacticLifeFactory().probable(20)
+        yield GalacticLifeFactory().probable(20)
 
 
 class MoonLifeFactory(LifeFactory):
