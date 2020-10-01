@@ -10,6 +10,7 @@
 from genesys.model.model import Model
 from ...materials import Sweat, Keratin, Chitin
 from ..cell import Cell
+from ..single_celled import Bacteria
 
 
 class SkinCell(Cell):
@@ -21,7 +22,7 @@ class DeadSkin(SkinCell):
 
 
 class Pores(Model):
-    # bacterias = Model.children_property(Bacteria)
+    bacterias = Model.children_property(Bacteria)
     cells = Model.children_property(Cell)
     sweat = Model.child_property(Sweat)
 

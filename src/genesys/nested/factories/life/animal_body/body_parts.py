@@ -1,5 +1,6 @@
 from generated import life
 from ...factory import Factory
+from ..single_celled import BacteriaFactory
 from .blood import BloodVesselsFactory
 from .skeleton import BonesFactory, MuscleFactory, FatFactory
 from .skin import SkinFactory
@@ -12,8 +13,8 @@ class BodyPartFactory(Factory):
     has_skin = True
 
     def children(self):
-        # yield Bacteria.probable(30)
-        # yield Bacteria.probable(10)
+        yield BacteriaFactory().probable(30)
+        yield BacteriaFactory().probable(10)
         if self.has_skin:
             yield SkinFactory()
         yield BloodVesselsFactory()

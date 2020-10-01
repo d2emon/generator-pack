@@ -1,9 +1,8 @@
 from generated import life
 from ....factory import Factory
-from ...animal_body.body_parts import BodyPartFactory
 from ...animal_body.skin import DeadSkinFactory
 from ...animal_body.hair import HairFactory
-from ...animal_body.head import NoseFactory, EyeFactory, EarFactory, MouthFactory, SkullFactory
+from ...animal_body.head import NoseFactory, EyeFactory
 from ...animal_body.mammal import MammalHeadFactory
 
 

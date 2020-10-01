@@ -1,8 +1,8 @@
 from .twig import PlantCellFactory, TwigFactory
-from .grass import GrassFactory, GrassBladeFactory, GrassThoughtsFactory, GrassThoughtFactory
-from .trees import TreesFactory, TreeFactory, TreeThoughtsFactory, TreeThoughtFactory, LeavesFactory, LeafFactory, \
-    BranchesFactory, BranchFactory, FruitsFactory, FlowersFactory, PollenFactory, TreeTrunkFactory, BarkFactory, \
-    JungleTreesFactory, JungleTreeFactory, HumusFactory, NestFactory
+from .grass import GrassFactory, GrassBladeFactory, GrassPsycheFactory, GrassThoughtsFactory, GrassThoughtFactory
+from .trees import TreesFactory, TreeFactory, TreePsycheFactory, TreeThoughtsFactory, TreeThoughtFactory, \
+    LeavesFactory, LeafFactory, BranchesFactory, BranchFactory, FruitsFactory, FlowersFactory, PollenFactory, \
+    TreeTrunkFactory, BarkFactory, JungleTreesFactory, JungleTreeFactory, HumusFactory, NestFactory
 
 
 FACTORIES = {

@@ -1,6 +1,6 @@
 from generated import life, mind
 from ...factory import Factory
-from ...mind import MemoriesFactory
+from ...mind import PsycheFactory, ThoughtsFactory, ThoughtFactory
 from ..animal_body import WeirdSoftOrganFactory, WeirdHardOrganFactory, CrustaceanClawFactory, StingerFactory
 from ..body.person import PersonFactory
 from ..body.body import BodyFactory
@@ -85,8 +85,7 @@ class AbominationBodyFactory(BodyFactory):
         yield WeirdHardOrganFactory().probable(10)
 
 
-class AbominationThoughtFactory(Factory):
-    default_model = mind.Thought
+class AbominationThoughtFactory(ThoughtFactory):
     thoughts = [
         "P-please...", "Don't look at me...", "Please... kill me...", "Kill... me...",
         "Why would I ever ask for this...", "I only wish for death.", "I only long for death now.",
@@ -96,31 +95,31 @@ class AbominationThoughtFactory(Factory):
         "I can't feel... anything...", "I can't... see anything...",
     ]
 
-    def generate_name(self):
-        return self.select_item(self.thoughts)
 
-
-class AbominationThoughtsFactory(Factory):
-    default_model = mind.Thoughts
-
-    def children(self):
-        from ...universe import BlackHoleFactory
-
-        yield BlackHoleFactory().probable(0.01)
+class AbominationThoughtsFactory(ThoughtsFactory):
+    @classmethod
+    def thoughts(cls):
         yield AbominationThoughtFactory()
 
 
-class AbominationPsycheFactory(Factory):
-    default_model = mind.Psyche
-
-    def children(self):
-        yield AbominationThoughtsFactory()
-        yield MemoriesFactory()
+class AbominationPsycheFactory(PsycheFactory):
+    @property
+    def thoughts_factory(self):
+        return AbominationThoughtsFactory()
 
 
 class AbominationFactory(PersonFactory):
     default_model = life.Abomination
+    default_name = '*PERSON*| (abomination)'
 
-    def children(self):
-        yield AbominationBodyFactory()
-        yield AbominationPsycheFactory()
+    @property
+    def body_factory(self):
+        return AbominationBodyFactory()
+
+    @property
+    def psyche_factory(self):
+        return AbominationPsycheFactory()
+
+    @property
+    def clothing_set_factory(self):
+        return None

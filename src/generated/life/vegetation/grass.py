@@ -3,12 +3,12 @@
 - Grass
 """
 from genesys.model.model import Model
-from ...mind import Thoughts
+from ...mind import Psyche
 from .twig import Twig
 
 
 class GrassBlade(Twig):
-    thoughts = Model.child_property(Thoughts)
+    psyche = Twig.child_property(Psyche)
 
 
 class Grass(Model):

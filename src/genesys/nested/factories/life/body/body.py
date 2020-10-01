@@ -1,12 +1,12 @@
 from generated import life
-from ...factory import Factory
+from ..animals.animal import AnimalBodyFactory
 from .torso import TorsoFactory
 from .arm import ArmFactory
 from .leg import LegFactory
 from .head import HeadFactory
 
 
-class BodyFactory(Factory):
+class BodyFactory(AnimalBodyFactory):
     default_model = life.Body
 
     def children(self):

@@ -4,6 +4,7 @@
 - Abomination Head
 - Abomination Torso
 """
+from ..animals import Animal
 from ..animal_body import CrustaceanClaw, Stinger, WeirdOrgan
 from ..body import Person, Head, Torso, Body
 
@@ -28,5 +29,5 @@ class AbominationBody(Body):
     weird_organs = Body.children_property(WeirdOrgan)
 
 
-class Abomination(Person):
+class Abomination(Animal):
     default_name = '*PERSON*| (abomination)'

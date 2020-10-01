@@ -5,17 +5,14 @@
 - Corpse
 """
 from genesys.model.model import Model
-from ....mind import Psyche
 from ....cloth import ClothingSet
-from generated.life.animal_body.blood import Blood
-from ..body import Body
+from ...animals import Animal
+from ...animal_body.blood import Blood
 
 
-class Person(Model):
+class Person(Animal):
     default_name = '*PERSON*'
 
-    body = Model.child_property(Body)
-    psyche = Model.child_property(Psyche)
     clothing = Model.child_property(ClothingSet)
 
     @property

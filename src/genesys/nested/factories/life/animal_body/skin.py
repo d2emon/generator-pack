@@ -2,6 +2,7 @@ from generated import life
 from ...factory import Factory
 from ...materials import SweatFactory, KeratinFactory, ChitinFactory
 from ..cell import CellFactory
+from ..single_celled import BacteriaFactory
 
 
 class SkinCellFactory(CellFactory):
@@ -23,7 +24,7 @@ class PoresFactory(Factory):
     default_model = life.Pores
 
     def children(self):
-        # yield Bacteria.multiple(1, 3)
+        yield BacteriaFactory().multiple(1, 3)
         yield SkinCellFactory()
         yield DeadSkinFactory().probable(50)
         yield SweatFactory().probable(40)
@@ -33,7 +34,7 @@ class SkinFactory(Factory):
     default_model = life.Skin
 
     def children(self):
-        # yield Bacteria.multiple(1, 3)
+        yield BacteriaFactory().multiple(1, 3)
         yield ScarFactory().probable(0.5)
         yield PoresFactory()
         yield SkinCellFactory()

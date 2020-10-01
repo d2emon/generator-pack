@@ -2,6 +2,7 @@ from generated import life
 from ...factory import Factory
 from ..body import PersonFactory
 from ..vegetation import TreeFactory, GrassBladeFactory
+from ..animals import PlanktonFactory
 
 
 class LifeFactory(Factory):
@@ -18,7 +19,7 @@ class LifeFactory(Factory):
             # "worm"
             # "mollusk"
             # "clam"
-            # "plankton"
+            PlanktonFactory(),
             # "reptile"
             # "amphibian"
             # "snake"
@@ -52,8 +53,7 @@ class SeaLifeFactory(LifeFactory):
         # "cnidaria,1-4"
         # "mollusk,1-4"
         # "clam,1-4"
-        # "plankton,2-8"
-        yield None
+        yield from PlanktonFactory().multiple(2, 8)
 
 
 class AbyssLifeFactory(LifeFactory):
@@ -66,8 +66,7 @@ class AbyssLifeFactory(LifeFactory):
         # "cnidaria,2-5"
         # "mollusk,2-5"
         # "clam,2-5"
-        # "plankton,2-8"
-        yield None
+        yield from PlanktonFactory().multiple(2, 8)
 
 
 class BeachLifeFactory(LifeFactory):
@@ -88,14 +87,13 @@ class RiverLifeFactory(LifeFactory):
     def children(self):
         # "fish,5-15"
         # "crustacean,0-10"
-        # "plankton,2-8"
+        yield from PlanktonFactory().multiple(2, 8)
         # "bird,0-5"
         # "small mammal,0-2"
         # "amphibian,0-5"
         # "reptile,0-1"
         # "snake,0-1"
         # "insect,3-10"
-        yield None
 
 
 class LakeLifeFactory(LifeFactory):
@@ -105,12 +103,11 @@ class LakeLifeFactory(LifeFactory):
         # "amphibian,0-5"
         # "crustacean,0-10"
         # "bird,0-5"
-        # "plankton,5-15"
+        yield from PlanktonFactory().multiple(5, 15)
         # "small mammal,0-2"
         # "reptile,0-1"
         # "snake,0-1"
         # "insect,3-10"
-        yield None
 
 
 class LandLifeFactory(LifeFactory):

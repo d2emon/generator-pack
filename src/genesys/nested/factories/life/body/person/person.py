@@ -2,17 +2,33 @@ from generated import life
 from ....factory import Factory
 from ....mind import PsycheFactory
 from ....cloth import ClothingSetFactory
+from ...animals.animal import AnimalFactory
 from ...animal_body.blood import BloodFactory
 from ..body import BodyFactory
 
 
-class PersonFactory(Factory):
+class PersonFactory(AnimalFactory):
     default_model = life.Person
+    default_name = '*PERSON*'
+
+    def generate_name(self):
+        return self.default_name
+
+    @property
+    def body_factory(self):
+        return BodyFactory()
+
+    @property
+    def psyche_factory(self):
+        return PsycheFactory()
+
+    @property
+    def clothing_set_factory(self):
+        return ClothingSetFactory()
 
     def children(self):
-        yield BodyFactory()
-        yield PsycheFactory()
-        yield ClothingSetFactory()
+        yield from super().children()
+        yield self.clothing_set_factory()
 
 
 class ManFactory(PersonFactory):
@@ -26,9 +42,12 @@ class WomanFactory(PersonFactory):
 class CorpseFactory(PersonFactory):
     default_model = life.Corpse
 
+    @property
+    def psyche_factory(self):
+        return None
+
     def children(self):
-        yield BodyFactory()
-        yield ClothingSetFactory()
+        yield from super().children()
         yield BloodFactory().probable(35)
         # yield Worm.probable(20)
         # yield Worm.probable(10)

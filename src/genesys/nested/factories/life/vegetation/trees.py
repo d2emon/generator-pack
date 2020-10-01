@@ -1,7 +1,7 @@
 from generated import life
 from ...factory import Factory
 from ...materials import DewFactory, OrganicFactory
-from ...mind import ThoughtFactory, ThoughtsFactory
+from ...mind import PsycheFactory, ThoughtsFactory, ThoughtFactory
 from .twig import TwigFactory
 
 
@@ -83,19 +83,29 @@ class BranchesFactory(Factory):
 
 
 class TreeThoughtFactory(ThoughtFactory):
-    names = [
+    thoughts = [
         "Well. What is this all about.", "So. What's the hurry?", "Whoah. Slow down.", "Do like a tree. And go away.",
         "I seen some things.", "They're coming.", "We know.", "We've been watching you for hundreds of years.",
         "Do you have any idea how old I am?", "Yes. I remember you. I remember all of you.",
     ]
 
-    def generate_name(self):
-        return self.select_item(*self.names)
-
 
 class TreeThoughtsFactory(ThoughtsFactory):
-    def children(self):
+    black_hole_probability = 0
+
+    @classmethod
+    def thoughts(cls):
         yield from TreeThoughtFactory().multiple(1)
+
+
+class TreePsycheFactory(PsycheFactory):
+    @property
+    def thoughts_factory(self):
+        yield TreeThoughtsFactory().probable(2)
+
+    @property
+    def memories_factory(self):
+        return None
 
 
 class TreeFactory(Factory):
@@ -110,7 +120,7 @@ class TreeFactory(Factory):
         return self.select_item(*self.names)
 
     def children(self):
-        yield TreeThoughtsFactory().probable(2)
+        yield TreePsycheFactory()
         yield TreeTrunkFactory()
         yield BranchesFactory()
         yield LeavesFactory()

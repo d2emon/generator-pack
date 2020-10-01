@@ -6,13 +6,14 @@
 """
 from genesys.model.model import Model
 from ...materials import Sweat
+from ..single_celled import Bacteria
 from .blood import BloodVessels
 from .skin import Skin
 from .skeleton import Bones, Muscles, Fat
 
 
 class BodyPart(Model):
-    # bacterias = Model.children_property(Bacteria)
+    bacterias = Model.children_property(Bacteria)
     skin = Model.child_property(Skin)
     blood_vessels = Model.child_property(BloodVessels)
     bones = Model.child_property(Bones)

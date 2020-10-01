@@ -3,6 +3,7 @@
 - Brain
 """
 from ...cell import Cell
+from ...single_celled import Bacteria
 from ..body_parts import BodyPart
 
 
@@ -11,5 +12,5 @@ class BrainCell(Cell):
 
 
 class Brain(BodyPart):
-    # bacterias = SoftBodyPart.children_property(Bacteria)
+    bacterias = BodyPart.children_property(Bacteria)
     cells = BodyPart.child_property(BrainCell)

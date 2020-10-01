@@ -1,27 +1,37 @@
 from generated import life
 from ...factory import Factory
 from ...materials import DewFactory
-from ...mind import ThoughtFactory, ThoughtsFactory
+from ...mind import PsycheFactory, ThoughtsFactory, ThoughtFactory
 from .twig import TwigFactory
 
 
 class GrassThoughtFactory(ThoughtFactory):
-    names = [":D", ":O", "D:", ":|", ":]", ">:0"]
-
-    def generate_name(self):
-        return self.select_item(*self.names)
+    thoughts = [":D", ":O", "D:", ":|", ":]", ">:0"]
 
 
 class GrassThoughtsFactory(ThoughtsFactory):
-    def children(self):
+    black_hole_probability = 0
+
+    @classmethod
+    def thoughts(cls):
         yield from GrassThoughtFactory().multiple(1)
+
+
+class GrassPsycheFactory(PsycheFactory):
+    @property
+    def thoughts_factory(self):
+        yield GrassThoughtsFactory().probable(2)
+
+    @property
+    def memories_factory(self):
+        return None
 
 
 class GrassBladeFactory(TwigFactory):
     default_model = life.GrassBlade
 
     def children(self):
-        yield GrassThoughtsFactory().probable(2)
+        yield GrassPsycheFactory()
         yield DewFactory().probable(6)
         # "worm,3%"
         # "insect,6%"

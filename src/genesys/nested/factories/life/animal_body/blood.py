@@ -1,6 +1,7 @@
 from generated import life
 from ...factory import Factory
 from ..cell import CellFactory
+from ..single_celled import BacteriaFactory
 
 
 class BloodCellFactory(CellFactory):
@@ -18,5 +19,5 @@ class BloodVesselsFactory(Factory):
     default_model = life.BloodVessels
 
     def children(self):
-        # yield Bacteria.probable(30)
+        yield BacteriaFactory().probable(30)
         yield BloodFactory()

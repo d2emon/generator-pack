@@ -15,7 +15,7 @@
 """
 from genesys.model.model import Model
 from ...materials import OrganicMatter
-from ...mind import Thoughts
+from ...mind import Psyche
 from .twig import Twig
 
 
@@ -66,7 +66,7 @@ class Flowers(Twig):
 
 
 class Tree(Model):
-    thoughts = Model.child_property(Thoughts)
+    psyche = Model.child_property(Psyche)
     trunk = Model.child_property(TreeTrunk)
     branches = Model.child_property(Branches)
     leaves = Model.child_property(Leaves)

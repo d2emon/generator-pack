@@ -15,33 +15,50 @@ class MemoriesFactory(Factory):
 
 class ThoughtFactory(Factory):
     default_model = mind.Thought
+    thoughts = []
+
+    def generate_name(self):
+        return self.select_item(*self.thoughts)
 
 
 class SadThoughtFactory(ThoughtFactory):
-    default_name = '*SADTHOUGHT*'
+    thoughts = ['*SADTHOUGHT*']
 
 
 class HappyThoughtFactory(ThoughtFactory):
-    default_name = '*HAPPYTHOUGHT*'
+    thoughts = ['*HAPPYTHOUGHT*']
 
 
 class ThoughtsFactory(Factory):
     default_model = mind.Thoughts
+    black_hole_probability = 0.01
+
+    @classmethod
+    def thoughts(cls):
+        yield from SadThoughtFactory().multiple(2, 4)
+        yield from HappyThoughtFactory().multiple(2, 4)
 
     def children(self):
         from ..universe import BlackHoleFactory
 
-        yield BlackHoleFactory().probable(0.01)
-        yield from SadThoughtFactory().multiple(2, 4)
-        yield from HappyThoughtFactory().multiple(2, 4)
+        yield BlackHoleFactory().probable(self.black_hole_probability)
+        yield from self.thoughts()
 
 
 class PsycheFactory(Factory):
     default_model = mind.Psyche
 
+    @property
+    def thoughts_factory(self):
+        return ThoughtsFactory()
+
+    @property
+    def memories_factory(self):
+        return MemoriesFactory()
+
     def children(self):
-        yield ThoughtsFactory()
-        yield MemoriesFactory()
+        yield self.thoughts_factory
+        yield self.memories_factory
 
 
 FACTORIES = {

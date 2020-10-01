@@ -5,6 +5,7 @@
 """
 from genesys.model.model import Model
 from ..cell import Cell
+from ..single_celled import Bacteria
 
 
 class BloodCell(Cell):
@@ -17,4 +18,4 @@ class Blood(Model):
 
 class BloodVessels(Model):
     blood = Model.child_property(Cell)
-    # bacterias = Model.children_property(Bacteria)
+    bacterias = Model.children_property(Bacteria)

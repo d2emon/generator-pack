@@ -46,6 +46,5 @@ class SnakeBodyFactory(Factory):
     def children(self):
         yield ReptileHeadFactory()
         yield ScalesFactory()
-        # yield from ReptileLegFactory().multiple(4)
         yield TailFactory()
         yield FleshFactory()
