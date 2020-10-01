@@ -3,11 +3,12 @@
 - NostrilHair
 - Nostril
 - Nose
+- Snout ?
 """
 from genesys.model.model import Model
 from ....materials import OrganicMatter
-from ...animal_body.body_parts import BodyPart
-from ...animal_body.hair import Hair
+from ..body_parts import BodyPart
+from ..hair import Hair
 
 
 class Boogers(Model):
@@ -25,3 +26,7 @@ class Nostril(BodyPart):
 
 class Nose(BodyPart):
     nostrils = BodyPart.children_property(Nostril)
+
+
+class Snout(Nose):
+    pass

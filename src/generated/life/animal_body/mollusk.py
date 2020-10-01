@@ -1,3 +1,6 @@
+"""
+- ClamShell
+"""
 from genesys.model.model import Model
 from ...materials import Molecule
 

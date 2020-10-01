@@ -41,7 +41,7 @@ new Thing("drinking glass",["glass"],"glass");
 new Thing("bowl",["ceramic"]);
 new Thing("cup",["ceramic"]);
 new Thing("plate",["ceramic"]);
-new Thing("closet",["Portal,0.1%","skeleton,0.1%","Hat,30%","Hat,15%","Pants,0-5","Shirt,0-5","Underwear,0-6","Coat,0-3","Socks,0-8","Shoes,0-6","button,20%","wood frame","wood shelf,0-2"]);
+new Thing("closet",["Portal,0.1%","Skeleton,0.1%","Hat,30%","Hat,15%","Pants,0-5","Shirt,0-5","Underwear,0-6","Coat,0-3","Socks,0-8","Shoes,0-6","button,20%","wood frame","wood shelf,0-2"]);
 new Thing("living-room table",[".table","drawer,0-2"],"table");
 new Thing("table",[["wood","Plastic"],"nails,50%"]);
 new Thing("drawer",["note,0-8","office toy,30%","office toy,30%","pen,30%","pen,10%","pen,5%","donut box,4%","can,2%","book,20%","book,20%","book,5%","book,5%","button,10%","button,10%","dust,40%","lint,40%"]);

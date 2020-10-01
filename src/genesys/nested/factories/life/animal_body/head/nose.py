@@ -1,11 +1,13 @@
 from generated import life
 from ....factory import Factory
 from ....materials import OrganicFactory
-from ...animal_body.body_parts import BodyPartFactory, SoftBodyPartFactory
-from ...animal_body.hair import HairFactory
+from ..body_parts import BodyPartFactory, SoftBodyPartFactory
+from ..hair import HairFactory
 
 
 class BoogersFactory(Factory):
+    default_model = life.Boogers
+
     def children(self):
         yield OrganicFactory()
 
@@ -29,3 +31,7 @@ class NoseFactory(BodyPartFactory):
     def children(self):
         yield from NostrilFactory().multiple(2)
         yield from super().children()
+
+
+class SnoutFactory(NoseFactory):
+    default_model = life.Snout

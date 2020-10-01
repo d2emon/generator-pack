@@ -1,69 +1,37 @@
-from genesys.model.model import Model
+"""
+- MammalLeg
+- MammalHead
+- MammalBody
+"""
+from .body_parts import BodyPart, Flesh
+from .limb import Limb, Tail
+from .hair import Fur, Whiskers
+from .head import Mouth, Nose, Eye, Ear, Skull
 
 
-# class Fur(Hair):
-#     class Factory(Hair.Factory):
-#         class ChildrenFactory(Hair.Factory.ChildrenFactory):
-#             def builders(self):
-#                 yield Keratin
+class MammalLeg(Limb):
+    default_name = 'leg'
+
+    fur = Limb.child_property(Fur)
 
 
-# class Whiskers(Hair):
-#     class Factory(Hair.Factory):
-#         class ChildrenFactory(Hair.Factory.ChildrenFactory):
-#             def builders(self):
-#                 yield Keratin
+class MammalHead(BodyPart):
+    default_name = 'head'
+
+    mouths = BodyPart.children_property(Mouth)
+    noses = BodyPart.children_property(Nose)
+    whiskers = BodyPart.child_property(Whiskers)
+    eyes = BodyPart.children_property(Eye)
+    ears = BodyPart.children_property(Ear)
+    skull = BodyPart.child_property(Skull)
+    fur = Limb.child_property(Fur)
 
 
-# class MammalBodyPart(BodyPart):
-#     fur = BodyPart.child_property(Fur)
+class MammalBody(BodyPart):
+    default_name = 'body'
 
-
-# class MammalLeg(MammalBodyPart):
-#     default_name = 'leg'
-#
-#     class Factory(MammalBodyPart.Factory):
-#         class ChildrenFactory(MammalBodyPart.Factory.ChildrenFactory):
-#             def builders(self):
-#                 yield Fur
-#                 yield super().builders()
-
-
-# class MammalHead(MammalBodyPart):
-#     mouths = BodyPart.children_property(Mouth)
-#     noses = BodyPart.children_property(Nose)
-#     whiskers = BodyPart.child_property(Whiskers)
-#     eyes = BodyPart.children_property(Eye)
-#     ears = BodyPart.children_property(Ear)
-#     skull = BodyPart.child_property(Skull)
-#
-#     default_name = 'head'
-#
-#     class Factory(MammalBodyPart.Factory):
-#         class ChildrenFactory(MammalBodyPart.Factory.ChildrenFactory):
-#             def builders(self):
-#                 yield Mouth
-#                 yield Snout
-#                 yield Whiskers
-#                 yield from Eye.multiple(2)
-#                 yield from Ear.multiple(2)
-#                 yield Skull
-#                 yield Fur
-
-
-# class MammalBody(MammalBodyPart):
-#     heads = MammalBodyPart.children_property(MammalHead)
-#     leg = MammalBodyPart.children_property(MammalLeg)
-#     tails = MammalBodyPart.children_property(Tail)
-#     flesh = MammalBodyPart.child_property(Flesh)
-#
-#     default_name = 'body'
-#
-#     class Factory(MammalBodyPart.Factory):
-#         class ChildrenFactory(MammalBodyPart.Factory.ChildrenFactory):
-#            def builders(self):
-#                 yield MammalHead
-#                 yield Fur
-#                 yield from MammalLeg.multiple(4)
-#                 yield Tail
-#                 yield Flesh
+    heads = BodyPart.children_property(MammalHead)
+    leg = BodyPart.children_property(MammalLeg)
+    tails = BodyPart.children_property(Tail)
+    flesh = BodyPart.child_property(Flesh)
+    fur = Limb.child_property(Fur)

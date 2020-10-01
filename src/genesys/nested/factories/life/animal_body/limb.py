@@ -1,5 +1,6 @@
 from generated import life
 from ...factory import Factory
+from .body_parts import SkinlessSoftBodyPartFactory, BodyPartFactory
 
 
 class WingFactory(Factory):
@@ -13,3 +14,11 @@ class WingFactory(Factory):
     def children(self):
         yield from self.feathers()
         yield from super().children()
+
+
+class TentacleFactory(SkinlessSoftBodyPartFactory):
+    default_model = life.Tentacle
+
+
+class TailFactory(BodyPartFactory):
+    default_model = life.Tail

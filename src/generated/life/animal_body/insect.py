@@ -1,3 +1,10 @@
+"""
+- InsectLeg
+- InsectClaw
+- Stinger
+- Antenna
+- InsectWing
+"""
 from ...materials import Chitin, Dew
 from .crustacean import CrustaceanLeg, CrustaceanClaw, CrustaceanLimb
 from .limb import Wing

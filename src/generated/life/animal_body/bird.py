@@ -1,5 +1,15 @@
-# from genesys.model.model import Model
-from .limb import Limb
+"""
+- Bird Limb
+- Bird Wing
+- Bird Leg
+- Bird Tail
+- Beak
+- BirdHead
+- BirdBody
+"""
+from .body_parts import BodyPart, Flesh
+from .limb import Limb, Wing
+from .head import Eye, Skull
 
 
 class BirdLimb(Limb):
@@ -19,39 +29,25 @@ class BirdTail(BirdLimb):
     default_name = 'tail'
 
 
-# class Beak(Bones):
-#     pass
+class Beak(BodyPart):
+    pass
 
 
-# class BirdHead(BirdBodyPart):
-#     beaks = BodyPart.children_property(Beak)
-#     eyes = BodyPart.children_property(Eye)
-#     skull = BodyPart.child_property(Skull)
-#
-#     default_name = 'head'
-#
-#         class ChildrenFactory(BirdBodyPart.Factory.ChildrenFactory):
-#             def builders(self):
-#                 yield Beak
-#                 yield from Eye.multiple(2)
-#                 yield Skull
-#                 yield Feathers
+class BirdHead(BodyPart):
+    default_name = 'head'
+
+    # feathers = Limb.child_property(Feathers)
+    beaks = BodyPart.children_property(Beak)
+    eyes = BodyPart.children_property(Eye)
+    skull = BodyPart.child_property(Skull)
 
 
-# class BirdBody(BirdBodyPart):
-#     heads = BirdBodyPart.children_property(BirdHead)
-#     legs = BirdBodyPart.children_property(BirdLeg)
-#     wings = BirdBodyPart.children_property(Wing)
-#     tails = BirdBodyPart.children_property(BirdTail)
-#     flesh = BirdBodyPart.child_property(Flesh)
-#
-#     default_name = 'body'
-#
-#         class ChildrenFactory(BirdBodyPart.Factory.ChildrenFactory):
-#             def builders(self):
-#                 yield BirdHead
-#                 yield Feathers
-#                 yield from BirdLeg.multiple(2)
-#                 yield from BirdWing.multiple(2)
-#                 yield BirdTail
-#                 yield Flesh
+class BirdBody(BodyPart):
+    default_name = 'body'
+
+    # feathers = Limb.child_property(Feathers)
+    heads = BodyPart.children_property(BirdHead)
+    legs = BodyPart.children_property(BirdLeg)
+    wings = BodyPart.children_property(Wing)
+    tails = BodyPart.children_property(BirdTail)
+    flesh = BodyPart.child_property(Flesh)

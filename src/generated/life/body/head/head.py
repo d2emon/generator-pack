@@ -7,16 +7,8 @@
 from genesys.model.model import Model
 from ...animal_body.body_parts import BodyPart
 from ...animal_body.hair import Hair
+from ...animal_body.head import Nose, Ear, Eye, Mouth, Skull
 from ...cell import Cell
-from .brain import Brain
-from .eye import Eye
-from .ear import Ear
-from .nose import Nose
-from .mouth import Mouth
-
-
-class Skull(BodyPart):
-    brain = BodyPart.child_property(Brain)
 
 
 class Dandruff(Model):

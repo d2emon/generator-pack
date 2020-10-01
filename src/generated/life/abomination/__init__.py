@@ -4,22 +4,20 @@
 - Abomination Head
 - Abomination Torso
 """
-from ..animal_body import CrustaceanClaw, Stinger
+from ..animal_body import CrustaceanClaw, Stinger, WeirdOrgan
 from ..body import Person, Head, Torso, Body
 
 
 class AbominationHead(Head):
     default_name = 'misshapen head'
 
-    # soft_organs = Body.children_property(WeirdSoftOrgan)
-    # hard_organs = Body.children_property(WeirdHardOrgan)
+    weird_organs = Body.children_property(WeirdOrgan)
 
 
 class AbominationTorso(Torso):
     default_name = 'misshapen torso'
 
-    # soft_organs = Torso.children_property(WeirdSoftOrgan)
-    # hard_organs = Torso.children_property(WeirdHardOrgan)
+    weird_organs = Body.children_property(WeirdOrgan)
 
 
 class AbominationBody(Body):
@@ -27,8 +25,7 @@ class AbominationBody(Body):
 
     claws = Body.children_property(CrustaceanClaw)
     stingers = Body.children_property(Stinger)
-    # soft_organs = Body.children_property(WeirdSoftOrgan)
-    # hard_organs = Body.children_property(WeirdHardOrgan)
+    weird_organs = Body.children_property(WeirdOrgan)
 
 
 class Abomination(Person):

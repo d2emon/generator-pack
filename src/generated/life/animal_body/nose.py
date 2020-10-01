@@ -1,2 +1,0 @@
-# class Snout(Nose):
-#     pass

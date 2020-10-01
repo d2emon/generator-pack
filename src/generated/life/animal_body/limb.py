@@ -1,3 +1,9 @@
+"""
+- Limb
+- Wing
+- Tentacle
+- Tail
+"""
 from .body_parts import BodyPart
 
 
@@ -10,8 +16,8 @@ class Wing(BodyPart):
     pass
 
 
-# class Tentacle(Limb, SkinlessSoftBodyPart):
-#     pass
+class Tentacle(Limb):
+    pass
 
 
 class Tail(BodyPart):

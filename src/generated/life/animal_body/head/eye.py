@@ -1,13 +1,24 @@
 """
+- EyeFlesh
+- SimpleEye ???
 - Tear
 - Eyelashes
-- EyeFlesh
 - Eye
 """
+from generated.materials import Water
 from ....materials import OrganicMatter
-from ...animal_body.body_parts import BodyPart
-from ...animal_body.hair import Hair
-from ...animal_body.eye import EyeFlesh
+from ..body_parts import BodyPart
+from ..hair import Hair
+
+
+class EyeFlesh(BodyPart):
+    default_name = 'eyeball'
+
+    water = BodyPart.child_property(Water)
+
+
+class SimpleEye(EyeFlesh):
+    default_name = 'eye'
 
 
 class Tear(OrganicMatter):

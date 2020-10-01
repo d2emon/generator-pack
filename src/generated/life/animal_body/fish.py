@@ -1,3 +1,8 @@
+"""
+- FishFin
+- FishTail
+- FishSkin
+"""
 from genesys.model.model import Model
 from .limb import Limb, Tail
 from .skin import Skin, Scales

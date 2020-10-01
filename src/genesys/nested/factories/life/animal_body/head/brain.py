@@ -1,6 +1,6 @@
 from generated import life
-from ...cell import CellFactory
-from ...animal_body.body_parts import SoftBodyPartFactory
+from genesys.nested.factories.life.cell import CellFactory
+from genesys.nested.factories.life.animal_body.body_parts import SoftBodyPartFactory
 
 
 class BrainCellFactory(CellFactory):

@@ -1,12 +1,13 @@
 from generated import life, mind
-from ....factory import Factory
-from ....mind import MemoriesFactory
-from ..person import PersonFactory
-from ..body import BodyFactory
-from ..torso import TorsoFactory, ChestFactory, PelvisFactory
-from ..head import HeadFactory, MouthFactory, NoseFactory, EarFactory, EyeFactory, SkullFactory, HeadHairFactory
-from ..arm import ArmFactory
-from ..leg import LegFactory
+from ...factory import Factory
+from ...mind import MemoriesFactory
+from ..animal_body import WeirdSoftOrganFactory, WeirdHardOrganFactory, CrustaceanClawFactory, StingerFactory
+from ..body.person import PersonFactory
+from ..body.body import BodyFactory
+from ..body.torso import TorsoFactory, ChestFactory, PelvisFactory
+from ..body.head import HeadFactory, MouthFactory, NoseFactory, EarFactory, EyeFactory, SkullFactory, HeadHairFactory
+from ..body.arm import ArmFactory
+from ..body.leg import LegFactory
 
 
 class AbominationTorsoFactory(TorsoFactory):
@@ -23,8 +24,8 @@ class AbominationTorsoFactory(TorsoFactory):
         yield PelvisFactory().probable(10)
 
     def children(self):
-        # yield WeirdSoftOrganFactory().probable(20)
-        # yield WeirdHardOrganFactory().probable(20)
+        yield WeirdSoftOrganFactory().probable(20)
+        yield WeirdHardOrganFactory().probable(20)
         yield super().children()
 
 
@@ -50,11 +51,14 @@ class AbominationHeadFactory(HeadFactory):
     @classmethod
     def skull(cls):
         yield SkullFactory().probable(90)
+
+    @classmethod
+    def fur(cls):
         yield HeadHairFactory().probable(65)
 
     def children(self):
-        # yield WeirdSoftOrganFactory().probable(20)
-        # yield WeirdHardOrganFactory().probable(20)
+        yield WeirdSoftOrganFactory().probable(20)
+        yield WeirdHardOrganFactory().probable(20)
         yield super().children()
 
 
@@ -73,12 +77,12 @@ class AbominationBodyFactory(BodyFactory):
             LegFactory().multiple(0, 8),
             LegFactory().multiple(0, 4),
         )
-        # yield CrustaceanClawFactory().probable(2)
-        # yield StingerFactory().probable(2)
-        # yield WeirdSoftOrganFactory().probable(10)
-        # yield WeirdSoftOrganFactory().probable(10)
-        # yield WeirdHardOrganFactory().probable(10)
-        # yield WeirdHardOrganFactory().probable(10)
+        yield CrustaceanClawFactory().probable(2)
+        yield StingerFactory().probable(2)
+        yield WeirdSoftOrganFactory().probable(10)
+        yield WeirdSoftOrganFactory().probable(10)
+        yield WeirdHardOrganFactory().probable(10)
+        yield WeirdHardOrganFactory().probable(10)
 
 
 class AbominationThoughtFactory(Factory):
@@ -100,7 +104,7 @@ class AbominationThoughtsFactory(Factory):
     default_model = mind.Thoughts
 
     def children(self):
-        from ....universe import BlackHoleFactory
+        from ...universe import BlackHoleFactory
 
         yield BlackHoleFactory().probable(0.01)
         yield AbominationThoughtFactory()

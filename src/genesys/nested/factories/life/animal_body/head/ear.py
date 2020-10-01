@@ -1,5 +1,5 @@
 from generated import life
-from ...animal_body.body_parts import SoftBodyPartFactory
+from genesys.nested.factories.life.animal_body.body_parts import SoftBodyPartFactory
 
 
 class EarFactory(SoftBodyPartFactory):

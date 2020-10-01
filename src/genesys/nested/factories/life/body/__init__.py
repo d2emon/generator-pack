@@ -5,8 +5,10 @@ from ..animal_body.hair import HairFactory
 from ..animal_body.skin import SkinCellFactory, DeadSkinFactory, PoresFactory, ScarFactory, SkinFactory
 from ..animal_body.skeleton import BoneCellFactory, BonesFactory, BoneFactory, MuscleCellFactory, MuscleFactory, \
     FatFactory
-from ..animal_body.eye import EyeFleshFactory
-from .blood import BloodCellFactory, BloodFactory, BloodVesselsFactory
+from ..animal_body.head import EyeFleshFactory, TeethFactory, BrainCellFactory, EyeFactory, EyelashesFactory, \
+    TearFactory, EarFactory, BrainFactory, NoseFactory, NostrilFactory, NostrilHairFactory, BoogersFactory, \
+    MouthFactory, TongueFactory, SkullFactory
+from ..animal_body.blood import BloodCellFactory, BloodFactory, BloodVesselsFactory
 from .head import *
 from .person import *
 from .body import BodyFactory
@@ -15,7 +17,7 @@ from .torso import TorsoFactory, ChestFactory, BellybuttonFactory, NippleFactory
 from .arm import ArmFactory, HandFactory, FingerFactory, FingernailFactory, ElbowFactory, ArmpitFactory, \
     ArmpitHairFactory
 from .leg import LegFactory, FootFactory, ToeFactory, ToenailFactory, KneeFactory
-from .abomination import AbominationFactory, AbominationPsycheFactory, AbominationThoughtsFactory, \
+from ..abomination import AbominationFactory, AbominationPsycheFactory, AbominationThoughtsFactory, \
     AbominationThoughtFactory, AbominationBodyFactory, AbominationTorsoFactory, AbominationHeadFactory
 
 
