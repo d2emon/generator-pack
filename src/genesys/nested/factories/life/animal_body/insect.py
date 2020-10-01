@@ -1,7 +1,7 @@
 from generated import life
 from ...factory import Factory
 from ...materials import ChitinFactory, DewFactory
-from .crustacean import CrustaceanLegFactory, CrustaceanClawFactory
+from ..animals.crustacean import CrustaceanLegFactory, CrustaceanClawFactory
 from .skin import ScalesFactory
 from .venom import VenomFactory
 

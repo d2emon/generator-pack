@@ -1,4 +1,5 @@
 from ..animals.mollusk.clam import ClamShellFactory
+from ..animals.crustacean import CrustaceanLegFactory, CrustaceanClawFactory, CrustaceanShellFactory
 from .body_parts import BodyPartFactory, SoftBodyPartFactory, SkinlessBodyPartFactory, SkinlessSoftBodyPartFactory, \
     FleshFactory, SoftFleshFactory, WeirdSoftOrganFactory, WeirdHardOrganFactory
 from .hair import HairFactory, FurFactory, WhiskersFactory
@@ -8,7 +9,6 @@ from .skin import SkinCellFactory, DeadSkinFactory, ScarFactory, PoresFactory, S
     ExoskeletonFactory
 from .fish import FishFinFactory, FishTailFactory, FishSkinFactory
 from .cetacean import CetaceanFinFactory, CetaceanFlipperFactory
-from .crustacean import CrustaceanLegFactory, CrustaceanClawFactory, CrustaceanShellFactory
 from .insect import InsectLegFactory, InsectClawFactory, StingerFactory, AntennaFactory, InsectWingFactory
 from .limb import WingFactory, TentacleFactory, TailFactory
 from .reptile import ReptileWingFactory, ReptileHeadFactory, ReptileLegFactory, ReptileBodyFactory, SnakeBodyFactory

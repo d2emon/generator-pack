@@ -6,6 +6,9 @@ from .plankton import PlanktonThoughtFactory, PlanktonThoughtsFactory, PlanktonP
 from .cnidaria import CnidariaThoughtFactory, CnidariaThoughtsFactory, CnidariaPsycheFactory, CnidariaBodyFactory, \
     CnidariaFactory
 from .mollusk import *
+from .crustacean import CrustaceanLegFactory, CrustaceanClawFactory, CrustaceanShellFactory, \
+    CrustaceanThoughtFactory, CrustaceanThoughtsFactory, CrustaceanPsycheFactory, CrustaceanBodyFactory, \
+    CrustaceanFactory
 
 """
 //single-celled organisms
@@ -40,10 +43,10 @@ from .mollusk import *
 # new Thing("mollusk thought",[],["party time","is it party time now","party now ok","party's over","okay let's party","ready to party","are you party","they don't look like they want to party","is the party over","this party's so hot it's stupid","this party getting crazy","partyyyyyyy","chug chug chug","we party now","wanna join in","we partyin","okay too much party","I have a secret for you","that's a secret","I kinda like partying","party yes nice","woooo party"]);
 
 //crustaceans
-new Thing("crustacean",["crustacean body","crustacean thoughts"],["shrimp","prawn","langoustine","lobster","rock lobster","crab","spider crab","crayfish","krill","triops","copepod"]);
-new Thing("crustacean body",["simple eye,2-6","brain","crustacean leg,6-8","crustacean claw,2","crustacean shell","soft flesh"],"body");
-new Thing("crustacean thoughts",["crustacean thought,2-3"],["thoughts"]);
-new Thing("crustacean thought",[],["skitter skitter","crawl crawl","dig dig","grab grab","gotta eat","gotta skitter","gotta catch food","gotta hide","gotta breed","breed breed","under the sea"]);
+# new Thing("crustacean",["crustacean body","crustacean thoughts"],["shrimp","prawn","langoustine","lobster","rock lobster","crab","spider crab","crayfish","krill","triops","copepod"]);
+# new Thing("crustacean body",["simple eye,2-6","brain","crustacean leg,6-8","crustacean claw,2","crustacean shell","soft flesh"],"body");
+# new Thing("crustacean thoughts",["crustacean thought,2-3"],["thoughts"]);
+# new Thing("crustacean thought",[],["skitter skitter","crawl crawl","dig dig","grab grab","gotta eat","gotta skitter","gotta catch food","gotta hide","gotta breed","breed breed","under the sea"]);
 
 //fish; getting those from http://homepages.cwi.nl/~sjoerd/fishlist.html just because I can
 new Thing("fish",["fish body","fish thoughts"],["anchovy","sardine","mackerel","tuna","albacore","herring","bream","bass","perch","mullet","brill","plaice","sole","angler","dab","flounder","skate","cod","haddock","pollack","whiting","pike","perch","trout","carp","eel","lamprey","salmon","catfish","dogfish","swordfish","sailfish","pufferfish","sunfish","manta ray","stingray"]);

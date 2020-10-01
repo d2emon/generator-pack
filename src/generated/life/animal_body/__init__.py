@@ -7,7 +7,6 @@ from .skin import SkinCell, DeadSkin, Pores, Scar, Skin, Scales, Exoskeleton
 from .body_parts import BodyPart, Flesh, SoftFlesh, WeirdOrgan
 from generated.life.animal_body.head.eye import EyeFlesh, SimpleEye
 from .limb import Limb, Wing, Tail, Tentacle
-from .crustacean import CrustaceanLimb, CrustaceanLeg, CrustaceanClaw, CrustaceanShell
 from .insect import InsectLeg, InsectClaw, Stinger, Antenna, InsectWing
 from .fish import FishFin, FishTail, FishSkin
 from .reptile import ReptileWing, ReptileHead, ReptileLeg, ReptileBody, ReptileBodyPart

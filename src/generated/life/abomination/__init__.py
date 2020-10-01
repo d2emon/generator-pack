@@ -4,9 +4,9 @@
 - Abomination Head
 - Abomination Torso
 """
-from ..animals import Animal
-from ..animal_body import CrustaceanClaw, Stinger, WeirdOrgan
-from ..body import Person, Head, Torso, Body
+from ..animals import Animal, CrustaceanClaw
+from ..animal_body import Stinger, WeirdOrgan
+from ..body import Head, Torso, Body
 
 
 class AbominationHead(Head):

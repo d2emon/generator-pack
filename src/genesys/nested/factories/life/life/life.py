@@ -2,7 +2,7 @@ from generated import life
 from ...factory import Factory
 from ..body import PersonFactory
 from ..vegetation import TreeFactory, GrassBladeFactory
-from ..animals import PlanktonFactory, ClamFactory, CnidariaFactory, MolluskFactory
+from ..animals import PlanktonFactory, ClamFactory, CnidariaFactory, MolluskFactory, CrustaceanFactory
 
 
 class LifeFactory(Factory):
@@ -14,7 +14,7 @@ class LifeFactory(Factory):
             # "poultry"
             # "fish"
             # "shark"
-            # "crustacean"
+            CrustaceanFactory(),
             CnidariaFactory(),
             # "worm"
             MolluskFactory(),
@@ -49,7 +49,7 @@ class SeaLifeFactory(LifeFactory):
         # "fish,5-10"
         # "cetacean,0-4"
         # "shark,0-4"
-        # "crustacean,1-4"
+        yield from CrustaceanFactory().multiple(1, 4)
         yield from CnidariaFactory().multiple(1, 4)
         yield from MolluskFactory().multiple(1, 4)
         yield from ClamFactory().multiple(1, 4)
@@ -62,7 +62,7 @@ class AbyssLifeFactory(LifeFactory):
         # "fish,3-6"
         # "cetacean,0-2"
         # "shark,0-2"
-        # "crustacean,2-5"
+        yield from CrustaceanFactory().multiple(2, 5)
         yield from CnidariaFactory().multiple(2, 5)
         yield from MolluskFactory().multiple(2, 5)
         yield from ClamFactory().multiple(2, 5)
@@ -85,7 +85,7 @@ class BeachLifeFactory(LifeFactory):
 class RiverLifeFactory(LifeFactory):
     def children(self):
         # "fish,5-15"
-        # "crustacean,0-10"
+        yield from CrustaceanFactory().multiple(0, 10)
         yield from PlanktonFactory().multiple(2, 8)
         # "bird,0-5"
         # "small mammal,0-2"
@@ -100,7 +100,7 @@ class LakeLifeFactory(LifeFactory):
         # "sea monster,1%"
         # "fish,5-15"
         # "amphibian,0-5"
-        # "crustacean,0-10"
+        yield from CrustaceanFactory().multiple(0, 10)
         # "bird,0-5"
         yield from PlanktonFactory().multiple(5, 15)
         # "small mammal,0-2"
@@ -230,8 +230,7 @@ class NebulaLifeFactory(LifeFactory):
 
 class BlackHoleLifeFactory(LifeFactory):
     def children(self):
-        # "crustacean,0.2%"
-        yield None
+        yield CrustaceanFactory().probable(0.2)
 
 
 class StarLifeFactory(LifeFactory):

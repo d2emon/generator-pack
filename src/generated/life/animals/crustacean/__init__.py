@@ -1,64 +1,34 @@
 """
-Crustaceans
-
+- CrustaceanLimb
+- CrustaceanLeg
+- CrustaceanClaw
+- CrustaceanShell
 - Crustacean
 - Crustacean Body
-- Crustacean Thoughts
-- Crustacean Thought
 """
-from generated.nested_v2.models import Mind
-from generated.life.animal_body import AnimalBody, SimpleEye, SoftFlesh, CrustaceanLeg, CrustaceanClaw, CrustaceanShell
-from generated.mind import SimpleThoughts, Thought
-from generated.life.biology.organism import Organism
-from genesys.nested.data import lookups
+from ....materials import Chitin
+from ...animal_body.limb import Limb
+from ...animal_body.skin import Exoskeleton
+from ..animal import Animal, AnimalBody
 
 
-class DataProvider:
-    crustacean_thought = lookups.crustacean_thoughts
-    crustacean = lookups.crustacean
+class CrustaceanLeg(Limb):
+    default_name = 'leg'
+
+    chitin = Limb.child_property(Chitin)
+
+
+class CrustaceanClaw(CrustaceanLeg):
+    default_name = 'claw'
+
+
+class CrustaceanShell(Exoskeleton):
+    default_name = 'shell'
 
 
 class CrustaceanBody(AnimalBody):
-    liquid = AnimalBody.child_property(Mind)
-
-    class Factory(AnimalBody.Factory):
-        data_provider_class = DataProvider
-
-        class ChildrenFactory(AnimalBody.Factory.ChildrenFactory):
-            def builders(self):
-                yield from SimpleEye.multiple(2, 6)
-                yield Mind
-                yield from CrustaceanLeg.multiple(6, 8)
-                yield from CrustaceanClaw.multiple(2)
-                yield CrustaceanShell
-                yield SoftFlesh
+    pass
 
 
-class CrustaceanThought(Thought):
-    class Factory(Thought.Factory):
-        data_provider_class = DataProvider
-
-        class BaseFactory(Thought.Factory.BaseFactory):
-            thoughts = property(lambda self: self.provider.crustacean_thought)
-
-
-class CrustaceanThoughts(SimpleThoughts):
-    class Factory(SimpleThoughts.Factory):
-        data_provider_class = DataProvider
-
-        class ChildrenFactory(SimpleThoughts.Factory.ChildrenFactory):
-            def builders(self):
-                yield from CrustaceanThought.multiple(2, 3)
-
-
-class Crustacean(Organism):
-    class Factory(Organism.Factory):
-        data_provider_class = DataProvider
-
-        class BaseFactory(Organism.Factory.BaseFactory):
-            def __next__(self):
-                return next(self.provider.crustacean)
-
-        class ChildrenFactory(Organism.Factory.ChildrenFactory):
-            body_class = CrustaceanBody
-            mind_class = CrustaceanThoughts
+class Crustacean(Animal):
+    pass

@@ -6,7 +6,7 @@
 - InsectWing
 """
 from ...materials import Chitin, Dew
-from .crustacean import CrustaceanLeg, CrustaceanClaw, CrustaceanLimb
+from ..animals.crustacean import CrustaceanLeg, CrustaceanClaw, CrustaceanLimb
 from .limb import Wing
 from .skin import Scales
 from .venom import Venom
