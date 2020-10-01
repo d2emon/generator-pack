@@ -1,6 +1,12 @@
 from .animal import AnimalBodyFactory, AnimalFactory
 from .plankton import PlanktonThoughtFactory, PlanktonThoughtsFactory, PlanktonPsycheFactory, PlanktonBodyFactory, \
     PlanktonFactory
+from .plankton import PlanktonThoughtFactory, PlanktonThoughtsFactory, PlanktonPsycheFactory, PlanktonBodyFactory, \
+    PlanktonFactory
+from .cnidaria import CnidariaThoughtFactory, CnidariaThoughtsFactory, CnidariaPsycheFactory, CnidariaBodyFactory, \
+    CnidariaFactory
+from .mollusk import *
+
 """
 //single-celled organisms
 # new Thing("bacteria",["bacteria body","bacteria thoughts"],[["pico","nitro","sulfuro","oxy","toxi","micro","nano","proto","archi","ferro","mono","poly","schizo","myxo","hydro","noo","zoo","phyto","aqui","acido","cyano","chloro","chromo","fibro","osteo","spiro","bacillo","flagello","helio","anaero","photo","litho","methano","cerebro","cephalo","brachio","plasmo","ethylo"],["amoeba","bacteria","virus"]]);
@@ -22,10 +28,10 @@ from .plankton import PlanktonThoughtFactory, PlanktonThoughtsFactory, PlanktonP
 # new Thing("clam thought",[],["what","wait","hold on","wait why","i don't","stay clam and carry on","oh no","why this","that's","no","yes","wait no","but","haha what","please explain","that's not","i'm confused","please why","slurp","okay","okay what","what is this","what's that"]);
 
 //cnidaria
-new Thing("cnidaria",["cnidaria body","cnidaria thoughts"],["urchin","starfish","sea cucumber","sea anemon","coral","box jelly","jellyfish","hydra","man'o'war","sponge","sea nettle","siphonophore","ctenophore","tunicate","trichordate"]);//urchins and starfish and sponges are unrelated to cnidarians but I don't really care
-new Thing("cnidaria body",["simple mouth","jelly","soft flesh"],"body");
-new Thing("cnidaria thoughts",["cnidaria thought"],"thoughts");
-new Thing("cnidaria thought",[],[["shhhhl","shhl","schllll","gl","schgl","gbl","swwwl"],["urp","orp","arp","urps","orpsss"]]);
+# new Thing("cnidaria",["cnidaria body","cnidaria thoughts"],["urchin","starfish","sea cucumber","sea anemon","coral","box jelly","jellyfish","hydra","man'o'war","sponge","sea nettle","siphonophore","ctenophore","tunicate","trichordate"]);//urchins and starfish and sponges are unrelated to cnidarians but I don't really care
+# new Thing("cnidaria body",["simple mouth","jelly","soft flesh"],"body");
+# new Thing("cnidaria thoughts",["cnidaria thought"],"thoughts");
+# new Thing("cnidaria thought",[],[["shhhhl","shhl","schllll","gl","schgl","gbl","swwwl"],["urp","orp","arp","urps","orpsss"]]);
 
 //mollusks
 new Thing("mollusk",["mollusk body","mollusk thoughts"],["sea slug","sea snail","squid","octopus","vampire squid","clione","sea angel","cuttlefish","nautilus","giant squid","colossal squid","mimic octopus"]);

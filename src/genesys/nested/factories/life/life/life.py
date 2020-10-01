@@ -2,7 +2,7 @@ from generated import life
 from ...factory import Factory
 from ..body import PersonFactory
 from ..vegetation import TreeFactory, GrassBladeFactory
-from ..animals import PlanktonFactory
+from ..animals import PlanktonFactory, ClamFactory, CnidariaFactory
 
 
 class LifeFactory(Factory):
@@ -15,10 +15,10 @@ class LifeFactory(Factory):
             # "fish"
             # "shark"
             # "crustacean"
-            # "cnidaria"
+            CnidariaFactory(),
             # "worm"
             # "mollusk"
-            # "clam"
+            ClamFactory(),
             PlanktonFactory(),
             # "reptile"
             # "amphibian"
@@ -50,9 +50,9 @@ class SeaLifeFactory(LifeFactory):
         # "cetacean,0-4"
         # "shark,0-4"
         # "crustacean,1-4"
-        # "cnidaria,1-4"
+        yield from CnidariaFactory().multiple(1, 4)
         # "mollusk,1-4"
-        # "clam,1-4"
+        yield from ClamFactory().multiple(1, 4)
         yield from PlanktonFactory().multiple(2, 8)
 
 
@@ -63,9 +63,9 @@ class AbyssLifeFactory(LifeFactory):
         # "cetacean,0-2"
         # "shark,0-2"
         # "crustacean,2-5"
-        # "cnidaria,2-5"
+        yield from CnidariaFactory().multiple(2, 5)
         # "mollusk,2-5"
-        # "clam,2-5"
+        yield from ClamFactory().multiple(2, 5)
         yield from PlanktonFactory().multiple(2, 8)
 
 
@@ -79,8 +79,7 @@ class BeachLifeFactory(LifeFactory):
         # "predatory mammal,5%"
         # "small mammal,2-5"
         # "insect,3-10"
-        # "clam,3-8"
-        yield None
+        yield from ClamFactory().multiple(3, 8)
 
 
 class RiverLifeFactory(LifeFactory):
