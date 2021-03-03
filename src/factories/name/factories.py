@@ -1,5 +1,5 @@
 from genesys.model.models import Name
-from genesys.fng import genders
+from v1.fng import genders
 from ..model import ModelFactory
 
 
