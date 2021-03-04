@@ -1,13 +1,13 @@
-from v1.fng.genesys.list_item import ListItemProvider
+from v1.fng.genesys.data_block import NameBlock
 
 
 class Mark:
-    types = []  # 12
-    places_from = ListItemProvider([])  # 13
-    places_through = ListItemProvider([])  # 14
-    places_to = ListItemProvider([])  # 15
-    memory_types = ListItemProvider([])  # 16
-    memory_ofs = ListItemProvider([])  # 17
+    types = NameBlock()  # 12
+    places_from = NameBlock()  # 13
+    places_through = NameBlock()  # 14
+    places_to = NameBlock()  # 15
+    memory_types = NameBlock()  # 16
+    memory_ofs = NameBlock()  # 17
 
     def __init__(self, name_id):
         self.name_id = name_id
@@ -18,36 +18,36 @@ class Scar(Mark):
 
 
 class Birthmark(Mark):
-    places_from = ListItemProvider([])  # 13
-    places_through = ListItemProvider([])  # 14
-    places_to = ListItemProvider([])  # 15
+    places_from = NameBlock()  # 13
+    places_through = NameBlock()  # 14
+    places_to = NameBlock()  # 15
 
 
 class Moles(Mark):
-    places_from = ListItemProvider([])  # 13
-    places_through = ListItemProvider([])  # 14
-    places_to = ListItemProvider([])  # 15
+    places_from = NameBlock()  # 13
+    places_through = NameBlock()  # 14
+    places_to = NameBlock()  # 15
 
 
 class Freckles(Mark):
-    places_from = ListItemProvider([])  # 13
-    places_through = ListItemProvider([])  # 14
-    places_to = ListItemProvider([])  # 15
-    memory_types = ListItemProvider([])  # 16
-    memory_ofs = ListItemProvider([])  # 17
+    places_from = NameBlock()  # 13
+    places_through = NameBlock()  # 14
+    places_to = NameBlock()  # 15
+    memory_types = NameBlock()  # 16
+    memory_ofs = NameBlock()  # 17
 
 
 class SmoothSkin(Mark):
-    places_from = ListItemProvider([])  # 13
-    places_through = ListItemProvider([])  # 14
-    places_to = ListItemProvider([])  # 15
-    memory_types = ListItemProvider([])  # 16
-    memory_ofs = ListItemProvider([])  # 17
+    places_from = NameBlock()  # 13
+    places_through = NameBlock()  # 14
+    places_to = NameBlock()  # 15
+    memory_types = NameBlock()  # 16
+    memory_ofs = NameBlock()  # 17
 
 
 class SoftSkin(Mark):
-    places_from = ListItemProvider([])  # 13
-    places_through = ListItemProvider([])  # 14
-    places_to = ListItemProvider([])  # 15
-    memory_types = ListItemProvider([])  # 16
-    memory_ofs = ListItemProvider([])  # 17
+    places_from = NameBlock()  # 13
+    places_through = NameBlock()  # 14
+    places_to = NameBlock()  # 15
+    memory_types = NameBlock()  # 16
+    memory_ofs = NameBlock()  # 17

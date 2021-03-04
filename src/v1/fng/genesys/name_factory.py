@@ -1,46 +1,127 @@
+import random
 from v1.fng.genesys.name import Name
 
 
 class NameFactory:
-    name_class = Name
-    factory_classes = []
-    blocks_map = {}
-    default_blocks = {}
+    """
+    Factory for name
 
-    def __init__(self, blocks):
-        super().__init__(blocks)
-        # self.providers = providers or self.default_providers
+    Class fields:
+
+    - name_class: Class for name
+    - default_blocks: Default data blocks
+    - blocks_map: Map for data blocks
+    """
+
+    name_class = Name
+    default_blocks = {}
+    blocks_map = {}
+
+    def __init__(self, blocks=None):
+        """
+        :param blocks: Data blocks for factory
+        """
         self.blocks = blocks or self.default_blocks
+
+    def get_name(self, item_id=None) -> Name:
+        """
+        Generate name with factory by item_id
+
+        :param item_id: Id of item or None
+        :return: Generated name
+        """
+        name = ''
+        while name == '':
+            name = self()
+
+        return name
+
+    def get_items(self) -> dict:
+        """
+        :return: Dict with generated data
+        """
+        return {item_id: next(self.blocks[block_id]) for item_id, block_id in self.blocks_map.items()}
+
+    def validate(self, items) -> dict:
+        """
+        Validate items
+
+        :param items: Name items
+        :return: Validated name items
+        """
+        return items
+
+    def __call__(self, *args, **kwargs) -> Name:
+        """
+        Generate name
+
+        :param args: Args for name generation
+        :param kwargs: Kwargs for name generation
+        :return: Generated name
+        """
+        items = self.get_items()
+        items = self.validate(items)
+        return self.name_class(items)
+
+    def names(self) -> list:
+        """
+        Generate 10 names
+
+        :return: List of 10 names
+        """
+        return [self(factory_id=item_id * 10) for item_id in range(10)]
+
+
+class ComplexNameFactory(NameFactory):
+    """
+    Complex Factory for name
+
+    Class fields:
+
+    - factory_classes: Classes for child factories
+    """
+
+    factory_classes = []
+
+    def __init__(self, blocks=None):
+        """
+        :param blocks: Data blocks for factory
+        """
+        super().__init__(blocks)
         self.__factories = [factory(self.blocks) for factory in self.factory_classes]
 
     @property
-    def factories(self):
+    def factories(self) -> list:
+        """
+        :return: Factories for complex factory
+        """
         return self.__factories
 
-    def get_items(self):
-        return {item_id: next(self.blocks[block_id]) for item_id, block_id in self.blocks_map.items()}
+    def get_factory(self, factory_id):
+        """
+        Get child factory by factory_id
 
-    def get_factory(self, item_id):
-        return self
+        :param factory_id: Id of factory
+        :return: Child factory
+        """
+        return self.__factories[factory_id]
 
-    def get_name(self, item_id):
-        factory = self.get_factory(item_id)
+    def __call__(self, *args, factory_id=None, **kwargs) -> Name:
+        """
+        Generate name
+
+        :param args: Args for name generation
+        :param factory_id: Id of factory or None
+        :param kwargs: Kwargs for name generation
+        :return: Generated name
+        """
+        if factory_id is None:
+            factory_id = random.randrange(100)
+
+        factory = self.get_factory(factory_id)
 
         name = ''
         while name == '':
             name = factory()
 
         return name
-
-    def names(self):
-        return [self.get_name(item_id) for item_id in range(10)]
-
-    def validate(self, items):
-        return items
-
-    def __items(self):
-        items = self.get_items()
-        return self.validate(items)
-
-    def __call__(self, *args, **kwargs):
-        return self.name_class(self.__items())

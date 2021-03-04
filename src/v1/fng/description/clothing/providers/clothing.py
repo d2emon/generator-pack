@@ -1,5 +1,5 @@
 from genesys.fng.v1.factories.character import Male, Female
-from v1.fng.genesys.list_item import ListItemProvider
+from genesys.fng.list_item import ListItemProvider
 from v1.fng.description.clothing.models.sleeves import SleeveLength
 
 

@@ -1,4 +1,4 @@
-# from .alien import AlienNameGenerator, alien_name_generate
+from .alien import AlienName, AlienNameFactory
 # from .amazon import AmazonNameGenerator, amazon_name_generate
 # <li><a href="anansi-names.php">Anansi Names <span class="red"> - New!</span></a></li>
 # from .angel import AngelNameGenerator, angel_name_generate

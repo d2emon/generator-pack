@@ -1,4 +1,5 @@
-from v1.fng.genesys.name_factory import NameFactory, Name
+from v1.fng.genesys.name_factory import NameFactory, ComplexNameFactory
+from v1.fng.genesys.name import Name
 from v1.fng.genesys.data_block import load_data
 from v1.fng.genesys.validators import item_is_not_unique, item_equals, generate_while
 
@@ -31,7 +32,7 @@ class AlienName3(AlienName):
 
 # Factory
 
-class AlienNameFactory(NameFactory):
+class AlienNameFactory(ComplexNameFactory):
     class AlienNameFactory1(NameFactory):
         name_class = AlienName1
         blocks_map = {
@@ -147,10 +148,10 @@ class AlienNameFactory(NameFactory):
         16: ("d", "ds", "k", "ks", "l", "ll", "ls", "n", "ns", "r", "rs", "s", "t", "ts", "th", "x", "", "", "", ""),
     })
 
-    def get_factory(self, item_id):
-        if item_id < 4:
+    def get_factory(self, factory_id):
+        if factory_id < 40:
             return self.factories[0]
-        elif item_id < 7:
+        elif factory_id < 70:
             return self.factories[1]
         else:
             return self.factories[2]

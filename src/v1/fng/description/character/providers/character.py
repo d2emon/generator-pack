@@ -1,5 +1,5 @@
 # from factories._unknown.character import race
-from v1.fng.genesys.list_item import ListItemProvider
+from genesys.fng.list_item import ListItemProvider
 # from ..marks import Scar, Birthmark, Moles, Frecles, SmoothSkin, SoftSkin
 from genesys.fng.models.description.character import Scar, Birthmark, Moles, Freckles, SmoothSkin, SoftSkin
 from v1.fng.description.character.models import race
