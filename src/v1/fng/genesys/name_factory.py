@@ -1,5 +1,6 @@
 import random
 from v1.fng.genesys.name import Name
+from v1.fng.genesys.genders import MALE
 
 
 class NameFactory:
@@ -81,30 +82,38 @@ class ComplexNameFactory(NameFactory):
     - factory_classes: Classes for child factories
     """
 
-    factory_classes = []
+    factory_classes = {}
 
     def __init__(self, blocks=None):
         """
         :param blocks: Data blocks for factory
         """
         super().__init__(blocks)
-        self.__factories = [factory(self.blocks) for factory in self.factory_classes]
+        self.__factories = {gender_id: factory(self.blocks) for gender_id, factory in self.factory_classes.items()}
 
     @property
-    def factories(self) -> list:
+    def factories(self) -> dict:
         """
         :return: Factories for complex factory
         """
         return self.__factories
 
-    def get_factory(self, factory_id):
+    def factory(self, factory_id):
         """
         Get child factory by factory_id
 
         :param factory_id: Id of factory
         :return: Child factory
         """
-        return self.__factories[factory_id]
+        return self.__factories.get(factory_id)
+
+    def factory_id(self):
+        """
+        Get random factory_id
+
+        :return: Child factory id
+        """
+        return random.randrange(100)
 
     def __call__(self, *args, factory_id=None, **kwargs) -> Name:
         """
@@ -115,13 +124,20 @@ class ComplexNameFactory(NameFactory):
         :param kwargs: Kwargs for name generation
         :return: Generated name
         """
-        if factory_id is None:
-            factory_id = random.randrange(100)
-
-        factory = self.get_factory(factory_id)
+        factory = self.factory(factory_id if factory_id is None else self.factory_id())
 
         name = ''
         while name == '':
             name = factory()
 
         return name
+
+
+class GenderNameFactory(ComplexNameFactory):
+    def factory_id(self):
+        """
+        Get random factory_id
+
+        :return: Child factory id
+        """
+        return MALE

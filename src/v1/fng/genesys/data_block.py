@@ -17,6 +17,9 @@ class NameItem:
     def __str__(self):
         return str(self.value)
 
+    def __len__(self):
+        return len(str(self))
+
 
 class NameBlock:
     """
@@ -28,6 +31,9 @@ class NameBlock:
         :param values: Values for NameItems
         """
         self.values = [NameItem(item_id, value) for item_id, value in enumerate(values)]
+
+    def get_random_id(self):
+        return random.randrange(len(self.values))
 
     def __iter__(self):
         return self

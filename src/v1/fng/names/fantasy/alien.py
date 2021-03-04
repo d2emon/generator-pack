@@ -11,12 +11,6 @@ class AlienName(Name):
     def value(self):
         return f"{self.items[1]}{self.items[2]}{self.items[3]}{self.items[4]}{self.items[5]}"
 
-    def __str__(self):
-        return super().__str__().title()
-
-    def __repr__(self):
-        return f"<AlienName: \"{self}\">"
-
 
 class AlienName1(AlienName):
     pass
@@ -33,7 +27,11 @@ class AlienName3(AlienName):
 # Factory
 
 class AlienNameFactory(ComplexNameFactory):
+    """Alien Species Name Factory"""
+
     class AlienNameFactory1(NameFactory):
+        description = """The first 4 names have a much higher chance of having a more guttural sound to them, ideal for
+            the stronger and brutish looking aliens."""
         name_class = AlienName1
         blocks_map = {
             1: 1,
@@ -58,6 +56,8 @@ class AlienNameFactory(ComplexNameFactory):
             return items
 
     class AlienNameFactory2(NameFactory):
+        description = """The next 3 names have a much higher chance of having a more melodic sound to them, making them
+            ideal for the softer and gentle looking aliens."""
         name_class = AlienName2
         blocks_map = {
             1: 6,
@@ -77,6 +77,9 @@ class AlienNameFactory(ComplexNameFactory):
             return items
 
     class AlienNameFactory3(NameFactory):
+        description = """The last 3 names can sound both guttural and melodic and anything in between. These names are
+            more randomized than the previous 2 types and unlike the other 2 types, these aren't always easy to
+            pronounce in English."""
         name_class = AlienName3
         blocks_map = {
             1: 12,
@@ -100,11 +103,14 @@ class AlienNameFactory(ComplexNameFactory):
 
             return items
 
-    factory_classes = [
-        AlienNameFactory1,
-        AlienNameFactory2,
-        AlienNameFactory3,
-    ]
+    description = """It's both easy and difficult to create alien names, as they can be anything in any language. But
+        the names have to sound like a good fit for the species you've invented, so I've tried to make sure many
+        different types of names can be generated, but they generally fit in 3 different categories."""
+    factory_classes = {
+        0: AlienNameFactory1,
+        1: AlienNameFactory2,
+        2: AlienNameFactory3,
+    }
     default_blocks = load_data({
         1: ("br", "c", "cr", "dr", "g", "gh", "gr", "k", "kh", "kr", "n", "q", "qh", "sc", "scr", "str", "st", "t",
             "tr", "thr", "v", "vr", "x", "z", "", "", "", "", ""),

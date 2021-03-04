@@ -1,4 +1,6 @@
-from factories.name import NameFactory, random_generator
+from v1.fng.genesys.name_factory import NameFactory, ComplexNameFactory
+from v1.fng.genesys.name import Name
+from v1.fng.genesys.data_block import load_data
 
 
 names1 = ["b", "bl", "br", "c", "chr", "cl", "cr", "d", "dr", "f", "g", "gl", "gr", "h", "j", "k", "kl", "kr", "m", "n",
@@ -17,35 +19,75 @@ names6 = ["adia", "ameia", "anta", "asca", "cabe", "ce", "cleia", "cyone", "cyra
           "yope", "yrbe", "ytie"]
 
 
-class AmazonNameGenerator(NameFactory):
+# Models
+
+class AmazonName(Name):
+    @property
+    def value(self):
+        return f"{self.items[1]}{self.items[2]}{self.items[3]}{self.items[4]}{self.items[5]}"
+
+
+class AmazonName1(AmazonName):
     pass
 
 
-class Amazon1NameGenerator(AmazonNameGenerator):
-    data = [
-        names1,
-        names2,
-        names3,
-        names5,
-        names6,
-    ]
+class AmazonName2(AmazonName):
+    pass
 
 
-class Amazon2NameGenerator(AmazonNameGenerator):
-    data = [
-        names1,
-        names2,
-        names4,
-        names2,
-        names6,
-    ]
+# Factory
 
+class AmazonNameFactory(ComplexNameFactory):
+    """Amazon Name Factory"""
 
-def amazon_selector(generator_id=None):
-    if generator_id < 5:
-        return Amazon1NameGenerator
-    return Amazon2NameGenerator
+    class AmazonNameFactory1(NameFactory):
+        name_class = AmazonName1
+        blocks_map = {
+            1: 1,
+            2: 2,
+            3: 3,
+            4: 5,
+            5: 6,
+        }
 
+    class AmazonNameFactory2(NameFactory):
+        name_class = AmazonName2
+        blocks_map = {
+            1: 1,
+            2: 2,
+            3: 3,
+            4: 2,
+            5: 6,
+        }
 
-def amazon_name_generate(generator_id=None):
-    return random_generator(amazon_selector, generator_id=generator_id).generate()
+    description = """The names are heavily based on the Amazons of ancient Greece, so while most names will have various
+        melodic sounds, most names do tend to have a Greek feel to it.
+
+        The Amazons are female warriors who lived in an all-female society. They're known for their strength and power,
+        their way of life, and their victories gave them a legendary status. The term Amazon was soon synonymous with
+        female warrior.
+        Men weren't allowed in the Amazon towns, with the exception of once a year to make sure their tribe didn't go
+        extinct.
+        
+        The Amazons have been depicted in many modern works of fiction, and their legendary status usually accompanies
+        them, like Wonder Woman.
+        Even in these modern versions, the Amazon women tend to have Greek or Greek sounding names, like Hippolyta, the
+        queen of the Amazons and mother of Diana, otherwise known as Wonder Woman."""
+    factory_classes = {
+        0: AmazonNameFactory1,
+        1: AmazonNameFactory2,
+    }
+    default_blocks = load_data({
+        1: names1,
+        2: names2,
+        3: names3,
+        4: names4,
+        5: names5,
+        6: names6,
+    })
+
+    def get_factory(self, factory_id):
+        if factory_id < 50:
+            return self.factories[0]
+        else:
+            return self.factories[1]

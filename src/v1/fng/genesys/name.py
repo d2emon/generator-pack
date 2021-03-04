@@ -26,5 +26,21 @@ class Name:
         """
         return name
 
+    @classmethod
+    def prepare(cls, name) -> str:
+        """
+        Prepare name
+
+        :param name: Unprepared name
+        :return: Prepared name
+        """
+        return name.title()
+
     def __str__(self):
-        return self.test_swear(self.value)
+        value = self.value
+        value = self.test_swear(value)
+        value = self.prepare(value)
+        return value
+
+    def __repr__(self):
+        return f"<Name: \"{self}\">"
