@@ -110,7 +110,7 @@ class AlienNameFactory(ComplexNameFactory):
         16: fantasy.alien.nm16,
     })
 
-    def get_factory(self, factory_id):
+    def factory(self, factory_id):
         if factory_id < 40:
             return self.factories[0]
         elif factory_id < 70:

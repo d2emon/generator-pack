@@ -1,18 +1,29 @@
-from factories.name import NameFactory
+from v1.fixtures.data_block import load_data
+from v1.fixtures.fng.names import fantasy
+from v1.models.fng.names.fantasy import BansheeName
+from v1.factories.fng.name_factory import NameFactory
 
 
-class BansheeNameGenerator(NameFactory):
-    data = [
-        ["Abandoned","Aching","Agony","Anguish","Anguished","Bawling","Bitter","Blaring","Blind","Bloodied","Bloody","Broken","Burning","Cackling","Craven","Crazed","Crying","Dark","Deafening","Depraved","Deranged","Dire","Distressed","Drained","Dread","Dreadful","Enraged","Evanescent","Faded","Fading","Flustered","Forsaken","Frail","Grave","Grieving","Grievous","Grim","Haunted","Haunting","Heartrending","Heartsick","Hollow","Hopeless","Howling","Humming","Hurt","Hysterical","Ivory","Lamenting","Lone","Lonely","Lost","Mad","Maniacal","Manic","Mewling","Miserable","Misery","Moaning","Mournful","Mourning","Praying","Ringing","Roaming","Screaming","Screeching","Searching","Seeking","Shadowy","Shady","Shrieking","Silver","Sinister","Skeletal","Skinny","Slivery","Sniveling","Sobbing","Sorrowing","Sorrowing","Spiteful","Tearful","Torment","Tormented","Tortured","Vengeful","Vexed","Vicious","Wailing","Wandering","Warped","Waving","Weeping","Whimpering","Whining","Wicked","Woeful","Worn","Wretched","Yammering","Yelling","Yelping"],
-        ["Apparition", "Banshee", "Bride", "Bridesmaid", "Dame", "Damsel", "Daughter", "Gal", "Girl", "Lady", "Maid",
-         "Maiden", "Matriarch", "Matron", "Mother", "Nurse", "Priestess", "Soul", "Specter", "Spirit", "Widow", "Woman",
-         "Wraith", "Angel", "Lover", "Fiancee", "Child", "Youth", "Aunt"],
-    ]
+class BansheeNameFactory(NameFactory):
+    """Banshee Name Factory
 
-    @classmethod
-    def make_name(cls, parts):
-        return "The {} {}".format(*parts)
+    A banshee is a female spirit who mourns the loss of a relative, and tends to do so by shrieking loudly. There are
+    many different variants of banshees today, some come to existence through huge amounts of pain for example, while
+    others are simply beings with the power to deafen their enemies. The overlapping theme is almost always high pitched
+    screams and feminine spirits though.
 
+    Banshees originate in Irish mythology, and as such the only named banshees have Irish names. Since I already have an
+    Irish name generator on this site I decided to focus entirely on the more nickname-like names instead. Names like
+    "The Ivory Maiden" or "The Shrieking Wife", for example. These names tend to be more common in games as well, but if
+    you want to add more back-story to your banshee, and require a personal name, I definitely recommend starting with
+    real names, either Irish or otherwise depending on the cultural background you need."""
 
-def banshee_name_generate():
-    return BansheeNameGenerator.generate()
+    name_class = BansheeName
+    blocks_map = {
+        1: 1,
+        2: 2,
+    }
+    default_blocks = load_data({
+        1: fantasy.banshee.nm1,
+        2: fantasy.banshee.nm2,
+    })

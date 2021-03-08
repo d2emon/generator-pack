@@ -54,7 +54,7 @@ class AmazonNameFactory(ComplexNameFactory):
         6: fantasy.amazon.names6,
     })
 
-    def get_factory(self, factory_id):
+    def factory(self, factory_id):
         if factory_id < 50:
             return self.factories[0]
         else:

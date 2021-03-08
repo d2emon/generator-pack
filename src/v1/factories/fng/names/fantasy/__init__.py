@@ -1,17 +1,16 @@
-from .alien import AlienName, AlienNameFactory
-# from .amazon import AmazonNameGenerator, amazon_name_generate
-# <li><a href="anansi-names.php">Anansi Names <span class="red"> - New!</span></a></li>
-# from .angel import AngelNameGenerator, angel_name_generate
-# from .animal_species import AnimalSpeciesNameGenerator, animal_species_generate
-# from .animatronic import AnimatronicNameGenerator, animatronic_names_generate
-# Anime Character Names
-# from .anthousai import AnthousaiNameGenerator, anthousai_name_generate
-# <li><a href="apocalypse-mutant-names.php">Apocalypse/Mutant Names</a></li>
-# # from .apocalypse import ApocalypseNicknameGenerator, apocalypse_nickname_generate
-# from .artificial_itelligence import ArtificialIntelligenceNameGenerator, artificial_intelligence_name_generate
-# from .bandit import BanditNameGenerator, bandit_name_generate
-# from .banshee import BansheeNameGenerator, banshee_name_generate
-# from .barbarian import BarbarianNameGenerator, barbarian_name_generate
+from .alien import AlienNameFactory
+from .amazon import AmazonNameFactory
+from .anansi import AnansiNameFactory
+from .angel import AngelNameFactory
+from .animal_species import AnimalSpeciesNameFactory
+from .animatronic import AnimatronicNameFactory
+from .anime_character import AnimeNameFactory
+from .anthousai import AnthousaiNameFactory
+from .apocalypse import ApocalypseNicknameFactory
+from .artificial_itelligence import ArtificialIntelligenceNameFactory
+from .bandit import BanditNameFactory
+from .banshee import BansheeNameFactory
+from .barbarian import BarbarianNameFactory
 # <li><a href="http://www.fantasynamegenerators.com/basilisk-names.php">Basilisk Names</a></li>
 # <li><a href="http://www.fantasynamegenerators.com/birdfolk-names.php">Birdfolk Names</a></li>
 # Bluecap

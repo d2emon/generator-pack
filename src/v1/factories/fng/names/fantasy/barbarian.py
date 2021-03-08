@@ -1,136 +1,194 @@
-nm1 = ["ae","au","ei","a","e","i","o","u","a","e","i","o","u","a","e","i","o","u"]
-nm2 = ["","","","b","bl","br","bh","d","dr","dh","f","fr","g","gh","gr","gl","h","hy","hr","j","k","kh","kr","l","ll","m","n","p","pr","r","rh","s","sk","sg","sm","sn","st","t","th","thr","ty","v","y"]
-nm3 = ["bl","br","d","db","dbr","dd","ddg","dg","dl","dm","dr","dv","f","fd","fgr","fk","fl","fn","fr","fst","fv","g","gb","gd","gf","gg","ggv","gl","gn","gr","gss","gv","k","kk","l","lb","lc","ld","ldr","lf","lfr","lg","lgr","lk","ll","llg","llk","llv","lm","ln","lp","lr","ls","lsk","lsn","lst","lsv","lt","lv","m","md","mk","ml","mm","ms","n","nb","nd","ndr","ng","nl","nn","nng","nr","nsk","nt","nv","nw","p","pl","pp","pr","r","rb","rd","rdg","rf","rg","rgr","rk","rkm","rl","rls","rm","rn","rng","rngr","rnh","rnk","rns","rnv","rr","rst","rt","rth","rtm","rv","s","sb","sbr","sg","sgr","sk","sl","sm","sn","sr","ssk","st","stm","str","sv","t","tg","th","thg","thn","thr","thv","tm","tr","tt","ttf","tv","v","yv","z","zg","zl","zn"]
-nm4 = ["d","dr","f","g","kr","k","l","ld","lf","lk","ll","lr","m","mm","n","nd","nn","r","rd","rn","rr","s","th","t"]
-nm5 = ["","","","b","br","bh","ch","d","dh","f","fr","g","gh","gr","gw","gl","h","j","k","kh","m","n","r","rh","s","sh","st","sv","t","th","thr","tr","v","w"]
-nm6 = ["ae","ea","ie","ei","io","a","e","i","o","u","a","e","i","o","u","a","e","i","o","u","a","e","i","o","u","a","e","i","o","u"]
-nm7 = ["bj","c","d","dd","df","dl","dr","f","ff","fl","fn","fr","fth","g","gd","gm","gn","gnh","gr","h","hh","k","l","ld","lf","lfh","lg","lgr","lh","lk","ll","lm","lr","ls","lv","m","mm","n","nd","ndr","ng","ngr","ngv","nh","nl","nn","nnh","nr","ns","nt","nv","r","rd","rf","rg","rgh","rgr","rh","rk","rl","rm","rn","rnd","rng","rr","rst","rt","rth","rtr","rv","s","sb","sd","sg","sh","sl","st","stn","str","sv","t","thr","tk","tr","tt","tth","v","y","yj","ym","yn"]
-nm8 = ["","","","","f","g","h","l","n","nn","s","sh","th","y"]
+from v1.fixtures import genders
+from v1.fixtures.data_block import load_data
+from v1.fixtures.fng.names import fantasy
+from v1.models.fng.names.fantasy import BarbarianName, BarbarianName1, BarbarianName2, MaleBarbarianName3, \
+    FemaleBarbarianName3
+from v1.factories.fng.name_factory import NameFactory, ComplexNameFactory
+from v1.factories.fng.validators import generate_while
 
 
+class BarbarianNameFactory(ComplexNameFactory):
+    """Barbarian Name Factory
 
+    A barbarian could be pretty much anything, it's mostly a term that relies on the eye of the beholder. A barbarian is
+    usually somebody seen as a primitive and often rough and cruel person, so anybody could fit that description, but
+    there are some stereotypes. Vikings are often seen as barbarians, as were many Nordic people. Ancient Mongolians are
+    often seen as barbarians, and so were Native Americans. Since enemies are often seen as barbarians as well, pretty
+    much every group of people has probably been considered to be barbaric.
 
-"""
-FEMALE
+    This generator has a lot of different possible influences for each name, some real, some fictional and some merely
+    because it sounds 'barbaric'. This means there's a wide variety of possible names, so some names will fit a specific
+    culture better than others. Most names do share the same overall feel however, so while not all names would work
+    well together as a single culture, the vast majority of names should still work for many stereotypical barbarian
+    styles, as well as several other styles."""
 
-rnd = Math.floor(Math.random() * nm5.length);
-rnd2 = Math.floor(Math.random() * nm6.length);
-rnd3 = Math.floor(Math.random() * nm8.length);
-if(i < 3){
-}else if(i < 8){
-}else{
-}
-"""
+    class MaleNameFactory1(NameFactory):
+        name_class = BarbarianName1
+        blocks_map = {
+            1: 2,
+            2: 1,
+            3: 4,
+        }
 
-import random
-from factories.name import NameFactory, random_generator
+    class MaleNameFactory2(NameFactory):
+        name_class = BarbarianName2
+        blocks_map = {
+            1: 2,
+            2: 1,
+            3: 4,
+            4: 1,
+            5: 3,
+        }
 
+        def validate(self, items):
+            if items[1].item_id < 3:
+                items[4] = generate_while(
+                    items[4],
+                    lambda item: item.item_id < 3,
+                    self.blocks[1],
+                )
 
-class BarbarianNameGenerator(NameFactory):
-    base_data = {
-        GENDER_MALE: [
-            nm2,
-            nm1,
-            nm4,
-        ],
-        GENDER_FEMALE: [
-            nm5,
-            nm6,
-            nm8,
-        ],
+            return items
+
+    class MaleNameFactory3(NameFactory):
+        name_class = MaleBarbarianName3
+        blocks_map = {
+            1: 2,
+            2: 1,
+            3: 4,
+            4: 1,
+            5: 3,
+            6: 1,
+            7: 3,
+        }
+
+        def validate(self, items):
+            if items[1].item_id < 3:
+                items[4] = generate_while(
+                    items[4],
+                    lambda item: item.item_id < 3,
+                    self.blocks[1],
+                )
+
+            if (items[1].item_id < 3) or (items[4].item_id < 3):
+                items[6] = generate_while(
+                    items[6],
+                    lambda item: item.item_id < 3,
+                    self.blocks[1],
+                )
+
+            return items
+
+    class FemaleNameFactory1(NameFactory):
+        name_class = BarbarianName1
+        blocks_map = {
+            1: 5,
+            2: 6,
+            3: 8,
+        }
+
+        def validate(self, items):
+            items[1] = generate_while(
+                items[1],
+                lambda item: item.item_id < 5,
+                self.blocks[5],
+            )
+
+            return items
+
+    class FemaleNameFactory2(NameFactory):
+        name_class = BarbarianName2
+        blocks_map = {
+            1: 5,
+            2: 6,
+            3: 8,
+            4: 6,
+            5: 7,
+        }
+
+        def validate(self, items):
+            if items[2].item_id < 5:
+                items[4] = generate_while(
+                    items[4],
+                    lambda item: item.item_id < 5,
+                    self.blocks[6],
+                )
+
+            return items
+
+    class FemaleNameFactory3(NameFactory):
+        name_class = FemaleBarbarianName3
+        blocks_map = {
+            1: 5,
+            2: 6,
+            3: 8,
+            4: 6,
+            5: 7,
+            6: 6,
+            7: 7,
+        }
+
+        def validate(self, items):
+            if items[2].item_id < 5:
+                items[4] = generate_while(
+                    items[4],
+                    lambda item: item.item_id < 5,
+                    self.blocks[6],
+                )
+
+            if (items[2].item_id < 5) or (items[4].item_id < 5):
+                items[6] = generate_while(
+                    items[6],
+                    lambda item: item.item_id < 5,
+                    self.blocks[6],
+                )
+
+            return items
+
+    factory_classes = {
+        f"{genders.MALE}.1": MaleNameFactory1,
+        f"{genders.FEMALE}.1": FemaleNameFactory1,
+        f"{genders.MALE}.2": MaleNameFactory2,
+        f"{genders.FEMALE}.2": FemaleNameFactory2,
+        f"{genders.MALE}.3": MaleNameFactory3,
+        f"{genders.FEMALE}.3": FemaleNameFactory3,
     }
-    data = {
-        GENDER_MALE: [],
-        GENDER_FEMALE: [],
-    }
+    default_blocks = load_data({
+        1: fantasy.barbarian.nm1,
+        2: fantasy.barbarian.nm2,
+        3: fantasy.barbarian.nm3,
+        4: fantasy.barbarian.nm4,
+        5: fantasy.barbarian.nm5,
+        6: fantasy.barbarian.nm6,
+        7: fantasy.barbarian.nm7,
+        8: fantasy.barbarian.nm8,
+    })
 
-    @classmethod
-    def generate_parts(cls, gender=GENDER_MALE, *args, **kwargs):
-        parts = [random.choice(parts) for parts in cls.base_data[gender]]
-        return parts[:-1] + [random.choice(part) for part in cls.data[gender]] + [parts[-1]]
+    @property
+    def default_gender(self):
+        return genders.MALE
 
+    def factory(self, factory_id, gender=None):
+        if gender is None:
+            gender = self.default_gender
 
-class Barbarian1NameGenerator(BarbarianNameGenerator):
-    @classmethod
-    def update_parts(cls, parts, gender=GENDER_MALE, *args, **kwargs):
-        if gender == GENDER_FEMALE:
-            while cls.base_data[gender][0].index(parts[0]) < 5:
-                parts[0] = random.choice(cls.base_data[gender][0])
-        return parts
-
-
-class Barbarian2NameGenerator(BarbarianNameGenerator):
-    """
-    """
-    data = {
-        GENDER_FEMALE: [
-            nm7,
-            nm6,
-        ],
-        GENDER_MALE: [
-            nm3,
-            nm1,
-        ],
-    }
-
-    @classmethod
-    def update_parts(cls, parts, gender=GENDER_MALE, *args, **kwargs):
-        if gender == GENDER_FEMALE:
-            if cls.base_data[gender][1].index(parts[1]) < 5:
-                while cls.data[gender][1].index(parts[3]) < 5:
-                    parts[3] = random.choice(cls.data[gender][1])
+        if factory_id < 30:
+            __factory_id = 1
+        elif factory_id < 80:
+            __factory_id = 2
         else:
-            if cls.base_data[gender][0].index(parts[0]) < 3:
-                while cls.data[gender][1].index(parts[3]) < 3:
-                    parts[3] = random.choice(cls.data[gender][1])
-        return parts
+            __factory_id = 3
 
+        return self.factories.get(f"{gender}.{__factory_id}")
 
-class Barbarian3NameGenerator(BarbarianNameGenerator):
-    """
-    """
-    data = {
-        GENDER_FEMALE: [
-            nm7,
-            nm6,
-            nm7,
-            nm6,
-        ],
-        GENDER_MALE: [
-            nm3,
-            nm1,
-            nm3,
-            nm1,
-        ],
-    }
+    def __call__(self, *args, factory_id=None, gender=None, **kwargs) -> BarbarianName:
+        if factory_id is None:
+            factory_id = self.factory_id()
 
-    @classmethod
-    def update_parts(cls, parts, gender=GENDER_MALE, *args, **kwargs):
-        if gender == GENDER_FEMALE:
-            if cls.base_data[gender][1].index(parts[1]) < 5:
-                while cls.data[gender][0].index(parts[3]) < 5:
-                    parts[3] = random.choice(cls.data[gender][0])
-            if cls.base_data[gender][1].index(parts[1]) < 5 or cls.data[gender][1].index(parts[3]) < 5:
-                while cls.data[gender][5].index(parts[5]) < 5:
-                    parts[5] = random.choice(cls.data[gender][5])
-            parts = parts[:-1]
-        else:
-            if cls.base_data[gender][0].index(parts[0]) < 3:
-                while cls.data[gender][1].index(parts[3]) < 3:
-                    parts[3] = random.choice(cls.data[gender][1])
-            if cls.base_data[gender][0].index(parts[0]) < 3 or cls.data[gender][1].index(parts[3]) < 3:
-                while cls.data[gender][3].index(parts[5]) < 3:
-                    parts[5] = random.choice(cls.data[gender][3])
-        return parts
+        factory = self.factory(factory_id, gender=gender)
 
+        name = ''
+        while name == '':
+            name = factory()
 
-def barbarian_selector(generator_id):
-    if generator_id < 3:
-        return Barbarian1NameGenerator
-    elif generator_id < 8:
-        return Barbarian2NameGenerator
-    return Barbarian3NameGenerator
-
-
-def barbarian_name_generate(generator_id=None, gender=GENDER_MALE):
-    return random_generator(barbarian_selector, generator_id=generator_id).generate(gender)
+        return name

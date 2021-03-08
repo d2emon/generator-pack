@@ -50,7 +50,7 @@ class AnimalSpeciesNameFactory(ComplexNameFactory):
         3: fantasy.animal_species.nm3,
     })
 
-    def get_factory(self, factory_id):
+    def factory(self, factory_id):
         if factory_id < 40:
             return self.factories[0]
         elif factory_id < 60:

@@ -8,3 +8,6 @@ from .anime_character import AnimeCharacterName
 from .anthousai import AnthousaiName
 from .apocalypse import ApocalypseNickname
 from .artificial_intelligence import ArtificialIntelligenceName
+from .bandit import BanditName
+from .banshee import BansheeName
+from .barbarian import BarbarianName, BarbarianName1, BarbarianName2, MaleBarbarianName3, FemaleBarbarianName3
