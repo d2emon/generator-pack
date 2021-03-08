@@ -124,7 +124,7 @@ class ComplexNameFactory(NameFactory):
         :param kwargs: Kwargs for name generation
         :return: Generated name
         """
-        factory = self.factory(factory_id if factory_id is None else self.factory_id())
+        factory = self.factory(factory_id if factory_id is not None else self.factory_id())
 
         name = ''
         while name == '':

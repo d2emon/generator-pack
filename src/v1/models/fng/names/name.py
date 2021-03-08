@@ -1,20 +1,10 @@
-class Name:
+from v1.models.fng.model import Model
+
+
+class Name(Model):
     """
     Name model
     """
-
-    def __init__(self, items):
-        """
-        :param items: Items of name
-        """
-        self.items = items
-
-    @property
-    def value(self) -> str:
-        """
-        :return: Name as string
-        """
-        return ''
 
     @classmethod
     def test_swear(cls, name) -> str:
@@ -34,13 +24,8 @@ class Name:
         :param name: Unprepared name
         :return: Prepared name
         """
+        name = cls.test_swear(name)
         return name.title()
-
-    def __str__(self):
-        value = self.value
-        value = self.test_swear(value)
-        value = self.prepare(value)
-        return value
 
     def __repr__(self):
         return f"<Name: \"{self}\">"

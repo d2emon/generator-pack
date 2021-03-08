@@ -10,7 +10,7 @@
 # <li><a href="http://www.fantasynamegenerators.com/backstory-descriptions.php">Backstory Descriptions</a></li>
 # <li><a href="http://www.fantasynamegenerators.com/battlefield-descriptions.php">Battlefield Descriptions</a></li>
 # <li><a href="http://www.fantasynamegenerators.com/castle-descriptions.php">Castle Descriptions</a></li>
-# from .character import CharacterFactory
+from .character import CharacterFactory
 # <li><a href="http://www.fantasynamegenerators.com/city-descriptions.php">City Descriptions</a></li>
 # from .clothing import ClothingFactory  # Fancy
 # <li><a href="http://www.fantasynamegenerators.com/medieval-clothing-descriptions.php">Clothing (Medieval)</a></li>
