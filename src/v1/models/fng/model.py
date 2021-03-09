@@ -33,3 +33,38 @@ class Model:
 
     def __repr__(self):
         return f"<Value: \"{self}\">"
+
+
+class TextModel(Model):
+    """
+    Model for text data
+    """
+
+    def __init__(self, value):
+        """
+        :param value: Name Item for model
+        """
+        super().__init__({
+            'item_id': value.item_id,
+            'value': str(value.value),
+        } if value is not None else {})
+
+    @property
+    def item_id(self) -> int:
+        """
+        :return: Model item Id
+        """
+        return self.items.get('item_id', -1)
+
+    @property
+    def value(self) -> str:
+        """
+        :return: Model as string
+        """
+        return self.items.get('value', "")
+
+    def __len__(self):
+        return len(str(self))
+
+    def __repr__(self):
+        return f"<Value: \"{self}\">"

@@ -1,9 +1,9 @@
 from v1.fixtures import genders
-from v1.fixtures.data_block import load_data
 from v1.fixtures.fng import description
 from v1.models.fng.description import MaleCharacterDescription, FemaleCharacterDescription
 from v1.models.fng.description.character.race import get_race
 from v1.models.fng.description.character.mark import get_mark
+from v1.factories.fng.factory import load_data
 from v1.factories.fng.name_factory import NameFactory, GenderNameFactory
 from v1.factories.fng.validators import generate_while
 
@@ -65,7 +65,7 @@ class BaseCharacterFactory(NameFactory):
     def validate(self, items) -> dict:
         items = self.__update_from_race(items)
         items = self.__update_from_marks(items)
-        items[26] = generate_while(items[26], lambda item: item.item_id == items[25].item_id, self.blocks[26])
+        items[26] = generate_while(items[26], lambda item: item.item_id == items[25].item_id, self.factory(26))
 
         return items
 
@@ -88,7 +88,7 @@ class CharacterFactory(GenderNameFactory):
     create hundreds of characters which all look the same, but are entirely different people."""
 
     class MaleCharacterFactory(BaseCharacterFactory):
-        name_class = MaleCharacterDescription
+        child_class = MaleCharacterDescription
         default_blocks = load_data({
             1: description.character.male_names1,
             2: description.character.male_names2,
@@ -131,7 +131,7 @@ class CharacterFactory(GenderNameFactory):
             return load_data(mark.male)
 
     class FemaleCharacterFactory(BaseCharacterFactory):
-        name_class = FemaleCharacterDescription
+        child_class = FemaleCharacterDescription
         default_blocks = load_data({
             1: description.character.female_names1,
             2: description.character.female_names2,

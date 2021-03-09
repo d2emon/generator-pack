@@ -26,20 +26,15 @@ def item_equals(value):
     return f
 
 
-def generate_while(item, condition=lambda item: True, block=None):
+def generate_while(item, condition=lambda item: True, factory=lambda: ""):
     """
     Generate item while condition is true
 
     :param item: Item value
     :param condition: Condition to check
-    :param block: Data block for item
+    :param factory: Data factory for item
     :return: Item value
     """
-
-    if block is None:
-        return item
-
     while condition(item):
-        item = next(block)
-
+        item = factory()
     return item

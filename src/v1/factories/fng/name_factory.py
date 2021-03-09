@@ -1,20 +1,21 @@
 import random
 from v1.fixtures.genders import MALE
 from v1.models.fng.names.name import Name
+from .factory import Factory
 
 
-class NameFactory:
+class NameFactory(Factory):
     """
     Factory for name
 
     Class fields:
 
-    - name_class: Class for name
+    - child_class: Class for name
     - default_blocks: Default data blocks
     - blocks_map: Map for data blocks
     """
 
-    name_class = Name
+    child_class = Name
     default_blocks = {}
     blocks_map = {}
 
@@ -22,28 +23,43 @@ class NameFactory:
         """
         :param blocks: Data blocks for factory
         """
-        self.blocks = blocks or self.default_blocks
+        self.__factories = blocks or self.default_blocks
 
-    def get_name(self, item_id=None) -> Name:
+    @property
+    def factories(self) -> dict:
         """
-        Generate name with factory by item_id
-
-        :param item_id: Id of item or None
-        :return: Generated name
+        :return: Factories for complex factory
         """
-        name = ''
-        while name == '':
-            name = self()
+        return self.__factories
 
-        return name
+    def factory(self, factory_id):
+        """
+        Get child factory by factory_id
 
-    def get_items(self) -> dict:
+        :param factory_id: Id of factory
+        :return: Child factory
+        """
+        return self.__factories.get(factory_id)
+
+    def from_factory(self, factory_id, *args, **kwargs):
+        """
+        Get value from factory by factory_id
+
+        :param factory_id: Id of factory or None
+        :param args: Args for name generation
+        :param kwargs: Kwargs for name generation
+        :return: New value
+        """
+        factory = self.factory(factory_id)
+        return factory(*args, **kwargs) if factory is not None else None
+
+    def get_items(self, *args, **kwargs) -> dict:
         """
         :return: Dict with generated data
         """
-        return {item_id: next(self.blocks[block_id]) for item_id, block_id in self.blocks_map.items()}
+        return {item_id: self.from_factory(block_id, *args, **kwargs) for item_id, block_id in self.blocks_map.items()}
 
-    def validate(self, items) -> dict:
+    def validate_items(self, items) -> dict:
         """
         Validate items
 
@@ -52,25 +68,16 @@ class NameFactory:
         """
         return items
 
-    def __call__(self, *args, **kwargs) -> Name:
+    def get_value(self, *args, **kwargs) -> dict:
         """
-        Generate name
+        Generate name with factory by item_id
 
-        :param args: Args for name generation
-        :param kwargs: Kwargs for name generation
+        :param item_id: Id of item or None
         :return: Generated name
         """
-        items = self.get_items()
-        items = self.validate(items)
-        return self.name_class(items)
-
-    def names(self) -> list:
-        """
-        Generate 10 names
-
-        :return: List of 10 names
-        """
-        return [self(factory_id=item_id * 10) for item_id in range(10)]
+        items = self.get_items(*args, **kwargs)
+        items = self.validate_items(items)
+        return items
 
 
 class ComplexNameFactory(NameFactory):
@@ -88,24 +95,8 @@ class ComplexNameFactory(NameFactory):
         """
         :param blocks: Data blocks for factory
         """
-        super().__init__(blocks)
-        self.__factories = {gender_id: factory(self.blocks) for gender_id, factory in self.factory_classes.items()}
-
-    @property
-    def factories(self) -> dict:
-        """
-        :return: Factories for complex factory
-        """
-        return self.__factories
-
-    def factory(self, factory_id):
-        """
-        Get child factory by factory_id
-
-        :param factory_id: Id of factory
-        :return: Child factory
-        """
-        return self.__factories.get(factory_id)
+        super().__init__({gender_id: factory(blocks) for gender_id, factory in self.factory_classes.items()})
+        self.__blocks = blocks
 
     def factory_id(self):
         """
@@ -125,12 +116,7 @@ class ComplexNameFactory(NameFactory):
         :return: Generated name
         """
         factory = self.factory(factory_id if factory_id is not None else self.factory_id())
-
-        name = ''
-        while name == '':
-            name = factory()
-
-        return name
+        return factory(*args, **kwargs)
 
 
 class GenderNameFactory(ComplexNameFactory):
