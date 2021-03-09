@@ -8,9 +8,10 @@ class CharacterDescription(Description):
 
     @property
     def value_1(self):
-        return f"{self.items[1]}, {self.items[2]} {self.items[3]} a {self.items[4]}, {self.items[5]} face. "\
-            + f"{self.items[6]} {self.items[7]} eyes, set {self.items[8]} within their sockets, " \
-            + f"watch {self.items[9]} over the {self.items[10]} they've {self.items[11]} for so long."
+        return f"{self.items.get('hair_color')}, {self.items.get('hair_type')} {self.items[3]} a " \
+            + f"{self.items.get('face_shape')}, {self.items[5]} face. "\
+            + f"{self.items[6]} {self.items.get('eyes_color')} eyes, set {self.items[8]} within their sockets, " \
+            + f"watch {self.items[9]} over the {self.items.get('origin')} they've {self.items[11]} for so long."
 
     @property
     def value_2(self):
@@ -19,8 +20,8 @@ class CharacterDescription(Description):
 
     @property
     def value_3(self):
-        return f"This is the face of {self.items[18]} {self.items[19]}, " \
-            + f"a true {self.items[20]} among {self.items[21]}. " \
+        return f"This is the face of {self.items.get('name')} {self.items.get('surname')}, " \
+            + f"a true {self.items[20]} among {self.items['race']}. " \
             + f"{self.he_or_she.title()} stands {self.items[22]} others, " \
             + f"despite {self.his_or_her} {self.items[23]} frame."
 

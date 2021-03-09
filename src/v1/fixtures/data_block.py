@@ -6,13 +6,14 @@ class NameItem:
     Name generator item
     """
 
-    def __init__(self, item_id, value):
+    def __init__(self, item_id, value, **kwargs):
         """
         :param item_id: Id of item
         :param value: Item value
         """
         self.item_id = item_id
         self.value = value
+        self.values = kwargs
 
     def __str__(self):
         return str(self.value)
@@ -30,10 +31,25 @@ class NameBlock:
         """
         :param values: Values for NameItems
         """
-        self.values = [NameItem(item_id, value) for item_id, value in enumerate(values)]
+        self.values = list(values)
+
+    def fill(self, *values, **kwargs):
+        """
+        :param values: Values for NameItems
+        :param kwargs: Additional data for NameItems
+        """
+        for item_id, value in enumerate(values):
+            self.values.append(NameItem(item_id, value, **kwargs))
+        return self
 
     def get_random_id(self):
         return random.randrange(len(self.values))
+
+    def search(self, query=lambda item: True):
+        return filter(query, self.values)
+
+    def search_values(self, **kwargs):
+        return self.search(lambda item: all(item.values.get(key) == value for key, value in kwargs.items()))
 
     def __iter__(self):
         return self
@@ -53,7 +69,7 @@ class NameBlock:
         :param item_id: Id of item to get
         :return: NameItem from block
         """
-        return self.values[item_id]
+        return next(self.search(lambda item: item.item_id == item_id), None)
 
 
 def load_data(data) -> dict:
@@ -63,4 +79,4 @@ def load_data(data) -> dict:
     :param data: Dict with data to load
     :return: Dict with NameBlocks
     """
-    return {item_id: NameBlock(*values) for item_id, values in data.items()}
+    return {item_id: NameBlock().fill(*values) for item_id, values in data.items()}

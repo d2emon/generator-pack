@@ -13,8 +13,7 @@ class Factory:
 
     child_class = Model
 
-    @classmethod
-    def is_valid(cls, value) -> bool:
+    def is_valid(self, value) -> bool:
         """
         Check value
 
@@ -78,14 +77,15 @@ class DataFactory(Factory):
         """
         self.block = block
 
-    @classmethod
-    def is_valid(cls, value) -> bool:
+    def is_valid(self, value) -> bool:
         """
         Check value
 
         :param value: Value to check
         :return: If value is valid
         """
+        if len(self.block.values) == 0:
+            return True
         return value is not None
 
     def get_value(self, *args, **kwargs):
@@ -106,4 +106,4 @@ def load_data(data) -> dict:
     :param data: Dict with data to load
     :return: Dict with NameBlocks
     """
-    return {item_id: DataFactory(NameBlock(*values)) for item_id, values in data.items()}
+    return {item_id: DataFactory(NameBlock().fill(*values)) for item_id, values in data.items()}
