@@ -1,5 +1,5 @@
-from genesys.fng.providers.list_item import ListItemProvider
-from genesys.fng import genders
+from genesys.fng.list_item import ListItemProvider
+from v1.fixtures import genders
 from .provider import DataProvider
 
 
