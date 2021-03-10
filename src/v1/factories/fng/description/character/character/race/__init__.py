@@ -1,8 +1,8 @@
-from ..hair import MaleHairFactory, FemaleHairFactory
-from ..face import FaceFactory
-from ..eyes import EyesFactory
+from v1.factories.fng.description.character.hair import MaleHairFactory, FemaleHairFactory
+from v1.factories.fng.description.character.face import FaceFactory
+from v1.factories.fng.description.character.eyes import EyesFactory
 from ..promise import PromiseFactory
-from ..name import MaleNameFactory, FemaleNameFactory
+from v1.factories.fng.description.character.name import MaleNameFactory, FemaleNameFactory
 from ..attitude import MaleAttitudeFactory, FemaleAttitudeFactory
 
 

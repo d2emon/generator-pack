@@ -2,6 +2,8 @@ from v1.models.fng.model import TextModel
 
 
 class Race(TextModel):
-    def __init__(self, value):
-        super().__init__(value)
+    race_group_id = property(lambda self: self.items.get('race_group_id'))
+
+    def __init__(self, value, **kwargs):
+        super().__init__(value, **kwargs)
         self.factories = None

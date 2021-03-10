@@ -1,160 +1,121 @@
-from v1.fixtures.genders import MALE, FEMALE
+from v1.fixtures.data_block import NameBlock
+from v1.factories.fng.factory import FactoriesBlock
 from v1.factories.fng.name_factory import NameFactory
-from v1.models.fng.description.character.mark import Mark
+from v1.models.fng.description.character.mark import Mark, MarkDescription
 
 
-class MarksFactories:
-    male = {
-        13: 'male_names13',
-        14: 'male_names14',
-        15: 'male_names15',
-        16: 'male_names16',
-        17: 'male_names17',
-    }
-    female = {
-        13: 'female_names13',
-        14: 'female_names14',
-        15: 'female_names15',
-        16: 'female_names16',
-        17: 'female_names17',
-    }
+class MarksFactories(FactoriesBlock):
+    @property
+    def mark_start_factory(self):
+        return self.factory('mark_start')
 
-    def __init__(self, blocks):
-        self.blocks = blocks
+    @property
+    def mark_middle_factory(self):
+        return self.factory('mark_middle')
 
-    def get_blocks_map_by_gender(self, gender=MALE):
-        if gender == MALE:
-            return self.male
-        elif gender == FEMALE:
-            return self.female
-        else:
-            return {}
+    @property
+    def mark_finish_factory(self):
+        return self.factory('mark_finish')
 
-    def get_factory_class(self, factory_id, gender=MALE):
-        blocks_map = self.get_blocks_map_by_gender(gender)
-        block_id = blocks_map.get(factory_id)
-        return self.blocks.get(block_id)
+    @property
+    def mark_memory_factory(self):
+        return self.factory('mark_memory')
 
-    def get_factory(self, blocks, factory_id, gender=MALE):
-        factory = self.get_factory_class(factory_id, gender)
-        if factory is None:
-            return lambda: None
-        else:
-            return factory(blocks)
+    @property
+    def mark_subject_factory(self):
+        return self.factory('mark_subject')
 
-
-class TattooFactories(MarksFactories):
-    male = {
-        13: 'tattoo_male_names13',
-        14: 'tattoo_male_names14',
-        15: 'tattoo_male_names15',
-        16: 'male_names16',
-        17: 'male_names17',
-    }
-    female = {
-        13: 'tattoo_female_names13',
-        14: 'tattoo_female_names14',
-        15: 'tattoo_female_names15',
-        16: 'female_names16',
-        17: 'female_names17',
-    }
-
-
-class TribalMarkFactories(MarksFactories):
-    male = {
-        13: 'tribal_male_names13',
-        14: 'tribal_male_names14',
-        15: 'tribal_male_names15',
-        16: 'male_names16',
-        17: 'male_names17',
-    }
-    female = {
-        13: 'tribal_female_names13',
-        14: 'tribal_female_names14',
-        15: 'tribal_female_names15',
-        16: 'female_names16',
-        17: 'female_names17',
-    }
-
-
-class MolesFactories(MarksFactories):
-    male = {
-        13: 'moles_male_names13',
-        14: 'moles_male_names14',
-        15: 'moles_male_names15',
-        16: 'moles_male_names16',
-        17: 'moles_male_names17',
-    }
-    female = {
-        13: 'moles_female_names13',
-        14: 'moles_female_names14',
-        15: 'moles_female_names15',
-        16: 'moles_female_names16',
-        17: 'moles_female_names17',
-    }
-
-
-class FrecklesFactories(MarksFactories):
-    male = {
-        13: 'freckles_male_names13',
-        14: 'freckles_male_names14',
-        15: 'freckles_male_names15',
-        16: 'freckles_male_names16',
-        17: 'freckles_male_names17',
-    }
-    female = {
-        13: 'freckles_female_names13',
-        14: 'freckles_female_names14',
-        15: 'freckles_female_names15',
-        16: 'freckles_female_names16',
-        17: 'freckles_female_names17',
-    }
-
-
-class SkinFactories(MarksFactories):
-    male = {
-        13: 'skin_male_names13',
-        14: 'skin_male_names14',
-        15: 'skin_male_names15',
-        16: 'skin_male_names16',
-        17: 'skin_male_names17',
-    }
-    female = {
-        13: 'skin_female_names13',
-        14: 'skin_female_names14',
-        15: 'skin_female_names15',
-        16: 'skin_female_names16',
-        17: 'skin_female_names17',
-    }
+    @property
+    def description_factory(self):
+        return MarkDescription({
+            'mark': self.model,  # 12
+            'start': self.mark_start_factory(),  # 13
+            'middle': self.mark_middle_factory(),  # 14
+            'finish': self.mark_finish_factory(),  # 15
+            'memory': self.mark_memory_factory(),  # 16
+            'subject': self.mark_subject_factory(),  # 17
+        })
 
 
 class MarksFactory(NameFactory):
+    MARKS = 1
+    TATTOO = 6
+    TRIBAL_MARK = 9
+    MOLES = 10
+    FRECKLES = 11
+    SKIN = 12
+
     child_class = Mark
     blocks_map = {
         12: 12
     }
 
     @classmethod
-    def get_child(cls, value):
+    def get_mark_id(cls, value):
         """
         Get child with value
 
         :param value: Generated value
         :return: Generated child
         """
-        marks = cls.child_class(value.get(12))
 
-        if 6 < marks.item_id < 9:
-            marks.factories = TattooFactories
-        elif marks.item_id == 9:
-            marks.factories = TribalMarkFactories
-        elif marks.item_id == 10:
-            marks.factories = MolesFactories
-        elif marks.item_id == 11:
-            marks.factories = FrecklesFactories
-        elif marks.item_id > 11:
-            marks.factories = SkinFactories
+        if 6 < value.item_id < 9:
+            return cls.TATTOO
+        elif value.item_id == 9:
+            return cls.TRIBAL_MARK
+        elif value.item_id == 10:
+            return cls.MOLES
+        elif value.item_id == 11:
+            return cls.FRECKLES
+        elif value.item_id > 11:
+            return cls.SKIN
         else:
-            marks.factories = MarksFactories
+            return cls.MARKS
 
+    @classmethod
+    def get_child(cls, value):
+        marks = cls.child_class(value.get(12))
+        marks.factories = MarksFactories
         return marks
+
+
+def add_mark_data(
+    gender_id,
+    mark_id,
+    mark_start,
+    mark_middle,
+    mark_finish,
+    mark_memory,
+    mark_subject,
+):
+    return NameBlock().fill(
+        # 13
+        *mark_start,
+        group_id="mark_start",
+        gender_id=gender_id,
+        mark_id=mark_id,
+    ).fill(
+        # 14
+        *mark_middle,
+        group_id="mark_middle",
+        gender_id=gender_id,
+        mark_id=mark_id,
+    ).fill(
+        # 15
+        *mark_finish,
+        group_id="mark_finish",
+        gender_id=gender_id,
+        mark_id=mark_id,
+    ).fill(
+        # 16
+        *mark_memory,
+        group_id="mark_memory",
+        gender_id=gender_id,
+        mark_id=mark_id,
+    ).fill(
+        # 17
+        *mark_subject,
+        group_id="mark_subject",
+        gender_id=gender_id,
+        mark_id=mark_id,
+    ).values

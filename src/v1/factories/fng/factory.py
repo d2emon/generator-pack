@@ -32,15 +32,14 @@ class Factory:
         """
         raise NotImplementedError()
 
-    @classmethod
-    def get_child(cls, value):
+    def get_child(self, value):
         """
         Get child with value
 
         :param value: Generated value
         :return: Generated child
         """
-        return cls.child_class(value)
+        return self.child_class(value)
 
     def __call__(self, *args, **kwargs):
         """
@@ -93,10 +92,20 @@ class DataFactory(Factory):
         Generate new value
 
         :param args: Args for name generation
-        :param kwargs: Kwargs for name generation
+        :param kwargs: Filter for data block
         :return: Generated value
         """
-        return next(self.block)
+        value = next(self.block.filtered(**kwargs))
+        return value if value is not None else {}
+
+
+class FactoriesBlock:
+    def __init__(self, model, blocks):
+        self.model = model
+        self.blocks = blocks
+
+    def factory(self, factory_id):
+        return DataFactory(self.blocks.filtered(group_id=factory_id))
 
 
 def load_data(data) -> dict:

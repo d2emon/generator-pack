@@ -1,8 +1,8 @@
 from . import Race
-from ..hair import MaleHairFactory, FemaleHairFactory
-from ..face import FaceFactory
+from v1.factories.fng.description.character.hair import MaleHairFactory, FemaleHairFactory
+from v1.factories.fng.description.character.face import FaceFactory
 from ..promise import PromiseFactory
-from ..name import NameFactory
+from v1.factories.fng.description.character.name import NameFactory
 
 
 goblin_hairtypes = [

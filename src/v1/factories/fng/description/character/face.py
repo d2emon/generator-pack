@@ -1,9 +1,9 @@
-from factories import DictFactory
-from genesys.generator_models.character import Face
+from v1.factories.fng.name_factory import NameFactory
+from v1.models.fng.description import Face
 
 
-class FaceFactory(DictFactory):
-    generated_class = Face
+class FaceFactory(NameFactory):
+    child_class = Face
     facetypes = [
         "thin",
         "chiseled",

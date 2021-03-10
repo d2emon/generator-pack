@@ -3,11 +3,12 @@ class Model:
     Base model
     """
 
-    def __init__(self, items):
+    def __init__(self, items, **kwargs):
         """
         :param items: Items of model
         """
         self.items = items
+        self.items.update(kwargs)
 
     @property
     def value(self) -> str:
@@ -40,14 +41,15 @@ class TextModel(Model):
     Model for text data
     """
 
-    def __init__(self, value):
+    def __init__(self, value, **kwargs):
         """
         :param value: Name Item for model
         """
-        super().__init__({
-            'item_id': value.item_id,
-            'value': str(value.value),
-        } if value is not None else {})
+        super().__init__(
+            item_id=value.item_id if value is not None else None,
+            value=str(value),
+            **kwargs,
+        )
 
     @property
     def item_id(self) -> int:

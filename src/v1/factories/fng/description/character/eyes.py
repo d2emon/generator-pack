@@ -1,9 +1,9 @@
-from factories import DictFactory
-from genesys.generator_models.character import Eyes
+from v1.factories.fng.name_factory import NameFactory
+from v1.models.fng.description import Hair
 
 
-class EyesFactory(DictFactory):
-    generated_class = Eyes
+class EyesFactory(NameFactory):
+    child_class = Hair
     styles = [
         "Beady",
         "Big, round",

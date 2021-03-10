@@ -1,9 +1,9 @@
-from factories import DictFactory
-from genesys.generator_models.character import Name
+from v1.factories.fng.name_factory import NameFactory
+from v1.models.fng.description import Eyes
 
 
-class NameFactory(DictFactory):
-    generated_class = Name
+class CharacterNameFactory(NameFactory):
+    child_class = Eyes
     firstnames = []
     lastnames = []
     titles = [

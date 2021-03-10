@@ -1,347 +1,78 @@
 from v1.fixtures import genders
 from v1.fixtures.fng import description
 from v1.fixtures.data_block import NameItem, NameBlock
-from v1.models.fng.description import MaleCharacterDescription, FemaleCharacterDescription
+from v1.models.fng.description import Character, CharacterDescription, Hair, Face, Eyes, MarkDescription, Name, \
+    Personality
 from v1.factories.fng.factory import load_data
 from v1.factories.fng.name_factory import NameFactory, GenderNameFactory
 from v1.factories.fng.validators import generate_while
 from .race import RaceFactory
 from .marks import MarksFactory
-
-
-def add_racial(
-    gender_id,
-    race_id,
-    hair_color,
-    hair_type,
-    face_shape,
-    eyes_color,
-    origin,
-    name,
-    surname,
-):
-    return NameBlock().fill(
-        # 1
-        *hair_color,
-        group_id="hair_color",
-        gender_id=gender_id,
-        race_id=race_id,
-    ).fill(
-        # 2
-        *hair_type,
-        group_id="hair_type",
-        gender_id=gender_id,
-        race_id=race_id,
-    ).fill(
-        # 4
-        *face_shape,
-        group_id="face_shape",
-        gender_id=gender_id,
-        race_id=race_id,
-    ).fill(
-        # 7
-        *eyes_color,
-        group_id="eyes_color",
-        gender_id=gender_id,
-        race_id=race_id,
-    ).fill(
-        # 10
-        *origin,
-        group_id="origin",
-        gender_id=gender_id,
-        race_id=race_id,
-    ).fill(
-        # 18
-        *name,
-        group_id="name",
-        gender_id=gender_id,
-        race_id=race_id,
-    ).fill(
-        # 19
-        *surname,
-        group_id="surname",
-        gender_id=gender_id,
-        race_id=race_id,
-    ).values
+from .hair import HairFactory
+from .data import data_items
 
 
 class BaseCharacterFactory(NameFactory):
     gender = genders.NEUTRAL
-    blocks_map = {
-        # 1: 1,
-        # 2: 2,
-        3: 3,
-        # 4: 4,
-        5: 5,
-        6: 6,
-        # 7: 7,
-        8: 8,
-        9: 9,
-        # 10: 10,
-        11: 11,
-        12: 12,
-        # 13: 13,
-        # 14: 14,
-        # 15: 15,
-        # 16: 16,
-        # 17: 17,
-        # 18: 18,
-        # 19: 19,
-        20: 20,
-        21: 21,
-        22: 22,
-        23: 23,
-        24: 24,
-        25: 25,
-        26: 26,
-        27: 27,
-        28: 28,
-    }
-    data_items = NameBlock(
-        # Male
-        *add_racial(
-            gender_id=genders.MALE,
-            race_id=RaceFactory.HUMAN,
-            hair_color=description.character.male_names1,
-            hair_type=description.character.male_names2,
-            face_shape=description.character.male_names4,
-            eyes_color=description.character.male_names7,
-            origin=description.character.male_names10,
-            name=description.character.male_names18,
-            surname=description.character.male_names19,
-        ),
-        *add_racial(
-            gender_id=genders.MALE,
-            race_id=RaceFactory.ELF,
-            hair_color=description.character.elf_male_names1,
-            hair_type=description.character.elf_male_names2,
-            face_shape=description.character.elf_male_names4,
-            eyes_color=description.character.elf_male_names7,
-            origin=description.character.elf_male_names10,
-            name=description.character.elf_male_names18,
-            surname=description.character.elf_male_names19,
-        ),
-        *add_racial(
-            gender_id=genders.MALE,
-            race_id=RaceFactory.GNOME,
-            hair_color=description.character.gnome_male_names1,
-            hair_type=description.character.gnome_male_names2,
-            face_shape=description.character.gnome_male_names4,
-            eyes_color=description.character.male_names7,
-            origin=description.character.male_names10,
-            name=description.character.gnome_male_names18,
-            surname=description.character.gnome_male_names19,
-        ),
-        *add_racial(
-            gender_id=genders.MALE,
-            race_id=RaceFactory.TROLL,
-            hair_color=description.character.male_names1,
-            hair_type=description.character.goblin_male_names2,
-            face_shape=description.character.goblin_male_names4,
-            eyes_color=description.character.male_names7,
-            origin=description.character.goblin_male_names10,
-            name=description.character.troll_male_names18,
-            surname=description.character.troll_male_names19,
-        ),
-        *add_racial(
-            gender_id=genders.MALE,
-            race_id=RaceFactory.ORC,
-            hair_color=description.character.male_names1,
-            hair_type=description.character.goblin_male_names2,
-            face_shape=description.character.goblin_male_names4,
-            eyes_color=description.character.male_names7,
-            origin=description.character.goblin_male_names10,
-            name=description.character.orc_male_names18,
-            surname=description.character.orc_male_names19,
-        ),
-        *add_racial(
-            gender_id=genders.MALE,
-            race_id=RaceFactory.GOBLIN,
-            hair_color=description.character.male_names1,
-            hair_type=description.character.goblin_male_names2,
-            face_shape=description.character.goblin_male_names4,
-            eyes_color=description.character.male_names7,
-            origin=description.character.goblin_male_names10,
-            name=description.character.goblin_male_names18,
-            surname=description.character.goblin_male_names19,
-        ),
-        *add_racial(
-            gender_id=genders.MALE,
-            race_id=RaceFactory.DWARF,
-            hair_color=description.character.male_names1,
-            hair_type=description.character.giant_male_names2,
-            face_shape=description.character.giant_male_names4,
-            eyes_color=description.character.male_names7,
-            origin=description.character.male_names10,
-            name=description.character.dwarf_male_names18,
-            surname=description.character.dwarf_male_names19,
-        ),
-        *add_racial(
-            gender_id=genders.MALE,
-            race_id=RaceFactory.GIANT,
-            hair_color=description.character.male_names1,
-            hair_type=description.character.giant_male_names2,
-            face_shape=description.character.giant_male_names4,
-            eyes_color=description.character.male_names7,
-            origin=description.character.male_names10,
-            name=description.character.male_names18,
-            surname=description.character.male_names19,
-        ),
-
-        # Female
-        *add_racial(
-            gender_id=genders.FEMALE,
-            race_id=RaceFactory.HUMAN,
-            hair_color=description.character.female_names1,
-            hair_type=description.character.female_names2,
-            face_shape=description.character.female_names4,
-            eyes_color=description.character.female_names7,
-            origin=description.character.female_names10,
-            name=description.character.female_names18,
-            surname=description.character.female_names19,
-        ),
-        *add_racial(
-            gender_id=genders.FEMALE,
-            race_id=RaceFactory.ELF,
-            hair_color=description.character.elf_female_names1,
-            hair_type=description.character.elf_female_names2,
-            face_shape=description.character.elf_female_names4,
-            eyes_color=description.character.elf_female_names7,
-            origin=description.character.elf_female_names10,
-            name=description.character.elf_female_names18,
-            surname=description.character.elf_female_names19,
-        ),
-        *add_racial(
-            gender_id=genders.FEMALE,
-            race_id=RaceFactory.GNOME,
-            hair_color=description.character.gnome_female_names1,
-            hair_type=description.character.gnome_female_names2,
-            face_shape=description.character.gnome_female_names4,
-            eyes_color=description.character.female_names7,
-            origin=description.character.female_names10,
-            name=description.character.gnome_female_names18,
-            surname=description.character.gnome_female_names19,
-        ),
-        *add_racial(
-            gender_id=genders.FEMALE,
-            race_id=RaceFactory.TROLL,
-            hair_color=description.character.female_names1,
-            hair_type=description.character.goblin_female_names2,
-            face_shape=description.character.goblin_female_names4,
-            eyes_color=description.character.female_names7,
-            origin=description.character.goblin_female_names10,
-            name=description.character.troll_female_names18,
-            surname=description.character.troll_female_names19,
-        ),
-        *add_racial(
-            gender_id=genders.FEMALE,
-            race_id=RaceFactory.ORC,
-            hair_color=description.character.female_names1,
-            hair_type=description.character.goblin_female_names2,
-            face_shape=description.character.goblin_female_names4,
-            eyes_color=description.character.female_names7,
-            origin=description.character.goblin_female_names10,
-            name=description.character.orc_female_names18,
-            surname=description.character.orc_female_names19,
-        ),
-        *add_racial(
-            gender_id=genders.FEMALE,
-            race_id=RaceFactory.GOBLIN,
-            hair_color=description.character.female_names1,
-            hair_type=description.character.goblin_female_names2,
-            face_shape=description.character.goblin_female_names4,
-            eyes_color=description.character.female_names7,
-            origin=description.character.goblin_female_names10,
-            name=description.character.goblin_female_names18,
-            surname=description.character.goblin_female_names19,
-        ),
-        *add_racial(
-            gender_id=genders.FEMALE,
-            race_id=RaceFactory.DWARF,
-            hair_color=description.character.female_names1,
-            hair_type=description.character.giant_female_names2,
-            face_shape=description.character.giant_female_names4,
-            eyes_color=description.character.female_names7,
-            origin=description.character.female_names10,
-            name=description.character.dwarf_female_names18,
-            surname=description.character.dwarf_female_names19,
-        ),
-        *add_racial(
-            gender_id=genders.FEMALE,
-            race_id=RaceFactory.GIANT,
-            hair_color=description.character.female_names1,
-            hair_type=description.character.giant_female_names2,
-            face_shape=description.character.giant_female_names4,
-            eyes_color=description.character.female_names7,
-            origin=description.character.female_names10,
-            name=description.character.female_names18,
-            surname=description.character.female_names19,
-        ),
-    )
+    him_or_her = "it"
+    child_class = CharacterDescription
+    data_items = data_items
 
     def __init__(self, blocks=None):
         super().__init__(blocks)
-        self.race_factory = RaceFactory(self.factories)
+
+        # Additional factories
+        self.race_factory = RaceFactory(self.data_items)
         self.marks_factory = MarksFactory(self.factories)
+        self.hair_factory = HairFactory(self.factories)
 
     def get_items(self, *args, **kwargs) -> dict:
         """
         :return: Dict with generated data
         """
-        values = super().get_items(*args, **kwargs)
-
         __race = self.race_factory()
-        __race_id = self.race_factory.get_race_id(__race)
-        __race_blocks = self.factories.get(f"race.{__race_id}")
-        __race_factories = __race.factories(NameBlock(*self.data_items.search_values(
-            gender_id=self.gender,
-            race_id=__race_id,
-        )))
+        race_factories = __race.factories(__race, self.data_items)
 
         __marks = self.marks_factory()
-        __marks_factories = __marks.factories(self.factories)
-        blocks = [13, 14, 15, 16, 17]
-        marks_values = {item_id: __marks_factories.get_factory(item_id, self.gender)() for item_id in blocks}
+        __mark_id = self.marks_factory.get_mark_id(__marks)
+        __marks_blocks = self.factories.get(f"marks.{__mark_id}")
+        __values = self.data_items.search_values(
+            gender_id=self.gender,
+            mark_id=__mark_id,
+        )
+        marks_factories = __marks.factories(__marks, NameBlock(*self.data_items.search_values(
+            gender_id=self.gender,
+            mark_id=__mark_id,
+        )))
 
-        values.update({
-            'race': __race,
-            'marks': __marks,
+        __personality = Personality({
+            'him_or_her': self.him_or_her,
+            24: self.factory(24)(),  # 24
+            25: self.factory(25)(),  # 25
+            26: self.factory(26)(),  # 26
+            27: self.factory(27)(),  # 27
+            28: self.factory(28)(),  # 28
         })
-
-        values.update({
-            'hair_color': __race_factories.hair_color_factory(),
-            'hair_type': __race_factories.hair_type_factory(),
-            # 3
-            'face_shape': __race_factories.face_shape_factory(),
-            # 5
-            # 6
-            'eyes_color': __race_factories.eyes_color_factory(),
-            # 8
-            # 9
-            'origin': __race_factories.origin_factory(),
-            # 11
-            # 12: values['marks'],
-            13: marks_values[13],
-            14: marks_values[14],
-            15: marks_values[15],
-            16: marks_values[16],
-            17: marks_values[17],
-            'name': __race_factories.name_factory(),
-            'surname': __race_factories.surname_factory(),
-            # 20
-            # 21: __race,
-            # 22
-            # 23
-            # 24
-            # 25
-            # 26
-            # 27
-            # 28
-        })
-        return values
+        return {
+            'character': Character(
+                gender=self.gender,
+                hair=race_factories.hair_factory(),
+                face=race_factories.face_factory(),
+                eyes=race_factories.eyes_factory(),
+                origin=race_factories.origin_factory(),  # 10
+                origin_attitude=self.factory(11)(),  # 11
+                mark_description=marks_factories.description_factory(),
+                name=race_factories.character_name_factory(),
+                profession=self.factory(20)(),  # 20
+                race=__race,
+                height=self.factory(22)(),  # 22
+                width=self.factory(23)(),  # 23
+                personality=__personality,
+            ),
+        }
 
     def validate(self, items) -> dict:
-        items[26] = generate_while(items[26], lambda item: item.item_id == items[25].item_id, self.factory(26))
+        # items[26] = generate_while(items[26], lambda item: item.item_id == items[25].item_id, self.factory(26))
 
         return items
 
@@ -365,7 +96,7 @@ class CharacterFactory(GenderNameFactory):
 
     class MaleCharacterFactory(BaseCharacterFactory):
         gender = genders.MALE
-        child_class = MaleCharacterDescription
+        him_or_her = "him"
         default_blocks = {
             **load_data({
                 # 1: description.character.male_names1,
@@ -401,7 +132,7 @@ class CharacterFactory(GenderNameFactory):
 
     class FemaleCharacterFactory(BaseCharacterFactory):
         gender = genders.FEMALE
-        child_class = FemaleCharacterDescription
+        him_or_her = "her"
         default_blocks = load_data({
             # 1: description.character.female_names1,
             # 2: description.character.female_names2,

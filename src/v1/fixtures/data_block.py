@@ -51,6 +51,9 @@ class NameBlock:
     def search_values(self, **kwargs):
         return self.search(lambda item: all(item.values.get(key) == value for key, value in kwargs.items()))
 
+    def filtered(self, **kwargs):
+        return NameBlock(*self.search_values(**kwargs))
+
     def __iter__(self):
         return self
 
