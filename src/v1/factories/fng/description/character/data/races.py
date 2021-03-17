@@ -1,7 +1,6 @@
 from v1.fixtures import genders
 from v1.fixtures.fng import description
-from v1.fixtures.data_block import NameBlock
-from .common import with_gender
+from .common import add_items, add_items_data
 
 
 HUMAN = 1
@@ -67,81 +66,16 @@ __default_values = {
 }
 
 
-def add_race_data(
-    gender_id,
-    race_id,
-    hair_color,
-    hair_type,
-    face_shape,
-    eyes_color,
-    origin,
-    name,
-    surname,
-):
-    return NameBlock().fill(
-        # 1
-        *hair_color,
-        group_id="hair_color",
-        gender_id=gender_id,
-        race_id=race_id,
-    ).fill(
-        # 2
-        *hair_type,
-        group_id="hair_type",
-        gender_id=gender_id,
-        race_id=race_id,
-    ).fill(
-        # 4
-        *face_shape,
-        group_id="face_shape",
-        gender_id=gender_id,
-        race_id=race_id,
-    ).fill(
-        # 7
-        *eyes_color,
-        group_id="eyes_color",
-        gender_id=gender_id,
-        race_id=race_id,
-    ).fill(
-        # 10
-        *origin,
-        group_id="origin",
-        gender_id=gender_id,
-        race_id=race_id,
-    ).fill(
-        # 18
-        *name,
-        group_id="name",
-        gender_id=gender_id,
-        race_id=race_id,
-    ).fill(
-        # 19
-        *surname,
-        group_id="surname",
-        gender_id=gender_id,
-        race_id=race_id,
-    ).values
+def __add_race_group_id(item):
+    item.values['race_group_id'] = get_race_group_id(item.item_id)
+    return item
 
 
-def race_data(
-    gender_id,
-    race,
-):
-    block = NameBlock().fill(
-        *race,
-        group_id="race",
-        gender_id=gender_id,
-    )
-    for item in block.values:
-        item.values['race_group_id'] = get_race_group_id(item.item_id)
-        yield item
+race_m = add_items('race', genders.MALE, __add_race_group_id)
+race_data_m = add_items_data(genders.MALE, __default_values.get(genders.MALE, {}))
 
-
-race_data_m = with_gender(genders.MALE, {}, race_data)
-race_m = with_gender(genders.MALE, __default_values, add_race_data)
-
-race_data_f = with_gender(genders.FEMALE, {}, race_data)
-race_f = with_gender(genders.FEMALE, __default_values, add_race_data)
+race_f = add_items('race', genders.FEMALE, __add_race_group_id)
+race_data_f = add_items_data(genders.FEMALE, __default_values.get(genders.FEMALE, {}))
 
 
 def races():
@@ -164,14 +98,9 @@ def races():
         'face_shape': description.character.giant_female_names4,
     }
 
-    yield from race_data_m(
-        race=description.character.male_names21,
-    )
-    yield from race_m(
-        race_id=HUMAN,
-    )
-    yield from race_m(
-        race_id=ELF,
+    yield from race_m(description.character.male_names21)
+    yield from race_data_m(race_id=HUMAN)()
+    yield from race_data_m(race_id=ELF)(
         hair_color=description.character.elf_male_names1,
         hair_type=description.character.elf_male_names2,
         face_shape=description.character.elf_male_names4,
@@ -180,51 +109,38 @@ def races():
         name=description.character.elf_male_names18,
         surname=description.character.elf_male_names19,
     )
-    yield from race_m(
-        race_id=GNOME,
+    yield from race_data_m(race_id=GNOME)(
         hair_color=description.character.gnome_male_names1,
         hair_type=description.character.gnome_male_names2,
         face_shape=description.character.gnome_male_names4,
         name=description.character.gnome_male_names18,
         surname=description.character.gnome_male_names19,
     )
-    yield from race_m(
+    yield from race_data_m(race_id=TROLL)(
         **__goblin_m,
-        race_id=TROLL,
         name=description.character.troll_male_names18,
         surname=description.character.troll_male_names19,
     )
-    yield from race_m(
+    yield from race_data_m(race_id=ORC)(
         **__goblin_m,
-        race_id=ORC,
         name=description.character.orc_male_names18,
         surname=description.character.orc_male_names19,
     )
-    yield from race_m(
+    yield from race_data_m(race_id=GOBLIN)(
         **__goblin_m,
-        race_id=GOBLIN,
         name=description.character.goblin_male_names18,
         surname=description.character.goblin_male_names19,
     )
-    yield from race_m(
+    yield from race_data_m(race_id=DWARF)(
         **__giant_m,
-        race_id=DWARF,
         name=description.character.dwarf_male_names18,
         surname=description.character.dwarf_male_names19,
     )
-    yield from race_m(
-        **__giant_m,
-        race_id=GIANT,
-    )
+    yield from race_data_m(race_id=GIANT)(**__giant_m)
 
-    yield from race_data_f(
-        race=description.character.female_names21,
-    )
-    yield from race_f(
-        race_id=HUMAN,
-    )
-    yield from race_f(
-        race_id=ELF,
+    yield from race_f(description.character.female_names21)
+    yield from race_data_f(race_id=HUMAN)()
+    yield from race_data_f(race_id=ELF)(
         hair_color=description.character.elf_female_names1,
         hair_type=description.character.elf_female_names2,
         face_shape=description.character.elf_female_names4,
@@ -233,39 +149,31 @@ def races():
         name=description.character.elf_female_names18,
         surname=description.character.elf_female_names19,
     )
-    yield from race_f(
-        race_id=GNOME,
+    yield from race_data_f(race_id=GNOME)(
         hair_color=description.character.gnome_female_names1,
         hair_type=description.character.gnome_female_names2,
         face_shape=description.character.gnome_female_names4,
         name=description.character.gnome_female_names18,
         surname=description.character.gnome_female_names19,
     )
-    yield from race_f(
+    yield from race_data_f(race_id=TROLL)(
         **__goblin_f,
-        race_id=TROLL,
         name=description.character.troll_female_names18,
         surname=description.character.troll_female_names19,
     )
-    yield from race_f(
+    yield from race_data_f(race_id=ORC)(
         **__goblin_f,
-        race_id=ORC,
         name=description.character.orc_female_names18,
         surname=description.character.orc_female_names19,
     )
-    yield from race_f(
+    yield from race_data_f(race_id=GOBLIN)(
         **__goblin_f,
-        race_id=GOBLIN,
         name=description.character.goblin_female_names18,
         surname=description.character.goblin_female_names19,
     )
-    yield from race_f(
+    yield from race_data_f(race_id=DWARF)(
         **__giant_f,
-        race_id=DWARF,
         name=description.character.dwarf_female_names18,
         surname=description.character.dwarf_female_names19,
     )
-    yield from race_f(
-        **__giant_f,
-        race_id=GIANT,
-    )
+    yield from race_data_f(race_id=GIANT)(**__giant_f)

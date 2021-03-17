@@ -1,7 +1,28 @@
 from v1.fixtures import genders
 from v1.fixtures.fng import description
-from v1.factories.fng.description.character.marks import MarksFactory, add_mark_data
-from .common import with_gender
+from .common import add_items, add_items_data
+
+MARKS = 1
+TATTOO = 6
+TRIBAL_MARK = 9
+MOLES = 10
+FRECKLES = 11
+SKIN = 12
+
+
+def get_mark_group_id(item_id):
+    if 6 < item_id < 9:
+        return TATTOO
+    elif item_id == 9:
+        return TRIBAL_MARK
+    elif item_id == 10:
+        return MOLES
+    elif item_id == 11:
+        return FRECKLES
+    elif item_id > 11:
+        return SKIN
+    else:
+        return MARKS
 
 
 __default_values = {
@@ -22,82 +43,80 @@ __default_values = {
 }
 
 
-def marks():
-    mark_m = with_gender(genders.MALE, __default_values, add_mark_data)
-    mark_f = with_gender(genders.FEMALE, __default_values, add_mark_data)
+def __add_mark_group_id(item):
+    item.values['mark_group_id'] = get_mark_group_id(item.item_id)
+    return item
 
-    yield from mark_m(
-        mark_id=MarksFactory.MARKS,
-    )
-    yield from mark_m(
-        mark_id=MarksFactory.TATTOO,
+
+mark_m = add_items('mark', genders.MALE, __add_mark_group_id)
+mark_data_m = add_items_data(genders.MALE, __default_values.get(genders.MALE, {}))
+
+mark_f = add_items('mark', genders.FEMALE, __add_mark_group_id)
+mark_data_f = add_items_data(genders.FEMALE, __default_values.get(genders.FEMALE, {}))
+
+
+def marks():
+    yield from mark_m(description.character.male_names12)
+    yield from mark_data_m(mark_id=MARKS)()
+    yield from mark_data_m(mark_id=TATTOO)(
         mark_start=description.character.tattoo_male_names13,
         mark_middle=description.character.tattoo_male_names14,
         mark_finish=description.character.tattoo_male_names15,
     )
-    yield from mark_m(
-        mark_id=MarksFactory.TRIBAL_MARK,
+    yield from mark_data_m(mark_id=TRIBAL_MARK)(
         mark_start=description.character.tribal_male_names13,
         mark_middle=description.character.tribal_male_names14,
         mark_finish=description.character.tribal_male_names15,
     )
-    yield from mark_m(
-        mark_id=MarksFactory.MOLES,
+    yield from mark_data_m(mark_id=MOLES)(
         mark_start=description.character.moles_male_names13,
         mark_middle=description.character.moles_male_names14,
         mark_finish=description.character.moles_male_names15,
         mark_memory=description.character.moles_male_names16,
         mark_subject=description.character.moles_male_names17,
     )
-    yield from mark_m(
-        mark_id=MarksFactory.FRECKLES,
+    yield from mark_data_m(mark_id=FRECKLES)(
         mark_start=description.character.freckles_male_names13,
         mark_middle=description.character.freckles_male_names14,
         mark_finish=description.character.freckles_male_names15,
         mark_memory=description.character.freckles_male_names16,
         mark_subject=description.character.freckles_male_names17,
     )
-    yield from mark_m(
-        mark_id=MarksFactory.SKIN,
+    yield from mark_data_m(mark_id=SKIN)(
         mark_start=description.character.skin_male_names13,
         mark_middle=description.character.skin_male_names14,
         mark_finish=description.character.skin_male_names15,
         mark_memory=description.character.skin_male_names16,
         mark_subject=description.character.skin_male_names17,
     )
-    yield from mark_f(
-        mark_id=MarksFactory.MARKS,
-    )
-    yield from mark_f(
-        mark_id=MarksFactory.TATTOO,
+
+    yield from mark_f(description.character.female_names12)
+    yield from mark_data_f(mark_id=MARKS)()
+    yield from mark_data_f(mark_id=TATTOO)(
         mark_start=description.character.tattoo_female_names13,
         mark_middle=description.character.tattoo_female_names14,
         mark_finish=description.character.tattoo_female_names15,
     )
-    yield from mark_f(
-        mark_id=MarksFactory.TRIBAL_MARK,
+    yield from mark_data_f(mark_id=TRIBAL_MARK)(
         mark_start=description.character.tribal_female_names13,
         mark_middle=description.character.tribal_female_names14,
         mark_finish=description.character.tribal_female_names15,
     )
-    yield from mark_f(
-        mark_id=MarksFactory.MOLES,
+    yield from mark_data_f(mark_id=MOLES)(
         mark_start=description.character.moles_female_names13,
         mark_middle=description.character.moles_female_names14,
         mark_finish=description.character.moles_female_names15,
         mark_memory=description.character.moles_female_names16,
         mark_subject=description.character.moles_female_names17,
     )
-    yield from mark_f(
-        mark_id=MarksFactory.FRECKLES,
+    yield from mark_data_f(mark_id=FRECKLES)(
         mark_start=description.character.freckles_female_names13,
         mark_middle=description.character.freckles_female_names14,
         mark_finish=description.character.freckles_female_names15,
         mark_memory=description.character.freckles_female_names16,
         mark_subject=description.character.freckles_female_names17,
     )
-    yield from mark_f(
-        mark_id=MarksFactory.SKIN,
+    yield from mark_data_f(mark_id=SKIN)(
         mark_start=description.character.skin_female_names13,
         mark_middle=description.character.skin_female_names14,
         mark_finish=description.character.skin_female_names15,

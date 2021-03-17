@@ -20,7 +20,7 @@ class Factory:
         :param value: Value to check
         :return: If value is valid
         """
-        return value is not None
+        return True
 
     def get_value(self, *args, **kwargs):
         """
@@ -49,7 +49,7 @@ class Factory:
         :param kwargs: Kwargs for name generation
         :return: Generated value
         """
-        value = None
+        value = self.get_value(*args, **kwargs)
         while not self.is_valid(value):
             value = self.get_value(*args, **kwargs)
         return self.get_child(value)
@@ -76,17 +76,6 @@ class DataFactory(Factory):
         """
         self.block = block
 
-    def is_valid(self, value) -> bool:
-        """
-        Check value
-
-        :param value: Value to check
-        :return: If value is valid
-        """
-        if len(self.block.values) == 0:
-            return True
-        return value is not None
-
     def get_value(self, *args, **kwargs):
         """
         Generate new value
@@ -95,8 +84,7 @@ class DataFactory(Factory):
         :param kwargs: Filter for data block
         :return: Generated value
         """
-        value = next(self.block.filtered(**kwargs))
-        return value if value is not None else {}
+        return next(self.block.filtered(**kwargs))
 
 
 class FactoriesBlock:

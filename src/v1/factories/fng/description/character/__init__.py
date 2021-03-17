@@ -5,7 +5,7 @@ from v1.models.fng.description import Character, CharacterDescription, Hair, Fac
     Personality
 from v1.factories.fng.factory import load_data
 from v1.factories.fng.name_factory import NameFactory, GenderNameFactory
-from v1.factories.fng.validators import generate_while
+# from v1.factories.fng.validators import generate_while
 from .race import RaceFactory
 from .marks import MarksFactory
 from .hair import HairFactory
@@ -23,28 +23,23 @@ class BaseCharacterFactory(NameFactory):
 
         # Additional factories
         self.race_factory = RaceFactory(self.data_items)
-        self.marks_factory = MarksFactory(self.factories)
+        self.marks_factory = MarksFactory(self.data_items)
         self.hair_factory = HairFactory(self.factories)
 
     def get_items(self, *args, **kwargs) -> dict:
         """
         :return: Dict with generated data
         """
-        __race = self.race_factory()
-        race_factories = __race.factories(__race, self.data_items)
+        print("Race")
+        __race = self.race_factory(gender_id=self.gender)
+        # __race = self.race_factory(gender_id=genders.NEUTRAL)
+        print(__race)
 
-        __marks = self.marks_factory()
-        __mark_id = self.marks_factory.get_mark_id(__marks)
-        __marks_blocks = self.factories.get(f"marks.{__mark_id}")
-        __values = self.data_items.search_values(
-            gender_id=self.gender,
-            mark_id=__mark_id,
-        )
-        marks_factories = __marks.factories(__marks, NameBlock(*self.data_items.search_values(
-            gender_id=self.gender,
-            mark_id=__mark_id,
-        )))
+        print("Marks")
+        __marks = self.marks_factory(gender_id=self.gender)
+        print(__marks)
 
+        print("Personality")
         __personality = Personality({
             'him_or_her': self.him_or_her,
             24: self.factory(24)(),  # 24
@@ -53,16 +48,17 @@ class BaseCharacterFactory(NameFactory):
             27: self.factory(27)(),  # 27
             28: self.factory(28)(),  # 28
         })
+        print(__personality)
         return {
             'character': Character(
                 gender=self.gender,
-                hair=race_factories.hair_factory(),
-                face=race_factories.face_factory(),
-                eyes=race_factories.eyes_factory(),
-                origin=race_factories.origin_factory(),  # 10
+                hair=__race.factories.hair_factory(gender_id=self.gender),
+                face=__race.factories.face_factory(gender_id=self.gender),
+                eyes=__race.factories.eyes_factory(gender_id=self.gender),
+                origin=__race.factories.origin_factory(gender_id=self.gender),  # 10
                 origin_attitude=self.factory(11)(),  # 11
-                mark_description=marks_factories.description_factory(),
-                name=race_factories.character_name_factory(),
+                mark_description=__marks.factories.description_factory(gender_id=self.gender),
+                name=__race.factories.character_name_factory(gender_id=self.gender),
                 profession=self.factory(20)(),  # 20
                 race=__race,
                 height=self.factory(22)(),  # 22

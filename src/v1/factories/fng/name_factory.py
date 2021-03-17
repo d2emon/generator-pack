@@ -26,7 +26,7 @@ class NameFactory(Factory):
         self.__factories = blocks or self.default_blocks
 
     @property
-    def factories(self) -> dict:
+    def factories(self):
         """
         :return: Factories for complex factory
         """

@@ -49,9 +49,9 @@ class CharacterDescription(Description):
     @property
     def __value_1(self):
         return f"{self.character.hair} a {self.character.face}. "\
-            + self.character.eyes.describe(
+            + (self.character.eyes.describe(
                 f"{self.character.origin} they've {self.character.origin_attitude} for so long",
-            )
+            ) if self.character.eyes else '')
 
     @property
     def __value_2(self):
