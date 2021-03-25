@@ -1,10 +1,10 @@
-from v1.fixtures.data_block import load_data
+from v1.fixtures.data_block import fill_data
 from v1.fixtures.fng.names import fantasy
 from v1.models.fng.names.fantasy import AnimalSpeciesName
-from v1.factories.fng.name_factory import NameFactory, ComplexNameFactory
+from v1.factories.fng.name_factory import NameFactory, PercentFactory
 
 
-class AnimalSpeciesNameFactory(ComplexNameFactory):
+class AnimalSpeciesNameFactory(PercentFactory):
     """Animal Species Name Factory
 
     This animal species name generator will generate names for (mostly) non-existing animal species, perfect for fantasy
@@ -14,29 +14,29 @@ class AnimalSpeciesNameFactory(ComplexNameFactory):
     class AnimalSpeciesNameFactory1(NameFactory):
         """The first 4 names are names of animals combined with an adjective.
         For example: 'Almond Albatross'."""
-        name_class = AnimalSpeciesName
-        blocks_map = {
-            1: 1,
-            2: 2,
+        model = AnimalSpeciesName
+        block_map = {
+            'nm1': 1,
+            'nm2': 2,
         }
 
     class AnimalSpeciesNameFactory2(NameFactory):
         """The next 2 names will be names of animals with characteristic specific names.
         For example: 'Flame-Eyed Mongoose'."""
-        name_class = AnimalSpeciesName
-        blocks_map = {
-            1: 3,
-            2: 2,
+        model = AnimalSpeciesName
+        block_map = {
+            'nm1': 3,
+            'nm2': 2,
         }
 
     class AnimalSpeciesNameFactory3(NameFactory):
         """The last 4 names will be two animal names combined, which will form a new animal (with a little imagination).
         A great example of this are the animals in the Avatar (Last Airbender/Korra) series, like the Turtle-Duck and
         the Lion-Turtle."""
-        name_class = AnimalSpeciesName
-        blocks_map = {
-            1: 2,
-            2: 2,
+        model = AnimalSpeciesName
+        block_map = {
+            'nm1': 2,
+            'nm2': 2,
         }
 
     factory_classes = {
@@ -44,7 +44,7 @@ class AnimalSpeciesNameFactory(ComplexNameFactory):
         1: AnimalSpeciesNameFactory2,
         2: AnimalSpeciesNameFactory3,
     }
-    default_blocks = load_data({
+    default_data = fill_data(group_id='animal_species')({
         1: fantasy.animal_species.nm1,
         2: fantasy.animal_species.nm2,
         3: fantasy.animal_species.nm3,

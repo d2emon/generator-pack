@@ -1,6 +1,6 @@
 from .names import *
-from .description import *
-from .other import *
+# from .description import *
+# from .other import *
 
 # # from ._unknown.motivation import MotivationGenerator
 # # from ._unknown.world import WorldGenerator

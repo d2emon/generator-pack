@@ -1,4 +1,4 @@
-from v1.fixtures.data_block import load_data
+from v1.fixtures.data_block import fill_data
 from v1.fixtures.fng.names import fantasy
 from v1.models.fng.names.fantasy import BansheeName
 from v1.factories.fng.name_factory import NameFactory
@@ -18,12 +18,12 @@ class BansheeNameFactory(NameFactory):
     you want to add more back-story to your banshee, and require a personal name, I definitely recommend starting with
     real names, either Irish or otherwise depending on the cultural background you need."""
 
-    name_class = BansheeName
-    blocks_map = {
-        1: 1,
-        2: 2,
+    model = BansheeName
+    block_map = {
+        'nm1': 'nm1',
+        'nm2': 'nm2',
     }
-    default_blocks = load_data({
-        1: fantasy.banshee.nm1,
-        2: fantasy.banshee.nm2,
+    default_data = fill_data(group_id='banshee')({
+        'nm1': fantasy.banshee.nm1,
+        'nm2': fantasy.banshee.nm2,
     })

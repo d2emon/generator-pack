@@ -1,11 +1,11 @@
+from v1.fixtures.data_block import fill_data
 from v1.fixtures import genders
-from v1.fixtures.data_block import load_data
 from v1.fixtures.fng.names import fantasy
 from v1.models.fng.names.fantasy import AngelName
-from v1.factories.fng.name_factory import NameFactory, GenderNameFactory
+from v1.factories.fng.name_factory import NameFactory, GenderFactory
 
 
-class AngelNameFactory(GenderNameFactory):
+class AngelNameFactory(GenderFactory):
     """Angel Name Factory
 
     These angel names are great for any fantasy story, especially those with a more traditional style in terms of names.
@@ -14,21 +14,21 @@ class AngelNameFactory(GenderNameFactory):
     names, so you'll likely come across some doubles if you're looking in multiple sections."""
 
     class MaleNameFactory(NameFactory):
-        name_class = AngelName
-        blocks_map = {
-            1: 1,
+        model = AngelName
+        block_map = {
+            'nm1': 1,
         }
 
     class FemaleNameFactory(NameFactory):
-        name_class = AngelName
-        blocks_map = {
-            1: 2,
+        model = AngelName
+        block_map = {
+            'nm1': 2,
         }
 
     class NeutralNameFactory(NameFactory):
-        name_class = AngelName
-        blocks_map = {
-            1: 3,
+        model = AngelName
+        block_map = {
+            'nm1': 3,
         }
 
     factory_classes = {
@@ -36,7 +36,7 @@ class AngelNameFactory(GenderNameFactory):
         genders.FEMALE: FemaleNameFactory,
         genders.NEUTRAL: NeutralNameFactory,
     }
-    default_blocks = load_data({
+    default_data = fill_data(group_id='angel')({
         1: fantasy.angel.names1,
         2: fantasy.angel.names2,
         3: fantasy.angel.names3,

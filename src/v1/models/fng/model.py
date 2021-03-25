@@ -41,17 +41,19 @@ class TextModel(Model):
     Model for text data
     """
 
-    def __init__(self, value, **kwargs):
+    def __init__(self, *args, **kwargs):
         """
         :param value: Name Item for model
         """
-        items = {}
-        items.update(value.values if value is not None else {})
-        items.update(kwargs)
+        values = {
+            'args': args,
+        }
+        # items.update(value.values if value is not None else {})
+        values.update(kwargs)
         super().__init__(
-            item_id=value.item_id if value is not None else None,
-            value=str(value),
-            **items,
+            # item_id=item_id,
+            # value=str(value),
+            **values,
         )
 
     @property
@@ -66,7 +68,7 @@ class TextModel(Model):
         """
         :return: Model as string
         """
-        return self.items.get('value', "")
+        return str(self.items.get('value', ""))
 
     def __len__(self):
         return len(str(self))

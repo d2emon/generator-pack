@@ -1,10 +1,10 @@
-from v1.fixtures.data_block import load_data
+from v1.fixtures.data_block import fill_data
 from v1.fixtures.fng.names import fantasy
 from v1.models.fng.names.fantasy import AmazonName
-from v1.factories.fng.name_factory import NameFactory, ComplexNameFactory
+from v1.factories.fng.name_factory import NameFactory, PercentFactory
 
 
-class AmazonNameFactory(ComplexNameFactory):
+class AmazonNameFactory(PercentFactory):
     """Amazon Name Factory
 
     The names are heavily based on the Amazons of ancient Greece, so while most names will have various melodic sounds,
@@ -22,30 +22,30 @@ class AmazonNameFactory(ComplexNameFactory):
     queen of the Amazons and mother of Diana, otherwise known as Wonder Woman."""
 
     class AmazonNameFactory1(NameFactory):
-        name_class = AmazonName
-        blocks_map = {
-            1: 1,
-            2: 2,
-            3: 3,
-            4: 5,
-            5: 6,
+        model = AmazonName
+        block_map = {
+            'nm1': 1,
+            'nm2': 2,
+            'nm3': 3,
+            'nm4': 5,
+            'nm5': 6,
         }
 
     class AmazonNameFactory2(NameFactory):
-        name_class = AmazonName
-        blocks_map = {
-            1: 1,
-            2: 2,
-            3: 3,
-            4: 2,
-            5: 6,
+        model = AmazonName
+        block_map = {
+            'nm1': 1,
+            'nm2': 2,
+            'nm3': 3,
+            'nm4': 2,
+            'nm5': 6,
         }
 
     factory_classes = {
         0: AmazonNameFactory1,
         1: AmazonNameFactory2,
     }
-    default_blocks = load_data({
+    default_data = fill_data(group_id='amazon')({
         1: fantasy.amazon.names1,
         2: fantasy.amazon.names2,
         3: fantasy.amazon.names3,
@@ -54,8 +54,10 @@ class AmazonNameFactory(ComplexNameFactory):
         6: fantasy.amazon.names6,
     })
 
-    def factory(self, factory_id):
+    def factory(self, factory_id=0):
         if factory_id < 50:
             return self.factories[0]
-        else:
+        elif factory_id < 100:
             return self.factories[1]
+        else:
+            return None

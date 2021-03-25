@@ -1,11 +1,11 @@
 from v1.fixtures import genders
-from v1.fixtures.data_block import load_data
+from v1.fixtures.data_block import fill_data
 from v1.fixtures.fng.names import fantasy
 from v1.models.fng.names.fantasy import AnthousaiName
-from v1.factories.fng.name_factory import NameFactory, GenderNameFactory
+from v1.factories.fng.name_factory import NameFactory, GenderFactory
 
 
-class AnthousaiNameFactory(GenderNameFactory):
+class AnthousaiNameFactory(GenderFactory):
     """Anthousai Name Factory
 
     Anthousai are flower nymphs, just as dryads are tree nymphs. But unlike dryads, anthousai aren't as well known
@@ -21,22 +21,22 @@ class AnthousaiNameFactory(GenderNameFactory):
     despite being a woman."""
 
     class MaleNameFactory(NameFactory):
-        name_class = AnthousaiName
-        blocks_map = {
-            1: 1,
+        model = AnthousaiName
+        block_map = {
+            'nm1': 1,
         }
 
     class FemaleNameFactory(NameFactory):
-        name_class = AnthousaiName
-        blocks_map = {
-            1: 2,
+        model = AnthousaiName
+        block_map = {
+            'nm1': 2,
         }
 
     factory_classes = {
         genders.MALE: MaleNameFactory,
         genders.FEMALE: FemaleNameFactory,
     }
-    default_blocks = load_data({
+    default_data = fill_data(group_id='anthousai')({
         1: fantasy.anthousai.nm1,
         2: fantasy.anthousai.nm2,
     })

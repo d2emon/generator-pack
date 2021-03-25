@@ -1,5 +1,5 @@
 import random
-from v1.fixtures.data_block import load_data
+from v1.fixtures.data_block import fill_data
 from v1.fixtures.fng.names import fantasy
 from v1.models.fng.names.fantasy import AnansiName
 from v1.factories.fng.name_factory import NameFactory
@@ -22,25 +22,25 @@ class AnansiNameFactory(NameFactory):
     than the real, while still being tied to both sides.
     Alternatively, the spiderfolk could be of help to you, too. Depending on the type of name you're looking for."""
 
-    name_class = AnansiName
-    default_blocks = load_data({
+    model = AnansiName
+    default_data = fill_data(group_id='anansi')({
         1: fantasy.anansi.names1,
         8: fantasy.anansi.names8,
     })
-    blocks_map = {
-        1: 1,
-        3: 1,
-        5: 8,
+    block_map = {
+        'nm1': 1,
+        'nm3': 1,
+        'nm5': 8,
     }
 
-    def get_items(self) -> dict:
-        items = super().get_items()
+    def generate(self, *args, **kwargs):
+        values = super().generate(*args, **kwargs)
         return {
-            1: items[1],
-            2: random.randrange(len(items[1].value)),
-            3: items[3],
-            4: random.randrange(len(items[3].value)),
-            5: items[5],
+            1: values['nm1'],
+            2: random.randrange(len(values['nm1'].value)),
+            3: values['nm3'],
+            4: random.randrange(len(values['nm3'].value)),
+            5: values['nm5'],
         }
 
     def validate(self, items) -> dict:
@@ -65,7 +65,7 @@ class AnansiNameFactory(NameFactory):
             items[2] = 2
 
         return {
-            0: items[1].value[:items[2]],
-            1: items[5],
-            2: items[3].value[items[4] - 1:],
+            'nm0': items[1].value[:items[2]],
+            'nm1': items[5],
+            'nm2': items[3].value[items[4] - 1:],
         }

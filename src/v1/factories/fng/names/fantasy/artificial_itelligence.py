@@ -1,4 +1,4 @@
-from v1.fixtures.data_block import load_data
+from v1.fixtures.data_block import fill_data
 from v1.fixtures.fng.names import fantasy
 from v1.models.fng.names.fantasy import ArtificialIntelligenceName
 from v1.factories.fng.name_factory import NameFactory
@@ -14,10 +14,10 @@ class ArtificialIntelligenceNameFactory(NameFactory):
     The names in this generator cover themes like robotics, electronics, purposes, and in some cases identity as
     well."""
 
-    default_blocks = load_data({
+    default_data = fill_data(group_id='artificial-intelligence')({
         1: fantasy.artificial_intelligence.nm1,
     })
-    blocks_map = {
-        1: 1,
+    block_map = {
+        'nm1': 1,
     }
-    name_class = ArtificialIntelligenceName
+    model = ArtificialIntelligenceName

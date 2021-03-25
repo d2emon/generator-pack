@@ -83,3 +83,18 @@ def load_data(data) -> dict:
     :return: Dict with NameBlocks
     """
     return {item_id: NameBlock().fill(*values) for item_id, values in data.items()}
+
+
+def fill_data(**values):
+    def f(blocks):
+        return [
+            {
+                'item_id': item_id,
+                'block_id': block_id,
+                'value': value,
+                **values,
+            }
+            for block_id, items in blocks.items()
+            for item_id, value in enumerate(items)
+        ]
+    return f

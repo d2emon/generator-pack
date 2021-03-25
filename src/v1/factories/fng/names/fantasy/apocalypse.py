@@ -1,11 +1,11 @@
 from v1.fixtures import genders
-from v1.fixtures.data_block import load_data
+from v1.fixtures.data_block import fill_data
 from v1.fixtures.fng.names import fantasy
 from v1.models.fng.names.fantasy import ApocalypseNickname
-from v1.factories.fng.name_factory import NameFactory, GenderNameFactory
+from v1.factories.fng.name_factory import NameFactory, GenderFactory
 
 
-class ApocalypseNicknameFactory(GenderNameFactory):
+class ApocalypseNicknameFactory(GenderFactory):
     """Apocalypse Nickname Factory
 
     Not all names will fit mutants, and not all names will fit normal people caught up in a broken world, but there's
@@ -27,21 +27,21 @@ class ApocalypseNicknameFactory(GenderNameFactory):
     'Bulletproof', 'Daydream' and 'Nightmare' or 'Ash' and 'Soot'."""
 
     class MaleNameFactory(NameFactory):
-        name_class = ApocalypseNickname
-        blocks_map = {
-            1: genders.MALE,
+        model = ApocalypseNickname
+        block_map = {
+            'nm1': genders.MALE,
         }
 
     class FemaleNameFactory(NameFactory):
-        name_class = ApocalypseNickname
-        blocks_map = {
-            1: genders.FEMALE,
+        model = ApocalypseNickname
+        block_map = {
+            'nm1': genders.FEMALE,
         }
 
     class NeutralNameFactory(NameFactory):
-        name_class = ApocalypseNickname
-        blocks_map = {
-            1: genders.NEUTRAL,
+        model = ApocalypseNickname
+        block_map = {
+            'nm1': genders.NEUTRAL,
         }
 
     factory_classes = {
@@ -49,7 +49,7 @@ class ApocalypseNicknameFactory(GenderNameFactory):
         genders.FEMALE: FemaleNameFactory,
         genders.NEUTRAL: NeutralNameFactory,
     }
-    default_blocks = load_data({
+    default_data = fill_data(group_id='apocalypse')({
         genders.MALE: fantasy.apocalypse.namesMale,
         genders.FEMALE: fantasy.apocalypse.namesFemale,
         genders.NEUTRAL: fantasy.apocalypse.namesNeutral,

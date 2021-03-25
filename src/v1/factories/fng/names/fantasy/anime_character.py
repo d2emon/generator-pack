@@ -1,11 +1,11 @@
 from v1.fixtures import genders
-from v1.fixtures.data_block import load_data
+from v1.fixtures.data_block import fill_data
 from v1.fixtures.fng.names import fantasy
 from v1.models.fng.names.fantasy import AnimeCharacterName
-from v1.factories.fng.name_factory import NameFactory, GenderNameFactory
+from v1.factories.fng.name_factory import NameFactory, GenderFactory
 
 
-class AnimeNameFactory(GenderNameFactory):
+class AnimeNameFactory(GenderFactory):
     """Anime Character Name Factory
 
     Anime and manga character names typically fall into one of three categories: real names, fake names and unique or
@@ -20,28 +20,28 @@ class AnimeNameFactory(GenderNameFactory):
     Like regular Japanese names, the names in this generator are in surname - personal name order."""
 
     class MaleAnimeNameFactory(NameFactory):
-        name_class = AnimeCharacterName
-        blocks_map = {
-            1: 1,
-            2: 2,
-            3: 5,
-            4: 6,
+        model = AnimeCharacterName
+        block_map = {
+            'nm1': 1,
+            'nm2': 2,
+            'nm3': 5,
+            'nm4': 6,
         }
 
     class FemaleAnimeNameFactory(NameFactory):
-        name_class = AnimeCharacterName
-        blocks_map = {
-            1: 3,
-            2: 4,
-            3: 5,
-            4: 6,
+        model = AnimeCharacterName
+        block_map = {
+            'nm1': 3,
+            'nm2': 4,
+            'nm3': 5,
+            'nm4': 6,
         }
 
     factory_classes = {
         genders.MALE: MaleAnimeNameFactory,
         genders.FEMALE: FemaleAnimeNameFactory,
     }
-    default_blocks = load_data({
+    default_data = fill_data(group_id='anime')({
         1: fantasy.anime_character.nm1,
         2: fantasy.anime_character.nm2,
         3: fantasy.anime_character.nm3,
