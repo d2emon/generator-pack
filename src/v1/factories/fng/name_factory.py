@@ -78,6 +78,14 @@ class NameFactory(ComplexFactory):
 
 
 class PolymorphFactory(ComplexFactory):
+    @property
+    def default_gender(self):
+        return MALE
+
+    @property
+    def default_percent(self):
+        return random.randrange(100)
+
     def __call__(self, *args, factory_id=None, **kwargs):
         """
         Main factory method
@@ -93,7 +101,7 @@ class PolymorphFactory(ComplexFactory):
 
 class PercentFactory(PolymorphFactory):
     def factory(self, factory_id=None):
-        return self.factories.get(factory_id if factory_id is not None else random.randrange(100))
+        return self.factories.get(factory_id if factory_id is not None else self.default_percent)
 
     def multiple(self, count=10, *args, **kwargs):
         """
@@ -110,4 +118,4 @@ class PercentFactory(PolymorphFactory):
 
 class GenderFactory(PolymorphFactory):
     def factory(self, factory_id=None):
-        return self.factories.get(factory_id if factory_id is not None else MALE)
+        return self.factories.get(factory_id if factory_id is not None else self.default_gender)
