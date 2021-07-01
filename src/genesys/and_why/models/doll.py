@@ -1,5 +1,5 @@
+from data.and_why import genders
 from genesys.model.keyed.slotted import Slotted
-from ...data.genders import DEFAULT
 
 
 class Doll(Slotted):
@@ -8,7 +8,7 @@ class Doll(Slotted):
     ]
 
     def __init__(self, gender=None, **fields):
-        super().__init__(gender=gender or DEFAULT, **fields)
+        super().__init__(gender=gender or genders.DEFAULT, **fields)
 
     @property
     def gender(self):
