@@ -1,6 +1,6 @@
 from genesys.model.models import Name
 from v1.fixtures import genders
-from ..model import ModelFactory
+from factories.model import ModelFactory
 
 
 class TextFactory(ModelFactory):

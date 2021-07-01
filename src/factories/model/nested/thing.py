@@ -1,4 +1,4 @@
-from ..model import ModelFactory
+from factories.model import ModelFactory
 
 
 class ThingFactory(ModelFactory):
