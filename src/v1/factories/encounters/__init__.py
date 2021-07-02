@@ -1,5 +1,5 @@
-from v1.fixtures.encounters.environmental import encounters
-from v1.fixtures.encounters.items import items
+from v3.genesys.encounters.encounters.environmental import encounters
+from v3.genesys.encounters.encounters.items import items
 from .factory import EncounterFactory, ItemFactory
 
 
