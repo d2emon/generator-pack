@@ -1,22 +1,24 @@
-import random
 from factories import Factory
 from .campsite import BaseCampsiteFactory
-from .simple import SimpleCampsiteFactory
-from .unusual import UnusualCampsiteFactory
+from ..providers import CampsiteDataProvider
 
 
 class CampsiteFactory(Factory):
+    def __init__(self, data=CampsiteDataProvider):
+        self.__data = data
+        self.simple_campsite_factory = BaseCampsiteFactory(data.simple)
+        self.unusual_campsite_factory = BaseCampsiteFactory(data.unusual)
+
     @property
     def data(self):
-        return None
+        return self.__data
 
-    def build(self, roll=None, *args, **kwargs):
-        if roll is None:
-            roll = random.randrange(12)
-
-        if roll < 11:
-            factory = SimpleCampsiteFactory()
+    def factory(self, roll):
+        if roll < self.data.unusual_roll:
+            return self.simple_campsite_factory
         else:
-            factory = UnusualCampsiteFactory()
+            return self.unusual_campsite_factory
 
-        return factory.build(*args, **kwargs)
+    def __call__(self, roll=None, *args, **kwargs):
+        factory = self.factory(roll or self.data.roll())
+        return factory(*args, **kwargs)

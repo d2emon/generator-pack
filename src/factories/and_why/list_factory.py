@@ -1,5 +1,5 @@
 import random
-from .factory import Factory
+from ..factory import Factory
 
 
 class ListFactory(Factory):

@@ -1,13 +1,13 @@
-from factories.and_why import ModelFactory
+from factories import ModelFactory
 from ..models import Doll
-from ..providers.doll_provider import DollProvider
+from ..providers.gender_provider import GenderProvider
 from .gender import GenderFactory
 
 
 class DollFactory(ModelFactory):
-    def __init__(self, data=DollProvider):
-        super().__init__(data)
-        self.__gender_factory = GenderFactory(data.genders)
+    def __init__(self, data=GenderProvider):
+        super().__init__()
+        self.__gender_factory = GenderFactory(data)
 
     @property
     def model_class(self):

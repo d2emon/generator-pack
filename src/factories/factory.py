@@ -2,15 +2,6 @@ class Factory:
     """
     Generate value
     """
-
-    # def __init__(self, provider=None):
-    #     self.provider = provider
-    #     self.data = None
-
-    @property
-    def data(self):
-        raise NotImplementedError()
-
     def __iter__(self):
         """
         Factory iterator
@@ -25,9 +16,9 @@ class Factory:
 
         :return: Result
         """
-        return self.build()
+        return self()
 
-    def build(self, *args, **kwargs):
+    def __call__(self, *args, **kwargs):
         """
         Generate result
 
@@ -35,7 +26,7 @@ class Factory:
         :param kwargs: Build kwargs
         :return: Result
         """
-        return str(self.data) or None
+        raise NotImplementedError()
 
     def items(self, count=5, *args, **kwargs):
         """
@@ -47,4 +38,4 @@ class Factory:
         :return: Results
         """
         for _ in range(count):
-            yield self.build(*args, **kwargs)
+            yield self(*args, **kwargs)

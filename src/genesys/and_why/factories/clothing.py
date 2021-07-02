@@ -1,4 +1,4 @@
-from factories.and_why import Factory
+from factories import Factory
 from ..providers.clothing_provider import ClothingProvider
 from .slot import SlotFactory
 

@@ -1,5 +1,5 @@
-from orm.models import Model
-from factories.factory import Factory
+# from orm.models import Model
+from ..factory import Factory
 
 
 class ModelFactory(Factory):
@@ -7,14 +7,11 @@ class ModelFactory(Factory):
     Generate model
     """
     @property
-    def data(self):
+    def model_class(self):
+        # return Model
         raise NotImplementedError()
 
-    @property
-    def model_class(self):
-        return Model
-
-    def build(self, *args, **kwargs):
+    def __call__(self, *args, **kwargs):
         """
         Generate model
 

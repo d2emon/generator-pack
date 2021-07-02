@@ -1,2 +1,2 @@
 from .models import Campsite
-from .factories import CampsiteFactory, SimpleCampsiteFactory, UnusualCampsiteFactory
+from .factories import CampsiteFactory
