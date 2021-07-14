@@ -1,9 +1,9 @@
 from dice.dice import Dice
-from .era import Era
-from ..data import timeline
+from v3.fixtures import timeline
+from .age import Age
 
 
-class Past(Era):
+class Past(Age):
     """
     These events occurred after the setting’s ancient period but before the last living generation. About two-thirds of
     these events should provide general support for the setting’s background, while the remaining third forms the

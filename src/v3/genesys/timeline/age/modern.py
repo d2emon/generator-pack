@@ -1,9 +1,9 @@
 from dice.dice import Dice
-from ..data import timeline
-from .era import Era
+from v3.fixtures import timeline
+from .age import Age
 
 
-class Modern(Era):
+class Modern(Age):
     """
     These are events that have occurred within the lifespan of the last living generation; only those living under the
     setting’s rocks will not have some memory of these events, either as a participant, a live observer, or as a direct

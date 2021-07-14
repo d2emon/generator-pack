@@ -1,9 +1,9 @@
 from dice.dice import Dice
-from ..data import timeline
-from .era import Era
+from v3.fixtures import timeline
+from .age import Age
 
 
-class Ancient(Era):
+class Ancient(Age):
     """
     These events occurred during the setting’s distant past, typically describing the rise (and possible fall) of an
     ancestral race or explaining the remnants of a now-extinct culture. Like prehistory, ancient events are offered

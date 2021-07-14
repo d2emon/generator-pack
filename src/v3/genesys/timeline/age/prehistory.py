@@ -1,9 +1,9 @@
 from dice.dice import Dice
-from .era import Era
-from ..data import timeline
+from v3.fixtures import timeline
+from .age import Age
 
 
-class Prehistory(Era):
+class Prehistory(Age):
     """
     Any event that occurred before recorded history. In most cases, this era is described in speculative terms,
     typically describing how the setting came to be peopled and serving as a precursory justification of the setting’s
