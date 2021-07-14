@@ -1,17 +1,10 @@
-from .list_factory import ListFactory
+from .factory import Factory
 
 
-class ModelFactory(ListFactory):
+class ModelFactory(Factory):
     """
     Factory for model
    """
-    def __init__(self, data):
-        """
-        Create factory
-
-        :param data: Array of data dicts
-        """
-        super().__init__(data)
 
     @property
     def model(self):
@@ -21,6 +14,25 @@ class ModelFactory(ListFactory):
         :return: Model, built by factory
         """
         raise NotImplementedError()
+
+    def generate(self, *args, **kwargs):
+        """
+        Generate value from data
+
+        :param args: Args for generation
+        :param kwargs: Kwargs for generation
+        :return: Generated value
+        """
+        raise NotImplementedError()
+
+    def validate(self, items) -> dict:
+        """
+        Validate items
+
+        :param items: Name items
+        :return: Validated name items
+        """
+        return items
 
     def __call__(self, *args, **kwargs):
         """
