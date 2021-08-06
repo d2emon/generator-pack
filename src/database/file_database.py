@@ -1,5 +1,5 @@
 import os
-from .memory_database import MemoryDatabase
+from .database import Database
 
 
 class DataFile:
@@ -24,40 +24,39 @@ class DataFile:
         raise NotImplementedError()
 
 
-class FileDatabase(MemoryDatabase):
+class FileDatabase(Database):
     def __init__(self, filename='', **config):
         super().__init__(**config)
         self.__filename = filename
-        self.__data = None
         self.__loaded = False
+        self.__file = None
 
     @property
-    def is_loaded(self):
-        return self.__loaded and (self.__data is not None)
+    def is_ready(self):
+        return self.__loaded and (self._data is not None)
 
     @property
     def filename(self):
         """
         :return: Full filename for data file
         """
-        return os.path.join(self.config.get('DATABASE_ROOT'), self.__filename)
+        return os.path.join(self.config.get('DATABASE_ROOT', ''), self.__filename)
 
     @property
-    def data_file(self):
+    def file(self):
+        """
+        :return: Data file
+        """
+        if self.__file is None:
+            self.__file = self.open()
+
+        return self.__file
+
+    def open(self):
         """
         :return: Data file
         """
         raise NotImplementedError()
-
-    @property
-    def data(self):
-        """
-        :return: Data from db
-        """
-        if not self.is_loaded:
-            self.load()
-
-        return self.__data
 
     def load(self):
         """
@@ -65,7 +64,7 @@ class FileDatabase(MemoryDatabase):
 
         :return:
         """
-        self.__data = list(map(self.prepare, self.data_file.load()))
+        self._data = list(map(self.output, self.file.load()))
         self.__loaded = True
 
     def save(self):
@@ -74,4 +73,4 @@ class FileDatabase(MemoryDatabase):
 
         :return:
         """
-        self.data_file.save(self.data)
+        self.file.save(self.data)

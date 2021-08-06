@@ -13,6 +13,8 @@ class JSONDataFile(DataFile):
 
 
 class JSONDatabase(FileDatabase):
-    @property
-    def data_file(self):
+    def open(self):
+        """
+        :return: Data file
+        """
         return JSONDataFile(self.filename)

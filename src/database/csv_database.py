@@ -1,5 +1,4 @@
 import csv
-from config import DB_CONFIG
 from .file_database import DataFile, FileDatabase
 
 
@@ -8,7 +7,7 @@ class CSVDataFile(DataFile):
         super().__init__(filename)
         self.fields = fields
 
-    def __prepare(self, record):
+    def __output(self, record):
         """
         Inject uuid to record
 
@@ -19,7 +18,7 @@ class CSVDataFile(DataFile):
 
     def load(self):
         with open(self.filename, 'r') as f:
-            yield from map(self.__prepare, csv.reader(f))
+            yield from map(self.__output, csv.reader(f))
 
     def save(self, data):
         with open(self.filename, 'w') as f:
@@ -33,6 +32,8 @@ class CSVDatabase(FileDatabase):
         super().__init__(filename, **config)
         self.fields = fields or []
 
-    @property
-    def data_file(self):
+    def open(self):
+        """
+        :return: Data file
+        """
         return CSVDataFile(self.filename, self.fields)

@@ -107,7 +107,7 @@
 12	Дружелюбная / Эй, давай дружить	Он согласен
 """
 # from config.storm import CONFIG
-from genesys.storm.encounter.factories.encounter import EncounterFactory
+from genesys.storm.factories.encounter.factories.encounter import EncounterFactory
 
 
 class EncountersManager:

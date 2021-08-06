@@ -1,8 +1,10 @@
 import os
-from orm.database import CSVDatabase, JSONDatabase
+from database import CSVDatabase, JSONDatabase
+from config import DB_CONFIG
 
 
-BASE_DIR = 'worlds'
+CONFIG = DB_CONFIG.get('storm', {})
+BASE_DIR = os.path.join(CONFIG.get('DATABASE_ROOT', ''), 'worlds')
 
 
 types = JSONDatabase(filename=os.path.join(BASE_DIR, 'types.json'))
