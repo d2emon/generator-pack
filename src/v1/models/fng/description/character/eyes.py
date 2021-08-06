@@ -1,4 +1,4 @@
-from v1.models.fng.model import Model
+from v3.models import Model
 
 
 class Eyes(Model):

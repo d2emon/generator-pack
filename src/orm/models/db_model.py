@@ -1,7 +1,7 @@
-from genesys.model.keyed.model import Model
+from v3.models import ComplexModel
 
 
-class DbModel(Model):
+class DbModel(ComplexModel):
     database = None
     fields = []
 

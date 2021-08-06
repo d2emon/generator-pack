@@ -1,4 +1,4 @@
-from v1.models.fng.model import TextModel
+from v3.models import TextModel
 
 
 class Race(TextModel):

@@ -1,4 +1,4 @@
-from v1.models.fng.model import Model
+from v3.models import Model
 from v1.factories.factory import Factory as __Factory
 
 

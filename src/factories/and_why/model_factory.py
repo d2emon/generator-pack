@@ -1,4 +1,4 @@
-from orm.models import Model
+from v3.models import Model
 from ..factory import Factory
 
 

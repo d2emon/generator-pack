@@ -1,4 +1,4 @@
-from v1.models.fng.model import Model
+from v3.models import Model
 
 
 class Personality(Model):
@@ -6,6 +6,6 @@ class Personality(Model):
 
     @property
     def value(self) -> str:
-        return f"There's something {self.items[24]} about {self.him_or_her}, " \
-            + f"perhaps it's {self.items[25]} or perhaps it's simply {self.items[26]}. " \
-            + f"But nonetheless, people tend to {self.items[27]}, while {self.items[28]}."
+        return f"There's something {self.data[24]} about {self.him_or_her}, " \
+            + f"perhaps it's {self.data[25]} or perhaps it's simply {self.data[26]}. " \
+            + f"But nonetheless, people tend to {self.data[27]}, while {self.data[28]}."

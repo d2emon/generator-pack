@@ -1,4 +1,5 @@
-from genesys.model.keyed import Model, MarkovChain
+from genesys.model.keyed import MarkovChain
+from v3.models import Model
 
 
 class Street(Model):

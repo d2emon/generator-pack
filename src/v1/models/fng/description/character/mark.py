@@ -1,4 +1,4 @@
-from v1.models.fng.model import Model, TextModel
+from v3.models import Model, TextModel
 
 
 class Mark(TextModel):

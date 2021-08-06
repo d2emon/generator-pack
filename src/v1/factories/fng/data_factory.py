@@ -1,5 +1,5 @@
 from v1.fixtures.data_block import NameBlock
-from v1.models.fng.model import TextModel
+from v3.models import TextModel
 from v1.factories.factory import Factory
 
 

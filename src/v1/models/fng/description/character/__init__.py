@@ -1,5 +1,5 @@
 from v1.fixtures import genders
-from v1.models.fng.model import Model
+from v3.models import Model
 from v1.models.fng.description.description import Description
 from .race import Race
 from .mark import Mark, MarkDescription

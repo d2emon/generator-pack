@@ -1,4 +1,7 @@
-class DescriptiveModel:
+from v3.models import ComplexModel
+
+
+class DescriptiveModel(ComplexModel):
     fields = []
 
     class Factory:
@@ -8,9 +11,10 @@ class DescriptiveModel:
         def __call__(self, *args, **kwargs):
             return next(self.provider())
 
-    def __init__(self, value=None, **kwargs):
+    def __init__(self, value=None, factory=None, **kwargs):
         self.__value = value
-        self.values = {field: kwargs.get(field) for field in self.fields}
+        self.__factory = None
+        super().__init__(**kwargs)
 
     @property
     def value(self):
@@ -27,19 +31,28 @@ class DescriptiveModel:
     def __str__(self):
         return self.description
 
-    def __repr__(self):
-        return "<{}:\t\"{}\">".format(self.__class__.__name__, str(self))
+    def __get_factory(self):
+        f = self.Factory(None)
 
-    @classmethod
-    def factory(cls):
-        return cls.Factory(None)
+        def build(*args, **kwargs):
+            if f is None:
+                return None
 
-    @classmethod
-    def build(cls, *args, **kwargs):
-        factory = cls.factory()
+            data = f(*args, **kwargs)
+            return self.__class__(**data)
+
+        return build
+
+    @property
+    def factory(self):
+        if self.__factory is None:
+            self.__factory = self.__get_factory()
+        return self.__factory
+
+    def build(self, *args, **kwargs):
+        factory = self.factory
 
         if factory is None:
             return None
 
-        params = factory(*args, **kwargs)
-        return cls(**params)
+        return factory(*args, **kwargs)
