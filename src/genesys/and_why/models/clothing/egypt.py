@@ -1,5 +1,5 @@
+from data.and_why import slots
 from .clothing import Clothing
-from .. import slots
 
 
 class Accessory(Clothing):

@@ -1,13 +1,12 @@
 from generated import universe
 from ..factory import Factory
-from ..temporary import GalaxyArmLifeFactory, GalaxyCenterLifeFactory
+from ..life import GalaxyArmLifeFactory, GalaxyCenterLifeFactory
 from .nebula import NebulaFactory
 from .star import StarSystemFactory, DysonSphereFactory
 from .black_hole import BlackHoleFactory
 
 
 class SpaceFactory(Factory):
-    # Habitat
     dyson_sphere_probabilities = 4, 2
     min_star_systems = 20
     max_star_systems = 50

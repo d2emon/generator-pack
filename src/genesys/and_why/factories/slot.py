@@ -1,25 +1,28 @@
 import random
-from factories import ListFactory
-from genesys.model.keyed.slotted import SlotItem
-from ..models.slots import SLOTS
+from factories.and_why import ListFactory
+from ..providers.slot_provider import SlotProvider
 
 
 class SlotFactory(ListFactory):
-    def __init__(self, slots=None):
-        super().__init__()
-        self.__data = slots or SLOTS
+    probability = 75
 
-    @property
-    def data(self):
-        return self.__data
+    def __init__(self, data=SlotProvider):
+        super().__init__(data)
 
-    @classmethod
-    def item_by_slot(cls, slot, items):
-        available_items = list(SlotItem.by_slot(slot, items))
+    def by_slot(self, slot, items):
+        available_items = self.data.by_slot(slot, items)
         return random.choice(available_items) if len(available_items) > 0 else None
 
-    def build(self, *args, **kwargs):
-        return (slot for slot in self.data if random.randrange(100) < 75)
+    def fill_with_items(self, items):
+        for slot in self():
+            yield self.by_slot(slot, items)
 
-    def select_items(self, items):
-        return (self.item_by_slot(slot, items) for slot in self.build())
+    def __check_probability(self):
+        return random.randrange(100) < self.probability
+
+    def __call__(self, *args, **kwargs):
+        return (
+            slot
+            for slot in self.data.slots
+            if self.__check_probability()
+        )

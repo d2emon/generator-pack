@@ -1,6 +1,8 @@
 import random
 from genesys.nested.factories.v2.thing import Thing
 from genesys.nested.factories.v2.children import ChildFactory
+from .universe import *
+from .life import *
 
 
 class Things:

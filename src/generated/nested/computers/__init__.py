@@ -54,7 +54,7 @@ new Thing("internet",["website,20"],"The Internet");
 new Thing("google",[".website"]);
 new Thing("wikipedia",[".website"]);
 new Thing("4chan",[".website"]);
-new Thing("nested",["universe"],"www.orteil.dashnet.org/nested");
+new Thing("nested",["Universe"],"www.orteil.dashnet.org/nested");
 new Thing("reddit",[".website"]);
 new Thing("facebook",[".website"]);
 new Thing("/tg/",[".website"]);

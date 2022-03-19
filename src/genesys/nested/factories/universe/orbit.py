@@ -1,6 +1,6 @@
 from generated import universe
 from ..factory import Factory
-from ..temporary import AsteroidBeltLifeFactory
+from ..life import AsteroidBeltLifeFactory
 from .planet.body import AsteroidFactory
 from .planet.planet import BarrenPlanetFactory, VisitorPlanetFactory, FuturePlanetFactory, TerraformedPlanetFactory, \
     MedievalPlanetFactory, AncientPlanetFactory, GasGiantFactory

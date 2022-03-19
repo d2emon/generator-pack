@@ -1,7 +1,7 @@
 import os
 from factories import DictFactory
 from providers.file_provider import FileProvider
-from genesys.model.keyed import Model
+from v3.models import ComplexModel
 
 
 class WorldDataProvider:
@@ -13,7 +13,7 @@ class WorldDataProvider:
         return self.__name
 
 
-class World(Model):
+class World(ComplexModel):
     fields = [
         'name',
     ]

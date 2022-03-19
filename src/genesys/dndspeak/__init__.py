@@ -1,7 +1,7 @@
 from genesys.dndspeak import dndspeak
 from providers.data_manager import DataManager
 from providers import RandomItemProvider
-from genesys.dndspeak.data.dndspeak import groups
+from data.dndspeak import groups
 
 
 class EncounterManager(DataManager):

@@ -1,8 +1,8 @@
 from generated import universe
-from ...temporary import BarrenPlanetLifeFactory, VisitorPlanetLifeFactory, VisitorCityFactory, \
-    VisitorInstallationFactory, ContinentFactory, FutureContinentFactory, MedievalContinentFactory, \
-    AncientContinentFactory, OceanFactory, SkyFactory, FutureSkyFactory, TerraformedSkyFactory, \
-    FutureMoonFactory
+from ...temporary import VisitorCityFactory, VisitorInstallationFactory, ContinentFactory, FutureContinentFactory, \
+    MedievalContinentFactory, AncientContinentFactory, FutureMoonFactory
+from ...life import BarrenPlanetLifeFactory, VisitorPlanetLifeFactory
+from ...terrain import OceanFactory, SkyFactory, FutureSkyFactory, TerraformedSkyFactory
 from ..atmosphere import AtmosphereFactory, GasGiantAtmosphereFactory
 from .body import PlanetLikeFactory, MoonFactory, TerraformedMoonFactory
 from .core import PlanetCoreFactory

@@ -12,6 +12,8 @@
 - Polymeric
 - Plastic
 - Rubber
+- Keratin
+- Sweat
 """
 from .matter import Molecule, Matter
 from .minerals import Salt
@@ -57,6 +59,7 @@ class OrganicMatter(Matter):
     salt = Matter.children_property(Salt)
     polymers = Matter.children_property(Polymers)
     water = Matter.children_property(Water)
+    molecules = Matter.children_property(Molecule)
 
 
 class Oil(OrganicMatter):
@@ -75,15 +78,9 @@ class Rubber(Polymeric):
     pass
 
 
-# class Keratin(OrganicMatter):
-#     class Factory(OrganicMatter.Factory):
-#         def children(self):
-#             yield Proteins
+class Keratin(OrganicMatter):
+    pass
 
 
-# class Sweat(OrganicMatter):
-#     class Factory(OrganicMatter.Factory):
-#         def children(self):
-#             yield Water
-#             yield Salt
-#             yield Glucids
+class Sweat(OrganicMatter):
+    pass

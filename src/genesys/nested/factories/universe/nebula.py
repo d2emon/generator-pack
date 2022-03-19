@@ -1,6 +1,6 @@
 from generated import universe
 from ..factory import Factory
-from ..temporary import NebulaLifeFactory
+from ..life import NebulaLifeFactory
 from ..materials import MoleculeFactory, SteamFactory, AmmoniaFactory
 from .star import SingleStarFactory
 
@@ -15,7 +15,7 @@ class InterstellarCloudFactory(Factory):
     ]
 
     def generate_name(self):
-        return f"{self.select_item(self.names)} interstellar cloud"
+        return f"{self.select_item(*self.names)} interstellar cloud"
 
     def children(self):
         yield MoleculeFactory.from_elements('He')

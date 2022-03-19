@@ -1,6 +1,8 @@
 from generated import universe
 from ..factory import Factory
-from ..temporary import BodyFactory, ClothingSetFactory, ComputerFactory
+from ..cloth import ClothingSetFactory
+from ..life import BodyFactory
+from ..temporary import ComputerFactory
 
 
 class D2emonThoughtsFactory(Factory):
@@ -14,7 +16,7 @@ class D2emonThoughtsFactory(Factory):
     ]
 
     def generate_name(self):
-        return self.select_item(self.thoughts)
+        return self.select_item(*self.thoughts)
 
 
 class D2emonPsycheFactory(Factory):

@@ -1,6 +1,7 @@
 from generated import universe
 from ..factory import Factory
-from ..temporary import PastaFactory, BlackHoleLifeFactory
+from ..life import BlackHoleLifeFactory
+from ..temporary import PastaFactory
 
 
 class EndOfUniverseNoteFactory(Factory):
@@ -11,7 +12,7 @@ class EndOfUniverseNoteFactory(Factory):
     ]
 
     def generate_name(self):
-        return self.select_item(self.notes)
+        return self.select_item(*self.notes)
 
     def children(self):
         yield PastaFactory().probable(0.1)

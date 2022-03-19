@@ -1,7 +1,9 @@
 from generated import universe
 from ...factory import Factory
-from ...temporary import AsteroidLifeFactory, MoonLifeFactory, ContinentFactory, OceanFactory, SkyFactory
-from .plate import AsteroidPlateFactory, MoonPlateFactory
+from ...temporary import ContinentFactory
+from ...life import AsteroidLifeFactory, MoonLifeFactory
+from ...terrain import OceanFactory, SkyFactory
+from .plate import AsteroidPlateFactory, MoonPlateFactory, PlateFactory
 from .core import PlanetCoreFactory
 
 
@@ -18,9 +20,8 @@ class PlanetLikeFactory(Factory):
         yield PlanetCoreFactory()
 
     def plates(self):
-        # yield from Plate.multiple(2, 7)
-        # yield from Plate.multiple(1, 7)
-        yield None
+        yield from PlateFactory().multiple(2, 7)
+        yield from PlateFactory().multiple(1, 7)
 
     def sky(self):
         yield None
@@ -52,7 +53,7 @@ class MoonFactory(PlanetLikeFactory):
     names = ["young", "old", "large", "small", "pale", "white", "dark", "black", "old"]
 
     def generate_name(self):
-        return f"{self.select_item(self.names)} moon"
+        return f"{self.select_item(*self.names)} moon"
 
     def biosphere(self):
         yield MoonLifeFactory()

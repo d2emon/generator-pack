@@ -1,6 +1,6 @@
 from generated import universe
 from ...factory import Factory
-from ...temporary import PlanetCoreLifeFactory
+from ...life import PlanetCoreLifeFactory
 from ...materials import RockFactory, IronFactory, DiamondFactory, MagmaFactory
 
 
