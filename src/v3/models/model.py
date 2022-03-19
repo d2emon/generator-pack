@@ -37,6 +37,10 @@ class Model:
         return self.__kwargs
 
     @property
+    def items(self):
+        return self.data
+
+    @property
     def raw_value(self) -> str:
         """
         :return: Model as string
@@ -48,7 +52,14 @@ class Model:
         """
         :return: Model as string
         """
-        value = self.raw_value
+        return self.raw_value
+        
+    @property
+    def __prepared_value(self) -> str:
+        """
+        :return: Model as string
+        """
+        value = self.value
         return self.prepare(value)
 
     def fill(self, *args, **kwargs):
@@ -68,7 +79,7 @@ class Model:
         self.data[key] = value
 
     def __str__(self):
-        return str(self.value)
+        return str(self.__prepared_value)
 
     def __repr__(self):
         return f"<{self.__class__.__name__}: \"{self}\">"
