@@ -19,3 +19,6 @@ class GenderProvider:
     def by_gender(self, gender):
         factory = self.gender_factories.get(gender)
         return factory.data if factory else None
+
+
+GENDER_PROVIDER = GenderProvider()

@@ -1,15 +1,35 @@
-from data.and_why import egypt
-from orm.models.data_item import DataItem
-from providers import RandomItemProvider
+import random
+from data.and_why.egypt import EGYPT
+from genesys.model.keyed.slotted import SlotItem
 from utils.genders import MALE, FEMALE
 from ..models import clothing
 from .slot_provider import SlotProvider
 from .gender_provider import GenderProvider
 
 
-class ClothingProvider:
-    __filled = False
+class ClothingItems:
+    def __init__(self, data):
+        self.data = data
+        self.__values = None
 
+    @property
+    def values(self):
+        if self.__values is None:
+            self.__values = list(self.data)
+        return list(self.__values)
+
+    def random_item(self):
+        values = self.values
+        return random.choice(values) if len(values) > 0 else None
+
+    def filter(self, condition):
+        return ClothingItems(filter(condition, self.values))
+
+    def by_slot(self, slot):
+        return ClothingItems(SlotItem.by_slot(slot, self.values))
+
+
+class ClothingProvider:
     def __init__(self):
         self.__classes = {
             'Accessory': clothing.Accessory,
@@ -33,16 +53,10 @@ class ClothingProvider:
         return clothing_class(values.get('name', ''))
 
     def by_gender(self, gender):
-        return map(self.__get_clothing, self.gender_provider.by_gender(gender))
+        d = list(self.gender_provider.by_gender(gender))
+        items = map(self.__get_clothing, d)
+        i = list(items)
+        return ClothingItems(i)
 
-    def fill(self):
-        if self.__filled:
-            return
 
-        male = list(map(self.__get_clothing, egypt.EGYPT.by_gender(MALE)))
-        DataItem.add_values(self.gender_provider.male, male)
-
-        female = list(map(self.__get_clothing, egypt.EGYPT.by_gender(FEMALE)))
-        DataItem.add_values(self.gender_provider.female, female)
-
-        self.__filled = True
+CLOTHING_PROVIDER = ClothingProvider()
