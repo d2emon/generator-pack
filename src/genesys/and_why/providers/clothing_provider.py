@@ -24,19 +24,16 @@ class ClothingProvider:
         self.gender_provider = GenderProvider()
         self.slot_provider = SlotProvider()
 
-        self.fill()
-
     def __get_clothing(self, values):
-        value = values.get("value", {})
-        clothing_class = self.__classes.get(value.get('type'))
+        clothing_class = self.__classes.get(values.get('type'))
 
         if not clothing_class:
             raise ValueError()
 
-        return clothing_class(value.get('name', ''))
+        return clothing_class(values.get('name', ''))
 
     def by_gender(self, gender):
-        return self.gender_provider.by_gender(gender)
+        return map(self.__get_clothing, self.gender_provider.by_gender(gender))
 
     def fill(self):
         if self.__filled:

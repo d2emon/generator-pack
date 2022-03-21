@@ -6,8 +6,8 @@ from ..providers.slot_provider import SlotProvider
 class SlotFactory(ListFactory):
     probability = 75
 
-    def __init__(self, data=SlotProvider):
-        super().__init__(data)
+    def __init__(self, data=None):
+        super().__init__(data or SlotProvider())
 
     def by_slot(self, slot, items):
         available_items = self.data.by_slot(slot, items)

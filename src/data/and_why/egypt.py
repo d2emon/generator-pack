@@ -1,3 +1,4 @@
+from orm.models.data_item import DataItem
 from .genders import MALE, FEMALE
 from .db import Database
 
@@ -44,3 +45,7 @@ EGYPT = EgyptDatabase(
     *__MALE,
     *__FEMALE,
 )
+
+
+DataItem.add_values(MALE, __MALE)
+DataItem.add_values(FEMALE, __FEMALE)
