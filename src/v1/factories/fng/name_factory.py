@@ -9,7 +9,11 @@ class TextFactory(Factory):
     model = TextModel
 
 
-class ComplexFactory(Factory):
+class BaseNameFactory(Factory):
+    model = Name
+
+
+class ComplexFactory(BaseNameFactory):
     """
     Complex Factory
 
@@ -17,18 +21,25 @@ class ComplexFactory(Factory):
 
     - factory_classes: Classes for child factories
     """
-    model = Name
     factory_classes = {}
 
     def __init__(self, data=None):
         """
         :param data: Data blocks for factory
         """
-        super().__init__(data)
-        self.factories = {
-            factory_id: factory(data or self.default_data)
-            for factory_id, factory in self.factory_classes.items()
+        super().__init__(data or self.default_data)
+        self.factories = self.get_factories(self.factory_data)
+
+    @classmethod
+    def get_factories(cls, factory_data):
+        return {
+            factory_id: factory(factory_data.data)
+            for factory_id, factory in cls.factory_classes.items()
         }
+
+    def factory(self, factory_id):
+        print(factory_id,  self.factories)
+        return self.factories.get(factory_id, lambda item_id: None)
 
     def __getitem__(self, item_id):
         """
@@ -39,11 +50,12 @@ class ComplexFactory(Factory):
         """
         return self.factory(item_id)
 
-    def factory(self, factory_id=None):
-        return self.factories.get(factory_id)
+    def from_factory(self, factory_id, *args, **kwargs):
+        factory = self.factory(factory_id)
+        return factory(*args, **kwargs) if factory is not None else None
 
 
-class NameFactory(ComplexFactory):
+class ComplexNameFactory(ComplexFactory):
     """
     Factory for name
 
@@ -52,17 +64,14 @@ class NameFactory(ComplexFactory):
     """
     block_map = {}
 
-    def __init__(self, data=None):
-        """
-        :param data: Data blocks for factory
-        """
-        super().__init__(data)
-        self.factories = {
-            factory_id: TextFactory(self.find(block_id=block_id))
-            for factory_id, block_id in self.block_map.items()
+    @classmethod
+    def get_factories(cls, factory_data):
+        return {
+            factory_id: TextFactory(factory_data.find(block_id=block_id))
+            for factory_id, block_id in cls.block_map.items()
         }
 
-    def generate(self, *args, generated_id=0, **kwargs):
+    def get_data(self, *args, **kwargs):
         """
         Generate value from data
 
@@ -78,14 +87,6 @@ class NameFactory(ComplexFactory):
 
 
 class PolymorphFactory(ComplexFactory):
-    @property
-    def default_gender(self):
-        return MALE
-
-    @property
-    def default_percent(self):
-        return random.randrange(100)
-
     def __call__(self, *args, factory_id=None, **kwargs):
         """
         Main factory method
@@ -95,27 +96,22 @@ class PolymorphFactory(ComplexFactory):
         :param kwargs: Fields to search in data
         :return: Model, built by factory
         """
-        factory = self.factory(factory_id)
-        return factory(*args, **kwargs) if factory is not None else None
+        return self.from_factory(factory_id, *args, **kwargs)
 
 
 class PercentFactory(PolymorphFactory):
+    @property
+    def default_percent(self):
+        return random.randrange(100)
+
     def factory(self, factory_id=None):
         return self.factories.get(factory_id if factory_id is not None else self.default_percent)
 
-    def multiple(self, count=10, *args, **kwargs):
-        """
-        Build multiple models
-
-        :param count: Count of models
-        :param args: Model args
-        :param kwargs: Fields to search in data
-        :return: Models, built by factory
-        """
-        for generated_id in range(count):
-            yield self(*args, factory_id=generated_id * 10, **kwargs)
-
 
 class GenderFactory(PolymorphFactory):
+    @property
+    def default_gender(self):
+        return MALE
+
     def factory(self, factory_id=None):
         return self.factories.get(factory_id if factory_id is not None else self.default_gender)

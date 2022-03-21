@@ -1,5 +1,6 @@
 import random
 from v1.models.encounters import Encounter
+from .factory_data import FactoryData
 
 
 class Factory:
@@ -18,8 +19,7 @@ class Factory:
 
         :param data: Array of data dicts
         """
-        self.data = data or self.default_data
-        self.data = list(self.data)
+        self.factory_data = FactoryData(data or self.default_data)
 
     @classmethod
     def instance(cls):
@@ -41,49 +41,20 @@ class Factory:
         """
         raise NotImplementedError()
 
-    def find(self, *args, **kwargs):
-        """
-        Find dicts in data with fields
-
-        :param kwargs: Fields to search
-        :return: Filtered dicts
-        """
-        return filter(lambda item: all(item.get(k) == v for k, v in kwargs.items()), self.data)
-
     def validate(self, items) -> dict:
         """
         Validate items
 
-        :param items: Name items
-        :return: Validated name items
+        :param items: Generated items
+        :return: Validated items
         """
         return items
 
-    def generate(self, *args, **kwargs):
-        """
-        Generate value from data
+    def build(self, *args, **kwargs):
+        return self.model(*args, **kwargs)
 
-        :param args: Args for generation
-        :param kwargs: Kwargs for generation
-        :return: Generated value
-        """
-        items = list(self.find(*args, **kwargs))
-        if len(items) == 0:
-            return {}
-
-        return random.choice(items)
-
-    def multiple(self, count=10, *args, **kwargs):
-        """
-        Build multiple models
-
-        :param count: Count of models
-        :param args: Model args
-        :param kwargs: Fields to search in data
-        :return: Models, built by factory
-        """
-        for generated_id in range(count):
-            yield self(*args, generated_id=generated_id * 10, **kwargs)
+    def get_data(self, *args, **kwargs):
+        return self.factory_data.get_random(*args, **kwargs)
 
     def __call__(self, *args, **kwargs):
         """
@@ -93,6 +64,18 @@ class Factory:
         :param kwargs: Fields to search in data
         :return: Model, built by factory
         """
-        values = self.generate(*args, **kwargs)
+        values = self.get_data(*args, **kwargs)
         values = self.validate(values)
-        return self.model(*args, **values)
+        return self.build(*args, **values)
+
+    def buildMultiple(self, count, *args, **kwargs):
+        """
+        Build multiple models
+
+        :param count: Count of models
+        :param args: Model args
+        :param kwargs: Fields to search in data
+        :return: Models, built by factory
+        """
+        for generated_id in range(count):
+            yield self(*args, generated_id=generated_id, **kwargs)

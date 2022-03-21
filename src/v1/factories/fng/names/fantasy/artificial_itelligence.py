@@ -1,10 +1,11 @@
 from v1.fixtures.data_block import fill_data
 from v1.fixtures.fng.names import fantasy
 from v1.models.fng.names.fantasy import ArtificialIntelligenceName
-from v1.factories.fng.name_factory import NameFactory
+from v1.factories.fng.name_block_factory import SimpleNameBlockFactory
+from v1.factories.fng.name_factory import ComplexNameFactory
 
 
-class ArtificialIntelligenceNameFactory(NameFactory):
+class ArtificialIntelligenceNameFactory(SimpleNameBlockFactory):
     """Artificial Intelligence Name Factory
 
     Artificial intelligence beings often have names related to robotics or electric concepts, these are also the names
@@ -17,7 +18,9 @@ class ArtificialIntelligenceNameFactory(NameFactory):
     default_data = fill_data(group_id='artificial-intelligence')({
         1: fantasy.artificial_intelligence.nm1,
     })
+
     block_map = {
         'nm1': 1,
     }
+
     model = ArtificialIntelligenceName

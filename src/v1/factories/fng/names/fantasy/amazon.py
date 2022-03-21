@@ -1,10 +1,11 @@
 from v1.fixtures.data_block import fill_data
 from v1.fixtures.fng.names import fantasy
 from v1.models.fng.names.fantasy import AmazonName
-from v1.factories.fng.name_factory import NameFactory, PercentFactory
+from v1.factories.fng.name_factory import ComplexNameFactory, PercentFactory
+from v1.factories.fng.name_block_factory import NameBlockFactory
 
 
-class AmazonNameFactory(PercentFactory):
+class AmazonNameFactory(NameBlockFactory):
     """Amazon Name Factory
 
     The names are heavily based on the Amazons of ancient Greece, so while most names will have various melodic sounds,
@@ -21,8 +22,9 @@ class AmazonNameFactory(PercentFactory):
     Even in these modern versions, the Amazon women tend to have Greek or Greek sounding names, like Hippolyta, the
     queen of the Amazons and mother of Diana, otherwise known as Wonder Woman."""
 
-    class AmazonNameFactory1(NameFactory):
+    class AmazonNameFactory1(ComplexNameFactory):
         model = AmazonName
+
         block_map = {
             'nm1': 1,
             'nm2': 2,
@@ -31,8 +33,9 @@ class AmazonNameFactory(PercentFactory):
             'nm5': 6,
         }
 
-    class AmazonNameFactory2(NameFactory):
+    class AmazonNameFactory2(ComplexNameFactory):
         model = AmazonName
+
         block_map = {
             'nm1': 1,
             'nm2': 2,
@@ -45,6 +48,7 @@ class AmazonNameFactory(PercentFactory):
         0: AmazonNameFactory1,
         1: AmazonNameFactory2,
     }
+
     default_data = fill_data(group_id='amazon')({
         1: fantasy.amazon.names1,
         2: fantasy.amazon.names2,

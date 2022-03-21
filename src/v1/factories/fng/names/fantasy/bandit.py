@@ -3,7 +3,7 @@ from v1.fixtures import genders
 from v1.fixtures.data_block import fill_data
 from v1.fixtures.fng.names import fantasy
 from v1.models.fng.names.fantasy import BanditName
-from v1.factories.fng.name_factory import NameFactory, PercentFactory
+from v1.factories.fng.name_factory import ComplexNameFactory, PercentFactory
 
 
 class BanditNameFactory(PercentFactory):
@@ -14,28 +14,28 @@ class BanditNameFactory(PercentFactory):
     There are no last names, but some of the first names could also be used as a last name. There are plenty of real
     name generators to offer you surnames though."""
 
-    class MaleNameFactory1(NameFactory):
+    class MaleNameFactory1(ComplexNameFactory):
         model = BanditName
         block_map = {
             'nm1': genders.MALE,
             'nm2': 2,
         }
 
-    class FemaleNameFactory1(NameFactory):
+    class FemaleNameFactory1(ComplexNameFactory):
         model = BanditName
         block_map = {
             'nm1': genders.FEMALE,
             'nm2': 2,
         }
 
-    class MaleNameFactory2(NameFactory):
+    class MaleNameFactory2(ComplexNameFactory):
         model = BanditName
         block_map = {
             'nm1': 3,
             'nm2': genders.MALE,
         }
 
-    class FemaleNameFactory2(NameFactory):
+    class FemaleNameFactory2(ComplexNameFactory):
         model = BanditName
         block_map = {
             'nm1': 3,

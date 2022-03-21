@@ -1,21 +1,23 @@
 from v1.fixtures.data_block import fill_data
 from v1.fixtures.fng.names import fantasy
 from v1.models.fng.names.fantasy import AlienName
-from v1.factories.fng.name_factory import NameFactory, PercentFactory
+from v1.factories.fng.name_block_factory import NameBlockFactory
+from v1.factories.fng.name_factory import ComplexNameFactory
 from v1.factories.fng.validators import item_is_not_unique, item_equals, generate_while
 
 
-class AlienNameFactory(PercentFactory):
+class AlienNameFactory(NameBlockFactory):
     """Alien Species Name Factory
 
     It's both easy and difficult to create alien names, as they can be anything in any language. But the names have to
     sound like a good fit for the species you've invented, so I've tried to make sure many different types of names can
     be generated, but they generally fit in 3 different categories."""
 
-    class AlienNameFactory1(NameFactory):
+    class AlienNameFactory1(ComplexNameFactory):
         """The first 4 names have a much higher chance of having a more guttural sound to them, ideal for the stronger
         and brutish looking aliens."""
         model = AlienName
+
         block_map = {
             'nm1': 1,
             'nm2': 2,
@@ -39,10 +41,11 @@ class AlienNameFactory(PercentFactory):
 
             return items
 
-    class AlienNameFactory2(NameFactory):
+    class AlienNameFactory2(ComplexNameFactory):
         """The next 3 names have a much higher chance of having a more melodic sound to them, making them ideal for the
         softer and gentle looking aliens."""
         model = AlienName
+
         block_map = {
             'nm1': 6,
             'nm2': 7,
@@ -60,10 +63,11 @@ class AlienNameFactory(PercentFactory):
 
             return items
 
-    class AlienNameFactory3(NameFactory):
+    class AlienNameFactory3(ComplexNameFactory):
         """The last 3 names can sound both guttural and melodic and anything in between. These names are more randomized
         than the previous 2 types and unlike the other 2 types, these aren't always easy to pronounce in English."""
         model = AlienName
+
         block_map = {
             'nm1': 12,
             'nm2': 13,
@@ -87,11 +91,6 @@ class AlienNameFactory(PercentFactory):
 
             return items
 
-    factory_classes = {
-        0: AlienNameFactory1,
-        1: AlienNameFactory2,
-        2: AlienNameFactory3,
-    }
     default_data = fill_data(group_id='aliens')({
         1: fantasy.alien.nm1,
         2: fantasy.alien.nm2,
@@ -112,12 +111,18 @@ class AlienNameFactory(PercentFactory):
         16: fantasy.alien.nm16,
     })
 
-    def factory(self, factory_id=0):
-        if factory_id < 40:
+    factory_classes = {
+        0: AlienNameFactory1,
+        1: AlienNameFactory2,
+        2: AlienNameFactory3,
+    }
+
+    def factory(self, percent):
+        if percent < 40:
             return self.factories.get(0)
-        elif factory_id < 70:
+        elif percent < 70:
             return self.factories.get(1)
-        elif factory_id < 100:
+        elif percent < 100:
             return self.factories.get(2)
         else:
             return None

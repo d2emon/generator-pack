@@ -3,7 +3,7 @@ from v1.fixtures.data_block import fill_data
 from v1.fixtures.fng.names import fantasy
 from v1.models.fng.names.fantasy import BarbarianName, BarbarianName1, BarbarianName2, MaleBarbarianName3, \
     FemaleBarbarianName3
-from v1.factories.fng.name_factory import NameFactory, PercentFactory
+from v1.factories.fng.name_factory import ComplexNameFactory, PercentFactory
 from v1.factories.fng.validators import generate_while
 
 
@@ -22,7 +22,7 @@ class BarbarianNameFactory(PercentFactory):
     well together as a single culture, the vast majority of names should still work for many stereotypical barbarian
     styles, as well as several other styles."""
 
-    class MaleNameFactory1(NameFactory):
+    class MaleNameFactory1(ComplexNameFactory):
         model = BarbarianName1
         block_map = {
             'nm1': 2,
@@ -30,7 +30,7 @@ class BarbarianNameFactory(PercentFactory):
             'nm3': 4,
         }
 
-    class MaleNameFactory2(NameFactory):
+    class MaleNameFactory2(ComplexNameFactory):
         model = BarbarianName2
         block_map = {
             'nm1': 2,
@@ -50,7 +50,7 @@ class BarbarianNameFactory(PercentFactory):
 
             return items
 
-    class MaleNameFactory3(NameFactory):
+    class MaleNameFactory3(ComplexNameFactory):
         model = MaleBarbarianName3
         block_map = {
             'nm1': 2,
@@ -79,7 +79,7 @@ class BarbarianNameFactory(PercentFactory):
 
             return items
 
-    class FemaleNameFactory1(NameFactory):
+    class FemaleNameFactory1(ComplexNameFactory):
         model = BarbarianName1
         block_map = {
             'nm1': 5,
@@ -96,7 +96,7 @@ class BarbarianNameFactory(PercentFactory):
 
             return items
 
-    class FemaleNameFactory2(NameFactory):
+    class FemaleNameFactory2(ComplexNameFactory):
         model = BarbarianName2
         block_map = {
             'nm1': 5,
@@ -116,7 +116,7 @@ class BarbarianNameFactory(PercentFactory):
 
             return items
 
-    class FemaleNameFactory3(NameFactory):
+    class FemaleNameFactory3(ComplexNameFactory):
         model = FemaleBarbarianName3
         block_map = {
             'nm1': 5,

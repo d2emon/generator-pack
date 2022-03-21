@@ -4,13 +4,13 @@ from v1.factories.fng.names import AlienNameFactory, AmazonNameFactory, AnansiNa
     BarbarianNameFactory
 
 
-def show_multiple(name, generated):
+def show_multiple(name, generated, factoryClass):
     print(name)
     for value in generated:
         print(f"\t{value}")
 
 
-def test(count=10):
+def test():
     factories = [
         AlienNameFactory,
         AmazonNameFactory,
@@ -22,11 +22,13 @@ def test(count=10):
         AnthousaiNameFactory,
         ApocalypseNicknameFactory,
         ArtificialIntelligenceNameFactory,
-        BanditNameFactory,
-        BansheeNameFactory,
-        BarbarianNameFactory,
+
+        # BanditNameFactory,
+        # BansheeNameFactory,
+        # BarbarianNameFactory,
     ]
+
     for factoryClass in factories:
         factory = factoryClass()
-        generated = factory.multiple(count=count)
-        show_multiple(factoryClass.__name__, generated)
+        generated = factory.build10()
+        show_multiple(factoryClass.__name__, generated, factoryClass)

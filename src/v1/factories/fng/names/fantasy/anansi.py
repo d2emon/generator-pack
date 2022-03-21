@@ -2,10 +2,11 @@ import random
 from v1.fixtures.data_block import fill_data
 from v1.fixtures.fng.names import fantasy
 from v1.models.fng.names.fantasy import AnansiName
-from v1.factories.fng.name_factory import NameFactory
+from v1.factories.fng.name_block_factory import NameBlockFactory
+from v1.factories.fng.name_factory import ComplexNameFactory
 
 
-class AnansiNameFactory(NameFactory):
+class AnansiNameFactory(NameBlockFactory):
     """Anansi Name Factory
 
     Anansi is a spider or spider-like trickster originating in Akan folklore, but it can also be found in Ashanti,
@@ -22,50 +23,60 @@ class AnansiNameFactory(NameFactory):
     than the real, while still being tied to both sides.
     Alternatively, the spiderfolk could be of help to you, too. Depending on the type of name you're looking for."""
 
-    model = AnansiName
-    default_data = fill_data(group_id='anansi')({
-        1: fantasy.anansi.names1,
-        8: fantasy.anansi.names8,
-    })
-    block_map = {
-        'nm1': 1,
-        'nm3': 1,
-        'nm5': 8,
+    class AnansiNameFactory1(ComplexNameFactory):
+        model = AnansiName
+
+        default_data = fill_data(group_id='anansi')({
+            1: fantasy.anansi.names1,
+            8: fantasy.anansi.names8,
+        })
+
+        block_map = {
+            'nm1': 1,
+            'nm3': 1,
+            'nm5': 8,
+        }
+
+        def get_data(self, *args, **kwargs):
+            values = super().get_data(*args, **kwargs)
+            return {
+                1: values['nm1'],
+                2: random.randrange(len(values['nm1'].value)),
+                3: values['nm3'],
+                4: random.randrange(len(values['nm3'].value)),
+                5: values['nm5'],
+            }
+
+        def validate(self, items) -> dict:
+            # 2
+            if items[2] < 1:
+                items[2] = 1
+            if (items[2] < 3) and (len(items[1]) > 4):
+                items[2] = 3
+            if items[2] > 5:
+                items[2] = 5
+
+            # 4
+            if items[4] < 1:
+                items[4] = 1
+            if (items[4] < 3) and (len(items[3]) > 4):
+                items[4] = 3
+            if items[4] > 5:
+                items[4] = 5
+
+            # 2
+            if (items[2] == 1) and (items[4] == 1):
+                items[2] = 2
+
+            return {
+                'nm0': items[1].value[:items[2]],
+                'nm1': items[5],
+                'nm2': items[3].value[items[4] - 1:],
+            }
+
+    factory_classes = {
+        0: AnansiNameFactory1,
     }
 
-    def generate(self, *args, **kwargs):
-        values = super().generate(*args, **kwargs)
-        return {
-            1: values['nm1'],
-            2: random.randrange(len(values['nm1'].value)),
-            3: values['nm3'],
-            4: random.randrange(len(values['nm3'].value)),
-            5: values['nm5'],
-        }
-
-    def validate(self, items) -> dict:
-        # 2
-        if items[2] < 1:
-            items[2] = 1
-        if (items[2] < 3) and (len(items[1]) > 4):
-            items[2] = 3
-        if items[2] > 5:
-            items[2] = 5
-
-        # 4
-        if items[4] < 1:
-            items[4] = 1
-        if (items[4] < 3) and (len(items[3]) > 4):
-            items[4] = 3
-        if items[4] > 5:
-            items[4] = 5
-
-        # 2
-        if (items[2] == 1) and (items[4] == 1):
-            items[2] = 2
-
-        return {
-            'nm0': items[1].value[:items[2]],
-            'nm1': items[5],
-            'nm2': items[3].value[items[4] - 1:],
-        }
+    def factory(self, percent):
+        return self.factories.get(0)

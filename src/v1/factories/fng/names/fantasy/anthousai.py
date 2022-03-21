@@ -2,10 +2,11 @@ from v1.fixtures import genders
 from v1.fixtures.data_block import fill_data
 from v1.fixtures.fng.names import fantasy
 from v1.models.fng.names.fantasy import AnthousaiName
-from v1.factories.fng.name_factory import NameFactory, GenderFactory
+from v1.factories.fng.name_block_factory import NameBlockFactory, GenderNameBlockFactory
+from v1.factories.fng.name_factory import ComplexNameFactory, GenderFactory
 
 
-class AnthousaiNameFactory(GenderFactory):
+class AnthousaiNameFactory(GenderNameBlockFactory):
     """Anthousai Name Factory
 
     Anthousai are flower nymphs, just as dryads are tree nymphs. But unlike dryads, anthousai aren't as well known
@@ -20,13 +21,13 @@ class AnthousaiNameFactory(GenderFactory):
     translation in brackets. Gender doesn't seem to matter for names, as Chloris is spelled with the masculine suffix
     despite being a woman."""
 
-    class MaleNameFactory(NameFactory):
+    class MaleNameFactory(ComplexNameFactory):
         model = AnthousaiName
         block_map = {
             'nm1': 1,
         }
 
-    class FemaleNameFactory(NameFactory):
+    class FemaleNameFactory(ComplexNameFactory):
         model = AnthousaiName
         block_map = {
             'nm1': 2,

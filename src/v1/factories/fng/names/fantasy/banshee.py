@@ -1,10 +1,10 @@
 from v1.fixtures.data_block import fill_data
 from v1.fixtures.fng.names import fantasy
 from v1.models.fng.names.fantasy import BansheeName
-from v1.factories.fng.name_factory import NameFactory
+from v1.factories.fng.name_factory import ComplexNameFactory
 
 
-class BansheeNameFactory(NameFactory):
+class BansheeNameFactory(ComplexNameFactory):
     """Banshee Name Factory
 
     A banshee is a female spirit who mourns the loss of a relative, and tends to do so by shrieking loudly. There are

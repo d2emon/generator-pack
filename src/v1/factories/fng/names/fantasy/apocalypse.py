@@ -2,10 +2,11 @@ from v1.fixtures import genders
 from v1.fixtures.data_block import fill_data
 from v1.fixtures.fng.names import fantasy
 from v1.models.fng.names.fantasy import ApocalypseNickname
-from v1.factories.fng.name_factory import NameFactory, GenderFactory
+from v1.factories.fng.name_block_factory import NameBlockFactory, GenderNameBlockFactory
+from v1.factories.fng.name_factory import ComplexNameFactory, GenderFactory
 
 
-class ApocalypseNicknameFactory(GenderFactory):
+class ApocalypseNicknameFactory(GenderNameBlockFactory):
     """Apocalypse Nickname Factory
 
     Not all names will fit mutants, and not all names will fit normal people caught up in a broken world, but there's
@@ -26,19 +27,19 @@ class ApocalypseNicknameFactory(GenderFactory):
     Quite a few of the names, especially the apocalypse-themed ones, can often be used for duos, like 'Bullet' and
     'Bulletproof', 'Daydream' and 'Nightmare' or 'Ash' and 'Soot'."""
 
-    class MaleNameFactory(NameFactory):
+    class MaleNameFactory(ComplexNameFactory):
         model = ApocalypseNickname
         block_map = {
             'nm1': genders.MALE,
         }
 
-    class FemaleNameFactory(NameFactory):
+    class FemaleNameFactory(ComplexNameFactory):
         model = ApocalypseNickname
         block_map = {
             'nm1': genders.FEMALE,
         }
 
-    class NeutralNameFactory(NameFactory):
+    class NeutralNameFactory(ComplexNameFactory):
         model = ApocalypseNickname
         block_map = {
             'nm1': genders.NEUTRAL,
