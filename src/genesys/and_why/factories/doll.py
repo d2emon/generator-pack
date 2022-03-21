@@ -5,9 +5,9 @@ from .gender import GenderFactory
 
 
 class DollFactory(ModelFactory):
-    def __init__(self, data=GenderProvider):
+    def __init__(self, data=None):
         super().__init__()
-        self.__gender_factory = GenderFactory(data)
+        self.__gender_factory = GenderFactory(data or GenderProvider())
 
     @property
     def model_class(self):

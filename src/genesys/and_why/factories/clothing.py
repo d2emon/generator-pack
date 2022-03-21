@@ -4,10 +4,10 @@ from .slot import SlotFactory
 
 
 class ClothingFactory(Factory):
-    def __init__(self, data=ClothingProvider):
+    def __init__(self, data=None):
         super().__init__()
-        self.__data = data
-        self.__slot_factory = SlotFactory(data.slots)
+        self.__data = data or ClothingProvider()
+        self.__slot_factory = SlotFactory(self.__data.slot_provider)
 
     @property
     def data(self):
