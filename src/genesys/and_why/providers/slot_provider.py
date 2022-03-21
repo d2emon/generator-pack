@@ -3,8 +3,9 @@ from genesys.model.keyed.slotted import SlotItem
 
 
 class SlotProvider:
-    slots = SLOTS
 
-    @classmethod
-    def by_slot(cls, slot, items):
+    def __init__(self):
+        self.slots = SLOTS.values()
+
+    def by_slot(self, slot, items):
         return list(SlotItem.by_slot(slot, items))
