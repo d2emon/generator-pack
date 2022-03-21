@@ -4,21 +4,39 @@ from providers import RandomItemProvider
 from utils.genders import MALE, FEMALE
 
 
-class GenderProvider:
-    def __init__(self):
-        self.default_gender = DEFAULT
-        self.genders = GENDERS.values()
-        self.male = MALE
-        self.female = FEMALE
-        self.__gender_factory = ListFactory(self.genders)
-        self.gender_factories = { gender: RandomItemProvider(gender) for gender in self.genders }
+class BaseGenderProvider:
+    @property
+    def default_gender(self):
+        return DEFAULT
 
-    def build_gender(self):
+    @property
+    def male(self):
+        return MALE
+
+    @property
+    def female(self):
+        return FEMALE
+
+    def gender(self):
+        raise NotImplementedError()
+
+
+class GenderProvider(BaseGenderProvider):
+    def __init__(self):
+        genders = GENDERS.values()
+
+        # Factories
+        self.__gender_factory = ListFactory(genders)
+
+        # Providers
+        self.__providers = { gender: RandomItemProvider(gender) for gender in genders }
+
+    def gender(self):
         return self.__gender_factory()
 
     def by_gender(self, gender):
-        factory = self.gender_factories.get(gender)
-        return factory.data if factory else None
+        provider = self.__providers.get(gender)
+        return provider.data if provider else None
 
 
 GENDER_PROVIDER = GenderProvider()

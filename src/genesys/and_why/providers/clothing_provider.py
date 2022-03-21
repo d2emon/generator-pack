@@ -1,35 +1,29 @@
 import random
 from data.and_why.egypt import EGYPT
+from data.and_why.genders import GENDERS
 from genesys.model.keyed.slotted import SlotItem
-from utils.genders import MALE, FEMALE
+from providers import RandomItemProvider
 from ..models import clothing
+from .provider_query import ProviderQuery
 from .slot_provider import SlotProvider
 from .gender_provider import GenderProvider
 
 
-class ClothingItems:
-    def __init__(self, data):
-        self.data = data
-        self.__values = None
-
-    @property
-    def values(self):
-        if self.__values is None:
-            self.__values = list(self.data)
-        return list(self.__values)
-
-    def random_item(self):
-        values = self.values
-        return random.choice(values) if len(values) > 0 else None
-
-    def filter(self, condition):
-        return ClothingItems(filter(condition, self.values))
-
+class ClothingItems(ProviderQuery):
     def by_slot(self, slot):
-        return ClothingItems(SlotItem.by_slot(slot, self.values))
+        return self.__class__(SlotItem.by_slot(slot, self.values))
 
 
-class ClothingProvider:
+class BaseClothingProvider:
+    @property
+    def slot_provider(self):
+        raise NotImplementedError()
+
+    def by_gender(self, gender):
+        raise NotImplementedError()
+
+
+class ClothingProvider(BaseClothingProvider):
     def __init__(self):
         self.__classes = {
             'Accessory': clothing.Accessory,
@@ -41,8 +35,13 @@ class ClothingProvider:
             'Shield': clothing.Shield,
         }
 
-        self.gender_provider = GenderProvider()
-        self.slot_provider = SlotProvider()
+        # Providers
+        self.__slot_provider = SlotProvider()
+        self.__item_providers = { gender: RandomItemProvider(gender) for gender in GENDERS.values() }
+
+    @property
+    def slot_provider(self):
+        return self.__slot_provider
 
     def __get_clothing(self, values):
         clothing_class = self.__classes.get(values.get('type'))
@@ -53,10 +52,8 @@ class ClothingProvider:
         return clothing_class(values.get('name', ''))
 
     def by_gender(self, gender):
-        d = list(self.gender_provider.by_gender(gender))
-        items = map(self.__get_clothing, d)
-        i = list(items)
-        return ClothingItems(i)
+        provider = self.__item_providers.get(gender)
+        return ClothingItems(map(self.__get_clothing, provider.data)) if provider else None
 
 
 CLOTHING_PROVIDER = ClothingProvider()
