@@ -1,4 +1,4 @@
-from genesys.model.models import Point
+from genesys.model.models.point import Point
 from ..factory import Factory
 
 

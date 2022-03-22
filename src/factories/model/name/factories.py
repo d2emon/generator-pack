@@ -1,4 +1,4 @@
-from genesys.model.models import Name
+from genesys.model.models.name import Name
 from v1.fixtures import genders
 from factories.model import ModelFactory
 
