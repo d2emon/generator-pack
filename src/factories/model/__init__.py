@@ -1,3 +1,3 @@
-# from .markov import MarkovFactory
+from .markov import MarkovFactory
 from .model import ModelFactory
-# from .name import NameFactory
+from .name import NameFactory

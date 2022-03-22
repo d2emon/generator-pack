@@ -1,5 +1,11 @@
 from orm.models import MarkovChain
-from factories.model import ModelFactory
+# TODO: Resolve circular and uncomment this
+# from factories.model import ModelFactory
+
+
+# TODO: Resolve circular and remove this
+class ModelFactory:
+    pass
 
 
 class MarkovFactory(ModelFactory):
