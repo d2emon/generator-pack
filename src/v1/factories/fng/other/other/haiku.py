@@ -2,7 +2,7 @@ import random
 from providers import ComplexProvider, ListProvider
 from factories.generator import ListGenerated
 from genesys.fixtures.fixtures import haiku_middle
-from genesys.fixtures.fixtures.other import haiku
+from genesys.fixtures.fixtures.other.haiku import haiku
 
 
 class HaikuString(ListGenerated):

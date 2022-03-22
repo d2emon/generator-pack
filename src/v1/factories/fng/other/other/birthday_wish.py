@@ -1,7 +1,7 @@
 from providers import ListProvider
 from factories.generator import Generated
 
-from genesys.fixtures.fixtures.other import birthday_wish
+from genesys.fixtures.fixtures.other.birthday_wish import birthday_wish
 
 
 class BirthdayWish(Generated):

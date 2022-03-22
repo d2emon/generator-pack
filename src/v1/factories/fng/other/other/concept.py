@@ -1,8 +1,7 @@
 from providers import ComplexProvider, ListProvider
 from factories.generator import ListGenerated, ComplexGenerated
 
-from genesys.fixtures.fixtures import beings, places
-from genesys.fixtures.fixtures import characters, events
+from genesys.fixtures.fixtures import beings, places, characters, events
 
 
 class BaseConcept(ListGenerated):
