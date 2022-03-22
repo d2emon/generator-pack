@@ -1,5 +1,11 @@
 from factories import DictFactory
-from genesys.generator_models.character import Frame
+# TODO: Fix circular and uncomment
+# from genesys.generator_models.character import Frame
+
+
+# TODO: Remove it
+class Frame:
+    pass
 
 
 class FrameFactory(DictFactory):

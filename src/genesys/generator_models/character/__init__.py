@@ -1,10 +1,16 @@
 import random
 from ..generator_models import Model
 from .sex import Male
-from v1.factories.fng.description.character.character import male_specials, female_specials
+# TODO: Fix circular
+# from v1.factories.fng.description.character.character import male_specials, female_specials
 from v1.factories.fng.description.character.character.frame import FrameFactory
 from v1.factories.fng.description.character.character.strange import StrangeFactory
 from v1.factories.fng.description.description.race import Race
+
+
+# TODO: Remove it
+male_specials = None
+female_specials = None
 
 
 class Character(Model):

@@ -1,5 +1,34 @@
 from factories import DictFactory
-from genesys.generator_models.character import SpecialSign, Scar, Tattoo, TribalMark, Moles, Freckles, Beard
+# TODO: Fix circular
+# from genesys.generator_models.character import SpecialSign, Scar, Tattoo, TribalMark, Moles, Freckles, Beard
+
+# TODO: Remove it
+class SpecialSign:
+    pass
+
+
+class Scar:
+    pass
+
+
+class Tattoo:
+    pass
+
+
+class TribalMark:
+    pass
+
+
+class Moles:
+    pass
+
+
+class Freckles:
+    pass
+
+
+class Beard:
+    pass
 
 
 class SpecialSignFactory(DictFactory):

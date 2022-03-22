@@ -1,5 +1,10 @@
 from factories import DictFactory
-from genesys.generator_models.character import Attitude
+# TODO: Fix circular
+# from genesys.generator_models.character import Attitude
+
+# TODO: Remove it
+class Attitude:
+    pass
 
 
 class MaleAttitudeFactory(DictFactory):

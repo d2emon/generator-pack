@@ -9,3 +9,12 @@ class HairFactory(NameFactory):
         'hair_type': 'hair_type',
         'style': 'style',
     }
+
+
+# TODO: Remove it
+class MaleHairFactory(HairFactory):
+    pass
+
+
+class FemaleHairFactory(HairFactory):
+    pass

@@ -1,4 +1,4 @@
-from factories.factories.list_factory import ListFactory
+from factories import ListFactory
 from v1.factories.fng import Shirt
 from .sleeves import SleevesFactory
 

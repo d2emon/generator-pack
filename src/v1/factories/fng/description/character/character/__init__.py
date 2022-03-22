@@ -1,15 +1,30 @@
 import random
 from factories import Factory
 # from .special import SpecialSignGenerator, ScarGenerator, TattooGenerator
-from genesys.generator_models.character import Character
+# TODO: Fix circular and remove
+# from genesys.generator_models.character import Character
 from . import special as s
-from genesys.generator_models.character import Male, Female
+# TODO: Fix circular and remove
+# from genesys.generator_models.character import Male, Female
 from .race import Race, Human, Vampire, Werewolf
 from .race.elf import Elf, NightElf, BloodElf, HighElf, WoodElf, DarkElf
 from .race.gnome import Gnome
 from .race.goblin import Troll, Orc, Goblin
 from .race.dwarf import Dwarf, Giant, Halfling
 # from factories.generator import ClothingGenerator
+
+
+# TODO: Remove it
+class Character:
+    pass
+
+
+class Male:
+    pass
+
+
+class Female:
+    pass
 
 
 races = [

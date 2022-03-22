@@ -1,3 +1,19 @@
+from factories import ListFactory
+
+
+# TODO: Remove it
+class Belt:
+    pass
+
+
+class FemaleBelt:
+    pass
+
+
+class SleeveBand:
+    pass
+
+
 class BeltGenerator(ListFactory):
     generated_class = Belt
     sizes = [

@@ -1,5 +1,11 @@
 from factories import DictFactory
-from genesys.generator_models.character import Strange
+# TODO: Fix circular
+# from genesys.generator_models.character import Strange
+
+
+# TODO: Remove it
+class Strange:
+    pass
 
 
 class StrangeFactory(DictFactory):
