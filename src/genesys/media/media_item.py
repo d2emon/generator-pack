@@ -1,5 +1,5 @@
-from factories.generator import AlbumGenerator
-from factories.generator import BandGenerator
+from v1.factories.fng.names.other.other.album import AlbumGenerator
+from v1.factories.fng.names.other.other.band import BandGenerator
 
 from .history import BoxHistory
 
