@@ -59,3 +59,28 @@
 # # for t in THINGS.items():
 # #     print(t)
 # # print(THINGS['universe'])
+
+
+# TODO: Remove it
+class Biome:
+    pass
+
+
+class Mind:
+    pass
+
+
+class Paper:
+    pass
+
+
+class Dirt:
+    pass
+
+
+class EggShell:
+    pass
+
+
+class EggThoughts:
+    pass

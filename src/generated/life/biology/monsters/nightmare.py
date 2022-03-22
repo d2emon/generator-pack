@@ -1,4 +1,4 @@
-from genesys.nested.models import Model
+from genesys.model.model import Model
 from .space import SpaceAnimal, SpaceMonster
 from .sea import SeaMonster
 

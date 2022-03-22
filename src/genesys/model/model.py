@@ -3,6 +3,14 @@ from .tree import TreeModel
 
 
 class Model(TreeModel, NamedModel):
+    # TODO: Remove it
+    class Factory:
+        class BaseFactory:
+            pass
+
+        class ChildrenFactory:
+            pass
+
     def __init__(
         self,
         name=None,
@@ -32,3 +40,11 @@ class Model(TreeModel, NamedModel):
         for placeholder in filter(None, self.__placeholders):
             self.add_child(placeholder(parent=self))
         self.__placeholders = []
+
+    # TODO: Remove it
+    def child_property(self, *args, **kwargs):
+        return []
+
+    # TODO: Remove it
+    def probable(self, *args, **kwargs):
+        return None

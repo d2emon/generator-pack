@@ -5,9 +5,15 @@
 - Corpse
 """
 from genesys.model.model import Model
-from ....cloth import ClothingSet
+# TODO: Fix circular and remove
+# from ....cloth import ClothingSet
 from ...animals import Animal
 from ...animal_body.blood import Blood
+
+
+# TODO: Remove it
+class ClothingSet:
+    pass
 
 
 class Person(Animal):

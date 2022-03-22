@@ -1,3 +1,4 @@
+from genesys.model.model import Model
 from .venom import Venom
 from .jelly import Jelly
 from .hair import Hair, Fur, Whiskers
@@ -14,3 +15,31 @@ from .bird import BirdLimb, BirdWing, BirdLeg, BirdTail, Beak, BirdHead, BirdBod
 from .mammal import MammalLeg, MammalHead, MammalBody
 from .cetacean import CetaceanFin, CetaceanFlipper
 from .head import *
+
+
+# TODO: Remove it
+
+
+class AnimalBody(Model):
+    pass
+
+
+class CrustaceanLeg(Model):
+    pass
+
+
+class CrustaceanClaw(Model):
+    pass
+
+
+class CrustaceanShell(Model):
+    pass
+
+
+class WeirdSoftOrgan(Model):
+    pass
+
+
+class WeirdHardOrgan(Model):
+    pass
+

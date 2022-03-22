@@ -15,12 +15,12 @@ Insects (arachnids etc too)
 """
 from generated.nested_v2.models import Mind, Paper, Dirt, EggShell, EggThoughts
 from genesys.nested.factories.v2.thing_builder import ListFactory
-from genesys.nested.models import Model
+from genesys.model.model import Model
 from generated.life.animal_body import AnimalBody, SimpleEye, InsectLeg, InsectClaw, InsectWing, Exoskeleton, Stinger, Antenna, \
     Flesh, SoftFlesh
 from generated.mind import SimpleThoughts, Thought
 from generated.life.biology.organism import Organism
-from generated.materials.chemistry import OrganicMatter
+from generated.materials import OrganicMatter
 from genesys.nested.data import lookups
 
 

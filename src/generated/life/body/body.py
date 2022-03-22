@@ -32,3 +32,20 @@ class Body(AnimalBody):
     @property
     def mouths(self):
         return list(self.__mouths)
+
+
+# TODO: Remove it
+class Eye:
+    pass
+
+
+class Mouth:
+    pass
+
+
+class Skin:
+    pass
+
+
+class Skull:
+    pass
