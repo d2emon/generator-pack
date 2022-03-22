@@ -1,3 +1,4 @@
+from genesys.nested.child_generator import ChildGenerator
 from genesys.nested.factories import Thing, ChildFactory
 
 # furniture

@@ -1,3 +1,4 @@
+from genesys.nested.child_generator import ChildGenerator
 from genesys.nested.factories import Thing
 
 from genesys.nested.data.unprocessed.state import Continent, Country, Region, City, Village, ResidentialArea, Building
