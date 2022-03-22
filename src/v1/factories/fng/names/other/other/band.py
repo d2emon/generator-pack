@@ -1,4 +1,4 @@
-from factories.factory import ListFactory
+from factories import ListFactory
 from factories.generator import ListGenerator, PercentGenerator
 from factories.generator import Generated
 from genesys.fixtures.fixtures import names1, names2, names3, names4, names5
