@@ -39,3 +39,56 @@ from .names import *
 # "star": Star,
 # "planet": Planet,
 # "alien": RandomRace,
+
+
+# TODO: Remove it
+class OldStyleFactory:
+    pass
+
+
+class Tie:
+    pass
+
+
+class Jacket:
+    pass
+
+
+class Material:
+    pass
+
+
+class Sleeves:
+    pass
+
+
+class Shirt:
+    pass
+
+
+class JacketGenerator:
+    pass
+
+
+class ShirtGenerator:
+    pass
+
+
+class BeltGenerator:
+    pass
+
+
+class FemaleBeltGenerator:
+    pass
+
+
+class PantsGenerator:
+    pass
+
+
+class ShoesGenerator:
+    pass
+
+
+class DressGenerator:
+    pass

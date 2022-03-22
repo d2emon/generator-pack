@@ -3,6 +3,7 @@ from v1.fixtures.genders import MALE
 from v3.models import TextModel
 from v1.models.fng.names.name import Name
 from v1.factories.factory import Factory
+from factories.model.name.factories import NameFactory
 
 
 class TextFactory(Factory):
@@ -115,3 +116,8 @@ class GenderFactory(PolymorphFactory):
 
     def factory(self, factory_id=None):
         return self.factories.get(factory_id if factory_id is not None else self.default_gender)
+
+
+# TODO: Remove it
+class GenderNameFactory(Factory):
+    pass
