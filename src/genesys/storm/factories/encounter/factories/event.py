@@ -4,8 +4,8 @@ from generated.encounter import Event, DailyEvent, NightlyEvent
 from generated.history.time import Time
 from generated.encounter.fraction import Fraction
 from .distance import DistanceFactory
-from genesys.storm.data import distances_by_time, encounter_by_time
-
+from genesys.storm.data.encounter.distance import distances_by_time
+from genesys.storm.data.encounter.encounter_types import encounter_by_time
 
 class EventFactory:
     default_model = Event
