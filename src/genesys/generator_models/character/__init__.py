@@ -1,6 +1,10 @@
+import random
 from ..generator_models import Model
-from v1.factories.fng.description.character.character import FrameFactory
+from .sex import Male
+from v1.factories.fng.description.character.character import male_specials, female_specials
+from v1.factories.fng.description.character.character.frame import FrameFactory
 from v1.factories.fng.description.character.character.strange import StrangeFactory
+from v1.factories.fng.description.description.race import Race
 
 
 class Character(Model):
@@ -31,7 +35,7 @@ class Character(Model):
         self.frame = self.frame_generator.generate()
         self.strange = self.strange_generator.generate()
         self.attitude = g.attitude.generate()
-        self.clothing = ClothingGenerator.generate(self.sex)
+        self.clothing = None # ClothingGenerator.generate(self.sex)
 
     @property
     def description(self):
