@@ -1,7 +1,7 @@
 import os
 from factories import DictFactory
 from providers.file_provider import FileProvider
-from v3.models import ComplexModel
+from models.complex_model import ComplexModel
 
 
 class WorldDataProvider:
