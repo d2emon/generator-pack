@@ -47,9 +47,6 @@ class TestAndWhy(unittest.TestCase):
     def test_by_gender(self):
         for gender in self.genders_data:
             for item in egypt.EGYPT.by_gender(gender):
-                id = item.get('id')
-                self.assertIsInstance(id, UUID)
-
                 value = item.get('value')
                 self.assertIsNotNone(value)
 

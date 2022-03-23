@@ -5,6 +5,7 @@ class DatabaseLoader(ArrayDatabase):
     def __init__(self, **config):
         super().__init__()
         self.config = config
+        self._data = None
 
     @property
     def is_ready(self):

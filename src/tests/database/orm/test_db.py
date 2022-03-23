@@ -1,7 +1,7 @@
 import random
 import unittest
 from uuid import UUID
-from database.orm import Database
+from database.data_item_database import DataItemDatabase as Database
 
 
 class TestDatabase(unittest.TestCase):
@@ -11,7 +11,7 @@ class TestDatabase(unittest.TestCase):
 
     def test_init_db(self):
         for item in self.db.data:
-            id = item.get('id')
+            id = Database.get_item_id(item)
             self.assertIsInstance(id, UUID)
 
             value = item.get('value')
@@ -20,7 +20,7 @@ class TestDatabase(unittest.TestCase):
 
     def test_find(self):
         for item in self.db.find(lambda item: True):
-            id = item.get('id')
+            id = Database.get_item_id(item)
             self.assertIsInstance(id, UUID)
 
             value = item.get('value')

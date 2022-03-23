@@ -1,4 +1,4 @@
-from database.orm import Database
+from database.data_item_database import DataItemDatabase
 from data.genders import MALE, FEMALE
 
 
@@ -35,7 +35,7 @@ __MALE = __inject_gender(MALE, [
 ])
 
 
-class EgyptDatabase(Database):
+class EgyptDatabase(DataItemDatabase):
     def by_gender(self, gender):
         return self.find(lambda item: item.get("gender") == gender)
 

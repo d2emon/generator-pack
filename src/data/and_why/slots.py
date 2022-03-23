@@ -1,4 +1,4 @@
-from database.orm import Database
+from database.data_item_database import DataItemDatabase
 
 
 IN_HAND = 1
@@ -9,7 +9,7 @@ TORSO = 5
 HIPS = 6
 
 
-SLOTS = Database(
+SLOTS = DataItemDatabase(
     IN_HAND,
     SHIELD,
     HEAD,

@@ -1,11 +1,11 @@
 from data.genders import MALE, FEMALE
-from database.orm import Database
+from database.data_item_database import DataItemDatabase
 
 
 DEFAULT = MALE
 
 
-GENDERS = Database(
+GENDERS = DataItemDatabase(
     MALE,
     FEMALE,
 )

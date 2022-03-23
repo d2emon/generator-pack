@@ -1,3 +1,6 @@
+import uuid
+
+
 class BaseDatabase:
     @property
     def data(self):
@@ -14,7 +17,7 @@ class BaseDatabase:
         """
         raise NotImplementedError()
 
-    def find_and_update(self, item_id, fields):
+    def replace(self, item_id, fields):
         """
         Save data for data file
 
@@ -22,18 +25,17 @@ class BaseDatabase:
         """
         raise NotImplementedError()
 
-    def save_or_update(self, fields):
+    def update(self, fields):
         """
         Update record by uuid or create new record
 
         :param fields: Fields to update
         :return:
         """
-        raise NotImplementedError()
+        item_id = self.get_item_id(fields)
+        return self.replace(item_id, fields) if item_id is not None else self.insert(fields)
 
-    # For models
-
-    def find(self, query=lambda item: True):
+    def find(self, query):
         """
         Get all data from db
 
@@ -42,7 +44,10 @@ class BaseDatabase:
         """
         raise NotImplementedError()
 
-    def first(self, query=lambda item: True):
+    def all(self):
+        return self.find(lambda item: True)
+
+    def first(self, query):
         """
         Get first data from db
 
@@ -67,3 +72,22 @@ class BaseDatabase:
         :return: Data
         """
         raise NotImplementedError()
+
+    # Helpers
+
+    @classmethod
+    def get_item_id(cls, item):
+        return item.get('uuid')
+
+    @classmethod
+    def to_record(cls, data):
+        """
+        Prepare loaded record
+
+        :param record: Record
+        :return: Prepared record
+        """
+        return {
+            'uuid': data.get('uuid', str(uuid.uuid4())),
+            **data,
+        }
