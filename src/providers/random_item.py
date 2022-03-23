@@ -1,5 +1,5 @@
 import random
-from orm.models.data_item import DataItem
+from orm.db import DataItem, Database
 from .provider import DataProvider
 
 
@@ -14,4 +14,4 @@ class RandomItemProvider(DataProvider):
 
     @property
     def data(self):
-        return DataItem.values_by_group_id(self.group_id)
+        return Database.get_from_group(self.group_id)

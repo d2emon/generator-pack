@@ -1,12 +1,8 @@
-from orm.models.data_item import DataItem
+from orm.db import Database
 from . import groups
 from .desert_encounters import ITEMS as DESERT_ENCOUNTERS
 from .sailing_conditions import ITEMS as SAILING_CONDITIONS
 
 
-def fill():
-    DataItem.add_values(groups.DESERT_ENCOUNTERS, DESERT_ENCOUNTERS)
-    DataItem.add_values(groups.SAILING_CONDITIONS, SAILING_CONDITIONS)
-
-
-fill()
+Database.add_to_group(groups.DESERT_ENCOUNTERS, DESERT_ENCOUNTERS)
+Database.add_to_group(groups.SAILING_CONDITIONS, SAILING_CONDITIONS)

@@ -1,6 +1,6 @@
-from orm.models.data_item import DataItem
+from orm.db import Database
+from orm.data_item import DataItem
 from .genders import MALE, FEMALE
-from .db import Database
 
 
 def __inject_gender(gender, items):
@@ -46,6 +46,5 @@ EGYPT = EgyptDatabase(
     *__FEMALE,
 )
 
-
-DataItem.add_values(MALE, __MALE)
-DataItem.add_values(FEMALE, __FEMALE)
+EgyptDatabase.add_to_group(MALE, __MALE)
+EgyptDatabase.add_to_group(FEMALE, __FEMALE)
