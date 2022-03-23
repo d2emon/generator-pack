@@ -1,5 +1,5 @@
 from v1.factories.factory import Factory
-from v1.models.encounters import Encounter, Item
+from v3.models.encounter_model import Encounter, Item
 
 
 class EncounterFactory(Factory):

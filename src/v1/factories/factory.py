@@ -1,5 +1,5 @@
 import random
-from v1.models.encounters import Encounter
+from v3.models.encounter_model import Encounter
 from .factory_data import FactoryData
 
 

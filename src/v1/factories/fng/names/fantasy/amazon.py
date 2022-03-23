@@ -1,6 +1,6 @@
 from v1.fixtures.data_block import fill_data
 from v1.fixtures.fng.names import fantasy
-from v1.models.fng.names.fantasy import AmazonName
+from v3.models.fng.names.fantasy import AmazonName
 from v1.factories.fng.name_factory import ComplexNameFactory, PercentFactory
 from v1.factories.fng.name_block_factory import NameBlockFactory
 

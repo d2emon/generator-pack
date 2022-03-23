@@ -1,5 +1,5 @@
 from v1.factories.fng.name_factory import NameFactory
-from v1.models.fng.description import Face
+from v3.models.fng.description import Face
 
 
 class FaceFactory(NameFactory):

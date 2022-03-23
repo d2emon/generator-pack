@@ -1,7 +1,7 @@
 from v1.fixtures.data_block import fill_data
 from v1.fixtures import genders
 from v1.fixtures.fng.names import fantasy
-from v1.models.fng.names.fantasy import AngelName
+from v3.models.fng.names.fantasy import AngelName
 from v1.factories.fng.name_factory import ComplexNameFactory, GenderFactory
 from v1.factories.fng.name_block_factory import NameBlockFactory, GenderNameBlockFactory
 
