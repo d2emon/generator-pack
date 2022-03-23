@@ -1,5 +1,5 @@
 from genesys.model.keyed import MarkovChain
-from v3.models.model import Model
+from models.model import Model
 
 
 class Street(Model):

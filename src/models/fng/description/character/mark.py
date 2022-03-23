@@ -1,5 +1,5 @@
-from v3.models.model import Model
-from v3.models.name import TextModel
+from models.model import Model
+from models.name import TextModel
 
 
 class Mark(TextModel):

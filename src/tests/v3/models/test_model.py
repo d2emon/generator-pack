@@ -1,6 +1,6 @@
 import random
 import unittest
-from v3.models.model import Model
+from models.model import Model
 
 
 class TestModel(unittest.TestCase):

@@ -1,5 +1,5 @@
 from v1.factories.fng.name_factory import NameFactory
-from v3.models.fng.description import Eyes
+from models.fng.description import Eyes
 
 
 class CharacterNameFactory(NameFactory):

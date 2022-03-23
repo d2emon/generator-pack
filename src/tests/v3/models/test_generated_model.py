@@ -1,6 +1,6 @@
 import random
 import unittest
-from v3.models.generated_model import GeneratedModel
+from models.generated_model import GeneratedModel
 
 
 class TestGeneratedModel(unittest.TestCase):

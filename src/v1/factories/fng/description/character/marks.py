@@ -1,7 +1,7 @@
 from v1.fixtures import genders
 from v1.factories.fng.data_factory import FactoriesBlock
 from v1.factories.fng.name_factory import NameFactory
-from v3.models.fng.description import Mark, MarkDescription
+from models.fng.description import Mark, MarkDescription
 
 
 class MarksFactories(FactoriesBlock):

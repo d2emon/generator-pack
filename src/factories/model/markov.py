@@ -1,4 +1,4 @@
-from v3.models.model import Model
+from models.model import Model
 # TODO: Resolve circular and uncomment this
 # from factories.model import ModelFactory
 

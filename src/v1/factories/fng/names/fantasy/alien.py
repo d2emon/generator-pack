@@ -1,6 +1,6 @@
 from v1.fixtures.data_block import fill_data
 from v1.fixtures.fng.names import fantasy
-from v3.models.fng.names.fantasy import AlienName
+from models.fng.names.fantasy import AlienName
 from v1.factories.fng.name_block_factory import NameBlockFactory
 from v1.factories.fng.name_factory import ComplexNameFactory
 from v1.factories.fng.validators import item_is_not_unique, item_equals, generate_while

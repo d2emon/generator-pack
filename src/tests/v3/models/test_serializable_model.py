@@ -1,7 +1,7 @@
 from dataclasses import field
 import unittest
-from v3.models.model import Model
-from v3.models.serializable_model import SerializableModel as BaseSerializableModel
+from models.model import Model
+from models.serializable_model import SerializableModel as BaseSerializableModel
 
 
 class SerializableModel(BaseSerializableModel):

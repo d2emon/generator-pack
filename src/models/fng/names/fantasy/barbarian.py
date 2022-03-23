@@ -1,4 +1,4 @@
-from v3.models.fng.names.name import Name
+from models.fng.names.name import Name
 
 
 class BarbarianName(Name):

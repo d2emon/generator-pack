@@ -1,6 +1,6 @@
 import random
 import unittest
-from v3.models.preparable_model import PreparableModel
+from models.preparable_model import PreparableModel
 
 
 class TestPreparableModel(unittest.TestCase):

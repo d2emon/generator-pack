@@ -1,7 +1,7 @@
 import unittest
 from uuid import uuid4
-from v3.models.model import Model
-from v3.models.complex_model import ComplexModel as BaseComplexModel
+from models.model import Model
+from models.complex_model import ComplexModel as BaseComplexModel
 
 
 class ComplexModel(BaseComplexModel):

@@ -1,7 +1,7 @@
 import random
 from v1.fixtures.genders import MALE
-from v3.models.name import TextModel
-from v3.models.fng.names.name import Name
+from models.name import TextModel
+from models.fng.names.name import Name
 from v1.factories.factory import Factory
 from factories.model.name.factories import NameFactory
 

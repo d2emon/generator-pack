@@ -1,6 +1,6 @@
 from v1.fixtures.data_block import fill_data
 from v1.fixtures.fng.names import fantasy
-from v3.models.fng.names.fantasy import ArtificialIntelligenceName
+from models.fng.names.fantasy import ArtificialIntelligenceName
 from v1.factories.fng.name_block_factory import SimpleNameBlockFactory
 from v1.factories.fng.name_factory import ComplexNameFactory
 

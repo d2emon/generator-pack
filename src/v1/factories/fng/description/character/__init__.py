@@ -1,7 +1,7 @@
 from v1.fixtures import genders
 from v1.fixtures.fng import description
 from v1.fixtures.data_block import NameItem, NameBlock
-from v3.models.fng.description import Character, CharacterDescription, Hair, Face, Eyes, MarkDescription, Name, \
+from models.fng.description import Character, CharacterDescription, Hair, Face, Eyes, MarkDescription, Name, \
     Personality
 from v1.fixtures.data_block import load_data
 from v1.factories.fng.name_factory import NameFactory, GenderNameFactory

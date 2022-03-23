@@ -1,5 +1,5 @@
 import random
-from v3.models.complex_model import ComplexModel
+from models.complex_model import ComplexModel
 
 
 class WorldSize(ComplexModel):
