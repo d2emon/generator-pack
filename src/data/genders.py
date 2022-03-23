@@ -1,2 +1,1 @@
-MALE = 'genders.MALE'
-FEMALE = 'genders.FEMALE'
+from utils.genders import MALE, FEMALE

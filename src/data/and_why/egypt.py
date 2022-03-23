@@ -1,5 +1,5 @@
 from orm import Database
-from .genders import MALE, FEMALE
+from data.genders import MALE, FEMALE
 
 
 def __inject_gender(gender, items):

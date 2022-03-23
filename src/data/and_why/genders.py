@@ -1,4 +1,4 @@
-from utils.genders import MALE, FEMALE
+from data.genders import MALE, FEMALE
 from orm import Database
 
 
