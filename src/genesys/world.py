@@ -1,12 +1,12 @@
 import os
 from factories import DictFactory
-from providers.file_provider import FileProvider
 from models.complex_model import ComplexModel
+from providers.list_provider import ListProvider
 
 
 class WorldDataProvider:
     def __init__(self):
-        self.__name = FileProvider(os.path.join('data', 'world.txt'))
+        self.__name = ListProvider.from_file(os.path.join('data', 'world.txt'))
 
     @property
     def name(self):

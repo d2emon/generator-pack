@@ -1,4 +1,4 @@
-from .provider import DataProvider
+from .provider import ProviderFactory
 from .list_provider import StaticListProvider
 
 
@@ -10,8 +10,8 @@ class NumberProvider(StaticListProvider):
     static_data = [str(n) for n in range(0, 9)]
 
 
-class TemplateDataProvider(DataProvider):
-    def __next__(self):
+class TemplateDataProvider(ProviderFactory):
+    def __call__(self):
         return self.text('')
 
     @property

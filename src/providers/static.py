@@ -1,9 +1,9 @@
-from .provider import DataProvider
+from .provider import ProviderFactory
 
 
-class StaticProvider(DataProvider):
+class StaticProvider(ProviderFactory):
     def __init__(self, value=None):
         self.value = value
 
-    def __next__(self):
+    def __call__(self):
         return self.value

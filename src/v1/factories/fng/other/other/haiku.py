@@ -1,5 +1,5 @@
 import random
-from providers import ComplexProvider, ListProvider
+from providers.list_provider import ListProvider
 from factories.generator import ListGenerated
 from genesys.fixtures.fixtures import haiku_middle
 from genesys.fixtures.fixtures.other.haiku import haiku
@@ -21,24 +21,24 @@ class HaikuString(ListGenerated):
 class Haiku(ListGenerated):
     class HaikuString1(HaikuString):
         providers = [
-            ComplexProvider(*[ListProvider(part) for part in haiku[0]]),
-            ComplexProvider(*[ListProvider(part) for part in haiku[1]]),
-            ComplexProvider(*[ListProvider(part) for part in haiku[2]]),
-            ComplexProvider(*[ListProvider(part) for part in haiku[3]]),
-            ComplexProvider(*[ListProvider(part) for part in haiku[4]]),
+            ListProvider.multiple(haiku[0]),
+            ListProvider.multiple(haiku[1]),
+            ListProvider.multiple(haiku[2]),
+            ListProvider.multiple(haiku[3]),
+            ListProvider.multiple(haiku[4]),
         ]
 
     class HaikuString2(HaikuString):
         providers = [
-            ComplexProvider(*[ListProvider(part) for part in haiku_middle[0]]),
-            ComplexProvider(*[ListProvider(part) for part in haiku_middle[1]]),
+            ListProvider.multiple(haiku_middle[0]),
+            ListProvider.multiple(haiku_middle[1]),
         ]
 
     class HaikuString3(HaikuString):
         providers = [
-            ComplexProvider(*[ListProvider(part) for part in haiku[0]]),
-            ComplexProvider(*[ListProvider(part) for part in haiku[1]]),
-            ComplexProvider(*[ListProvider(part) for part in haiku[3]]),
+            ListProvider.multiple(haiku[0]),
+            ListProvider.multiple(haiku[1]),
+            ListProvider.multiple(haiku[3]),
         ]
 
     strings = [

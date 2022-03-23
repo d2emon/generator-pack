@@ -1,15 +1,15 @@
 from genesys.fng.list_item import ListItemProvider
 from v1.fixtures import genders
-from .provider import DataProvider
+from .provider import ProviderFactory
 
 
-class TextDataProvider(DataProvider):
+class TextDataProvider(ProviderFactory):
     # default = generator_data
     block_id = ''
     groups = ListItemProvider([])
     data = {}
 
-    def __next__(self):
+    def __call__(self):
         return self.parts()
 
     @property

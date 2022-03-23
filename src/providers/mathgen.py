@@ -1,9 +1,9 @@
 import random
-from .provider import DataProvider
+from .provider import ProviderFactory
 
 
-class MathDataProvider(DataProvider):
-    def __next__(self):
+class MathDataProvider(ProviderFactory):
+    def __call__(self):
         return random.uniform(0, 100)
 
     @property

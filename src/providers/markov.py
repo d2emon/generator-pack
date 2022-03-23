@@ -1,9 +1,9 @@
 import random
 from genesys.model.keyed.markov import MarkovUnit
-# from .provider import DataProvider
+from .provider import ProviderFactory
 
 
-class MarkovProvider:
+class MarkovProvider(ProviderFactory):
     def __init__(
         self,
         data=(),

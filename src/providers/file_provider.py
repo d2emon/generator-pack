@@ -3,11 +3,6 @@ from .list_provider import ListProvider, ListDataProvider
 from utils.loaders import load_lines
 
 
-class FileProvider(ListProvider):
-    def __init__(self, filename=""):
-        super().__init__(list(load_lines(filename)))
-
-
 class FileDataProvider(ListDataProvider):
     default_filename = ''
 

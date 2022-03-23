@@ -1,13 +1,13 @@
 import random
 from database.data_item_database import DataItemDatabase
-from .provider import DataProvider
+from .provider import ProviderFactory
 
 
-class RandomItemProvider(DataProvider):
+class RandomItemProvider(ProviderFactory):
     def __init__(self, group_id):
         self.group_id = group_id
 
-    def __next__(self):
+    def __call__(self):
         data = list(self.data)
         # random.shuffle(data)
         return random.choice(self.data) if len(self.data) else None
