@@ -3,9 +3,6 @@ from .database import BaseDatabase
 
 
 class ArrayDatabase(BaseDatabase):
-    def __init__(self, *args, **kwargs) -> None:
-        super().__init__(*args, **kwargs)
-
     @property
     def data(self):
         raise NotImplementedError()

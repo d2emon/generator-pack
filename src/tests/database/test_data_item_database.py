@@ -4,7 +4,7 @@ from uuid import UUID
 from database.data_item_database import DataItemDatabase as Database
 
 
-class TestDatabase(unittest.TestCase):
+class TestDataItemDatabase(unittest.TestCase):
     def setUp(self):
         self.data = [ { "data": random.uniform(0, 100) } for _ in range(10) ]
         self.db = Database(*self.data)
