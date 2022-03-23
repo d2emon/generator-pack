@@ -44,14 +44,21 @@ class TestDataItem(unittest.TestCase):
     def test_by_group_id(self):
         DataItem.add_values('GROUP_ID1', self.data)
 
+        values = []
         for item in DataItem.by_group_id('GROUP_ID1'):
-            self.assertIn(item.value, self.data)
+            self.assertEqual(item['group_id'], 'GROUP_ID1')
+            values.append(item.value)
+
+        for item in self.data:
+            self.assertIn(item, values)
 
     def test_values_by_group_id(self):
         DataItem.add_values('GROUP_ID2', self.data)
 
-        for item in DataItem.values_by_group_id('GROUP_ID2'):
-            self.assertIn(item, self.data)
+        values = list(DataItem.values_by_group_id('GROUP_ID2'))
+
+        for item in self.data:
+            self.assertIn(item, values)
 
 
 if __name__ == "__main__":
