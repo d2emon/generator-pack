@@ -1,7 +1,7 @@
-from v3.models import ComplexModel
+from v3.models.model import Model
 
 
-class DataItem(ComplexModel):
+class DataItem(Model):
     fields = [
         'group_id',
         'value',
@@ -11,10 +11,6 @@ class DataItem(ComplexModel):
     @property
     def group_id(self):
         return self['group_id']
-
-    @property
-    def value(self):
-        return self['value']
 
     def save(self):
         self.items.append(self)

@@ -1,9 +1,6 @@
 from .data_item import DataItem
+from v3.models.model import Model
 
 
-class Model:
-    pass
-
-
-class MarkovChain:
+class MarkovChain(Model):
     pass
