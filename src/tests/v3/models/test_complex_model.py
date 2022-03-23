@@ -1,12 +1,12 @@
 import unittest
 from uuid import uuid4
 from v3.models.model import Model
-from v3.models.complex_model import ComplexModel
+from v3.models.complex_model import ComplexModel as BaseComplexModel
 
 
-class TestModel(ComplexModel):
+class ComplexModel(BaseComplexModel):
     children = {
-        "child_model_field": ComplexModel(value="value1"),
+        "child_model_field": BaseComplexModel(value="value1"),
         "child_value_field": "VALUE",
         "pregenerated_child": "OLD_PREGENERATED",
     }
@@ -19,7 +19,7 @@ class TestModel(ComplexModel):
     @property
     def child_model_field(self):
         if self.__child_model is None:
-            self.__child_model = ComplexModel(value="value2")
+            self.__child_model = BaseComplexModel(value="value2")
             self.__child_model.uuid = uuid4()
 
         return self.__child_model
@@ -30,17 +30,18 @@ class TestModel(ComplexModel):
 
 
 class TestComplexModel(unittest.TestCase):
+
     def setUp(self):
-        self.model = TestModel(pregenerated_child="PREGENERATED")
+        self.model = ComplexModel(pregenerated_child="PREGENERATED")
 
     def test_complex_model(self):
-        self.assertIsInstance(TestModel.children, dict)
+        self.assertIsInstance(ComplexModel.children, dict)
 
     def test_serialize_fields(self):
         self.assertIsInstance(self.model.serialize_fields, list)
 
     def test_fill(self):
-        model = TestModel(value="old value")
+        model = ComplexModel(value="old value")
 
         model.fill(value="new value")
         self.assertEqual(model.value, "new value")
@@ -68,9 +69,9 @@ class TestComplexModel(unittest.TestCase):
             self.assertIsNotNone(model.data.get(k))
 
     def test_random(self):
-        model = TestModel.random()
+        model = ComplexModel.random()
 
-        self.assertIsInstance(model, TestModel)
+        self.assertIsInstance(model, ComplexModel)
 
         for k in model.children.keys():
             self.assertIsNotNone(model.data.get(k))

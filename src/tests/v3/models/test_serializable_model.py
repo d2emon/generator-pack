@@ -1,10 +1,20 @@
+from dataclasses import field
 import unittest
-from v3.models.serializable_model import SerializableModel
+from v3.models.model import Model
+from v3.models.serializable_model import SerializableModel as BaseSerializableModel
 
 
-class TestComplexModel(unittest.TestCase):
+class SerializableModel(BaseSerializableModel):
+    field_names = [
+        "field1",
+        "field2",
+    ]
+
+
+
+class TestSerializableModel(unittest.TestCase):
     def setUp(self):
-        self.model = SerializableModel()
+        self.model = SerializableModel(field1=Model())
 
     def test_field_names(self):
         self.assertIsInstance(SerializableModel.field_names, list)
@@ -17,7 +27,7 @@ class TestComplexModel(unittest.TestCase):
 
         for field in self.model.field_names:
             value = self.model[field]
-            if isinstance(value, SerializableModel):
+            if isinstance(value, Model):
                 self.assertEqual(serialized[field], value.uuid)
             else:
                 self.assertEqual(serialized[field], value)
