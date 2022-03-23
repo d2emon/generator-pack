@@ -1,4 +1,5 @@
-from v3.models import Model, TextModel
+from v3.models.model import Model
+from v3.models import TextModel
 
 
 class Mark(TextModel):

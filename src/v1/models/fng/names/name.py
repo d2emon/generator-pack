@@ -1,4 +1,4 @@
-from v3.models import Model
+from v3.models.preparable_model import PreparableModel as Model
 
 
 class Name(Model):

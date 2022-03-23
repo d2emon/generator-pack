@@ -1,6 +1,6 @@
 from v1.fixtures import genders
-from v3.models import Model
 from v1.models.fng.description.description import Description
+from v3.models.model import Model
 from .race import Race
 from .mark import Mark, MarkDescription
 from .hair import Hair
