@@ -1,4 +1,4 @@
-from .complex import ComplexModel
+from .complex_model import ComplexModel
 
 
 class DbModel(ComplexModel):

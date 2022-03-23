@@ -1,8 +1,7 @@
 from .model import Model
-from .preparable_model import PreparableModel
 
 
-class GeneratedModel(PreparableModel, Model):
+class GeneratedModel(Model):
     """
     Generate model
     """

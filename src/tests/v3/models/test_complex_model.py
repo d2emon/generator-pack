@@ -1,5 +1,5 @@
 import unittest
-from v3.models.complex import ComplexModel
+from v3.models.complex_model import ComplexModel
 
 
 class TestComplexModel(unittest.TestCase):
@@ -7,8 +7,10 @@ class TestComplexModel(unittest.TestCase):
         self.model = ComplexModel()
 
     def test_complex_model(self):
-        self.assertIsInstance(ComplexModel.field_names, list)
         self.assertIsInstance(ComplexModel.children, dict)
+
+    def test_serialize_fields(self):
+        self.assertIsInstance(self.model.serialize_fields, list)
 
     def test_fill(self):
         model = ComplexModel(value="old value")
@@ -19,26 +21,12 @@ class TestComplexModel(unittest.TestCase):
     def test_serialize(self):
         serialized = self.model.serialize()
 
-        for field in self.model.field_names:
-            value = self.model[field]
-            if isinstance(value, ComplexModel):
-                self.assertEqual(serialized[field], value.uuid)
-            else:
-                self.assertEqual(serialized[field], value)
-
         for field in self.model.children.keys():
             value = self.model[field]
             if isinstance(value, ComplexModel):
                 self.assertEqual(serialized[field], value.uuid)
             else:
                 self.assertEqual(serialized[field], value)
-
-    def test_deserialize(self):
-        model1 = ComplexModel.deserialize({
-            "key": "value",
-        })
-        model2 = ComplexModel(key="value")
-        self.assertEqual(model1.data, model2.data)
 
     def test_with_children(self):
         model = self.model.with_children()
