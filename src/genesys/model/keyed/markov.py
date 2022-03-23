@@ -1,4 +1,4 @@
-from orm.models import Model
+from v3.models.model import Model
 
 
 class MarkovUnit(Model):
