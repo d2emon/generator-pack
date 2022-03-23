@@ -35,6 +35,14 @@ class TestFactory(unittest.TestCase):
         self.assertIn(factory.build(), self.values)
         self.assertIn(factory(), self.values)
 
+    def test_list_factory_shuffle(self):
+        factory = ListFactory(self.values)
+        used = []
+        for item in factory.shuffle():
+            self.assertIn(item, self.values)
+            self.assertNotIn(item, used)
+            used.append(item)
+
     def test_list_factory_unique(self):
         factory = ListFactory(self.values)
         used = []

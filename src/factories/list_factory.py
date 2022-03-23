@@ -28,7 +28,7 @@ class ListFactory(Factory):
         :param kwargs: Roll kwargs
         :return: Random item
         """
-        return random.choice(self.data)
+        return random.choice(self.data) if len(self.data) > 0 else None
 
     def __call__(self, *args, **kwargs):
         """
@@ -40,6 +40,16 @@ class ListFactory(Factory):
         """
         return self.build(*args, **kwargs)
 
+    def shuffle(self):
+        """
+        Shuffle items
+
+        :return: Random items
+        """
+        values = [*self.data]
+        random.shuffle(values)
+        yield from values
+
     def unique(self, count=1):
         """
         Select random items
@@ -47,7 +57,6 @@ class ListFactory(Factory):
         :param count: Number of items to select
         :return: Random items
         """
-        values = [*self.data]
-        random.shuffle(values)
-        for item in values[:count]:
-            yield item
+        values = self.shuffle()
+        for _ in range(count):
+            yield next(values)

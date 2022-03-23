@@ -1,4 +1,4 @@
-import random
+from factories.list_factory import ListFactory
 from utils.loaders import load_lines
 from .provider import ProviderFactory
 
@@ -14,22 +14,16 @@ class ComplexFactory(ProviderFactory):
         return ComplexFactory(*self.factories, other)
 
 
-class ListProvider(ProviderFactory):
+class ListProvider(ProviderFactory, ListFactory):
     def __init__(self, data=()):
-        self.data = list(data)
+        super().__init__(data)
+
         self.__items = []
         self.unique = self.shuffle()
 
-    def __call__(self):
-        return random.choice(self.data) if len(self.data) > 0 else None
-
     def shuffle(self):
-        self.__items = list(self.data)
-        random.shuffle(self.__items)
+        self.__items = super().shuffle()
         return self.__items
-
-    def __len__(self):
-        return len(self.data)
 
     def __add__(self, other):
         return ComplexFactory(self, other)

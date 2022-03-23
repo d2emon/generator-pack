@@ -1,6 +1,6 @@
 import os
-from .list_provider import ListProvider, ListDataProvider
 from utils.loaders import load_lines
+from .list_provider import ListDataProvider
 
 
 class FileDataProvider(ListDataProvider):
