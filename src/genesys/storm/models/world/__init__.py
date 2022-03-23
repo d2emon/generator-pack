@@ -1,4 +1,4 @@
-from v3.models import ComplexModel
+from v3.models.complex_model import ComplexModel
 from .shape import WorldShape
 from .world_type import WorldType
 from .size import WorldSize

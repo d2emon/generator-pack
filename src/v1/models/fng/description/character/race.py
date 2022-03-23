@@ -1,4 +1,4 @@
-from v3.models import TextModel
+from v3.models.name import TextModel
 
 
 class Race(TextModel):
