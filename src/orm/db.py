@@ -23,7 +23,3 @@ class Database:
     @classmethod
     def get_from_group(cls, group_id):
         return DataItem.values_by_group_id(group_id)
-
-    @classmethod
-    def get_items(cls):
-        return DataItem.items

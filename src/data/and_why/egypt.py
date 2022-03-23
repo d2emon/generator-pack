@@ -1,5 +1,4 @@
 from orm.db import Database
-from orm.data_item import DataItem
 from .genders import MALE, FEMALE
 
 
