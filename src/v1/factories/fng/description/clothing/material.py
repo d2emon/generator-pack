@@ -1,5 +1,5 @@
 from v1.factories.fng import Material
-from factories.factories.list_factory import ListFactory
+from factories.list_factory import ListFactory
 
 
 class MaterialFactory(ListFactory):

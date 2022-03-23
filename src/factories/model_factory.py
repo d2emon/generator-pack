@@ -1,5 +1,5 @@
-from v3.models import Model
-from ..factory import Factory
+from models.model import Model
+from .factory import Factory
 
 
 class ModelFactory(Factory):

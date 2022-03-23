@@ -1,5 +1,5 @@
 import random
-from factories.and_why import ListFactory
+from factories.list_factory import ListFactory
 from ..providers.slot_provider import SLOT_PROVIDER
 
 

@@ -1,7 +1,8 @@
 import random
 
 from genesys.fixtures.fixtures import race
-from factories import Factory, ListFactory
+from factories.factory import Factory
+from factories.list_factory import ListFactory
 from .generated import Body, Horns, Skin, Divercity
 from .limbs import Arms, WingedArms, ClawedArms, SideFins, DorsalFin, Wings, Legs, Tail
 

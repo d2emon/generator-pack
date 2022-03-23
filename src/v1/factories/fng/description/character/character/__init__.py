@@ -1,5 +1,5 @@
 import random
-from factories import Factory
+from factories.factory import Factory
 # from .special import SpecialSignGenerator, ScarGenerator, TattooGenerator
 # TODO: Fix circular and remove
 # from genesys.generator_models.character import Character

@@ -1,4 +1,4 @@
-from factories import DictFactory
+from factories.dict_factory import DictFactory
 from genesys.generator_models.character.promise import Promise
 
 

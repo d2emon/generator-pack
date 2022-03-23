@@ -1,4 +1,4 @@
-from factories import Factory
+from factories.factory import Factory
 from .campsite import BaseCampsiteFactory
 from ..providers import CampsiteDataProvider
 

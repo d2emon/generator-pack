@@ -1,4 +1,7 @@
-class FabricGenerator(ListGenerator):
+from factories.list_factory import ListFactory
+
+
+class FabricGenerator(ListFactory):
     generated_class = Fabric
     descriptions = [
         "comfortable",

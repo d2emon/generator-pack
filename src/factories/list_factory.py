@@ -30,6 +30,16 @@ class ListFactory(Factory):
         """
         return random.choice(self.data)
 
+    def __call__(self, *args, **kwargs):
+        """
+        Select random item
+
+        :param args: Roll args
+        :param kwargs: Roll kwargs
+        :return: Random item
+        """
+        return self.build(*args, **kwargs)
+
     def unique(self, count=1):
         """
         Select random items

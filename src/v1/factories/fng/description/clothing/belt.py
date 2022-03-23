@@ -1,4 +1,4 @@
-from factories import ListFactory
+from factories.list_factory import ListFactory
 
 
 # TODO: Remove it

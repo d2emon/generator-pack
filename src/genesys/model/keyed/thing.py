@@ -1,4 +1,4 @@
-from factories import ListFactory
+from factories.list_factory import ListFactory
 from factories.model.nested import ThingFactory, MultipleFactory, ProbableFactory
 from genesys.model.keyed.simple_item import SimpleItem
 

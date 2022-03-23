@@ -1,5 +1,6 @@
 from genesys.fixtures.fixtures import race
-from factories import Factory, ListFactory
+from factories.factory import Factory
+from factories.list_factory import ListFactory
 
 
 class RaceFixtures:

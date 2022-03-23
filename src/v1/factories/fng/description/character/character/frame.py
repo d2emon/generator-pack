@@ -1,4 +1,4 @@
-from factories import DictFactory
+from factories.dict_factory import DictFactory
 # TODO: Fix circular and uncomment
 # from genesys.generator_models.character import Frame
 

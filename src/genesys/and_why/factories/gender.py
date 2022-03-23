@@ -1,4 +1,4 @@
-from factories.and_why import ListFactory
+from factories.list_factory import ListFactory
 from ..providers.gender_provider import GENDER_PROVIDER
 
 

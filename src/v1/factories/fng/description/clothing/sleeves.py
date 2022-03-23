@@ -1,4 +1,4 @@
-from factories import ListFactory
+from factories.list_factory import ListFactory
 from v1.factories.fng import Sleeves
 from .belt import SleeveBandGenerator
 
