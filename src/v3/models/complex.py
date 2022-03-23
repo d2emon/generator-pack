@@ -1,7 +1,7 @@
-from .model import Model
+from .generated_model import GeneratedModel
 
 
-class ComplexModel(Model):
+class ComplexModel(GeneratedModel):
     field_names = []
     children = {}
 
