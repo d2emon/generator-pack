@@ -1,5 +1,5 @@
 import random
-from orm import Database
+from database.orm import Database
 from .provider import DataProvider
 
 

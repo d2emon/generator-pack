@@ -1,6 +1,6 @@
 import random
 import unittest
-from orm.data_item import DataItem
+from database.orm.data_item import DataItem
 
 
 class TestDataItem(unittest.TestCase):

@@ -1,7 +1,7 @@
 import random
 import unittest
 from uuid import UUID
-from orm import Database
+from database.orm import Database
 
 
 class TestDatabase(unittest.TestCase):
