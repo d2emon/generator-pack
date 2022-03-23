@@ -16,8 +16,8 @@ class SerializableModel(Model):
         """
         result = {}
         for field in self.serialize_fields:
-            value = self.__getattribute__(field)
-            result[field] = value if not isinstance(value, self.__class__) else value.uuid
+            value = self.__getattribute__(field) if hasattr(self, field) else None
+            result[field] = value if not isinstance(value, Model) else value.uuid
         return result
 
     @classmethod

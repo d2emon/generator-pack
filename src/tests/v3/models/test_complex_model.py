@@ -1,19 +1,46 @@
 import unittest
+from uuid import uuid4
+from v3.models.model import Model
 from v3.models.complex_model import ComplexModel
+
+
+class TestModel(ComplexModel):
+    children = {
+        "child_model_field": ComplexModel(value="value1"),
+        "child_value_field": "VALUE",
+        "pregenerated_child": "OLD_PREGENERATED",
+    }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.__child_model = None
+
+    @property
+    def child_model_field(self):
+        if self.__child_model is None:
+            self.__child_model = ComplexModel(value="value2")
+            self.__child_model.uuid = uuid4()
+
+        return self.__child_model
+
+    @property
+    def child_value_field(self):
+        return "VALUE"
 
 
 class TestComplexModel(unittest.TestCase):
     def setUp(self):
-        self.model = ComplexModel()
+        self.model = TestModel(pregenerated_child="PREGENERATED")
 
     def test_complex_model(self):
-        self.assertIsInstance(ComplexModel.children, dict)
+        self.assertIsInstance(TestModel.children, dict)
 
     def test_serialize_fields(self):
         self.assertIsInstance(self.model.serialize_fields, list)
 
     def test_fill(self):
-        model = ComplexModel(value="old value")
+        model = TestModel(value="old value")
 
         model.fill(value="new value")
         self.assertEqual(model.value, "new value")
@@ -22,8 +49,12 @@ class TestComplexModel(unittest.TestCase):
         serialized = self.model.serialize()
 
         for field in self.model.children.keys():
-            value = self.model[field]
-            if isinstance(value, ComplexModel):
+            if not hasattr(self.model, field):
+                self.assertEqual(serialized[field], None)
+                continue
+
+            value = self.model.__getattribute__(field) if hasattr(self.model, field) else None
+            if isinstance(value, Model):
                 self.assertEqual(serialized[field], value.uuid)
             else:
                 self.assertEqual(serialized[field], value)
@@ -37,9 +68,9 @@ class TestComplexModel(unittest.TestCase):
             self.assertIsNotNone(model.data.get(k))
 
     def test_random(self):
-        model = ComplexModel.random()
+        model = TestModel.random()
 
-        self.assertIsInstance(model, ComplexModel)
+        self.assertIsInstance(model, TestModel)
 
         for k in model.children.keys():
             self.assertIsNotNone(model.data.get(k))

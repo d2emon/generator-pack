@@ -29,7 +29,7 @@ class ComplexModel(GeneratedModel, PreparableModel, SerializableModel):
         """
         for k, v in self.children.items():
             if self.data.get(k) is None:
-                self.data[k] = v.random()
+                self.data[k] = v.random() if isinstance(v, ComplexModel) else v
 
         return self
 
