@@ -1,43 +1,31 @@
 import random
 import uuid
+from database.base_database import BaseDatabase
 
 
-class Database:
-    def __init__(self, **config):
-        self.config = config
+class ArrayDatabase(BaseDatabase):
+    def __init__(self, *args, **kwargs) -> None:
+        super().__init__(*args, **kwargs)
         self._data = None
 
-    @property
-    def is_ready(self):
-        return True
-
-    @property
-    def data(self):
-        """
-        :return: Data from db
-        """
-        if not self.is_ready:
-            self.load()
-
-        return self._data
-
-    def load(self):
-        """
-        Reload data from data file
-
-        :return:
-        """
-        raise NotImplementedError()
-
-    def save(self):
+    def insert(self, fields):
         """
         Save data for data file
 
         :return:
         """
-        raise NotImplementedError()
+        self._data.append(fields)
 
-    def update(self, fields):
+    def find_and_update(self, item_id, fields):
+        """
+        Save data for data file
+
+        :return:
+        """
+        for item in filter(lambda i: i.get('uuid') == item_id, self._data):
+            item.update(fields)
+
+    def insert_or_update(self, fields):
         """
         Update record by uuid or create new record
 
@@ -45,15 +33,11 @@ class Database:
         :return:
         """
         item_id = fields.get('uuid')
-        if item_id is None:
-            self.data.append(fields)
-            return
-
-        for item in filter(lambda i: i.get('uuid') == item_id, self.data):
-            item.update(fields)
+        return self.find_and_update(item_id, fields) if item_id is not None else self.insert(fields)
 
     # For models
-    def all(self, query=lambda item: True):
+
+    def find(self, query=lambda item: True):
         """
         Get all data from db
 
@@ -69,7 +53,7 @@ class Database:
         :param query: Db query
         :return: Data
         """
-        return next(self.all(query), None)
+        return next(self.find(query), None)
 
     def get(self, item_id):
         """

@@ -1,5 +1,6 @@
 import os
-from database import CSVDatabase, JSONDatabase
+from database.v1.csv_database import CSVDatabase
+from database.v1.json_database import JSONDatabase
 from config import DB_CONFIG
 
 

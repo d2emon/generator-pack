@@ -1,5 +1,5 @@
 import os
-from .database import Database
+from .database_loader import DatabaseLoader
 
 
 class DataFile:
@@ -24,9 +24,10 @@ class DataFile:
         raise NotImplementedError()
 
 
-class FileDatabase(Database):
+class FileDatabase(DatabaseLoader):
     def __init__(self, filename='', **config):
         super().__init__(**config)
+
         self.__filename = filename
         self.__loaded = False
         self.__file = None
