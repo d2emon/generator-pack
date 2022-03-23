@@ -1,5 +1,5 @@
 from utils.genders import MALE, FEMALE
-from orm.db import Database
+from orm import Database
 
 
 DEFAULT = MALE

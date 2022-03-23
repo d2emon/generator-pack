@@ -2,7 +2,6 @@ import random
 import unittest
 from uuid import UUID
 from data.and_why import egypt, genders, slots
-from orm import db
 
 
 class TestAndWhy(unittest.TestCase):
@@ -59,14 +58,10 @@ class TestAndWhy(unittest.TestCase):
     def test_genders(self):
         self.assertEqual(genders.DEFAULT, genders.MALE)
 
-        self.assertIsInstance(genders.GENDERS, db.Database)
-
         for value in genders.GENDERS.values():
             self.assertIn(value, self.genders_data)
 
     def test_slots(self):
-        self.assertIsInstance(slots.SLOTS, db.Database)
-
         for value in slots.SLOTS.values():
             self.assertIn(value, self.slots_data)
 
