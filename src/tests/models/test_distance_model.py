@@ -1,8 +1,8 @@
 import random
 import unittest
 from generated.encounter.day import Day
-from generated.encounter.distance import Distance
 from generated.history.time import Time
+from models.encounters.distance import Distance
 
 
 class DistanceGroup:

@@ -1,8 +1,9 @@
 from generated.history.time import Time
+from models.model import Model
 from .distance import Distance
 
 
-class Event:
+class Event(Model):
     time_of_day = None
 
     def __init__(
@@ -15,6 +16,7 @@ class Event:
         *args,
         **kwargs,
     ):
+        super().__init__(*args, **kwargs)
         self.time = time
         self.encounter = encounter
         self.__max_time = max_time

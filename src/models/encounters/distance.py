@@ -1,4 +1,7 @@
-class Distance:
+from models.model import Model
+
+
+class Distance(Model):
     def __init__(
         self,
         distance_group,

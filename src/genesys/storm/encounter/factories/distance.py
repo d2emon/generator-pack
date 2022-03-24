@@ -1,4 +1,4 @@
-from generated.encounter import Distance
+from models.encounters.distance import Distance
 
 
 class DistanceFactory:

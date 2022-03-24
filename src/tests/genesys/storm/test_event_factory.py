@@ -1,6 +1,6 @@
 import random
 import unittest
-from generated.encounter.event import Event, DailyEvent, NightlyEvent
+from models.encounters.event import Event, DailyEvent, NightlyEvent
 from generated.history.time import Time
 from genesys.storm.encounter.factories.event import EventFactory, DailyEventFactory, NightlyEventFactory
 from genesys.storm.encounter.factories.distance import DistanceFactory
