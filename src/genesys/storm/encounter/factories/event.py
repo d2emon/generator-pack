@@ -1,10 +1,10 @@
 import random
 from dice.dice import Dice
+from data.storm.data.encounter.distance import distances_by_time
+from data.storm.data.encounter.encounter_types import encounter_by_time
 from generated.history.time import Time
 from generated.encounter.fraction import Fraction
 from .distance import DistanceFactory
-from genesys.storm.data.encounter.distance import distances_by_time
-from genesys.storm.data.encounter.encounter_types import encounter_by_time
 from models.encounters.event import Event, DailyEvent, NightlyEvent
 
 
