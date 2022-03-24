@@ -1,5 +1,5 @@
 from data.storm import worlds
-from genesys.storm.models.world import WorldType
+from models.world import WorldType
 from .db import DbFactory
 
 

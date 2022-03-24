@@ -1,6 +1,6 @@
 import random
 from data.storm import worlds
-from genesys.storm.models.world.size import WorldSize
+from models.world.size import WorldSize
 from .db import DbFactory
 
 
