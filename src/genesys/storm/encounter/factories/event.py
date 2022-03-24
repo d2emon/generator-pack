@@ -7,6 +7,7 @@ from .distance import DistanceFactory
 from genesys.storm.data.encounter.distance import distances_by_time
 from genesys.storm.data.encounter.encounter_types import encounter_by_time
 
+
 class EventFactory:
     default_model = Event
 

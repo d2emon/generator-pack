@@ -10,8 +10,8 @@ class WithEvents:
         return sorted(events, key=lambda event: event.minutes)
 
     @classmethod
-    def filter_events(cls, events, event_filter=lambda: True):
+    def filter_events(cls, events, event_filter=lambda item: True):
         return cls.sort_events(filter(event_filter, events))
 
-    def filtered_events(self, event_filter=lambda: True):
+    def filtered_events(self, event_filter=lambda item: True):
         return self.filter_events(self.__events, event_filter)

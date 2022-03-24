@@ -25,4 +25,4 @@ class Day(WithEvents):
         yield from self.nightly
 
     def __str__(self):
-        return self.day_id
+        return str(self.day_id)
