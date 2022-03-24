@@ -3,10 +3,6 @@ class DbFactory:
         self.model = model
         self.database = database
 
-    def __call__(self, *args, **kwargs):
-        data = self.get_data(**kwargs)
-        return self.model(*args, **data)
-
     def get_data(self, **kwargs):
         data = {}
         data.update(kwargs)
@@ -54,3 +50,7 @@ class DbFactory:
         :return: Model
         """
         return self.model.deserialize(self.database.random())
+
+    def __call__(self, *args, **kwargs):
+        data = self.get_data(**kwargs)
+        return self.model(*args, **data)

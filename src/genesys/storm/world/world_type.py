@@ -1,6 +1,6 @@
 from data.storm import worlds
+from factories.db_factory import DbFactory
 from models.world import WorldType
-from .db import DbFactory
 
 
 class WorldTypeFactory(DbFactory):

@@ -65,7 +65,7 @@ class FileDatabase(DatabaseLoader):
 
         :return:
         """
-        self._data = list(map(self.output, self.file.load()))
+        self._data = list(map(self.to_record, self.file.load()))
         self.__loaded = True
 
     def save(self):

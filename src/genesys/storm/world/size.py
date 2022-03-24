@@ -1,7 +1,7 @@
 import random
 from data.storm import worlds
+from factories.db_factory import DbFactory
 from models.world.size import WorldSize
-from .db import DbFactory
 
 
 class SizeFactory(DbFactory):

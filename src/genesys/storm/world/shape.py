@@ -1,6 +1,6 @@
 from data.storm import worlds
+from factories.db_factory import DbFactory
 from models.world.shape import WorldShape
-from .db import DbFactory
 
 
 class ShapeFactory(DbFactory):

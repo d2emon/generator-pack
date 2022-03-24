@@ -1,7 +1,7 @@
 import random
 from data.storm import worlds
+from factories.db_factory import DbFactory
 from models.world import World
-from .db import DbFactory
 from .size import SizeFactory
 from .world_type import WorldTypeFactory
 
