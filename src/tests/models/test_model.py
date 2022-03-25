@@ -30,10 +30,6 @@ class TestModel(unittest.TestCase):
 
     def test_data(self):
         self.assertEqual(self.model.data, self.data)
-        self.assertEqual(self.model.items, self.data)
-
-    def test_raw_value(self):
-        self.assertEqual(self.model.raw_value, self.data['value'])
 
     def test_value(self):
         self.assertEqual(self.model.value, self.data['value'])

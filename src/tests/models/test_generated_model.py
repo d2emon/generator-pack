@@ -46,16 +46,6 @@ class TestGeneratedModel(unittest.TestCase):
         self.assertEqual(model.data, self.data)
         self.assertTrue(model.generated)
 
-    def test_items(self):
-        model = GeneratedModel(**self.data)
-
-        self.assertEqual(model.items, self.data)
-
-    def test_raw_value(self):
-        model = GeneratedModel(**self.data)
-
-        self.assertEqual(model.raw_value, self.data['value'])
-
     def test_value(self):
         model = GeneratedModel(**self.data)
 
