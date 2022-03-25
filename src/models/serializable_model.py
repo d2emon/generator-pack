@@ -41,18 +41,3 @@ class ModelSerializer:
             return [cls.deserialize(self.model, item) for item in data]
 
         return wrapper
-
-
-class SerializableModel(Model):
-    serialize_field_names = []
-
-    @property
-    def serialize_fields(self):
-        return self.serialize_field_names
-
-    def serialize(self):
-        return ModelSerializer.serialize(self, self.serialize_fields)
-
-    @classmethod
-    def deserialize(cls, data):
-        return ModelSerializer.deserialize(cls, data)

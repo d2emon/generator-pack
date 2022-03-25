@@ -1,11 +1,9 @@
-from dataclasses import field
-from email import generator
 import unittest
 from models.model import Model
-from models.serializable_model import SerializableModel as BaseSerializableModel
+from models.serializable_model import ModelSerializer
 
 
-class SerializableModel(BaseSerializableModel):
+class SerializableModel(Model):
     serialize_field_names = [
         "field1",
         "field2",
@@ -22,11 +20,8 @@ class TestSerializableModel(unittest.TestCase):
     def setUp(self):
         self.model = SerializableModel(field1=Model())
 
-    def test_serialize_fields(self):
-        self.assertEqual(self.model.serialize_fields, list(self.model.field_names))
-
     def test_serialize(self):
-        serialized = self.model.serialize()
+        serialized = ModelSerializer.serialize(self.model, self.model.field_names)
 
         for field in self.model.field_names:
             value = self.model[field]
@@ -36,7 +31,7 @@ class TestSerializableModel(unittest.TestCase):
                 self.assertEqual(serialized[field], value)
 
     def test_deserialize(self):
-        model1 = SerializableModel.deserialize({
+        model1 = ModelSerializer.deserialize(SerializableModel, {
             "key": "value",
         })
         model2 = SerializableModel(key="value")
