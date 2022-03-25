@@ -127,16 +127,20 @@ class EncountersManager:
 
         # for event in day.get_events(daily=show_daily, nightly=show_nightly):
         for event in day.events:
-            print('-' * 80)
-            print(event)
+            yield event
 
     @classmethod
     def show_days(cls, *days):
         for day in days:
-            print('=' * 80)
-            print(day)
-            cls.show_day(day)
-        print('=' * 80)
+            # print('=' * 80)
+            yield [
+                day,
+                cls.show_day(day),
+            ]
+            # print(day)
+            # print('-' * 80)
+            # print(event)
+        # print('=' * 80)
 
     def encounters(self, count=1, **kwargs):
         days = (self.__factory(f'День {day_id + 1} из {count}', **kwargs) for day_id in range(count))
