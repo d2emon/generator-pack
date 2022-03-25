@@ -1,9 +1,9 @@
 from .generated_model import GeneratedModel
 from .preparable_model import PreparableModel
-from .serializable_model import SerializableModel
 
 
-class ComplexModel(GeneratedModel, PreparableModel, SerializableModel):
+class ComplexModel(GeneratedModel, PreparableModel):
+    serialize_field_names = []
     children = {}
 
     @property

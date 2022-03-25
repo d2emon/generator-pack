@@ -1,8 +1,7 @@
 from models.model import Model
-from models.serializable_model import SerializableModel
 
 
-class WorldType(SerializableModel, Model):
+class WorldType(Model):
     value = Model.field_property('world_type', '')
     sizes = Model.field_property('sizes', [])
 

@@ -2,6 +2,7 @@ import unittest
 from uuid import uuid4
 from models.model import Model
 from models.complex_model import ComplexModel as BaseComplexModel
+from models.serializable_model import ModelSerializer
 
 
 class ComplexModel(BaseComplexModel):
@@ -47,11 +48,11 @@ class TestComplexModel(unittest.TestCase):
         self.assertEqual(model.value, "new value")
 
     def test_serialize(self):
-        serialized = self.model.serialize()
+        serialized = ModelSerializer.serialize(self.model, self.model.serialize_fields)
 
         for field in self.model.children.keys():
             if not hasattr(self.model, field):
-                self.assertEqual(serialized[field], None)
+                self.assertEqual(serialized[field], self.model[field])
                 continue
 
             value = self.model.__getattribute__(field) if hasattr(self.model, field) else None

@@ -1,8 +1,7 @@
 from models.model import Model
-from models.serializable_model import SerializableModel
 
 
-class WorldSize(SerializableModel, Model):
+class WorldSize(Model):
     value = Model.field_property('size_class', '')
     size_class = Model.field_property('size_class', '')
     name = Model.field_property('name', '')

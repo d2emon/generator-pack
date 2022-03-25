@@ -1,3 +1,6 @@
+from models.serializable_model import ModelSerializer
+
+
 class DbFactory:
     def __init__(self, model, database):
         self.model = model
@@ -16,6 +19,7 @@ class DbFactory:
         self.database.save()
 
     # Get data
+    @ModelSerializer.deserialize_all_decorator
     def all(self, query=lambda item: True):
         """
         Get all models from db
@@ -23,8 +27,9 @@ class DbFactory:
         :param query: Db query
         :return: Deserialized model
         """
-        return map(self.model.deserialize, self.database.find(query))
+        return self.database.find(query)
 
+    @ModelSerializer.deserialize_decorator
     def first(self, query=lambda item: True):
         """
         Get first model from db
@@ -32,8 +37,9 @@ class DbFactory:
         :param query: Db query
         :return: Deserialized model
         """
-        return self.model.deserialize(self.database.first(query))
+        return self.database.first(query)
 
+    @ModelSerializer.deserialize_decorator
     def get(self, item_id):
         """
         Get model by item id
@@ -41,15 +47,16 @@ class DbFactory:
         :param item_id: Model uuid
         :return: Deserialized model
         """
-        return self.model.deserialize(self.database.get(item_id))
+        return self.database.get(item_id)
 
+    @ModelSerializer.deserialize_decorator
     def random(self):
         """
         Get random model from db
 
         :return: Model
         """
-        return self.model.deserialize(self.database.random())
+        return self.database.random()
 
     def __call__(self, *args, **kwargs):
         data = self.get_data(**kwargs)
