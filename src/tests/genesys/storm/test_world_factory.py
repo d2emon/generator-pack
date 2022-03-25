@@ -45,7 +45,7 @@ class TestWorldFactory(unittest.TestCase):
 
         data3 = factory.get_data(world_size=world_size_2)
         world3 = factory(world_size=world_size_2)
-        self.assertEqual(data3.get("world_size"), world_size_1)
+        self.assertEqual(data3.get("world_size"), world_size_2)
         self.assertIn(size_class_2, world_type.sizes)
         self.assertIsInstance(world3, World)
         # data = self.get_data(**kwargs)
@@ -54,35 +54,34 @@ class TestWorldFactory(unittest.TestCase):
 
     def test_size_factory(self):
         world_type_factory = WorldTypeFactory()
-        size_class_1 = WorldFactory.get_size_class(world_type_factory())
-        size_class_2 = WorldFactory.get_size_class(world_type_factory())
+        size_class_type_1 = WorldFactory.get_size_class(world_type_factory())
+        size_class_type_2 = WorldFactory.get_size_class(world_type_factory())
 
         factory = SizeFactory(None)
+        size_class_1 = factory.by_class(size_class_type_1)
+        size_class_2 = factory.by_class(size_class_type_2)
 
         size0 = factory()
         self.assertEqual(size0, 0)
 
         factory = SizeFactory(size_class_1)
-
         size1 = factory()
         self.assertEqual(factory.size_class, size_class_1)
-        self.assertGreater(size1, size_class_1.min_size)
+        self.assertGreaterEqual(size1, size_class_1.min_size)
         self.assertLessEqual(size1, size_class_1.max_size)
 
-
         factory.set_size_class(None)
-        size2 = factory()
         self.assertEqual(factory.size_class, size_class_1)
-        self.assertEqual(size2, 0)
 
-        factory.set_size_class(size_class_2)
+        factory.set_size_class(size_class_type_2)
         size3 = factory()
-        self.assertEqual(factory.size_class, size_class_2)
+        self.assertEqual(factory.size_class.value, size_class_type_2)
         # self.size_class = self.first(lambda item: item.get('size_class') == size_class)
-        self.assertGreater(size3, size_class_2.min_size)
+        self.assertGreaterEqual(size3, size_class_2.min_size)
         self.assertLessEqual(size3, size_class_2.max_size)
         # if self.size_class.min_size >= self.size_class.max_size:
         # return self.size_class.min_size
+
 
 if __name__ == "__main__":
     unittest.main()

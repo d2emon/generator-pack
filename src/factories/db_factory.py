@@ -23,7 +23,7 @@ class DbFactory:
         :param query: Db query
         :return: Deserialized model
         """
-        return map(self.model.deserialize, self.database.all(query))
+        return map(self.model.deserialize, self.database.find(query))
 
     def first(self, query=lambda item: True):
         """

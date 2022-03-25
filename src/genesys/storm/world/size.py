@@ -9,10 +9,13 @@ class SizeFactory(DbFactory):
         super().__init__(WorldSize, worlds.sizes)
         self.size_class = size_class
 
+    def by_class(self, size_class):
+        return self.first(lambda item: item.get('size_class') == size_class)
+
     def set_size_class(self, size_class):
         if size_class is None:
             return
-        self.size_class = self.first(lambda item: item.get('size_class') == size_class)
+        self.size_class = self.by_class(size_class)
 
     def __call__(self, *args, **kwargs):
         if self.size_class is None:

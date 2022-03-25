@@ -29,7 +29,6 @@ class WorldFactory(DbFactory):
             'world_size': world_size,
         })
         data.update(kwargs)
-        print(data)
         return data
 
     def __call__(self, *args, **kwargs):

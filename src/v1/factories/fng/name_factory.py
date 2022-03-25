@@ -39,7 +39,6 @@ class ComplexFactory(BaseNameFactory):
         }
 
     def factory(self, factory_id):
-        print(factory_id,  self.factories)
         return self.factories.get(factory_id, lambda item_id: None)
 
     def __getitem__(self, item_id):
