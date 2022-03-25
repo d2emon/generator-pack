@@ -3,17 +3,31 @@ class Model:
     Base model
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **fields):
         self.uuid = None
-        self.__args = args
-        self.__kwargs = kwargs
+        self.__fields = {}
+        self.fill(**fields)
+
+    @classmethod
+    def field_property(cls, field_name, default=None):
+        return property(
+            fget=lambda self: self.data.get(field_name, default),
+            fset=lambda self, value: self.data.set(value, value),
+        )
+
+    @property
+    def field_names(self):
+        """
+        :return: Field names
+        """
+        yield from []
 
     @property
     def data(self):
         """
         :return: Model data
         """
-        return self.__kwargs
+        return self.__fields
 
     @property
     def items(self):
@@ -36,9 +50,13 @@ class Model:
         """
         return self.raw_value
 
-    def fill(self, *args, **kwargs):
-        self.__args = args
-        self.__kwargs = kwargs
+    def fill(self, **fields):
+        field_names = list(self.field_names)
+        self.__fields = {
+            name: value
+            for name, value in fields.items()
+            if not len(field_names) or name in self.field_names
+        }
 
     def __getitem__(self, item):
         return self.data.get(item)

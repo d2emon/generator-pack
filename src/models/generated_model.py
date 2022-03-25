@@ -6,8 +6,8 @@ class GeneratedModel(Model):
     Generate model
     """
 
-    def __init__(self, *args, generated=True, factory=None, **kwargs):
-        super().__init__(*args, **kwargs)
+    def __init__(self, *args, generated=True, factory=None, **fields):
+        super().__init__(**fields)
 
         self.generated = generated
         self.factory = factory

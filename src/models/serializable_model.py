@@ -2,11 +2,11 @@ from .model import Model
 
 
 class SerializableModel(Model):
-    field_names = []
+    serialize_field_names = []
 
     @property
     def serialize_fields(self):
-        return self.field_names
+        return self.serialize_field_names
 
     def serialize(self):
         """

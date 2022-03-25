@@ -1,30 +1,30 @@
-import random
-from models.complex_model import ComplexModel
+from models.model import Model
+from models.serializable_model import SerializableModel
 
 
-class WorldSize(ComplexModel):
-    field_names = [
-        'name',
-        'size_class',
-        'size',
-        'min_size',
-        'max_size',
-    ]
-
-    value = property(lambda self: self.data.get('size_class', ''))
-    size_class = property(lambda self: self.data.get('size_class', ''))
-    name = property(lambda self: self.data.get('name', ''))
-    size = property(lambda self: self.data.get('size', ''))
+class WorldSize(SerializableModel, Model):
+    value = Model.field_property('size_class', '')
+    size_class = Model.field_property('size_class', '')
+    name = Model.field_property('name', '')
+    size = Model.field_property('size', '')
 
     @property
-    def min_size(self):
-        value = self.data.get('min_size', 0)
-        return int(value) if value else 0
+    def field_names(self):
+        yield "max_size"
+        yield "min_size"
+        yield "name"
+        yield "size_class"
+        yield "size"
 
     @property
     def max_size(self):
         value = self.data.get('max_size', None)
         return int(value) if value else self.min_size
+
+    @property
+    def min_size(self):
+        value = self.data.get('min_size', 0)
+        return int(value) if value else 0
 
     @property
     def text(self):

@@ -1,26 +1,29 @@
 from dataclasses import field
+from email import generator
 import unittest
 from models.model import Model
 from models.serializable_model import SerializableModel as BaseSerializableModel
 
 
 class SerializableModel(BaseSerializableModel):
-    field_names = [
+    serialize_field_names = [
         "field1",
         "field2",
     ]
 
+    @property
+    def field_names(self):
+        yield "field1"
+        yield "field2"
+    
 
 
 class TestSerializableModel(unittest.TestCase):
     def setUp(self):
         self.model = SerializableModel(field1=Model())
 
-    def test_field_names(self):
-        self.assertIsInstance(SerializableModel.field_names, list)
-
     def test_serialize_fields(self):
-        self.assertEqual(self.model.serialize_fields, SerializableModel.field_names)
+        self.assertEqual(self.model.serialize_fields, list(self.model.field_names))
 
     def test_serialize(self):
         serialized = self.model.serialize()

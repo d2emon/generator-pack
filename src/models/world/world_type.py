@@ -1,13 +1,14 @@
-from models.complex_model import ComplexModel
+from models.model import Model
+from models.serializable_model import SerializableModel
 
 
-class WorldType(ComplexModel):
-    field_names = [
-        'world_type',
-        'description',
-        'encounters',
-        'sizes',
-    ]
+class WorldType(SerializableModel, Model):
+    value = Model.field_property('world_type', '')
+    sizes = Model.field_property('sizes', [])
 
-    value = property(lambda self: self.data.get('world_type', ''))
-    sizes = property(lambda self: self.data.get('sizes', []))
+    @property
+    def field_names(self):
+        yield "world_type"
+        yield "description"
+        yield "encounters"
+        yield "sizes"

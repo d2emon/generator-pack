@@ -1,8 +1,8 @@
-from models.complex_model import ComplexModel
+from models.model import Model
 
 
-class WorldShape(ComplexModel):
-    field_names = [
-        'name',
-        'description',
-    ]
+class WorldShape(Model):
+    @property
+    def field_names(self):
+        yield "name"
+        yield "description"

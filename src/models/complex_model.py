@@ -6,20 +6,9 @@ from .serializable_model import SerializableModel
 class ComplexModel(GeneratedModel, PreparableModel, SerializableModel):
     children = {}
 
-    def __init__(self, *args, **kwargs):
-        super().__init__()
-        self.__fields = {}
-
-        self.fill(*args, **kwargs)
-
-    def fill(self, *args, **kwargs):
-        super().fill(*args, **kwargs)
-
-        self.__fields = {name: kwargs.get(name) for name in self.field_names}
-
     @property
     def serialize_fields(self):
-        return self.field_names + list(self.children.keys())
+        return self.serialize_field_names + list(self.children.keys())
 
     def with_children(self):
         """
