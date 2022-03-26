@@ -1,19 +1,20 @@
-from .serializable_model import ModelSerializer
-from .complex_model import ComplexModel
+from database.serializer import serialize, deserialize, deserialize_decorator, deserialize_all_decorator
 
 
-class DbModel(ComplexModel):
-    database = None
+class ModelDatabase:
+    def __init__(self, database):
+        self.database = database
 
-    def save(self):
+    def save(self, model, fields):
         """
         Save serialized model to database
         """
-        self.database.update(self.serialize())
+        data = serialize(self.model, fields)
+        self.database.update(data)
         self.database.save()
 
     # Get data
-    @ModelSerializer.deserialize_all_decorator
+    @deserialize_all_decorator
     def all(self, query=lambda item: True):
         """
         Get all models from db
@@ -23,7 +24,7 @@ class DbModel(ComplexModel):
         """
         return self.database.all(query)
 
-    @ModelSerializer.deserialize_decorator
+    @deserialize_decorator
     def first(self, query=lambda item: True):
         """
         Get first model from db
@@ -33,7 +34,7 @@ class DbModel(ComplexModel):
         """
         return self.database.first(query)
 
-    @ModelSerializer.deserialize_decorator
+    @deserialize_decorator
     def get(self, item_id):
         """
         Get model by item id
@@ -43,7 +44,7 @@ class DbModel(ComplexModel):
         """
         return self.database.get(item_id)
 
-    @ModelSerializer.deserialize_decorator
+    @deserialize_decorator
     def random(self):
         """
         Get random model from db

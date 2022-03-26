@@ -1,7 +1,5 @@
 from typing import Any, Collection
 
-from numpy import number
-
 
 class Model:
     """
@@ -73,5 +71,5 @@ class Model:
     def __repr__(self) -> str:
         return f"<{self.__class__.__name__}: \"{self}\">"
 
-    def __len__(self) -> number:
+    def __len__(self) -> int:
         return len(str(self))

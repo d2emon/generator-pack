@@ -1,6 +1,6 @@
 import unittest
 from models.model import Model
-from models.serializable_model import ModelSerializer
+from database.serializer import serialize, deserialize
 
 
 class SerializableModel(Model):
@@ -21,7 +21,7 @@ class TestSerializableModel(unittest.TestCase):
         self.model = SerializableModel(field1=Model())
 
     def test_serialize(self):
-        serialized = ModelSerializer.serialize(self.model, self.model.field_names)
+        serialized = serialize(self.model, self.model.field_names)
 
         for field in self.model.field_names:
             value = self.model[field]
@@ -31,7 +31,7 @@ class TestSerializableModel(unittest.TestCase):
                 self.assertEqual(serialized[field], value)
 
     def test_deserialize(self):
-        model1 = ModelSerializer.deserialize(SerializableModel, {
+        model1 = deserialize(SerializableModel, {
             "key": "value",
         })
         model2 = SerializableModel(key="value")
