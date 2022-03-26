@@ -204,9 +204,9 @@ class World(ComplexModel):
     @property
     def description(self):
         return "\n".join([
-            f"{self.world_type.world_type} {self.shape.name} ({self.world_size} миль)",
+            f"{self.world_type} {self.shape} ({self.world_size} миль)",
             f"{self.world_type.description}",
             f"Возможные столкновения: {self.world_type.encounters}",
             f"{self.shape.description}",
-            f"{self.size_class.text}",
+            f"{self.size_class.description}",
         ])

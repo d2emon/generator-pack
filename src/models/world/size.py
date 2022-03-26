@@ -4,17 +4,17 @@ from models.model import Model
 class WorldSize(Model):
     value = Model.field_property('size_class', '')
 
-    size_class = Model.field_property('size_class', '')
     name = Model.field_property('name', '')
     size = Model.field_property('size', '')
+    size_class = Model.field_property('size_class', '')
 
     @property
     def field_names(self):
         yield "max_size"
         yield "min_size"
         yield "name"
-        yield "size_class"
         yield "size"
+        yield "size_class"
 
     @property
     def max_size(self):
@@ -27,7 +27,7 @@ class WorldSize(Model):
         return int(value) if value else 0
 
     @property
-    def text(self):
+    def description(self):
         return "\n".join([
             f"Класс размера:\t{self.size_class}",
             f"Описание:\t\t{self.name}",

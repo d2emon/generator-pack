@@ -16,9 +16,19 @@ class Model:
         """
         :return: Property to access field
         """
+        def fget(self):
+            return self.data.get(field_name, default)
+
+        def fset(self, value):
+            self.data[field_name] = value
+
+        def fdel(self):
+            del self.data[field_name]
+
         return property(
-            fget=lambda self: self.data.get(field_name, default),
-            fset=lambda self, value: self.data.set(value, value),
+            fget=fget,
+            fset=fset,
+            fdel=fdel,
         )
 
     @property
