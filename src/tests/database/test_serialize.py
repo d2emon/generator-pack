@@ -2,7 +2,19 @@ import unittest
 from uuid import uuid4
 from models.model import Model
 from models.complex_model import ComplexModel as BaseComplexModel
-from database.serializer import serialize
+from database.serializer import serialize, deserialize
+
+
+class SerializableModel(Model):
+    serialize_field_names = [
+        "field1",
+        "field2",
+    ]
+
+    @property
+    def field_names(self):
+        yield "field1"
+        yield "field2"
 
 
 class ComplexModel(BaseComplexModel):
@@ -33,17 +45,35 @@ class ComplexModel(BaseComplexModel):
 
 class TestSerialize(unittest.TestCase):
     def setUp(self):
-        self.model = ComplexModel(pregenerated_child="PREGENERATED")
+        self.model = SerializableModel(field1=Model())
+        self.complex_model = ComplexModel(pregenerated_child="PREGENERATED")
 
     def test_serialize(self):
         serialized = serialize(self.model, self.model.field_names)
 
-        for field in self.model.children.keys():
-            if not hasattr(self.model, field):
-                self.assertEqual(serialized[field], self.model[field])
+        for field in self.model.field_names:
+            value = self.model[field]
+            if isinstance(value, Model):
+                self.assertEqual(serialized[field], value.uuid)
+            else:
+                self.assertEqual(serialized[field], value)
+
+    def test_deserialize(self):
+        model1 = deserialize(SerializableModel, {
+            "key": "value",
+        })
+        model2 = SerializableModel(key="value")
+        self.assertEqual(model1.data, model2.data)
+
+    def test_serialize_complex(self):
+        serialized = serialize(self.complex_model, self.complex_model.field_names)
+
+        for field in self.complex_model.children.keys():
+            if not hasattr(self.complex_model, field):
+                self.assertEqual(serialized[field], self.complex_model[field])
                 continue
 
-            value = self.model.__getattribute__(field) if hasattr(self.model, field) else None
+            value = self.complex_model.__getattribute__(field) if hasattr(self.complex_model, field) else None
             if isinstance(value, Model):
                 self.assertEqual(serialized[field], value.uuid)
             else:
