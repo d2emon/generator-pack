@@ -44,25 +44,22 @@ class TestModel(unittest.TestCase):
         self.assertIn('field1', model.data)
         self.assertNotIn('field2', model.data)
 
-    def test_data(self):
-        self.assertEqual(self.model.data, self.data)
-
-    def test_value(self):
-        self.assertEqual(self.model.value, self.data['value'])
-
     def test_fill(self):
         model = Model(value="old value")
         model.fill(value="new value")
         self.assertEqual(model.value, "new value")
 
-    def test_model_item(self):
-        model = Model(value1="old value")
+    def test_data(self):
+        model = Model(**self.data)
 
-        self.assertEqual(model['value1'], "old value")
+        self.assertEqual(model.data, self.data)
+        self.assertEqual(model.value, self.data['value'])
+        self.assertEqual(model['value1'], self.data['value1'])
 
         model['value1'] = "new value"
 
         self.assertEqual(model['value1'], "new value")
+
 
     def test_str(self):
         text = str(self.model.value)
