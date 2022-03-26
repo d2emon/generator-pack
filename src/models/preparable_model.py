@@ -27,12 +27,8 @@ class PreparableModel(Model):
         return name
         
     @property
-    def __prepared_value(self) -> str:
+    def value(self) -> str:
         """
         :return: Model as string
         """
-        value = self.value
-        return self.prepare(value)
-
-    def __str__(self):
-        return str(self.__prepared_value)
+        return self.prepare(self['value'])
