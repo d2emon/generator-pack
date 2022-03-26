@@ -1,7 +1,7 @@
 from models.complex_model import ComplexModel
 from .shape import WorldShape
-from .world_type import WorldType
 from .size import WorldSize
+from .world_type import WorldType
 
 
 """
@@ -184,7 +184,7 @@ class World(ComplexModel):
     children = {
         'shape': WorldShape,
         'world_type': WorldType,
-        # 'size_class': WorldSize,
+        'size_class': WorldSize,
     }
 
     world_size = ComplexModel.field_property('world_size')

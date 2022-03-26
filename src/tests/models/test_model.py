@@ -3,6 +3,11 @@ import unittest
 from models.model import Model
 
 
+class NewModel(Model):
+    value1 = Model.field_property('value1')
+    value2 = Model.field_property('value2', 'DEFAULT')
+
+
 class TestModel(unittest.TestCase):
     def setUp(self):
         self.data = {
@@ -11,8 +16,19 @@ class TestModel(unittest.TestCase):
         }
         self.model = Model(**self.data)
 
-    def test_uuid(self):
-        self.assertIsNone(self.model.uuid)
+    def test_field_properties(self):
+        model = NewModel(**self.data)
+
+        model.value1 = 'NEW VALUE'
+
+        # self.assertIsNone(model.uuid)
+        self.assertEqual(model.value1, model.data.get('value1'))
+        self.assertEqual(model.value1, 'NEW VALUE')
+        self.assertEqual(model.value2, 'DEFAULT')
+
+        del model.value1
+
+        self.assertIsNone(model.value1)
 
     def test_field_names(self):
         class FieldNamesModel(Model):
