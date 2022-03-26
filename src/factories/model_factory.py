@@ -14,7 +14,7 @@ class ModelFactory(Factory):
         return self.__data
 
     @property
-    def model_class(self):
+    def model(self):
         return Model
 
     def __call__(self, *args, **kwargs):
@@ -25,4 +25,4 @@ class ModelFactory(Factory):
         :param kwargs: Model kwargs
         :return: Generated model
         """
-        return self.model_class(**kwargs)
+        return self.model(**kwargs)

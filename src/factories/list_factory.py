@@ -7,7 +7,7 @@ class ListFactory(Factory):
     Generate random value from list
     """
     # TODO: Remove args and kwargs
-    def __init__(self, data=(), *args, **kwargs):
+    def __init__(self, data=()):
         self.__data = data
 
     @property
@@ -20,16 +20,6 @@ class ListFactory(Factory):
         """
         return len(self.data)
 
-    def build(self, *args, **kwargs):
-        """
-        Select random item
-
-        :param args: Roll args
-        :param kwargs: Roll kwargs
-        :return: Random item
-        """
-        return random.choice(self.data) if len(self.data) > 0 else None
-
     def __call__(self, *args, **kwargs):
         """
         Select random item
@@ -38,7 +28,7 @@ class ListFactory(Factory):
         :param kwargs: Roll kwargs
         :return: Random item
         """
-        return self.build(*args, **kwargs)
+        return random.choice(self.data) if len(self.data) > 0 else None
 
     def shuffle(self):
         """
