@@ -4,12 +4,6 @@ from models.preparable_model import PreparableModel
 
 
 class TestPreparableModel(unittest.TestCase):
-    def setUp(self):
-        self.data = {
-            "value": random.uniform(0, 100),
-            "value1": random.uniform(0, 100),
-        }
-
     def test_prepare(self):
         value = random.uniform(0, 100)
 
@@ -20,7 +14,7 @@ class TestPreparableModel(unittest.TestCase):
 
         self.assertEqual(PreparableModel.check_swear(value), value)
 
-    def test_str(self):
+    def test_value(self):
         value = random.uniform(0, 100)
         model = PreparableModel(value=value)
         text = PreparableModel.prepare(value)

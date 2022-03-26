@@ -7,24 +7,24 @@ class PreparableModel(Model):
     """
 
     @classmethod
-    def prepare(cls, name) -> str:
-        """
-        Prepare model
-
-        :param name: Unprepared model
-        :return: Prepared model
-        """
-        return str(name)
-
-    @classmethod
-    def check_swear(cls, name) -> str:
+    def check_swear(cls, value) -> str:
         """
         Check name for bad words
 
         :param name: Uncleaned name
         :return: Cleaned name
         """
-        return name
+        return value
+
+    @classmethod
+    def prepare(cls, value) -> str:
+        """
+        Prepare model
+
+        :param name: Unprepared model
+        :return: Prepared model
+        """
+        return cls.check_swear(str(value))
         
     @property
     def value(self) -> str:

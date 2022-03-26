@@ -11,7 +11,7 @@ class TestGeneratedModel(unittest.TestCase):
         }
         self.factory = lambda model: self.data
 
-    def test_model(self):
+    def test_generated_model(self):
         model = GeneratedModel(generated=True, factory=self.factory)
 
         self.assertTrue(model.generated)
@@ -45,26 +45,6 @@ class TestGeneratedModel(unittest.TestCase):
         self.assertFalse(model.generated)
         self.assertEqual(model.data, self.data)
         self.assertTrue(model.generated)
-
-    def test_value(self):
-        model = GeneratedModel(**self.data)
-
-        self.assertEqual(model.value, self.data['value'])
-
-    def test_fill(self):
-        model = GeneratedModel(value="old value")
-
-        model.fill(value="new value")
-        self.assertEqual(model.value, "new value")
-
-    def test_model_item(self):
-        model = GeneratedModel(value1="old value")
-
-        self.assertEqual(model['value1'], "old value")
-
-        model['value1'] = "new value"
-
-        self.assertEqual(model['value1'], "new value")
 
 
 if __name__ == "__main__":
