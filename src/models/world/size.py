@@ -3,6 +3,7 @@ from models.model import Model
 
 class WorldSize(Model):
     value = Model.field_property('size_class', '')
+
     size_class = Model.field_property('size_class', '')
     name = Model.field_property('name', '')
     size = Model.field_property('size', '')

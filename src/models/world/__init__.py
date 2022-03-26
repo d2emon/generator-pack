@@ -186,6 +186,7 @@ class World(ComplexModel):
         'world_type': WorldType,
         # 'size_class': WorldSize,
     }
+
     world_size = ComplexModel.field_property('world_size')
     size_class = ComplexModel.field_property('size_class')
     shape = ComplexModel.field_property('shape')
@@ -195,6 +196,10 @@ class World(ComplexModel):
     def field_names(self):
         yield "world_size"
         yield "size_class"
+
+        # Children
+        yield "shape"
+        yield "world_type"
 
     @property
     def description(self):

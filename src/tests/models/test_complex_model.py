@@ -11,6 +11,9 @@ class ComplexModel(BaseComplexModel):
         "child_value_field": "VALUE",
         "pregenerated_child": "OLD_PREGENERATED",
     }
+    static_field_names = [
+        "value"
+    ]
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -38,9 +41,6 @@ class TestComplexModel(unittest.TestCase):
     def test_complex_model(self):
         self.assertIsInstance(ComplexModel.children, dict)
 
-    def test_serialize_fields(self):
-        self.assertIsInstance(self.model.serialize_fields, list)
-
     def test_fill(self):
         model = ComplexModel(value="old value")
 
@@ -48,7 +48,7 @@ class TestComplexModel(unittest.TestCase):
         self.assertEqual(model.value, "new value")
 
     def test_serialize(self):
-        serialized = serialize(self.model, self.model.serialize_fields)
+        serialized = serialize(self.model, self.model.field_names)
 
         for field in self.model.children.keys():
             if not hasattr(self.model, field):
@@ -65,14 +65,6 @@ class TestComplexModel(unittest.TestCase):
         model = self.model.with_children()
 
         self.assertEqual(model, self.model)
-
-        for k in model.children.keys():
-            self.assertIsNotNone(model.data.get(k))
-
-    def test_random(self):
-        model = ComplexModel.random()
-
-        self.assertIsInstance(model, ComplexModel)
 
         for k in model.children.keys():
             self.assertIsNotNone(model.data.get(k))
