@@ -1,11 +1,11 @@
-from providers.list_provider import ListProvider
+from factories.list_factory import ListFactory
 from factories.generator import ListGenerated
 
 from genesys.fixtures.fixtures.other.riddle import riddle
 
 
 class Riddle(ListGenerated):
-    provider = ListProvider(riddle)
+    provider = ListFactory(riddle)
 
     def __init__(self, args):
         question, answer = args

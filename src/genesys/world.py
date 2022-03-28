@@ -1,7 +1,7 @@
 import os
 from factories import DictFactory
 from models.world import World
-from providers.list_provider import ListProvider
+from factories.list_factory import ListFactory
 
 
 class WorldDataProvider:
@@ -14,7 +14,7 @@ class WorldDataProvider:
 
 
 DEFAULT_WORLD_DATA_PROVIDER = WorldDataProvider(
-    ListProvider.from_file(os.path.join('data', 'world.txt'))
+    ListFactory.from_text_file(os.path.join('data', 'world.txt'))
 )
 
 

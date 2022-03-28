@@ -1,7 +1,7 @@
-from providers.list_provider import ListProvider
 from factories.generator import Generated
+from factories.list_factory import ListFactory
 from genesys.fixtures.fixtures.other.idiom import idiom
 
 
 class Idiom(Generated):
-    provider = ListProvider(idiom)
+    provider = ListFactory(idiom)

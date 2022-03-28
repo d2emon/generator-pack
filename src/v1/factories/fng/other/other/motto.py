@@ -1,7 +1,7 @@
-from providers.list_provider import ListProvider
+from factories.list_factory import ListFactory
 from factories.generator import Generated
 from genesys.fixtures.fixtures import mottos
 
 
 class Motto(Generated):
-    provider = ListProvider(mottos)
+    provider = ListFactory(mottos)

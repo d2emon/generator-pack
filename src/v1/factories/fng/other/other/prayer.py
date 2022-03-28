@@ -1,4 +1,4 @@
-from providers.list_provider import ListProvider
+from factories.list_factory import ListFactory
 from factories.generator import ListGenerated, ComplexGenerated
 
 from genesys.fixtures.fixtures.other.prayer import forgive, deity
@@ -12,9 +12,9 @@ AID_PRAYER = 2
 class Deity(ListGenerated):
     template = "{title} {name}, {long_title}"
     providers = {
-        'title': ListProvider(deity.titles),
-        'name': ListProvider(deity.names),
-        'long': ListProvider(deity.long),
+        'title': ListFactory(deity.titles),
+        'name': ListFactory(deity.names),
+        'long': ListFactory(deity.long),
     }
 
     def __init__(self, name, title="", long=""):
@@ -54,16 +54,16 @@ class BasePrayer(ListGenerated):
 
 class ForgivePrayer(BasePrayer):
     providers = {
-        'sin': ListProvider(forgive.sins),
+        'sin': ListFactory(forgive.sins),
 
-        'forgive': ListProvider(forgive.forgives),
-        'description': ListProvider(forgive.descriptions),
+        'forgive': ListFactory(forgive.forgives),
+        'description': ListFactory(forgive.descriptions),
 
-        'ask1': ListProvider(forgive.asks[0]),
-        'promise1': ListProvider(forgive.promises[0]),
+        'ask1': ListFactory(forgive.asks[0]),
+        'promise1': ListFactory(forgive.promises[0]),
 
-        'ask2': ListProvider(forgive.asks[1]),
-        'promise2': ListProvider(forgive.promises[1]),
+        'ask2': ListFactory(forgive.asks[1]),
+        'promise2': ListFactory(forgive.promises[1]),
     }
 
     def __init__(self, deity, sin="", forgive="", description="", ask1="", promise1="", ask2="", promise2=""):
@@ -87,19 +87,19 @@ class ForgivePrayer(BasePrayer):
 
 class AidPrayer(BasePrayer):
     providers = {
-        'ask1': ListProvider(aid.asks[0]),
+        'ask1': ListFactory(aid.asks[0]),
 
-        'ask2': ListProvider(aid.asks[1]),
-        'may': ListProvider(aid.mays),
-        'subject': ListProvider(aid.subjects),
+        'ask2': ListFactory(aid.asks[1]),
+        'may': ListFactory(aid.mays),
+        'subject': ListFactory(aid.subjects),
 
-        'ask3': ListProvider(aid.asks[2]),
-        'asker': ListProvider(aid.askers),
-        'title': ListProvider(aid.titles),
+        'ask3': ListFactory(aid.asks[2]),
+        'asker': ListFactory(aid.askers),
+        'title': ListFactory(aid.titles),
 
-        'bless': ListProvider(aid.blesses),
-        'bless_description': ListProvider(aid.descriptions),
-        'bless_subject': ListProvider(aid.bless_subjects),
+        'bless': ListFactory(aid.blesses),
+        'bless_description': ListFactory(aid.descriptions),
+        'bless_subject': ListFactory(aid.bless_subjects),
     }
 
     def __init__(self, deity, ask1="", ask2="", ask3="", may="", subject="", asker="", title="", bless="", bless_description="", bless_subject=""):

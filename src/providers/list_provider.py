@@ -19,30 +19,7 @@ class ComplexFactory(ProviderFactory):
         return cls(*[ListFactory(provider) for provider in parts])
 
 
-class ListProvider(ListFactory):
-    # def __init__(self, data=()):
-    #     super().__init__(data)
-    #
-    #     self.__items = []
-    #     self.unique = self.shuffle()
-
-    # def shuffle(self):
-    #     self.__items = super().shuffle()
-    #     return self.__items
-
-    # def __add__(self, other):
-    #     return ComplexFactory(self, other)
-
-    # @classmethod
-    # def multiple(cls, parts):
-    #     return ComplexFactory(*[cls(provider) for provider in parts])
-
-    @classmethod
-    def from_file(cls, filename):
-        return cls(load_lines(filename))
-
-
-class StaticListProvider(ListProvider):
+class StaticListProvider(ListFactory):
     static_data = []
 
     def __init__(self):
