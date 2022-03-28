@@ -1,24 +1,22 @@
-from .model import ModelFactory
+from .factory import Factory
 
 
-class DictFactory(ModelFactory):
+class DictFactory(Factory):
     """
     Generate values from dictionary with factories
     """
+    def __init__(self, **factories):
+        self.__factories = factories
 
     @property
-    def data(self):
-        raise NotImplementedError()
-
-    @property
-    def model_class(self):
-        return None
+    def factories(self):
+        return self.__factories
 
     def __len__(self):
         """
         :return: Data length
         """
-        return len(self.data)
+        return len(self.factories)
 
     def factory(self, key):
         """
@@ -27,9 +25,9 @@ class DictFactory(ModelFactory):
         :param key: Item Key
         :return: Item from data
         """
-        return self.data.get(key)
+        return self.factories.get(key)
 
-    def build(self, *args, **kwargs):
+    def __call__(self, *args, **kwargs):
         """
         Get values from all factories
 
@@ -37,5 +35,4 @@ class DictFactory(ModelFactory):
         :param kwargs:
         :return: Values from all factories
         """
-        data = {key: next(factory) for key, factory in self.data.items()}
-        return self.model_class(*args, **data, **kwargs) if self.model_class is not None else data
+        return {key: factory() for key, factory in self.factories.items()}
