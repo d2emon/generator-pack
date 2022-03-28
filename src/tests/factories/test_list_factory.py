@@ -1,5 +1,8 @@
+import os
 import random
 import unittest
+from unittest.mock import patch, mock_open
+from config import CURRENT_PATH
 from factories.list_factory import ListFactory
 
 
@@ -28,6 +31,19 @@ class TestListFactory(unittest.TestCase):
             self.assertIn(item, self.values)
             self.assertNotIn(item, used)
             used.append(item)
+
+    def test_from_text_file(self):
+        text_values = [str(value) for value in self.values]
+        text = '\n'.join(text_values)
+        current_path = os.path.abspath(os.path.join(os.path.curdir))
+        filename = str(random.uniform(0, 100))
+        full_path = os.path.join(current_path, filename)
+
+        with patch("builtins.open", mock_open(read_data=text)) as mock_open_file:
+            factory = ListFactory.from_text_file(filename)
+            self.assertEqual(factory.data, text_values)
+
+        mock_open_file.assert_called_with(full_path, 'r', encoding='utf-8')
 
 
 if __name__ == "__main__":
