@@ -1,4 +1,3 @@
-from .list_provider import ListProvider, StaticListProvider
 from .markov import MarkovProvider
 from .mathgen import MathDataProvider
 from .name import TextDataProvider, NameDataProvider, DictDataProvider, GenderDataProvider

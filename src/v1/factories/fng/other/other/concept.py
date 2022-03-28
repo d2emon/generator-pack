@@ -1,4 +1,4 @@
-from providers.list_provider import ListProvider
+from providers.list_provider import ComplexFactory
 from factories.generator import ListGenerated, ComplexGenerated
 
 from genesys.fixtures.fixtures import beings, places, characters, events
@@ -9,19 +9,19 @@ class BaseConcept(ListGenerated):
 
 
 class ArtConceptPlace(BaseConcept):
-    provider = ListProvider.multiple(places)
+    provider = ComplexFactory.from_lists(places)
 
 
 class ArtConceptBeing(BaseConcept):
-    provider = ListProvider.multiple(beings)
+    provider = ComplexFactory.from_lists(beings)
 
 
 class StoryConceptCharacter(BaseConcept):
-    provider = ListProvider.multiple(characters)
+    provider = ComplexFactory.from_lists(characters)
 
 
 class StoryConceptEvent(BaseConcept):
-    provider = ListProvider.multiple(events)
+    provider = ComplexFactory.from_lists(events)
 
 
 class ArtConcept(ComplexGenerated):

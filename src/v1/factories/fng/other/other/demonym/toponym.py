@@ -1,12 +1,12 @@
-from providers import ListProvider
+from providers.list_provider import ListProvider, ComplexFactory
 from factories.generator import Generated, ComplexGenerated
 
 from genesys.fixtures.fixtures import vowel_sounds, consonants, double_vowel_sounds, double_consonants
 from genesys.fixtures.fixtures import endings
 
 
-single_letter_provider = ListProvider(consonants) + ListProvider(vowel_sounds) + ListProvider(double_consonants)
-double_letter_provider = ListProvider(double_consonants) + ListProvider(double_vowel_sounds + vowel_sounds)
+single_letter_provider = ComplexFactory.from_lists(consonants, vowel_sounds, double_consonants)
+double_letter_provider = ComplexFactory.from_lists(double_consonants, double_vowel_sounds + vowel_sounds)
 
 
 class BaseToponym(Generated):
@@ -41,11 +41,11 @@ class Toponym3(BaseToponym):
 
 
 class Toponym4(BaseToponym):
-    providers = ListProvider(vowel_sounds) + ListProvider(double_consonants) + ListProvider(endings[1])
+    providers = ComplexFactory.from_lists(vowel_sounds, double_consonants, endings[1])
 
 
 class Toponym5(BaseToponym):
-    providers = double_letter_provider + ListProvider(consonants) + ListProvider(endings[2])
+    providers = double_letter_provider + ComplexFactory.from_lists(consonants, endings[2])
 
 
 class Toponym(ComplexGenerated):

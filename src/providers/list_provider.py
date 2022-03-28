@@ -1,3 +1,4 @@
+from factories.factory import Factory
 from factories.list_factory import ListFactory
 from utils.loaders import load_lines
 from .provider import ProviderFactory
@@ -13,24 +14,28 @@ class ComplexFactory(ProviderFactory):
     def __add__(self, other):
         return ComplexFactory(*self.factories, other)
 
-
-class ListProvider(ProviderFactory, ListFactory):
-    def __init__(self, data=()):
-        super().__init__(data)
-
-        self.__items = []
-        self.unique = self.shuffle()
-
-    def shuffle(self):
-        self.__items = super().shuffle()
-        return self.__items
-
-    def __add__(self, other):
-        return ComplexFactory(self, other)
-
     @classmethod
-    def multiple(cls, parts):
-        return ComplexFactory(*[cls(provider) for provider in parts])
+    def from_lists(cls, *parts):
+        return cls(*[ListFactory(provider) for provider in parts])
+
+
+class ListProvider(ListFactory):
+    # def __init__(self, data=()):
+    #     super().__init__(data)
+    #
+    #     self.__items = []
+    #     self.unique = self.shuffle()
+
+    # def shuffle(self):
+    #     self.__items = super().shuffle()
+    #     return self.__items
+
+    # def __add__(self, other):
+    #     return ComplexFactory(self, other)
+
+    # @classmethod
+    # def multiple(cls, parts):
+    #     return ComplexFactory(*[cls(provider) for provider in parts])
 
     @classmethod
     def from_file(cls, filename):
