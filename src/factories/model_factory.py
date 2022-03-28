@@ -6,16 +6,12 @@ class ModelFactory(Factory):
     """
     Generate model
     """
-    def __init__(self, data=()):
-        self.__data = data
-
-    @property
-    def data(self):
-        return self.__data
-
     @property
     def model(self):
         return Model
+
+    def get_data(self, *args, **kwargs):
+        return {}
 
     def __call__(self, *args, **kwargs):
         """
@@ -25,4 +21,4 @@ class ModelFactory(Factory):
         :param kwargs: Model kwargs
         :return: Generated model
         """
-        return self.model(**kwargs)
+        return self.model(**self.get_data(*args, **kwargs))

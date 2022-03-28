@@ -35,4 +35,6 @@ class DictFactory(Factory):
         :param kwargs:
         :return: Values from all factories
         """
-        return {key: factory() for key, factory in self.factories.items()}
+        data = {key: factory(*args, **kwargs) for key, factory in self.factories.items()}
+        data.update(**kwargs)
+        return data
