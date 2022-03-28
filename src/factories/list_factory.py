@@ -8,7 +8,6 @@ class ListFactory(Factory):
     """
     Generate random value from list
     """
-    # TODO: Remove args and kwargs
     def __init__(self, data=()):
         self.__data = data
 

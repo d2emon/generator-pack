@@ -1,13 +1,15 @@
+from factories.list_factory import ListFactory
 from .provider import ProviderFactory
-from .list_provider import StaticListProvider
 
 
-class LetterProvider(StaticListProvider):
-    static_data = [chr(c) for c in range(ord('A'), ord('Z') + 1)]
+class LetterProvider(ListFactory):
+    def __init__(self):
+        super().__init__([chr(c) for c in range(ord('A'), ord('Z') + 1)])
 
 
-class NumberProvider(StaticListProvider):
-    static_data = [str(n) for n in range(0, 9)]
+class NumberProvider(ListFactory):
+    def __init__(self):
+        super().__init__([str(n) for n in range(0, 9)])
 
 
 class TemplateDataProvider(ProviderFactory):

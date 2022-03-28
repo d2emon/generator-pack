@@ -1,6 +1,4 @@
-from factories.factory import Factory
 from factories.list_factory import ListFactory
-from utils.loaders import load_lines
 from .provider import ProviderFactory
 
 
@@ -17,13 +15,6 @@ class ComplexFactory(ProviderFactory):
     @classmethod
     def from_lists(cls, *parts):
         return cls(*[ListFactory(provider) for provider in parts])
-
-
-class StaticListProvider(ListFactory):
-    static_data = []
-
-    def __init__(self):
-        super().__init__(self.static_data)
 
 
 class ListDataProvider(ProviderFactory):
