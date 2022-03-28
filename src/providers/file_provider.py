@@ -1,9 +1,9 @@
 import os
+from factories.factory import Factory
 from utils.loaders import load_lines
-from .list_provider import ListDataProvider
 
 
-class FileDataProvider(ListDataProvider):
+class FileDataProvider(Factory):
     default_filename = ''
 
     def __init__(self, filename=None):
