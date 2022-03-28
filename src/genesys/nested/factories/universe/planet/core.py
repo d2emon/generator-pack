@@ -1,5 +1,5 @@
 from generated import universe
-from ...factory import Factory
+from factories.nested_factory import NestedFactory as Factory
 from ...life import PlanetCoreLifeFactory
 from ...materials import RockFactory, IronFactory, DiamondFactory, MagmaFactory
 

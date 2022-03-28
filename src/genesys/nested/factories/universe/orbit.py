@@ -1,5 +1,5 @@
 from generated import universe
-from ..factory import Factory
+from factories.nested_factory import NestedFactory as Factory
 from ..life import AsteroidBeltLifeFactory
 from .planet.body import AsteroidFactory
 from .planet.planet import BarrenPlanetFactory, VisitorPlanetFactory, FuturePlanetFactory, TerraformedPlanetFactory, \

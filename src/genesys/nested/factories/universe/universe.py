@@ -1,23 +1,23 @@
+from factories.nested_factory import NestedFactory
 from generated import universe
-from ..factory import Factory
 from .galaxy import GalaxyFactory
 
 
-class SuperclusterFactory(Factory):
+class SuperclusterFactory(NestedFactory):
     default_model = universe.Supercluster
 
     def children(self):
         yield from GalaxyFactory().multiple(10, 30)
 
 
-class UniverseFactory(Factory):
+class UniverseFactory(NestedFactory):
     default_model = universe.Universe
 
     def children(self):
         yield from SuperclusterFactory().multiple(10, 30)
 
 
-class MultiverseFactory(Factory):
+class MultiverseFactory(NestedFactory):
     default_model = universe.Multiverse
     names = [
         "multiverse", "lasagnaverse", "doughnutverse", "towelverse", "baconverse", "sharkverse", "nestedverse",

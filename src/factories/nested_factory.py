@@ -1,7 +1,8 @@
 import random
+from .model_factory import ModelFactory
 
 
-class Factory:
+class NestedFactory(ModelFactory):
     default_model = None
     default_name = None
 
@@ -11,17 +12,15 @@ class Factory:
         name=None,
         placeholders=(),
     ):
-        self.model = model or self.default_model
+        self.__model = model or self.default_model
         self.name = name
         self.placeholders = placeholders
 
-    def generate_name(self):
-        return self.default_name
+    @property
+    def model(self):
+        return self.__model
 
-    def children(self):
-        yield from self.placeholders
-
-    def __call__(
+    def get_data(
         self,
         name=None,
         *children,
@@ -29,13 +28,19 @@ class Factory:
         placeholders=None,
         **kwargs,
     ):
-        return self.model(
-            name=name or self.name or self.generate_name(),
-            *children,
-            parent=parent,
-            placeholders=placeholders or self.children(),
+        return {
+            "name": name or self.name or self.name_factory(),
+            "parent": parent,
+            "children": children,
+            "placeholders": placeholders or self.children(),
             **kwargs,
-        )
+        }
+
+    def name_factory(self):
+        return self.default_name
+
+    def children(self):
+        yield from self.placeholders
 
     def probable(self, probability=100):
         return self if random.uniform(0, 100) < probability else None

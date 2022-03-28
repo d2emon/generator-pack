@@ -1,5 +1,5 @@
 from generated import universe
-from ..factory import Factory
+from factories.nested_factory import NestedFactory as Factory
 from ..cloth import ClothingSetFactory
 from ..life import BodyFactory
 from ..temporary import ComputerFactory

@@ -1,5 +1,5 @@
 from generated import materials
-from ..factory import Factory
+from factories.nested_factory import NestedFactory as Factory
 from .elements import element_factories
 
 

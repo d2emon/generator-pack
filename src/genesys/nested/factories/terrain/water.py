@@ -1,5 +1,5 @@
 from generated import terrain
-from ..factory import Factory
+from factories.nested_factory import NestedFactory as Factory
 from ..materials import WaterFactory, SaltFactory, IceFactory
 from ..life import AbyssLifeFactory, BeachLifeFactory, SeaLifeFactory, RiverLifeFactory, LakeLifeFactory
 from .soil import SandFactory, SoilFactory, MudFactory

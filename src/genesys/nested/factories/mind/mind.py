@@ -1,5 +1,5 @@
 from generated import mind
-from genesys.nested.factories.factory import Factory
+from factories.nested_factory import NestedFactory as Factory
 
 
 class MemoryFactory(Factory):

@@ -1,4 +1,3 @@
-import random
 import unittest
 from factories.model_factory import ModelFactory
 from models.model import Model

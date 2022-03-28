@@ -1,5 +1,5 @@
 from generated import life
-from ...factory import Factory
+from factories.nested_factory import NestedFactory as Factory
 from ...materials import SweatFactory, KeratinFactory, ChitinFactory
 from ..cell import CellFactory
 from ..single_celled import BacteriaFactory

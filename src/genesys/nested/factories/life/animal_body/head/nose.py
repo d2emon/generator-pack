@@ -1,5 +1,5 @@
 from generated import life
-from ....factory import Factory
+from factories.nested_factory import NestedFactory as Factory
 from ....materials import OrganicFactory
 from ..body_parts import BodyPartFactory, SoftBodyPartFactory
 from ..hair import HairFactory

@@ -1,5 +1,5 @@
 from genesys.model.model import Model
-from genesys.nested.factories.factory import Factory
+from factories.nested_factory import NestedFactory as Factory
 
 
 class ContinentFactory(Factory):

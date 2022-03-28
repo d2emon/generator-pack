@@ -1,5 +1,5 @@
 from generated import terrain
-from ..factory import Factory
+from factories.nested_factory import NestedFactory as Factory
 from ..materials import SilicaFactory, WaterFactory
 
 

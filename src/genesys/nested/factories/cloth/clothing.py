@@ -1,5 +1,5 @@
 from generated import cloth
-from ..factory import Factory
+from factories.nested_factory import NestedFactory as Factory
 from ..materials import SweatFactory, PlasticFactory
 from genesys.nested.factories.life.animal_body.skin import DeadSkinFactory
 from .fabric import TextileFactory, LeatherFactory

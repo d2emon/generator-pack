@@ -1,5 +1,5 @@
 from generated import universe
-from ..factory import Factory
+from factories.nested_factory import NestedFactory as Factory
 from ..life import NebulaLifeFactory
 from ..materials import MoleculeFactory, SteamFactory, AmmoniaFactory
 from .star import SingleStarFactory
