@@ -46,7 +46,7 @@ class SizeClassFactory(ModelFactory):
         size_class = random.choice(world_type.sizes) if world_type.sizes and len(world_type.sizes) > 0 else None
         return self(size_class, *args, **kwargs)
 
-    def size_factory(self, size_class):
+    def size_factory(self, size_class=None):
         size_class_data = self(size_class=size_class) if size_class is not None else None
 
         return SizeFactory(

@@ -21,7 +21,7 @@ class WorldDataProvider:
     def world_type_factory(self, *args, **kwargs):
         return self.world_types.random()
 
-    def size_factory(self, size_class, *args, **kwargs):
+    def size_factory(self, *args, **kwargs):
         return self.sizes.random()
 
     def shape_factory(self, *args, **kwargs):

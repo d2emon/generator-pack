@@ -1,87 +1,122 @@
 import random
 import unittest
 from genesys.storm.world import WorldFactory
+from genesys.storm.world.shape import ShapeFactory
 from genesys.storm.world.size import SizeFactory, SizeClassFactory
 from genesys.storm.world.world_type import WorldTypeFactory
-from models.world import World
+from models.world import World, WorldType
+from models.world.shape import WorldShape
+from models.world.size import WorldSize
+from models.world.world_type import WorldType
 
 
 class TestWorldFactory(unittest.TestCase):
     def setUp(self) -> None:
         self.values = [random.uniform(0, 100) for _ in range(10)]
 
-    def test_world_factory(self):
-        factory = WorldFactory()
+    def test_world_type(self):
+        factory = WorldTypeFactory()
+        model = factory()
+        self.assertIsInstance(model, WorldType)
 
-        data1 = factory.get_data(value_1="VALUE1")
-        world1 = factory(value_1="VALUE1")
-        self.assertEqual(data1.get("value_1"), "VALUE1")
-        # world_type = kwargs.get('world_type') or self.world_type_factory()
-        self.assertIsInstance(world1, World)
-        # data = self.get_data(**kwargs)
-        # return World(*args, **data)
+    def test_world_shape(self):
+        factory = ShapeFactory()
+        model = factory()
+        self.assertIsInstance(model, WorldShape)
 
-        world_type_factory = WorldTypeFactory()
-        world_type = world_type_factory()
+    def test_size(self):
+        factory = SizeClassFactory()
+        model = factory()
+        self.assertIsInstance(model, WorldSize)
+        # self.size_class = self.first(lambda item: item.get('size_class') == size_class)
 
-        size_class_factory = SizeClassFactory()
+    def test_size_class(self):
+        size_class = 'A'
 
-        size_class_1 = size_class_factory.by_world_type(world_type)
-        size_factory_1 = SizeFactory(size_class=size_class_1)
-        world_size_1 = size_factory_1()
+        factory = SizeClassFactory()
+        model = factory(size_class=size_class)
+        self.assertEqual(model.size_class, size_class)
 
-        data2 = factory.get_data(world_type=world_type, world_size=world_size_1)
-        world2 = factory(
-            world_type=world_type,
-            size_class=size_class_1,
-            world_size=world_size_1,
+    def test_by_world_type(self):
+        sizes = ['A', 'B', 'C']
+        world_type = WorldType(sizes=sizes)
+
+        factory = SizeClassFactory()
+        model = factory.by_world_type(world_type=world_type)
+        self.assertIn(model.value, sizes)
+
+    def test_no_world_type(self):
+        sizes = []
+        world_type = WorldType(sizes=sizes)
+
+        factory = SizeClassFactory()
+        model = factory.by_world_type(world_type=world_type)
+        self.assertIsNotNone(model.value)
+
+    def test_size_factory_by_class(self):
+        size_class = 'A'       
+
+        factory = SizeClassFactory()
+        size_factory = factory.size_factory()
+        self.assertIsInstance(size_factory, SizeFactory)
+        self.assertIsNone(size_factory.size_class)
+ 
+        size_factory = factory.size_factory(size_class=size_class)
+        self.assertIsNotNone(size_factory.size_class)
+        self.assertEqual(size_factory.size_class.value, size_class)
+
+    def test_size_factory_no_size_class(self):
+        factory = SizeFactory()
+        size = factory()
+        self.assertEqual(size, 0)
+
+    def test_size_factory_wrong_size_class(self):
+        max_size = random.randrange(1, 10)
+        min_size = max_size + random.randrange(1, 10)
+        size_class = WorldSize(
+            min_size=min_size,
+            max_size=max_size,
         )
-        self.assertEqual(data2.get("world_type"), world_type)
-        self.assertEqual(data2.get("world_size"), world_size_1)
-        self.assertIsInstance(world2, World)
-        # data = self.get_data(**kwargs)
-        # return World(*args, **data)
-
-        size_class_2 = size_class_factory.by_world_type(world_type)
-        size_factory_2 = SizeFactory(size_class=size_class_2)
-        world_size_2 = size_factory_2()
-
-        data3 = factory.get_data(world_size=world_size_2)
-        world3 = factory(
-            size_class=size_class_2,
-            world_size=world_size_2,
+        factory = SizeFactory(
+            size_class=size_class,
         )
-        self.assertEqual(data3.get("world_size"), world_size_2)
-        self.assertIn(size_class_2.value, world_type.sizes)
-        self.assertIsInstance(world3, World)
-        # data = self.get_data(**kwargs)
-        # return World(*args, **data)
+        size = factory()
+        self.assertEqual(size, min_size)
 
     def test_size_factory(self):
-        world_type_factory = WorldTypeFactory()
+        min_size = random.randrange(1, 10)
+        max_size = min_size + random.randrange(1, 10)
+        size_class = WorldSize(
+            size_class='SIZE_CLASS',
+            min_size=min_size,
+            max_size=max_size,
+        )
+        factory = SizeFactory(
+            size_class=size_class,
+        )
+        size = factory()
+        self.assertEqual(factory.size_class.value, size_class.value)
+        self.assertGreaterEqual(size, min_size)
+        self.assertLessEqual(size, max_size)
+
+    def test_world_factory(self):
+        factory = WorldFactory()
+        model = factory()
+        self.assertIsInstance(model, World)
+
+    def test_world_factory_size_class(self):
         size_class_factory = SizeClassFactory()
+        size_class = size_class_factory()
 
-        size_class_1 = size_class_factory.by_world_type(world_type_factory())
-        size_class_2 = size_class_factory.by_world_type(world_type_factory())
+        factory = WorldFactory()
+        model = factory(size_class=size_class)
+        self.assertEqual(model.size_class, size_class)
 
-        factory = SizeFactory(size_class=None)
-        size0 = factory()
-        self.assertEqual(size0, 0)
-
-        factory = SizeFactory(size_class=size_class_1)
-        size1 = factory()
-        self.assertEqual(factory.size_class, size_class_1)
-        self.assertGreaterEqual(size1, size_class_1.min_size)
-        self.assertLessEqual(size1, size_class_1.max_size)
-
-        factory = size_class_factory.size_factory(size_class=size_class_2.size_class)
-        size3 = factory()
-        self.assertEqual(factory.size_class.value, size_class_2.size_class)
-        # self.size_class = self.first(lambda item: item.get('size_class') == size_class)
-        self.assertGreaterEqual(size3, size_class_2.min_size)
-        self.assertLessEqual(size3, size_class_2.max_size)
-        # if self.size_class.min_size >= self.size_class.max_size:
-        # return self.size_class.min_size
+    def test_world_factory_size(self):
+        world_size = random.randrange(0, 10)
+        factory = WorldFactory()
+        model = factory(world_size=world_size)
+        self.assertEqual(model.world_size, world_size)
 
 
 if __name__ == "__main__":
