@@ -5,9 +5,9 @@ from models.complex_model import ComplexModel as BaseComplexModel
 
 class ComplexModel(BaseComplexModel):
     children = {
-        "child_model_field": BaseComplexModel(value="value1"),
-        "child_value_field": "VALUE",
-        "pregenerated_child": "OLD_PREGENERATED",
+        "child_model_field": BaseComplexModel,
+        "child_value_field": lambda: "VALUE",
+        "pregenerated_child": lambda: "OLD_PREGENERATED",
     }
 
     static_field_names = [

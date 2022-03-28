@@ -18,6 +18,7 @@ class ComplexModel(Model):
         """
         for k, v in self.children.items():
             if self.data.get(k) is None:
-                self.data[k] = v.with_children() if isinstance(v, ComplexModel) else v
+                child = v()
+                self.data[k] = child.with_children() if isinstance(child, ComplexModel) else child
 
         return self

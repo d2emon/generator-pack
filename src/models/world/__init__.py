@@ -187,13 +187,17 @@ class World(ComplexModel):
         'size_class': WorldSize,
     }
 
-    world_size = ComplexModel.field_property('world_size')
-    size_class = ComplexModel.field_property('size_class')
+    value = ComplexModel.field_property('name', '')
+
+    name = ComplexModel.field_property('name', '')
     shape = ComplexModel.field_property('shape')
+    size_class = ComplexModel.field_property('size_class')
+    world_size = ComplexModel.field_property('world_size', 0)
     world_type = ComplexModel.field_property('world_type')
 
     @property
     def field_names(self):
+        yield "name"
         yield "world_size"
         yield "size_class"
 
@@ -204,6 +208,7 @@ class World(ComplexModel):
     @property
     def description(self):
         return "\n".join([
+            f"{self}"
             f"{self.world_type} {self.shape} ({self.world_size} миль)",
             f"{self.world_type.description}",
             f"Возможные столкновения: {self.world_type.encounters}",
