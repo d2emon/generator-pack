@@ -1,5 +1,5 @@
+from factories.factory import Factory
 from factories.list_factory import ListFactory
-from .provider import ProviderFactory
 
 
 class LetterProvider(ListFactory):
@@ -12,7 +12,7 @@ class NumberProvider(ListFactory):
         super().__init__([str(n) for n in range(0, 9)])
 
 
-class TemplateDataProvider(ProviderFactory):
+class TemplateDataProvider(Factory):
     def __call__(self):
         return self.text('')
 

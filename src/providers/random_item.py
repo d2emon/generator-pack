@@ -1,9 +1,9 @@
 import random
 from database.data_item_database import DataItemDatabase
-from .provider import ProviderFactory
+from factories.factory import Factory
 
 
-class RandomItemProvider(ProviderFactory):
+class RandomItemProvider(Factory):
     def __init__(self, group_id):
         self.group_id = group_id
 

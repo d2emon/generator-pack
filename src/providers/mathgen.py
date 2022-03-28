@@ -1,8 +1,8 @@
 import random
-from .provider import ProviderFactory
+from factories.factory import Factory
 
 
-class MathDataProvider(ProviderFactory):
+class MathDataProvider(Factory):
     def __call__(self):
         return random.uniform(0, 100)
 

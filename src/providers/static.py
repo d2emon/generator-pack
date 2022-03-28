@@ -1,7 +1,7 @@
-from .provider import ProviderFactory
+from factories.factory import Factory
 
 
-class StaticProvider(ProviderFactory):
+class StaticProvider(Factory):
     def __init__(self, value=None):
         self.value = value
 

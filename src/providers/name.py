@@ -1,9 +1,9 @@
+from factories.factory import Factory
 from genesys.fng.list_item import ListItemProvider
 from v1.fixtures import genders
-from .provider import ProviderFactory
 
 
-class TextDataProvider(ProviderFactory):
+class TextDataProvider(Factory):
     # default = generator_data
     block_id = ''
     groups = ListItemProvider([])

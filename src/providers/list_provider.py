@@ -1,8 +1,8 @@
+from factories.factory import Factory
 from factories.list_factory import ListFactory
-from .provider import ProviderFactory
 
 
-class ComplexFactory(ProviderFactory):
+class ComplexFactory(Factory):
     def __init__(self, *factories):
         self.factories = list(factories)
 
@@ -17,7 +17,7 @@ class ComplexFactory(ProviderFactory):
         return cls(*[ListFactory(provider) for provider in parts])
 
 
-class ListDataProvider(ProviderFactory):
+class ListDataProvider(Factory):
     default_data = ()
 
     def __init__(self, data=None):
