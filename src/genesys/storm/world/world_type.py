@@ -1,11 +1,17 @@
-from data.storm import worlds
-from factories.db_factory import DbFactory
+from factories.model_factory import ModelFactory
 from models.world import WorldType
+from .data import DEFAULT_DATA_PROVIDER
 
 
-class WorldTypeFactory(DbFactory):
-    def __init__(self):
-        super().__init__(WorldType, worlds.types)
+class WorldTypeFactory(ModelFactory):
+    def __init__(self, provider=DEFAULT_DATA_PROVIDER):
+        super().__init__()
 
-    def __call__(self, *args, **kwargs):
-        return self.random()
+        self.provider = provider
+
+    @property
+    def model(self):
+        return WorldType
+
+    def get_data(self, *args, **kwargs):
+        return self.provider.world_type_factory(*args, **kwargs)
