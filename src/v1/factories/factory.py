@@ -1,8 +1,3 @@
-import random
-from models.encounter_model import Encounter
-from .factory_data import FactoryData
-
-
 class Factory:
     """
     Base factory class
@@ -19,7 +14,7 @@ class Factory:
 
         :param data: Array of data dicts
         """
-        self.factory_data = FactoryData(data or self.default_data)
+        self.factory_data = self.data_factory(data or self.default_data)
 
     @classmethod
     def instance(cls):
@@ -34,6 +29,15 @@ class Factory:
 
     @property
     def model(self):
+        """
+        Build model
+
+        :return: Model, built by factory
+        """
+        raise NotImplementedError()
+
+    @classmethod
+    def data_factory(self, data):
         """
         Build model
 
