@@ -1,4 +1,3 @@
-from models.model import Model
 from models.history.time import Time
 from models.history.event import Event as HistoryEvent
 from .distance import Distance
@@ -6,6 +5,11 @@ from .distance import Distance
 
 class Event(HistoryEvent):
     time_of_day = None
+
+    time = HistoryEvent.field_property('time', None)
+    encounter = HistoryEvent.field_property('encounter', None)
+    encounter_type = HistoryEvent.field_property('encounter_type', None)
+    # encounter_distance = HistoryEvent.field_property('encounter_distance', None)
 
     def __init__(
         self,
@@ -17,29 +21,47 @@ class Event(HistoryEvent):
         *args,
         **kwargs,
     ):
-        super().__init__(*args, **kwargs)
-        self.time = time
-        self.encounter = encounter
+        super().__init__(
+            time=time,
+            encounter=encounter,
+            encounter_type=encounter_type,
+            # encounter_distance=encounter_distance
+            *args,
+            **kwargs,
+        )
 
         if self.time is not None and max_time is not None:
             self.time.max_time = max_time
-        
-        self.encounter_type = encounter_type
-        # self.encounter_distance = encounter_distance
+
+    @property
+    def field_names(self):
+        yield from super().field_names
+        yield "time"
+        yield "encounter"
+        yield "encounter_type"
+        # yield "encounter_distance"
 
     @property
     def minutes(self):
-        return self.time.minutes
+        return self.time.minutes if self.time is not None else None
+
+    @minutes.setter
+    def minutes(self, value):
+        if self.time is None:
+            return
+
+        self.time.minutes = value
 
     @property
     def distance(self):
-        return self.time.distance
+        return self.time.distance if self.time is not None else None
 
     @distance.setter
     def distance(self, value):
-        if value is None:
+        if self.time is None:
             return
-        self.time.minutes = value * Time.mile
+
+        self.time.distance = value
 
 
 class DailyEvent(Event):
@@ -52,18 +74,22 @@ class DailyEvent(Event):
         encounter_type=None,
         # distance=None,
         max_time=20 * 6,
+        *args,
+        **kwargs,
     ):
         super().__init__(
             time=time,
             encounter=encounter,
             encounter_type=encounter_type,
+            # distance=distance
             max_time=max_time,
+            *args,
+            **kwargs,
         )
-        # self.distance = distance
 
     def __str__(self):
         return '\n'.join([
-            f"Столкновение в пути ({self.time} / {Distance.km(self.time.distance)} км)",
+            f"Столкновение в пути ({self.time} / {Distance.km(self.distance)} км)",
             str(self.encounter),
         ])
 
@@ -77,12 +103,16 @@ class NightlyEvent(Event):
         encounter=None,
         encounter_type=None,
         max_time=6 * 60,
+        *args,
+        **kwargs,
     ):
         super().__init__(
             time=time,
             encounter=encounter,
             encounter_type=encounter_type,
             max_time=max_time,
+            *args,
+            **kwargs,
         )
 
     def __str__(self):

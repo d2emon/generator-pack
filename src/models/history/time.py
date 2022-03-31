@@ -50,6 +50,13 @@ class Time(Model):
     def distance(self):
         return int(self.minutes / self.mile)
 
+    @distance.setter
+    def distance(self, value):
+        if value is None:
+            return
+
+        self.minutes = value * self.mile
+
     def __str__(self):
         text = []
 

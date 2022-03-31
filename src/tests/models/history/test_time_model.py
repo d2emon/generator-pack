@@ -59,6 +59,15 @@ class TestTimeModel(unittest.TestCase):
         self.assertEqual(Time.mile, 6)
         self.assertEqual(time.distance, miles)
 
+        time.distance = None
+
+        self.assertEqual(time.distance, miles)
+
+        new_miles = random.randrange(0, 10)
+        time.distance = new_miles
+
+        self.assertEqual(time.distance, new_miles)
+
     def test_str_no_hours(self):
         minutes = random.randrange(0, 60)
         time_text = f"{minutes} мин."
