@@ -1,10 +1,8 @@
 from dice.dice import Dice
-from data.storm.data.encounter.distance import distances_by_time
-from data.storm.data.encounter.encounter_types import encounter_by_time
 from factories.model_factory import ModelFactory
-from generated.encounter.fraction import Fraction
-from models.history.time import Time
 from models.encounters.event import Event, DailyEvent, NightlyEvent
+from models.encounters.fraction import Fraction
+from models.history.time import Time
 from .distance import DistanceFactory
 from .data import DEFAULT_EVENT_DATA_PROVIDER
 
