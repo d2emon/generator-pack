@@ -1,7 +1,7 @@
 import random
 import unittest
 from generated.encounter.day import Day
-from generated.history.time import Time
+from models.history.time import Time
 
 
 class Event:

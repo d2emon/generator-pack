@@ -1,5 +1,5 @@
-from generated.history.with_events import WithEvents
-from generated.history.time import Time
+from models.history.with_events import WithEvents
+from models.history.time import Time
 
 
 class Day(WithEvents):

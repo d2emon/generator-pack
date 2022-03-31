@@ -1,16 +1,17 @@
 from models.model import Model
 from models.history.time import Time
+from models.history.event import Event as HistoryEvent
 from .distance import Distance
 
 
-class Event(Model):
+class Event(HistoryEvent):
     time_of_day = None
 
     def __init__(
         self,
         time=None,
         encounter=None,
-        # encounter_type=None,
+        encounter_type=None,
         # encounter_distance=None,
         max_time=None,
         *args,
@@ -19,8 +20,11 @@ class Event(Model):
         super().__init__(*args, **kwargs)
         self.time = time
         self.encounter = encounter
-        self.__max_time = max_time
-        # self.encounter_type = encounter_type
+
+        if self.time is not None and max_time is not None:
+            self.time.max_time = max_time
+        
+        self.encounter_type = encounter_type
         # self.encounter_distance = encounter_distance
 
     @property

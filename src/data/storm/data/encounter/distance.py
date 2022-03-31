@@ -1,6 +1,6 @@
 from dice.dice import Dice
 from generated.encounter import DistanceGroup
-from generated.history.time import Time
+from models.history.time import Time
 
 
 DISTANCES = [

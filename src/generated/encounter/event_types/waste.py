@@ -1,5 +1,5 @@
 from generated.encounter import Encounter
-from generated.history.time import Time
+from models.history.time import Time
 
 
 class WasteEncounter(Encounter):

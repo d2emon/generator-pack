@@ -3,45 +3,6 @@ import unittest
 from models.history.time import Time
 
 
-"""
-    @property
-    def minutes(self):
-        minutes = self.__minutes or 0
-        if self.max_time is None:
-            return minutes
-        else:
-            return minutes % self.max_time
-
-    @minutes.setter
-    def minutes(self, value):
-        self.__minutes = value
-
-    @property
-    def hours(self):
-        return int(self.minutes / 60)
-
-    @hours.setter
-    def hours(self, value):
-        self.__minutes = value * 60
-
-    @property
-    def distance(self):
-        return int(self.minutes / self.mile)
-
-    def __str__(self):
-        text = []
-
-        hours = self.hours
-        if hours:
-            text.append('{} ч.'.format(hours))
-
-        minutes = self.minutes % 60
-        text.append('{} мин.'.format(minutes))
-
-        return ' '.join(text)
-"""
-
-
 class TestTimeModel(unittest.TestCase):
     def test_time_model(self):
         self.assertEqual(Time.DAY, 'DAY')
@@ -110,7 +71,7 @@ class TestTimeModel(unittest.TestCase):
 
     def test_str(self):
         minutes = random.randrange(0, 60)
-        hours = random.randrange(0, 24)
+        hours = random.randrange(1, 24)
         time_text = f"{hours} ч. {minutes} мин."
 
         time = Time(
