@@ -136,8 +136,6 @@ class TestWorldsModel(unittest.TestCase):
             world_type=world_type,
         )
 
-        # self.assertEqual(model.value, size_class)
-
         self.assertEqual(model.world_size, world_size)
         self.assertEqual(model.size_class, size_class)
         self.assertEqual(model.shape, shape)

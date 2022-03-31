@@ -1,17 +1,34 @@
-class Time:
+from models.model import Model
+
+
+class Time(Model):
     DAY = 'DAY'
     NIGHT = 'NIGHT'
 
     # mile = 20
     mile = 6
 
-    def __init__(self, hours=0, minutes=0):
-        self.__minutes = minutes + hours * 60
-        self.max_time = None
+    max_time = Model.field_property('max_time')
+    value = Model.field_property('minutes', 0)
+
+    def __init__(self, hours=0, minutes=0, *args, **fields):
+        __minutes = minutes + hours * 60
+
+        super().__init__(
+            *args,
+            minutes=__minutes,
+            **fields,
+        )
+
+    @property
+    def field_names(self):
+        yield "minutes"
+        yield "max_time"
 
     @property
     def minutes(self):
-        minutes = self.__minutes or 0
+        minutes = self.value
+
         if self.max_time is None:
             return minutes
         else:
@@ -19,7 +36,7 @@ class Time:
 
     @minutes.setter
     def minutes(self, value):
-        self.__minutes = value
+        self.value = value
 
     @property
     def hours(self):
@@ -27,7 +44,7 @@ class Time:
 
     @hours.setter
     def hours(self, value):
-        self.__minutes = value * 60
+        self.value = value * 60
 
     @property
     def distance(self):

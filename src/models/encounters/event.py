@@ -1,5 +1,5 @@
-from generated.history.time import Time
 from models.model import Model
+from models.history.time import Time
 from .distance import Distance
 
 
