@@ -27,32 +27,6 @@ class TestEventsModel(unittest.TestCase):
         model.distance = 1000
         self.assertEqual(model.minutes, 6000)
 
-    def test_daily_event_model(self):
-        encounter = random.uniform(0, 100)
-        encounter_type = random.uniform(0, 100)
-        max_time = random.randrange(self.time.minutes + 1, 100)
-        text = '\n'.join([
-            f"Столкновение в пути ({self.time} / {Distance.km(self.time.distance)} км)",
-            str(encounter),
-        ])
-        model = DailyEvent(self.time, encounter, encounter_type, max_time)
-
-        self.assertEqual(model.time_of_day, Time.DAY)
-        self.assertEqual(str(model), text)
-
-    def test_nightly_event_model(self):
-        encounter = random.uniform(0, 100)
-        encounter_type = random.uniform(0, 100)
-        max_time = random.randrange(self.time.minutes + 1, 100)
-        text = '\n'.join([
-            f"Столкновение во время отдыха ({self.time})",
-            str(encounter),
-        ])
-        model = NightlyEvent(self.time, encounter, encounter_type, max_time)
-
-        self.assertEqual(model.time_of_day, Time.NIGHT)
-        self.assertEqual(str(model), text)
-
     def test_events_model(self):
         model = WithEvents(*self.values)
         events_before = list(model.filtered_events())
