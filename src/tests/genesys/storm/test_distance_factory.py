@@ -3,30 +3,26 @@ import unittest
 from dice.dice import Dice
 from genesys.storm.encounter.factories.distance import DistanceFactory
 from models.encounters.distance import Distance
-
-
-class DistanceGroup:
-    def __init__(self) -> None:
-        self.description = 'DESCRIPTION'
-        self.dice = Dice(1, 6)
+from models.encounters.distance_group import DistanceGroup
 
 
 class TestWorldFactory(unittest.TestCase):
-    def setUp(self) -> None:
-        self.values = [random.uniform(0, 100) for _ in range(10)]
-        self.distance_group = DistanceGroup()
-
-    def test_no_distance(self):
+    def test_no_distance_group(self):
         factory = DistanceFactory()
         model = factory()
         self.assertIsNone(model)
 
-    def test_distance(self):
+    def test_distance_group(self):
+        distance_group = DistanceGroup(
+            dice=Dice(1, 6),
+        )
         factory = DistanceFactory(
-            distance_group=self.distance_group,
+            distance_group=distance_group,
         )
         model = factory()
-        self.assertIsInstance(model, Distance)
+        self.assertEqual(model.distance_group, distance_group)
+        self.assertGreaterEqual(model.distance, 1)
+        self.assertLessEqual(model.distance, 6)
 
 
 if __name__ == "__main__":

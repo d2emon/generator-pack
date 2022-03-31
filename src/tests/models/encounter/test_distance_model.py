@@ -1,15 +1,15 @@
 import unittest
+from dice.dice import Dice
 from models.encounters.distance import Distance
-
-
-class DistanceGroup:
-    def __init__(self) -> None:
-        self.description = 'DESCRIPTION'
+from models.encounters.distance_group import DistanceGroup
 
 
 class TestDistanceModel(unittest.TestCase):
     def setUp(self) -> None:
-        self.distance_group = DistanceGroup()
+        self.description = 'DESCRIPTION'
+        self.distance_group = DistanceGroup(
+            description=self.description,
+        )
         self.distance = 1000
         self.model = Distance(
             distance=self.distance,
@@ -17,6 +17,23 @@ class TestDistanceModel(unittest.TestCase):
         )
 
         return super().setUp()
+
+    def test_distance_group_model(self):
+        dice = Dice(1, 6)
+        avoidable = 'AVOIDABLE'
+        allowed_at = []
+        distance_group = DistanceGroup(
+            description=self.description,
+            dice=dice,
+            avoidable=avoidable,
+            allowed_at=allowed_at,
+        )
+
+        self.assertEqual(distance_group.description, self.description)
+        self.assertEqual(distance_group.dice, dice)
+        self.assertEqual(distance_group.avoidable, avoidable)
+        self.assertEqual(distance_group.allowed_at, allowed_at)
+        self.assertEqual(str(distance_group), self.description)
 
     def test_distance_translation(self):
         self.assertEqual(Distance.m_to_ft(1000), 3281)
