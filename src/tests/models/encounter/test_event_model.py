@@ -63,7 +63,7 @@ class TestEventModel(unittest.TestCase):
 
     def test_daily_event(self):
         event_text = '\n'.join([ 
-            f"Столкновение в пути ({self.time} / {Distance.km(self.time.distance)} км)", 
+            f"Столкновение в пути ({self.time} / {Distance.miles_to_km(self.time.distance)} км)", 
             'ENCOUNTER', 
         ])
 

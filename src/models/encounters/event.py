@@ -89,7 +89,7 @@ class DailyEvent(Event):
 
     def __str__(self):
         return '\n'.join([
-            f"Столкновение в пути ({self.time} / {Distance.km(self.distance)} км)",
+            f"Столкновение в пути ({self.time} / {Distance.miles_to_km(self.distance)} км)",
             str(self.encounter),
         ])
 
