@@ -57,7 +57,7 @@ class Distance(Model):
 
     @meters.setter
     def meters(self, value):
-        self['distance'] = round(value * self.METERS_IN_FOOT)
+        self['distance'] = value * self.METERS_IN_FOOT
 
     @property
     def value(self):

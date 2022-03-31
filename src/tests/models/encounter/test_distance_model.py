@@ -1,7 +1,4 @@
-import random
 import unittest
-from generated.encounter.day import Day
-from models.history.time import Time
 from models.encounters.distance import Distance
 
 
