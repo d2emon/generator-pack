@@ -1,10 +1,10 @@
 import random
 import unittest
-from generated.encounter import Encounter
 from genesys.storm.encounter.factories.event import EventFactory, DailyEventFactory, NightlyEventFactory
 from genesys.storm.encounter.factories.distance import DistanceFactory
 from models.encounters.distance import Distance
-from models.encounters.event import Event, DailyEvent, NightlyEvent
+from models.encounters.encounter import Encounter
+from models.encounters.events.event import Event, DailyEvent, NightlyEvent
 from models.history.time import Time
 
 
@@ -16,8 +16,8 @@ class TestEventFactory(unittest.TestCase):
         factory = EventFactory()
         factory.time = lambda: "TIME"
 
-        encounter = factory.encounter_type()
-        self.assertTrue(issubclass(encounter, Encounter))
+        encounter_type = factory.encounter_type_factory()
+        self.assertTrue(issubclass(encounter_type, Encounter))
 
         distance_factory = factory.distance_factory()
         self.assertIsInstance(distance_factory, DistanceFactory)
@@ -28,39 +28,14 @@ class TestEventFactory(unittest.TestCase):
         model = factory()
         self.assertIsInstance(model, Event)
 
-    # TODO: Add test for encounter
+    def test_event_factory_encounter(self):
+        factory = EventFactory()
 
-    # def test_event_factory(self):
-    #     factory = EventFactory()
-    #     factory.time = lambda: "TIME"
-
-    #     # party = Fraction()
-    #     # party.check_surprise()
-
-    #     # enemies = Fraction()
-    #     # enemies.check_surprise()
-
-    #     # encounter_type = cls.encounter_type()
-    #     # if not encounter_type:
-    #     #     return None
-
-    #     # distance_factory = cls.distance_factory()
-    #     # distance = distance_factory and distance_factory()
-    #     # return encounter_type(
-    #     #     distance=distance,
-    #     #     is_surprising=party.surprised,
-    #     #     is_surprised=enemies.surprised,
-    #     # )
-
-    #     # self.assertEqual(model_args.get('encounter'), factory.encounter())
-
-    #     model = factory(value1="VALUE1")
-    #     self.assertIsInstance(model, Event)
-    #     self.assertEqual(model['time'], "TIME")
-
-    # # def test_no_event_factory(self):
-    # #     factory = EmptyEventFactory()
-    # #     self.assertIsNone(factory.encounter())
+        encounter = factory.encounter()
+        self.assertIsInstance(encounter, Encounter)
+        self.assertIsInstance(encounter.distance, Distance)
+        self.assertIsInstance(encounter.is_surprised, bool)
+        self.assertIsInstance(encounter.is_surprising, bool)
 
     def test_daily_event_factory_class(self):
         factory = DailyEventFactory()

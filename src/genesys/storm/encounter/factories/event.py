@@ -1,6 +1,6 @@
 from dice.dice import Dice
 from factories.model_factory import ModelFactory
-from models.encounters.event import Event, DailyEvent, NightlyEvent
+from models.encounters.events.event import Event, DailyEvent, NightlyEvent
 from models.encounters.fraction import Fraction
 from models.history.time import Time
 from .distance import DistanceFactory
@@ -20,7 +20,7 @@ class EventFactory(ModelFactory):
     def model(self):
         return Event
 
-    def encounter_type(self):
+    def encounter_type_factory(self):
         return self.provider.encounter_factory(self.data_group)
 
     def distance_factory(self):
@@ -34,14 +34,12 @@ class EventFactory(ModelFactory):
         party.check_surprise()
         enemies.check_surprise()
 
-        encounter_type = self.encounter_type()
-        if not encounter_type:
-            return None
-
         distance_factory = self.distance_factory()
         distance = distance_factory and distance_factory()
 
-        return encounter_type(
+        encounter_type = self.encounter_type_factory()
+
+        return encounter_type and encounter_type(
             distance=distance,
             is_surprising=party.surprised,
             is_surprised=enemies.surprised,

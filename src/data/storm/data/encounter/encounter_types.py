@@ -1,13 +1,16 @@
-from generated.encounter import event_types
+from models.encounters.events.clash import ClashEncounter, MeetEncounter, HaltEncounter
+from models.encounters.events.hint import HintEncounter
+from models.encounters.events.waste import WasteEncounter
+from models.encounters.events.delay import DelayEncounter
 
 
 ENCOUNTER_TYPES = [
-    event_types.ClashEncounter,
-    event_types.MeetEncounter,
-    event_types.HaltEncounter,
-    event_types.HintEncounter,
-    event_types.WasteEncounter,
-    event_types.DelayEncounter,
+    ClashEncounter,
+    MeetEncounter,
+    HaltEncounter,
+    HintEncounter,
+    WasteEncounter,
+    DelayEncounter,
 ]
 
 

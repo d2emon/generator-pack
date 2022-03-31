@@ -3,7 +3,7 @@ import unittest
 from models.history.time import Time
 from models.history.with_events import WithEvents
 from models.encounters.distance import Distance
-from models.encounters.event import Event, DailyEvent, NightlyEvent
+from models.encounters.events.event import Event, DailyEvent, NightlyEvent
 
 
 class TestEventsModel(unittest.TestCase):
