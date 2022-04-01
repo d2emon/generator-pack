@@ -1,8 +1,8 @@
-from models.history.with_events import WithEvents
+from models.history.events import Events
 from models.history.time import Time
 
 
-class Day(WithEvents):
+class Day(Events):
     def __init__(
         self,
         day_id,
@@ -13,11 +13,11 @@ class Day(WithEvents):
 
     @property
     def daily(self):
-        return self.filtered_events(lambda e: e.time_of_day == Time.DAY)
+        return self.find(lambda e: e.time_of_day == Time.DAY).events
 
     @property
     def nightly(self):
-        return self.filtered_events(lambda e: e.time_of_day == Time.NIGHT)
+        return self.find(lambda e: e.time_of_day == Time.NIGHT).events
 
     @property
     def events(self):
