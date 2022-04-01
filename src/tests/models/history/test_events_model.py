@@ -17,8 +17,20 @@ class TestEventsModel(unittest.TestCase):
             self.assertIn(event, self.values)
 
     def test_sort_events(self):
+        last_time = 0
+        last_event_class = None
         for event in self.model.find().events:
+            if last_event_class is None:
+                last_event_class = event.__class__
+
+            if not isinstance(event, last_event_class):
+                last_time = 0
+                last_event_class = event.__class__
+
             self.assertIn(event, self.values)
+            self.assertGreaterEqual(event.time.minutes, last_time)
+            self.assertIsInstance(event, Event)
+            last_time = event.time.minutes
 
     def test_filter_events(self):
         for event in self.model.find(lambda item: random.uniform(0, 100) < 50).events:

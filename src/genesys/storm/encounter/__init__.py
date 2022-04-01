@@ -107,41 +107,24 @@
 12	Дружелюбная / Эй, давай дружить	Он согласен
 """
 # from config.storm import CONFIG
-from genesys.storm.encounter.factories.encounter import EncounterFactory
+from .factories.data import DEFAULT_EVENT_DATA_PROVIDER
+from .factories.encounter import EncounterFactory
 
 
 class EncountersManager:
-    def __init__(self, **config):
+    def __init__(
+        self,
+        provider=DEFAULT_EVENT_DATA_PROVIDER,
+        **config,
+    ):
         self.__factory = EncounterFactory(
+            provider=provider,
             roll_on_double=config.get('roll_on_double', True)
         )
 
     @classmethod
-    def events_for_day(cls, roll_on_double=False):
-        return EncounterFactory(roll_on_double=roll_on_double)(None)
-
-    @classmethod
-    def show_day(cls, day):
-        # show_daily = day_id > 1 or start_at_day,
-        # show_nightly = day_id < total or end_at_night,
-
-        # for event in day.get_events(daily=show_daily, nightly=show_nightly):
-        for event in day.events:
-            yield event
-
-    @classmethod
-    def show_days(cls, *days):
-        for day in days:
-            # print('=' * 80)
-            yield [
-                day,
-                cls.show_day(day),
-            ]
-            # print(day)
-            # print('-' * 80)
-            # print(event)
-        # print('=' * 80)
+    def events_for_day(cls, *args, **kwargs):
+        return EncounterFactory(*args, **kwargs)(None)
 
     def encounters(self, count=1, **kwargs):
-        days = (self.__factory(f'День {day_id + 1} из {count}', **kwargs) for day_id in range(count))
-        self.show_days(*days)
+        return (self.__factory(f'День {day_id + 1} из {count}', **kwargs) for day_id in range(count))

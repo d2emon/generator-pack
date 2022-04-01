@@ -7,8 +7,8 @@ from .event import DailyEventFactory, NightlyEventFactory
 class EncounterFactory:
     def __init__(
         self,
-        roll_on_double=True,
         provider=DEFAULT_EVENT_DATA_PROVIDER,
+        roll_on_double=True,
     ):
         self.roll_on_double = roll_on_double
 

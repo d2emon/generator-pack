@@ -4,6 +4,7 @@ from .time import Time
 
 class Day(Events):
     day_id = Events.field_property('day_id')
+    value = Events.field_property('day_id')
 
     def __init__(
         self,
@@ -31,6 +32,3 @@ class Day(Events):
     def get_events(self):
         yield from self.daily
         yield from self.nightly
-
-    def __str__(self):
-        return str(self.day_id)
