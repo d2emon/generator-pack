@@ -1,11 +1,11 @@
 import random
 import unittest
 from dice.dice import Dice
-from generated.encounter.day import Day
 from genesys.storm.encounter.factories.distance import DistanceFactory
 from genesys.storm.encounter.factories.encounter import EncounterFactory
 from genesys.storm.encounter.factories.event import DailyEventFactory, NightlyEventFactory
 from models.encounters.distance import Distance
+from models.history.day import Day
 
 
 """

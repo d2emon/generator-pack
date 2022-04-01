@@ -1,5 +1,5 @@
 from dice.dice import Dice
-from generated.encounter.day import Day
+from models.history.day import Day
 from .data import DEFAULT_EVENT_DATA_PROVIDER
 from .event import DailyEventFactory, NightlyEventFactory
 

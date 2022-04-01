@@ -1,7 +1,7 @@
 import random
 import unittest
-from generated.encounter.day import Day
 from genesys.storm.encounter import EncountersManager
+from models.history.day import Day
 
 
 class TestEncounterManager(unittest.TestCase):

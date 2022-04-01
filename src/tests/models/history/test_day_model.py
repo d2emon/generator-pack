@@ -1,6 +1,6 @@
 import random
 import unittest
-from generated.encounter.day import Day
+from models.history.day import Day
 from models.history.time import Time
 
 
@@ -20,15 +20,15 @@ class TestDayModel(unittest.TestCase):
         self.assertEqual(self.model.day_id, self.day_id)
         self.assertEqual(str(self.model), str(self.day_id))
 
-        for event in self.model.filtered_events():
+    def test_get_events(self):
+        for event in self.model.get_events():
             self.assertIn(event, self.events)
 
-        for event in self.model.events:
-            self.assertIn(event, self.events)
-
+    def test_daily_events(self):
         for event in self.model.daily:
             self.assertEqual(event.time_of_day, Time.DAY)
 
+    def test_nightly_events(self):
         for event in self.model.nightly:
             self.assertEqual(event.time_of_day, Time.NIGHT)
 
