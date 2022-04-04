@@ -2,7 +2,8 @@ from .structures import Structure
 
 
 class Skyscraper(Structure):
-    pass
+    def __init__(self, name, size, scale=0):
+        super().__init__(name, size, scale)
 
 
 SKYSCRAPERS = [

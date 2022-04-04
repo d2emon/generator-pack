@@ -1,4 +1,5 @@
 from data.scales import ITEMS
+from models.scales import Distance, ScalableSize, Sized
 
 
 MIN_SCALE = -36
@@ -9,7 +10,15 @@ def in_scale(scale_from, scale_to=None, items=ITEMS):
     if scale_to is None:
         scale_to = scale_from + 2
         scale_from = scale_from - 1
-    return filter(lambda i: i.width.scale in range(scale_from, scale_to), items)
+
+    for item in items:
+        size = item.length
+
+        if not isinstance(size, ScalableSize):
+            continue
+
+        if size.scale in range(scale_from, scale_to):
+            yield item
 
 
 def metric(scale):

@@ -1,4 +1,4 @@
-from models.scales.sized import Sized as Scalable, Distance
+from models.scales import Sized as Scalable, Distance, ScalableSize as Size
 
 
 parsec = 3.26
@@ -9,35 +9,60 @@ class LightYears(Distance):
     light_year = 9.46
 
     def __init__(self, name, size, scale=0):
-        size *= LightYears.light_year
-        scale += LightYears.default_scale
-        Distance.__init__(self, name, size, scale)
+        super().__init__(
+            name=name,
+            distance=Size(
+                size=size * LightYears.light_year,
+                scale=scale + LightYears.default_scale,
+            ),
+        )
 
 
 class LightYearsSized(Scalable):
     default_scale = 15
     light_year = 9.46
 
-    def __init__(self, name, width, scale=0, length=None):
+    def __init__(self, name, length, scale=0, width=None):
         scale += LightYearsSized.default_scale
-        width *= self.light_year
         length = length and length * self.light_year
-        Scalable.__init__(self, name, width=width, length=length, scale=scale)
+        super().__init__(
+            name=name,
+            width=width and Size(
+                size=width,
+                scale=scale,
+            ),
+            length=length and Size(
+                size=length,
+                scale=scale,
+            ),
+        )
 
 
-class GalaxySized:
+class GalaxySized(Scalable):
     title = ""
     distance_scale = 6
     default_scale = 3
 
-    def __init__(self, name, width, scale, distance=None, length=None):
+    name = Scalable.field_property('name')
+    size = Scalable.field_property('size')
+    distance = Scalable.field_property('distance')
+
+    def __init__(self, name, length, scale, distance=None, width=None, *args, **kwargs):
         scale = scale or self.default_scale
-        self.name = self.title and "{} {}".format(self.title, name) or name
-        self.size = LightYearsSized(self.name, width=width, scale=scale, length=length)
-        if distance is None:
-            self.distance = None
-        else:
-            self.distance = LightYears("", distance, self.distance_scale)
+        name = f"{self.title} {name}" if self.title else name
+        super().__init__(
+            name=name,
+            size=LightYearsSized(name, width=width, scale=scale, length=length),
+            distance=LightYears(name, distance, self.distance_scale) if distance else None,
+            *args,
+            **kwargs,
+        )
+
+    @property
+    def field_names(self):
+        yield "name"
+        yield "size"
+        yield "distance"
 
     @property
     def width(self):
@@ -47,19 +72,17 @@ class GalaxySized:
     def length(self):
         return self.size.length
 
-    def __repr__(self):
-        distance = self.distance and " -> {}".format(self.distance.width) or ''
-        size = str(self.size.width)
-        if self.size.length:
-            size = "{} x {}".format(size, self.size.length)
-        return "{} ({}{})".format(self.name, size, distance)
+    def __str__(self):
+        distance = f" -> {self.distance.length}" if self.distance else ''
+        size = f"{self.size.width} x {self.size.length}" if self.size.length else str(self.size.width)
+        return f"{self.name} ({size}{distance})"
 
 
 class SuperCluster(GalaxySized):
     distance_scale = 9
     default_scale = 9
 
-    def __init__(self, name, width, scale=None, distance=None, length=None, clusters=50, galaxies=50):
+    def __init__(self, name, length, scale=None, distance=None, width=None, clusters=50, galaxies=50):
         GalaxySized.__init__(
             self,
             name,
@@ -80,8 +103,8 @@ class Cluster(GalaxySized):
         GalaxySized.__init__(
             self,
             name,
-            width=size,
-            length=None,
+            width=None,
+            length=size,
             scale=scale,
             distance=distance
         )
@@ -98,8 +121,8 @@ class Galaxy(GalaxySized):
         GalaxySized.__init__(
             self,
             name,
-            width=size,
-            length=None,
+            width=None,
+            length=size,
             scale=scale,
             distance=distance
         )
@@ -121,14 +144,15 @@ class Nebula(GalaxySized):
     default_scale = 0
     distance_scale = 3
 
-    def __init__(self, name, size, scale=None, distance=None):
-        GalaxySized.__init__(
-            self,
+    def __init__(self, name, size, scale=None, distance=None, *args, **kwargs):
+        super().__init__(
             name,
-            width=size,
-            length=None,
+            length=size,
+            width=None,
             scale=scale,
-            distance=distance
+            distance=distance,
+            *args,
+            **kwargs,
         )
 
 
@@ -215,17 +239,17 @@ CLUSTERS = [
 ]
 
 ITEMS = SIZES + NEBULAS + GALAXIES + CLUSTERS + [
-    Distance("от Седны до Солнца", 0.14, 15),
+    Distance("от Седны до Солнца", Size(0.14, 15)),
 
     # ----
 
-    Scalable("Джет из сверхмассивной черной дыры в центре галактики M87 в Скоплении Девы", 50, 18),
+    Scalable("Джет из сверхмассивной черной дыры в центре галактики M87 в Скоплении Девы", Size(50, 18)),
 
     LightYears("до Великого Аттрактора", 250, 6),
     LightYears("до Сверхскопления Шепли", 650, 6),
 
     LightYearsSized("Обозреваемая вселенная", 28 * parsec, 9),
-    Scalable("Вселенная", 1.6, 27),
+    Scalable("Вселенная", Size(1.6, 27)),
 
     # LightYearsSized("Ланиакея", 0.52, 9),
 ]

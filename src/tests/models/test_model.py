@@ -1,6 +1,7 @@
 import random
 import unittest
 from models.model import Model
+from models.named import Named
 
 
 class NewModel(Model):
@@ -67,6 +68,10 @@ class TestModel(unittest.TestCase):
         self.assertEqual(str(self.model), text)
         self.assertEqual(repr(self.model), f"<Model: \"{text}\">")
         self.assertEqual(len(self.model), len(text))
+
+    def test_named_model(self):
+        model = Named(name='NAME')
+        self.assertEqual(str(model), "NAME")
 
 
 if __name__ == "__main__":

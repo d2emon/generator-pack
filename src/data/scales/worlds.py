@@ -1,11 +1,11 @@
 import math
-from models.scales.sized import Sized as Scalable
+from models.scales import Sized as Scalable, ScalableSize as Size
 
 
 class World(Scalable):
     def __init__(self, name, size, scale=0):
         scale = (scale + 6) / 2
-        Scalable.__init__(self, name, math.sqrt(size), scale=scale)
+        super().__init__(name, Size(math.sqrt(size), scale))
 
 
 WORLDS = [

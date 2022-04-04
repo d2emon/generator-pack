@@ -1,9 +1,9 @@
 import random
 import unittest
-from models.scales.scalable import Scalable, ScalableSize, Distance
+from models.scales import ScalableSize, Distance, Sized
 
 
-class TestScalableModel(unittest.TestCase):
+class TestSizedModel(unittest.TestCase):
     def setUp(self) -> None:
         self.size = random.uniform(1, 10)
         self.scale = random.randrange(-9, 9)
@@ -43,35 +43,24 @@ class TestScalableModel(unittest.TestCase):
             scale=-3,
         )
 
-        self.assertEqual(repr(model), "5.00*10^-6m")
+        self.assertEqual(str(model), "5.00*10^-6m")
 
-    def test_scalable_model_1d(self):
-        model = Scalable(
-            name='SCALABLE',
-            width=5,
-            scale=3,
+    def test_sized_model(self):
+        model = Sized(
+            name='NAME',
+            width=ScalableSize(5, 3),
+            length=ScalableSize(10, 3),
+            height=ScalableSize(15, 3),
         )
-
-        self.assertEqual(repr(model), "SCALABLE (5.00*10^3m)")
-
-    def test_scalable_model_2d(self):
-        model = Scalable(
-            name='SCALABLE',
-            width=5,
-            length=10,
-            scale=3,
-        )
-
-        self.assertEqual(repr(model), "SCALABLE (5.00*10^3m x 10.00*10^3m)")
+        self.assertEqual(str(model), "NAME (5.00*10^3m x 10.00*10^3m x 1.50*10^4m)")
 
     def test_distance_model(self):
         model = Distance(
             name='SCALABLE',
-            size=5,
-            scale=3,
+            distance=ScalableSize(5, 3),
         )
 
-        self.assertEqual(repr(model), "Расстояние SCALABLE - 5.00*10^3m")
+        self.assertEqual(str(model), "Расстояние SCALABLE - 5.00*10^3m")
 
 
 if __name__ == "__main__":

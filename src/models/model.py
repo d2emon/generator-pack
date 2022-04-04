@@ -60,7 +60,7 @@ class Model:
         self.__fields = {
             name: value
             for name, value in fields.items()
-            if not len(field_names) or name in self.field_names
+            if not len(field_names) or name in field_names
         }
 
     def __getitem__(self, item) -> Any:

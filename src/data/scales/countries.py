@@ -1,12 +1,12 @@
 import math
-from models.scales.sized import Sized as Scalable
+from models.scales import Sized as Scalable, ScalableSize as Size
 
 
 class Country(Scalable):
     def __init__(self, name, size, scale=9):
         scale = (scale - 1) / 2
         size = math.sqrt(size * 10)
-        Scalable.__init__(self, name, size, scale)
+        super().__init__(name, Size(size, scale))
 
 
 COUNTRIES = [

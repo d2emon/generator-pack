@@ -7,13 +7,12 @@ class TestScalesFactory(unittest.TestCase):
     def test_in_scale(self):
         scale = random.randrange(1, 10)
         for item in in_scale(scale):
-            self.assertGreaterEqual(item.width.scale, scale - 1)
-            self.assertLessEqual(item.width.scale, scale + 2)
+            self.assertGreaterEqual(item.length.scale, scale - 1)
+            self.assertLessEqual(item.length.scale, scale + 2)
 
-        scale_to = scale + random.randrange(1, 10)
-        for item in in_scale(scale, scale_to):
-            self.assertGreaterEqual(item.width.scale, scale)
-            self.assertLessEqual(item.width.scale, scale_to)
+        for item in in_scale(-40, 30):
+            self.assertGreaterEqual(item.length.scale, -40)
+            self.assertLessEqual(item.length.scale, 30)
 
     def test_metric(self):
         self.assertEqual(metric(-6), 'мкм')

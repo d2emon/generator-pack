@@ -1,11 +1,12 @@
 from models.model import Model
+from models.scales import Distance as BaseDistance
 
 
-class Distance(Model):
+class Distance(BaseDistance):
     KILOMETERS_IN_MILE = 0.621371
     METERS_IN_FOOT = 1 / 0.3048
 
-    distance = Model.field_property('distance', 0)
+    distance = Model.field_property('length', 0)
     distance_group = Model.field_property('distance_group', None)
 
     def __init__(
@@ -40,24 +41,24 @@ class Distance(Model):
 
     @property
     def field_names(self):
-        yield "distance"
+        yield from super().field_names
         yield "distance_group"
 
     @property
     def feet(self):
-        return self.distance
+        return self.length
 
     @feet.setter
     def feet(self, value):
-        self['distance'] = value
+        self['length'] = value
 
     @property
     def meters(self):
-        return round(self.distance / self.METERS_IN_FOOT)
+        return round(self.length / self.METERS_IN_FOOT)
 
     @meters.setter
     def meters(self, value):
-        self['distance'] = value * self.METERS_IN_FOOT
+        self['length'] = value * self.METERS_IN_FOOT
 
     @property
     def value(self):

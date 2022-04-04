@@ -1,4 +1,4 @@
-from models.scales.sized import Sized as Scalable, Distance
+from models.scales import Sized as Scalable, Distance, ScalableSize as Size
 from .galaxy import LightYears
 
 
@@ -9,51 +9,70 @@ class AstronomicUnit(Distance):
     def __init__(self, name, size, scale=0):
         size *= AstronomicUnit.au
         scale += AstronomicUnit.default_scale
-        Distance.__init__(self, name, size, scale)
+        super().__init__(name, size, scale)
 
 
 class AUSized(Scalable):
     default_scale = 12
     au = 0.149
 
-    def __init__(self, name, width, scale=0, length=None):
+    def __init__(self, name, length, scale=0, width=None):
         scale += self.default_scale
-        width *= self.au
-        length = length and length * self.au
-        Scalable.__init__(self, name, width=width, length=length, scale=scale)
+        super().__init__(
+            name=name,
+            length=length and Size(length * self.au, scale),
+            width=width and Size(width * self.au, scale),
+        )
 
 
 class SunSized(Scalable):
     default_scale = 9
     sun = 0.696 * 2
 
-    def __init__(self, name, width, scale=0, length=None):
+    def __init__(self, name, length, scale=0, width=None):
         scale += self.default_scale
-        width *= self.sun
-        length = length and length * self.sun
-        Scalable.__init__(self, name, width=width, length=length, scale=scale)
+        super().__init__(
+            name=name,
+            width=width and Size(width * self.sun, scale),
+            length=length and Size(length * self.sun, scale),
+        )
 
 
 class PlanetSized(Scalable):
     default_scale = 6
 
-    def __init__(self, name, width, scale=0):
+    def __init__(self, name, length, scale=0):
         scale += self.default_scale
-        width *= 2
-        Scalable.__init__(self, name, width=width, scale=scale)
+        length *= 2
+        super().__init__(
+            name=name,
+            width=Size(length, scale),
+        )
 
 
-class SystemSized:
+class SystemSized(Scalable):
     title = ""
     distance_scale = 6
 
-    def __init__(self, name, width, scale=0, distance=None, length=None):
-        self.name = self.title and "{} {}".format(self.title, name) or name
-        self.size = AUSized(self.name, width=width, scale=scale, length=length)
-        if distance is None:
-            self.distance = None
-        else:
-            self.distance = AstronomicUnit("", distance, self.distance_scale)
+    name = Scalable.field_property('name')
+    size = Scalable.field_property('size')
+    distance = Scalable.field_property('distance')
+
+    def __init__(self, name, length, scale=0, distance=None, width=None, *args, **kwargs):
+        name = f"{self.title} {name}" if self.title else name
+        super().__init__(
+            name=name,
+            size=AUSized(name, width=width, length=length, scale=scale),
+            distance=distance and AstronomicUnit(name, distance, self.distance_scale),
+            *args,
+            **kwargs,
+        )
+
+    @property
+    def field_names(self):
+        yield "name"
+        yield "size"
+        yield "distance"
 
     @property
     def width(self):
@@ -63,27 +82,41 @@ class SystemSized:
     def length(self):
         return self.size.length
 
-    def __repr__(self):
-        distance = self.distance and " -> {}".format(self.distance.width) or ''
-        size = str(self.size.width)
-        if self.size.length:
-            size = "{} x {}".format(size, self.size.length)
-        return "{} ({}{})".format(self.name, size, distance)
+    def __str__(self):
+        distance = f" -> {self.distance.length}" if self.distance else ''
+        size = f"{self.size.width} x {self.size.length}" if self.size.length else str(self.size.width)
+        return f"{self.name} ({size}{distance})"
 
 
-class Star:
+class Star(Scalable):
     title = ""
     distance_scale = 3
 
-    def __init__(self, name, width, letter=None, constellation=None, scale=0, distance=None, length=None):
-        self.name = self.title and "{} {}".format(self.title, name) or name
-        self.letter = letter
-        self.constellation = constellation
-        self.size = SunSized(self.name, width=width, scale=scale, length=length)
-        if distance is None:
-            self.distance = None
-        else:
-            self.distance = LightYears("", distance, self.distance_scale)
+    name = Scalable.field_property('name')
+    letter = Scalable.field_property('letter')
+    constellation = Scalable.field_property('constellation')
+    size = Scalable.field_property('size')
+    distance = Scalable.field_property('distance')
+
+    def __init__(self, name, length, letter=None, constellation=None, scale=0, distance=None, width=None, *args, **kwargs):
+        name = f"{self.title} {name}" if self.title else name
+        super().__init__(
+            name=name,
+            letter=letter,
+            constellation=constellation,
+            size=SunSized(name, width=width, length=length, scale=scale),
+            distance=distance and LightYears(name, size=distance, scale=self.distance_scale),
+            *args,
+            **kwargs,
+        )
+
+    @property
+    def field_names(self):
+        yield "name"
+        yield "letter"
+        yield "constellation"
+        yield "size"
+        yield "distance"
 
     @property
     def width(self):
@@ -93,31 +126,42 @@ class Star:
     def length(self):
         return self.size.length
 
-    def __repr__(self):
-        distance = self.distance and " -> {}".format(self.distance.width) or ''
-        size = str(self.size.width)
-        if self.size.length:
-            size = "{} x {}".format(size, self.size.length)
+    def __str__(self):
+        distance = f" -> {self.distance.length}" if self.distance else ''
+        size = f"{self.size.width} x {self.size.length}" if self.size.length else str(self.size.width)
 
         name = ""
         if self.name:
-            name = " \"{}\"".format(self.name)
+            name = f" \"{self.name}\""
         if self.constellation:
-            name = "{} {}{}".format(self.letter, self.constellation, name)
-        return "{} ({}{})".format(name, size, distance)
+            name = f"{self.letter} {self.constellation}{name}"
+
+        return f"{name} ({size}{distance})"
 
 
-class Planet:
+class Planet(Scalable):
     title = ""
     distance_scale = 9
 
-    def __init__(self, name, width, scale=0, distance=None):
-        self.name = self.title and "{} {}".format(self.title, name) or name
-        self.size = PlanetSized(self.name, width=width, scale=scale)
-        if distance is None:
-            self.distance = None
-        else:
-            self.distance = Distance("", distance, self.distance_scale)
+    name = Scalable.field_property('name')
+    size = Scalable.field_property('size')
+    distance = Scalable.field_property('distance')
+
+    def __init__(self, name, length, scale=0, distance=None, *args, **kwargs):
+        name = f"{self.title} {name}" if self.title else name
+        super().__init__(
+            name=name,
+            size=PlanetSized(name, length=length, scale=scale),
+            distance=distance and Distance(name, distance=Size(distance, self.distance_scale)),
+            *args,
+            **kwargs,
+        )
+
+    @property
+    def field_names(self):
+        yield "name"
+        yield "size"
+        yield "distance"
 
     @property
     def width(self):
@@ -127,10 +171,10 @@ class Planet:
     def length(self):
         return self.size.width
 
-    def __repr__(self):
-        distance = self.distance and " -> {}".format(self.distance.width) or ''
+    def __str__(self):
+        distance = f" -> {self.distance.length}" if self.distance else ''
         size = str(self.size.width)
-        return "{} ({}{})".format(self.name, size, distance)
+        return f"{self.name} ({size}{distance})"
 
 
 class GiantPlanet(Planet):
@@ -241,15 +285,15 @@ ITEMS = [
     SystemSized("Внутренний Край Облака Оорта", 50, scale=3),
     SystemSized("Внешний Край Облака Оорта", .2, scale=6),
 
-    Distance("от Земли до Луны", .38, 9),
-    Distance("от Меркурия до Солнца", 60, 9),
-    Distance("от Земли до Солнца", 0.15, 12),
-    Distance("от Юпитера до Солнца", 0.78, 12),
-    Distance("от Нептуна до Солнца", 4.5, 12),
-    Distance("от Плутона до Солнца", 5.9, 12),
-    Distance("от Вояджера 1 до Земли", 17, 12),
-    Distance("Световой День", 26, 12),
+    Distance("от Земли до Луны", Size(.38, 9)),
+    Distance("от Меркурия до Солнца", Size(60, 9)),
+    Distance("от Земли до Солнца", Size(0.15, 12)),
+    Distance("от Юпитера до Солнца", Size(0.78, 12)),
+    Distance("от Нептуна до Солнца", Size(4.5, 12)),
+    Distance("от Плутона до Солнца", Size(5.9, 12)),
+    Distance("от Вояджера 1 до Земли", Size(17, 12)),
+    Distance("Световой День", Size(26, 12)),
 
-    Distance("от Проксимы Центавра до Альфы Центавра A", 1.5, 15),
-    Distance("от Солнца до Проксимы Центавра", 42, 15),
+    Distance("от Проксимы Центавра до Альфы Центавра A", Size(1.5, 15)),
+    Distance("от Солнца до Проксимы Центавра", Size(42, 15)),
 ]

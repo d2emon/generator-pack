@@ -1,4 +1,4 @@
-from models.scales.sized import Sized as Scalable
+from models.scales import Sized as Scalable, ScalableSize as Size
 
 from .sotu import SOTU
 from .starships import STARSHIPS
@@ -24,15 +24,15 @@ ITEMS = SOTU\
     + STARS\
     + COUNTRIES\
     + [
-        Scalable("Кеплер 22b", 30, 6),
-        Scalable("UY Щита", 2.5, 12),
-        Scalable("Сверхмассивнаяя черная дыра NGC 1277", 60, 12),
-        Scalable("TON 618", 400, 12),
+        Scalable("Кеплер 22b", Size(30, 6)),
+        Scalable("UY Щита", Size(2.5, 12)),
+        Scalable("Сверхмассивнаяя черная дыра NGC 1277", Size(60, 12)),
+        Scalable("TON 618", Size(400, 12)),
 
-        Scalable("IC 1101", 60, 24),
-        Scalable("Войд Волопаса", 2.5, 27),
+        Scalable("IC 1101", Size(60, 24)),
+        Scalable("Войд Волопаса", Size(2.5, 27)),
 
-        Scalable("Кеплер 10c", 31, 6),
+        Scalable("Кеплер 10c", Size(31, 6)),
 
-        Scalable("Ланиакея", 5, 27),
+        Scalable("Ланиакея", Size(5, 27)),
     ]

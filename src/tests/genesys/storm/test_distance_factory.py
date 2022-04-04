@@ -1,8 +1,6 @@
-import random
 import unittest
 from dice.dice import Dice
 from genesys.storm.encounter.distance import DistanceFactory
-from models.encounters.distance import Distance
 from models.encounters.distance_group import DistanceGroup
 
 
