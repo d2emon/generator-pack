@@ -107,8 +107,8 @@
 12	Дружелюбная / Эй, давай дружить	Он согласен
 """
 # from config.storm import CONFIG
-from .factories.data import DEFAULT_EVENT_DATA_PROVIDER
-from .factories.encounter import EncounterFactory
+from .data import DEFAULT_EVENT_DATA_PROVIDER
+from .encounter import EncounterFactory
 
 
 class EncountersManager:

@@ -1,7 +1,7 @@
 import random
 import unittest
-from genesys.storm.encounter.factories.encounter import EncounterFactory
-from models.encounters.events.event import Event, DailyEvent, NightlyEvent
+from genesys.storm.encounter.encounter import EncounterFactory
+from models.encounters.events.event import Event
 from models.history.day import Day
 
 

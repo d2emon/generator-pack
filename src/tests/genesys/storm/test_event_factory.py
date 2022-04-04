@@ -1,11 +1,10 @@
 import random
 import unittest
-from genesys.storm.encounter.factories.event import EventFactory, DailyEventFactory, NightlyEventFactory
-from genesys.storm.encounter.factories.distance import DistanceFactory
+from genesys.storm.encounter.event import EventFactory, DailyEventFactory, NightlyEventFactory
+from genesys.storm.encounter.distance import DistanceFactory
 from models.encounters.distance import Distance
 from models.encounters.encounter import Encounter
 from models.encounters.events.event import Event, DailyEvent, NightlyEvent
-from models.history.time import Time
 
 
 class TestEventFactory(unittest.TestCase):
