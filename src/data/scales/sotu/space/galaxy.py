@@ -1,4 +1,4 @@
-from genesys.model.sized import Sized as Scalable, Distance
+from models.scales.sized import Sized as Scalable, Distance
 
 
 parsec = 3.26

@@ -17,7 +17,7 @@ class ScalableSize:
 
     def __repr__(self):
         self.adjust()
-        return "{0:.2f}*10^{1}m".format(self.size, self.scale)
+        return f"{self.size:.2f}*10^{self.scale}m"
 
 
 class Scalable:
@@ -34,7 +34,7 @@ class Scalable:
 
 class Distance(Scalable):
     def __init__(self, name, size, scale=0):
-        Scalable.__init__(self, name, size, scale)
+        super().__init__(name, size, scale)
 
     def __repr__(self):
-        return "Расстояние {} - {}".format(self.name, self.width)
+        return f"Расстояние {self.name} - {self.width}"

@@ -1,4 +1,4 @@
-from genesys.model.sized import Sized as Scalable
+from models.scales.sized import Sized as Scalable
 
 
 class Star(Scalable):

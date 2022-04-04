@@ -1,4 +1,4 @@
-from .data import ITEMS
+from data.scales import ITEMS
 
 
 MIN_SCALE = -36

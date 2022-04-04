@@ -1,5 +1,5 @@
-from genesys.model.sized import Sized as Scalable
-from genesys.scales.scalable import Distance
+from models.scales.sized import Sized as Scalable
+from models.scales.scalable import Distance
 from .space.galaxy import ITEMS as GALAXIES
 from .space.star_system import ITEMS as STAR_SYSTEM
 

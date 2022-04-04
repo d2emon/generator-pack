@@ -50,9 +50,9 @@ class Sized(Named):
         sizes = " x ".join(filter(
             None,
             [
-                self.width,
-                self.length,
-                self.height,
+                str(self.width),
+                str(self.length),
+                str(self.height),
             ],
         ))
         return f"{self.name} ({sizes})"
