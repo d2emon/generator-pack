@@ -1,8 +1,8 @@
 import random
 from factories.providers.list_provider import ComplexFactory
 from factories.generator import ListGenerated
-from genesys.fixtures.fixtures import haiku_middle
-from genesys.fixtures.fixtures.other.haiku import haiku
+from data.fixtures.fixtures import haiku_middle
+from data.fixtures.fixtures.other.haiku import haiku
 
 
 class HaikuString(ListGenerated):

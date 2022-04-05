@@ -1,7 +1,7 @@
 from factories.list_factory import ListFactory
 from factories.generator import ListGenerated
 
-from genesys.fixtures.fixtures.other.riddle import riddle
+from data.fixtures.fixtures.other.riddle import riddle
 
 
 class Riddle(ListGenerated):

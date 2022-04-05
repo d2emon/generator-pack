@@ -1,7 +1,7 @@
 from factories.generator import Generated
 from factories.list_factory import ListFactory
 
-from genesys.fixtures.fixtures.other.battlecry import battlecry
+from data.fixtures.fixtures.other.battlecry import battlecry
 
 
 class BattleCry(Generated):

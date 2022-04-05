@@ -1,7 +1,7 @@
 from factories.list_factory import ListFactory
 from factories.generator import ListGenerator, PercentGenerator
 from factories.generator import Generated
-from genesys.fixtures.fixtures import names1, names2, names3, names4, names5
+from data.fixtures.fixtures import names1, names2, names3, names4, names5
 
 
 class Band(Generated):

@@ -1,7 +1,7 @@
 from factories.list_factory import ListFactory
 from factories.generator import ListGenerator
 from factories.generator import Generated
-from genesys.fixtures.fixtures import names
+from data.fixtures.fixtures import names
 
 
 class Album(Generated):

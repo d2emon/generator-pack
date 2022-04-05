@@ -1,8 +1,8 @@
 from factories.list_factory import ListFactory
 from factories.generator import ListGenerated, ComplexGenerated
 
-from genesys.fixtures.fixtures.other.prayer import forgive, deity
-from genesys.fixtures.fixtures.other.prayer import aid
+from data.fixtures.fixtures.other.prayer import forgive, deity
+from data.fixtures.fixtures.other.prayer import aid
 
 RANDOM_PRAYER = 0
 FORGIVE_PRAYER = 1

@@ -1,6 +1,6 @@
 from factories.list_factory import ListFactory
 from factories.generator import Generated
-from genesys.fixtures.fixtures import mottos
+from data.fixtures.fixtures import mottos
 
 
 class Motto(Generated):

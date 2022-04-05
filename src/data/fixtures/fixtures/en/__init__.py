@@ -1,4 +1,4 @@
-from genesys.fixtures.fixtures import multiverse
+from data.fixtures.fixtures import multiverse
 
 # TODO: Remove It
 names_en = []
