@@ -1,4 +1,4 @@
-from .generated_model import GeneratedModel
+from ..generated_model import GeneratedModel
 
 
 class TextModel(GeneratedModel):

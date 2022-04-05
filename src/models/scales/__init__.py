@@ -1,4 +1,4 @@
-from models.named import Named
+from models.name.named import Named
 
 
 class ScalableSize:

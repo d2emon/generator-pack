@@ -1,7 +1,7 @@
 import random
 import unittest
 from models.model import Model
-from models.named import Named
+from models.name.named import Named
 
 
 class NewModel(Model):
