@@ -4,7 +4,7 @@ Single-celled Organisms
 - Bacteria
 - BacteriaBody
 """
-from genesys.model.model import Model
+from models.v4.model import Model
 from ..cell import Cell
 from ...mind import Psyche
 

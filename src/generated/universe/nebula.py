@@ -2,7 +2,7 @@
 - InterstellarCloud
 - Nebula
 """
-from genesys.model.model import Model
+from models.v4.model import Model
 from ..materials import Gas
 from ..life import Life
 from .star import StarSystem

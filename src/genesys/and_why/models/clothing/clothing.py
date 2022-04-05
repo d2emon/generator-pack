@@ -1,4 +1,4 @@
-from genesys.model.keyed.slotted import SlotItem
+from models.v4.keyed.slotted import SlotItem
 
 
 class Clothing(SlotItem):

@@ -3,7 +3,7 @@
 - Blood
 - BloodVessels
 """
-from genesys.model.model import Model
+from models.v4.model import Model
 from ..cell import Cell
 from ..single_celled import Bacteria
 

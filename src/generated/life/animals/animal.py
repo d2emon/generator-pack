@@ -2,7 +2,7 @@
 - AnimalBody
 - Animal
 """
-from genesys.model.model import Model
+from models.v4.model import Model
 from ...mind import Psyche
 from ..animal_body.head.eye import SimpleEye
 from ..animal_body.head.mouth import SimpleMouth

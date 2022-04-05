@@ -5,7 +5,7 @@
 - Ammonia
 - Steel
 """
-from genesys.model.model import Model
+from models.v4.model import Model
 from .elements import Atom
 
 

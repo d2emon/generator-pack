@@ -1,4 +1,4 @@
-from genesys.model.model import Model as BaseModel
+from models.v4.model import Model as BaseModel
 
 
 class Model(BaseModel):

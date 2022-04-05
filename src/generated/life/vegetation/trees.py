@@ -13,7 +13,7 @@
 - Trees
 - Humus
 """
-from genesys.model.model import Model
+from models.v4.model import Model
 from ...materials import OrganicMatter
 from ...mind import Psyche
 from .twig import Twig

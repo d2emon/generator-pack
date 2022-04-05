@@ -7,7 +7,7 @@
 - Scales
 - Exoskeleton
 """
-from genesys.model.model import Model
+from models.v4.model import Model
 from ...materials import Sweat, Keratin, Chitin
 from ..cell import Cell
 from ..single_celled import Bacteria

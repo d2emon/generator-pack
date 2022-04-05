@@ -8,7 +8,7 @@
 - River
 - Lake
 """
-from genesys.model.model import Model
+from models.v4.model import Model
 from ..materials import Ice, Salt, Water
 from ..life import Life
 from .soil import Soil

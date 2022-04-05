@@ -1,4 +1,4 @@
-from genesys.model.model import Model
+from models.v4.model import Model
 from factories.nested_factory import NestedFactory as Factory
 
 

@@ -1,5 +1,5 @@
 import random
-from genesys.model.placeholder import Placeholder
+from models.v4.placeholder import Placeholder
 
 
 class ProviderFactory:

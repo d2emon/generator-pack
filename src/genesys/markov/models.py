@@ -1,4 +1,4 @@
-from genesys.model.keyed import MarkovChain
+from models.v4.keyed import MarkovChain
 from models.model import Model
 
 

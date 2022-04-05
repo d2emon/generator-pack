@@ -2,7 +2,7 @@
 - GrassBlade
 - Grass
 """
-from genesys.model.model import Model
+from models.v4.model import Model
 from ...mind import Psyche
 from .twig import Twig
 

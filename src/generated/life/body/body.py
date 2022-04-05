@@ -1,7 +1,7 @@
 """
 - Body
 """
-from genesys.model.model import Model
+from models.v4.model import Model
 from ..animals.animal import AnimalBody
 from .torso import Torso
 from .arm import Arm

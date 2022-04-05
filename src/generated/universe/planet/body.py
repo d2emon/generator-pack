@@ -4,8 +4,8 @@
 - Moon
 - TerraformedMoon
 """
-from genesys.model.model import Model
-from genesys.model.mixins import TerraformedMixin
+from models.v4.model import Model
+from models.v4.mixins import TerraformedMixin
 from ...life import Life
 from ...terrain import Ocean, Sky
 from ..atmosphere import Atmosphere

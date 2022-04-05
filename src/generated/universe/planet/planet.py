@@ -4,8 +4,8 @@
 - TelluricPlanet
 - GasGiant
 """
-from genesys.model.model import Model
-from genesys.model.mixins import TerraformedMixin
+from models.v4.model import Model
+from models.v4.mixins import TerraformedMixin
 from .body import PlanetLike, Moon
 
 

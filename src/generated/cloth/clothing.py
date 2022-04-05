@@ -11,7 +11,7 @@
 - Hat
 - Glasses
 """
-from genesys.model.model import Model
+from models.v4.model import Model
 from ..materials import Sweat, Plastic
 from generated.life.animal_body.skin import DeadSkin
 from .fabric import Cloth

@@ -3,7 +3,7 @@
 - Clam Body
 - ClamShell
 """
-from genesys.model.model import Model
+from models.v4.model import Model
 from ....materials import Molecule
 from ..animal import Animal, AnimalBody
 

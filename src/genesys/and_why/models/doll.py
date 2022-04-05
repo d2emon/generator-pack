@@ -1,5 +1,5 @@
 from data.and_why import genders
-from genesys.model.keyed.slotted import Slotted
+from models.v4.keyed.slotted import Slotted
 
 
 class Doll(Slotted):

@@ -4,7 +4,7 @@
 - GalaxyCenter
 - Galaxy
 """
-from genesys.model.model import Model
+from models.v4.model import Model
 from ..life import Life
 from .nebula import Nebula
 from .star import StarSystem

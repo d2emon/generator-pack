@@ -7,7 +7,7 @@
 - Fat
 - Skeleton
 """
-from genesys.model.model import Model
+from models.v4.model import Model
 from ...materials import Molecule, OrganicMatter
 from ..cell import Cell
 

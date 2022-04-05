@@ -4,7 +4,7 @@
     - Woman
 - Corpse
 """
-from genesys.model.model import Model
+from models.v4.model import Model
 # TODO: Fix circular and remove
 # from ....cloth import ClothingSet
 from ...animals import Animal

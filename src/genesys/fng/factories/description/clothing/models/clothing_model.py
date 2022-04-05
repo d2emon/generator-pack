@@ -1,4 +1,4 @@
-from genesys.model.models import DescriptiveModel
+from models.v4.models import DescriptiveModel
 
 
 class ClothingModel(DescriptiveModel):

@@ -3,7 +3,7 @@
 - Fur
 - Whiskers
 """
-from genesys.model.model import Model
+from models.v4.model import Model
 from ...materials import Keratin
 from ..single_celled import Bacteria
 
