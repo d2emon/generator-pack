@@ -1,6 +1,6 @@
 from models.history.time import Time
 from models.history.event import Event as HistoryEvent
-from ..distance import Distance
+from models.distance import Distance
 
 
 class Event(HistoryEvent):

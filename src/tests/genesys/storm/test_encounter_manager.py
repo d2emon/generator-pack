@@ -2,7 +2,7 @@ import random
 import unittest
 from genesys.storm.encounter import EncountersManager
 from models.history.day import Day
-from models.encounters.events.event import Event, NightlyEvent
+from models.events.event import Event, NightlyEvent
 
 
 class TestEncounterManager(unittest.TestCase):

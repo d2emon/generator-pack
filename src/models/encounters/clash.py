@@ -1,4 +1,4 @@
-from models.encounters.encounter import Encounter
+from models.encounters import Encounter
 from models.history.time import Time
 
 

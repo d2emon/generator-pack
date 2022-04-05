@@ -1,7 +1,7 @@
 import unittest
 from dice.dice import Dice
-from models.encounters.distance import Distance
-from models.encounters.distance_group import DistanceGroup
+from models.distance import Distance
+from models.distance.distance_group import DistanceGroup
 
 
 class TestDistanceModel(unittest.TestCase):

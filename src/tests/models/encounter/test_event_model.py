@@ -1,8 +1,8 @@
 import random
 import unittest
-from models.encounters.distance import Distance
+from models.distance import Distance
 from models.history.time import Time
-from models.encounters.events.event import Event, DailyEvent, NightlyEvent
+from models.events.event import Event, DailyEvent, NightlyEvent
 
 
 class TestEventModel(unittest.TestCase):

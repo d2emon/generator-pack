@@ -1,7 +1,7 @@
-from models.encounters.events.clash import ClashEncounter, MeetEncounter, HaltEncounter
-from models.encounters.events.hint import HintEncounter
-from models.encounters.events.waste import WasteEncounter
-from models.encounters.events.delay import DelayEncounter
+from models.encounters.clash import ClashEncounter, MeetEncounter, HaltEncounter
+from models.encounters.hint import HintEncounter
+from models.encounters.waste import WasteEncounter
+from models.encounters.delay import DelayEncounter
 
 
 ENCOUNTER_TYPES = [

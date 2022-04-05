@@ -1,6 +1,6 @@
 from dice.dice import Dice
 from factories.model_factory import ModelFactory
-from models.encounters.events.event import Event, DailyEvent, NightlyEvent
+from models.events.event import Event, DailyEvent, NightlyEvent
 from models.encounters.fraction import Fraction
 from models.history.time import Time
 from .distance import DistanceFactory

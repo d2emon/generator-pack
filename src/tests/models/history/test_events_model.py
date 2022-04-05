@@ -2,7 +2,7 @@ import random
 import unittest
 from models.history.time import Time
 from models.history.events import Events
-from models.encounters.events.event import Event
+from models.events.event import Event
 
 
 class TestEventsModel(unittest.TestCase):

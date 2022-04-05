@@ -1,5 +1,6 @@
 from factories.factory import Factory
-from models.encounters.encounter_model import Encounter, Item
+from models.encounters.encounter import Encounter
+from models.item import Item
 
 
 class EncounterFactory(Factory):

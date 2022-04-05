@@ -1,12 +1,12 @@
 import random
 import unittest
-from models.encounters.distance import Distance
-from models.encounters.distance_group import DistanceGroup
-from models.encounters.encounter import Encounter
-from models.encounters.events.clash import ClashEncounter, MeetEncounter, HaltEncounter
-from models.encounters.events.hint import HintEncounter
-from models.encounters.events.waste import WasteEncounter
-from models.encounters.events.delay import DelayEncounter
+from models.distance import Distance
+from models.distance.distance_group import DistanceGroup
+from models.encounters import Encounter
+from models.encounters.clash import ClashEncounter, MeetEncounter, HaltEncounter
+from models.encounters.hint import HintEncounter
+from models.encounters.waste import WasteEncounter
+from models.encounters.delay import DelayEncounter
 
 
 
@@ -37,7 +37,7 @@ class TestEncounterModel(unittest.TestCase):
         self.assertEqual(encounter.distance, self.distance)
         self.assertFalse(encounter.is_surprised)
         self.assertFalse(encounter.is_surprising)
-        self.assertEqual(str(encounter), encounter_text)
+        self.assertEqual(encounter.text, encounter_text)
 
     def test_encounter_surprised(self):
         encounter_text = '\n'.join([
@@ -55,7 +55,7 @@ class TestEncounterModel(unittest.TestCase):
 
         self.assertTrue(encounter.is_surprised)
         self.assertFalse(encounter.is_surprising)
-        self.assertEqual(str(encounter), encounter_text)
+        self.assertEqual(encounter.text, encounter_text)
 
     def test_encounter_surprising(self):
         encounter_text = '\n'.join([
@@ -73,7 +73,7 @@ class TestEncounterModel(unittest.TestCase):
 
         self.assertFalse(encounter.is_surprised)
         self.assertTrue(encounter.is_surprising)
-        self.assertEqual(str(encounter), encounter_text)
+        self.assertEqual(encounter.text, encounter_text)
 
     def test_clash_encounter(self):
         encounter = ClashEncounter(
