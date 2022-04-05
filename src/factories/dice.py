@@ -6,13 +6,18 @@ class DiceFactory(Factory):
     Generate dice roll
     """
 
-    def __init__(self, dices):
+    def __init__(self, dice):
+        """
+        Create factory
+
+        :param dice: Dices data
+        """
         super().__init__()
-        self.dices = dices
+        self.dice = dice
 
     @property
     def data(self):
-        return self.dices
+        return self.dice
 
     def roll(self, *args, **kwargs):
         """
@@ -22,7 +27,7 @@ class DiceFactory(Factory):
         :param kwargs: Roll kwargs
         :return: Roll results
         """
-        return self.dices.roll(*args, **kwargs)
+        return self.dice.roll(*args, **kwargs)
 
     def build(self, *args, **kwargs):
         """

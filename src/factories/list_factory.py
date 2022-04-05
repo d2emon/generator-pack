@@ -8,6 +8,7 @@ class ListFactory(Factory):
     """
     Generate random value from list
     """
+
     def __init__(self, data=()):
         self.__data = data
 
@@ -29,7 +30,8 @@ class ListFactory(Factory):
         :param kwargs: Roll kwargs
         :return: Random item
         """
-        return random.choice(self.data) if len(self.data) > 0 else None
+        items = list(self.find(*args, **kwargs))
+        return random.choice(items) if len(items) > 0 else None
 
     def shuffle(self):
         """
@@ -56,3 +58,12 @@ class ListFactory(Factory):
     def from_text_file(cls, filename):
         data = list(load_lines(filename))
         return cls(data)
+
+    def find(self, **kwargs):
+        """
+        Find dicts in data with fields
+
+        :param kwargs: Fields to search
+        :return: Filtered dicts
+        """
+        return filter(lambda item: all(item.get(k) == v for k, v in kwargs.items()), self.data)

@@ -1,5 +1,5 @@
-from .model_factory import ModelFactory
 from .list_factory import ListFactory
+from .model_factory import ModelFactory
 
 
 class ListModelFactory(ModelFactory):
@@ -17,5 +17,5 @@ class ListModelFactory(ModelFactory):
         """
         raise NotImplementedError()
 
-    def generate(self, *args, **kwargs):
+    def __call__(self, *args, **kwargs):
         return self.__factory(*args, **kwargs)

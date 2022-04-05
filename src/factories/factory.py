@@ -2,6 +2,21 @@ class Factory:
     """
     Generate value
     """
+    __instance = None
+
+    @classmethod
+    def instance(cls, *args, **kwargs):
+        """
+        Get static instance of factory
+
+        :param args: Factory args
+        :param kwargs: Factory kwargs
+        :return: Static instance
+        """
+        if cls.__instance is None:
+            cls.__instance = cls(*args, **kwargs)
+        return cls.__instance
+
     def __iter__(self):
         """
         Factory iterator
