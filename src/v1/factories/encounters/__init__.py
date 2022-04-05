@@ -1,5 +1,5 @@
-from v3.genesys.encounters.encounters.environmental import encounters
-from v3.genesys.encounters.encounters.items import items
+from genesys.encounters.encounters.environmental import encounters
+from genesys.encounters.encounters.items import items
 from .factory import EncounterFactory, ItemFactory
 
 
