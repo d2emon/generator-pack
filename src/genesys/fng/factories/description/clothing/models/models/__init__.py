@@ -1,5 +1,5 @@
 from models.v4.models import DescriptiveModel
-from genesys.generator_models.character.sex import Male, Female
+from models.generator_models.character.sex import Male, Female
 from genesys.fng.factories import JacketGenerator
 from genesys.fng.factories import ShirtGenerator
 from genesys.fng.factories import BeltGenerator, FemaleBeltGenerator
