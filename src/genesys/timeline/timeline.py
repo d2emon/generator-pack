@@ -1,4 +1,4 @@
-from v3.factories import Factory
+from factories.factory import Factory
 from .age.prehistory import Prehistory
 from .age.ancient import Ancient
 from .age.past import Past

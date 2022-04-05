@@ -1,6 +1,8 @@
 from dice.dice import Dice
 from ..models import Event
-from v3.factories import Factory, DiceFactory, ListFactory
+from factories.factory import Factory
+from factories.dice import DiceFactory
+from factories.list_factory import ListFactory
 
 
 class Age(Factory):
