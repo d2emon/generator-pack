@@ -1,5 +1,5 @@
-from v3.models import Model
-from ..data.skills import SKILLS
+from models.model import Model
+from data.redlands.skills import SKILLS
 
 
 class Template(Model):
