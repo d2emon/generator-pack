@@ -1,4 +1,4 @@
-from v1.fixtures import genders
+from utils import genders
 from models.fng.description.description import Description
 from models.model import Model
 from .race import Race

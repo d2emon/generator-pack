@@ -3,9 +3,9 @@ from ..generator_models import Model
 from .sex import Male
 # TODO: Fix circular
 # from v1.factories.fng.description.character.character import male_specials, female_specials
-from v1.factories.fng.description.character.character.frame import FrameFactory
-from v1.factories.fng.description.character.character.strange import StrangeFactory
-from v1.factories.fng.description.description.race import Race
+from genesys.fng.factories.description.character.character.frame import FrameFactory
+from genesys.fng.factories.description.character.character.strange import StrangeFactory
+from genesys.fng.factories.description.description.race import Race
 
 
 # TODO: Remove it

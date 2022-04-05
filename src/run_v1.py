@@ -1,4 +1,4 @@
-from v1.factories.fng.names import AlienNameFactory, AmazonNameFactory, AnansiNameFactory, AngelNameFactory, \
+from genesys.fng.factories.names import AlienNameFactory, AmazonNameFactory, AnansiNameFactory, AngelNameFactory, \
     AnimalSpeciesNameFactory, AnimatronicNameFactory, AnimeNameFactory, AnthousaiNameFactory, \
     ApocalypseNicknameFactory, ArtificialIntelligenceNameFactory, BanditNameFactory, BansheeNameFactory, \
     BarbarianNameFactory

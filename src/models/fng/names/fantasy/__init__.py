@@ -1,4 +1,4 @@
-from v1.fixtures.fng.names import fantasy
+from data.fng.names import fantasy
 from models.fng.names.name import Name
 from .barbarian import BarbarianName, BarbarianName1, BarbarianName2, MaleBarbarianName3, FemaleBarbarianName3
 

@@ -1,6 +1,6 @@
 from factories.factory import Factory
 from genesys.fng.list_item import ListItemProvider
-from v1.fixtures import genders
+from utils import genders
 
 
 class TextDataProvider(Factory):

@@ -1,4 +1,4 @@
-from v3.models import Model
+from models.model import Model
 
 
 class Encounter(Model):
