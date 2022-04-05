@@ -1,4 +1,4 @@
-from providers.list_provider import ComplexFactory
+from factories.providers.list_provider import ComplexFactory
 from factories.generator import ListGenerated, ComplexGenerated
 
 from genesys.fixtures.fixtures import beings, places, characters, events

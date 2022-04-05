@@ -2,7 +2,7 @@ import random
 from data.and_why.egypt import EGYPT
 from data.and_why.genders import GENDERS
 from genesys.model.keyed.slotted import SlotItem
-from providers import RandomItemProvider
+from factories.providers.random_item import RandomItemProvider
 from ..models import clothing
 from .provider_query import ProviderQuery
 from .slot_provider import SlotProvider

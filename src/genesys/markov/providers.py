@@ -1,4 +1,4 @@
-from providers import MarkovProvider
+from .markov import MarkovProvider
 from genesys.fixtures.fixtures.streets import streets
 
 

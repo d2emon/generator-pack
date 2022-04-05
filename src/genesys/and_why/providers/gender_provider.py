@@ -1,6 +1,6 @@
 from data.and_why.genders import DEFAULT, GENDERS
 from factories.list_factory import ListFactory
-from providers import RandomItemProvider
+from factories.providers.random_item import RandomItemProvider
 from utils.genders import MALE, FEMALE
 
 

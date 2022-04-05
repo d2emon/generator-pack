@@ -1,6 +1,6 @@
 from genesys.dndspeak import dndspeak
-from providers.data_manager import DataManager
-from providers import RandomItemProvider
+from factories.providers.data_manager import DataManager
+from factories.providers.random_item import RandomItemProvider
 from data.dndspeak import groups
 
 
