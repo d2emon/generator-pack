@@ -7,10 +7,10 @@ Cetaceans
 - Cetacean Head
 - Cetacean Body
 """
-from generated.life.animal_body import AnimalBody, Flesh, CetaceanFin, CetaceanFlipper, Tail
-from generated.life.body.body import Head, Mouth, Eye, Skin, Skull
-from generated.mind import SimpleThoughts, Thought
-from generated.life.biology.organism import Organism
+from models.v5.life.animal_body import AnimalBody, Flesh, CetaceanFin, CetaceanFlipper, Tail
+from models.v5.life.body.body import Head, Mouth, Eye, Skin, Skull
+from models.v5.mind import SimpleThoughts, Thought
+from models.v5.life.biology.organism import Organism
 from genesys.nested.data import lookups
 
 

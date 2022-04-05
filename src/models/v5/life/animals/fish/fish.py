@@ -6,12 +6,12 @@ Fish
 - Fish Thoughts
 - Fish Thought
 """
-from generated.nested_v2.models import Mind
-from generated.life.animal_body import AnimalBody, SimpleEye, FishFin, FishSkin, FishTail, Flesh
-from generated.life.body.body import Mouth
-from generated.mind import SimpleThoughts, Thought
-from generated.life.biology.organism import Organism
-from generated.life.animals.worm import Worm
+from models.v5.nested_v2.models import Mind
+from models.v5.life.animal_body import AnimalBody, SimpleEye, FishFin, FishSkin, FishTail, Flesh
+from models.v5.life.body.body import Mouth
+from models.v5.mind import SimpleThoughts, Thought
+from models.v5.life.biology.organism import Organism
+from models.v5.life.animals.worm import Worm
 from genesys.nested.data import lookups
 
 

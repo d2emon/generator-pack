@@ -1,4 +1,4 @@
-from generated import life
+from models.v5 import life
 from ..body_parts import BodyPartFactory
 from ..skeleton import BonesFactory
 from ..head import BrainFactory

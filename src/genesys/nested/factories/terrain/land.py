@@ -1,4 +1,4 @@
-from generated import terrain
+from models.v5 import terrain
 from factories.nested_factory import NestedFactory as Factory
 from ..materials import FireFactory, SnowFactory, RockFactory, IronFactory
 from ..life import GrassFactory, TreesFactory, JungleTreesFactory, HumusFactory, LandLifeFactory, ForestLifeFactory, \

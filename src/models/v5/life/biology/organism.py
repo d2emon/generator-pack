@@ -1,5 +1,5 @@
 from models.v4.model import Model
-from generated.mind import Psyche
+from models.v5.mind import Psyche
 
 
 class BasicBody(Model):

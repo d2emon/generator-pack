@@ -1,4 +1,4 @@
-from generated import cloth
+from models.v5 import cloth
 from factories.nested_factory import NestedFactory as Factory
 from ..materials import KeratinFactory
 

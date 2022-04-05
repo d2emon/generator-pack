@@ -1,4 +1,4 @@
-from generated import mind
+from models.v5 import mind
 from factories.nested_factory import NestedFactory as Factory
 
 

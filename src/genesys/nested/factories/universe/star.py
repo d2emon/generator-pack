@@ -1,4 +1,4 @@
-from generated import universe
+from models.v5 import universe
 from factories.nested_factory import NestedFactory as Factory
 from ..temporary import DysonSurfaceFactory
 from ..life import StarLifeFactory

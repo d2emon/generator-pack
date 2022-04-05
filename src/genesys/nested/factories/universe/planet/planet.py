@@ -1,4 +1,4 @@
-from generated import universe
+from models.v5 import universe
 from ...temporary import VisitorCityFactory, VisitorInstallationFactory, ContinentFactory, FutureContinentFactory, \
     MedievalContinentFactory, AncientContinentFactory, FutureMoonFactory
 from ...life import BarrenPlanetLifeFactory, VisitorPlanetLifeFactory

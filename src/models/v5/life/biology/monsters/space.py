@@ -9,12 +9,12 @@
 # new Thing("space animal thought",[],[
 ]);
 """
-from generated.nested_v2.models import Mind
+from models.v5.nested_v2.models import Mind
 from genesys.nested.factories.v2.thing_builder import ListFactory
 from .monster import Monster, MonsterBody, MonsterThoughts, MonsterThought
-from generated.life.animal_body import SimpleEye, CrustaceanLeg, CrustaceanClaw, Tentacle, FishFin, Stinger, Mouth, Beak, Skull, \
+from models.v5.life.animal_body import SimpleEye, CrustaceanLeg, CrustaceanClaw, Tentacle, FishFin, Stinger, Mouth, Beak, Skull, \
     WeirdSoftOrgan, WeirdHardOrgan, MammalLeg, InsectWing, Flesh, Snout, Whiskers
-from generated.life.body.body import Eye
+from models.v5.life.body.body import Eye
 from genesys.nested.data import lookups
 
 

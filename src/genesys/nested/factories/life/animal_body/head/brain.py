@@ -1,4 +1,4 @@
-from generated import life
+from models.v5 import life
 from ...cell import CellFactory
 from ...single_celled import BacteriaFactory
 from ..body_parts import SoftBodyPartFactory

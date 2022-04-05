@@ -1,9 +1,9 @@
-from generated.nested_v2.models import Mind
+from models.v5.nested_v2.models import Mind
 from genesys.nested.factories.v2.thing_builder import ListFactory
-from generated.life.animal_body import AnimalBody, SimpleEye, CrustaceanLeg, CrustaceanClaw, CrustaceanShell, Tentacle, FishFin, \
+from models.v5.life.animal_body import AnimalBody, SimpleEye, CrustaceanLeg, CrustaceanClaw, CrustaceanShell, Tentacle, FishFin, \
     Stinger, Exoskeleton, Fur, Scales, Mouth, Beak, Skull, WeirdSoftOrgan, WeirdHardOrgan
-from generated.life.body.body import Eye
-from generated.mind import SimpleThoughts, Thought
+from models.v5.life.body.body import Eye
+from models.v5.mind import SimpleThoughts, Thought
 from ..organism import Organism
 
 

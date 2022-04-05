@@ -1,4 +1,4 @@
-from generated import life
+from models.v5 import life
 from ...mind import ThoughtFactory, ThoughtsFactory, PsycheFactory
 from ..cell import CellFactory
 from ..animals.animal import AnimalFactory

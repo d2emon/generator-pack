@@ -1,5 +1,5 @@
 from factories.nested_factory import NestedFactory
-from generated import universe
+from models.v5 import universe
 from .galaxy import GalaxyFactory
 
 

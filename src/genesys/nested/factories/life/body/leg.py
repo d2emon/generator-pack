@@ -1,4 +1,4 @@
-from generated import life
+from models.v5 import life
 from ...materials import SweatFactory, KeratinFactory
 from ..animal_body.body_parts import BodyPartFactory
 

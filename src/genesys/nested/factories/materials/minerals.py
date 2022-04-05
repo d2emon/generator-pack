@@ -1,4 +1,4 @@
-from generated import materials
+from models.v5 import materials
 from factories.nested_factory import NestedFactory as Factory
 from .matter import MoleculeFactory
 

@@ -1,4 +1,4 @@
-from generated import cloth
+from models.v5 import cloth
 from factories.nested_factory import NestedFactory as Factory
 from .clothing import HatFactory, GlassesFactory, PantsFactory, ShirtFactory, CoatFactory, SocksFactory, \
     ShoesFactory, UnderwearFactory

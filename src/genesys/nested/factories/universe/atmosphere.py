@@ -1,4 +1,4 @@
-from generated import universe, terrain
+from models.v5 import universe, terrain
 from factories.nested_factory import NestedFactory as Factory
 from ..materials import MoleculeFactory, SteamFactory, AmmoniaFactory, MethaneFactory
 from ..life import GasGiantLifeFactory

@@ -1,5 +1,5 @@
 from genesys.nested.child_generator import ChildGenerator
-from generated.life.body.person import ClothingSet, Person
+from models.v5.life.body.person import ClothingSet, Person
 
 
 # medieval people

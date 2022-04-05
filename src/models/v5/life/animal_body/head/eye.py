@@ -5,7 +5,7 @@
 - Eyelashes
 - Eye
 """
-from generated.materials import Water
+from models.v5.materials import Water
 from ....materials import OrganicMatter
 from ..body_parts import BodyPart
 from ..hair import Hair

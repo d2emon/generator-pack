@@ -1,4 +1,4 @@
-from generated import life
+from models.v5 import life
 from ....materials import MoleculeFactory
 from ..body_parts import BodyPartFactory, SkinlessSoftBodyPartFactory
 from ..skeleton import MuscleFactory

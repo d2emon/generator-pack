@@ -1,4 +1,4 @@
-from generated import life
+from models.v5 import life
 from factories.nested_factory import NestedFactory as Factory
 from ...materials import ChitinFactory, DewFactory
 from ..animals.crustacean import CrustaceanLegFactory, CrustaceanClawFactory

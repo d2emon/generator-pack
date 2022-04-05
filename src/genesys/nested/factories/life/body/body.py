@@ -1,4 +1,4 @@
-from generated import life
+from models.v5 import life
 from ..animals.animal import AnimalBodyFactory
 from .torso import TorsoFactory
 from .arm import ArmFactory

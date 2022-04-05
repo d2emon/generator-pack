@@ -1,4 +1,4 @@
-from generated import life
+from models.v5 import life
 from ...mind import PsycheFactory, ThoughtsFactory, ThoughtFactory
 from ..animal_body import WeirdSoftOrganFactory, WeirdHardOrganFactory, CrustaceanClawFactory, StingerFactory, \
     MouthFactory, NoseFactory, EarFactory, EyeFactory, SkullFactory
