@@ -1,7 +1,6 @@
 import random
 from genesys.nested.factories.v2.thing import Thing
-from genesys.nested.factories.v2.children import ChildFactory
-from .life import *
+# from .life import *
 from .universe import NEW_FACTORIES as UNIVERSE_FACTORIES
 
 
@@ -1170,4 +1169,8 @@ new Thing("consolation universe",[".universe"]);
 
 //this is for the nice people who help support the site.
 new Thing("thanks",["can of nightmare","cake","portal"],"Thank you for donating!");
+
+//to add :
+//cows,fungi,more shops,temples,more buildings,paintings,internal organs,phones,lamps,abandoned plants/castles,spaceships oh god
+//actual battlefield thoughts,military bases,ships,airports,more street names,space ships/stations,giant colony ships,wasteland worlds,cults,space probes,prisons,government buildings,schools,amphibian skin
 """

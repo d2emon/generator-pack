@@ -1,7 +1,7 @@
 import random
 from utils.camel_case import camel_case_to_spaces
-from .children import ChildFactory
-from .name import NameFactory
+from genesys.nested.child_factory import ChildFactory
+from genesys.nested.name_factory import NameFactory
 
 
 class Factory:
@@ -67,6 +67,7 @@ class Factory:
     ):
         self.name = name or camel_case_to_spaces(type(self).__name__)
         self.__children = None
+        self.factories = []
 
         self.name_factory = name_factory or self.NameFactory(names_data or self.name)
         self.children_factory = self.ChildrenFactory(children_data)
