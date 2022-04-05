@@ -1,5 +1,5 @@
 from factories.factory import Factory
-from models.encounters.encounter import Encounter
+from models.encounters import Encounter
 from models.item import Item
 
 

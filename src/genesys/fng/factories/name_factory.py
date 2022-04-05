@@ -1,6 +1,6 @@
 import random
 from utils.genders import MALE
-from models.name import TextModel
+from models.name.name import TextModel
 from models.fng.names.name import Name
 from factories.factory import Factory
 from factories.model.name.factories import NameFactory

@@ -1,5 +1,5 @@
 from models.model import Model
-from models.name import TextModel
+from models.name.name import TextModel
 
 
 class Mark(TextModel):
