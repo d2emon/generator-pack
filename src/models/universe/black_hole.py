@@ -7,8 +7,15 @@
 - BlackHole
 """
 from models.nested_model import NestedModel
-from models.v5.materials import Portal
-from models.v5.life import Life
+# from models.v5.life import Life
+
+
+class Portal(NestedModel):
+    universe = property(lambda self: self.children[0] if len(self.children) else None)
+
+    def enter(self):
+        return self.universe
+
 
 
 class EndOfUniverseNote(NestedModel):
@@ -39,7 +46,7 @@ class WhiteHole(Portal):
 
 
 class InsideTheBlackHole(NestedModel):
-    life = NestedModel.child_property(Life)
+    # life = NestedModel.child_property(Life)
     note = NestedModel.child_property(EndOfUniverseNote)
     white_hole = NestedModel.child_property(WhiteHole)
 

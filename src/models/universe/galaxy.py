@@ -5,14 +5,14 @@
 - Galaxy
 """
 from models.nested_model import NestedModel
-from models.v5.life import Life
+# from models.v5.life import Life
 from .nebula import Nebula
 from .star import StarSystem
 from .black_hole import BlackHole
 
 
 class GalaxyPart(NestedModel):
-    life = NestedModel.child_property(Life)
+    # life = NestedModel.child_property(Life)
     stars = NestedModel.children_property(StarSystem)
     nebulas = NestedModel.children_property(Nebula)
     black_holes = NestedModel.children_property(BlackHole)

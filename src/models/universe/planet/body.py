@@ -5,9 +5,9 @@
 - TerraformedMoon
 """
 from models.nested_model import NestedModel
-from models.v4.mixins import TerraformedMixin
-from models.v5.life import Life
-from models.v5.terrain import Ocean, Sky
+# from models.v4.mixins import TerraformedMixin
+# from models.v5.life import Life
+# from models.v5.terrain import Ocean, Sky
 from .atmosphere import Atmosphere
 from .plate import Plate
 from .core import PlanetCore
@@ -15,13 +15,13 @@ from .core import PlanetCore
 
 class PlanetLike(NestedModel):
     atmosphere = NestedModel.child_property(Atmosphere)
-    biosphere = NestedModel.child_property(Life)
+    # biosphere = NestedModel.child_property(Life)
     core = NestedModel.child_property(PlanetCore)
     plates = NestedModel.children_property(Plate)
-    sky = NestedModel.child_property(Sky)
-    # land = NestedModel.children_property(Continent)
-    water = NestedModel.children_property(Ocean)
-    # visited = NestedModel.children_property(VisitorCity, VisitorInstallation)
+    # sky = NestedModel.child_property(Sky)
+    # # land = NestedModel.children_property(Continent)
+    # water = NestedModel.children_property(Ocean)
+    # # visited = NestedModel.children_property(VisitorCity, VisitorInstallation)
 
 
 class Asteroid(PlanetLike):
@@ -32,5 +32,6 @@ class Moon(PlanetLike):
     pass
 
 
-class TerraformedMoon(Moon, TerraformedMixin):
+# class TerraformedMoon(Moon, TerraformedMixin):
+class TerraformedMoon(Moon):
     pass

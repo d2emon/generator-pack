@@ -5,12 +5,12 @@
 - ?Earth (Unused)
 """
 from models.nested_model import NestedModel
-from ..v5.life import Life
+# from ..v5.life import Life
 from .planet.body import PlanetLike
 
 
 class Orbit(NestedModel):
-    life = NestedModel.child_property(Life)
+    # life = NestedModel.child_property(Life)
     planets = NestedModel.children_property(PlanetLike)
 
 

@@ -3,14 +3,15 @@
 - StarSystem
 """
 from models.nested_model import NestedModel
-from models.v5.materials import Atom
-from models.v5.life import Life
+# from models.v5.materials import Atom
+# from models.v5.life import Life
 from .orbit import Orbit, PlanetOrbit, AsteroidBelt
 
 
 class Star(NestedModel):
-    life = NestedModel.child_property(Life)
-    matter = NestedModel.children_property(Atom)
+    # life = NestedModel.child_property(Life)
+    # matter = NestedModel.children_property(Atom)
+    pass
 
 
 class StarSystem(NestedModel):

@@ -4,7 +4,7 @@
 - TelluricPlanet
 - GasGiant
 """
-from models.v4.mixins import TerraformedMixin
+# from models.v4.mixins import TerraformedMixin
 from .body import PlanetLike, Moon
 
 
@@ -18,7 +18,8 @@ class BarrenPlanet(Planet):
     pass
 
 
-class TelluricPlanet(Planet, TerraformedMixin):
+# class TelluricPlanet(Planet, TerraformedMixin):
+class TelluricPlanet(Planet):
     pass
 
 
