@@ -2,7 +2,7 @@ import random
 import unittest
 from genesys.nested.name_factory import NameFactory
 from genesys.nested.child_factory import ChildFactory
-from genesys.nested.thing_factory import Factory as BaseFactory, Thing as BaseThing
+from genesys.nested.thing_factory import Factory as BaseFactory
 from models.model import Model
 
 
@@ -13,7 +13,7 @@ class Factory(BaseFactory):
     model_type = Model
 
 
-class Thing(BaseThing):
+class FactoryNoDefault(BaseFactory):
     model_type = Model
 
 
@@ -116,15 +116,15 @@ class TestNameFactory(unittest.TestCase):
         self.assertEqual(factory.children, children)
 
     def test_thing(self):
-        factory = Thing.from_str(
+        factory = FactoryNoDefault.from_str(
             'NAME',
             [
-                "CHILD",
+                "VALUE",
             ],
             'NAME FACTORY',
         )
 
-        self.assertTrue(isinstance(factory(), Thing))
+        self.assertTrue(isinstance(factory(), BaseFactory))
         self.assertEqual(iter(factory), factory)
 
         model = next(factory)
@@ -134,7 +134,7 @@ class TestNameFactory(unittest.TestCase):
 
         for child in factory.children:
             for item in child:
-                self.assertEqual(item, "CHILD")
+                self.assertEqual(item, "VALUE")
 
         # self.assertEqual(repr(factory), "<NameFactory [['UNNAMED']]>")
         # self.assertEqual(factory.parts(), ['UNNAMED'])

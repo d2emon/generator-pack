@@ -1,5 +1,5 @@
 from genesys.nested.child_generator import ChildGenerator
-from genesys.nested.factories import Thing
+from genesys.nested.thing_factory import Factory as Thing
 
 # furniture
 class Cabinet(Thing):

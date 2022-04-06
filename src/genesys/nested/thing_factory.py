@@ -94,8 +94,6 @@ class Factory:
         model.image = next(self.image_factory)
         return model
 
-
-class Thing(Factory):
     @classmethod
     def from_str(cls, name, children=None, names=None):
         thing = cls(name, names_data=names, children_data=children)

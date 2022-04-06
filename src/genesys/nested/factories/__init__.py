@@ -1,5 +1,5 @@
 import random
-from genesys.nested.thing_factory import Thing
+from genesys.nested.thing_factory import Factory
 # from .life import *
 from .universe import NEW_FACTORIES as UNIVERSE_FACTORIES
 
@@ -14,7 +14,7 @@ class Things:
 
     @classmethod
     def add_thing(cls, name, children_data, factory=None):
-        cls.FACTORIES[name] = Thing.from_str(name, children_data, factory)
+        cls.FACTORIES[name] = Factory.from_str(name, children_data, factory)
 
     @classmethod
     def get_thing(cls, key):

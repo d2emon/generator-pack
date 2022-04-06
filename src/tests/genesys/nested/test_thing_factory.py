@@ -1,5 +1,5 @@
 import unittest
-from genesys.nested.factories import Thing
+from genesys.nested.thing_factory import Factory
 from genesys.nested.factories import Things
 
 
@@ -37,7 +37,7 @@ class TestThingFactory(unittest.TestCase):
         Things.add_thing('NAME', [])
 
         item = Things.get_thing('NAME')
-        self.assertTrue(isinstance(item, Thing))
+        self.assertTrue(isinstance(item, Factory))
 
     def test_get_factories(self):
         factories = Things.get_factories('item')
