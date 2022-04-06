@@ -1,4 +1,4 @@
-from models.v5.model import Model
+from models.nested_model import Model
 from .mind import Psyche, PsycheElement, Memories, Memory, Thoughts, Thought
 
 

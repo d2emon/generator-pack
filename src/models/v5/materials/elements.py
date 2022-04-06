@@ -2,7 +2,7 @@
 - Nucleus
 - Atom
 """
-from models.v5.model import Model
+from models.nested_model import Model
 from .particles import Electron, Proton, Neutron
 
 

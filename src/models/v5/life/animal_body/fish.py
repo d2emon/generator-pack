@@ -3,7 +3,7 @@
 - FishTail
 - FishSkin
 """
-from models.v5.model import Model
+from models.nested_model import Model
 from .limb import Limb, Tail
 from .skin import Skin, Scales
 

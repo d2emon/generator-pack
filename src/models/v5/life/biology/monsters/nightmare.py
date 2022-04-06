@@ -1,4 +1,4 @@
-from models.v5.model import Model
+from models.nested_model import Model
 from .space import SpaceAnimal, SpaceMonster
 from .sea import SeaMonster
 

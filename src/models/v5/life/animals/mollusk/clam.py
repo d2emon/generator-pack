@@ -3,7 +3,7 @@
 - Clam Body
 - ClamShell
 """
-from models.v5.model import Model
+from models.nested_model import Model
 from ....materials import Molecule
 from ..animal import Animal, AnimalBody
 

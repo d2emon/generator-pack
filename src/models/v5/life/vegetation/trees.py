@@ -13,7 +13,7 @@
 - Trees
 - Humus
 """
-from models.v5.model import Model
+from models.nested_model import Model
 from ...materials import OrganicMatter
 from ...mind import Psyche
 from .twig import Twig

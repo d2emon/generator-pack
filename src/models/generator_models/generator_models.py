@@ -1,4 +1,4 @@
-from models.v5.model import Model as BaseModel
+from models.nested_model import Model as BaseModel
 
 
 class Model(BaseModel):

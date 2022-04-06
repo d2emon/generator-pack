@@ -7,7 +7,7 @@
 - Scales
 - Exoskeleton
 """
-from models.v5.model import Model
+from models.nested_model import Model
 from ...materials import Sweat, Keratin, Chitin
 from ..cell import Cell
 from ..single_celled import Bacteria
