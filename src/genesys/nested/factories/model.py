@@ -1,4 +1,4 @@
-from genesys.nested.factories.v2.thing_builder import ThingBuilder
+from genesys.nested.factories.thing_builder import ThingBuilder
 
 
 class ModelBuilder:

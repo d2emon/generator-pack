@@ -16,8 +16,12 @@ class ProviderFactory:
 class ListFactory:
     default = []
 
-    def __init__(self, data):
-        self.data = data or self.default
+    def __init__(self, data=None):
+        self.__data = data or self.default
+
+    @property
+    def data(self):
+        return self.__data
 
     def __iter__(self):
         return self
