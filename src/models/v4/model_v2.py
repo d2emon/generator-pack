@@ -1,6 +1,6 @@
+from models.placeholder import Placeholder
 from .generating import GeneratingModel
 from .model import Model as BaseModel
-from .placeholder import Placeholder
 from .interface.base import BaseModelInterface
 
 

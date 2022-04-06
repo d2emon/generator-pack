@@ -1,5 +1,5 @@
 import random
-from models.v4.placeholder import Placeholder
+from models.placeholder import Placeholder
 
 
 class ProviderFactory:
