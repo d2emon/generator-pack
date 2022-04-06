@@ -27,7 +27,6 @@ Universe stuff
 - D2emon Psyche
 - D2emon Thoughts
 """
-from .universe import Supercluster, Universe, Multiverse
 from .galaxy import GalaxyPart, GalaxyArm, GalaxyCenter, Galaxy
 from .nebula import InterstellarCloud, Nebula
 from .star import Star, StarSystem
