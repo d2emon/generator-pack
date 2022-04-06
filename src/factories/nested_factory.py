@@ -34,11 +34,21 @@ class NestedFactory(ModelFactory):
         return {
             "name": name or self.name or self.name_factory(),
             "parent": parent,
-            "children": children,
+            # "children": children,
             # "placeholders": placeholders or self.children_factories(),
             "placeholders": placeholders or self.children(),
             **kwargs,
         }
+
+    def __call__(
+        self,
+        *children,
+        **kwargs,
+    ):
+        return self.model(
+            *children,
+            **self.get_data(*children, **kwargs),
+        )
 
     # Factory methods
 
