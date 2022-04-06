@@ -1,5 +1,5 @@
 import random
-from genesys.nested.factories.v2.thing import Thing
+from genesys.nested.thing_factory import Thing
 # from .life import *
 from .universe import NEW_FACTORIES as UNIVERSE_FACTORIES
 

@@ -1,4 +1,4 @@
-from .name import NameFactory
+from .new_name_factory import NameFactory
 from .instance import Instance
 
 

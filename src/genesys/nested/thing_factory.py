@@ -1,7 +1,7 @@
 import random
 from utils.camel_case import camel_case_to_spaces
-from genesys.nested.child_factory import ChildFactory
-from genesys.nested.name_factory import NameFactory
+from .child_factory import ChildFactory
+from .name_factory import NameFactory
 
 
 class Factory:
@@ -9,7 +9,8 @@ class Factory:
         default_data = None
 
         def __init__(self, data=None):
-            super().__init__(data or self.default_data)
+            provider = NameFactory.DataProvider(data or self.default_data)
+            super().__init__(provider)
 
     class ChildrenFactory:
         default_data = []
@@ -93,25 +94,6 @@ class Factory:
         model.image = next(self.image_factory)
         return model
 
-    def clear(self):
-        # def process_factory(factory):
-        #     if not isinstance(factory.data, str):
-        #         yield factory
-        #         return
-        #     if factory.data[0] != '.':
-        #         yield factory
-        #         return
-        #     sub_name = factory.data[1:]
-        #     sub_item = self.get_thing(sub_name)
-        #     if sub_item is not None:
-        #         yield from sub_item.factories
-
-        # factories = [process_factory(factory) for factory in self.factories]
-        # # print(self.name, self.factories, "+", to_concat)
-        # # print(list(f))
-        # self.factories = [factory for factory in factories if factory is not None]
-        pass
-
 
 class Thing(Factory):
     @classmethod
@@ -120,5 +102,5 @@ class Thing(Factory):
         # thing.name_factory = NameFactory(name_factory, defaulr=name)
         # thing.factories += [ChildFactory.from_str(child) for child in children]
         # thing.add_factories(children)
-        print('FACTORIES', thing.name, thing.children)
+        # print('FACTORIES', thing.name, thing.children)
         return thing
