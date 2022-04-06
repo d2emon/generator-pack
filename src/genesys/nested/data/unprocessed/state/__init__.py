@@ -1,4 +1,4 @@
-from genesys.nested.child_generator import ChildGenerator
+from genesys.nested.factories.child_factory import ChildFactory as ChildGenerator
 from genesys.nested.factories.thing_factory import Factory as Thing
 
 from models.v5.nested_v2.models import Biome

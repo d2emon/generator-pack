@@ -1,4 +1,4 @@
-from genesys.nested.child_generator import ChildGenerator
+from genesys.nested.factories.child_factory import ChildFactory as ChildGenerator
 from models.v5.life.body.person import ClothingSet, Person
 
 
