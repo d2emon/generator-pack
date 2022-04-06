@@ -77,7 +77,7 @@ NEW_FACTORIES = {
     # new Thing("qwubble",["multiverse,1-5"]);
     # new Thing("portal",["universe"]);
 
-    # **UNIVERSE_FACTORIES,
+    **UNIVERSE_FACTORIES,
 }
 
 """

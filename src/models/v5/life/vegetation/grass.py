@@ -2,7 +2,7 @@
 - GrassBlade
 - Grass
 """
-from models.v4.model import Model
+from models.v5.model import Model
 from ...mind import Psyche
 from .twig import Twig
 

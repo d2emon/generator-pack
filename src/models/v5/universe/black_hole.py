@@ -6,7 +6,7 @@
 - InsideTheBlackHole
 - BlackHole
 """
-from models.v4.model import Model
+from models.v5.model import Model
 from ..materials import Portal
 from ..life import Life
 

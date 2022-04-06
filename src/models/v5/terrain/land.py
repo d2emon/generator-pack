@@ -6,7 +6,7 @@
 - Cave
 - Mountain
 """
-from models.v4.model import Model
+from models.v5.model import Model
 from ..materials import Fire, Snow, Rock
 from ..life import Grass, Trees, Life
 from .water import River, Lake

@@ -5,7 +5,7 @@
 - Nose
 - Snout ?
 """
-from models.v4.model import Model
+from models.v5.model import Model
 from ....materials import OrganicMatter
 from ..body_parts import BodyPart
 from ..hair import Hair

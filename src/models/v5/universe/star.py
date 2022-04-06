@@ -2,7 +2,7 @@
 - Star
 - StarSystem
 """
-from models.v4.model import Model
+from models.v5.model import Model
 from ..materials import Atom
 from ..life import Life
 from .orbit import Orbit, PlanetOrbit, AsteroidBelt

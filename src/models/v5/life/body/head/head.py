@@ -4,7 +4,7 @@
 - HeadHair
 - Dandruff
 """
-from models.v4.model import Model
+from models.v5.model import Model
 from ...animal_body.body_parts import BodyPart
 from ...animal_body.hair import Hair
 from ...animal_body.head import Nose, Ear, Eye, Mouth, Skull

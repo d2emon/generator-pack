@@ -1,13 +1,14 @@
 from factories.nested_factory import NestedFactory
 from models.v5 import universe
-from .galaxy import GalaxyFactory
+# from .galaxy import GalaxyFactory
 
 
 class SuperclusterFactory(NestedFactory):
     default_model = universe.Supercluster
 
     def children(self):
-        yield from GalaxyFactory().multiple(10, 30)
+        yield from []
+        # yield from GalaxyFactory().multiple(10, 30)
 
 
 class UniverseFactory(NestedFactory):

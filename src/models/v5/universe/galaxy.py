@@ -4,7 +4,7 @@
 - GalaxyCenter
 - Galaxy
 """
-from models.v4.model import Model
+from models.v5.model import Model
 from ..life import Life
 from .nebula import Nebula
 from .star import StarSystem

@@ -4,7 +4,7 @@
 - Moon
 - TerraformedMoon
 """
-from models.v4.model import Model
+from models.v5.model import Model
 from models.v4.mixins import TerraformedMixin
 from ...life import Life
 from ...terrain import Ocean, Sky

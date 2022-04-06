@@ -1,4 +1,4 @@
-from models.v4.model import Model
+from models.v5.model import Model
 from .venom import Venom
 from .jelly import Jelly
 from .hair import Hair, Fur, Whiskers
