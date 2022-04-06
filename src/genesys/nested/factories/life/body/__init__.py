@@ -1,4 +1,4 @@
-from ...cloth import ClothingSetFactory
+# from ...cloth import ClothingSetFactory
 from ..animal_body.body_parts import BodyPartFactory, SoftBodyPartFactory, SkinlessBodyPartFactory, \
     SkinlessSoftBodyPartFactory
 from ..animal_body.hair import HairFactory
@@ -43,7 +43,7 @@ FACTORIES = {
     'brain cell': BrainCellFactory(),
     'dandruff': DandruffFactory(),
 
-    'clothing set': ClothingSetFactory(),
+    # 'clothing set': ClothingSetFactory(),
     'man': ManFactory(),
     'woman': WomanFactory(),
     'person': PersonFactory(),

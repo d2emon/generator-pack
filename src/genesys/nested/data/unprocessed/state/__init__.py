@@ -1,5 +1,5 @@
 from genesys.nested.child_generator import ChildGenerator
-from genesys.nested.thing_factory import Factory as Thing
+from genesys.nested.factories.thing_factory import Factory as Thing
 
 from models.v5.nested_v2.models import Biome
 from genesys.nested.data.unprocessed.room import Building
