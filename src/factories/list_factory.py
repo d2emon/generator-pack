@@ -9,8 +9,10 @@ class ListFactory(Factory):
     Generate random value from list
     """
 
+    default = []
+
     def __init__(self, data=()):
-        self.__data = data
+        self.__data = data or self.default
 
     @property
     def data(self):

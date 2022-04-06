@@ -1,5 +1,5 @@
 from models.v5.nested_v2.models import Mind
-from genesys.nested.factories.thing_builder import ListFactory
+from factories.list_factory import ListFactory
 from models.v5.life.animal_body import AnimalBody, SimpleEye, CrustaceanLeg, CrustaceanClaw, CrustaceanShell, Tentacle, FishFin, \
     Stinger, Exoskeleton, Fur, Scales, Mouth, Beak, Skull, WeirdSoftOrgan, WeirdHardOrgan
 from models.v5.life.body.body import Eye

@@ -1,4 +1,4 @@
-from genesys.nested.factories.thing_builder import ListFactory
+from factories.list_factory import ListFactory
 
 
 class Lookup(ListFactory):
