@@ -1,9 +1,8 @@
-from .named import NamedModel
-from .tree import TreeModel
+from ..named_model import NamedModel
+from ..tree_model import TreeModel
 
 
 class Model(TreeModel, NamedModel):
-    # TODO: Remove it
     class Factory:
         class BaseFactory:
             pass
@@ -23,7 +22,10 @@ class Model(TreeModel, NamedModel):
             *children,
             parent=parent,
         )
-        NamedModel.__init__(self, name)
+        NamedModel.__init__(
+            self,
+            name,
+        )
         self.__placeholders = list(placeholders)
 
     @property
@@ -41,10 +43,7 @@ class Model(TreeModel, NamedModel):
             self.add_child(placeholder(parent=self))
         self.__placeholders = []
 
-    # TODO: Remove it
-    def child_property(self, *args, **kwargs):
-        return []
-
-    # TODO: Remove it
-    def probable(self, *args, **kwargs):
+    @classmethod
+    def probable(cls, probability=100):
+        # TODO: Remove it
         return None

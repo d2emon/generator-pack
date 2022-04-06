@@ -2,14 +2,13 @@ class NamedModel:
     default_name = None
 
     def __init__(self, name=None):
-        self.__name = name or self.__default_name
-
-    @property
-    def __default_name(self):
-        return self.default_name or self.__class__.__name__
+        self.__name = name
 
     @property
     def name(self):
+        if self.__name is None:
+            self.__name = self.default_name or self.__class__.__name__
+        
         return self.__name
 
     @name.setter
