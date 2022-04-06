@@ -1,7 +1,7 @@
-from models.nested_model import Model as BaseModel
+from models.nested_model import NestedModel
 
 
-class Model(BaseModel):
+class Model(NestedModel):
     # factories.generator.Generated
     def __init__(self):
         super().__init__()

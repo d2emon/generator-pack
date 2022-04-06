@@ -8,7 +8,7 @@ Cell stuff
 - Genetic Code
 - Nucleotide
 """
-from models.nested_model import Model
+from models.nested_model import NestedModel as Model
 from ..materials import OrganicMolecule, OrganicMatter
 
 

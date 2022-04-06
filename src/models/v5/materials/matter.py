@@ -5,7 +5,7 @@
 - Ammonia
 - Steel
 """
-from models.nested_model import Model
+from models.nested_model import NestedModel as Model
 from .elements import Atom
 
 

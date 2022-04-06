@@ -3,13 +3,13 @@
 - Universe
 - Multiverse
 """
-from models.nested_model import Model
-from .galaxy import Galaxy
+from models.nested_model import NestedModel as Model
+# from .galaxy import Galaxy
 
 
 class Supercluster(Model):
     default_name = 'galactic supercluster'
-    galaxies = Model.children_property(Galaxy)
+    # galaxies = Model.children_property(Galaxy)
 
 
 class Universe(Model):

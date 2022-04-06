@@ -4,7 +4,7 @@
 - AsteroidBelt
 - ?Earth (Unused)
 """
-from models.nested_model import Model
+from models.nested_model import NestedModel as Model
 from ..life import Life
 from .planet.body import PlanetLike
 

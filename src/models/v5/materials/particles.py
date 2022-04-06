@@ -8,7 +8,7 @@
 - DownQuark
 - Qwubble
 """
-from models.nested_model import Model
+from models.nested_model import NestedModel as Model
 
 
 class Qwubble(Model):

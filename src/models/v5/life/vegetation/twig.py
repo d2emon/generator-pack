@@ -2,7 +2,7 @@
 - PlantCell
 - Twig
 """
-from models.nested_model import Model
+from models.nested_model import NestedModel as Model
 from ...materials import Dew
 from ..cell import Cell
 

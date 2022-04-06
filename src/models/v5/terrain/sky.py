@@ -7,7 +7,7 @@
     - TerraformedSky
     - FutureSky
 """
-from models.nested_model import Model
+from models.nested_model import NestedModel as Model
 from ..materials import Gas, Steam, Water
 from ..life import Life
 

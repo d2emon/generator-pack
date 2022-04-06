@@ -2,7 +2,7 @@
 - InterstellarCloud
 - Nebula
 """
-from models.nested_model import Model
+from models.nested_model import NestedModel as Model
 from ..materials import Gas
 from ..life import Life
 from .star import StarSystem

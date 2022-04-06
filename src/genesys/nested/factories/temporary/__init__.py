@@ -1,4 +1,4 @@
-from models.nested_model import Model
+from models.nested_model import NestedModel as Model
 from factories.nested_factory import NestedFactory as Factory
 
 

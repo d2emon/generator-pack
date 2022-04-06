@@ -2,7 +2,7 @@ from .named_model import NamedModel
 from .tree_model import TreeModel
 
 
-class Model(TreeModel, NamedModel):
+class NestedModel(TreeModel, NamedModel):
     class Factory:
         class BaseFactory:
             pass

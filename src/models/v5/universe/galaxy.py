@@ -4,7 +4,7 @@
 - GalaxyCenter
 - Galaxy
 """
-from models.nested_model import Model
+from models.nested_model import NestedModel as Model
 from ..life import Life
 from .nebula import Nebula
 from .star import StarSystem

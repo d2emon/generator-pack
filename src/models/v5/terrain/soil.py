@@ -3,7 +3,7 @@
 - Mud
 - Sand
 """
-from models.nested_model import Model
+from models.nested_model import NestedModel as Model
 from ..materials import Silica, Water
 
 

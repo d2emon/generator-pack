@@ -15,7 +15,7 @@ Insects (arachnids etc too)
 """
 from factories.list_factory import ListFactory
 from models.v5.nested_v2.models import Mind, Paper, Dirt, EggShell, EggThoughts
-from models.nested_model import Model
+from models.nested_model import NestedModel as Model
 from models.v5.life.animal_body import AnimalBody, SimpleEye, InsectLeg, InsectClaw, InsectWing, Exoskeleton, Stinger, Antenna, \
     Flesh, SoftFlesh
 from models.v5.mind import SimpleThoughts, Thought

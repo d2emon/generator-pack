@@ -1,7 +1,7 @@
 """
 - ClothingSet
 """
-from models.nested_model import Model
+from models.nested_model import NestedModel as Model
 from .clothing import Hat, Glasses, Pants, Shirt, Coat, Socks, Shoes, Underwear
 
 
