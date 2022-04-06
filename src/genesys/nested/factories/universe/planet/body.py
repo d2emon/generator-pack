@@ -1,4 +1,5 @@
-from models.v5 import universe
+from models.universe.planet.planet import PlanetLike
+from models.universe.planet.body import Asteroid, Moon, TerraformedMoon
 from factories.nested_factory import NestedFactory as Factory
 from ...temporary import ContinentFactory
 from ...life import AsteroidLifeFactory, MoonLifeFactory
@@ -8,7 +9,7 @@ from .core import PlanetCoreFactory
 
 
 class PlanetLikeFactory(Factory):
-    default_model = universe.PlanetLike
+    default_model = PlanetLike
 
     def atmosphere(self):
         yield None
@@ -39,7 +40,7 @@ class PlanetLikeFactory(Factory):
 
 
 class AsteroidFactory(PlanetLikeFactory):
-    default_model = universe.Asteroid
+    default_model = Asteroid
 
     def biosphere(self):
         yield AsteroidLifeFactory()
@@ -49,7 +50,7 @@ class AsteroidFactory(PlanetLikeFactory):
 
 
 class MoonFactory(PlanetLikeFactory):
-    default_model = universe.Moon
+    default_model = Moon
     names = ["young", "old", "large", "small", "pale", "white", "dark", "black", "old"]
 
     def generate_name(self):
@@ -63,7 +64,7 @@ class MoonFactory(PlanetLikeFactory):
 
 
 class TerraformedMoonFactory(MoonFactory):
-    default_model = universe.TerraformedMoon
+    default_model = TerraformedMoon
     names = [
         "young", "old", "large", "small", "pale", "white", "dark", "black", "old", "green", "lush", "blue", "city",
         "colonized", "life",

@@ -1,4 +1,4 @@
-from models.v5 import universe
+from models.universe.planet.planet import Planet, BarrenPlanet, TelluricPlanet, GasGiant
 from ...temporary import VisitorCityFactory, VisitorInstallationFactory, ContinentFactory, FutureContinentFactory, \
     MedievalContinentFactory, AncientContinentFactory, FutureMoonFactory
 from ...life import BarrenPlanetLifeFactory, VisitorPlanetLifeFactory
@@ -10,7 +10,7 @@ from .plate import PlateFactory
 
 
 class PlanetFactory(PlanetLikeFactory):
-    default_model = universe.Planet
+    default_model = Planet
     default_name = 'planet'
 
     @classmethod
@@ -25,7 +25,7 @@ class PlanetFactory(PlanetLikeFactory):
 
 
 class BarrenPlanetFactory(PlanetFactory):
-    default_model = universe.BarrenPlanet
+    default_model = BarrenPlanet
 
     def biosphere(self):
         yield BarrenPlanetLifeFactory()
@@ -48,7 +48,7 @@ class VisitorPlanetFactory(BarrenPlanetFactory):
 
 
 class TelluricPlanetFactory(PlanetFactory):
-    default_model = universe.TelluricPlanet
+    default_model = TelluricPlanet
 
     def atmosphere(self):
         yield AtmosphereFactory()
@@ -107,7 +107,7 @@ class AncientPlanetFactory(TelluricPlanetFactory):
 
 
 class GasGiantFactory(PlanetFactory):
-    default_model = universe.GasGiant
+    default_model = GasGiant
 
     def atmosphere(self):
         yield GasGiantAtmosphereFactory()

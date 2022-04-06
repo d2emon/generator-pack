@@ -1,10 +1,10 @@
-from models.v5 import universe
+from models.universe.planet.plate import Plate
 from factories.nested_factory import NestedFactory as Factory
 from ...materials import RockFactory, IceFactory
 
 
 class PlateFactory(Factory):
-    default_model = universe.Plate
+    default_model = Plate
     ice_probability = 50
 
     def children(self):

@@ -6,22 +6,22 @@
 - InsideTheBlackHole
 - BlackHole
 """
-from models.nested_model import NestedModel as Model
-from ..materials import Portal
-from ..life import Life
+from models.nested_model import NestedModel
+from models.v5.materials import Portal
+from models.v5.life import Life
 
 
-class EndOfUniverseNote(Model):
+class EndOfUniverseNote(NestedModel):
     # contents = Model.children_property(Pasta)
 
     def read(self):
         return self.name
 
 
-class Everything(Model):
+class Everything(NestedModel):
     @property
     def universe(self):
-        from .universe import Universe
+        from . import Universe
 
         return next(self.children_by_class(Universe), None)
 
@@ -38,10 +38,10 @@ class WhiteHole(Portal):
     pass
 
 
-class InsideTheBlackHole(Model):
-    life = Model.child_property(Life)
-    note = Model.child_property(EndOfUniverseNote)
-    white_hole = Model.child_property(WhiteHole)
+class InsideTheBlackHole(NestedModel):
+    life = NestedModel.child_property(Life)
+    note = NestedModel.child_property(EndOfUniverseNote)
+    white_hole = NestedModel.child_property(WhiteHole)
 
 
 class BlackHole(Portal):
