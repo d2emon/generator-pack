@@ -15,7 +15,7 @@ class NestedModel(TreeModel, NamedModel):
         name=None,
         *children,
         parent=None,
-        placeholders=(),
+        placeholders=None,
         **kwargs,
     ):
         super().__init__(
@@ -26,7 +26,7 @@ class NestedModel(TreeModel, NamedModel):
             self,
             name,
         )
-        self.__placeholders = list(placeholders)
+        self.__placeholders = list(placeholders) if placeholders else []
 
     @property
     def children(self):

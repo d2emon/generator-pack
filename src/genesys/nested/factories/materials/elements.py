@@ -41,7 +41,11 @@ class HydrogenAtomFactory(AtomFactory):
 
 
 def element_factory(name, factory=AtomFactory):
-    return factory.create_factory(materials.Atom, name)
+    class ElementFactory(factory):
+        model_class = materials.Atom
+        default_name = name
+
+    return ElementFactory
 
 
 element_factories = {

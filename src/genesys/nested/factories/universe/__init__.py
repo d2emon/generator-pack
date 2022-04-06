@@ -1,4 +1,10 @@
-# from .universe import SuperclusterFactory, UniverseFactory, MultiverseFactory
+"""
+Universe stuff
+"""
+from factories.nested_factory import NestedFactory
+from models.universe import Supercluster, Universe, Multiverse
+# from .galaxy import GalaxyFactory
+
 # from .galaxy import SpaceFactory, GalaxyArmFactory, GalaxyCenterFactory, GalaxyFactory
 # from .nebula import InterstellarCloudFactory, NebulaFactory
 # from .star import StarFactory, StarSystemFactory, SingleStarFactory, DysonSphereFactory
@@ -12,45 +18,89 @@
 # from .god import D2emonThoughtsFactory, D2emonPsycheFactory, D2emonFactory, GodFactory
 
 
+DATA = {
+    "multiverse": [
+        "multiverse", "lasagnaverse", "doughnutverse", "towelverse", "baconverse", "sharkverse", "nestedverse",
+        "tastyverse", "upverse", "downverse", "layerverse", "clusterverse", "metaverse", "quantiverse", "paraverse",
+        "epiverse", "alterverse", "hypoverse", "dimensioverse", "planiverse", "pluriverse", "polyverse", "maniverse",
+        "stackoverse", "antiverse", "superverse", "upperverse", "maxiverse", "megaverse", "babyverse", "tinyverse",
+        "retroverse", "ultraverse", "topoverse", "otherverse", "bubbleverse", "esreverse", "versiverse", "'verse",
+        "cookieverse", "grandmaverse",
+    ],
+}
+
+# Multiverse
+# Universe
+# Supercluster
+
+class MultiverseFactory(NestedFactory):
+    default_model = Multiverse
+    names = DATA["multiverse"]
+
+    def name_factory(self):
+        return self.select_item(*self.names)
+
+    def children(self):
+        yield from UniverseFactory().multiple(10, 30)
+
+
+class UniverseFactory(NestedFactory):
+    default_model = Universe
+
+    def children(self):
+        yield from SuperclusterFactory().multiple(10, 30)
+
+
+class SuperclusterFactory(NestedFactory):
+    default_model = Supercluster
+
+    def name_factory(self):
+        return "galactic supercluster"
+
+    def children(self):
+        yield from []
+        # yield from GalaxyFactory().multiple(10, 30)
+
+
 FACTORIES = {
     # 'multiverse': MultiverseFactory(),
     # 'universe': UniverseFactory(),
     # 'supercluster': SuperclusterFactory(),
-    # 'galaxy': GalaxyFactory(),
-    # 'galaxy arm': GalaxyArmFactory(),
-    # 'galaxy center': GalaxyCenterFactory(),
-    # 'nebula': NebulaFactory(),
-    # 'interstellar cloud': InterstellarCloudFactory(),
-    # 'star system': StarSystemFactory(),
-    # 'dyson sphere': DysonSphereFactory(),
-    # 'star': StarFactory(),
-    # 'planet': DefaultPlanetFactory(),
-    # 'barren planet': BarrenPlanetFactory(),
-    # 'visitor planet': VisitorPlanetFactory(),
-    # 'future planet': FuturePlanetFactory(),
-    # 'terraformed planet': FuturePlanetFactory(),
-    # 'medieval planet': FuturePlanetFactory(),
-    # 'ancient planet': FuturePlanetFactory(),
-    # 'planet composition': PlanetFactory(),
-    # 'moon': MoonFactory(),
-    # 'terraformed moon': TerraformedMoonFactory(),
-    # 'asteroid belt': AsteroidBeltFactory(),
-    # 'earth': EarthFactory(),
-    # 'asteroid': AsteroidFactory(),
-    # 'gas giant': GasGiantFactory(),
-    # 'gas giant atmosphere': GasGiantAtmosphereFactory(),
-    # 'planet core': PlanetCoreFactory(),
+    # # 'galaxy': GalaxyFactory(),
+    # # 'galaxy arm': GalaxyArmFactory(),
+    # # 'galaxy center': GalaxyCenterFactory(),
+    # # 'nebula': NebulaFactory(),
+    # # 'interstellar cloud': InterstellarCloudFactory(),
+    # # 'star system': StarSystemFactory(),
+    # # 'dyson sphere': DysonSphereFactory(),
+    # # 'star': StarFactory(),
+    # # 'planet': DefaultPlanetFactory(),
+    # # 'barren planet': BarrenPlanetFactory(),
+    # # 'visitor planet': VisitorPlanetFactory(),
+    # # 'future planet': FuturePlanetFactory(),
+    # # 'terraformed planet': FuturePlanetFactory(),
+    # # 'medieval planet': FuturePlanetFactory(),
+    # # 'ancient planet': FuturePlanetFactory(),
+    # # 'planet composition': PlanetFactory(),
+    # # 'moon': MoonFactory(),
+    # # 'terraformed moon': TerraformedMoonFactory(),
+    # # 'asteroid belt': AsteroidBeltFactory(),
+    # # 'earth': EarthFactory(),
+    # # 'asteroid': AsteroidFactory(),
+    # # 'gas giant': GasGiantFactory(),
+    # # 'gas giant atmosphere': GasGiantAtmosphereFactory(),
+    # # 'planet core': PlanetCoreFactory(),
 
-    # 'black hole': BlackHoleFactory(),
-    # 'inside the black hole': InsideTheBlackHoleFactory(),
-    # 'white hole': WhiteHoleFactory(),
-    # '42': Answer42Factory(),
-    # 'everything': EverythingFactory(),
-    # 'end of universe note': EndOfUniverseNoteFactory(),
-    # 'orteil': D2emonFactory(),
-    # 'god': GodFactory(),
-    # 'orteil psyche': D2emonPsycheFactory(),
-    # 'orteil thoughts': D2emonThoughtsFactory(),
+    # # 'black hole': BlackHoleFactory(),
+    # # 'inside the black hole': InsideTheBlackHoleFactory(),
+    # # 'white hole': WhiteHoleFactory(),
+    # # '42': Answer42Factory(),
+    # # 'everything': EverythingFactory(),
+    # # 'end of universe note': EndOfUniverseNoteFactory(),
+    # # 'orteil': D2emonFactory(),
+    # # 'god': GodFactory(),
+    # # 'orteil psyche': D2emonPsycheFactory(),
+    # # 'orteil thoughts': D2emonThoughtsFactory(),
 }
 
 NEW_FACTORIES = {
@@ -58,9 +108,6 @@ NEW_FACTORIES = {
 }
 
 """
-new Thing("multiverse",["universe,10-30"],["multiverse","lasagnaverse","doughnutverse","towelverse","baconverse","sharkverse","nestedverse","tastyverse","upverse","downverse","layerverse","clusterverse","metaverse","quantiverse","paraverse","epiverse","alterverse","hypoverse","dimensioverse","planiverse","pluriverse","polyverse","maniverse","stackoverse","antiverse","superverse","upperverse","maxiverse","megaverse","babyverse","tinyverse","retroverse","ultraverse","topoverse","otherverse","bubbleverse","esreverse","versiverse","'verse","cookieverse","grandmaverse"]);
-new Thing("universe",["supercluster,10-30"]);
-new Thing("supercluster",["galaxy,10-30"],"galactic supercluster");
 new Thing("galaxy",["galaxy center","galaxy arm,2-6"]);
 new Thing("galaxy arm",["galactic life,5%","dyson sphere,4%","dyson sphere,2%","star system,20-50","nebula,0-12","black hole,20%","black hole,20%"],"arm");
 new Thing("galaxy center",["black hole","galactic life,10%","dyson sphere,4%","dyson sphere,2%","star system,20-50","nebula,0-12"],"galactic center");
