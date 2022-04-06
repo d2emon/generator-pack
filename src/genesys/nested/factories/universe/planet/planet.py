@@ -1,4 +1,4 @@
-from models.universe.planet.planet import Planet, BarrenPlanet, TelluricPlanet, GasGiant
+from models.universe.planet import Planet, BarrenPlanet, TelluricPlanet, GasGiant
 from ...temporary import VisitorCityFactory, VisitorInstallationFactory, ContinentFactory, FutureContinentFactory, \
     MedievalContinentFactory, AncientContinentFactory, FutureMoonFactory
 from ...life import BarrenPlanetLifeFactory, VisitorPlanetLifeFactory

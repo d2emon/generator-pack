@@ -1,4 +1,4 @@
-from models.universe.planet.planet import PlanetLike
+from models.universe.planet import PlanetLike
 from models.universe.planet.body import Asteroid, Moon, TerraformedMoon
 from factories.nested_factory import NestedFactory as Factory
 from ...temporary import ContinentFactory

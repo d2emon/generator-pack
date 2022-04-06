@@ -1,4 +1,4 @@
-from models.universe.atmosphere import Atmosphere
+from models.universe.planet.atmosphere import Atmosphere
 from models.v5 import terrain
 from factories.nested_factory import NestedFactory as Factory
 from ..materials import MoleculeFactory, SteamFactory, AmmoniaFactory, MethaneFactory
