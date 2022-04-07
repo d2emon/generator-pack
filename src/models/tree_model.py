@@ -1,3 +1,6 @@
+from factories.factory import Factory
+
+
 class TreeModel:
     def __init__(
         self,
@@ -9,6 +12,7 @@ class TreeModel:
 
     @property
     def children(self):
+        self.__build_children()
         return self.__children
 
     @children.setter
@@ -26,6 +30,11 @@ class TreeModel:
     #
     #     value.add_child(self)
 
+    def __build_children(self):
+        for id, child in enumerate(self.__children):
+            if isinstance(child, Factory):
+                self.__children[id] = child()
+
     def add_child(self, child):
         self.__children.append(child)
         child.__parent = self
@@ -41,7 +50,9 @@ class TreeModel:
     @classmethod
     def children_property(cls, *child_classes, doc=None):
         def get_children(self):
-            return list(self.children_by_class(child_classes))
+            # return list(self.children_by_class(child_classes))
+            children = list(self.children_by_class(child_classes))
+            return children
 
         return property(get_children, None, None, doc)
 

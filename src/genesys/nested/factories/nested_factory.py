@@ -1,4 +1,3 @@
-from tkinter import N
 from factories.nested_factory import NestedFactory as Factory
 
 # TODO: Remove them
@@ -6,7 +5,6 @@ import random
 from utils.camel_case import camel_case_to_spaces
 from .child_factory import ChildFactory
 from .name_factory import NameFactory
-from genesys.nested.factories import name_factory
 
 
 class DataProvider:

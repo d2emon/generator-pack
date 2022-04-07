@@ -35,7 +35,7 @@ class ChildFactory(Factory):
         self,
         provider=None,
     ):
-        if not self.check_probability(self.probability):
+        if not self.get_probability(self.probability):
             return
 
         count = self.get_count(min_count=self.min_count, max_count=self.max_count)
@@ -65,13 +65,9 @@ class NestedFactory(ModelFactory):
 
     def get_data(
         self,
-        name=None,
-        parent=None,
         **kwargs,
     ):
         return {
-            "name": name or self.name_factory(provider=self.provider),
-            "parent": parent,
             **kwargs,
         }
 
@@ -79,19 +75,23 @@ class NestedFactory(ModelFactory):
         self,
         *children,
         model=None,
+        name=None,
         **kwargs,
     ):
         model_factory = model or self.model_factory
 
+        name = self.name_factory(provider=self.provider)
+
         if len(children) > 0:
-            args = list(children)
+            args = children
         else:
             args = self.children_factories()
 
         data = self.get_data(**kwargs)
 
         return model_factory(
-            *children,
+            name,
+            *list(args),
             **data,
         )
 
@@ -104,11 +104,9 @@ class NestedFactory(ModelFactory):
         return self.default_name
 
     def children_factories(self, *args, **kwargs):
-        return [
-            child_factory()
-            for child_factory in self.children
-            if child_factory is not None
-        ]
+        for child_factory in self.children:
+            if child_factory is not None:
+                yield from child_factory()
 
     # Helper methods
 
