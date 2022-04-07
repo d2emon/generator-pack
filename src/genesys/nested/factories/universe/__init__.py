@@ -1,7 +1,7 @@
 """
 Universe stuff
 """
-from factories.nested_factory import NestedFactory
+from genesys.nested.factories.nested_factory import NestedFactory
 from models.universe import Supercluster, Universe, Multiverse
 # from .galaxy import GalaxyFactory
 
@@ -18,45 +18,35 @@ from models.universe import Supercluster, Universe, Multiverse
 # from .god import D2emonThoughtsFactory, D2emonPsycheFactory, D2emonFactory, GodFactory
 
 
-DATA = {
-    "multiverse": [
-        "multiverse", "lasagnaverse", "doughnutverse", "towelverse", "baconverse", "sharkverse", "nestedverse",
-        "tastyverse", "upverse", "downverse", "layerverse", "clusterverse", "metaverse", "quantiverse", "paraverse",
-        "epiverse", "alterverse", "hypoverse", "dimensioverse", "planiverse", "pluriverse", "polyverse", "maniverse",
-        "stackoverse", "antiverse", "superverse", "upperverse", "maxiverse", "megaverse", "babyverse", "tinyverse",
-        "retroverse", "ultraverse", "topoverse", "otherverse", "bubbleverse", "esreverse", "versiverse", "'verse",
-        "cookieverse", "grandmaverse",
-    ],
-}
-
 # Multiverse
 # Universe
 # Supercluster
 
+
 class MultiverseFactory(NestedFactory):
     default_model = Multiverse
-    names = DATA["multiverse"]
 
-    def name_factory(self):
-        return self.select_item(*self.names)
-
+    @property
     def children(self):
-        yield from UniverseFactory().multiple(10, 30)
+        yield UniverseFactory.multiple(10, 30)
+
+    def name_factory(self, provider, *args, **kwargs):
+        return self.select_item(*provider.multiverse)
 
 
 class UniverseFactory(NestedFactory):
     default_model = Universe
 
+    @property
     def children(self):
-        yield from SuperclusterFactory().multiple(10, 30)
+        yield SuperclusterFactory.multiple(10, 30)
 
 
 class SuperclusterFactory(NestedFactory):
     default_model = Supercluster
+    deault_name = "galactic supercluster"
 
-    def name_factory(self):
-        return "galactic supercluster"
-
+    @property
     def children(self):
         yield from []
         # yield from GalaxyFactory().multiple(10, 30)

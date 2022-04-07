@@ -1,85 +1,133 @@
 import random
 from models.model import Model
+from .factory import Factory
 from .model_factory import ModelFactory
+
+
+class ChildFactory(Factory):
+    def __init__(
+        self,
+        factory_class,
+        min_count=1,
+        max_count=None,
+        probability=100,
+    ):
+        self.factory_class = factory_class
+        self.min_count = min_count
+        self.max_count = max_count
+        self.probability = probability
+
+    @classmethod
+    def get_probability(cls, probability=100):
+        if probability >= 100:
+            return True
+
+        return random.uniform(0, 100) < probability
+
+    @classmethod
+    def get_count(self, min_count=1, max_count=None):
+        if max_count is None:
+            return min_count
+        
+        return random.randint(min_count, max_count)
+
+    def __call__(
+        self,
+        provider=None,
+    ):
+        if not self.check_probability(self.probability):
+            return
+
+        count = self.get_count(min_count=self.min_count, max_count=self.max_count)
+        for _ in range(count):
+            yield self.factory_class(
+                provider=provider,
+            )
 
 
 class NestedFactory(ModelFactory):
     default_model = Model
     default_name = None
+    default_children = []
 
-    def __init__(
-        self,
-        model=None,
-        name=None,
-        placeholders=(),
-    ):
-        self.__model = model or self.default_model
-        self.name = name
-        self.placeholders = placeholders
+    def __init__(self, provider=None):
+        self.provider = provider
 
     @property
     def model(self):
-        return self.__model
+        return self.default_model
+
+    @property
+    def children(self):
+        yield from self.default_children
 
     # Inherited methods
 
     def get_data(
         self,
         name=None,
-        *children,
         parent=None,
-        placeholders=None,
         **kwargs,
     ):
         return {
-            "name": name or self.name or self.name_factory(),
+            "name": name or self.name_factory(provider=self.provider),
             "parent": parent,
-            # "children": children,
-            # "placeholders": placeholders or self.children_factories(),
-            "placeholders": placeholders or self.children(),
             **kwargs,
         }
 
     def __call__(
         self,
         *children,
+        model=None,
         **kwargs,
     ):
-        return self.model(
+        model_factory = model or self.model_factory
+
+        if len(children) > 0:
+            args = list(children)
+        else:
+            args = self.children_factories()
+
+        data = self.get_data(**kwargs)
+
+        return model_factory(
             *children,
-            **self.get_data(*children, **kwargs),
+            **data,
         )
 
     # Factory methods
+
+    def model_factory(self, *children, **kwargs):
+        return self.model(*children, **kwargs)
 
     def name_factory(self, *args, **kwargs):
         return self.default_name
 
     def children_factories(self, *args, **kwargs):
-        yield from self.placeholders
-
-    def __children_factory(self, *args, **kwargs):
-        # for factory in self.children_factories(*args, **kwargs)
         return [
-            factory()
-            for factory in self.children_factories(*args, **kwargs)
-            if factory is not None
+            child_factory()
+            for child_factory in self.children
+            if child_factory is not None
         ]
-
-    # Old methods
-
-    def children(self, *args, **kwargs):
-        return self.children_factory(*args, **kwargs)
 
     # Helper methods
 
-    def probable(self, probability=100):
-        return self if random.uniform(0, 100) < probability else None
+    @classmethod
+    def as_child(cls, min_count=1, max_count=None, probability=100):
+        return ChildFactory(
+            cls,
+            min_count=min_count,
+            max_count=max_count,
+            probability=probability,
+        )
 
-    def multiple(self, min_items=1, max_items=None):
-        count = random.randint(min_items, max_items) if max_items is not None else min_items
-        for _ in range(count):
-            yield self
+    @classmethod
+    def probable(cls, probability=100):
+        return ChildFactory(cls, probability=probability)
+
+    @classmethod
+    def multiple(cls, min_items=1, max_items=None):
+        return ChildFactory(cls, min_count=min_items, max_count=max_items)
 
     @classmethod
     def select_item(cls, *items):

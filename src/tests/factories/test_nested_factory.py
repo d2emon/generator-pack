@@ -5,10 +5,10 @@ from models.model import Model
 
 class TestNestedFactory(unittest.TestCase):
     def setUp(self) -> None:
-        self.factory = NestedFactory()
+        self.factory = NestedFactory(provider=None)
 
     def test_nested_factory(self):
-        self.assertIsNone(self.factory.model)
+        self.assertEqual(self.factory.model, Model)
 
         # item = self.factory()
         # self.assertIsNone(item)

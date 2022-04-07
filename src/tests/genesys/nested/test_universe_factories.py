@@ -7,7 +7,7 @@ class TestUniverseModels(unittest.TestCase):
     def test_multiverse_factory(self):
         factory = MultiverseFactory()
         model = factory()
-        self.assertIn(model.name, factory.names)
+        self.assertIn(model.name, factory.provider.multiverse)
         for item in model.universes:
             self.assertTrue(isinstance(item, Universe))
 

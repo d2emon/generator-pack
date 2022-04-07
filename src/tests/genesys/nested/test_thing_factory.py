@@ -1,5 +1,5 @@
 import unittest
-from genesys.nested.factories.thing_factory import Factory
+from genesys.nested.factories.nested_factory import NestedFactory
 from genesys.nested.factories import Things
 
 
@@ -13,7 +13,7 @@ class SubItem2:
 
 class Item:
     name = "item"
-    factories = [
+    thing_factories = [
         [
             'a',
             'b',
@@ -37,7 +37,7 @@ class TestThingFactory(unittest.TestCase):
         Things.add_thing('NAME', [])
 
         item = Things.get_thing('NAME')
-        self.assertTrue(isinstance(item, Factory))
+        self.assertTrue(isinstance(item, NestedFactory))
 
     def test_get_factories(self):
         factories = Things.get_factories('item')

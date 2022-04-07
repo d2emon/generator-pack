@@ -2,19 +2,29 @@ import random
 import unittest
 from genesys.nested.factories.name_factory import NameFactory
 from genesys.nested.factories.child_factory import ChildFactory
-from genesys.nested.factories.thing_factory import Factory as BaseFactory
+from genesys.nested.factories.nested_factory import NestedFactory as BaseFactory
 from models.model import Model
+
+
+class ThingModel(Model):
+    name = Model.field_property('name')
+    image = Model.field_property('image')
+
+    @property
+    def field_names(self):
+        yield "name"
+        yield "image"
 
 
 class Factory(BaseFactory):
     class ChildrenFactory(BaseFactory.ChildrenFactory):
         default_factory = ['VALUE', 10]
 
-    model_type = Model
+    default_model = ThingModel
 
 
 class FactoryNoDefault(BaseFactory):
-    model_type = Model
+    default_model = ThingModel
 
 
 class TestNameFactory(unittest.TestCase):
@@ -98,22 +108,19 @@ class TestNameFactory(unittest.TestCase):
             self.assertLessEqual(position, 10)
 
     def test_factory(self):
-        factory = Factory()
+        factory = Factory.old_init()
 
-        self.assertTrue(isinstance(factory(), Factory))
-        self.assertEqual(iter(factory), factory)
-
-        model = next(factory)
+        model = factory.thing_call()
         self.assertTrue(isinstance(model, Model))
         self.assertEqual(model.name, "Factory")
         self.assertEqual(model.image, "factory")
 
-        children = factory.children
+        children = factory.thing_children
         for child in children:
             for item in child:
                 self.assertEqual(item, "VALUE")
 
-        self.assertEqual(factory.children, children)
+        self.assertEqual(factory.thing_children, children)
 
     def test_thing(self):
         factory = FactoryNoDefault.from_str(
@@ -124,15 +131,12 @@ class TestNameFactory(unittest.TestCase):
             'NAME FACTORY',
         )
 
-        self.assertTrue(isinstance(factory(), BaseFactory))
-        self.assertEqual(iter(factory), factory)
-
-        model = next(factory)
+        model = factory.thing_call()
         self.assertTrue(isinstance(model, Model))
         self.assertEqual(model.name, "NAME FACTORY")
         self.assertEqual(model.image, "NAME")
 
-        for child in factory.children:
+        for child in factory.thing_children:
             for item in child:
                 self.assertEqual(item, "VALUE")
 

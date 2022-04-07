@@ -1,5 +1,5 @@
 import random
-from genesys.nested.factories.thing_factory import Factory
+from genesys.nested.factories.nested_factory import NestedFactory
 
 
 class Things:
@@ -12,7 +12,7 @@ class Things:
 
     @classmethod
     def add_thing(cls, name, children_data, factory=None):
-        cls.FACTORIES[name] = Factory.from_str(name, children_data, factory)
+        cls.FACTORIES[name] = NestedFactory.from_str(name, children_data, factory)
 
     @classmethod
     def get_thing(cls, key):
@@ -23,7 +23,7 @@ class Things:
         def get_children_factories(item):
             if item is None:
                 return
-            for factory in item.factories:
+            for factory in item.thing_factories:
                 if isinstance(factory, list):
                     yield random.choice(factory)
                 elif isinstance(factory.value, str) and factory.value[0] == '.':
