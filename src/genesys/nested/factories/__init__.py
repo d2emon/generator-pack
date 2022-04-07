@@ -12,7 +12,11 @@ class Things:
 
     @classmethod
     def add_thing(cls, name, children_data, factory=None):
-        cls.FACTORIES[name] = NestedFactory.from_str(name, children_data, factory)
+        cls.FACTORIES[name] = NestedFactory(
+            name=name,
+            children=children_data,
+            factory=factory,
+        )
 
     @classmethod
     def get_thing(cls, key):

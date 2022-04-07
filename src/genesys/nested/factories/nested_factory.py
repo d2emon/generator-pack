@@ -1,3 +1,4 @@
+from tkinter import N
 from factories.nested_factory import NestedFactory as Factory
 
 # TODO: Remove them
@@ -5,6 +6,7 @@ import random
 from utils.camel_case import camel_case_to_spaces
 from .child_factory import ChildFactory
 from .name_factory import NameFactory
+from genesys.nested.factories import name_factory
 
 
 class DataProvider:
@@ -45,20 +47,15 @@ class NestedFactory(Factory):
             if self.default_factory is not None:
                 yield ChildFactory(*self.default_factory)
 
-        def __iter__(self):
-            return self
-
-        def __next__(self):
-            return (next(f) for f in self.factories)
+        def __call__(self):
+            for f in self.factories:
+                yield f()
 
     class ImageFactory:
         def __init__(self, image):
             self.image = image
 
-        def __iter__(self):
-            return self
-
-        def __next__(self):
+        def __call__(self):
             return self.image
 
     class PositionFactory:
@@ -67,10 +64,7 @@ class NestedFactory(Factory):
         def __init__(self, positions=None):
             self.positions = positions or self.default_positions
 
-        def __iter__(self):
-            return self
-
-        def __next__(self):
+        def __call__(self):
             return [random.randrange(*pos) if len(pos) > 1 else None for pos in self.positions]
 
     def __init__(
@@ -86,44 +80,75 @@ class NestedFactory(Factory):
         self.__thing_children = None
         self.thing_factories = []
 
-        self.thing_name_factory = None
-        self.thing_children_factory = None
-        self.thing_image_factory = None
-        self.thing_position_factory = None
-
     ####
 
-    @classmethod
-    def old_init(
-        cls,
+    @property
+    def __class_name(self):
+        return camel_case_to_spaces(self.__class__.__name__)
+
+    def get_name_factory(
+        self,
         name=None,
-        name_factory=None,
-        names_data=None,
-        children_data=None,
-        **params,
+        *args,
+        **kwargs,
     ):
-        factory = cls()
-        factory.thing_name = name or camel_case_to_spaces(type(factory).__name__)
-        factory.thing_name_factory = name_factory or factory.NameFactory(names_data or factory.thing_name)
-        factory.thing_children_factory = factory.ChildrenFactory(children_data)
-        factory.thing_image_factory = factory.ImageFactory(factory.thing_name)
-        factory.thing_position_factory = factory.PositionFactory(factory.thing_name)
-        return factory
+        return self.NameFactory(name or self.__class_name)
+
+    def get_children_factory(
+        self,
+        data=None,
+        *args,
+        **kwargs,
+    ):
+        return self.ChildrenFactory(data)
+
+    def get_image_factory(
+        self,
+        name=None,
+        *args,
+        **kwargs,
+    ):
+        return self.ImageFactory(name or self.__class_name)
+
+    def get_position_factory(
+        self,
+        name=None,
+        *args,
+        **kwargs,
+    ):
+        return self.PositionFactory(name or self.__class_name)
+
+    def get_factories(self, name, children=None, names=None):
+        return {
+            "name": self.get_name_factory(name=names or name),
+            "children": self.get_children_factory(data=children),
+            "image": self.get_image_factory(name=name),
+            "position": self.get_position_factory(name=name),
+        }
 
     @classmethod
     def from_str(cls, name, children=None, names=None):
-        return cls.old_init(name, names_data=names, children_data=children)
+        return cls().get_factories(name, children, names)
 
     @property
-    def thing_children(self):
+    def thing_children(self, data=None):
         if self.__thing_children is None:
-            self.__thing_children = list(next(self.thing_children_factory))
+            factory = self.get_children_factory(data)
+            children = factory()
+            self.__thing_children = list(children)
 
         return self.__thing_children
 
-    def thing_call(self, *args, **kwargs):
+    def thing_call(
+        self,
+        *args,
+        name=None,
+        **kwargs,
+    ):
+        name_factory = self.get_name_factory(name)
+        image_factory = self.get_image_factory(name)
         return self.model(
             factory=self,
-            name=next(self.thing_name_factory),
-            image=next(self.thing_image_factory),
+            name=name_factory(),
+            image=image_factory(),
         )

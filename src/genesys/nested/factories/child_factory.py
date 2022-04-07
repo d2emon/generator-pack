@@ -32,11 +32,14 @@ class ChildFactory:
             return self.min_amount
         return random.randrange(self.min_amount, self.max_amount)
 
+    def __call__(self, *args, **kwargs):
+        return [self.factory().value for _ in range(self.amount())]
+
     def __iter__(self):
         return self
 
     def __next__(self):
-        return [self.factory().value for _ in range(self.amount())]
+        return self()
 
     def __repr__(self):
         text = ' '.join([

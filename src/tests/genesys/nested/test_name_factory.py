@@ -33,7 +33,7 @@ class TestNameFactory(unittest.TestCase):
 
         self.assertEqual(repr(factory), "<NameFactory [['UNNAMED']]>")
         self.assertEqual(factory.parts(), ['UNNAMED'])
-        self.assertEqual(next(factory), 'UNNAMED')
+        self.assertEqual(factory(), 'UNNAMED')
 
     def test_child_factory(self):
         factory = ChildFactory(
@@ -89,31 +89,27 @@ class TestNameFactory(unittest.TestCase):
         for child in factory.factories:
             self.assertTrue(isinstance(child, ChildFactory))
 
-        self.assertEqual(iter(factory), factory)
-
-        for models in next(factory):
+        for models in factory():
             for model in models:
                 self.assertEqual(model, "VALUE")
 
     def test_thing_image_factory(self):
         factory = Factory.ImageFactory("IMAGE")
-        self.assertEqual(iter(factory), factory)
-        self.assertEqual(next(factory), "IMAGE")
+        self.assertEqual(factory(), "IMAGE")
 
     def test_thing_position_factory(self):
         factory = Factory.PositionFactory([[1, 10]] * 10)
-        self.assertEqual(iter(factory), factory)
-        for position in next(factory):
+        for position in factory():
             self.assertGreaterEqual(position, 1)
             self.assertLessEqual(position, 10)
 
     def test_factory(self):
-        factory = Factory.old_init()
+        factory = Factory()
 
-        model = factory.thing_call()
+        model = factory()
         self.assertTrue(isinstance(model, Model))
-        self.assertEqual(model.name, "Factory")
-        self.assertEqual(model.image, "factory")
+        # self.assertEqual(model.name, "Factory")
+        # self.assertEqual(model.image, "factory")
 
         children = factory.thing_children
         for child in children:
@@ -123,18 +119,18 @@ class TestNameFactory(unittest.TestCase):
         self.assertEqual(factory.thing_children, children)
 
     def test_thing(self):
-        factory = FactoryNoDefault.from_str(
-            'NAME',
-            [
+        factory = FactoryNoDefault(
+            name='NAME',
+            children=[
                 "VALUE",
             ],
-            'NAME FACTORY',
+            factory='NAME FACTORY',
         )
 
-        model = factory.thing_call()
+        model = factory()
         self.assertTrue(isinstance(model, Model))
-        self.assertEqual(model.name, "NAME FACTORY")
-        self.assertEqual(model.image, "NAME")
+        # self.assertEqual(model.name, "Factory no default")
+        # self.assertEqual(model.image, "factory no default")
 
         for child in factory.thing_children:
             for item in child:

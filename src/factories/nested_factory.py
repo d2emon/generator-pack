@@ -50,7 +50,7 @@ class NestedFactory(ModelFactory):
     default_name = None
     default_children = []
 
-    def __init__(self, provider=None):
+    def __init__(self, provider=None, *args, **kwargs):
         self.provider = provider
 
     @property

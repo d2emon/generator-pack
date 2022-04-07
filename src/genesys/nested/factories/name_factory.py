@@ -29,7 +29,7 @@ class NameFactory:
     def parts(self):
         return ''.join(self.provider.names).split('|')
 
-    def __next__(self):
+    def __call__(self):
         parts = self.parts()
 
         if len(parts) < 1:
