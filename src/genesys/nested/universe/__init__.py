@@ -5,7 +5,6 @@ from genesys.nested.factories.nested_factory import NestedFactory
 from models.universe import Supercluster, Universe, Multiverse
 from .galaxy import GalaxyFactory
 
-# from .star import StarFactory, StarSystemFactory, SingleStarFactory, DysonSphereFactory
 # from .orbit import OrbitFactory, PlanetOrbitFactory, BarrenOrbitFactory, VisitorOrbitFactory, FutureOrbitFactory, \
 #     TerraformedOrbitFactory, MedievalOrbitFactory, AncientOrbitFactory, GasGiantFactory, AsteroidBeltFactory, \
 #     EarthFactory
@@ -22,12 +21,13 @@ from .galaxy import GalaxyFactory
 # Galaxy factories in .galaxy
 # Nebula factories in .nebula
 # Star factories in .star
+# Planet factories in .planet
 
 
 class MultiverseFactory(NestedFactory):
     default_model = Multiverse
 
-    def children(self):
+    def contents(self):
         yield UniverseFactory.multiple(10, 30)
 
     def name_factory(self, provider, *args, **kwargs):
@@ -37,7 +37,7 @@ class MultiverseFactory(NestedFactory):
 class UniverseFactory(NestedFactory):
     default_model = Universe
 
-    def children(self):
+    def contents(self):
         yield SuperclusterFactory.multiple(10, 30)
 
 
@@ -45,28 +45,11 @@ class SuperclusterFactory(NestedFactory):
     default_model = Supercluster
     deault_name = "galactic supercluster"
 
-    def children(self):
+    def contents(self):
         yield GalaxyFactory.multiple(10, 30)
 
 
 """
-new Thing("planet",[".terraformed planet"],"telluric planet");
-new Thing("barren planet",["galactic life,10%","rock","ice,50%",".planet composition"],"telluric planet");
-new Thing("visitor planet",["visitor city,1-8","visitor installation,2-6","galactic life","rock","ice,50%",".planet composition"],"telluric planet");
-new Thing("future planet",["future continent,2-7","ocean,1-7","future sky",".future moon,30%",".planet composition"],"telluric planet");
-new Thing("terraformed planet",["continent,2-7","ocean,1-7","terraformed sky",".terraformed moon,30%",".planet composition"],"telluric planet");
-new Thing("medieval planet",["medieval continent,2-4","ancient continent,0-3","ocean,1-7","sky",".planet composition"],"telluric planet");
-new Thing("ancient planet",["ancient continent,2-7","ocean,1-7","sky",".planet composition"],"telluric planet");
-new Thing("planet composition",["planet core","moon,40%","moon,20%","moon,10%"],"planet");
-new Thing("moon",["ghost,0.1%","rock","planet core"],[["young","old","large","small","pale","white","dark","black","old"],[" moon"]]);
-new Thing("terraformed moon",[".planet composition","continent,1-4","ocean,1-4","sky"],[["young","old","large","small","pale","white","dark","black","old","green","lush","blue","city","colonized","life"],[" moon"]]);
-new Thing("asteroid belt",["galactic life,20%","asteroid,10-30"]);
-new Thing("earth",[".asteroid belt"],"Earth");
-new Thing("asteroid",["space animal,0.5%","rock","ice,30%"],"asteroid");
-new Thing("gas giant",["gas giant atmosphere","planet core,50%","moon,0-3","terraformed moon,20%","terraformed moon,10%"]);
-new Thing("gas giant atmosphere",["galactic life,10%","helium","hydrogen","water,50%","ammonia,50%","methane,50%"],"atmosphere");
-new Thing("planet core",["space monster,0.5%","iron","rock","diamond,2%","magma"],"core");
-
 new Thing("black hole",["inside the black hole"]);
 new Thing("inside the black hole",["end of universe note,0.5%","crustacean,0.2%","white hole"]);
 new Thing("white hole",["universe"]);

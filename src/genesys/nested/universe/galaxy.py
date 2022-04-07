@@ -1,5 +1,5 @@
+from genesys.nested.factories.nested_factory import NestedFactory
 from models.universe.galaxy import Galaxy, GalaxyArm, GalaxyCenter
-from factories.nested_factory import NestedFactory
 # from ..life import GalaxyArmLifeFactory, GalaxyCenterLifeFactory
 from .black_hole import BlackHoleFactory
 from .nebula import NebulaFactory
@@ -14,7 +14,7 @@ from .star import DysonSphereFactory, StarSystemFactory
 class GalaxyFactory(NestedFactory):
     default_model = Galaxy
 
-    def children(self):
+    def contents(self):
         yield GalaxyCenterFactory.as_child()
         yield GalaxyArmFactory.multiple(2, 6)
 
@@ -29,9 +29,6 @@ class GalaxyPartFactory(NestedFactory):
     def black_holes(self):
         yield None
 
-    def life(self):
-        yield None
-
     def stars(self):
         # # yield from [DysonSphereFactory().probable(probability) for probability in self.dyson_sphere_probabilities]
         yield DysonSphereFactory.probable(4)
@@ -41,9 +38,8 @@ class GalaxyPartFactory(NestedFactory):
     def nebulas(self):
         yield NebulaFactory.multiple(self.min_nebula, self.max_nebula)
 
-    def children(self):
+    def contents(self):
         yield from self.black_holes()
-        yield from self.life()
         yield from self.stars()
         yield from self.nebulas()
 
@@ -52,35 +48,35 @@ class GalaxyArmFactory(GalaxyPartFactory):
     default_model = GalaxyArm
     default_name = "arm"
 
-    def black_holes(self):
-        yield BlackHoleFactory.probable(20)
-        yield BlackHoleFactory.probable(20)
-
     def life(self):
         # # yield GalaxyArmLifeFactory.as_child()
         # yield GalacticLifeFactory.probable(5)
         yield None
+
+    def black_holes(self):
+        yield BlackHoleFactory.probable(20)
+        yield BlackHoleFactory.probable(20)
 
 
 class GalaxyCenterFactory(GalaxyPartFactory):
     default_model = GalaxyCenter
     default_name = "galactic center"
 
-    def black_holes(self):
-        yield BlackHoleFactory.as_child()
-
     def life(self):
         # # yield GalaxyCenterLifeFactory()
         # yield GalacticLifeFactory.probable(10)
         yield None
 
+    def black_holes(self):
+        yield BlackHoleFactory.as_child()
+
 
 """
 new Thing("galaxy arm",[
-    "black hole,20%",
-    "black hole,20%"
+    # "black hole,20%",
+    # "black hole,20%"
     ####
-    "galactic life,5%",
+    # "galactic life,5%",
     ####
     "dyson sphere,4%",
     "dyson sphere,2%",
@@ -89,9 +85,9 @@ new Thing("galaxy arm",[
     "nebula,0-12",
 ],"arm");
 new Thing("galaxy center",[
-    "black hole",
+    # "black hole",
     ####
-    "galactic life,10%",
+    # "galactic life,10%",
     ####
     "dyson sphere,4%",
     "dyson sphere,2%",

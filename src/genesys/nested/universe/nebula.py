@@ -1,5 +1,5 @@
+from genesys.nested.factories.nested_factory import NestedFactory
 from models.universe.nebula import Nebula, InterstellarCloud
-from factories.nested_factory import NestedFactory
 # from ..life import NebulaLifeFactory
 # from ..materials import MoleculeFactory, SteamFactory, AmmoniaFactory
 from .star import StarFactory
@@ -25,8 +25,7 @@ class NebulaFactory(NestedFactory):
     def clouds(self):
         yield InterstellarCloudFactory.multiple(1, 6)
 
-    def children(self):
-        yield from self.life()
+    def contents(self):
         yield from self.stars()
         yield from self.clouds()
 
@@ -34,7 +33,7 @@ class NebulaFactory(NestedFactory):
 class InterstellarCloudFactory(NestedFactory):
     default_model = InterstellarCloud
 
-    def children(self):
+    def contents(self):
         # yield MoleculeFactory.from_elements('He')
         # yield MoleculeFactory.from_elements('H')
         # yield MoleculeFactory.from_elements('C').probable(80)
@@ -52,7 +51,7 @@ class InterstellarCloudFactory(NestedFactory):
 
 """
 new Thing("nebula",[
-    "galactic life,15%",
+    # "galactic life,15%",
     ####
     "star,2%",
     "star,2%",
@@ -61,15 +60,15 @@ new Thing("nebula",[
     "interstellar cloud,1-6"
 ]);
 new Thing("interstellar cloud",[
-    "helium",
-    "hydrogen",
-    "carbon,80%",
-    "water,5%",
-    "ammonia,5%",
-    "nitrogen,5%",
-    "iron,5%",
-    "sulfur,5%",
-    "oxygen,15%"
+    # "helium",
+    # "hydrogen",
+    # "carbon,80%",
+    # "water,5%",
+    # "ammonia,5%",
+    # "nitrogen,5%",
+    # "iron,5%",
+    # "sulfur,5%",
+    # "oxygen,15%"
 ],[
     [
         "a bright pink","a faint","a fading","a pale","a fluo","a glowing","a green","a bright green",

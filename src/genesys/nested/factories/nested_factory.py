@@ -84,6 +84,17 @@ class NestedFactory(Factory):
         self.__thing_children = None
         self.thing_factories = []
 
+    def life(self):
+        yield from []
+
+    def contents(self):
+        yield from []
+
+    def children(self):
+        yield from self.default_children
+        yield from self.life()
+        yield from self.contents()
+
     ####
 
     @property
