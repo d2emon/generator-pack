@@ -3,7 +3,7 @@ Universe stuff
 """
 from genesys.nested.factories.nested_factory import NestedFactory
 from models.universe import Supercluster, Universe, Multiverse
-# from .galaxy import GalaxyFactory
+from .galaxy import GalaxyFactory
 
 # from .galaxy import SpaceFactory, GalaxyArmFactory, GalaxyCenterFactory, GalaxyFactory
 # from .nebula import InterstellarCloudFactory, NebulaFactory
@@ -21,6 +21,7 @@ from models.universe import Supercluster, Universe, Multiverse
 # Multiverse
 # Universe
 # Supercluster
+# Galaxy factories in .galaxy
 
 
 class MultiverseFactory(NestedFactory):
@@ -48,8 +49,7 @@ class SuperclusterFactory(NestedFactory):
 
     @property
     def children(self):
-        yield from []
-        # yield from GalaxyFactory().multiple(10, 30)
+        yield GalaxyFactory.multiple(10, 30)
 
 
 """

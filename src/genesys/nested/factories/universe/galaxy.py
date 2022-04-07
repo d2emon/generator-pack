@@ -1,12 +1,26 @@
-from models.v5 import universe
+from models.universe.galaxy import Galaxy, GalaxyArm, GalaxyCenter
 from factories.nested_factory import NestedFactory as Factory
-from ..life import GalaxyArmLifeFactory, GalaxyCenterLifeFactory
-from .nebula import NebulaFactory
-from .star import StarSystemFactory, DysonSphereFactory
-from .black_hole import BlackHoleFactory
+# from ..life import GalaxyArmLifeFactory, GalaxyCenterLifeFactory
+# from .nebula import NebulaFactory
+# from .star import StarSystemFactory, DysonSphereFactory
+# from .black_hole import BlackHoleFactory
 
 
-class SpaceFactory(Factory):
+# Galaxy
+# GalaxyArm
+# GalaxyCenter
+
+
+class GalaxyFactory(Factory):
+    default_model = Galaxy
+
+    @property
+    def children(self):
+        yield GalaxyCenterFactory.as_child()
+        yield GalaxyArmFactory.multiple(2, 6)
+
+
+class GalaxyPartFactory(Factory):
     dyson_sphere_probabilities = 4, 2
     min_star_systems = 20
     max_star_systems = 50
@@ -19,45 +33,76 @@ class SpaceFactory(Factory):
     def life(self):
         yield None
 
-    @classmethod
-    def nebulas(cls):
-        yield from NebulaFactory().multiple(cls.min_nebula, cls.max_nebula)
-
     def stars(self):
-        yield from [DysonSphereFactory().probable(probability) for probability in self.dyson_sphere_probabilities]
-        yield from StarSystemFactory().multiple(self.min_star_systems, self.max_star_systems)
+        # # yield from [DysonSphereFactory().probable(probability) for probability in self.dyson_sphere_probabilities]
+        # yield DysonSphereFactory.probable(4)
+        # yield DysonSphereFactory.probable(2)
+        # yield StarSystemFactory.multiple(self.min_star_systems, self.max_star_systems)
+        yield None
 
+    def nebulas(self):
+        # yield from NebulaFactory.multiple(self.min_nebula, self.max_nebula)
+        yield None
+
+    @property
     def children(self):
+        yield from self.black_holes()
         yield from self.life()
         yield from self.stars()
         yield from self.nebulas()
-        yield from self.black_holes()
 
 
-class GalaxyArmFactory(SpaceFactory):
-    default_model = universe.GalaxyArm
-
-    def life(self):
-        yield GalaxyArmLifeFactory()
+class GalaxyArmFactory(GalaxyPartFactory):
+    default_model = GalaxyArm
+    default_name = "arm"
 
     def black_holes(self):
-        yield BlackHoleFactory().probable(20)
-        yield BlackHoleFactory().probable(20)
-
-
-class GalaxyCenterFactory(SpaceFactory):
-    default_model = universe.GalaxyCenter
+        # yield BlackHoleFactory.probable(20)
+        # yield BlackHoleFactory.probable(20)
+        yield None
 
     def life(self):
-        yield GalaxyCenterLifeFactory()
+        # # yield GalaxyArmLifeFactory.as_child()
+        # yield GalacticLifeFactory.probable(5)
+        yield None
+
+
+class GalaxyCenterFactory(GalaxyPartFactory):
+    default_model = GalaxyCenter
+    default_name = "galactic center"
 
     def black_holes(self):
-        yield BlackHoleFactory()
+        # yield BlackHoleFactory()
+        yield None
+
+    def life(self):
+        # # yield GalaxyCenterLifeFactory()
+        # yield GalacticLifeFactory.probable(10)
+        yield None
 
 
-class GalaxyFactory(Factory):
-    default_model = universe.Galaxy
-
-    def children(self):
-        yield GalaxyCenterFactory()
-        yield from GalaxyArmFactory().multiple(2, 6)
+"""
+new Thing("galaxy arm",[
+    "black hole,20%",
+    "black hole,20%"
+    ####
+    "galactic life,5%",
+    ####
+    "dyson sphere,4%",
+    "dyson sphere,2%",
+    "star system,20-50",
+    ####
+    "nebula,0-12",
+],"arm");
+new Thing("galaxy center",[
+    "black hole",
+    ####
+    "galactic life,10%",
+    ####
+    "dyson sphere,4%",
+    "dyson sphere,2%",
+    "star system,20-50",
+    ####
+    "nebula,0-12"
+],"galactic center");
+"""
