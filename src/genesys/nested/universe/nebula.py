@@ -1,11 +1,15 @@
 from models.universe.nebula import Nebula, InterstellarCloud
-from factories.nested_factory import NestedFactory as Factory
+from factories.nested_factory import NestedFactory
 # from ..life import NebulaLifeFactory
 # from ..materials import MoleculeFactory, SteamFactory, AmmoniaFactory
-# from .star import SingleStarFactory
+from .star import StarFactory
 
 
-class NebulaFactory(Factory):
+# Nebula
+# InterstellarCloud
+
+
+class NebulaFactory(NestedFactory):
     default_model = Nebula
 
     def life(self):
@@ -13,13 +17,13 @@ class NebulaFactory(Factory):
         yield None
 
     def stars(self):
-        # yield SingleStarFactory().probable(2)
-        # yield SingleStarFactory().probable(2)
-        # yield SingleStarFactory().probable(2)
+        yield StarFactory.probable(2)
+        yield StarFactory.probable(2)
+        yield StarFactory.probable(2)
         yield None
 
     def clouds(self):
-        yield InterstellarCloudFactory().multiple(1, 6)
+        yield InterstellarCloudFactory.multiple(1, 6)
 
     def children(self):
         yield from self.life()
@@ -27,15 +31,15 @@ class NebulaFactory(Factory):
         yield from self.clouds()
 
 
-class InterstellarCloudFactory(Factory):
+class InterstellarCloudFactory(NestedFactory):
     default_model = InterstellarCloud
 
     def children(self):
         # yield MoleculeFactory.from_elements('He')
         # yield MoleculeFactory.from_elements('H')
         # yield MoleculeFactory.from_elements('C').probable(80)
-        # yield SteamFactory().probable(5)
-        # yield AmmoniaFactory().probable(5)
+        # yield SteamFactory.probable(5)
+        # yield AmmoniaFactory.probable(5)
         # yield MoleculeFactory.from_elements('N').probable(5)
         # yield MoleculeFactory.from_elements('Fe').probable(5)
         # yield MoleculeFactory.from_elements('S').probable(5)
@@ -49,9 +53,11 @@ class InterstellarCloudFactory(Factory):
 """
 new Thing("nebula",[
     "galactic life,15%",
+    ####
     "star,2%",
     "star,2%",
     "star,2%",
+    ####
     "interstellar cloud,1-6"
 ]);
 new Thing("interstellar cloud",[

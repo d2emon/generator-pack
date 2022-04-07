@@ -2,8 +2,10 @@ import unittest
 from genesys.nested.universe import MultiverseFactory, SuperclusterFactory, UniverseFactory
 from genesys.nested.universe.galaxy import GalaxyFactory, GalaxyArmFactory, GalaxyCenterFactory
 from models.universe import Multiverse, Supercluster, Universe
-from models.universe.galaxy import Galaxy, GalaxyArm, GalaxyCenter, GalaxyPart
+from models.universe.black_hole import BlackHole
+from models.universe.galaxy import Galaxy, GalaxyArm, GalaxyCenter
 from models.universe.nebula import Nebula
+from models.universe.star import Star, StarSystem
 
 
 class TestUniverseModels(unittest.TestCase):
@@ -47,9 +49,15 @@ class TestUniverseModels(unittest.TestCase):
         self.assertEqual(model.name, 'galactic center')
         for item in model.nebulas:
             self.assertTrue(isinstance(item, Nebula))
+        for item in model.stars:
+            self.assertTrue(isinstance(item, StarSystem))
+        for item in model.black_holes:
+            self.assertTrue(isinstance(item, BlackHole))
         for item in model.children:
             self.assertIn(item.__class__.__name__, [
                 'Nebula',
+                'BlackHole',
+                'StarSystem',
             ])
 
     def test_galaxy_arm_factory(self):
@@ -59,9 +67,15 @@ class TestUniverseModels(unittest.TestCase):
         self.assertEqual(model.name, 'arm')
         for item in model.nebulas:
             self.assertTrue(isinstance(item, Nebula))
+        for item in model.stars:
+            self.assertTrue(isinstance(item, StarSystem))
+        for item in model.black_holes:
+            self.assertTrue(isinstance(item, BlackHole))
         for item in model.children:
             self.assertIn(item.__class__.__name__, [
                 'Nebula',
+                'BlackHole',
+                'StarSystem',
             ])
 
 

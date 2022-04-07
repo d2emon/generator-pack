@@ -26,6 +26,10 @@ class StarSystem(NestedModel):
 # Dyson
 
 
+class DysonSphere(StarSystem):
+    pass
+
+
 # class DysonSurface(Thing):
 #     type_name = "dyson surface"
 #     child_generators = [ChildGenerator("dyson segment", (16,))]

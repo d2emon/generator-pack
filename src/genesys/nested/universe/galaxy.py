@@ -1,9 +1,9 @@
 from models.universe.galaxy import Galaxy, GalaxyArm, GalaxyCenter
-from factories.nested_factory import NestedFactory as Factory
+from factories.nested_factory import NestedFactory
 # from ..life import GalaxyArmLifeFactory, GalaxyCenterLifeFactory
+from .black_hole import BlackHoleFactory
 from .nebula import NebulaFactory
-# from .star import StarSystemFactory, DysonSphereFactory
-# from .black_hole import BlackHoleFactory
+from .star import DysonSphereFactory, StarSystemFactory
 
 
 # Galaxy
@@ -11,7 +11,7 @@ from .nebula import NebulaFactory
 # GalaxyCenter
 
 
-class GalaxyFactory(Factory):
+class GalaxyFactory(NestedFactory):
     default_model = Galaxy
 
     def children(self):
@@ -19,7 +19,7 @@ class GalaxyFactory(Factory):
         yield GalaxyArmFactory.multiple(2, 6)
 
 
-class GalaxyPartFactory(Factory):
+class GalaxyPartFactory(NestedFactory):
     dyson_sphere_probabilities = 4, 2
     min_star_systems = 20
     max_star_systems = 50
@@ -34,10 +34,9 @@ class GalaxyPartFactory(Factory):
 
     def stars(self):
         # # yield from [DysonSphereFactory().probable(probability) for probability in self.dyson_sphere_probabilities]
-        # yield DysonSphereFactory.probable(4)
-        # yield DysonSphereFactory.probable(2)
-        # yield StarSystemFactory.multiple(self.min_star_systems, self.max_star_systems)
-        yield None
+        yield DysonSphereFactory.probable(4)
+        yield DysonSphereFactory.probable(2)
+        yield StarSystemFactory.multiple(self.min_star_systems, self.max_star_systems)
 
     def nebulas(self):
         yield NebulaFactory.multiple(self.min_nebula, self.max_nebula)
@@ -54,9 +53,8 @@ class GalaxyArmFactory(GalaxyPartFactory):
     default_name = "arm"
 
     def black_holes(self):
-        # yield BlackHoleFactory.probable(20)
-        # yield BlackHoleFactory.probable(20)
-        yield None
+        yield BlackHoleFactory.probable(20)
+        yield BlackHoleFactory.probable(20)
 
     def life(self):
         # # yield GalaxyArmLifeFactory.as_child()
@@ -69,8 +67,7 @@ class GalaxyCenterFactory(GalaxyPartFactory):
     default_name = "galactic center"
 
     def black_holes(self):
-        # yield BlackHoleFactory()
-        yield None
+        yield BlackHoleFactory.as_child()
 
     def life(self):
         # # yield GalaxyCenterLifeFactory()

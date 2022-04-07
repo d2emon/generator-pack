@@ -21,6 +21,7 @@ from .galaxy import GalaxyFactory
 # Supercluster
 # Galaxy factories in .galaxy
 # Nebula factories in .nebula
+# Star factories in .star
 
 
 class MultiverseFactory(NestedFactory):
@@ -49,9 +50,6 @@ class SuperclusterFactory(NestedFactory):
 
 
 """
-new Thing("star system",["star","star,3%","visitor planet,5%","future planet,10%","future planet,10%","terraformed planet,50%","terraformed planet,20%","terraformed planet,10%","medieval planet,30%","medieval planet,20%","ancient planet,50%","ancient planet,30%","ancient planet,10%","barren planet,60%","barren planet,40%","barren planet,20%","gas giant,60%","gas giant,40%","gas giant,20%","gas giant,10%","asteroid belt,0-2"]);
-new Thing("dyson sphere",["star","star,3%","dyson surface","future planet,1-8","barren planet,60%","barren planet,40%","barren planet,20%","gas giant,60%","gas giant,40%","gas giant,20%","gas giant,10%","asteroid belt,0-2"]);
-new Thing("star",["ghost,0.1%","space monster,0.2%","hydrogen","helium"],[["white","faint","yellow","red","blue","green","purple","bright","double","twin","triple","old","young","dying","small","giant","large","pale","dark","hell","horrific","twisted","spectral"],[" star"]]);
 new Thing("planet",[".terraformed planet"],"telluric planet");
 new Thing("barren planet",["galactic life,10%","rock","ice,50%",".planet composition"],"telluric planet");
 new Thing("visitor planet",["visitor city,1-8","visitor installation,2-6","galactic life","rock","ice,50%",".planet composition"],"telluric planet");
