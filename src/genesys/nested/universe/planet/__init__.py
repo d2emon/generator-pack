@@ -5,9 +5,8 @@ from models.universe.planet import Planet, BarrenPlanet, TelluricPlanet
 # from ...life import BarrenPlanetLifeFactory, VisitorPlanetLifeFactory
 # from ...terrain import OceanFactory, SkyFactory, FutureSkyFactory, TerraformedSkyFactory
 # from .atmosphere import AtmosphereFactory, GasGiantAtmosphereFactory
-# from .body import PlanetLikeFactory, AsteroidFactory, MoonFactory, TerraformedMoonFactory
-# from .body import PlanetLikeFactory, MoonFactory, TerraformedMoonFactory
-# from .core import PlanetCoreFactory
+from .body import PlanetLikeFactory, MoonFactory, TerraformedMoonFactory, FutureMoonFactory
+from .core import PlanetCoreFactory
 # from .plate import PlateFactory, MoonPlateFactory, AsteroidPlateFactory
 # from .plate import PlateFactory
 # from .planet import PlanetFactory, BarrenPlanetFactory, VisitorPlanetFactory, TelluricPlanetFactory, \
@@ -15,50 +14,64 @@ from models.universe.planet import Planet, BarrenPlanet, TelluricPlanet
 #     GasGiantFactory
 
 
+# Default Planet
+# Barren Planet
+# Visitor Planet
+# Future Planet
+# Terraformed Planet
+# Medieval Planet
+# Ancient Planet
+# Planet Composition
+# Body in .body
+# Asteroid in .asteroid
+# GasGiant in .gas_giant
+# PlanetCore in .core
 
-# class PlanetFactory(PlanetLikeFactory):
-class PlanetFactory(NestedFactory):
+
+class PlanetFactory(PlanetLikeFactory):
     default_model = Planet
     default_name = 'telluric planet'
 
-    @classmethod
-    def moons(cls):
+    def core(self):
+        yield from PlanetCompositionFactory.planet_composition()
+
+    def moons(self):
         # yield MoonFactory().probable(40)
         # yield MoonFactory().probable(20)
         # yield MoonFactory().probable(10)
-        yield None
-
-    def contents(self):
-        # yield from super().children()
-        # .terraformed planet
-        yield from self.moons()
+        yield from super().moons()
 
 
 class TelluricPlanetFactory(PlanetFactory):
     default_model = TelluricPlanet
     default_name = 'telluric planet'
 
-    def atmosphere(self):
-        # yield AtmosphereFactory()
+    def life(self):
         yield None
 
-    def biosphere(self):
+    def atmosphere(self):
+        # yield AtmosphereFactory()
         yield None
 
     def continents(self):
         # yield from ContinentFactory().multiple(2, 7)
         yield None
 
+    def core(self):
+        yield from PlanetCompositionFactory.planet_composition()
+
+    def moons(self):
+        yield None
+
     def oceans(self):
         # yield from OceanFactory().multiple(1, 7)
         yield None
 
-    def plates(self):
-        yield from self.continents()
-        yield from self.oceans()
-
     def sky(self):
         # yield SkyFactory()
+        yield None
+
+    def visited(self):
         yield None
 
 
@@ -66,130 +79,114 @@ class BarrenPlanetFactory(TelluricPlanetFactory):
     default_model = BarrenPlanet
 
     def life(self):
+        # yield BarrenPlanetLifeFactory()
         # galactic life,10%
         yield None
 
-    def biosphere(self):
-        # yield BarrenPlanetLifeFactory()
+    def atmosphere(self):
         yield None
 
-    def plates(self):
-        # yield PlateFactory()
-        yield None
-
-    @classmethod
-    def moons(cls):
-        yield None
-
-    def contents(self):
-        # yield from super().children()
+    def continents(self):
         # rock
+        yield None
+
+    def oceans(self):
         # ice,50%
-        yield from PlanetCompositionFactory.planet_composition()
+        yield None
+
+    def sky(self):
+        yield None
 
 
 class VisitorPlanetFactory(TelluricPlanetFactory):
     default_model = BarrenPlanet
 
     def life(self):
-        # galactic life
-        yield None
-
-    def biosphere(self):
         # yield VisitorPlanetLifeFactory()
+        # galactic life
         yield None
 
     def visited(self):
         # yield from VisitorCityFactory().multiple(1, 8)
         # yield from VisitorInstallationFactory().multiple(2, 6)
-        yield None
-
-    def contents(self):
-        # yield from super().children()
         # visitor city,1-8
         # visitor installation,2-6
-
-        # rock
-        # ice,50%
-        yield from PlanetCompositionFactory.planet_composition()
+        yield None
 
 
 class FuturePlanetFactory(TelluricPlanetFactory):
-    def life(self):
-        # galactic life
+    def continents(self):
+        # future continent,2-7
         yield None
 
-    def continents(self):
-        # yield from FutureContinentFactory().multiple(2, 7)
+    def oceans(self):
+        # ocean,1-7
         yield None
 
     def sky(self):
-        # yield FutureSkyFactory()
+        # future sky
         yield None
 
     def moons(self):
-        yield from super().moons()
-        # yield FutureMoonFactory().probable(30)
-        yield None
-
-    def contents(self):
-        # yield from super().children()
-        # future continent,2-7
-        # ocean,1-7
-        # future sky
-        # .future moon,30%
-        yield from PlanetCompositionFactory.planet_composition()
+        yield FutureMoonFactory.probable(30)
 
 
 class TerraformedPlanetFactory(TelluricPlanetFactory):
+    def continents(self):
+        # continent,2-7
+        yield None
+
+    def oceans(self):
+        # ocean,1-7
+        yield None
+
     def sky(self):
         # yield TerraformedSkyFactory()
+        # terraformed sky
         yield None
 
     def moons(self):
-        yield from super().moons()
-        # yield TerraformedMoonFactory().probable(30)
-        yield None
-
-    def contents(self):
-        # yield from super().children()
-        # continent,2-7
-        # ocean,1-7
-        # terraformed sky
-        # .terraformed moon,30%
-        yield from PlanetCompositionFactory.planet_composition()
-
-
-class DefaultPlanetFactory(TerraformedPlanetFactory):
-    pass
+        yield TerraformedMoonFactory.probable(30)
 
 
 class MedievalPlanetFactory(TelluricPlanetFactory):
     def continents(self):
         # yield from MedievalContinentFactory().multiple(2, 4)
         # yield from AncientContinentFactory().multiple(0, 3)
-        yield None
-
-    def contents(self):
-        # yield from super().children()
         # medieval continent,2-4
         # ancient continent,0-3
+        yield None
+
+    def oceans(self):
         # ocean,1-7
+        yield None
+
+    def sky(self):
+        # yield TerraformedSkyFactory()
         # sky
-        yield from PlanetCompositionFactory.planet_composition()
+        yield None
+
+    def moons(self):
+        yield None
 
 
 class AncientPlanetFactory(TelluricPlanetFactory):
     def continents(self):
         # yield from AncientContinentFactory().multiple(2, 7)
+        # ancient continent,2-7
         yield None
 
-    def contents(self):
-        # yield from super().children()
-        # ancient continent,2-7
+    def oceans(self):
         # ocean,1-7
+        yield None
+
+    def sky(self):
+        # yield TerraformedSkyFactory()
         # sky
-        yield from PlanetCompositionFactory.planet_composition()
+        yield None
+
+    def moons(self):
+        yield None
 
 
 class PlanetCompositionFactory(NestedFactory):
@@ -198,77 +195,88 @@ class PlanetCompositionFactory(NestedFactory):
 
     @classmethod
     def planet_composition(cls):
-        # planet core
-        # moon,40%
-        # moon,20%
-        # moon,10%
-        yield None
+        yield PlanetCoreFactory
+
+        yield MoonFactory.probable(40)
+        yield MoonFactory.probable(20)
+        yield MoonFactory.probable(10)
 
     def contents(self):
         yield from self.planet_composition()
 
 
 """
-class GasGiantFactory(PlanetFactory):
-    default_model = GasGiant
-
-    def atmosphere(self):
-        yield GasGiantAtmosphereFactory()
-
-    def core(self):
-        yield PlanetCoreFactory().probable(50)
-
-    def moons(self):
-        yield from MoonFactory().multiple(0, 3)
-        yield TerraformedMoonFactory().probable(20)
-        yield TerraformedMoonFactory().probable(10)
-
-    def plates(self):
-        yield None
-"""
-
-
-"""
 new Thing("planet",[".terraformed planet"],"telluric planet");
 new Thing("barren planet",[
+    ##Life##
     "galactic life,10%",
+    ##Continent##
     "rock",
+    ##Ocean##
     "ice,50%",
+    ##Sky##
+    ##Moon##
+    ##Planet##
     ".planet composition"
 ], "telluric planet" );
 new Thing("visitor planet",[
     "visitor city,1-8",
     "visitor installation,2-6",
     "galactic life",
+    ##Continent##
     "rock",
+    ##Ocean##
     "ice,50%",
+    ##Sky##
+    ##Moon##
+    ##Planet##
     ".planet composition"
 ],"telluric planet");
 new Thing("future planet",[
+    ##Continent##
     "future continent,2-7",
+    ##Ocean##
     "ocean,1-7",
+    ##Sky##
     "future sky",
+    ##Moon##
     ".future moon,30%",
+    ##Planet##
     ".planet composition"
 ],"telluric planet");
 new Thing("terraformed planet",[
+    ##Continent##
     "continent,2-7",
+    ##Ocean##
     "ocean,1-7",
+    ##Sky##
     "terraformed sky",
+    ##Moon##
     ".terraformed moon,30%",
+    ##Planet##
     ".planet composition"
 ],"telluric planet");
 new Thing("medieval planet",[
+    ##Continent##
     "medieval continent,2-4",
     "ancient continent,0-3",
+    ##Ocean##
     "ocean,1-7",
+    ##Sky##
     "sky",
+    ##Moon##
+    ##Planet##
     ".planet composition"
 ],"telluric planet");
 new Thing("ancient planet",[
+    ##Continent##
     "ancient continent,2-7",
+    ##Ocean##
     "ocean,1-7",
+    ##Sky##
     "sky",
+    ##Moon##
+    ##Planet##
     ".planet composition"
 ],"telluric planet");
 new Thing("planet composition",[
@@ -277,13 +285,4 @@ new Thing("planet composition",[
     "moon,20%",
     "moon,10%"
 ],"planet");
-
-new Thing("moon",["ghost,0.1%","rock","planet core"],[["young","old","large","small","pale","white","dark","black","old"],[" moon"]]);
-new Thing("terraformed moon",[".planet composition","continent,1-4","ocean,1-4","sky"],[["young","old","large","small","pale","white","dark","black","old","green","lush","blue","city","colonized","life"],[" moon"]]);
-new Thing("asteroid belt",["galactic life,20%","asteroid,10-30"]);
-new Thing("earth",[".asteroid belt"],"Earth");
-new Thing("asteroid",["space animal,0.5%","rock","ice,30%"],"asteroid");
-new Thing("gas giant",["gas giant atmosphere","planet core,50%","moon,0-3","terraformed moon,20%","terraformed moon,10%"]);
-new Thing("gas giant atmosphere",["galactic life,10%","helium","hydrogen","water,50%","ammonia,50%","methane,50%"],"atmosphere");
-new Thing("planet core",["space monster,0.5%","iron","rock","diamond,2%","magma"],"core");
 """

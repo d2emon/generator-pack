@@ -1,28 +1,41 @@
-from models.universe.planet import PlanetLike
-from models.universe.planet.body import Asteroid, Moon, TerraformedMoon
-from factories.nested_factory import NestedFactory as Factory
-from ...temporary import ContinentFactory
-from ...life import AsteroidLifeFactory, MoonLifeFactory
-from ...terrain import OceanFactory, SkyFactory
-from .plate import AsteroidPlateFactory, MoonPlateFactory, PlateFactory
+from factories.nested_factory import NestedFactory
+from models.universe.planet.body import PlanetLike, Asteroid, Moon, TerraformedMoon
+# from .body import Asteroid, Moon, TerraformedMoon
+# from ...temporary import ContinentFactory
+# from ...life import AsteroidLifeFactory, MoonLifeFactory
+# from ...terrain import OceanFactory, SkyFactory
+# from .plate import AsteroidPlateFactory, MoonPlateFactory, PlateFactory
 from .core import PlanetCoreFactory
 
 
-class PlanetLikeFactory(Factory):
+# Moon
+# TerraformedMoon
+
+
+class PlanetLikeFactory(NestedFactory):
     default_model = PlanetLike
+
+    def life(self):
+        yield None
 
     def atmosphere(self):
         yield None
 
-    def biosphere(self):
+    def continents(self):
         yield None
 
     def core(self):
-        yield PlanetCoreFactory()
+        yield None
+
+    def moons(self):
+        yield None
+
+    def oceans(self):
+        yield None
 
     def plates(self):
-        yield from PlateFactory().multiple(2, 7)
-        yield from PlateFactory().multiple(1, 7)
+        yield from self.continents()
+        yield from self.oceans()
 
     def sky(self):
         yield None
@@ -30,37 +43,37 @@ class PlanetLikeFactory(Factory):
     def visited(self):
         yield None
 
-    def children(self):
-        yield from self.core()
+    def contents(self):
         yield from self.atmosphere()
-        yield from self.biosphere()
+        yield from self.core()
+        yield from self.moons()
         yield from self.plates()
         yield from self.sky()
         yield from self.visited()
-
-
-class AsteroidFactory(PlanetLikeFactory):
-    default_model = Asteroid
-
-    def biosphere(self):
-        yield AsteroidLifeFactory()
-
-    def plates(self):
-        yield AsteroidPlateFactory()
 
 
 class MoonFactory(PlanetLikeFactory):
     default_model = Moon
     names = ["young", "old", "large", "small", "pale", "white", "dark", "black", "old"]
 
-    def generate_name(self):
+    def life(self):
+        # yield MoonLifeFactory()
+        # ghost,0.1%
+        yield None
+
+    def continents(self):
+        # yield MoonPlateFactory()
+        # rock
+        yield None
+
+    def oceans(self):
+        yield None
+
+    def core(self):
+        yield PlanetCoreFactory
+
+    def name_factory(self):
         return f"{self.select_item(*self.names)} moon"
-
-    def biosphere(self):
-        yield MoonLifeFactory()
-
-    def plates(self):
-        yield MoonPlateFactory()
 
 
 class TerraformedMoonFactory(MoonFactory):
@@ -70,12 +83,46 @@ class TerraformedMoonFactory(MoonFactory):
         "colonized", "life",
     ]
 
-    def biosphere(self):
+    def life(self):
         yield None
 
-    def plates(self):
-        yield from ContinentFactory().multiple(1, 4)
-        yield from OceanFactory().multiple(1, 4)
+    def core(self):
+        # yield from PlanetCompositionFactory.planet_composition()
+        yield None
+
+    def continents(self):
+        # yield from ContinentFactory().multiple(1, 4)
+        # continent,1-4
+        yield None
+
+    def oceans(self):
+        # yield from OceanFactory().multiple(1, 4)
+        # ocean,1-4
+        yield None
 
     def sky(self):
-        yield SkyFactory()
+        # yield SkyFactory()
+        # sky
+        yield None
+
+    def name_factory(self):
+        return f"{self.select_item(*self.names)} moon"
+
+
+class FutureMoonFactory(TerraformedMoonFactory):
+    pass
+
+
+"""
+new Thing("moon",[
+    "ghost,0.1%",
+    "rock",
+    "planet core"
+],[["young","old","large","small","pale","white","dark","black","old"],[" moon"]]);
+new Thing("terraformed moon",[
+    ".planet composition",
+    "continent,1-4",
+    "ocean,1-4",
+    "sky"
+],[["young","old","large","small","pale","white","dark","black","old","green","lush","blue","city","colonized","life"],[" moon"]]);
+"""

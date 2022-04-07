@@ -2,6 +2,8 @@ from genesys.nested.factories.nested_factory import NestedFactory
 from models.universe.star import Star, StarSystem
 from .planet import VisitorPlanetFactory, FuturePlanetFactory, TerraformedPlanetFactory, MedievalPlanetFactory, \
     AncientPlanetFactory, BarrenPlanetFactory
+from .planet.asteroid import AsteroidBeltFactory
+from .planet.gas_giant import GasGiantFactory
 # from ..temporary import DysonSurfaceFactory
 # from ..life import StarLifeFactory
 # from ..materials import MoleculeFactory
@@ -22,45 +24,32 @@ class StarSystemFactory(NestedFactory):
         yield StarFactory.probable(3)
 
     def orbits(self):
-        # yield VisitorOrbitFactory().probable(5)
         yield VisitorPlanetFactory.probable(5)
 
-        # yield FutureOrbitFactory().probable(10)
-        # yield FutureOrbitFactory().probable(10)
         yield FuturePlanetFactory.probable(10)
         yield FuturePlanetFactory.probable(10)
 
-        # yield TerraformedOrbitFactory().probable(50)
-        # yield TerraformedOrbitFactory().probable(20)
-        # yield TerraformedOrbitFactory().probable(10)
         yield TerraformedPlanetFactory.probable(50)
         yield TerraformedPlanetFactory.probable(20)
         yield TerraformedPlanetFactory.probable(10)
 
-        # yield MedievalOrbitFactory().probable(30)
-        # yield MedievalOrbitFactory().probable(20)
         yield MedievalPlanetFactory.probable(30)
         yield MedievalPlanetFactory.probable(20)
 
-        # yield AncientOrbitFactory().probable(50)
-        # yield AncientOrbitFactory().probable(30)
-        # yield AncientOrbitFactory().probable(10)
         yield AncientPlanetFactory.probable(50)
         yield AncientPlanetFactory.probable(30)
         yield AncientPlanetFactory.probable(10)
 
-        # yield BarrenOrbitFactory().probable(60)
-        # yield BarrenOrbitFactory().probable(40)
-        # yield BarrenOrbitFactory().probable(20)
         yield BarrenPlanetFactory.probable(60)
         yield BarrenPlanetFactory.probable(40)
         yield BarrenPlanetFactory.probable(20)
 
-        # yield GasGiantOrbitFactory().probable(60)
-        # yield GasGiantOrbitFactory().probable(40)
-        # yield GasGiantOrbitFactory().probable(20)
-        # yield GasGiantOrbitFactory().probable(10)
-        # yield from AsteroidBeltFactory().multiple(0, 2)
+        yield GasGiantFactory.probable(60)
+        yield GasGiantFactory.probable(40)
+        yield GasGiantFactory.probable(20)
+        yield GasGiantFactory.probable(10)
+
+        yield AsteroidBeltFactory.multiple(0, 2)
 
     def contents(self):
         yield from self.stars()
@@ -72,20 +61,19 @@ class DysonSphereFactory(StarSystemFactory):
 
     def orbits(self):
         # yield DysonSurfaceFactory()
+
         yield FuturePlanetFactory.multiple(1, 8)
 
-        # yield BarrenOrbitFactory().probable(60)
-        # yield BarrenOrbitFactory().probable(40)
-        # yield BarrenOrbitFactory().probable(20)
         yield BarrenPlanetFactory.probable(60)
         yield BarrenPlanetFactory.probable(40)
         yield BarrenPlanetFactory.probable(20)
 
-        # yield GasGiantOrbitFactory().probable(60)
-        # yield GasGiantOrbitFactory().probable(40)
-        # yield GasGiantOrbitFactory().probable(20)
-        # yield GasGiantOrbitFactory().probable(10)
-        # yield from AsteroidBeltFactory().multiple(0, 2)
+        yield GasGiantFactory.probable(60)
+        yield GasGiantFactory.probable(40)
+        yield GasGiantFactory.probable(20)
+        yield GasGiantFactory.probable(10)
+
+        yield AsteroidBeltFactory.multiple(0, 2)
 
 
 class StarFactory(NestedFactory):
