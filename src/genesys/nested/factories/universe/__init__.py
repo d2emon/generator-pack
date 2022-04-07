@@ -52,51 +52,6 @@ class SuperclusterFactory(NestedFactory):
         # yield from GalaxyFactory().multiple(10, 30)
 
 
-FACTORIES = {
-    # 'multiverse': MultiverseFactory(),
-    # 'universe': UniverseFactory(),
-    # 'supercluster': SuperclusterFactory(),
-    # # 'galaxy': GalaxyFactory(),
-    # # 'galaxy arm': GalaxyArmFactory(),
-    # # 'galaxy center': GalaxyCenterFactory(),
-    # # 'nebula': NebulaFactory(),
-    # # 'interstellar cloud': InterstellarCloudFactory(),
-    # # 'star system': StarSystemFactory(),
-    # # 'dyson sphere': DysonSphereFactory(),
-    # # 'star': StarFactory(),
-    # # 'planet': DefaultPlanetFactory(),
-    # # 'barren planet': BarrenPlanetFactory(),
-    # # 'visitor planet': VisitorPlanetFactory(),
-    # # 'future planet': FuturePlanetFactory(),
-    # # 'terraformed planet': FuturePlanetFactory(),
-    # # 'medieval planet': FuturePlanetFactory(),
-    # # 'ancient planet': FuturePlanetFactory(),
-    # # 'planet composition': PlanetFactory(),
-    # # 'moon': MoonFactory(),
-    # # 'terraformed moon': TerraformedMoonFactory(),
-    # # 'asteroid belt': AsteroidBeltFactory(),
-    # # 'earth': EarthFactory(),
-    # # 'asteroid': AsteroidFactory(),
-    # # 'gas giant': GasGiantFactory(),
-    # # 'gas giant atmosphere': GasGiantAtmosphereFactory(),
-    # # 'planet core': PlanetCoreFactory(),
-
-    # # 'black hole': BlackHoleFactory(),
-    # # 'inside the black hole': InsideTheBlackHoleFactory(),
-    # # 'white hole': WhiteHoleFactory(),
-    # # '42': Answer42Factory(),
-    # # 'everything': EverythingFactory(),
-    # # 'end of universe note': EndOfUniverseNoteFactory(),
-    # # 'orteil': D2emonFactory(),
-    # # 'god': GodFactory(),
-    # # 'orteil psyche': D2emonPsycheFactory(),
-    # # 'orteil thoughts': D2emonThoughtsFactory(),
-}
-
-NEW_FACTORIES = {
-    # universe stuff
-}
-
 """
 new Thing("galaxy",["galaxy center","galaxy arm,2-6"]);
 new Thing("galaxy arm",["galactic life,5%","dyson sphere,4%","dyson sphere,2%","star system,20-50","nebula,0-12","black hole,20%","black hole,20%"],"arm");
