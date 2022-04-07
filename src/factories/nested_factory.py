@@ -57,7 +57,6 @@ class NestedFactory(ModelFactory):
     def model(self):
         return self.default_model
 
-    @property
     def children(self):
         yield from self.default_children
 
@@ -104,7 +103,7 @@ class NestedFactory(ModelFactory):
         return self.default_name
 
     def children_factories(self, *args, **kwargs):
-        for child_factory in self.children:
+        for child_factory in self.children():
             if child_factory is not None:
                 yield from child_factory()
 

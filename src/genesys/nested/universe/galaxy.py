@@ -1,7 +1,7 @@
 from models.universe.galaxy import Galaxy, GalaxyArm, GalaxyCenter
 from factories.nested_factory import NestedFactory as Factory
 # from ..life import GalaxyArmLifeFactory, GalaxyCenterLifeFactory
-# from .nebula import NebulaFactory
+from .nebula import NebulaFactory
 # from .star import StarSystemFactory, DysonSphereFactory
 # from .black_hole import BlackHoleFactory
 
@@ -14,7 +14,6 @@ from factories.nested_factory import NestedFactory as Factory
 class GalaxyFactory(Factory):
     default_model = Galaxy
 
-    @property
     def children(self):
         yield GalaxyCenterFactory.as_child()
         yield GalaxyArmFactory.multiple(2, 6)
@@ -41,10 +40,8 @@ class GalaxyPartFactory(Factory):
         yield None
 
     def nebulas(self):
-        # yield from NebulaFactory.multiple(self.min_nebula, self.max_nebula)
-        yield None
+        yield NebulaFactory.multiple(self.min_nebula, self.max_nebula)
 
-    @property
     def children(self):
         yield from self.black_holes()
         yield from self.life()
