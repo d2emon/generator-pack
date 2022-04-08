@@ -8,7 +8,7 @@ from models.universe.nebula import Nebula
 from models.universe.star import Star, StarSystem
 
 
-class TestUniverseModels(unittest.TestCase):
+class TestUniverseFactories(unittest.TestCase):
     def test_multiverse_factory(self):
         factory = MultiverseFactory()
         model = factory()

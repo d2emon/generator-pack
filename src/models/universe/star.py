@@ -6,6 +6,7 @@ from models.nested_model import NestedModel
 # from models.v5.materials import Atom
 # from models.v5.life import Life
 from .orbit import Orbit, PlanetOrbit, AsteroidBelt
+from .planet import Planet
 
 
 class Star(NestedModel):
@@ -18,7 +19,7 @@ class StarSystem(NestedModel):
     main_star = NestedModel.child_property(Star)
     stars = NestedModel.children_property(Star)
     orbits = NestedModel.children_property(Orbit)
-    planets = NestedModel.children_property(PlanetOrbit)
+    planets = NestedModel.children_property(Planet)
     asteroid_belts = NestedModel.children_property(AsteroidBelt)
     # dyson_surfaces = Model.children_property(DysonSurface)
 
