@@ -1,4 +1,4 @@
-from genesys.nested.data.lookups.lookup import Lookup
+from models.v5.lookups.lookup import Lookup
 
 
 bacteria_types = Lookup('amoeba', 'bacteria', 'virus')
