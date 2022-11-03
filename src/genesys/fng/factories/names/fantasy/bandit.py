@@ -1,82 +1,80 @@
-import random
-from utils import genders
-from database.data_block import fill_data
+"""
+Bandit Name.
+
+The names rely on nicknames to create a bandit-feel. They could be named after their reputation,
+their appearance, or even their way of theft.
+There are no last names, but some of the first names could also be used as a last name. There are
+plenty of real name generators to offer you surnames though."""
+
 from data.fng.names import fantasy
+from genesys.fng.database import Database
+from genesys.fng.factories.name_block_factory import NameBlockFactory, GenderNameBlockFactory
+from genesys.fng.factories.name_factory import ComplexNameFactory
 from models.fng.names.fantasy import BanditName
-from genesys.fng.factories.name_factory import ComplexNameFactory, PercentFactory
+from utils import genders
 
 
-class BanditNameFactory(PercentFactory):
-    """Bandit Name Factory
+DB = Database('bandit', {
+    genders.MALE: fantasy.bandit.namesMale,
+    genders.FEMALE: fantasy.bandit.namesFemale,
+    2: fantasy.bandit.names2,
+    3: fantasy.bandit.names3,
+})
 
-    The names rely on nicknames to create a bandit-feel. They could be named after their reputation, their appearance,
-    or even their way of theft.
-    There are no last names, but some of the first names could also be used as a last name. There are plenty of real
-    name generators to offer you surnames though."""
 
-    class MaleNameFactory1(ComplexNameFactory):
-        model = BanditName
-        block_map = {
-            'nm1': genders.MALE,
-            'nm2': 2,
+class BanditNameFactory(GenderNameBlockFactory):
+    """Bandit Name Factory."""
+
+    class MaleNameFactory(NameBlockFactory):
+        """Method #1."""
+
+        class MaleNameFactory1(ComplexNameFactory):
+            """Method #1."""
+
+            model = BanditName
+            block_map = {
+                'nm1': genders.MALE,
+                'nm2': 2,
+            }
+
+        class MaleNameFactory2(ComplexNameFactory):
+            """Method #2."""
+
+            model = BanditName
+            block_map = {
+                'nm1': 3,
+                'nm2': genders.MALE,
+            }
+
+        factory_classes = {
+            f"{genders.MALE}.1": MaleNameFactory1,
+            f"{genders.MALE}.2": MaleNameFactory2,
         }
 
-    class FemaleNameFactory1(ComplexNameFactory):
-        model = BanditName
-        block_map = {
-            'nm1': genders.FEMALE,
-            'nm2': 2,
+    class FemaleNameFactory(NameBlockFactory):
+        """Method #1."""
+
+        class FemaleNameFactory1(ComplexNameFactory):
+            """Method #1."""
+
+            model = BanditName
+            block_map = {
+                'nm1': genders.FEMALE,
+                'nm2': 2,
+            }
+
+        class FemaleNameFactory2(ComplexNameFactory):
+            """Method #2."""
+
+            model = BanditName
+            block_map = {
+                'nm1': 3,
+                'nm2': genders.FEMALE,
+            }
+
+        factory_classes = {
+            f"{genders.FEMALE}.1": FemaleNameFactory1,
+            f"{genders.FEMALE}.2": FemaleNameFactory2,
         }
 
-    class MaleNameFactory2(ComplexNameFactory):
-        model = BanditName
-        block_map = {
-            'nm1': 3,
-            'nm2': genders.MALE,
-        }
-
-    class FemaleNameFactory2(ComplexNameFactory):
-        model = BanditName
-        block_map = {
-            'nm1': 3,
-            'nm2': genders.FEMALE,
-        }
-
-    factory_classes = {
-        f"{genders.MALE}.1": MaleNameFactory1,
-        f"{genders.FEMALE}.1": FemaleNameFactory1,
-        f"{genders.MALE}.2": MaleNameFactory2,
-        f"{genders.FEMALE}.2": FemaleNameFactory2,
-    }
-    default_data = fill_data(group_id='bandit')({
-        genders.MALE: fantasy.bandit.namesMale,
-        genders.FEMALE: fantasy.bandit.namesFemale,
-        2: fantasy.bandit.names2,
-        3: fantasy.bandit.names3,
-    })
-
-    @property
-    def default_gender(self):
-        return genders.MALE
-
-    def factory(self, factory_id=None, gender=None):
-        if gender is None:
-            gender = self.default_gender
-        if factory_id is None:
-            factory_id = random.randrange(100)
-
-        if factory_id < 50:
-            __factory_id = 1
-        else:
-            __factory_id = 2
-
-        return self.factories.get(f"{gender}.{__factory_id}")
-
-    def __call__(self, *args, factory_id=None, gender=None, **kwargs) -> BanditName:
-        factory = self.factory(factory_id=factory_id, gender=gender)
-
-        name = ''
-        while name == '':
-            name = factory()
-
-        return name
+    default_data = DB

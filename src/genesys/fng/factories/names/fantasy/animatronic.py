@@ -14,7 +14,6 @@ from genesys.fng.database import Database
 from genesys.fng.factories.name_block_factory import GenderNameBlockFactory
 from genesys.fng.factories.name_factory import ComplexNameFactory, BaseNameFactory
 from models.fng.names.fantasy import AnimatronicName
-from utils import genders
 
 
 DB = Database('animatronic', {

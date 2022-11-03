@@ -1,28 +1,49 @@
-from utils import genders
+"""
+Barbarian Name.
+
+A barbarian could be pretty much anything, it's mostly a term that relies on the eye of the
+beholder. A barbarian is usually somebody seen as a primitive and often rough and cruel person, so
+anybody could fit that description, but there are some stereotypes. Vikings are often seen as
+barbarians, as were many Nordic people. Ancient Mongolians are often seen as barbarians, and so
+were Native Americans. Since enemies are often seen as barbarians as well, pretty much every group
+of people has probably been considered to be barbaric.
+
+This generator has a lot of different possible influences for each name, some real, some fictional
+and some merely because it sounds 'barbaric'. This means there's a wide variety of possible names,
+so some names will fit a specific culture better than others. Most names do share the same overall
+feel however, so while not all names would work well together as a single culture, the vast
+majority of names should still work for many stereotypical barbarian styles, as well as several
+other styles.
+"""
+
 from database.data_block import fill_data
 from data.fng.names import fantasy
-from models.fng.names.fantasy import BarbarianName, BarbarianName1, BarbarianName2, MaleBarbarianName3, \
-    FemaleBarbarianName3
+from genesys.fng.database import Database
 from genesys.fng.factories.name_factory import ComplexNameFactory, PercentFactory
 from genesys.fng.factories.validators import generate_while
+from models.fng.names.fantasy import BarbarianName, BarbarianName1, BarbarianName2, \
+    MaleBarbarianName3, FemaleBarbarianName3
+from utils import genders
+
+
+DB = Database('barbarian', {
+    1: fantasy.barbarian.nm1,
+    2: fantasy.barbarian.nm2,
+    3: fantasy.barbarian.nm3,
+    4: fantasy.barbarian.nm4,
+    5: fantasy.barbarian.nm5,
+    6: fantasy.barbarian.nm6,
+    7: fantasy.barbarian.nm7,
+    8: fantasy.barbarian.nm8,
+})
 
 
 class BarbarianNameFactory(PercentFactory):
-    """Barbarian Name Factory
-
-    A barbarian could be pretty much anything, it's mostly a term that relies on the eye of the beholder. A barbarian is
-    usually somebody seen as a primitive and often rough and cruel person, so anybody could fit that description, but
-    there are some stereotypes. Vikings are often seen as barbarians, as were many Nordic people. Ancient Mongolians are
-    often seen as barbarians, and so were Native Americans. Since enemies are often seen as barbarians as well, pretty
-    much every group of people has probably been considered to be barbaric.
-
-    This generator has a lot of different possible influences for each name, some real, some fictional and some merely
-    because it sounds 'barbaric'. This means there's a wide variety of possible names, so some names will fit a specific
-    culture better than others. Most names do share the same overall feel however, so while not all names would work
-    well together as a single culture, the vast majority of names should still work for many stereotypical barbarian
-    styles, as well as several other styles."""
+    """Barbarian Name Factory."""
 
     class MaleNameFactory1(ComplexNameFactory):
+        """Method #1."""
+
         model = BarbarianName1
         block_map = {
             'nm1': 2,
@@ -31,6 +52,8 @@ class BarbarianNameFactory(PercentFactory):
         }
 
     class MaleNameFactory2(ComplexNameFactory):
+        """Method #2."""
+
         model = BarbarianName2
         block_map = {
             'nm1': 2,
@@ -51,6 +74,8 @@ class BarbarianNameFactory(PercentFactory):
             return items
 
     class MaleNameFactory3(ComplexNameFactory):
+        """Method #3."""
+
         model = MaleBarbarianName3
         block_map = {
             'nm1': 2,
@@ -80,6 +105,8 @@ class BarbarianNameFactory(PercentFactory):
             return items
 
     class FemaleNameFactory1(ComplexNameFactory):
+        """Method #1."""
+
         model = BarbarianName1
         block_map = {
             'nm1': 5,
@@ -97,6 +124,8 @@ class BarbarianNameFactory(PercentFactory):
             return items
 
     class FemaleNameFactory2(ComplexNameFactory):
+        """Method #2."""
+
         model = BarbarianName2
         block_map = {
             'nm1': 5,
@@ -117,6 +146,8 @@ class BarbarianNameFactory(PercentFactory):
             return items
 
     class FemaleNameFactory3(ComplexNameFactory):
+        """Method #3."""
+
         model = FemaleBarbarianName3
         block_map = {
             'nm1': 5,
@@ -145,6 +176,7 @@ class BarbarianNameFactory(PercentFactory):
 
             return items
 
+    default_data = DB
     factory_classes = {
         f"{genders.MALE}.1": MaleNameFactory1,
         f"{genders.FEMALE}.1": FemaleNameFactory1,
@@ -153,19 +185,10 @@ class BarbarianNameFactory(PercentFactory):
         f"{genders.MALE}.3": MaleNameFactory3,
         f"{genders.FEMALE}.3": FemaleNameFactory3,
     }
-    default_data = fill_data(group_id='barbarian')({
-        1: fantasy.barbarian.nm1,
-        2: fantasy.barbarian.nm2,
-        3: fantasy.barbarian.nm3,
-        4: fantasy.barbarian.nm4,
-        5: fantasy.barbarian.nm5,
-        6: fantasy.barbarian.nm6,
-        7: fantasy.barbarian.nm7,
-        8: fantasy.barbarian.nm8,
-    })
 
     @property
     def default_gender(self):
+        """Get default gender for factory."""
         return genders.MALE
 
     def factory(self, factory_id=0, gender=None):
