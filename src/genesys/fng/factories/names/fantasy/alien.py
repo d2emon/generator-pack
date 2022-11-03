@@ -124,11 +124,4 @@ class AlienNameFactory(NameBlockFactory):
     }
 
     def by_percent(self, percent):
-        if percent < 40:
-            return self.factories.get(0)
-        if percent < 70:
-            return self.factories.get(1)
-        if percent < 100:
-            return self.factories.get(2)
-
-        return None
+        return self.by_percent_3(percent)

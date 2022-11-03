@@ -1,20 +1,28 @@
+"""
+Angel Name.
+
+These angel names are great for any fantasy story, especially those with a more traditional style
+in terms of names.
+
+The names have been divided into male, female and neutral. The neutral names are also part of the
+male and female names, so you'll likely come across some doubles if you're looking in multiple
+sections.
+"""
+
 from database.data_block import fill_data
 from utils import genders
 from data.fng.names import fantasy
 from models.fng.names.fantasy import AngelName
-from genesys.fng.factories.name_factory import ComplexNameFactory, GenderFactory
-from genesys.fng.factories.name_block_factory import NameBlockFactory, GenderNameBlockFactory
+from genesys.fng.factories.name_factory import ComplexNameFactory
+from genesys.fng.factories.name_block_factory import GenderNameBlockFactory
 
 
 class AngelNameFactory(GenderNameBlockFactory):
-    """Angel Name Factory
-
-    These angel names are great for any fantasy story, especially those with a more traditional style in terms of names.
-
-    The names have been divided into male, female and neutral. The neutral names are also part of the male and female
-    names, so you'll likely come across some doubles if you're looking in multiple sections."""
+    """Angel Name Factory."""
 
     class MaleNameFactory(ComplexNameFactory):
+        """Method #1."""
+
         model = AngelName
 
         block_map = {
@@ -22,6 +30,8 @@ class AngelNameFactory(GenderNameBlockFactory):
         }
 
     class FemaleNameFactory(ComplexNameFactory):
+        """Method #2."""
+
         model = AngelName
 
         block_map = {
@@ -29,6 +39,8 @@ class AngelNameFactory(GenderNameBlockFactory):
         }
 
     class NeutralNameFactory(ComplexNameFactory):
+        """Method #3."""
+
         model = AngelName
 
         block_map = {

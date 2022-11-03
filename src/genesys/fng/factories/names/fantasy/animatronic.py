@@ -1,15 +1,34 @@
+"""
+Animatronic Name.
+
+There's a large variety of names in this generator. Some are normal, friendly names you'd expect
+for normal animatronics, other names are more creepy for the horror kinds of animatronics, like
+those in the Five Nights at Freddy's games.
+With thousands of different names, there's plenty to pick from for all sorts of genres and
+purposes.
+"""
+
 import random
 from utils import genders
 from database.data_block import fill_data
 from data.fng.names import fantasy
 from models.fng.names.fantasy import AnimatronicName
-from genesys.fng.factories.name_block_factory import NameBlockFactory, GenderNameBlockFactory
-from genesys.fng.factories.name_factory import ComplexNameFactory, GenderFactory, BaseNameFactory
+from genesys.fng.factories.name_block_factory import GenderNameBlockFactory
+from genesys.fng.factories.name_factory import ComplexNameFactory, BaseNameFactory
 
 
 class AnimatronicNamePartFactory(BaseNameFactory):
+    """Method #1."""
+
     def get_data(self, *args, **kwargs):
-        items = list(self.factory_data.find(*args, **kwargs))
+        """
+        Generate value from data
+
+        :param args: Args for generation
+        :param kwargs: Kwargs for generation
+        :return: Generated value
+        """
+        items = list(self.data.find(*args, **kwargs))
         if len(items) == 0:
             return {}
 
@@ -17,6 +36,8 @@ class AnimatronicNamePartFactory(BaseNameFactory):
 
 
 class BaseAnimatronicNameFactory(ComplexNameFactory):
+    """Method #1."""
+
     model = AnimatronicName
 
     def __init__(self, data=None):
@@ -25,7 +46,7 @@ class BaseAnimatronicNameFactory(ComplexNameFactory):
         """
         super().__init__(data)
         self.factories = {
-            factory_id: AnimatronicNamePartFactory(self.factory_data.find(block_id=block_id))
+            factory_id: AnimatronicNamePartFactory(self.data.find(block_id=block_id))
             for factory_id, block_id in self.block_map.items()
         }
 
@@ -50,23 +71,22 @@ class BaseAnimatronicNameFactory(ComplexNameFactory):
         values = self.get_data(*args, **kwargs)
         print("VALUES", values)
         values = self.validate(values)
-        return self.build(*args, **values)
+        return super().__call__(*args, **values)
 
 
 class AnimatronicNameFactory(GenderNameBlockFactory):
-    """Animatronic Name Factory
-
-    There's a large variety of names in this generator. Some are normal, friendly names you'd expect for normal
-    animatronics, other names are more creepy for the horror kinds of animatronics, like those in the Five Nights at
-    Freddy's games.
-    With thousands of different names, there's plenty to pick from for all sorts of genres and purposes."""
+    """Animatronic Name Factory."""
 
     class MaleNameFactory(BaseAnimatronicNameFactory):
+        """Method #1."""
+
         block_map = {
             'nm1': 1,
         }
 
     class FemaleNameFactory(BaseAnimatronicNameFactory):
+        """Method #1."""
+
         block_map = {
             'nm1': 2,
         }

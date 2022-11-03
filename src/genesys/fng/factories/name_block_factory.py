@@ -21,6 +21,27 @@ class NameBlockFactory(ComplexFactory):
     def __get_percent(self):
         return random.uniform(0.0, 100.0)
 
+    def by_percent_1(self, percent):
+        return self.factories[0]
+
+    def by_percent_2(self, percent):
+        if percent < 50:
+            return self.factories[0]
+        if percent < 100:
+            return self.factories[1]
+        
+        return None
+
+    def by_percent_3(self, percent):
+        if percent < 40:
+            return self.factories.get(0)
+        if percent < 70:
+            return self.factories.get(1)
+        if percent < 100:
+            return self.factories.get(2)
+
+        return None
+
     def by_percent(self, percent):
         raise NotImplementedError()
 
@@ -54,6 +75,9 @@ class GenderNameBlockFactory(NameBlockFactory):
 
     def factory(self, gender=None):
         return self.factories.get(gender if gender is not None else self._get_gender())
+
+    def by_percent(self, percent):
+        return self.factory(percent)
 
     def __call__(self, *args, gender=None, **kwargs):
         return self.from_factory(

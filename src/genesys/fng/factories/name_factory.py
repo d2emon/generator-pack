@@ -14,6 +14,15 @@ class TextFactory(Factory):
 class BaseNameFactory(Factory):
     model = Name
 
+    def __init__(self, data=None):
+        """
+        :param data: Data blocks for factory
+        """
+        self.data = data or self.default_data
+
+    def __call__(self, *args, **kwargs):
+        return self.model()
+
 
 class ComplexFactory(BaseNameFactory):
     """
@@ -29,7 +38,8 @@ class ComplexFactory(BaseNameFactory):
         """
         :param data: Data blocks for factory
         """
-        self.data = data or self.default_data
+        super().__init__(data)
+
         self.factories = self.get_factories(self.data)
 
     @classmethod

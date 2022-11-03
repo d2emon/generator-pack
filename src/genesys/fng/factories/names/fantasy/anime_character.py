@@ -1,26 +1,34 @@
+"""
+Anime Character Name.
+
+Anime and manga character names typically fall into one of three categories: real names, fake names
+and unique or nicknames. Real names are usually just regular Japanese names, but can be from other
+cultures too depending on the anime. Nicknames and unique names tend to be very specific and often
+belong to the main character, like Ichigo from Bleach, Light from Death Note, or Naruto from
+Naruto.
+The fake names, which this generator focuses on, are similar to regular Japanese names, but you
+generally wouldn't find them in real life. Sometimes they're used to add a fantasy feeling to a
+story, sometimes they're used to avoid (accidental) matches with real life people, especially if a
+character is portrayed in a negative way, and other times it may be a more personal choice of the
+writer. Either way, this generator will generate a whole range of fake Japanese name fit for those
+types of anime and manga characters.
+Like regular Japanese names, the names in this generator are in surname - personal name order.
+"""
+
 from utils import genders
 from database.data_block import fill_data
 from data.fng.names import fantasy
 from models.fng.names.fantasy import AnimeCharacterName
-from genesys.fng.factories.name_block_factory import NameBlockFactory, GenderNameBlockFactory
-from genesys.fng.factories.name_factory import ComplexNameFactory, GenderFactory
+from genesys.fng.factories.name_block_factory import GenderNameBlockFactory
+from genesys.fng.factories.name_factory import ComplexNameFactory
 
 
 class AnimeNameFactory(GenderNameBlockFactory):
-    """Anime Character Name Factory
-
-    Anime and manga character names typically fall into one of three categories: real names, fake names and unique or
-    nicknames. Real names are usually just regular Japanese names, but can be from other cultures too depending on the
-    anime. Nicknames and unique names tend to be very specific and often belong to the main character, like Ichigo from
-    Bleach, Light from Death Note, or Naruto from Naruto.
-    The fake names, which this generator focuses on, are similar to regular Japanese names, but you generally wouldn't
-    find them in real life. Sometimes they're used to add a fantasy feeling to a story, sometimes they're used to avoid
-    (accidental) matches with real life people, especially if a character is portrayed in a negative way, and other
-    times it may be a more personal choice of the writer. Either way, this generator will generate a whole range of fake
-    Japanese name fit for those types of anime and manga characters.
-    Like regular Japanese names, the names in this generator are in surname - personal name order."""
+    """Anime Character Name Factory."""
 
     class MaleAnimeNameFactory(ComplexNameFactory):
+        """Method #1."""
+
         model = AnimeCharacterName
         block_map = {
             'nm1': 1,
@@ -30,6 +38,8 @@ class AnimeNameFactory(GenderNameBlockFactory):
         }
 
     class FemaleAnimeNameFactory(ComplexNameFactory):
+        """Method #2."""
+
         model = AnimeCharacterName
         block_map = {
             'nm1': 3,
