@@ -1,5 +1,5 @@
 from factories.factory import Factory
-from genesys.fng.list_item import ListItemProvider
+from genesys.fng.providers.list_item import ListItemProvider
 from utils import genders
 
 

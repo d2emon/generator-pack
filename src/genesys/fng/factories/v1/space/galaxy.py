@@ -8,7 +8,7 @@ from genesys.fixtures.generator_fixtures.space import fixtures
 class BaseGalaxyGenerator(DictFactory):
     galaxy_names = fixtures.galaxy_names
     generated_class = Galaxy
-    template =
+    template = ""
     data = {
         'part1': ListFactory(galaxy_names[0]),
         'part2': ListFactory(galaxy_names[1]),
