@@ -7,7 +7,7 @@ class AlienName(Name):
     @property
     def parts(self):
         return map(
-            lambda item: str(self.items.get(item, '')),
+            lambda item: str(self.data.get(item, '')),
             [
                 'nm1',
                 'nm2',

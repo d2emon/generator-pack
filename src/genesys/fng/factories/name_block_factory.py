@@ -19,17 +19,17 @@ class SimpleNameBlockFactory(ComplexFactory):
 
 class NameBlockFactory(ComplexFactory):
     def __get_percent(self):
-        return random.randrange(100)
+        return random.uniform(0.0, 100.0)
 
-    def factory(self, percent=None):
+    def by_percent(self, percent):
         raise NotImplementedError()
 
     def __call__(self, *args, percent=None, **kwargs):
-        return self.from_factory(
-            percent if percent is not None else self.__get_percent(),
-            *args,
-            **kwargs,
-        )
+        if percent is None:
+            percent = self.__get_percent()
+
+        factory = self.by_percent(percent)
+        return factory(*args, **kwargs)
 
     def build10(self, *args, **kwargs):
         """

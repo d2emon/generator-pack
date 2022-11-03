@@ -4,6 +4,7 @@ from models.name.name import TextModel
 from models.fng.names.name import Name
 from factories.factory import Factory
 from factories.model.name.factories import NameFactory
+from genesys.fng.factories.validators import item_is_not_unique, item_equals, generate_while
 
 
 class TextFactory(Factory):
@@ -28,13 +29,13 @@ class ComplexFactory(BaseNameFactory):
         """
         :param data: Data blocks for factory
         """
-        super().__init__(data or self.default_data)
-        self.factories = self.get_factories(self.factory_data)
+        self.data = data or self.default_data
+        self.factories = self.get_factories(self.data)
 
     @classmethod
     def get_factories(cls, factory_data):
         return {
-            factory_id: factory(factory_data.data)
+            factory_id: factory(factory_data)
             for factory_id, factory in cls.factory_classes.items()
         }
 
@@ -64,10 +65,33 @@ class ComplexNameFactory(ComplexFactory):
     """
     block_map = {}
 
+    validators = {}
+
     @classmethod
     def get_factories(cls, factory_data):
+        def text_factory(block_id):
+            items = [item for item in factory_data if item['block_id'] == block_id]
+
+            def get_item(*args, item_id=None, **kwargs):
+                if item_id is not None:
+                    return next(item for item in items if item['item_id'] == item_id)
+
+                return random.choice(items)
+
+            def build(*args, **kwargs):
+                item = get_item(*args, **kwargs)
+
+                if item is None:
+                    return None
+
+                return item.get('value')
+
+            return build
+
         return {
-            factory_id: TextFactory(factory_data.find(block_id=block_id))
+            # factory_id: TextFactory(factory_data.find(block_id=block_id))
+            # factory_id: lambda: next(filter(lambda item: item['block_id'] == block_id, factory_data))
+            factory_id: text_factory(block_id)
             for factory_id, block_id in cls.block_map.items()
         }
 
@@ -84,6 +108,31 @@ class ComplexNameFactory(ComplexFactory):
             for item_id, factory in self.factories.items()
             if factory is not None
         }
+
+    def validate_item(self, item_id, item, items):
+        validator = self.validators.get(item_id)
+
+        if validator is None:
+            return items
+
+        items[item_id] = generate_while(
+            item,
+            validator(items),
+            self[item_id],
+        )
+
+        return items
+
+    def validate(self, items):
+        for item_id, item in items.items():
+            items = self.validate_item(item_id, item, items)
+
+        return items
+
+    def __call__(self, *args, **kwargs):
+        items = self.get_data()
+        validated = self.validate(items)
+        return self.model(**validated)
 
 
 class PolymorphFactory(ComplexFactory):

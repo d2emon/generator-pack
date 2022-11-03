@@ -1,21 +1,29 @@
-from database.data_block import fill_data
+"""
+Alien Species Name.
+
+It's both easy and difficult to create alien names, as they can be anything in any language. But
+the names have to sound like a good fit for the species you've invented, so I've tried to make
+sure many different types of names can be generated, but they generally fit in 3 different
+categories.
+"""
+
 from data.fng.names import fantasy
-from models.fng.names.fantasy import AlienName
+from database.data_block import fill_data
 from genesys.fng.factories.name_block_factory import NameBlockFactory
 from genesys.fng.factories.name_factory import ComplexNameFactory
-from genesys.fng.factories.validators import item_is_not_unique, item_equals, generate_while
+from genesys.fng.factories.validators import item_is_not_unique, item_equals
+from models.fng.names.fantasy import AlienName
 
 
 class AlienNameFactory(NameBlockFactory):
-    """Alien Species Name Factory
-
-    It's both easy and difficult to create alien names, as they can be anything in any language. But the names have to
-    sound like a good fit for the species you've invented, so I've tried to make sure many different types of names can
-    be generated, but they generally fit in 3 different categories."""
+    """Alien Species Name Factory."""
 
     class AlienNameFactory1(ComplexNameFactory):
-        """The first 4 names have a much higher chance of having a more guttural sound to them, ideal for the stronger
-        and brutish looking aliens."""
+        """
+        The first 4 names have a much higher chance of having a more guttural sound to them,
+        ideal for the stronger and brutish looking aliens.
+        """
+
         model = AlienName
 
         block_map = {
@@ -26,24 +34,25 @@ class AlienNameFactory(NameBlockFactory):
             'nm5': 5,
         }
 
-        def validate(self, items):
-            items['nm3'] = generate_while(
-                items['nm3'],
-                item_is_not_unique([items['nm1'], items['nm5']]),
-                self['nm3'],
-            )
+        validators = {
+            'nm3': lambda items: item_is_not_unique([items['nm1'], items['nm5']]),
+            'nm4': lambda items: item_equals(''),
+        }
 
-            items['nm4'] = self['nm4'](item_id=0) if str(items['nm3']) == '' else generate_while(
-                items['nm4'],
-                item_equals(''),
-                self['nm4'],
-            )
+        def validate_item(self, item_id, item, items):
+            if item_id == 'nm4':
+                if str(items['nm3']) == '':
+                    items[item_id] = self[item_id](item_id=0)
+                    return items
 
-            return items
+            return super().validate_item(item_id, item, items)
 
     class AlienNameFactory2(ComplexNameFactory):
-        """The next 3 names have a much higher chance of having a more melodic sound to them, making them ideal for the
-        softer and gentle looking aliens."""
+        """
+        The next 3 names have a much higher chance of having a more melodic sound to them, making
+        them ideal for the softer and gentle looking aliens.
+        """
+
         model = AlienName
 
         block_map = {
@@ -54,18 +63,17 @@ class AlienNameFactory(NameBlockFactory):
             'nm5': 11,
         }
 
-        def validate(self, items):
-            items['nm3'] = generate_while(
-                items['nm3'],
-                item_is_not_unique([items['nm1'], items['nm5']]),
-                self['nm3'],
-            )
-
-            return items
+        validators = {
+            'nm3': lambda items: item_is_not_unique([items['nm1'], items['nm5']]),
+        }
 
     class AlienNameFactory3(ComplexNameFactory):
-        """The last 3 names can sound both guttural and melodic and anything in between. These names are more randomized
-        than the previous 2 types and unlike the other 2 types, these aren't always easy to pronounce in English."""
+        """
+        The last 3 names can sound both guttural and melodic and anything in between. These names
+        are more randomized than the previous 2 types and unlike the other 2 types, these aren't
+        always easy to pronounce in English.
+        """
+
         model = AlienName
 
         block_map = {
@@ -76,20 +84,18 @@ class AlienNameFactory(NameBlockFactory):
             'nm5': 16,
         }
 
-        def validate(self, items):
-            items['nm3'] = generate_while(
-                items['nm3'],
-                item_is_not_unique([items['nm1'], items['nm5']]),
-                self['nm3'],
-            )
+        validators = {
+            'nm3': lambda items: item_is_not_unique([items['nm1'], items['nm5']]),
+            'nm4': lambda items: item_equals(''),
+        }
 
-            items['nm4'] = self['nm4'](item_id=0) if str(items['nm3']) == '' else generate_while(
-                items['nm4'],
-                item_equals(''),
-                self['nm4'],
-            )
+        def validate_item(self, item_id, item, items):
+            if item_id == 'nm4':
+                if str(items['nm3']) == '':
+                    items[item_id] = self[item_id](item_id=0)
+                    return items
 
-            return items
+            return super().validate_item(item_id, item, items)
 
     default_data = fill_data(group_id='aliens')({
         1: fantasy.alien.nm1,
@@ -117,12 +123,12 @@ class AlienNameFactory(NameBlockFactory):
         2: AlienNameFactory3,
     }
 
-    def factory(self, percent):
+    def by_percent(self, percent):
         if percent < 40:
             return self.factories.get(0)
-        elif percent < 70:
+        if percent < 70:
             return self.factories.get(1)
-        elif percent < 100:
+        if percent < 100:
             return self.factories.get(2)
-        else:
-            return None
+
+        return None
