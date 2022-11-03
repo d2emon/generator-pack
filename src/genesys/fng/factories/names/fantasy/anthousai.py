@@ -15,12 +15,18 @@ depending on your choice below). Colors have their translation in brackets. Gend
 matter for names, as Chloris is spelled with the masculine suffix despite being a woman.
 """
 
-from utils import genders
-from database.data_block import fill_data
 from data.fng.names import fantasy
-from models.fng.names.fantasy import AnthousaiName
+from genesys.fng.database import Database
 from genesys.fng.factories.name_block_factory import GenderNameBlockFactory
 from genesys.fng.factories.name_factory import ComplexNameFactory
+from models.fng.names.fantasy import AnthousaiName
+from utils import genders
+
+
+DB = Database('anthousai', {
+    1: fantasy.anthousai.nm1,
+    2: fantasy.anthousai.nm2,
+})
 
 
 class AnthousaiNameFactory(GenderNameBlockFactory):
@@ -42,11 +48,9 @@ class AnthousaiNameFactory(GenderNameBlockFactory):
             'nm1': 2,
         }
 
+    default_data = DB
+
     factory_classes = {
         genders.MALE: MaleNameFactory,
         genders.FEMALE: FemaleNameFactory,
     }
-    default_data = fill_data(group_id='anthousai')({
-        1: fantasy.anthousai.nm1,
-        2: fantasy.anthousai.nm2,
-    })

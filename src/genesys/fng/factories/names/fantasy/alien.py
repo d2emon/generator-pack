@@ -8,11 +8,32 @@ categories.
 """
 
 from data.fng.names import fantasy
-from database.data_block import fill_data
+from genesys.fng.database import Database
 from genesys.fng.factories.name_block_factory import NameBlockFactory
 from genesys.fng.factories.name_factory import ComplexNameFactory
 from genesys.fng.factories.validators import item_is_not_unique, item_equals
 from models.fng.names.fantasy import AlienName
+
+
+DB = Database('aliens', {
+    1: fantasy.alien.nm1,
+    2: fantasy.alien.nm2,
+    3: fantasy.alien.nm3,
+    4: fantasy.alien.nm4,
+    5: fantasy.alien.nm5,
+
+    6: fantasy.alien.nm6,
+    7: fantasy.alien.nm7,
+    8: fantasy.alien.nm8,
+    10: fantasy.alien.nm10,
+    11: fantasy.alien.nm11,
+
+    12: fantasy.alien.nm12,
+    13: fantasy.alien.nm13,
+    14: fantasy.alien.nm14,
+    15: fantasy.alien.nm15,
+    16: fantasy.alien.nm16,
+})
 
 
 class AlienNameFactory(NameBlockFactory):
@@ -97,25 +118,7 @@ class AlienNameFactory(NameBlockFactory):
 
             return super().validate_item(item_id, item, items)
 
-    default_data = fill_data(group_id='aliens')({
-        1: fantasy.alien.nm1,
-        2: fantasy.alien.nm2,
-        3: fantasy.alien.nm3,
-        4: fantasy.alien.nm4,
-        5: fantasy.alien.nm5,
-
-        6: fantasy.alien.nm6,
-        7: fantasy.alien.nm7,
-        8: fantasy.alien.nm8,
-        10: fantasy.alien.nm10,
-        11: fantasy.alien.nm11,
-
-        12: fantasy.alien.nm12,
-        13: fantasy.alien.nm13,
-        14: fantasy.alien.nm14,
-        15: fantasy.alien.nm15,
-        16: fantasy.alien.nm16,
-    })
+    default_data = DB
 
     factory_classes = {
         0: AlienNameFactory1,
@@ -123,5 +126,4 @@ class AlienNameFactory(NameBlockFactory):
         2: AlienNameFactory3,
     }
 
-    def by_percent(self, percent):
-        return self.by_percent_3(percent)
+    by_percent = NameBlockFactory.by_percent_3

@@ -9,18 +9,21 @@ The names in this generator cover themes like robotics, electronics, purposes, a
 identity as well.
 """
 
-from database.data_block import fill_data
 from data.fng.names import fantasy
-from models.fng.names.fantasy import ArtificialIntelligenceName
+from genesys.fng.database import Database
 from genesys.fng.factories.name_block_factory import SimpleNameBlockFactory
+from models.fng.names.fantasy import ArtificialIntelligenceName
+
+
+DB = Database('artificial-intelligence', {
+    1: fantasy.artificial_intelligence.nm1,
+})
 
 
 class ArtificialIntelligenceNameFactory(SimpleNameBlockFactory):
     """Artificial Intelligence Name Factory."""
 
-    default_data = fill_data(group_id='artificial-intelligence')({
-        1: fantasy.artificial_intelligence.nm1,
-    })
+    default_data = DB
 
     block_map = {
         'nm1': 1,

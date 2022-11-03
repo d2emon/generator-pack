@@ -6,11 +6,18 @@ perfect for fantasy creatures. However, due to the random nature of this generat
 while you may get a name of an existing animal.
 """
 
-from database.data_block import fill_data
 from data.fng.names import fantasy
-from models.fng.names.fantasy import AnimalSpeciesName
+from genesys.fng.database import Database
 from genesys.fng.factories.name_block_factory import NameBlockFactory
 from genesys.fng.factories.name_factory import ComplexNameFactory
+from models.fng.names.fantasy import AnimalSpeciesName
+
+
+DB = Database('animal_species', {
+    1: fantasy.animal_species.nm1,
+    2: fantasy.animal_species.nm2,
+    3: fantasy.animal_species.nm3,
+})
 
 
 class AnimalSpeciesNameFactory(NameBlockFactory):
@@ -54,17 +61,13 @@ class AnimalSpeciesNameFactory(NameBlockFactory):
             'nm2': 2,
         }
 
+    default_data = DB
+
     factory_classes = {
         0: AnimalSpeciesNameFactory1,
         1: AnimalSpeciesNameFactory2,
         2: AnimalSpeciesNameFactory3,
     }
-
-    default_data = fill_data(group_id='animal_species')({
-        1: fantasy.animal_species.nm1,
-        2: fantasy.animal_species.nm2,
-        3: fantasy.animal_species.nm3,
-    })
 
     def by_percent(self, percent):
         if percent < 40:

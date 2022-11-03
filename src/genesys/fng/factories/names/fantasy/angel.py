@@ -9,12 +9,19 @@ male and female names, so you'll likely come across some doubles if you're looki
 sections.
 """
 
-from database.data_block import fill_data
-from utils import genders
 from data.fng.names import fantasy
-from models.fng.names.fantasy import AngelName
+from genesys.fng.database import Database
 from genesys.fng.factories.name_factory import ComplexNameFactory
 from genesys.fng.factories.name_block_factory import GenderNameBlockFactory
+from models.fng.names.fantasy import AngelName
+from utils import genders
+
+
+DB = Database('angel', {
+    1: fantasy.angel.names1,
+    2: fantasy.angel.names2,
+    3: fantasy.angel.names3,
+})
 
 
 class AngelNameFactory(GenderNameBlockFactory):
@@ -47,14 +54,10 @@ class AngelNameFactory(GenderNameBlockFactory):
             'nm1': 3,
         }
 
+    default_data = DB
+
     factory_classes = {
         genders.MALE: MaleNameFactory,
         genders.FEMALE: FemaleNameFactory,
         genders.NEUTRAL: NeutralNameFactory,
     }
-
-    default_data = fill_data(group_id='angel')({
-        1: fantasy.angel.names1,
-        2: fantasy.angel.names2,
-        3: fantasy.angel.names3,
-    })

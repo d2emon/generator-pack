@@ -9,12 +9,18 @@ purposes.
 """
 
 import random
-from utils import genders
-from database.data_block import fill_data
 from data.fng.names import fantasy
-from models.fng.names.fantasy import AnimatronicName
+from genesys.fng.database import Database
 from genesys.fng.factories.name_block_factory import GenderNameBlockFactory
 from genesys.fng.factories.name_factory import ComplexNameFactory, BaseNameFactory
+from models.fng.names.fantasy import AnimatronicName
+from utils import genders
+
+
+DB = Database('animatronic', {
+    1: fantasy.animatronic.nm1,
+    2: fantasy.animatronic.nm2,
+})
 
 
 class AnimatronicNamePartFactory(BaseNameFactory):
@@ -91,12 +97,9 @@ class AnimatronicNameFactory(GenderNameBlockFactory):
             'nm1': 2,
         }
 
+    default_data = DB
+
     factory_classes = {
         genders.MALE: MaleNameFactory,
         genders.FEMALE: FemaleNameFactory,
     }
-
-    default_data = fill_data(group_id='animatronic')({
-        1: fantasy.animatronic.nm1,
-        2: fantasy.animatronic.nm2,
-    })

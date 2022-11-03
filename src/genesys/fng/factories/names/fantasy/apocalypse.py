@@ -24,12 +24,19 @@ Quite a few of the names, especially the apocalypse-themed ones, can often be us
 'Bullet' and 'Bulletproof', 'Daydream' and 'Nightmare' or 'Ash' and 'Soot'.
 """
 
-from utils import genders
-from database.data_block import fill_data
 from data.fng.names import fantasy
-from models.fng.names.fantasy import ApocalypseNickname
+from genesys.fng.database import Database
 from genesys.fng.factories.name_block_factory import GenderNameBlockFactory
 from genesys.fng.factories.name_factory import ComplexNameFactory
+from models.fng.names.fantasy import ApocalypseNickname
+from utils import genders
+
+
+DB = Database('apocalypse', {
+    genders.MALE: fantasy.apocalypse.namesMale,
+    genders.FEMALE: fantasy.apocalypse.namesFemale,
+    genders.NEUTRAL: fantasy.apocalypse.namesNeutral,
+})
 
 
 class ApocalypseNicknameFactory(GenderNameBlockFactory):
@@ -59,13 +66,10 @@ class ApocalypseNicknameFactory(GenderNameBlockFactory):
             'nm1': genders.NEUTRAL,
         }
 
+    default_data = DB
+
     factory_classes = {
         genders.MALE: MaleNameFactory,
         genders.FEMALE: FemaleNameFactory,
         genders.NEUTRAL: NeutralNameFactory,
     }
-    default_data = fill_data(group_id='apocalypse')({
-        genders.MALE: fantasy.apocalypse.namesMale,
-        genders.FEMALE: fantasy.apocalypse.namesFemale,
-        genders.NEUTRAL: fantasy.apocalypse.namesNeutral,
-    })

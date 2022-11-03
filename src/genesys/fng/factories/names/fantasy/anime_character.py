@@ -15,12 +15,22 @@ types of anime and manga characters.
 Like regular Japanese names, the names in this generator are in surname - personal name order.
 """
 
-from utils import genders
-from database.data_block import fill_data
 from data.fng.names import fantasy
-from models.fng.names.fantasy import AnimeCharacterName
+from genesys.fng.database import Database
 from genesys.fng.factories.name_block_factory import GenderNameBlockFactory
 from genesys.fng.factories.name_factory import ComplexNameFactory
+from models.fng.names.fantasy import AnimeCharacterName
+from utils import genders
+
+
+DB = Database('anime', {
+    1: fantasy.anime_character.nm1,
+    2: fantasy.anime_character.nm2,
+    3: fantasy.anime_character.nm3,
+    4: fantasy.anime_character.nm4,
+    5: fantasy.anime_character.nm5,
+    6: fantasy.anime_character.nm6,
+})
 
 
 class AnimeNameFactory(GenderNameBlockFactory):
@@ -48,15 +58,9 @@ class AnimeNameFactory(GenderNameBlockFactory):
             'nm4': 6,
         }
 
+    default_data = DB
+
     factory_classes = {
         genders.MALE: MaleAnimeNameFactory,
         genders.FEMALE: FemaleAnimeNameFactory,
     }
-    default_data = fill_data(group_id='anime')({
-        1: fantasy.anime_character.nm1,
-        2: fantasy.anime_character.nm2,
-        3: fantasy.anime_character.nm3,
-        4: fantasy.anime_character.nm4,
-        5: fantasy.anime_character.nm5,
-        6: fantasy.anime_character.nm6,
-    })

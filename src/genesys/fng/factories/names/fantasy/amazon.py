@@ -16,11 +16,21 @@ Even in these modern versions, the Amazon women tend to have Greek or Greek soun
 Hippolyta, the queen of the Amazons and mother of Diana, otherwise known as Wonder Woman.
 """
 
-from database.data_block import fill_data
 from data.fng.names import fantasy
-from models.fng.names.fantasy import AmazonName
+from genesys.fng.database import Database
 from genesys.fng.factories.name_factory import ComplexNameFactory
 from genesys.fng.factories.name_block_factory import NameBlockFactory
+from models.fng.names.fantasy import AmazonName
+
+
+DB = Database('amazon', {
+    1: fantasy.amazon.names1,
+    2: fantasy.amazon.names2,
+    3: fantasy.amazon.names3,
+    4: fantasy.amazon.names4,
+    5: fantasy.amazon.names5,
+    6: fantasy.amazon.names6,
+})
 
 
 class AmazonNameFactory(NameBlockFactory):
@@ -52,19 +62,12 @@ class AmazonNameFactory(NameBlockFactory):
             'nm5': 6,
         }
 
+    default_data = DB
+
     factory_classes = {
         0: AmazonNameFactory1,
         1: AmazonNameFactory2,
     }
-
-    default_data = fill_data(group_id='amazon')({
-        1: fantasy.amazon.names1,
-        2: fantasy.amazon.names2,
-        3: fantasy.amazon.names3,
-        4: fantasy.amazon.names4,
-        5: fantasy.amazon.names5,
-        6: fantasy.amazon.names6,
-    })
 
     def by_percent(self, percent):
         return self.by_percent_2(percent)

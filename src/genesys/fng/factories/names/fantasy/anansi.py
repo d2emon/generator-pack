@@ -19,11 +19,17 @@ looking for.
 """
 
 import random
-from database.data_block import fill_data
 from data.fng.names import fantasy
-from models.fng.names.fantasy import AnansiName
+from genesys.fng.database import Database
 from genesys.fng.factories.name_block_factory import NameBlockFactory
 from genesys.fng.factories.name_factory import ComplexNameFactory
+from models.fng.names.fantasy import AnansiName
+
+
+DB = Database('anansi', {
+    1: fantasy.anansi.names1,
+    8: fantasy.anansi.names8,
+})
 
 
 class AnansiNameFactory(NameBlockFactory):
@@ -32,12 +38,9 @@ class AnansiNameFactory(NameBlockFactory):
     class AnansiNameFactory1(ComplexNameFactory):
         """Method #1."""
 
-        model = AnansiName
+        default_data = DB
 
-        default_data = fill_data(group_id='anansi')({
-            1: fantasy.anansi.names1,
-            8: fantasy.anansi.names8,
-        })
+        model = AnansiName
 
         block_map = {
             'nm1': 1,
