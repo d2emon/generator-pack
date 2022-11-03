@@ -88,6 +88,3 @@ class AnansiNameFactory(NameBlockFactory):
     factory_classes = {
         0: AnansiNameFactory1,
     }
-
-    def by_percent(self, percent):
-        return self.by_percent_1(percent)

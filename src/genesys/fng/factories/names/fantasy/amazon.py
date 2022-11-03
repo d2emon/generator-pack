@@ -63,11 +63,7 @@ class AmazonNameFactory(NameBlockFactory):
         }
 
     default_data = DB
-
     factory_classes = {
         0: AmazonNameFactory1,
         1: AmazonNameFactory2,
     }
-
-    def by_percent(self, percent):
-        return self.by_percent_2(percent)

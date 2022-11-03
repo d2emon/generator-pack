@@ -1,5 +1,5 @@
 import random
-from .name_factory import ComplexFactory
+from .name_factory import ComplexFactory, ComplexNameFactory
 from utils import genders
 
 
@@ -21,9 +21,6 @@ class NameBlockFactory(ComplexFactory):
     def __get_percent(self):
         return random.uniform(0.0, 100.0)
 
-    def by_percent_1(self, percent):
-        return self.factories[0]
-
     def by_percent_2(self, percent):
         if percent < 50:
             return self.factories[0]
@@ -43,6 +40,15 @@ class NameBlockFactory(ComplexFactory):
         return None
 
     def by_percent(self, percent):
+        if len(self.factories) == 1:
+            return self.factories[0]
+
+        if len(self.factories) == 2:
+            return self.by_percent_2
+
+        if len(self.factories) == 3:
+            return self.by_percent_3
+
         raise NotImplementedError()
 
     def __call__(self, *args, percent=None, **kwargs):
@@ -66,9 +72,26 @@ class NameBlockFactory(ComplexFactory):
 
 
 class GenderNameBlockFactory(NameBlockFactory):
+    class MaleNameFactory(ComplexNameFactory):
+        pass
+
+    class FemaleNameFactory(ComplexNameFactory):
+        pass
+
+    class NeutralNameFactory(ComplexNameFactory):
+        pass
+
     @property
     def genders(self):
         return self.factories.keys()
+
+    @classmethod
+    def get_factories(cls, factory_data):
+        return {
+            genders.MALE: cls.MaleNameFactory(factory_data),
+            genders.FEMALE: cls.FemaleNameFactory(factory_data),
+            genders.NEUTRAL: cls.NeutralNameFactory(factory_data),
+        }
 
     def __get_gender(self):
         return genders.MALE

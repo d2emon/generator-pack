@@ -67,9 +67,3 @@ class ApocalypseNicknameFactory(GenderNameBlockFactory):
         }
 
     default_data = DB
-
-    factory_classes = {
-        genders.MALE: MaleNameFactory,
-        genders.FEMALE: FemaleNameFactory,
-        genders.NEUTRAL: NeutralNameFactory,
-    }

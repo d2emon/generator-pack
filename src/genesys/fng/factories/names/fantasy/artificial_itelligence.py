@@ -23,10 +23,8 @@ DB = Database('artificial-intelligence', {
 class ArtificialIntelligenceNameFactory(SimpleNameBlockFactory):
     """Artificial Intelligence Name Factory."""
 
+    model = ArtificialIntelligenceName
     default_data = DB
-
     block_map = {
         'nm1': 1,
     }
-
-    model = ArtificialIntelligenceName

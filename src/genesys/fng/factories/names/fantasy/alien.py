@@ -119,11 +119,8 @@ class AlienNameFactory(NameBlockFactory):
             return super().validate_item(item_id, item, items)
 
     default_data = DB
-
     factory_classes = {
         0: AlienNameFactory1,
         1: AlienNameFactory2,
         2: AlienNameFactory3,
     }
-
-    by_percent = NameBlockFactory.by_percent_3

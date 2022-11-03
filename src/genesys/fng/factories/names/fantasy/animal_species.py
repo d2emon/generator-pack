@@ -62,17 +62,8 @@ class AnimalSpeciesNameFactory(NameBlockFactory):
         }
 
     default_data = DB
-
     factory_classes = {
         0: AnimalSpeciesNameFactory1,
         1: AnimalSpeciesNameFactory2,
         2: AnimalSpeciesNameFactory3,
     }
-
-    def by_percent(self, percent):
-        if percent < 40:
-            return self.factories[0]
-        if percent < 60:
-            return self.factories[1]
-
-        return self.factories[2]

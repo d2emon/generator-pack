@@ -49,8 +49,3 @@ class AnthousaiNameFactory(GenderNameBlockFactory):
         }
 
     default_data = DB
-
-    factory_classes = {
-        genders.MALE: MaleNameFactory,
-        genders.FEMALE: FemaleNameFactory,
-    }

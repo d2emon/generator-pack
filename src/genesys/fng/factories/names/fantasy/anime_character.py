@@ -59,8 +59,3 @@ class AnimeNameFactory(GenderNameBlockFactory):
         }
 
     default_data = DB
-
-    factory_classes = {
-        genders.MALE: MaleAnimeNameFactory,
-        genders.FEMALE: FemaleAnimeNameFactory,
-    }
