@@ -44,10 +44,10 @@ class NameBlockFactory(ComplexFactory):
             return self.factories[0]
 
         if len(self.factories) == 2:
-            return self.by_percent_2
+            return self.by_percent_2(percent)
 
         if len(self.factories) == 3:
-            return self.by_percent_3
+            return self.by_percent_3(percent)
 
         raise NotImplementedError()
 

@@ -16,10 +16,10 @@ majority of names should still work for many stereotypical barbarian styles, as 
 other styles.
 """
 
-from database.data_block import fill_data
 from data.fng.names import fantasy
 from genesys.fng.database import Database
-from genesys.fng.factories.name_factory import ComplexNameFactory, PercentFactory
+from genesys.fng.factories.name_block_factory import NameBlockFactory, GenderNameBlockFactory
+from genesys.fng.factories.name_factory import ComplexNameFactory
 from genesys.fng.factories.validators import generate_while
 from models.fng.names.fantasy import BarbarianName, BarbarianName1, BarbarianName2, \
     MaleBarbarianName3, FemaleBarbarianName3
@@ -38,177 +38,161 @@ DB = Database('barbarian', {
 })
 
 
-class BarbarianNameFactory(PercentFactory):
+class BarbarianNameFactory(GenderNameBlockFactory):
     """Barbarian Name Factory."""
 
-    class MaleNameFactory1(ComplexNameFactory):
+    class MaleNameFactory(NameBlockFactory):
         """Method #1."""
 
-        model = BarbarianName1
-        block_map = {
-            'nm1': 2,
-            'nm2': 1,
-            'nm3': 4,
+        class MaleNameFactory1(ComplexNameFactory):
+            """Method #1."""
+
+            model = BarbarianName
+            block_map = {
+                'nm1': 2,
+                'nm2': 1,
+                'nm3': 4,
+            }
+
+        class MaleNameFactory2(ComplexNameFactory):
+            """Method #2."""
+
+            model = BarbarianName
+            block_map = {
+                'nm1': 2,
+                'nm2': 1,
+                'nm3': 4,
+                'nm4': 1,
+                'nm5': 3,
+            }
+
+            def validate(self, items):
+                if items['nm1'].item_id < 3:
+                    items['nm4'] = generate_while(
+                        items['nm4'],
+                        lambda item: item.item_id < 3,
+                        self['nm4'],
+                    )
+
+                return items
+
+        class MaleNameFactory3(ComplexNameFactory):
+            """Method #3."""
+
+            model = BarbarianName
+            block_map = {
+                'nm1': 2,
+                'nm2': 1,
+                'nm3': 4,
+                'nm4': 1,
+                'nm5': 3,
+                'nm6': 1,
+                'nm7': 3,
+            }
+
+            def validate(self, items):
+                if items['nm1'].item_id < 3:
+                    items['nm4'] = generate_while(
+                        items['nm4'],
+                        lambda item: item.item_id < 3,
+                        self['nm4'],
+                    )
+
+                if (items['nm1'].item_id < 3) or (items['nm4'].item_id < 3):
+                    items['nm6'] = generate_while(
+                        items['nm6'],
+                        lambda item: item.item_id < 3,
+                        self['nm6'],
+                    )
+
+                return items
+
+        factory_classes = {
+            0: MaleNameFactory1,
+            1: MaleNameFactory2,
+            2: MaleNameFactory3,
         }
 
-    class MaleNameFactory2(ComplexNameFactory):
-        """Method #2."""
-
-        model = BarbarianName2
-        block_map = {
-            'nm1': 2,
-            'nm2': 1,
-            'nm3': 4,
-            'nm4': 1,
-            'nm5': 3,
-        }
-
-        def validate(self, items):
-            if items['nm1'].item_id < 3:
-                items['nm4'] = generate_while(
-                    items['nm4'],
-                    lambda item: item.item_id < 3,
-                    self['nm4'],
-                )
-
-            return items
-
-    class MaleNameFactory3(ComplexNameFactory):
-        """Method #3."""
-
-        model = MaleBarbarianName3
-        block_map = {
-            'nm1': 2,
-            'nm2': 1,
-            'nm3': 4,
-            'nm4': 1,
-            'nm5': 3,
-            'nm6': 1,
-            'nm7': 3,
-        }
-
-        def validate(self, items):
-            if items['nm1'].item_id < 3:
-                items['nm4'] = generate_while(
-                    items['nm4'],
-                    lambda item: item.item_id < 3,
-                    self['nm4'],
-                )
-
-            if (items['nm1'].item_id < 3) or (items['nm4'].item_id < 3):
-                items['nm6'] = generate_while(
-                    items['nm6'],
-                    lambda item: item.item_id < 3,
-                    self['nm6'],
-                )
-
-            return items
-
-    class FemaleNameFactory1(ComplexNameFactory):
+    class FemaleNameFactory(NameBlockFactory):
         """Method #1."""
 
-        model = BarbarianName1
-        block_map = {
-            'nm1': 5,
-            'nm2': 6,
-            'nm3': 8,
-        }
+        class FemaleNameFactory1(ComplexNameFactory):
+            """Method #1."""
 
-        def validate(self, items):
-            items['nm1'] = generate_while(
-                items['nm1'],
-                lambda item: item.item_id < 5,
-                self['nm5'],
-            )
+            model = BarbarianName
+            block_map = {
+                'nm1': 5,
+                'nm2': 6,
+                'nm3': 8,
+            }
 
-            return items
-
-    class FemaleNameFactory2(ComplexNameFactory):
-        """Method #2."""
-
-        model = BarbarianName2
-        block_map = {
-            'nm1': 5,
-            'nm2': 6,
-            'nm3': 8,
-            'nm4': 6,
-            'nm5': 7,
-        }
-
-        def validate(self, items):
-            if items['nm2'].item_id < 5:
-                items['nm4'] = generate_while(
-                    items['nm4'],
+            def validate(self, items):
+                items['nm1'] = generate_while(
+                    items['nm1'],
                     lambda item: item.item_id < 5,
-                    self['nm4'],
+                    self['nm5'],
                 )
 
-            return items
+                return items
 
-    class FemaleNameFactory3(ComplexNameFactory):
-        """Method #3."""
+        class FemaleNameFactory2(ComplexNameFactory):
+            """Method #2."""
 
-        model = FemaleBarbarianName3
-        block_map = {
-            'nm1': 5,
-            'nm2': 6,
-            'nm3': 8,
-            'nm4': 6,
-            'nm5': 7,
-            'nm6': 6,
-            'nm7': 7,
+            model = BarbarianName
+            block_map = {
+                'nm1': 5,
+                'nm2': 6,
+                'nm3': 8,
+                'nm4': 6,
+                'nm5': 7,
+            }
+
+            def validate(self, items):
+                if items['nm2'].item_id < 5:
+                    items['nm4'] = generate_while(
+                        items['nm4'],
+                        lambda item: item.item_id < 5,
+                        self['nm4'],
+                    )
+
+                return items
+
+        class FemaleNameFactory3(ComplexNameFactory):
+            """Method #3."""
+
+            model = BarbarianName
+            block_map = {
+                'nm1': 5,
+                'nm2': 6,
+                'nm3': 8,
+                'nm4': 6,
+                'nm5': 7,
+                'nm6': 6,
+                'nm7': 7,
+            }
+
+            def validate(self, items):
+                if items['nm2'].item_id < 5:
+                    items['nm4'] = generate_while(
+                        items['nm4'],
+                        lambda item: item.item_id < 5,
+                        self['nm4'],
+                    )
+
+                if (items['nm2'].item_id < 5) or (items['nm4'].item_id < 5):
+                    items['nm6'] = generate_while(
+                        items['nm6'],
+                        lambda item: item.item_id < 5,
+                        self['nm6'],
+                    )
+
+                return items
+
+        factory_classes = {
+            0: FemaleNameFactory1,
+            1: FemaleNameFactory2,
+            2: FemaleNameFactory3,
         }
 
-        def validate(self, items):
-            if items['nm2'].item_id < 5:
-                items['nm4'] = generate_while(
-                    items['nm4'],
-                    lambda item: item.item_id < 5,
-                    self['nm4'],
-                )
-
-            if (items['nm2'].item_id < 5) or (items['nm4'].item_id < 5):
-                items['nm6'] = generate_while(
-                    items['nm6'],
-                    lambda item: item.item_id < 5,
-                    self['nm6'],
-                )
-
-            return items
-
+    model = BarbarianName
     default_data = DB
-    factory_classes = {
-        f"{genders.MALE}.1": MaleNameFactory1,
-        f"{genders.FEMALE}.1": FemaleNameFactory1,
-        f"{genders.MALE}.2": MaleNameFactory2,
-        f"{genders.FEMALE}.2": FemaleNameFactory2,
-        f"{genders.MALE}.3": MaleNameFactory3,
-        f"{genders.FEMALE}.3": FemaleNameFactory3,
-    }
-
-    @property
-    def default_gender(self):
-        """Get default gender for factory."""
-        return genders.MALE
-
-    def factory(self, factory_id=0, gender=None):
-        if gender is None:
-            gender = self.default_gender
-
-        if factory_id < 30:
-            __factory_id = 1
-        elif factory_id < 80:
-            __factory_id = 2
-        else:
-            __factory_id = 3
-
-        return self.factories.get(f"{gender}.{__factory_id}")
-
-    def __call__(self, *args, factory_id=None, gender=None, **kwargs) -> BarbarianName:
-        factory = self.factory(factory_id, gender=gender)
-
-        name = ''
-        while name == '':
-            name = factory()
-
-        return name

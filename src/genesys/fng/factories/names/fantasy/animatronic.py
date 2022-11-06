@@ -22,8 +22,20 @@ DB = Database('animatronic', {
 })
 
 
+class AnimatronicNamePart:
+    def __init__(self, *args, **kwargs):
+        self.items = { **kwargs }
+
+
 class AnimatronicNamePartFactory(BaseNameFactory):
     """Method #1."""
+
+    model = AnimatronicNamePart
+
+    def __init__(self, block_id, data=None):
+        super().__init__(data)
+
+        self.block_id = block_id
 
     def get_data(self, *args, **kwargs):
         """
@@ -33,11 +45,20 @@ class AnimatronicNamePartFactory(BaseNameFactory):
         :param kwargs: Kwargs for generation
         :return: Generated value
         """
-        items = list(self.data.find(*args, **kwargs))
+        value = self.data.find(self.block_id)(*args, **kwargs)
+        items = value.value if value else []
         if len(items) == 0:
             return {}
 
-        return random.choice(items)
+        keys = [
+            'nm0',
+            'nm1',
+        ]
+        return { keys[item_id]: random.choice(item) for item_id, item in enumerate(items) }
+
+    def __call__(self, *args, **kwargs):
+        items = self.get_data()
+        return self.model(**items)
 
 
 class BaseAnimatronicNameFactory(ComplexNameFactory):
@@ -51,18 +72,13 @@ class BaseAnimatronicNameFactory(ComplexNameFactory):
         """
         super().__init__(data)
         self.factories = {
-            factory_id: AnimatronicNamePartFactory(self.data.find(block_id=block_id))
+            factory_id: AnimatronicNamePartFactory(block_id, self.data)
             for factory_id, block_id in self.block_map.items()
         }
 
     def validate(self, items) -> dict:
-        print("VALIDATE", items)
-        item = items['nm1'].items.get('value', [[], []])
-        print("ITEM", item)
-        return {
-            'nm0': random.choice(item[0]),
-            'nm1': random.choice(item[1]),
-        }
+        # item = items['nm1'].items.get('value', [[], []])
+        return items['nm1'].items
 
     def __call__(self, *args, **kwargs):
         """
@@ -72,9 +88,7 @@ class BaseAnimatronicNameFactory(ComplexNameFactory):
         :param kwargs: Fields to search in data
         :return: Model, built by factory
         """
-        print("DATA", args, kwargs)
         values = self.get_data(*args, **kwargs)
-        print("VALUES", values)
         values = self.validate(values)
         return super().__call__(*args, **values)
 
@@ -96,4 +110,5 @@ class AnimatronicNameFactory(GenderNameBlockFactory):
             'nm1': 2,
         }
 
+    model = AnimatronicName
     default_data = DB

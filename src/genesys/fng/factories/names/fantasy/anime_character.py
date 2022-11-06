@@ -35,7 +35,7 @@ DB = Database('anime', {
 class AnimeNameFactory(GenderNameBlockFactory):
     """Anime Character Name Factory."""
 
-    class MaleAnimeNameFactory(ComplexNameFactory):
+    class MaleNameFactory(ComplexNameFactory):
         """Method #1."""
 
         model = AnimeCharacterName
@@ -46,7 +46,7 @@ class AnimeNameFactory(GenderNameBlockFactory):
             'nm4': 6,
         }
 
-    class FemaleAnimeNameFactory(ComplexNameFactory):
+    class FemaleNameFactory(ComplexNameFactory):
         """Method #2."""
 
         model = AnimeCharacterName
@@ -57,4 +57,5 @@ class AnimeNameFactory(GenderNameBlockFactory):
             'nm4': 6,
         }
 
+    model = AnimeCharacterName
     default_data = DB

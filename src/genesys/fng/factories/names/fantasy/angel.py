@@ -53,4 +53,5 @@ class AngelNameFactory(GenderNameBlockFactory):
             'nm1': 3,
         }
 
+    model = AngelName
     default_data = DB

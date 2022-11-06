@@ -85,6 +85,7 @@ class AnansiNameFactory(NameBlockFactory):
                 'nm2': items[3].value[items[4] - 1:],
             }
 
+    model = AnansiName
     factory_classes = {
         0: AnansiNameFactory1,
     }

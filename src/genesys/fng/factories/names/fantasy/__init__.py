@@ -1,18 +1,18 @@
 """Fantasy name factories."""
 
-from .alien import AlienNameFactory
-from .amazon import AmazonNameFactory
-from .anansi import AnansiNameFactory
-from .angel import AngelNameFactory
-from .animal_species import AnimalSpeciesNameFactory
-from .animatronic import AnimatronicNameFactory
-from .anime_character import AnimeNameFactory
-from .anthousai import AnthousaiNameFactory
-from .apocalypse import ApocalypseNicknameFactory
-from .artificial_itelligence import ArtificialIntelligenceNameFactory
-from .bandit import BanditNameFactory
-from .banshee import BansheeNameFactory
-from .barbarian import BarbarianNameFactory
+# from .alien import AlienNameFactory
+# from .amazon import AmazonNameFactory
+# from .anansi import AnansiNameFactory
+# from .angel import AngelNameFactory
+# from .animal_species import AnimalSpeciesNameFactory
+# from .animatronic import AnimatronicNameFactory
+# from .anime_character import AnimeNameFactory
+# from .anthousai import AnthousaiNameFactory
+# from .apocalypse import ApocalypseNicknameFactory
+# from .artificial_itelligence import ArtificialIntelligenceNameFactory
+# from .bandit import BanditNameFactory
+# from .banshee import BansheeNameFactory
+# from .barbarian import BarbarianNameFactory
 # <li><a href="http://www.fantasynamegenerators.com/basilisk-names.php">Basilisk Names</a></li>
 # <li><a href="http://www.fantasynamegenerators.com/birdfolk-names.php">Birdfolk Names</a></li>
 # Bluecap

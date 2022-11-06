@@ -47,8 +47,8 @@ class BanditNameFactory(GenderNameBlockFactory):
             }
 
         factory_classes = {
-            f"{genders.MALE}.1": MaleNameFactory1,
-            f"{genders.MALE}.2": MaleNameFactory2,
+            0: MaleNameFactory1,
+            1: MaleNameFactory2,
         }
 
     class FemaleNameFactory(NameBlockFactory):
@@ -73,8 +73,9 @@ class BanditNameFactory(GenderNameBlockFactory):
             }
 
         factory_classes = {
-            f"{genders.FEMALE}.1": FemaleNameFactory1,
-            f"{genders.FEMALE}.2": FemaleNameFactory2,
+            0: FemaleNameFactory1,
+            1: FemaleNameFactory2,
         }
 
+    model = BanditName
     default_data = DB

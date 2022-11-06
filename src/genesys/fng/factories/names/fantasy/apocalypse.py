@@ -66,4 +66,5 @@ class ApocalypseNicknameFactory(GenderNameBlockFactory):
             'nm1': genders.NEUTRAL,
         }
 
+    model = ApocalypseNickname
     default_data = DB

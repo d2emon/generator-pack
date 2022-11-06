@@ -3,7 +3,7 @@ from utils.genders import MALE
 from models.name.name import TextModel
 from models.fng.names.name import Name
 from factories.factory import Factory
-from factories.model.name.factories import NameFactory
+# from factories.model.name.factories import NameFactory
 from genesys.fng.factories.validators import item_is_not_unique, item_equals, generate_while
 
 
@@ -13,6 +13,7 @@ class TextFactory(Factory):
 
 class BaseNameFactory(Factory):
     model = Name
+    default_data = None
 
     def __init__(self, data=None):
         """
@@ -79,29 +80,10 @@ class ComplexNameFactory(ComplexFactory):
 
     @classmethod
     def get_factories(cls, factory_data):
-        def text_factory(block_id):
-            items = [item for item in factory_data if item['block_id'] == block_id]
-
-            def get_item(*args, item_id=None, **kwargs):
-                if item_id is not None:
-                    return next(item for item in items if item['item_id'] == item_id)
-
-                return random.choice(items)
-
-            def build(*args, **kwargs):
-                item = get_item(*args, **kwargs)
-
-                if item is None:
-                    return None
-
-                return item.get('value')
-
-            return build
-
         return {
             # factory_id: TextFactory(factory_data.find(block_id=block_id))
             # factory_id: lambda: next(filter(lambda item: item['block_id'] == block_id, factory_data))
-            factory_id: text_factory(block_id)
+            factory_id: factory_data.find(block_id=block_id)
             for factory_id, block_id in cls.block_map.items()
         }
 

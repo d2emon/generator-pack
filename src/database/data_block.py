@@ -6,12 +6,13 @@ class NameItem:
     Name generator item
     """
 
-    def __init__(self, item_id, value, **kwargs):
+    def __init__(self, item_id, value, block_id=None, **kwargs):
         """
         :param item_id: Id of item
         :param value: Item value
         """
         self.item_id = item_id
+        self.block_id = block_id
         self.value = value
         self.values = kwargs
 
@@ -88,12 +89,12 @@ def load_data(data) -> dict:
 def fill_data(**values):
     def f(blocks):
         return [
-            {
-                'item_id': item_id,
-                'block_id': block_id,
-                'value': value,
+            NameItem(
+                item_id=item_id,
+                block_id=block_id,
+                value=value,
                 **values,
-            }
+            )
             for block_id, items in blocks.items()
             for item_id, value in enumerate(items)
         ]

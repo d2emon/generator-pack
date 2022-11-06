@@ -62,6 +62,7 @@ class AmazonNameFactory(NameBlockFactory):
             'nm5': 6,
         }
 
+    model = AmazonName
     default_data = DB
     factory_classes = {
         0: AmazonNameFactory1,

@@ -47,4 +47,5 @@ class AnthousaiNameFactory(GenderNameBlockFactory):
             'nm1': 2,
         }
 
+    model = AnthousaiName
     default_data = DB

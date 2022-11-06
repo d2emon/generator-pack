@@ -31,4 +31,4 @@ class PreparableModel(Model):
         """
         :return: Model as string
         """
-        return self.prepare(self['value'])
+        return self.prepare(self['value'] or '')

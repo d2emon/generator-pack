@@ -118,6 +118,7 @@ class AlienNameFactory(NameBlockFactory):
 
             return super().validate_item(item_id, item, items)
 
+    model = AlienName
     default_data = DB
     factory_classes = {
         0: AlienNameFactory1,

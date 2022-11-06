@@ -16,7 +16,7 @@ or otherwise depending on the cultural background you need.
 
 from data.fng.names import fantasy
 from genesys.fng.database import Database
-from genesys.fng.factories.name_block_factory import SimpleNameBlockFactory
+from genesys.fng.factories.name_factory import ComplexNameFactory
 from models.fng.names.fantasy import BansheeName
 
 
@@ -26,7 +26,7 @@ DB = Database('banshee', {
 })
 
 
-class BansheeNameFactory(SimpleNameBlockFactory):
+class BansheeNameFactory(ComplexNameFactory):
     """Banshee Name Factory."""
 
     model = BansheeName

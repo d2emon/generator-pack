@@ -61,6 +61,7 @@ class AnimalSpeciesNameFactory(NameBlockFactory):
             'nm2': 2,
         }
 
+    model = AnimalSpeciesName
     default_data = DB
     factory_classes = {
         0: AnimalSpeciesNameFactory1,
