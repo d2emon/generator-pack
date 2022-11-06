@@ -12,6 +12,11 @@ class TestFactory(unittest.TestCase):
     def setUp(self) -> None:
         self.values = [random.uniform(0, 100) for _ in range(10)]
 
+    def test_instance(self):
+        factory = Factory.instance()
+        self.assertIsInstance(factory, Factory)
+        self.assertEqual(factory.instance(), factory)
+
     def test_next(self):
         factory = Factory()
         self.assertEqual(iter(factory), factory)

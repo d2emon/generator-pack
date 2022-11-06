@@ -28,7 +28,7 @@ class NameBlock:
     Block of items
     """
 
-    def __init__(self, *values):
+    def __init__(self, values=()):
         """
         :param values: Values for NameItems
         """
@@ -44,7 +44,7 @@ class NameBlock:
         return self
 
     def get_random_id(self):
-        return random.randrange(len(self.values))
+        return random.choice([item.item_id for item in self.values])
 
     def search(self, query=lambda item: True):
         return filter(query, self.values)
@@ -53,7 +53,7 @@ class NameBlock:
         return self.search(lambda item: all(item.values.get(key) == value for key, value in kwargs.items()))
 
     def filtered(self, **kwargs):
-        return NameBlock(*self.search_values(**kwargs))
+        return NameBlock(self.search_values(**kwargs))
 
     def __iter__(self):
         return self
@@ -88,7 +88,7 @@ def load_data(data) -> dict:
 
 def fill_data(**values):
     def f(blocks):
-        return [
+        return NameBlock(
             NameItem(
                 item_id=item_id,
                 block_id=block_id,
@@ -97,5 +97,5 @@ def fill_data(**values):
             )
             for block_id, items in blocks.items()
             for item_id, value in enumerate(items)
-        ]
+        )
     return f
