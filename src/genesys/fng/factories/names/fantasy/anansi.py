@@ -21,7 +21,6 @@ looking for.
 import random
 from data.fng.names import fantasy
 from genesys.fng.database import Database
-from genesys.fng.factories.name_block_factory import NameBlockFactory
 from genesys.fng.factories.name_factory import ComplexNameFactory
 from models.fng.names.fantasy import AnansiName
 
@@ -32,75 +31,65 @@ DB = Database('anansi', {
 })
 
 
-class AnansiNameFactory(NameBlockFactory):
+class AnansiNameFactory(ComplexNameFactory):
     """Anansi Name Factory."""
 
-    class AnansiNameFactory1(ComplexNameFactory):
-        """Method #1."""
+    model = AnansiName
+    default_data = DB
+    block_map = {
+        'nm1': 1,
+        'nm3': 1,
+        'nm5': 8,
+    }
 
-        default_data = DB
+    def get_data(self, *args, **kwargs) -> dict:
+        """
+        Get data for model.
 
-        model = AnansiName
-
-        block_map = {
-            'nm1': 1,
-            'nm3': 1,
-            'nm5': 8,
+        :param args: Args for data
+        :param kwargs: Kwargs for data
+        :return: Data for model
+        :rtype: dict
+        """
+        values = super().get_data(*args, **kwargs)
+        return {
+            1: values['nm1'],
+            2: random.randrange(len(values['nm1'].value)),
+            3: values['nm3'],
+            4: random.randrange(len(values['nm3'].value)),
+            5: values['nm5'],
         }
 
-        def get_data(self, *args, **kwargs):
-            """
-            Build data.
+    def validate(self, items) -> dict:
+        """
+        Validate data for model.
 
-            Returns:
-                _type_: _description_
-            """
-            values = super().get_data(*args, **kwargs)
-            return {
-                1: values['nm1'],
-                2: random.randrange(len(values['nm1'].value)),
-                3: values['nm3'],
-                4: random.randrange(len(values['nm3'].value)),
-                5: values['nm5'],
-            }
+        :param items dict: Data for model
+        :return: Data for model
+        :rtype: dict
+        """
+        # 2
+        if items[2] < 1:
+            items[2] = 1
+        if (items[2] < 3) and (len(items[1]) > 4):
+            items[2] = 3
+        if items[2] > 5:
+            items[2] = 5
 
-        def validate(self, items) -> dict:
-            """
-            Validate items.
+        # 4
+        if items[4] < 1:
+            items[4] = 1
+        if (items[4] < 3) and (len(items[3]) > 4):
+            items[4] = 3
+        if items[4] > 5:
+            items[4] = 5
 
-            Args:
-                items (_type_): _description_
+        # 2
+        if (items[2] == 1) and (items[4] == 1):
+            items[2] = 2
 
-            Returns:
-                dict: _description_
-            """
-            # 2
-            if items[2] < 1:
-                items[2] = 1
-            if (items[2] < 3) and (len(items[1]) > 4):
-                items[2] = 3
-            if items[2] > 5:
-                items[2] = 5
-
-            # 4
-            if items[4] < 1:
-                items[4] = 1
-            if (items[4] < 3) and (len(items[3]) > 4):
-                items[4] = 3
-            if items[4] > 5:
-                items[4] = 5
-
-            # 2
-            if (items[2] == 1) and (items[4] == 1):
-                items[2] = 2
-
-            return {
-                'nm0': items[1].value[:items[2]],
-                'nm1': items[5],
-                'nm2': items[3].value[items[4] - 1:],
-            }
-
-    model = AnansiName
-    factory_classes = {
-        0: AnansiNameFactory1,
-    }
+        return {
+            'nm0': items[1].value[:items[2]],
+            'nm1': items[5],
+            'nm2': items[3].value[items[4] - 1:],
+        }

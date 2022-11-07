@@ -76,7 +76,7 @@ class Model:
         self.data[key] = value
 
     def __str__(self) -> str:
-        return str(self.value)
+        return str(self.value).title()
 
     def __repr__(self) -> str:
         return f"<{self.__class__.__name__}: \"{self}\">"

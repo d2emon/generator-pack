@@ -63,25 +63,25 @@ class BarbarianNameFactory(GenderNameBlockFactory):
                 'nm4': 1,
                 'nm5': 3,
             }
+            validators = {
+                'nm4': lambda items: items['nm4'].item_id < 3,
+            }
 
-            def validate(self, items):
+            def validate_item(self, item_id, item, items):
                 """
-                Validate items.
+                Validate item.
 
-                Args:
-                    items (_type_): _description_
-
-                Returns:
-                    _type_: _description_
+                :param item_id str: Id of current item
+                :param item: Current item
+                :param items list: Generated items
+                :return: ItemId of current item
+                :rtype: list
                 """
-                if items['nm1'].item_id < 3:
-                    items['nm4'] = generate_while(
-                        items['nm4'],
-                        lambda item: item.item_id < 3,
-                        self['nm4'],
-                    )
+                if item_id == 'nm4':
+                    if items['nm1'].item_id >= 3:
+                        return items
 
-                return items
+                return super().validate_item(item_id, item, items)
 
         class MaleNameFactory3(ComplexNameFactory):
             """Method #3."""
@@ -96,32 +96,30 @@ class BarbarianNameFactory(GenderNameBlockFactory):
                 'nm6': 1,
                 'nm7': 3,
             }
+            validators = {
+                'nm4': lambda items: items['nm4'].item_id < 3,
+                'nm6': lambda items: items['nm6'].item_id < 3,
+            }
 
-            def validate(self, items):
+            def validate_item(self, item_id, item, items):
                 """
-                Validate items.
+                Validate item.
 
-                Args:
-                    items (_type_): _description_
-
-                Returns:
-                    _type_: _description_
+                :param item_id str: Id of current item
+                :param item: Current item
+                :param items list: Generated items
+                :return: ItemId of current item
+                :rtype: list
                 """
-                if items['nm1'].item_id < 3:
-                    items['nm4'] = generate_while(
-                        items['nm4'],
-                        lambda item: item.item_id < 3,
-                        self['nm4'],
-                    )
+                if item_id == 'nm4':
+                    if items['nm1'].item_id >= 3:
+                        return items
 
-                if (items['nm1'].item_id < 3) or (items['nm4'].item_id < 3):
-                    items['nm6'] = generate_while(
-                        items['nm6'],
-                        lambda item: item.item_id < 3,
-                        self['nm6'],
-                    )
+                if item_id == 'nm6':
+                    if (items['nm1'].item_id >= 3) and (items['nm4'].item_id >= 3):
+                        return items
 
-                return items
+                return super().validate_item(item_id, item, items)
 
         factory_classes = {
             0: MaleNameFactory1,
@@ -142,23 +140,24 @@ class BarbarianNameFactory(GenderNameBlockFactory):
                 'nm3': 8,
             }
 
-            def validate(self, items):
+            def validate_item(self, item_id, item, items):
                 """
-                Validate items.
+                Validate item.
 
-                Args:
-                    items (_type_): _description_
-
-                Returns:
-                    _type_: _description_
+                :param item_id str: Id of current item
+                :param item: Current item
+                :param items list: Generated items
+                :return: ItemId of current item
+                :rtype: list
                 """
-                items['nm1'] = generate_while(
-                    items['nm1'],
-                    lambda item: item.item_id < 5,
-                    self['nm5'],
-                )
+                if item_id == 'nm1':
+                    return generate_while(
+                        items['nm1'],
+                        lambda item: item.item_id < 5,
+                        self['nm5'],
+                    )
 
-                return items
+                return super().validate_item(item_id, item, items)
 
         class FemaleNameFactory2(ComplexNameFactory):
             """Method #2."""
@@ -172,24 +171,25 @@ class BarbarianNameFactory(GenderNameBlockFactory):
                 'nm5': 7,
             }
 
-            def validate(self, items):
+            def validate_item(self, item_id, item, items):
                 """
-                Validate items.
+                Validate item.
 
-                Args:
-                    items (_type_): _description_
-
-                Returns:
-                    _type_: _description_
+                :param item_id str: Id of current item
+                :param item: Current item
+                :param items list: Generated items
+                :return: ItemId of current item
+                :rtype: list
                 """
-                if items['nm2'].item_id < 5:
-                    items['nm4'] = generate_while(
-                        items['nm4'],
-                        lambda item: item.item_id < 5,
-                        self['nm4'],
-                    )
+                if item_id == 'nm4':
+                    if items['nm2'].item_id < 5:
+                        return generate_while(
+                            items['nm4'],
+                            lambda item: item.item_id < 5,
+                            self['nm5'],
+                        )
 
-                return items
+                return super().validate_item(item_id, item, items)
 
         class FemaleNameFactory3(ComplexNameFactory):
             """Method #3."""
@@ -204,32 +204,30 @@ class BarbarianNameFactory(GenderNameBlockFactory):
                 'nm6': 6,
                 'nm7': 7,
             }
+            validators = {
+                'nm4': lambda items: items['nm4'].item_id < 5,
+                'nm6': lambda items: items['nm6'].item_id < 5,
+            }
 
-            def validate(self, items):
+            def validate_item(self, item_id, item, items):
                 """
-                Validate items.
+                Validate item.
 
-                Args:
-                    items (_type_): _description_
-
-                Returns:
-                    _type_: _description_
+                :param item_id str: Id of current item
+                :param item: Current item
+                :param items list: Generated items
+                :return: ItemId of current item
+                :rtype: list
                 """
-                if items['nm2'].item_id < 5:
-                    items['nm4'] = generate_while(
-                        items['nm4'],
-                        lambda item: item.item_id < 5,
-                        self['nm4'],
-                    )
+                if item_id == 'nm4':
+                    if items['nm2'].item_id >= 5:
+                        return items
 
-                if (items['nm2'].item_id < 5) or (items['nm4'].item_id < 5):
-                    items['nm6'] = generate_while(
-                        items['nm6'],
-                        lambda item: item.item_id < 5,
-                        self['nm6'],
-                    )
+                if item_id == 'nm6':
+                    if (items['nm2'].item_id >= 5) and (items['nm4'].item_id >= 5):
+                        return items
 
-                return items
+                return super().validate_item(item_id, item, items)
 
         factory_classes = {
             0: FemaleNameFactory1,

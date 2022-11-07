@@ -3,3 +3,4 @@ coverage run -m unittest -v tests.database.test_data_block ^
     tests.genesys.fng.test_fantasy_name_factories
 coverage xml
 coverage html
+pylint .\genesys\fng\factories\names\fantasy

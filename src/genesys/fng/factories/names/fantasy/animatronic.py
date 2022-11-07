@@ -12,7 +12,7 @@ import random
 from data.fng.names import fantasy
 from genesys.fng.database import Database
 from genesys.fng.factories.name_block_factory import GenderNameBlockFactory
-from genesys.fng.factories.name_factory import ComplexNameFactory, BaseNameFactory
+from genesys.fng.factories.name_factory import ComplexNameFactory
 from models.fng.names.fantasy import AnimatronicName
 
 
@@ -22,90 +22,31 @@ DB = Database('animatronic', {
 })
 
 
-class AnimatronicNamePartFactory(BaseNameFactory):
-    """Method #1."""
-
-    model = dict
-
-    def __init__(self, block_id, data=None):
-        """
-        Construct animatronic name part factory.
-
-        Args:
-            block_id (_type_): _description_
-            data (_type_, optional): _description_. Defaults to None.
-        """
-        super().__init__(data)
-
-        self.block_id = block_id
-
-    def get_data(self, *args, **kwargs):
-        """
-        Generate value from data.
-
-        :param args: Args for generation
-        :param kwargs: Kwargs for generation
-        :return: Generated value
-        """
-        value = self.data.find(self.block_id)(*args, **kwargs)
-        items = value.value if value else []
-        if len(items) == 0:
-            return {}
-
-        keys = [
-            'nm0',
-            'nm1',
-        ]
-        return { keys[item_id]: random.choice(item) for item_id, item in enumerate(items) }
-
-    def __call__(self, *args, **kwargs):
-        """Call main factory method."""
-        items = self.get_data()
-        return self.model(**items)
-
-
 class BaseAnimatronicNameFactory(ComplexNameFactory):
     """Method #1."""
 
     model = AnimatronicName
 
-    def __init__(self, data=None):
+    def get_data(self, *args, **kwargs):
         """
-        Construct Animatonic name factory.
+        Generate value from data
 
-        :param data: Data blocks for factory
+        :param args: Args for generation
+        :param kwargs: Kwargs for generation
+        :return: Generated value
         """
-        super().__init__(data)
-        self.factories = {
-            factory_id: AnimatronicNamePartFactory(block_id, self.data)
-            for factory_id, block_id in self.block_map.items()
+        block_id = self.block_map.get('nm1')
+        data = self.data.find(block_id)
+        value = data(*args, **kwargs)
+
+        if not value:
+            return {}
+
+        items = value.value
+        return {
+            'nm0': random.choice(items[0]) if len(items) > 0 else '',
+            'nm1': random.choice(items[1]) if len(items) > 1 else '',
         }
-
-    def validate(self, items) -> dict:
-        """
-        Validate items.
-
-        Args:
-            items (_type_): _description_
-
-        Returns:
-            dict: _description_
-        """
-        # item = items['nm1'].items.get('value', [[], []])
-        return items['nm1']
-
-    def __call__(self, *args, **kwargs):
-        """
-        Run main factory method.
-
-        :param args: Model args
-        :param kwargs: Fields to search in data
-        :return: Model, built by factory
-        """
-        values = self.get_data(*args, **kwargs)
-        values = self.validate(values)
-        return super().__call__(*args, **values)
-
 
 class AnimatronicNameFactory(GenderNameBlockFactory):
     """Animatronic Name Factory."""

@@ -21,8 +21,28 @@ class BaseNameFactory(Factory):
         """
         self.data = data or self.default_data
 
+    def get_data(self, *args, **kwargs) -> dict:
+        """
+        Get data for model.
+
+        :param args: Args for data
+        :param kwargs: Kwargs for data
+        :return: Data for model
+        :rtype: dict
+        """
+        return {}
+
     def __call__(self, *args, **kwargs):
-        return self.model()
+        """
+        Build model.
+        
+        :param args: Args for model
+        :param kwargs: Kwargs for model
+        :return: Model
+        :rtype: dict
+        """
+        items = self.get_data(*args, **kwargs)
+        return self.model(**items)
 
 
 class ComplexFactory(BaseNameFactory):
@@ -122,7 +142,7 @@ class ComplexNameFactory(ComplexFactory):
         return items
 
     def __call__(self, *args, **kwargs):
-        items = self.get_data()
+        items = self.get_data(*args, **kwargs)
         validated = self.validate(items)
         return self.model(**validated)
 

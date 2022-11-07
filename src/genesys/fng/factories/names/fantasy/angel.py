@@ -30,7 +30,6 @@ class AngelNameFactory(GenderNameBlockFactory):
         """Method #1."""
 
         model = AngelName
-
         block_map = {
             'nm1': 1,
         }
@@ -39,7 +38,6 @@ class AngelNameFactory(GenderNameBlockFactory):
         """Method #2."""
 
         model = AngelName
-
         block_map = {
             'nm1': 2,
         }
@@ -48,7 +46,6 @@ class AngelNameFactory(GenderNameBlockFactory):
         """Method #3."""
 
         model = AngelName
-
         block_map = {
             'nm1': 3,
         }

@@ -37,6 +37,7 @@ def load_factories():
 
 class TestFantasyNameFactories(unittest.TestCase):
     def test_name_factories(self):
+        print()
         for factory_id, factory in load_factories().items():
             for _ in range(10):
                 model = factory()

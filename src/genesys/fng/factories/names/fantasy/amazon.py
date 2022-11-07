@@ -40,7 +40,6 @@ class AmazonNameFactory(NameBlockFactory):
         """Method #1."""
 
         model = AmazonName
-
         block_map = {
             'nm1': 1,
             'nm2': 2,
@@ -50,10 +49,9 @@ class AmazonNameFactory(NameBlockFactory):
         }
 
     class AmazonNameFactory2(ComplexNameFactory):
-        """Method #1."""
+        """Method #2."""
 
         model = AmazonName
-
         block_map = {
             'nm1': 1,
             'nm2': 2,

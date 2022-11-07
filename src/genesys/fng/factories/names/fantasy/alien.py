@@ -43,12 +43,11 @@ class AlienNameFactory(NameBlockFactory):
         """
         Method #1.
 
-        The first 4 names have a much higher chance of having a more guttural sound to them,
-        ideal for the stronger and brutish looking aliens.
+        Names with a much higher chance of having a more guttural sound to them, ideal for the
+        stronger and brutish looking aliens.
         """
 
         model = AlienName
-
         block_map = {
             'nm1': 1,
             'nm2': 2,
@@ -56,7 +55,6 @@ class AlienNameFactory(NameBlockFactory):
             'nm4': 4,
             'nm5': 5,
         }
-
         validators = {
             'nm3': lambda items: item_is_not_unique([items['nm1'], items['nm5']]),
             'nm4': lambda items: item_equals(''),
@@ -66,13 +64,11 @@ class AlienNameFactory(NameBlockFactory):
             """
             Validate item.
 
-            Args:
-                item_id (_type_): _description_
-                item (_type_): _description_
-                items (_type_): _description_
-
-            Returns:
-                _type_: _description_
+            :param item_id str: Id of current item
+            :param item: Current item
+            :param items list: Generated items
+            :return: ItemId of current item
+            :rtype: list
             """
             if item_id == 'nm4':
                 if str(items['nm3']) == '':
@@ -85,12 +81,11 @@ class AlienNameFactory(NameBlockFactory):
         """
         Method #2.
 
-        The next 3 names have a much higher chance of having a more melodic sound to them, making
+        Names that have a much higher chance of having a more melodic sound to them, making
         them ideal for the softer and gentle looking aliens.
         """
 
         model = AlienName
-
         block_map = {
             'nm1': 6,
             'nm2': 7,
@@ -98,7 +93,6 @@ class AlienNameFactory(NameBlockFactory):
             'nm4': 10,
             'nm5': 11,
         }
-
         validators = {
             'nm3': lambda items: item_is_not_unique([items['nm1'], items['nm5']]),
         }
@@ -107,13 +101,12 @@ class AlienNameFactory(NameBlockFactory):
         """
         Method #3.
 
-        The last 3 names can sound both guttural and melodic and anything in between. These names
-        are more randomized than the previous 2 types and unlike the other 2 types, these aren't
+        Names that can sound both guttural and melodic and anything in between. These names are
+        more randomized than the previous 2 types and unlike the other 2 types, these aren't
         always easy to pronounce in English.
         """
 
         model = AlienName
-
         block_map = {
             'nm1': 12,
             'nm2': 13,
@@ -121,7 +114,6 @@ class AlienNameFactory(NameBlockFactory):
             'nm4': 15,
             'nm5': 16,
         }
-
         validators = {
             'nm3': lambda items: item_is_not_unique([items['nm1'], items['nm5']]),
             'nm4': lambda items: item_equals(''),
@@ -131,13 +123,11 @@ class AlienNameFactory(NameBlockFactory):
             """
             Validate item.
 
-            Args:
-                item_id (_type_): _description_
-                item (_type_): _description_
-                items (_type_): _description_
-
-            Returns:
-                _type_: _description_
+            :param item_id str: Id of current item
+            :param item: Current item
+            :param items list: Generated items
+            :return: ItemId of current item
+            :rtype: list
             """
             if item_id == 'nm4':
                 if str(items['nm3']) == '':
