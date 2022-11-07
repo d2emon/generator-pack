@@ -21,9 +21,7 @@ from genesys.fng.database import Database
 from genesys.fng.factories.name_block_factory import NameBlockFactory, GenderNameBlockFactory
 from genesys.fng.factories.name_factory import ComplexNameFactory
 from genesys.fng.factories.validators import generate_while
-from models.fng.names.fantasy import BarbarianName, BarbarianName1, BarbarianName2, \
-    MaleBarbarianName3, FemaleBarbarianName3
-from utils import genders
+from models.fng.names.fantasy import BarbarianName
 
 
 DB = Database('barbarian', {
@@ -67,6 +65,15 @@ class BarbarianNameFactory(GenderNameBlockFactory):
             }
 
             def validate(self, items):
+                """
+                Validate items.
+
+                Args:
+                    items (_type_): _description_
+
+                Returns:
+                    _type_: _description_
+                """
                 if items['nm1'].item_id < 3:
                     items['nm4'] = generate_while(
                         items['nm4'],
@@ -91,6 +98,15 @@ class BarbarianNameFactory(GenderNameBlockFactory):
             }
 
             def validate(self, items):
+                """
+                Validate items.
+
+                Args:
+                    items (_type_): _description_
+
+                Returns:
+                    _type_: _description_
+                """
                 if items['nm1'].item_id < 3:
                     items['nm4'] = generate_while(
                         items['nm4'],
@@ -127,6 +143,15 @@ class BarbarianNameFactory(GenderNameBlockFactory):
             }
 
             def validate(self, items):
+                """
+                Validate items.
+
+                Args:
+                    items (_type_): _description_
+
+                Returns:
+                    _type_: _description_
+                """
                 items['nm1'] = generate_while(
                     items['nm1'],
                     lambda item: item.item_id < 5,
@@ -148,6 +173,15 @@ class BarbarianNameFactory(GenderNameBlockFactory):
             }
 
             def validate(self, items):
+                """
+                Validate items.
+
+                Args:
+                    items (_type_): _description_
+
+                Returns:
+                    _type_: _description_
+                """
                 if items['nm2'].item_id < 5:
                     items['nm4'] = generate_while(
                         items['nm4'],
@@ -172,6 +206,15 @@ class BarbarianNameFactory(GenderNameBlockFactory):
             }
 
             def validate(self, items):
+                """
+                Validate items.
+
+                Args:
+                    items (_type_): _description_
+
+                Returns:
+                    _type_: _description_
+                """
                 if items['nm2'].item_id < 5:
                     items['nm4'] = generate_while(
                         items['nm4'],

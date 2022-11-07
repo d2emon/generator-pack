@@ -49,6 +49,12 @@ class AnansiNameFactory(NameBlockFactory):
         }
 
         def get_data(self, *args, **kwargs):
+            """
+            Build data.
+
+            Returns:
+                _type_: _description_
+            """
             values = super().get_data(*args, **kwargs)
             return {
                 1: values['nm1'],
@@ -59,6 +65,15 @@ class AnansiNameFactory(NameBlockFactory):
             }
 
         def validate(self, items) -> dict:
+            """
+            Validate items.
+
+            Args:
+                items (_type_): _description_
+
+            Returns:
+                dict: _description_
+            """
             # 2
             if items[2] < 1:
                 items[2] = 1

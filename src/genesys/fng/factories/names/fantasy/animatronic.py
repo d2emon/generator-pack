@@ -22,24 +22,26 @@ DB = Database('animatronic', {
 })
 
 
-class AnimatronicNamePart:
-    def __init__(self, *args, **kwargs):
-        self.items = { **kwargs }
-
-
 class AnimatronicNamePartFactory(BaseNameFactory):
     """Method #1."""
 
-    model = AnimatronicNamePart
+    model = dict
 
     def __init__(self, block_id, data=None):
+        """
+        Construct animatronic name part factory.
+
+        Args:
+            block_id (_type_): _description_
+            data (_type_, optional): _description_. Defaults to None.
+        """
         super().__init__(data)
 
         self.block_id = block_id
 
     def get_data(self, *args, **kwargs):
         """
-        Generate value from data
+        Generate value from data.
 
         :param args: Args for generation
         :param kwargs: Kwargs for generation
@@ -57,6 +59,7 @@ class AnimatronicNamePartFactory(BaseNameFactory):
         return { keys[item_id]: random.choice(item) for item_id, item in enumerate(items) }
 
     def __call__(self, *args, **kwargs):
+        """Call main factory method."""
         items = self.get_data()
         return self.model(**items)
 
@@ -68,6 +71,8 @@ class BaseAnimatronicNameFactory(ComplexNameFactory):
 
     def __init__(self, data=None):
         """
+        Construct Animatonic name factory.
+
         :param data: Data blocks for factory
         """
         super().__init__(data)
@@ -77,12 +82,21 @@ class BaseAnimatronicNameFactory(ComplexNameFactory):
         }
 
     def validate(self, items) -> dict:
+        """
+        Validate items.
+
+        Args:
+            items (_type_): _description_
+
+        Returns:
+            dict: _description_
+        """
         # item = items['nm1'].items.get('value', [[], []])
-        return items['nm1'].items
+        return items['nm1']
 
     def __call__(self, *args, **kwargs):
         """
-        Main factory method
+        Run main factory method.
 
         :param args: Model args
         :param kwargs: Fields to search in data

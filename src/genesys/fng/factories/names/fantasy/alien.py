@@ -41,6 +41,8 @@ class AlienNameFactory(NameBlockFactory):
 
     class AlienNameFactory1(ComplexNameFactory):
         """
+        Method #1.
+
         The first 4 names have a much higher chance of having a more guttural sound to them,
         ideal for the stronger and brutish looking aliens.
         """
@@ -61,6 +63,17 @@ class AlienNameFactory(NameBlockFactory):
         }
 
         def validate_item(self, item_id, item, items):
+            """
+            Validate item.
+
+            Args:
+                item_id (_type_): _description_
+                item (_type_): _description_
+                items (_type_): _description_
+
+            Returns:
+                _type_: _description_
+            """
             if item_id == 'nm4':
                 if str(items['nm3']) == '':
                     items[item_id] = self[item_id](item_id=0)
@@ -70,6 +83,8 @@ class AlienNameFactory(NameBlockFactory):
 
     class AlienNameFactory2(ComplexNameFactory):
         """
+        Method #2.
+
         The next 3 names have a much higher chance of having a more melodic sound to them, making
         them ideal for the softer and gentle looking aliens.
         """
@@ -90,6 +105,8 @@ class AlienNameFactory(NameBlockFactory):
 
     class AlienNameFactory3(ComplexNameFactory):
         """
+        Method #3.
+
         The last 3 names can sound both guttural and melodic and anything in between. These names
         are more randomized than the previous 2 types and unlike the other 2 types, these aren't
         always easy to pronounce in English.
@@ -111,6 +128,17 @@ class AlienNameFactory(NameBlockFactory):
         }
 
         def validate_item(self, item_id, item, items):
+            """
+            Validate item.
+
+            Args:
+                item_id (_type_): _description_
+                item (_type_): _description_
+                items (_type_): _description_
+
+            Returns:
+                _type_: _description_
+            """
             if item_id == 'nm4':
                 if str(items['nm3']) == '':
                     items[item_id] = self[item_id](item_id=0)

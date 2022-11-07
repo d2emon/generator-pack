@@ -4,7 +4,8 @@ Bandit Name.
 The names rely on nicknames to create a bandit-feel. They could be named after their reputation,
 their appearance, or even their way of theft.
 There are no last names, but some of the first names could also be used as a last name. There are
-plenty of real name generators to offer you surnames though."""
+plenty of real name generators to offer you surnames though.
+"""
 
 from data.fng.names import fantasy
 from genesys.fng.database import Database

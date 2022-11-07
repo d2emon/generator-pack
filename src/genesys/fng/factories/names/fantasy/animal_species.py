@@ -25,10 +25,13 @@ class AnimalSpeciesNameFactory(NameBlockFactory):
 
     class AnimalSpeciesNameFactory1(ComplexNameFactory):
         """
+        Method #1.
+
         The first 4 names are names of animals combined with an adjective.
 
         For example: 'Almond Albatross'.
         """
+
         model = AnimalSpeciesName
         block_map = {
             'nm1': 1,
@@ -37,10 +40,13 @@ class AnimalSpeciesNameFactory(NameBlockFactory):
 
     class AnimalSpeciesNameFactory2(ComplexNameFactory):
         """
+        Method #2.
+
         The next 2 names will be names of animals with characteristic specific names.
 
         For example: 'Flame-Eyed Mongoose'.
         """
+
         model = AnimalSpeciesName
         block_map = {
             'nm1': 3,
@@ -49,12 +55,15 @@ class AnimalSpeciesNameFactory(NameBlockFactory):
 
     class AnimalSpeciesNameFactory3(ComplexNameFactory):
         """
+        Method #3.
+
         The last 4 names will be two animal names combined, which will form a new animal (with a
         little imagination).
 
         A great example of this are the animals in the Avatar (Last Airbender/Korra) series, like
         the Turtle-Duck and the Lion-Turtle.
         """
+
         model = AnimalSpeciesName
         block_map = {
             'nm1': 2,
