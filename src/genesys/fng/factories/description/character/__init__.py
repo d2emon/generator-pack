@@ -4,7 +4,8 @@ from database.data_block import NameItem, NameBlock
 from models.fng.description import Character, CharacterDescription, Hair, Face, Eyes, MarkDescription, Name, \
     Personality
 from database.data_block import load_data
-from genesys.fng.factories.name_factory import NameFactory, GenderNameFactory
+from factories.factory import Factory
+from genesys.fng.factories.name_factory import NameFactory
 # from v1.factories.fng.validators import generate_while
 from .race import RaceFactory
 from .marks import MarksFactory
@@ -73,7 +74,7 @@ class BaseCharacterFactory(NameFactory):
         return items
 
 
-class CharacterFactory(GenderNameFactory):
+class CharacterFactory(Factory):
     """Character Factory
 
     The generator does take into account which race is randomly picked, and changes some of the details accordingly. For

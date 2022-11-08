@@ -1,11 +1,9 @@
-import random
 import unittest
 import uuid
-from database.data_block import NameItem, NameBlock, load_data, fill_data
 from genesys.fng.database import Database
 
 
-class TestDataBlock(unittest.TestCase):
+class TestDatabase(unittest.TestCase):
     def setUp(self):
         self.group_id = uuid.uuid4()
         self.block_id = uuid.uuid4()

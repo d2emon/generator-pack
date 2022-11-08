@@ -1,18 +1,18 @@
 import random
 from utils.genders import MALE
-from models.name.name import TextModel
+# from models.name.name import TextModel
 from models.fng.names.name import Name
 from factories.factory import Factory
 # from factories.model.name.factories import NameFactory
 from genesys.fng.factories.validators import item_is_not_unique, item_equals, generate_while
 
 
-class TextFactory(Factory):
-    model = TextModel
+# TODO: Remove unused class
+# class TextFactory(Factory):
+#     model = TextModel
 
 
-class BaseNameFactory(Factory):
-    model = Name
+class DbFactory(Factory):
     default_data = None
 
     def __init__(self, data=None):
@@ -20,6 +20,10 @@ class BaseNameFactory(Factory):
         :param data: Data blocks for factory
         """
         self.data = data or self.default_data
+
+
+class ModelFactory(Factory):
+    model = Name
 
     def get_data(self, *args, **kwargs) -> dict:
         """
@@ -45,6 +49,10 @@ class BaseNameFactory(Factory):
         return self.model(**items)
 
 
+class BaseNameFactory(ModelFactory, DbFactory):
+    model = Name
+
+
 class ComplexFactory(BaseNameFactory):
     """
     Complex Factory
@@ -64,15 +72,17 @@ class ComplexFactory(BaseNameFactory):
         self.factories = self.get_factories(self.data)
 
     @classmethod
-    def get_factories(cls, factory_data):
+    def get_factories(cls, data):
         return {
-            factory_id: factory(factory_data)
+            factory_id: factory(data)
             for factory_id, factory in cls.factory_classes.items()
         }
 
+    # TODO: Remove it
     def factory(self, factory_id):
         return self.factories.get(factory_id, lambda item_id: None)
 
+    # TODO: Remove it
     def __getitem__(self, item_id):
         """
         Get child factory by factory_id
@@ -95,15 +105,12 @@ class ComplexNameFactory(ComplexFactory):
     - blocks: Data blocks
     """
     block_map = {}
-
     validators = {}
 
     @classmethod
-    def get_factories(cls, factory_data):
+    def get_factories(cls, data):
         return {
-            # factory_id: TextFactory(factory_data.find(block_id=block_id))
-            # factory_id: lambda: next(filter(lambda item: item['block_id'] == block_id, factory_data))
-            factory_id: factory_data.find(block_id=block_id)
+            factory_id: data.find(block_id=block_id)
             for factory_id, block_id in cls.block_map.items()
         }
 
@@ -178,6 +185,6 @@ class GenderFactory(PolymorphFactory):
         return self.factories.get(factory_id if factory_id is not None else self.default_gender)
 
 
-# TODO: Remove it
-class GenderNameFactory(Factory):
-    pass
+# TODO: Remove unused class
+# class GenderNameFactory(Factory):
+#     pass
