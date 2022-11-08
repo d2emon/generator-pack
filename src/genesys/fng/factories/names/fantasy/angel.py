@@ -11,8 +11,8 @@ sections.
 
 from data.fng.names import fantasy
 from genesys.fng.database import Database
-from genesys.fng.factories.name_factory import ComplexNameFactory
 from genesys.fng.factories.name_block_factory import GenderNameBlockFactory
+from genesys.fng.factories.name_factory import ComplexNameFactory
 from models.fng.names.fantasy import AngelName
 
 

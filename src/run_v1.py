@@ -30,7 +30,7 @@ def build_all():
 
     for factoryClass in factories:
         factory = factoryClass()
-        generated = factory.build10()
+        generated = [factory() for _ in range(10)]
         show_multiple(factoryClass.__name__, generated, factoryClass)
 
 

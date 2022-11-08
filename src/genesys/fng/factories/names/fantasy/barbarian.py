@@ -18,7 +18,8 @@ other styles.
 
 from data.fng.names import fantasy
 from genesys.fng.database import Database
-from genesys.fng.factories.name_block_factory import NameBlockFactory, GenderNameBlockFactory
+from genesys.fng.factories.name_block_factory import MultipleFactoryNameFactory, \
+    GenderNameBlockFactory
 from genesys.fng.factories.name_factory import ComplexNameFactory
 from genesys.fng.factories.validators import generate_while
 from models.fng.names.fantasy import BarbarianName
@@ -39,7 +40,7 @@ DB = Database('barbarian', {
 class BarbarianNameFactory(GenderNameBlockFactory):
     """Barbarian Name Factory."""
 
-    class MaleNameFactory(NameBlockFactory):
+    class MaleNameFactory(MultipleFactoryNameFactory):
         """Method #1."""
 
         class MaleNameFactory1(ComplexNameFactory):
@@ -121,13 +122,13 @@ class BarbarianNameFactory(GenderNameBlockFactory):
 
                 return super().validate_item(item_id, item, items)
 
-        factory_classes = {
-            0: MaleNameFactory1,
-            1: MaleNameFactory2,
-            2: MaleNameFactory3,
-        }
+        factory_classes = [
+            MaleNameFactory1,
+            MaleNameFactory2,
+            MaleNameFactory3,
+        ]
 
-    class FemaleNameFactory(NameBlockFactory):
+    class FemaleNameFactory(MultipleFactoryNameFactory):
         """Method #1."""
 
         class FemaleNameFactory1(ComplexNameFactory):
@@ -229,11 +230,11 @@ class BarbarianNameFactory(GenderNameBlockFactory):
 
                 return super().validate_item(item_id, item, items)
 
-        factory_classes = {
-            0: FemaleNameFactory1,
-            1: FemaleNameFactory2,
-            2: FemaleNameFactory3,
-        }
+        factory_classes = [
+            FemaleNameFactory1,
+            FemaleNameFactory2,
+            FemaleNameFactory3,
+        ]
 
     model = BarbarianName
     default_data = DB

@@ -9,7 +9,7 @@ categories.
 
 from data.fng.names import fantasy
 from genesys.fng.database import Database
-from genesys.fng.factories.name_block_factory import NameBlockFactory
+from genesys.fng.factories.name_block_factory import MultipleFactoryNameFactory
 from genesys.fng.factories.name_factory import ComplexNameFactory
 from genesys.fng.factories.validators import item_is_not_unique, item_equals
 from models.fng.names.fantasy import AlienName
@@ -38,7 +38,7 @@ DB = Database('aliens', {
 })
 
 
-class AlienNameFactory(NameBlockFactory):
+class AlienNameFactory(MultipleFactoryNameFactory):
     """Alien Species Name Factory."""
 
     class AlienNameFactory1(ComplexNameFactory):
@@ -140,8 +140,8 @@ class AlienNameFactory(NameBlockFactory):
 
     model = AlienName
     default_data = DB
-    factory_classes = {
-        0: AlienNameFactory1,
-        1: AlienNameFactory2,
-        2: AlienNameFactory3,
-    }
+    factory_classes = [
+        AlienNameFactory1,
+        AlienNameFactory2,
+        AlienNameFactory3,
+    ]

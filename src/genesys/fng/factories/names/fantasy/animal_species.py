@@ -8,7 +8,7 @@ while you may get a name of an existing animal.
 
 from data.fng.names import fantasy
 from genesys.fng.database import Database
-from genesys.fng.factories.name_block_factory import NameBlockFactory
+from genesys.fng.factories.name_block_factory import MultipleFactoryNameFactory
 from genesys.fng.factories.name_factory import ComplexNameFactory
 from models.fng.names.fantasy import AnimalSpeciesName
 
@@ -20,7 +20,7 @@ DB = Database('animal_species', {
 })
 
 
-class AnimalSpeciesNameFactory(NameBlockFactory):
+class AnimalSpeciesNameFactory(MultipleFactoryNameFactory):
     """Animal Species Name Factory."""
 
     class AnimalSpeciesNameFactory1(ComplexNameFactory):
@@ -71,8 +71,8 @@ class AnimalSpeciesNameFactory(NameBlockFactory):
 
     model = AnimalSpeciesName
     default_data = DB
-    factory_classes = {
-        0: AnimalSpeciesNameFactory1,
-        1: AnimalSpeciesNameFactory2,
-        2: AnimalSpeciesNameFactory3,
-    }
+    factory_classes = [
+        AnimalSpeciesNameFactory1,
+        AnimalSpeciesNameFactory2,
+        AnimalSpeciesNameFactory3,
+    ]

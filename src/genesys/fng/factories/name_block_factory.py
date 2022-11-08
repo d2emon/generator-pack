@@ -3,71 +3,26 @@ from .name_factory import ComplexFactory, ComplexNameFactory
 from utils import genders
 
 
-class SimpleNameBlockFactory(ComplexFactory):
-    def build10(self, *args, **kwargs):
-        """
-        Build 10 models
+class MultipleFactoryNameFactory(ComplexFactory):
+    factory_classes = []
 
-        :param count: Count of models
-        :param args: Model args
-        :param kwargs: Fields to search in data
-        :return: Models, built by factory
-        """
-        for _ in range(10):
-            yield self(*args, **kwargs)
+    @classmethod
+    def get_factories(cls, data):
+        return [ factory(data) for factory in cls.factory_classes ]
 
+    def random_factory(self):
+        return random.choice(self.factories)
 
-class NameBlockFactory(ComplexFactory):
-    def __get_percent(self):
-        return random.uniform(0.0, 100.0)
+    def __call__(self, *args, factory_id=None, **kwargs):
+        if factory_id is None:
+            factory = self.random_factory()
+        else:
+            factory = self.factories[factory_id]
 
-    def by_percent_2(self, percent):
-        if percent < 50:
-            return self.factories[0]
-
-        return self.factories[1]
-
-    def by_percent_3(self, percent):
-        if percent < 40:
-            return self.factories.get(0)
-        if percent < 70:
-            return self.factories.get(1)
-
-        return self.factories.get(2)
-
-    def by_percent(self, percent):
-        if len(self.factories) == 1:
-            return self.factories[0]
-
-        if len(self.factories) == 2:
-            return self.by_percent_2(percent)
-
-        if len(self.factories) == 3:
-            return self.by_percent_3(percent)
-
-        raise NotImplementedError()
-
-    def __call__(self, *args, percent=None, **kwargs):
-        if percent is None:
-            percent = self.__get_percent()
-
-        factory = self.by_percent(percent)
         return factory(*args, **kwargs)
 
-    def build10(self, *args, **kwargs):
-        """
-        Build 10 models
 
-        :param count: Count of models
-        :param args: Model args
-        :param kwargs: Fields to search in data
-        :return: Models, built by factory
-        """
-        for item_id in range(10):
-            yield self(*args, percent=item_id * 10, **kwargs)
-
-
-class GenderNameBlockFactory(NameBlockFactory):
+class GenderNameBlockFactory(ComplexFactory):
     class MaleNameFactory(ComplexNameFactory):
         pass
 
@@ -104,27 +59,3 @@ class GenderNameBlockFactory(NameBlockFactory):
             *args,
             **kwargs,
         )
-
-    def build10(self, *args, **kwargs):
-        """
-        Build 10 models
-
-        :param count: Count of models
-        :param args: Model args
-        :param kwargs: Fields to search in data
-        :return: Models, built by factory
-        """
-        for gender in self.genders:
-            # yield ''
-            # if gender == genders.MALE:
-            #     yield 'MALE'
-            # elif gender == genders.FEMALE:
-            #     yield 'FEMALE'
-            # elif gender == genders.NEUTRAL:
-            #     yield 'NEUTRAL'
-            # else:
-            #     yield gender        
-            # yield '----'
-
-            for item_id in range(10):
-                yield self(*args, gender=gender, **kwargs)

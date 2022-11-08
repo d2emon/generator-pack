@@ -19,7 +19,7 @@ Hippolyta, the queen of the Amazons and mother of Diana, otherwise known as Wond
 from data.fng.names import fantasy
 from genesys.fng.database import Database
 from genesys.fng.factories.name_factory import ComplexNameFactory
-from genesys.fng.factories.name_block_factory import NameBlockFactory
+from genesys.fng.factories.name_block_factory import MultipleFactoryNameFactory
 from models.fng.names.fantasy import AmazonName
 
 
@@ -33,7 +33,7 @@ DB = Database('amazon', {
 })
 
 
-class AmazonNameFactory(NameBlockFactory):
+class AmazonNameFactory(MultipleFactoryNameFactory):
     """Amazon Name Factory."""
 
     class AmazonNameFactory1(ComplexNameFactory):
@@ -62,7 +62,7 @@ class AmazonNameFactory(NameBlockFactory):
 
     model = AmazonName
     default_data = DB
-    factory_classes = {
-        0: AmazonNameFactory1,
-        1: AmazonNameFactory2,
-    }
+    factory_classes = [
+        AmazonNameFactory1,
+        AmazonNameFactory2,
+    ]

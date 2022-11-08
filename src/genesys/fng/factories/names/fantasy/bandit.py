@@ -9,7 +9,8 @@ plenty of real name generators to offer you surnames though.
 
 from data.fng.names import fantasy
 from genesys.fng.database import Database
-from genesys.fng.factories.name_block_factory import NameBlockFactory, GenderNameBlockFactory
+from genesys.fng.factories.name_block_factory import MultipleFactoryNameFactory, \
+    GenderNameBlockFactory
 from genesys.fng.factories.name_factory import ComplexNameFactory
 from models.fng.names.fantasy import BanditName
 from utils import genders
@@ -26,7 +27,7 @@ DB = Database('bandit', {
 class BanditNameFactory(GenderNameBlockFactory):
     """Bandit Name Factory."""
 
-    class MaleNameFactory(NameBlockFactory):
+    class MaleNameFactory(MultipleFactoryNameFactory):
         """Method #1."""
 
         class MaleNameFactory1(ComplexNameFactory):
@@ -47,12 +48,12 @@ class BanditNameFactory(GenderNameBlockFactory):
                 'nm2': genders.MALE,
             }
 
-        factory_classes = {
-            0: MaleNameFactory1,
-            1: MaleNameFactory2,
-        }
+        factory_classes = [
+            MaleNameFactory1,
+            MaleNameFactory2,
+        ]
 
-    class FemaleNameFactory(NameBlockFactory):
+    class FemaleNameFactory(MultipleFactoryNameFactory):
         """Method #1."""
 
         class FemaleNameFactory1(ComplexNameFactory):
@@ -73,10 +74,10 @@ class BanditNameFactory(GenderNameBlockFactory):
                 'nm2': genders.FEMALE,
             }
 
-        factory_classes = {
-            0: FemaleNameFactory1,
-            1: FemaleNameFactory2,
-        }
+        factory_classes = [
+            FemaleNameFactory1,
+            FemaleNameFactory2,
+        ]
 
     model = BanditName
     default_data = DB
