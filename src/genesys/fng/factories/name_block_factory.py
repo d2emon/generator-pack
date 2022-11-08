@@ -24,20 +24,16 @@ class NameBlockFactory(ComplexFactory):
     def by_percent_2(self, percent):
         if percent < 50:
             return self.factories[0]
-        if percent < 100:
-            return self.factories[1]
-        
-        return None
+
+        return self.factories[1]
 
     def by_percent_3(self, percent):
         if percent < 40:
             return self.factories.get(0)
         if percent < 70:
             return self.factories.get(1)
-        if percent < 100:
-            return self.factories.get(2)
 
-        return None
+        return self.factories.get(2)
 
     def by_percent(self, percent):
         if len(self.factories) == 1:
@@ -93,18 +89,18 @@ class GenderNameBlockFactory(NameBlockFactory):
             genders.NEUTRAL: cls.NeutralNameFactory(factory_data),
         }
 
-    def __get_gender(self):
+    def get_gender(self):
         return genders.MALE
 
     def factory(self, gender=None):
-        return self.factories.get(gender if gender is not None else self._get_gender())
+        return self.factories.get(gender if gender is not None else self.get_gender())
 
     def by_percent(self, percent):
         return self.factory(percent)
 
     def __call__(self, *args, gender=None, **kwargs):
         return self.from_factory(
-            gender if gender is not None else self.__get_gender(),
+            gender if gender is not None else self.get_gender(),
             *args,
             **kwargs,
         )
@@ -119,16 +115,16 @@ class GenderNameBlockFactory(NameBlockFactory):
         :return: Models, built by factory
         """
         for gender in self.genders:
-            yield ''
-            if gender == genders.MALE:
-                yield 'MALE'
-            elif gender == genders.FEMALE:
-                yield 'FEMALE'
-            elif gender == genders.NEUTRAL:
-                yield 'NEUTRAL'
-            else:
-                yield gender        
-            yield '----'
+            # yield ''
+            # if gender == genders.MALE:
+            #     yield 'MALE'
+            # elif gender == genders.FEMALE:
+            #     yield 'FEMALE'
+            # elif gender == genders.NEUTRAL:
+            #     yield 'NEUTRAL'
+            # else:
+            #     yield gender        
+            # yield '----'
 
             for item_id in range(10):
                 yield self(*args, gender=gender, **kwargs)
