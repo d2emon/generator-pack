@@ -1,15 +1,8 @@
 import random
 from utils.genders import MALE
-# from models.name.name import TextModel
 from models.fng.names.name import Name
 from factories.factory import Factory
-# from factories.model.name.factories import NameFactory
-from genesys.fng.factories.validators import item_is_not_unique, item_equals, generate_while
-
-
-# TODO: Remove unused class
-# class TextFactory(Factory):
-#     model = TextModel
+from genesys.fng.factories.validators import generate_while
 
 
 class DbFactory(Factory):
@@ -105,7 +98,10 @@ class ComplexNameFactory(ComplexFactory):
     - blocks: Data blocks
     """
     block_map = {}
-    validators = {}
+    validators = {
+        # 'nm3': item_is_unique(self.data['nm1'], self.data['nm5']),
+        # 'nm4': self.__validate_nm4() if method != 2 else None,
+    }
 
     @classmethod
     def get_factories(cls, data):
@@ -113,6 +109,21 @@ class ComplexNameFactory(ComplexFactory):
             factory_id: data.find(block_id=block_id)
             for factory_id, block_id in cls.block_map.items()
         }
+
+    def get_field(self, item_id, *args, **kwargs):
+        """
+        Generate value from data
+
+        :param args: Args for generation
+        :param kwargs: Kwargs for generation
+        :return: Generated value
+        """
+        factory = self.factories[item_id]
+
+        if factory is None:
+            return None
+
+        return factory(*args, **kwargs)
 
     def get_data(self, *args, **kwargs):
         """
@@ -123,7 +134,7 @@ class ComplexNameFactory(ComplexFactory):
         :return: Generated value
         """
         return {
-            item_id: factory(*args, **kwargs)
+            item_id: self.get_field(item_id, *args, **kwargs)
             for item_id, factory in self.factories.items()
             if factory is not None
         }
@@ -136,7 +147,7 @@ class ComplexNameFactory(ComplexFactory):
 
         items[item_id] = generate_while(
             item,
-            validator(items),
+            validator(self, items),
             self[item_id],
         )
 
@@ -148,26 +159,34 @@ class ComplexNameFactory(ComplexFactory):
 
         return items
 
+    def __validate_model(self, data):
+        for item_id, value in data.items():
+            validator = self.validators.get(item_id)
+
+            if validator is None:
+                continue
+
+            item_validator = validator(self, data)
+            if not item_validator(value):
+                yield item_id
+
     def __call__(self, *args, **kwargs):
-        items = self.get_data(*args, **kwargs)
-        validated = self.validate(items)
-        return self.model(**validated)
+        data = {}
 
-
-    def example(self):
-        values = {}
+        # Validate model data
         invalid = [*self.block_map.keys()]
+        model = self.model()
         while len(invalid) > 0:
-            new_values = {
+            data.update({
                 item_id: self.factories[item_id]()
-                for item_id in invalid
-            }
-            values.update(new_values)
+                for item_id in invalid                
+            })
+            invalid = list(self.__validate_model(data))
 
-            model = self.model(**values)
-            invalid = model.validate(self.method)
+            model = self.model(**data)
 
         return model
+
 
 class PolymorphFactory(ComplexFactory):
     def __call__(self, *args, factory_id=None, **kwargs):
@@ -198,8 +217,3 @@ class GenderFactory(PolymorphFactory):
 
     def factory(self, factory_id=None):
         return self.factories.get(factory_id if factory_id is not None else self.default_gender)
-
-
-# TODO: Remove unused class
-# class GenderNameFactory(Factory):
-#     pass

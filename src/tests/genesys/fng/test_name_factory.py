@@ -74,7 +74,7 @@ def validator(item):
 
     COUNT += 1
 
-    return COUNT < 5
+    return COUNT % 5 == 0
 
 
 class ComplexNameFactory1(ComplexNameFactory):
@@ -84,8 +84,8 @@ class ComplexNameFactory1(ComplexNameFactory):
         'name3': BLOCK_ID_1,
     }
     validators = {
-        'name1': lambda items: lambda item: False,
-        'name2': lambda items: validator,
+        'name1': lambda items, factories: lambda item: True,
+        'name2': lambda items, factories: validator,
     }
 
 

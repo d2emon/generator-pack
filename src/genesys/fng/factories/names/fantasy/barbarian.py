@@ -65,7 +65,7 @@ class BarbarianNameFactory(GenderNameBlockFactory):
                 'nm5': 3,
             }
             validators = {
-                'nm4': lambda items: lambda item: item.item_id < 3,
+                'nm4': lambda items, factories: lambda item: item.item_id < 3,
             }
 
             def validate_item(self, item_id, item, items):
@@ -98,8 +98,8 @@ class BarbarianNameFactory(GenderNameBlockFactory):
                 'nm7': 3,
             }
             validators = {
-                'nm4': lambda items: lambda item: item.item_id < 3,
-                'nm6': lambda items: lambda item: item.item_id < 3,
+                'nm4': lambda items, factories: lambda item: item.item_id < 3,
+                'nm6': lambda items, factories: lambda item: item.item_id < 3,
             }
 
             def validate_item(self, item_id, item, items):
@@ -206,8 +206,8 @@ class BarbarianNameFactory(GenderNameBlockFactory):
                 'nm7': 7,
             }
             validators = {
-                'nm4': lambda items: lambda item: item.item_id < 5,
-                'nm6': lambda items: lambda item: item.item_id < 5,
+                'nm4': lambda items, factories: lambda item: item.item_id < 5,
+                'nm6': lambda items, factories: lambda item: item.item_id < 5,
             }
 
             def validate_item(self, item_id, item, items):

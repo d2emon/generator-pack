@@ -51,16 +51,18 @@ class AnansiNameFactory(ComplexNameFactory):
         :return: Data for model
         :rtype: dict
         """
-        values = super().get_data(*args, **kwargs)
+        nm1 = self.get_field('nm1', *args, **kwargs)
+        nm3 = self.get_field('nm3', *args, **kwargs)
+        nm5 = self.get_field('nm5', *args, **kwargs)
         return {
-            1: values['nm1'],
-            2: random.randrange(len(values['nm1'].value)),
-            3: values['nm3'],
-            4: random.randrange(len(values['nm3'].value)),
-            5: values['nm5'],
+            1: nm1,
+            2: random.randrange(len(nm1.value)),
+            3: nm3,
+            4: random.randrange(len(nm3.value)),
+            5: nm5,
         }
 
-    def validate(self, items) -> dict:
+    def __call__(self, *args, **kwargs) -> AnansiName:
         """
         Validate data for model.
 
@@ -68,6 +70,8 @@ class AnansiNameFactory(ComplexNameFactory):
         :return: Data for model
         :rtype: dict
         """
+        items = self.get_data(*args, **kwargs)
+
         # 2
         if items[2] < 1:
             items[2] = 1
@@ -88,8 +92,10 @@ class AnansiNameFactory(ComplexNameFactory):
         if (items[2] == 1) and (items[4] == 1):
             items[2] = 2
 
-        return {
-            'nm0': items[1].value[:items[2]],
-            'nm1': items[5],
-            'nm2': items[3].value[items[4] - 1:],
-        }
+        model = self.model(
+            nm0=items[1].value[:items[2]],
+            nm1=items[5],
+            nm2=items[3].value[items[4] - 1:],
+        )
+
+        return model

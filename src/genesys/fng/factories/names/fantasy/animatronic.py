@@ -48,6 +48,20 @@ class BaseAnimatronicNameFactory(ComplexNameFactory):
             'nm1': random.choice(items[1]) if len(items) > 1 else '',
         }
 
+    def __call__(self, *args, **kwargs) -> AnimatronicName:
+        """
+        Validate data for model.
+
+        :param items dict: Data for model
+        :return: Data for model
+        :rtype: dict
+        """
+        items = self.get_data(*args, **kwargs)
+
+        model = self.model(**items)
+
+        return model
+
 class AnimatronicNameFactory(GenderNameBlockFactory):
     """Animatronic Name Factory."""
 

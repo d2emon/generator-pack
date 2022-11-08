@@ -11,7 +11,7 @@ from data.fng.names import fantasy
 from genesys.fng.database import Database
 from genesys.fng.factories.name_block_factory import MultipleFactoryNameFactory
 from genesys.fng.factories.name_factory import ComplexNameFactory
-from genesys.fng.factories.validators import item_is_not_unique, item_equals
+from genesys.fng.factories.validators import item_is_unique, item_is_not_empty
 from models.fng.names.fantasy import AlienName
 
 
@@ -57,27 +57,27 @@ class AlienNameFactory(MultipleFactoryNameFactory):
             'nm4': 4,
             'nm5': 5,
         }
+
+        def __validate_nm3(self, items):
+            """Validator for nm3."""
+            return item_is_unique([items['nm1'], items['nm5']])
+
+        def __validate_nm4(self, items):
+            """Validator for nm4."""
+            def validator(item):
+                item = self.factories['nm4'](item_id=0)
+                items['nm4'] = item
+                return True
+
+            if str(items['nm3']) == '':
+                return validator
+
+            return item_is_not_empty()
+
         validators = {
-            'nm3': lambda items: item_is_not_unique([items['nm1'], items['nm5']]),
-            'nm4': lambda items: item_equals(''),
+            'nm3': __validate_nm3,
+            'nm4': __validate_nm4,
         }
-
-        def validate_item(self, item_id, item, items):
-            """
-            Validate item.
-
-            :param item_id str: Id of current item
-            :param item: Current item
-            :param items list: Generated items
-            :return: ItemId of current item
-            :rtype: list
-            """
-            if item_id == 'nm4':
-                if str(items['nm3']) == '':
-                    items[item_id] = self[item_id](item_id=0)
-                    return items
-
-            return super().validate_item(item_id, item, items)
 
     class AlienNameFactory2(ComplexNameFactory):
         """
@@ -95,8 +95,13 @@ class AlienNameFactory(MultipleFactoryNameFactory):
             'nm4': 10,
             'nm5': 11,
         }
+
+        def __validate_nm3(self, items):
+            """Validator for nm3."""
+            return item_is_unique([items['nm1'], items['nm5']])
+
         validators = {
-            'nm3': lambda items: item_is_not_unique([items['nm1'], items['nm5']]),
+            'nm3': __validate_nm3,
         }
 
     class AlienNameFactory3(ComplexNameFactory):
@@ -116,27 +121,27 @@ class AlienNameFactory(MultipleFactoryNameFactory):
             'nm4': 15,
             'nm5': 16,
         }
+
+        def __validate_nm3(self, items):
+            """Validator for nm3."""
+            return item_is_unique([items['nm1'], items['nm5']])
+
+        def __validate_nm4(self, items):
+            """Validator for nm4."""
+            def validator(item):
+                item = self.factories['nm4'](item_id=0)
+                items['nm4'] = item
+                return True
+
+            if str(items['nm3']) == '':
+                return validator
+
+            return item_is_not_empty()
+
         validators = {
-            'nm3': lambda items: item_is_not_unique([items['nm1'], items['nm5']]),
-            'nm4': lambda items: item_equals(''),
+            'nm3': __validate_nm3,
+            'nm4': __validate_nm4,
         }
-
-        def validate_item(self, item_id, item, items):
-            """
-            Validate item.
-
-            :param item_id str: Id of current item
-            :param item: Current item
-            :param items list: Generated items
-            :return: ItemId of current item
-            :rtype: list
-            """
-            if item_id == 'nm4':
-                if str(items['nm3']) == '':
-                    items[item_id] = self[item_id](item_id=0)
-                    return items
-
-            return super().validate_item(item_id, item, items)
 
     model = AlienName
     default_data = DB

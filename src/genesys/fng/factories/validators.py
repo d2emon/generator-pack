@@ -62,6 +62,6 @@ def generate_while(item, condition, factory):
     :param factory: Data factory for item
     :return: Item value
     """
-    while condition(item):
+    while not condition(item):
         item = factory()
     return item

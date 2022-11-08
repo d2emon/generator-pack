@@ -19,7 +19,7 @@ class TestValidators(unittest.TestCase):
 
     def test_generate_while(self):
         def validator(item):
-            return item is None
+            return item is not None
 
         value = None
         result = generate_while(
