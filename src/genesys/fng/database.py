@@ -11,7 +11,10 @@ class Database:
 
         def f(*args, item_id=None, **kwargs):
             if item_id is not None:
-                return next(item for item in items if item.item_id == item_id)
+                return next((item for item in items if item.item_id == item_id), None)
+
+            if len(items) < 1:
+                return None
 
             return random.choice(items)
 

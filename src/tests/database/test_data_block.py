@@ -42,10 +42,14 @@ class TestDataBlock(unittest.TestCase):
         self.assertEqual(self.data_item.block_id, self.block_id)
 
     def test_value(self):
+        value = str(self.value)
         self.assertEqual(self.data_item.value, self.value)
+        self.assertEqual(str(self.data_item), value)
+        self.assertEqual(len(self.data_item), len(value))
 
     def test_values(self):
         self.assertListEqual(self.data_block.values, self.items)
+
 
     def test_save(self):
         new_items = 10
