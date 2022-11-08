@@ -71,7 +71,7 @@ class TestModel(unittest.TestCase):
 
     def test_named_model(self):
         model = Named(name='NAME')
-        self.assertEqual(str(model), "NAME")
+        self.assertEqual(str(model), "Name")
 
 
 if __name__ == "__main__":
