@@ -154,6 +154,21 @@ class ComplexNameFactory(ComplexFactory):
         return self.model(**validated)
 
 
+    def example(self):
+        values = {}
+        invalid = [*self.block_map.keys()]
+        while len(invalid) > 0:
+            new_values = {
+                item_id: self.factories[item_id]()
+                for item_id in invalid
+            }
+            values.update(new_values)
+
+            model = self.model(**values)
+            invalid = model.validate(self.method)
+
+        return model
+
 class PolymorphFactory(ComplexFactory):
     def __call__(self, *args, factory_id=None, **kwargs):
         """

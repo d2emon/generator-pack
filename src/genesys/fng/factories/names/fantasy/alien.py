@@ -25,13 +25,15 @@ DB = Database('aliens', {
     6: fantasy.alien.nm6,
     7: fantasy.alien.nm7,
     8: fantasy.alien.nm8,
+    # 9
     10: fantasy.alien.nm10,
-    11: fantasy.alien.nm11,
 
+    11: fantasy.alien.nm11,
     12: fantasy.alien.nm12,
     13: fantasy.alien.nm13,
     14: fantasy.alien.nm14,
     15: fantasy.alien.nm15,
+
     16: fantasy.alien.nm16,
 })
 

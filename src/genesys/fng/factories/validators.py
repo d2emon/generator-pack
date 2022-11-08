@@ -1,3 +1,17 @@
+def item_is_unique(unique_with):
+    """
+    Check if item is not unique
+
+    :param unique_with: Values to check
+    :return: Item validator
+    """
+
+    def f(item):
+        return str(item) not in map(str, unique_with)
+
+    return f
+
+
 def item_is_not_unique(unique_with):
     """
     Check if item is not unique
@@ -8,6 +22,19 @@ def item_is_not_unique(unique_with):
 
     def f(item):
         return str(item) in map(str, unique_with)
+
+    return f
+
+
+def item_is_not_empty():
+    """
+    Check if item is not empty
+
+    :return: Item validator
+    """
+
+    def f(item):
+        return str(item) != ''
 
     return f
 
