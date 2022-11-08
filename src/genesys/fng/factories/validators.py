@@ -26,7 +26,7 @@ def item_equals(value):
     return f
 
 
-def generate_while(item, condition=lambda item: True, factory=lambda: ""):
+def generate_while(item, condition, factory):
     """
     Generate item while condition is true
 
