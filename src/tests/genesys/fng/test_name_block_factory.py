@@ -2,7 +2,7 @@ import random
 import unittest
 import uuid
 from genesys.fng.database import Database
-from genesys.fng.factories.name_factory import BaseNameFactory, ComplexNameFactory
+from genesys.fng.factories.name_factory import BaseNameFactory, ComplexFactory
 from genesys.fng.factories.name_block_factory import MultipleFactoryNameFactory, GenderNameBlockFactory
 from utils.genders import MALE, FEMALE, NEUTRAL
 
@@ -66,7 +66,7 @@ class TestNameBlockFactory(unittest.TestCase):
 
         for gender, gender_factory in factory.factories.items():
             self.assertIn(gender, GENDERS)
-            self.assertIsInstance(gender_factory, ComplexNameFactory)
+            self.assertIsInstance(gender_factory, BaseNameFactory)
 
         for gender in factory.genders:
             self.assertIn(gender, GENDERS)
@@ -74,12 +74,12 @@ class TestNameBlockFactory(unittest.TestCase):
     def test_gender_name_block_factory_subfactory(self):
         factory = GenderNameBlockFactory()
         gender_factory = factory.factory()
-        self.assertIsInstance(gender_factory, ComplexNameFactory)
+        self.assertIsInstance(gender_factory, BaseNameFactory)
 
     def test_gender_name_block_factory_by_percent(self):
         factory = GenderNameBlockFactory()
         gender_factory = factory.by_percent(random.choice(GENDERS))
-        self.assertIsInstance(gender_factory, ComplexNameFactory)
+        self.assertIsInstance(gender_factory, BaseNameFactory)
 
     def test_gender_name_block_factory_call(self):
         factory = GenderNameBlockFactory()

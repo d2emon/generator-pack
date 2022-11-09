@@ -53,6 +53,23 @@ def item_equals(value):
     return f
 
 
+def validate_if(condition, validator):
+    """
+    Check if item equals value
+
+    :param value: Value to check
+    :return: Item validator
+    """
+
+    def f(item):
+        if not condition():
+            return True
+
+        return validator(item)
+
+    return f
+
+
 def generate_while(item, condition, factory):
     """
     Generate item while condition is true

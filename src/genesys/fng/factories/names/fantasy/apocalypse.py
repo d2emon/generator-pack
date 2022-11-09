@@ -27,7 +27,7 @@ Quite a few of the names, especially the apocalypse-themed ones, can often be us
 from data.fng.names import fantasy
 from genesys.fng.database import Database
 from genesys.fng.factories.name_block_factory import GenderNameBlockFactory
-from genesys.fng.factories.name_factory import ComplexNameFactory
+from genesys.fng.factories.name_factory import ComplexFactory
 from models.fng.names.fantasy import ApocalypseNickname
 from utils import genders
 
@@ -42,7 +42,7 @@ DB = Database('apocalypse', {
 class ApocalypseNicknameFactory(GenderNameBlockFactory):
     """Apocalypse Nickname Factory."""
 
-    class MaleNameFactory(ComplexNameFactory):
+    class MaleNameFactory(ComplexFactory):
         """Method #1."""
 
         model = ApocalypseNickname
@@ -50,7 +50,7 @@ class ApocalypseNicknameFactory(GenderNameBlockFactory):
             'nm1': genders.MALE,
         }
 
-    class FemaleNameFactory(ComplexNameFactory):
+    class FemaleNameFactory(ComplexFactory):
         """Method #2."""
 
         model = ApocalypseNickname
@@ -58,7 +58,7 @@ class ApocalypseNicknameFactory(GenderNameBlockFactory):
             'nm1': genders.FEMALE,
         }
 
-    class NeutralNameFactory(ComplexNameFactory):
+    class NeutralNameFactory(ComplexFactory):
         """Method #3."""
 
         model = ApocalypseNickname

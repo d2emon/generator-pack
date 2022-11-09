@@ -20,7 +20,7 @@ from data.fng.names import fantasy
 from genesys.fng.database import Database
 from genesys.fng.factories.name_block_factory import MultipleFactoryNameFactory, \
     GenderNameBlockFactory
-from genesys.fng.factories.name_factory import ComplexNameFactory
+from genesys.fng.factories.name_factory import ComplexFactory
 from genesys.fng.factories.validators import generate_while
 from models.fng.names.fantasy import BarbarianName
 
@@ -43,7 +43,7 @@ class BarbarianNameFactory(GenderNameBlockFactory):
     class MaleNameFactory(MultipleFactoryNameFactory):
         """Method #1."""
 
-        class MaleNameFactory1(ComplexNameFactory):
+        class MaleNameFactory1(ComplexFactory):
             """Method #1."""
 
             model = BarbarianName
@@ -53,7 +53,7 @@ class BarbarianNameFactory(GenderNameBlockFactory):
                 'nm3': 4,
             }
 
-        class MaleNameFactory2(ComplexNameFactory):
+        class MaleNameFactory2(ComplexFactory):
             """Method #2."""
 
             model = BarbarianName
@@ -65,7 +65,7 @@ class BarbarianNameFactory(GenderNameBlockFactory):
                 'nm5': 3,
             }
             validators = {
-                'nm4': lambda items, factories: lambda item: item.item_id < 3,
+                'nm4': lambda items: lambda item: item.item_id < 3,
             }
 
             def validate_item(self, item_id, item, items):
@@ -84,7 +84,7 @@ class BarbarianNameFactory(GenderNameBlockFactory):
 
                 return super().validate_item(item_id, item, items)
 
-        class MaleNameFactory3(ComplexNameFactory):
+        class MaleNameFactory3(ComplexFactory):
             """Method #3."""
 
             model = BarbarianName
@@ -98,8 +98,8 @@ class BarbarianNameFactory(GenderNameBlockFactory):
                 'nm7': 3,
             }
             validators = {
-                'nm4': lambda items, factories: lambda item: item.item_id < 3,
-                'nm6': lambda items, factories: lambda item: item.item_id < 3,
+                'nm4': lambda items: lambda item: item.item_id < 3,
+                'nm6': lambda items: lambda item: item.item_id < 3,
             }
 
             def validate_item(self, item_id, item, items):
@@ -131,7 +131,7 @@ class BarbarianNameFactory(GenderNameBlockFactory):
     class FemaleNameFactory(MultipleFactoryNameFactory):
         """Method #1."""
 
-        class FemaleNameFactory1(ComplexNameFactory):
+        class FemaleNameFactory1(ComplexFactory):
             """Method #1."""
 
             model = BarbarianName
@@ -160,7 +160,7 @@ class BarbarianNameFactory(GenderNameBlockFactory):
 
                 return super().validate_item(item_id, item, items)
 
-        class FemaleNameFactory2(ComplexNameFactory):
+        class FemaleNameFactory2(ComplexFactory):
             """Method #2."""
 
             model = BarbarianName
@@ -192,7 +192,7 @@ class BarbarianNameFactory(GenderNameBlockFactory):
 
                 return super().validate_item(item_id, item, items)
 
-        class FemaleNameFactory3(ComplexNameFactory):
+        class FemaleNameFactory3(ComplexFactory):
             """Method #3."""
 
             model = BarbarianName
@@ -206,8 +206,8 @@ class BarbarianNameFactory(GenderNameBlockFactory):
                 'nm7': 7,
             }
             validators = {
-                'nm4': lambda items, factories: lambda item: item.item_id < 5,
-                'nm6': lambda items, factories: lambda item: item.item_id < 5,
+                'nm4': lambda items: lambda item: item.item_id < 5,
+                'nm6': lambda items: lambda item: item.item_id < 5,
             }
 
             def validate_item(self, item_id, item, items):

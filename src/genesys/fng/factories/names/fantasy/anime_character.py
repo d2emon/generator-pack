@@ -18,7 +18,7 @@ Like regular Japanese names, the names in this generator are in surname - person
 from data.fng.names import fantasy
 from genesys.fng.database import Database
 from genesys.fng.factories.name_block_factory import GenderNameBlockFactory
-from genesys.fng.factories.name_factory import ComplexNameFactory
+from genesys.fng.factories.name_factory import ComplexFactory
 from models.fng.names.fantasy import AnimeCharacterName
 
 
@@ -35,7 +35,7 @@ DB = Database('anime', {
 class AnimeNameFactory(GenderNameBlockFactory):
     """Anime Character Name Factory."""
 
-    class MaleNameFactory(ComplexNameFactory):
+    class MaleNameFactory(ComplexFactory):
         """Method #1."""
 
         model = AnimeCharacterName
@@ -46,7 +46,7 @@ class AnimeNameFactory(GenderNameBlockFactory):
             'nm4': 6,
         }
 
-    class FemaleNameFactory(ComplexNameFactory):
+    class FemaleNameFactory(ComplexFactory):
         """Method #2."""
 
         model = AnimeCharacterName

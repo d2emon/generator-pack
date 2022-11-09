@@ -11,7 +11,7 @@ from data.fng.names import fantasy
 from genesys.fng.database import Database
 from genesys.fng.factories.name_block_factory import MultipleFactoryNameFactory, \
     GenderNameBlockFactory
-from genesys.fng.factories.name_factory import ComplexNameFactory
+from genesys.fng.factories.name_factory import ComplexFactory
 from models.fng.names.fantasy import BanditName
 from utils import genders
 
@@ -30,7 +30,7 @@ class BanditNameFactory(GenderNameBlockFactory):
     class MaleNameFactory(MultipleFactoryNameFactory):
         """Method #1."""
 
-        class MaleNameFactory1(ComplexNameFactory):
+        class MaleNameFactory1(ComplexFactory):
             """Method #1."""
 
             model = BanditName
@@ -39,7 +39,7 @@ class BanditNameFactory(GenderNameBlockFactory):
                 'nm2': 2,
             }
 
-        class MaleNameFactory2(ComplexNameFactory):
+        class MaleNameFactory2(ComplexFactory):
             """Method #2."""
 
             model = BanditName
@@ -56,7 +56,7 @@ class BanditNameFactory(GenderNameBlockFactory):
     class FemaleNameFactory(MultipleFactoryNameFactory):
         """Method #1."""
 
-        class FemaleNameFactory1(ComplexNameFactory):
+        class FemaleNameFactory1(ComplexFactory):
             """Method #1."""
 
             model = BanditName
@@ -65,7 +65,7 @@ class BanditNameFactory(GenderNameBlockFactory):
                 'nm2': 2,
             }
 
-        class FemaleNameFactory2(ComplexNameFactory):
+        class FemaleNameFactory2(ComplexFactory):
             """Method #2."""
 
             model = BanditName

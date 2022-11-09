@@ -12,7 +12,7 @@ import random
 from data.fng.names import fantasy
 from genesys.fng.database import Database
 from genesys.fng.factories.name_block_factory import GenderNameBlockFactory
-from genesys.fng.factories.name_factory import ComplexNameFactory
+from genesys.fng.factories.name_factory import ComplexFactory
 from models.fng.names.fantasy import AnimatronicName
 
 
@@ -22,7 +22,7 @@ DB = Database('animatronic', {
 })
 
 
-class BaseAnimatronicNameFactory(ComplexNameFactory):
+class BaseAnimatronicNameFactory(ComplexFactory):
     """Method #1."""
 
     model = AnimatronicName

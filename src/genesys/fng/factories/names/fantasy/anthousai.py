@@ -18,7 +18,7 @@ matter for names, as Chloris is spelled with the masculine suffix despite being 
 from data.fng.names import fantasy
 from genesys.fng.database import Database
 from genesys.fng.factories.name_block_factory import GenderNameBlockFactory
-from genesys.fng.factories.name_factory import ComplexNameFactory
+from genesys.fng.factories.name_factory import ComplexFactory
 from models.fng.names.fantasy import AnthousaiName
 
 
@@ -31,7 +31,7 @@ DB = Database('anthousai', {
 class AnthousaiNameFactory(GenderNameBlockFactory):
     """Anthousai Name Factory."""
 
-    class MaleNameFactory(ComplexNameFactory):
+    class MaleNameFactory(ComplexFactory):
         """Method #1."""
 
         model = AnthousaiName
@@ -39,7 +39,7 @@ class AnthousaiNameFactory(GenderNameBlockFactory):
             'nm1': 1,
         }
 
-    class FemaleNameFactory(ComplexNameFactory):
+    class FemaleNameFactory(ComplexFactory):
         """Method #2."""
 
         model = AnthousaiName

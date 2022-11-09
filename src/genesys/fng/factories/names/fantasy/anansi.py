@@ -21,7 +21,7 @@ looking for.
 import random
 from data.fng.names import fantasy
 from genesys.fng.database import Database
-from genesys.fng.factories.name_factory import ComplexNameFactory
+from genesys.fng.factories.name_factory import ComplexFactory
 from models.fng.names.fantasy import AnansiName
 
 
@@ -31,7 +31,7 @@ DB = Database('anansi', {
 })
 
 
-class AnansiNameFactory(ComplexNameFactory):
+class AnansiNameFactory(ComplexFactory):
     """Anansi Name Factory."""
 
     model = AnansiName

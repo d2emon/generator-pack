@@ -16,8 +16,8 @@ Classes:
 from data.fng.names import fantasy
 from genesys.fng.database import Database
 from genesys.fng.factories.name_block_factory import MultipleFactoryNameFactory
-from genesys.fng.factories.name_factory import ComplexNameFactory
-from genesys.fng.factories.validators import item_is_unique, item_is_not_empty
+from genesys.fng.factories.name_factory import ComplexFactory
+from genesys.fng.factories.validators import item_is_unique, item_is_not_empty, validate_if
 from models.fng.names.fantasy import AlienName
 
 
@@ -56,7 +56,7 @@ class AlienNameFactory(MultipleFactoryNameFactory):
         model (Model): Model to build.
     """
 
-    class AlienNameFactory1(ComplexNameFactory):
+    class AlienNameFactory1(ComplexFactory):
         """
         Method #1.
 
@@ -77,29 +77,18 @@ class AlienNameFactory(MultipleFactoryNameFactory):
             'nm5': 5,
         }
         model = AlienName
-
-        def __validate_nm3(self, items):
-            """Validator for nm3."""
-            return item_is_unique([items['nm1'], items['nm5']])
-
-        def __validate_nm4(self, items):
-            """Validator for nm4."""
-            def validator(item):
-                item = self.factories['nm4'](item_id=0)
-                items['nm4'] = item
-                return True
-
-            if str(items['nm3']) == '':
-                return validator
-
-            return item_is_not_empty()
-
         validators = {
-            'nm3': __validate_nm3,
-            'nm4': __validate_nm4,
+            'nm3': lambda items: item_is_unique([items['nm1'], items['nm5']]),
+            'nm4': lambda items: validate_if(
+                lambda: str(items['nm3']) != '',
+                item_is_not_empty(),
+            ),
+        }
+        update_values = {
+            'nm4': lambda self, items: '' if str(items['nm3']) == '' else items['nm4'],
         }
 
-    class AlienNameFactory2(ComplexNameFactory):
+    class AlienNameFactory2(ComplexFactory):
         """
         Method #2.
 
@@ -120,16 +109,11 @@ class AlienNameFactory(MultipleFactoryNameFactory):
             'nm5': 11,
         }
         model = AlienName
-
-        def __validate_nm3(self, items):
-            """Validator for nm3."""
-            return item_is_unique([items['nm1'], items['nm5']])
-
         validators = {
-            'nm3': __validate_nm3,
+            'nm3': lambda items: item_is_unique([items['nm1'], items['nm5']]),
         }
 
-    class AlienNameFactory3(ComplexNameFactory):
+    class AlienNameFactory3(ComplexFactory):
         """
         Method #3.
 
@@ -151,26 +135,15 @@ class AlienNameFactory(MultipleFactoryNameFactory):
             'nm5': 16,
         }
         model = AlienName
-
-        def __validate_nm3(self, items):
-            """Validator for nm3."""
-            return item_is_unique([items['nm1'], items['nm5']])
-
-        def __validate_nm4(self, items):
-            """Validator for nm4."""
-            def validator(item):
-                item = self.factories['nm4'](item_id=0)
-                items['nm4'] = item
-                return True
-
-            if str(items['nm3']) == '':
-                return validator
-
-            return item_is_not_empty()
-
         validators = {
-            'nm3': __validate_nm3,
-            'nm4': __validate_nm4,
+            'nm3': lambda items: item_is_unique([items['nm1'], items['nm5']]),
+            'nm4': lambda items: validate_if(
+                lambda: str(items['nm3']) != '',
+                item_is_not_empty(),
+            ),
+        }
+        update_values = {
+            'nm4': lambda self, items: '' if str(items['nm3']) == '' else items['nm4'],
         }
 
     default_data = DB

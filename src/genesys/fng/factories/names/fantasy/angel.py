@@ -12,7 +12,7 @@ sections.
 from data.fng.names import fantasy
 from genesys.fng.database import Database
 from genesys.fng.factories.name_block_factory import GenderNameBlockFactory
-from genesys.fng.factories.name_factory import ComplexNameFactory
+from genesys.fng.factories.name_factory import ComplexFactory
 from models.fng.names.fantasy import AngelName
 
 
@@ -26,7 +26,7 @@ DB = Database('angel', {
 class AngelNameFactory(GenderNameBlockFactory):
     """Angel Name Factory."""
 
-    class MaleNameFactory(ComplexNameFactory):
+    class MaleNameFactory(ComplexFactory):
         """Method #1."""
 
         model = AngelName
@@ -34,7 +34,7 @@ class AngelNameFactory(GenderNameBlockFactory):
             'nm1': 1,
         }
 
-    class FemaleNameFactory(ComplexNameFactory):
+    class FemaleNameFactory(ComplexFactory):
         """Method #2."""
 
         model = AngelName
@@ -42,7 +42,7 @@ class AngelNameFactory(GenderNameBlockFactory):
             'nm1': 2,
         }
 
-    class NeutralNameFactory(ComplexNameFactory):
+    class NeutralNameFactory(ComplexFactory):
         """Method #3."""
 
         model = AngelName

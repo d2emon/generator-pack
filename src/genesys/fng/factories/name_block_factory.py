@@ -1,5 +1,13 @@
+"""
+NameBlock factories.
+
+Classes:
+    MultipleFactoryNameFactory: Factory to build model with one of the nested factories.
+    GenderNameBlockFactory: Factory to build model with choosen gender.
+"""
+
 import random
-from .name_factory import ComplexFactory, ComplexNameFactory, BaseNameFactory
+from .name_factory import ComplexFactory, BaseNameFactory
 from utils import genders
 
 
@@ -66,13 +74,13 @@ class MultipleFactoryNameFactory(BaseNameFactory):
 
 
 class GenderNameBlockFactory(ComplexFactory):
-    class MaleNameFactory(ComplexNameFactory):
+    class MaleNameFactory(BaseNameFactory):
         pass
 
-    class FemaleNameFactory(ComplexNameFactory):
+    class FemaleNameFactory(BaseNameFactory):
         pass
 
-    class NeutralNameFactory(ComplexNameFactory):
+    class NeutralNameFactory(BaseNameFactory):
         pass
 
     @property

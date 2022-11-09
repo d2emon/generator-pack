@@ -1,3 +1,16 @@
+"""
+NameBlock factories.
+
+Classes:
+    DbFactory: Base factory to build model with data from database.
+    ModelFactory: Base factory to build model.
+    BaseNameFactory: Base factory to build name model.
+    ComplexFactory: Base factory to build complex model.
+    PolymorphFactory: Base factory to build polymorph model.
+    PercentFactory: Base factory to build percent model.
+    GenderFactory: Base factory to build gender model.
+"""
+
 import random
 from utils.genders import MALE
 from models.fng.names.name import Name
@@ -28,12 +41,9 @@ class DbFactory(Factory):
 
 class ModelFactory(Factory):
     """
-    Base factory to build name model.
+    Base factory to build model.
 
     Attributes:
-        # default_data (Database): Default database for factory
-        # factories (dict[Factory]): Nested factories.
-        # factory_classes (dict[Factory]): Classes for nested factories.
         model (Name): Name model to build
     """
 
@@ -42,6 +52,10 @@ class ModelFactory(Factory):
     def build_args(self, *args, **kwargs) -> list:
         """
         Build args for model.
+
+        Args:
+            *args (list): Args from factory method.
+            **kwargs (dict): Kwargs from factory method.
 
         Returns:
             list: Args for model.
@@ -52,6 +66,10 @@ class ModelFactory(Factory):
         """
         Build data for model.
 
+        Args:
+            *args (list): Args from factory method.
+            **kwargs (dict): Kwargs from factory method.
+
         Returns:
             dict: Data for model.
         """
@@ -60,6 +78,10 @@ class ModelFactory(Factory):
     def __call__(self, *args, **kwargs):
         """
         Build model.
+
+        Args:
+            *args (list): Args for factory method.
+            **kwargs (dict): Kwargs for factory method.
 
         Returns:
             Model: Model built with factory.
@@ -82,21 +104,26 @@ class BaseNameFactory(ModelFactory, DbFactory):
     model = Name
 
 
-class ComplexFactory(BaseNameFactory):
+class ComplexFactory(ModelFactory, DbFactory):
     """
     Complex Factory.
 
     Factory to build model with one of the nested factories.
 
     Attributes:
-        data (Database): Database for factory. Inherited from DBFactory.
+        block_map (dict): Map model fields to database blocks.
+        data (Database): Database for factory. Inherited from DbFactory.
         default_data (Database): Default database for factory. Inherited from DbFactory.
         factories (dict[Factory]): Nested factories.
         factory_classes (dict[class]): Classes for nested factories.
         model (Model): Model to build. Inherited from BaseNameFactory.
+        validators (dict[function]): Validators for model fields.
     """
 
+    block_map = {}
     factory_classes = {}
+    validators = {}
+    update_values = {}
 
     def __init__(self, data=None):
         """
@@ -148,6 +175,103 @@ class ComplexFactory(BaseNameFactory):
         factory = self.factory(factory_id)
         return factory(*args, **kwargs) if factory is not None else None
 
+    def build_kwargs(self, *args, **kwargs) -> dict:
+        """
+        Build data for model.
+
+        Args:
+            *args (list): Args from factory method.
+            **kwargs (dict): Kwargs from factory method.
+
+        Returns:
+            dict: Data for model.
+        """
+        data = {}
+
+        # Validate model data
+        invalid = [*self.block_map.keys()]
+        while len(invalid) > 0:
+            data.update({
+                item_id: self.get_field(item_id, *args, **kwargs)
+                for item_id in invalid                
+            })
+            invalid = list(self.validate(data))
+
+        return data
+
+    def get_field(self, item_id, *args, **kwargs):
+        """
+        Generate value for field.
+
+        Args:
+            item_id (str): Id of field to build.
+            *args (list): Args from factory method.
+            **kwargs (dict): Kwargs from factory method.
+
+        Returns:
+            Value for model field.
+        """
+        factory = self.factories.get(item_id)
+
+        if factory is None:
+            return None
+
+        return factory(*args, **kwargs)
+
+    def validate(self, data):
+        """
+        Validate values from data.
+
+        Args:
+            data (dict): Values for model.
+
+        Returns:
+            list(str): List of invalid fields.
+        """
+        for item_id, value in data.items():
+            updater = self.update_values.get(item_id)
+
+            if updater is not None:
+                print(f"UPDATE {item_id}: {data[item_id]} <- {updater(self, data)}")
+                print({ item_id: str(item) for item_id, item in data.items() })
+                data[item_id] = updater(self, data)
+
+            validator = self.validators.get(item_id)
+
+            if validator is None:
+                continue
+
+            item_validator = validator(data)
+            if not item_validator(value):
+                yield item_id
+
+    @classmethod
+    def get_data_factory(cls, block_id, data):
+        """
+        Create nested factories.
+
+        Args:
+            data (Database): Database for nested factories.
+
+        Returns:
+            dict[Factory]: Nested factories.
+        """
+        return data.find(block_id=block_id)
+
+    @classmethod
+    def get_factory(cls, block_id, data):
+        """
+        Create nested factories.
+
+        Args:
+            data (Database): Database for nested factories.
+
+        Returns:
+            dict[Factory]: Nested factories.
+        """
+        factory = cls.factory_classes.get(block_id)
+        return factory(data)
+
     @classmethod
     def get_factories(cls, data):
         """
@@ -159,107 +283,18 @@ class ComplexFactory(BaseNameFactory):
         Returns:
             dict[Factory]: Nested factories.
         """
-        return {
-            factory_id: factory(data)
+        factories = {
+            factory_id: cls.get_factory(factory_id, data)
             for factory_id, factory in cls.factory_classes.items()
         }
-
-
-class ComplexNameFactory(ComplexFactory):
-    """
-    Factory for name
-
-    Class fields:
-    - blocks: Data blocks
-    """
-    block_map = {}
-    validators = {
-        # 'nm3': item_is_unique(self.data['nm1'], self.data['nm5']),
-        # 'nm4': self.__validate_nm4() if method != 2 else None,
-    }
-
-    @classmethod
-    def get_factories(cls, data):
-        return {
-            factory_id: data.find(block_id=block_id)
+        data_factories = {
+            factory_id: cls.get_data_factory(block_id, data)
             for factory_id, block_id in cls.block_map.items()
         }
-
-    def get_field(self, item_id, *args, **kwargs):
-        """
-        Generate value from data
-
-        :param args: Args for generation
-        :param kwargs: Kwargs for generation
-        :return: Generated value
-        """
-        factory = self.factories.get(item_id)
-
-        if factory is None:
-            return None
-
-        return factory(*args, **kwargs)
-
-    def build_kwargs(self, *args, **kwargs) -> dict:
-        """
-        Build data for model.
-
-        Returns:
-            dict: Data for model.
-        """
         return {
-            item_id: self.get_field(item_id, *args, **kwargs)
-            for item_id, factory in self.factories.items()
-            if factory is not None
+            **factories,
+            **data_factories,
         }
-
-    def validate_item(self, item_id, item, items):
-        validator = self.validators.get(item_id)
-
-        if validator is None:
-            return items
-
-        items[item_id] = generate_while(
-            item,
-            validator(self, items),
-            self[item_id],
-        )
-
-        return items
-
-    def validate(self, items):
-        for item_id, item in items.items():
-            items = self.validate_item(item_id, item, items)
-
-        return items
-
-    def __validate_model(self, data):
-        for item_id, value in data.items():
-            validator = self.validators.get(item_id)
-
-            if validator is None:
-                continue
-
-            item_validator = validator(self, data)
-            if not item_validator(value):
-                yield item_id
-
-    def __call__(self, *args, **kwargs):
-        data = {}
-
-        # Validate model data
-        invalid = [*self.block_map.keys()]
-        model = self.model()
-        while len(invalid) > 0:
-            data.update({
-                item_id: self.factories[item_id]()
-                for item_id in invalid                
-            })
-            invalid = list(self.__validate_model(data))
-
-            model = self.model(**data)
-
-        return model
 
 
 class PolymorphFactory(ComplexFactory):

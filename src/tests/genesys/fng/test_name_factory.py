@@ -1,7 +1,7 @@
 import unittest
 import uuid
 from genesys.fng.database import Database
-from genesys.fng.factories.name_factory import BaseNameFactory, ComplexFactory, ComplexNameFactory, \
+from genesys.fng.factories.name_factory import BaseNameFactory, ComplexFactory, \
     PolymorphFactory, PercentFactory, GenderFactory
 from models.fng.names.name import Name
 from utils.genders import MALE, FEMALE
@@ -76,15 +76,15 @@ def validator(item):
     return COUNT % 5 == 0
 
 
-class ComplexNameFactory1(ComplexNameFactory):
+class ComplexNameFactory1(ComplexFactory):
     block_map = {
         'name1': BLOCK_ID_1,
         'name2': BLOCK_ID_2,
         'name3': BLOCK_ID_1,
     }
     validators = {
-        'name1': lambda items, factories: lambda item: True,
-        'name2': lambda items, factories: validator,
+        'name1': lambda items: lambda item: True,
+        'name2': lambda items: validator,
     }
 
 
@@ -174,37 +174,12 @@ class TestNameFactory(unittest.TestCase):
             key = self.complex_name_factory.block_map[factory_id]
             self.assertIn(item.value, self.data[key])
 
-    def test_complex_name_factory_validate_no_validator_item(self):
-        data = self.complex_name_factory.build_kwargs()
-
-        valid = self.complex_name_factory.validate_item('name3', data['name3'], data)
-        self.assertIsInstance(valid, dict)
-        self.assertDictEqual(valid, data)
-
-    def test_complex_name_factory_validate_valid_item(self):
-        data = self.complex_name_factory.build_kwargs()
-
-        valid = self.complex_name_factory.validate_item('name1', data['name1'], data)
-        self.assertIsInstance(valid, dict)
-        self.assertDictEqual(valid, data)
-
-    def test_complex_name_factory_validate_item(self):
-        data = self.complex_name_factory.build_kwargs()
-
-        valid = self.complex_name_factory.validate_item('name2', data['name2'], data)
-        self.assertIsInstance(valid, dict)
-        for factory_id, item in valid.items():
-            key = self.complex_name_factory.block_map[factory_id]
-            self.assertIn(item.value, self.data[key])
-
     def test_complex_name_factory_validate_all(self):
         data = self.complex_name_factory.build_kwargs()
 
         valid = self.complex_name_factory.validate(data)
-        self.assertIsInstance(valid, dict)
-        for factory_id, item in valid.items():
-            key = self.complex_name_factory.block_map[factory_id]
-            self.assertIn(item.value, self.data[key])
+        for item in valid:
+            self.assertIn(item, self.complex_name_factory.block_map.keys())
 
     def test_complex_name_factory_build(self):
         data = self.complex_name_factory()

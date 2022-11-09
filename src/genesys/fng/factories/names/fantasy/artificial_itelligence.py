@@ -11,7 +11,7 @@ identity as well.
 
 from data.fng.names import fantasy
 from genesys.fng.database import Database
-from genesys.fng.factories.name_factory import ComplexNameFactory
+from genesys.fng.factories.name_factory import ComplexFactory
 from models.fng.names.fantasy import ArtificialIntelligenceName
 
 
@@ -20,7 +20,7 @@ DB = Database('artificial-intelligence', {
 })
 
 
-class ArtificialIntelligenceNameFactory(ComplexNameFactory):
+class ArtificialIntelligenceNameFactory(ComplexFactory):
     """Artificial Intelligence Name Factory."""
 
     model = ArtificialIntelligenceName
