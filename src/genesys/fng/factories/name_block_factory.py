@@ -1,25 +1,68 @@
 import random
-from .name_factory import ComplexFactory, ComplexNameFactory
+from .name_factory import ComplexFactory, ComplexNameFactory, BaseNameFactory
 from utils import genders
 
 
-class MultipleFactoryNameFactory(ComplexFactory):
+class MultipleFactoryNameFactory(BaseNameFactory):
+    """
+    Factory to build model with one of the nested factories.
+
+    Attributes:
+        data (Database): Database for factory. Inherited from DBFactory.
+        default_data (Database): Default database for factory. Inherited from DbFactory.
+        factories (list[Factory]): Nested factories.
+        factory_classes (list[class]): Classes for nested factories.
+        model (Model): Model to build. Inherited from BaseNameFactory.
+    """
+
     factory_classes = []
 
-    @classmethod
-    def get_factories(cls, data):
-        return [ factory(data) for factory in cls.factory_classes ]
+    def __init__(self, data=None):
+        """
+        Construct factory with nested factories.
 
-    def random_factory(self):
-        return random.choice(self.factories)
+        Args:
+            data (Database, optional): Database for building model. Defaults to None.
+        """
+        super().__init__(data)
+
+        self.factories = [factory(self.data) for factory in self.factory_classes]
 
     def __call__(self, *args, factory_id=None, **kwargs):
-        if factory_id is None:
-            factory = self.random_factory()
-        else:
-            factory = self.factories[factory_id]
+        """
+        Build model using nested factory.
+
+        Args:
+            factory_id (int, optional): Id of a nested factory to use for building model.
+                Defaults to None.
+
+        Returns:
+            Model: Model built with nested factory.
+        """
+        factory = self.factory(factory_id)
+
+        if factory is None:
+            return None
+
+        # TODO: Build my model with args from nested factory
 
         return factory(*args, **kwargs)
+
+    def factory(self, factory_id=None):
+        """
+        Get nested factory.
+
+        Args:
+            factory_id (int, optional): Id of a nested factory to use for building model.
+                Defaults to None.
+
+        Returns:
+            Factory: Nested factory.
+        """
+        if factory_id is None:
+            return random.choice(self.factories)
+
+        return self.factories[factory_id]
 
 
 class GenderNameBlockFactory(ComplexFactory):

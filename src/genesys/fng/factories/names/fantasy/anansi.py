@@ -42,14 +42,12 @@ class AnansiNameFactory(ComplexNameFactory):
         'nm5': 8,
     }
 
-    def get_data(self, *args, **kwargs) -> dict:
+    def build_kwargs(self, *args, **kwargs) -> dict:
         """
-        Get data for model.
+        Build data for model.
 
-        :param args: Args for data
-        :param kwargs: Kwargs for data
-        :return: Data for model
-        :rtype: dict
+        Returns:
+            dict: Data for model.
         """
         nm1 = self.get_field('nm1', *args, **kwargs)
         nm3 = self.get_field('nm3', *args, **kwargs)
@@ -70,7 +68,7 @@ class AnansiNameFactory(ComplexNameFactory):
         :return: Data for model
         :rtype: dict
         """
-        items = self.get_data(*args, **kwargs)
+        items = self.build_kwargs(*args, **kwargs)
 
         # 2
         if items[2] < 1:

@@ -21,15 +21,14 @@ class NameFactory2(BaseNameFactory):
         ],
     })
 
-    def get_data(self, *args, **kwargs) -> dict:
+    def build_kwargs(self, *args, **kwargs) -> dict:
         """
-        Get data for model.
+        Build data for model.
 
-        :param args: Args for data
-        :param kwargs: Kwargs for data
-        :return: Data for model
-        :rtype: dict
+        Returns:
+            dict: Data for model.
         """
+
         return {
             'key': uuid.uuid4(),
         }
@@ -113,8 +112,8 @@ class TestNameFactory(unittest.TestCase):
     def test_name_factory_db(self):
         self.assertEqual(self.name_factory.data, self.db)
 
-    def test_name_factory_get_data(self):
-        data = self.name_factory.get_data()
+    def test_name_factory_build_kwargs(self):
+        data = self.name_factory.build_kwargs()
         self.assertIsInstance(data, dict)
 
     def test_name_factory_run(self):
@@ -136,8 +135,7 @@ class TestNameFactory(unittest.TestCase):
 
     def test_complex_factory_factory(self):
         no_factory = self.complex_factory.factory('no-uuid')
-        no_item = no_factory(uuid.uuid4())
-        self.assertIsNone(no_item)
+        self.assertIsNone(no_factory)
 
         for factory_id in self.complex_factory.factory_classes.keys():
             factory = self.complex_factory.factory(factory_id)
@@ -160,29 +158,38 @@ class TestNameFactory(unittest.TestCase):
             key = ComplexNameFactory1.block_map[factory_id]
             self.assertIn(item.value, self.data[key])
 
-    def test_complex_name_factory_get_data(self):
-        data = self.complex_name_factory.get_data()
+    def test_complex_name_factory_get_field(self):
+        item = self.complex_name_factory.get_field('name1')
+        self.assertIsNotNone(item)
+        self.assertIn(item.value, self.data[BLOCK_ID_1])
+
+    def test_complex_name_factory_get_field_not_exists(self):
+        data = self.complex_name_factory.get_field('not_existing_field')
+        self.assertIsNone(data)
+
+    def test_complex_name_factory_build_kwargs(self):
+        data = self.complex_name_factory.build_kwargs()
         self.assertIsInstance(data, dict)
         for factory_id, item in data.items():
             key = self.complex_name_factory.block_map[factory_id]
             self.assertIn(item.value, self.data[key])
 
     def test_complex_name_factory_validate_no_validator_item(self):
-        data = self.complex_name_factory.get_data()
+        data = self.complex_name_factory.build_kwargs()
 
         valid = self.complex_name_factory.validate_item('name3', data['name3'], data)
         self.assertIsInstance(valid, dict)
         self.assertDictEqual(valid, data)
 
     def test_complex_name_factory_validate_valid_item(self):
-        data = self.complex_name_factory.get_data()
+        data = self.complex_name_factory.build_kwargs()
 
         valid = self.complex_name_factory.validate_item('name1', data['name1'], data)
         self.assertIsInstance(valid, dict)
         self.assertDictEqual(valid, data)
 
     def test_complex_name_factory_validate_item(self):
-        data = self.complex_name_factory.get_data()
+        data = self.complex_name_factory.build_kwargs()
 
         valid = self.complex_name_factory.validate_item('name2', data['name2'], data)
         self.assertIsInstance(valid, dict)
@@ -191,7 +198,7 @@ class TestNameFactory(unittest.TestCase):
             self.assertIn(item.value, self.data[key])
 
     def test_complex_name_factory_validate_all(self):
-        data = self.complex_name_factory.get_data()
+        data = self.complex_name_factory.build_kwargs()
 
         valid = self.complex_name_factory.validate(data)
         self.assertIsInstance(valid, dict)

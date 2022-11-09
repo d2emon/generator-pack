@@ -6,88 +6,163 @@ from genesys.fng.factories.validators import generate_while
 
 
 class DbFactory(Factory):
+    """
+    Base factory to build model with data from database.
+
+    Attributes:
+        data (Database): Database for factory.
+        default_data (Database): Default database for factory.
+    """
+
     default_data = None
 
     def __init__(self, data=None):
         """
-        :param data: Data blocks for factory
+        Construct factory with data from database.
+
+        Args:
+            data (Database, optional): Database for factory. Defaults to None.
         """
         self.data = data or self.default_data
 
 
 class ModelFactory(Factory):
+    """
+    Base factory to build name model.
+
+    Attributes:
+        # default_data (Database): Default database for factory
+        # factories (dict[Factory]): Nested factories.
+        # factory_classes (dict[Factory]): Classes for nested factories.
+        model (Name): Name model to build
+    """
+
     model = Name
 
-    def get_data(self, *args, **kwargs) -> dict:
+    def build_args(self, *args, **kwargs) -> list:
         """
-        Get data for model.
+        Build args for model.
 
-        :param args: Args for data
-        :param kwargs: Kwargs for data
-        :return: Data for model
-        :rtype: dict
+        Returns:
+            list: Args for model.
+        """
+        return []
+
+    def build_kwargs(self, *args, **kwargs) -> dict:
+        """
+        Build data for model.
+
+        Returns:
+            dict: Data for model.
         """
         return {}
 
     def __call__(self, *args, **kwargs):
         """
         Build model.
-        
-        :param args: Args for model
-        :param kwargs: Kwargs for model
-        :return: Model
-        :rtype: dict
+
+        Returns:
+            Model: Model built with factory.
         """
-        items = self.get_data(*args, **kwargs)
-        return self.model(**items)
+        model_args = self.build_args(*args, **kwargs)
+        model_kwargs = self.build_kwargs(*args, **kwargs)
+        return self.model(*model_args, **model_kwargs)
 
 
 class BaseNameFactory(ModelFactory, DbFactory):
+    """
+    Base factory to build name model with data form database.
+
+    Attributes:
+        data (Database): Database for factory. Inherited from DBFactory.
+        default_data (Database): Default database for factory Inherited from DBFactory.
+        model (Name): Name model to build.
+    """
+
     model = Name
 
 
 class ComplexFactory(BaseNameFactory):
     """
-    Complex Factory
+    Complex Factory.
 
-    Class fields:
+    Factory to build model with one of the nested factories.
 
-    - factory_classes: Classes for child factories
+    Attributes:
+        data (Database): Database for factory. Inherited from DBFactory.
+        default_data (Database): Default database for factory. Inherited from DbFactory.
+        factories (dict[Factory]): Nested factories.
+        factory_classes (dict[class]): Classes for nested factories.
+        model (Model): Model to build. Inherited from BaseNameFactory.
     """
+
     factory_classes = {}
 
     def __init__(self, data=None):
         """
-        :param data: Data blocks for factory
+        Construct factory with nested factories.
+
+        Args:
+            data (_type_, optional): _description_. Defaults to None.
         """
         super().__init__(data)
 
         self.factories = self.get_factories(self.data)
 
+    # TODO: Remove it
+    def __getitem__(self, item_id):
+        """
+        Get nested factory as item of parent factory.
+
+        Args:
+            item_id: Id of a nested factory.
+
+        Returns:
+            Factory: Nested factory.
+        """
+        return self.factory(item_id)
+
+    # TODO: Remove it
+    def factory(self, factory_id):
+        """
+        Get nested factory of parent factory.
+
+        Args:
+            item_id: Id of a nested factory.
+
+        Returns:
+            Factory: Nested factory.
+        """
+        return self.factories.get(factory_id)
+
+    def from_factory(self, factory_id, *args, **kwargs):
+        """
+        Build model with nested factory.
+
+        Args:
+            factory_id: Id of a nested factory.
+
+        Returns:
+            Model: Model built by nested factory.
+        """
+        factory = self.factory(factory_id)
+        return factory(*args, **kwargs) if factory is not None else None
+
     @classmethod
     def get_factories(cls, data):
+        """
+        Create nested factories.
+
+        Args:
+            data (Database): Database for nested factories.
+
+        Returns:
+            dict[Factory]: Nested factories.
+        """
         return {
             factory_id: factory(data)
             for factory_id, factory in cls.factory_classes.items()
         }
-
-    # TODO: Remove it
-    def factory(self, factory_id):
-        return self.factories.get(factory_id, lambda item_id: None)
-
-    # TODO: Remove it
-    def __getitem__(self, item_id):
-        """
-        Get child factory by factory_id
-
-        :param item_id: Id of factory
-        :return: Child factory
-        """
-        return self.factory(item_id)
-
-    def from_factory(self, factory_id, *args, **kwargs):
-        factory = self.factory(factory_id)
-        return factory(*args, **kwargs) if factory is not None else None
 
 
 class ComplexNameFactory(ComplexFactory):
@@ -118,20 +193,19 @@ class ComplexNameFactory(ComplexFactory):
         :param kwargs: Kwargs for generation
         :return: Generated value
         """
-        factory = self.factories[item_id]
+        factory = self.factories.get(item_id)
 
         if factory is None:
             return None
 
         return factory(*args, **kwargs)
 
-    def get_data(self, *args, **kwargs):
+    def build_kwargs(self, *args, **kwargs) -> dict:
         """
-        Generate value from data
+        Build data for model.
 
-        :param args: Args for generation
-        :param kwargs: Kwargs for generation
-        :return: Generated value
+        Returns:
+            dict: Data for model.
         """
         return {
             item_id: self.get_field(item_id, *args, **kwargs)

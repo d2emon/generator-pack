@@ -27,13 +27,12 @@ class BaseAnimatronicNameFactory(ComplexNameFactory):
 
     model = AnimatronicName
 
-    def get_data(self, *args, **kwargs):
+    def build_kwargs(self, *args, **kwargs) -> dict:
         """
-        Generate value from data
+        Build data for model.
 
-        :param args: Args for generation
-        :param kwargs: Kwargs for generation
-        :return: Generated value
+        Returns:
+            dict: Data for model.
         """
         block_id = self.block_map.get('nm1')
         data = self.data.find(block_id)
@@ -56,7 +55,7 @@ class BaseAnimatronicNameFactory(ComplexNameFactory):
         :return: Data for model
         :rtype: dict
         """
-        items = self.get_data(*args, **kwargs)
+        items = self.build_kwargs(*args, **kwargs)
 
         model = self.model(**items)
 

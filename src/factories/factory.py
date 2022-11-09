@@ -1,17 +1,19 @@
 class Factory:
-    """
-    Generate value
-    """
+    """Generate value."""
+
     __instance = None
 
     @classmethod
     def instance(cls, *args, **kwargs):
         """
-        Get static instance of factory
+        Get static instance of factory.
 
-        :param args: Factory args
-        :param kwargs: Factory kwargs
-        :return: Static instance
+        Args:
+            *args (list): Args for building factory.
+            **kwargs (dict): Kwargs for building factory.
+
+        Returns:
+            Factory: Static instance of Factory.
         """
         if cls.__instance is None:
             cls.__instance = cls(*args, **kwargs)
@@ -19,17 +21,19 @@ class Factory:
 
     def __iter__(self):
         """
-        Factory iterator
+        Factory iterator.
 
-        :return: Factory
+        Returns:
+            Factory: Factory as iterator.
         """
         return self
 
     def __next__(self):
         """
-        Generate result with default params
+        Generate result with default params.
 
-        :return: Result
+        Returns:
+            Something built by this factory.
         """
         return self()
 
@@ -37,19 +41,27 @@ class Factory:
         """
         Generate result
 
-        :param args: Build args
-        :param kwargs: Build kwargs
-        :return: Result
+        Args:
+            *args (list): Args for building result.
+            **kwargs (dict): Kwargs for building result.
+
+        Returns:
+            Something built by this factory.
         """
         raise NotImplementedError()
 
     def items(self, count=5, *args, **kwargs):
         """
-        Generate multiple results
+        Generate multiple results.
 
-        :param count: Number of results
-        :param args: Build args
-        :param kwargs: Build kwargs
+        Args:
+            count (int): Number of results to build.
+            *args (list): Args for building result.
+            **kwargs (dict): Kwargs for building result.
+
+        Returns:
+            generator: Something built by this factory.
+
         :return: Results
         """
         for _ in range(count):

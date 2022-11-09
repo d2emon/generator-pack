@@ -5,6 +5,12 @@ It's both easy and difficult to create alien names, as they can be anything in a
 the names have to sound like a good fit for the species you've invented, so I've tried to make
 sure many different types of names can be generated, but they generally fit in 3 different
 categories.
+
+Attributes:
+    DB (Database): Default database for factory.
+
+Classes:
+    AlienNameFactory: Alien Species Name Factory.
 """
 
 from data.fng.names import fantasy
@@ -39,7 +45,16 @@ DB = Database('aliens', {
 
 
 class AlienNameFactory(MultipleFactoryNameFactory):
-    """Alien Species Name Factory."""
+    """
+    Alien Species Name Factory.
+
+    Attributes:
+        data (Database): Database for factory. Inherited from DBFactory.
+        default_data (Database): Default database for factory.
+        factories (list[Factory]): Nested factories. Inherited from MultipleFactoryNameFactory.
+        factory_classes (list[class]): Classes for nested factories.
+        model (Model): Model to build.
+    """
 
     class AlienNameFactory1(ComplexNameFactory):
         """
@@ -47,9 +62,13 @@ class AlienNameFactory(MultipleFactoryNameFactory):
 
         Names with a much higher chance of having a more guttural sound to them, ideal for the
         stronger and brutish looking aliens.
+
+        Attributes:
+            block_map (dict): Map model fields to database blocks
+            model (Model): Model to build
+            validators (dict[function]): Validators for model fields
         """
 
-        model = AlienName
         block_map = {
             'nm1': 1,
             'nm2': 2,
@@ -57,6 +76,7 @@ class AlienNameFactory(MultipleFactoryNameFactory):
             'nm4': 4,
             'nm5': 5,
         }
+        model = AlienName
 
         def __validate_nm3(self, items):
             """Validator for nm3."""
@@ -85,9 +105,13 @@ class AlienNameFactory(MultipleFactoryNameFactory):
 
         Names that have a much higher chance of having a more melodic sound to them, making
         them ideal for the softer and gentle looking aliens.
+
+        Attributes:
+            block_map (dict): Map model fields to database blocks
+            model (Model): Model to build
+            validators (dict[function]): Validators for model fields
         """
 
-        model = AlienName
         block_map = {
             'nm1': 6,
             'nm2': 7,
@@ -95,6 +119,7 @@ class AlienNameFactory(MultipleFactoryNameFactory):
             'nm4': 10,
             'nm5': 11,
         }
+        model = AlienName
 
         def __validate_nm3(self, items):
             """Validator for nm3."""
@@ -111,9 +136,13 @@ class AlienNameFactory(MultipleFactoryNameFactory):
         Names that can sound both guttural and melodic and anything in between. These names are
         more randomized than the previous 2 types and unlike the other 2 types, these aren't
         always easy to pronounce in English.
+
+        Attributes:
+            block_map (dict): Map model fields to database blocks
+            model (Model): Model to build
+            validators (dict[function]): Validators for model fields
         """
 
-        model = AlienName
         block_map = {
             'nm1': 12,
             'nm2': 13,
@@ -121,6 +150,7 @@ class AlienNameFactory(MultipleFactoryNameFactory):
             'nm4': 15,
             'nm5': 16,
         }
+        model = AlienName
 
         def __validate_nm3(self, items):
             """Validator for nm3."""
@@ -143,10 +173,10 @@ class AlienNameFactory(MultipleFactoryNameFactory):
             'nm4': __validate_nm4,
         }
 
-    model = AlienName
     default_data = DB
     factory_classes = [
         AlienNameFactory1,
         AlienNameFactory2,
         AlienNameFactory3,
     ]
+    model = AlienName
