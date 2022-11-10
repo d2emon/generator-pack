@@ -37,6 +37,9 @@ class AnimalSpeciesNameFactory(MultipleFactoryNameFactory):
             'nm1': 1,
             'nm2': 2,
         }
+        static_kwargs = {
+            'method': 1,
+        }
 
     class AnimalSpeciesNameFactory2(ComplexFactory):
         """
@@ -51,6 +54,9 @@ class AnimalSpeciesNameFactory(MultipleFactoryNameFactory):
         block_map = {
             'nm1': 3,
             'nm2': 2,
+        }
+        static_kwargs = {
+            'method': 2,
         }
 
     class AnimalSpeciesNameFactory3(ComplexFactory):
@@ -67,6 +73,9 @@ class AnimalSpeciesNameFactory(MultipleFactoryNameFactory):
         block_map = {
             'nm1': 2,
             'nm2': 2,
+        }
+        static_kwargs = {
+            'method': 3,
         }
 
     model = AnimalSpeciesName

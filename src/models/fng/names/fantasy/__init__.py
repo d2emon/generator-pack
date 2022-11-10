@@ -83,6 +83,10 @@ class AngelName(Name):
 class AnimalSpeciesName(Name):
     @property
     def value(self):
+        method = self.data.get('method')
+        if method == 3:
+            return f"{self.data['nm1']}-{self.data['nm2']}"
+
         return f"{self.data['nm1']} {self.data['nm2']}"
 
 

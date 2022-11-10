@@ -44,10 +44,14 @@ class ModelFactory(Factory):
     Base factory to build model.
 
     Attributes:
-        model (Name): Name model to build
+        model (Name): Name model to build.
+        static_args (list): List of static args for model.
+        static_kwargs (dict): Static kwargs for model.
     """
 
     model = Name
+    static_args = []
+    static_kwargs = {}
 
     def build_args(self, *args, **kwargs) -> list:
         """
@@ -60,7 +64,7 @@ class ModelFactory(Factory):
         Returns:
             list: Args for model.
         """
-        return []
+        return [*self.static_args]
 
     def build_kwargs(self, *args, **kwargs) -> dict:
         """
@@ -73,7 +77,7 @@ class ModelFactory(Factory):
         Returns:
             dict: Data for model.
         """
-        return {}
+        return {**self.static_kwargs}
 
     def __call__(self, *args, **kwargs):
         """
@@ -117,6 +121,8 @@ class ComplexFactory(ModelFactory, DbFactory):
         factories (dict[Factory]): Nested factories.
         factory_classes (dict[class]): Classes for nested factories.
         model (Model): Model to build. Inherited from BaseNameFactory.
+        static_args (list): List of static args for model.
+        static_kwargs (dict): Static kwargs for model.
         validators (dict[function]): Validators for model fields.
     """
 
@@ -186,7 +192,7 @@ class ComplexFactory(ModelFactory, DbFactory):
         Returns:
             dict: Data for model.
         """
-        data = {}
+        data = { **self.static_kwargs }
 
         # Validate model data
         invalid = [*self.block_map.keys()]
