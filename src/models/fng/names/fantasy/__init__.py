@@ -47,27 +47,33 @@ class AnansiName(Name):
     vowels = fantasy.anansi.names8
 
     @property
-    def name_start(self):
-        return self.data.get('nm0', '')
+    def name_initial(self):
+        return str(self.data.get('name_initial', ''))
 
     @property
     def name_final(self):
+        middle = str(self.data.get('name_medial', ''))
+        final = str(self.data.get('name_final', ''))
+
+        if len(final) < 1:
+            return final
+
         vowels_count = 0
-        if self.name_start[-1] in self.vowels:
+        if self.name_initial[-1] in self.vowels:
             vowels_count += 1
-        if self.data['nm2'][0] in self.vowels:
+        if final[0] in self.vowels:
             vowels_count += 1
 
-        if vowels_count == 2 and len(self.data['nm2']) > 1:
-            return self.data['nm2'][2:] if self.data['nm2'][1] in self.vowels else self.data['nm2'][1:]
+        if len(final) > 1 and vowels_count > 1:
+            return final[2:] if final[1] in self.vowels else final[1:]
         elif vowels_count == 1:
-            return self.data['nm2']
+            return final
         else:
-            return f"{self.data['nm1']}{self.data['nm2']}"
+            return f"{middle}{final}"
 
     @property
     def value(self):
-        return f"{self.name_start}{self.name_final}"
+        return f"{self.name_initial}{self.name_final}"
 
 
 class AngelName(Name):

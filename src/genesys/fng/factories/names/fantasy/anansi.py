@@ -52,48 +52,23 @@ class AnansiNameFactory(ComplexFactory):
         nm1 = self.get_field('nm1', *args, **kwargs)
         nm3 = self.get_field('nm3', *args, **kwargs)
         nm5 = self.get_field('nm5', *args, **kwargs)
+
+        while len(nm1) < 4 and len(nm3) < 4:
+            nm3 = self.get_field('nm3', *args, **kwargs)
+
+        min_rnd2 = 3 if len(nm1) > 4 else 1
+        max_rnd2 = min(6, len(nm1))
+        rnd2 = random.randrange(min_rnd2, max_rnd2)
+
+        min_rnd4 = 3 if len(nm3) > 4 else 1
+        max_rnd4 = min(6, len(nm3))
+        rnd4 = random.randrange(min_rnd4, max_rnd4)
+
+        if rnd2 == 1 and rnd4 == 1:
+            rnd4 = 3
+
         return {
-            1: nm1,
-            2: random.randrange(len(nm1.value)),
-            3: nm3,
-            4: random.randrange(len(nm3.value)),
-            5: nm5,
+            'name_initial': nm1.value[0:rnd2],
+            'name_medial': str(nm5),
+            'name_final': nm3.value[rnd4:],
         }
-
-    def __call__(self, *args, **kwargs) -> AnansiName:
-        """
-        Validate data for model.
-
-        :param items dict: Data for model
-        :return: Data for model
-        :rtype: dict
-        """
-        items = self.build_kwargs(*args, **kwargs)
-
-        # 2
-        if items[2] < 1:
-            items[2] = 1
-        if (items[2] < 3) and (len(items[1]) > 4):
-            items[2] = 3
-        if items[2] > 5:
-            items[2] = 5
-
-        # 4
-        if items[4] < 1:
-            items[4] = 1
-        if (items[4] < 3) and (len(items[3]) > 4):
-            items[4] = 3
-        if items[4] > 5:
-            items[4] = 5
-
-        # 2
-        if (items[2] == 1) and (items[4] == 1):
-            items[2] = 2
-
-        model = self.model(
-            nm0=items[1].value[:items[2]],
-            nm1=items[5],
-            nm2=items[3].value[items[4] - 1:],
-        )
-
-        return model
