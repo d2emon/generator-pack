@@ -52,9 +52,10 @@ class MultipleFactoryNameFactory(BaseNameFactory):
         if factory is None:
             return None
 
-        # TODO: Build my model with args from nested factory
+        model_args = factory.build_args(*args, **kwargs)
+        model_kwargs = factory.build_kwargs(*args, **kwargs)
 
-        return factory(*args, **kwargs)
+        return self.model(*model_args, **model_kwargs)
 
     def factory(self, factory_id=None):
         """

@@ -232,8 +232,6 @@ class ComplexFactory(ModelFactory, DbFactory):
             updater = self.update_values.get(item_id)
 
             if updater is not None:
-                print(f"UPDATE {item_id}: {data[item_id]} <- {updater(self, data)}")
-                print({ item_id: str(item) for item_id, item in data.items() })
                 data[item_id] = updater(self, data)
 
             validator = self.validators.get(item_id)

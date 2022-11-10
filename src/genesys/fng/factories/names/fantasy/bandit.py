@@ -48,6 +48,7 @@ class BanditNameFactory(GenderNameBlockFactory):
                 'nm2': genders.MALE,
             }
 
+        model = BanditName
         factory_classes = [
             MaleNameFactory1,
             MaleNameFactory2,
@@ -74,6 +75,7 @@ class BanditNameFactory(GenderNameBlockFactory):
                 'nm2': genders.FEMALE,
             }
 
+        model = BanditName
         factory_classes = [
             FemaleNameFactory1,
             FemaleNameFactory2,

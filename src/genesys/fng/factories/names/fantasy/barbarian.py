@@ -122,6 +122,7 @@ class BarbarianNameFactory(GenderNameBlockFactory):
 
                 return super().validate_item(item_id, item, items)
 
+        model = BarbarianName
         factory_classes = [
             MaleNameFactory1,
             MaleNameFactory2,
@@ -230,6 +231,7 @@ class BarbarianNameFactory(GenderNameBlockFactory):
 
                 return super().validate_item(item_id, item, items)
 
+        model = BarbarianName
         factory_classes = [
             FemaleNameFactory1,
             FemaleNameFactory2,
