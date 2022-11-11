@@ -1,4 +1,4 @@
-from ...provider.list_item import ListItemProvider
+from factories.providers.name import ListItemProvider
 
 
 class DataProvider:

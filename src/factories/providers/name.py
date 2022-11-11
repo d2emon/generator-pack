@@ -1,6 +1,17 @@
+import random
 from factories.factory import Factory
-from genesys.fng.providers.list_item import ListItemProvider
 from utils import genders
+
+
+class ListItemProvider:
+    def __init__(self, values=()):
+        self.values = values
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        return random.choice(self.values) if len(self.values) > 0 else None
 
 
 class TextDataProvider(Factory):
