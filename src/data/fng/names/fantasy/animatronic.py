@@ -1,88 +1,110 @@
-nm1 = [[["Abalone", "Ace the", "Achilles", "Acro the", "Acrobat", "Admiral", "Ajax the", "Alfie", "Alistair", "Alpha",
-         "Ammo the", "Angel", "Anger the", "Apache the", "Apollo the", "Apple", "Aragog the", "Archer the", "Arrow the",
-         "Artemis", "Artic", "Ash the", "Ashes", "Aslan the", "Asterix", "Astro the", "Athene the", "Atlas", "Aura the",
-         "Avalanche", "Avalon the", "Axe the", "Axel the", "Axis the", "Azrael the"],
-        ["Angel", "Astronaut", "Alligator", "Ant", "Ape", "Anaconda"]], [
-           ["Babbit", "Bacon the", "Badger the", "Bailey", "Baltazar the", "Bambam", "Bandit the", "Bane the", "Baron",
-            "Barry", "Basil", "Batista", "Baxter", "Bay the", "Bazal the", "Beacon the", "Beaker the", "Belch the",
-            "Belcher", "Bingo", "Berry", "Beta the", "Big B the", "Bigglesworth", "Biggs the", "Biggy", "Bilbo",
-            "Bing the", "Binky the", "Biscuit the", "Blackjack the", "Blade the", "Blaze the", "Blazer", "Bleach the",
-            "Blight the", "Blister the", "Blitz the", "Blizz the", "Bloats the", "Blob the", "Blood the", "Blue the",
-            "Bluster the", "Bob the", "Bolt the", "Bones the", "Booboo", "Booger the", "Boogy the", "Booker the",
-            "Boomboom", "Boomer the", "Boomerang the", "Booth the", "Boots the", "Bosco the", "Boulder the",
-            "Bounce th", "Bowser the", "Brawn the", "Brock the", "Brownie the", "Bruce the", "Brutus", "Bubba the",
-            "Bubbles the", "Buck the", "Bud the", "Buddy", "Buff the", "Buffles the", "Bullet the", "Bully",
-            "Bumble the", "Buster the", "Butch the", "Butters the", "Button", "Buttons the", "Buzz the"],
-           ["Baboon", "Badger", "Bandicoot", "Bandit", "Bat", "Bear", "Beaver", "Bee", "Bigfoot", "Bird", "Bison",
-            "Boar", "Buffalo"]], [
-           ["Caine the", "Calvin the", "Camelot", "Captain", "Casanova the", "Cashew the", "Casper the", "Caspian the",
-            "Catastrophe", "Caveman", "Chaos the", "Clacker the", "Claw the", "Clawde the", "Clawdius", "Clawford the",
-            "Claws the", "Clawz the", "Clicker the", "Clipper the", "Cloud the", "Clyde the", "Coal the", "Cole the",
-            "Coloss the", "Colt the", "Comet the", "Conan the", "Cookie the", "Cosmo the", "Cotton the", "Count",
-            "Courage the", "Cozmo", "Crack the", "Crackle the", "Crash the", "Crazy", "Cream the", "Crook the",
-            "Crooked", "Cruise the", "Crunch the", "Cruncher the", "Crunchy", "Crust the", "Crusty", "Cuddles the",
-            "Cupcake the", "Cupid the", "Kaine the", "Kane the", "Kargo", "Khan the", "Killer", "Kindle the", "King"],
-           ["Camel", "Cat", "Chameleon", "Cobra", "Cockroach", "Cougar", "Cow", "Coyote", "Crab", "Crane", "Croc",
-            "Crow", "Kangaroo", "Koala", "Kobold", "Komodo"]], [
+nm1 = [
+    [
+        ["Abalone", "Ace the", "Achilles", "Acro the", "Acrobat", "Admiral", "Ajax the", "Alfie",
+        "Alistair", "Alpha", "Ammo the", "Angel", "Anger the", "Apache the", "Apollo the", "Apple",
+        "Aragog the", "Archer the", "Arrow the", "Artemis", "Artic", "Ash the", "Ashes",
+        "Aslan the", "Asterix", "Astro the", "Athene the", "Atlas", "Aura the", "Avalanche",
+        "Avalon the", "Axe the", "Axel the", "Axis the", "Azrael the"],
+        ["Angel", "Astronaut", "Alligator", "Ant", "Ape", "Anaconda"],
+    ], [
+        ["Babbit", "Bacon the", "Badger the", "Bailey", "Baltazar the", "Bambam", "Bandit the",
+        "Bane the", "Baron", "Barry", "Basil", "Batista", "Baxter", "Bay the", "Bazal the",
+        "Beacon the", "Beaker the", "Belch the", "Belcher", "Bingo", "Berry", "Beta the",
+        "Big B the", "Bigglesworth", "Biggs the", "Biggy", "Bilbo", "Bing the", "Binky the",
+        "Biscuit the", "Blackjack the", "Blade the", "Blaze the", "Blazer", "Bleach the",
+        "Blight the", "Blister the", "Blitz the", "Blizz the", "Bloats the", "Blob the",
+        "Blood the", "Blue the", "Bluster the", "Bob the", "Bolt the", "Bones the", "Booboo",
+        "Booger the", "Boogy the", "Booker the", "Boomboom", "Boomer the", "Boomerang the",
+        "Booth the", "Boots the", "Bosco the", "Boulder the", "Bounce the", "Bowser the",
+        "Brawn the", "Brock the", "Brownie the", "Bruce the", "Brutus", "Bubba the", "Bubbles the",
+        "Buck the", "Bud the", "Buddy", "Buff the", "Buffles the", "Bullet the", "Bully",
+        "Bumble the", "Buster the", "Butch the", "Butters the", "Button", "Buttons the",
+        "Buzz the"],
+        ["Baboon", "Badger", "Bandicoot", "Bandit", "Bat", "Bear", "Beaver", "Bee", "Bigfoot",
+        "Bird", "Bison", "Boar", "Buffalo"]
+    ], [
+        ["Caine the", "Calvin the", "Camelot", "Captain", "Casanova the", "Cashew the",
+        "Casper the", "Caspian the", "Catastrophe", "Caveman", "Chaos the", "Clacker the",
+        "Claw the", "Clawde the", "Clawdius", "Clawford the", "Claws the", "Clawz the",
+        "Clicker the", "Clipper the", "Cloud the", "Clyde the", "Coal the", "Cole the",
+        "Coloss the", "Colt the", "Comet the", "Conan the", "Cookie the", "Cosmo the",
+        "Cotton the", "Count", "Courage the", "Cozmo", "Crack the", "Crackle the", "Crash the",
+        "Crazy", "Cream the", "Crook the", "Crooked", "Cruise the", "Crunch the", "Cruncher the",
+        "Crunchy", "Crust the", "Crusty", "Cuddles the", "Cupcake the", "Cupid the", "Kaine the",
+        "Kane the", "Kargo", "Khan the", "Killer", "Kindle the", "King"],
+        ["Camel", "Cat", "Chameleon", "Cobra", "Cockroach", "Cougar", "Cow", "Coyote", "Crab",
+        "Crane", "Croc", "Crow", "Kangaroo", "Koala", "Kobold", "Komodo"]
+    ], [
            ["Dagger the", "Dancer the", "Dane the", "Danger the", "Dapper the", "Darby the", "Darcy the",
             "Darkness the", "Dart the", "Darth the", "Dash the", "Dawson the", "Deacon", "Delta", "Deuce the",
             "Dexter the", "Diablo the", "Digger the", "Dillon the", "Dimitri the", "Ding", "Ding the", "Dipper the",
             "Diver the", "Doctor", "Doc te", "Doc", "Dodge the", "Dodger the", "Domino", "Doodle", "Doom", "Doom the",
             "Dova the", "Dover the", "Dozer the", "Drac the", "Dracula", "Drake the", "Dread the", "Dread",
             "Drummer the", "Dude the", "Duffy", "Duke", "Dune the", "Dusk the", "Dust the", "Dusty"],
-           ["Dingo", "Demon", "Dwarf", "Deer", "Dino", "Dodo", "Dog", "Donkey", "Dragon", "Duck"]],
-       [["Echo the", "Eclipse the", "Edge the", "Elmo the", "Elwood the", "Equinox the", "Ernie the", "Excalibur the"],
+           ["Dingo", "Demon", "Dwarf", "Deer", "Dino", "Dodo", "Dog", "Donkey", "Dragon", "Duck"]
+    ], [
+        ["Echo the", "Eclipse the", "Edge the", "Elmo the", "Elwood the", "Equinox the", "Ernie the", "Excalibur the"],
         ["Elf", "Eagle", "Elephant"]], [
            ["Fable the", "Fang the", "Fangs the", "Farkas the", "Fatty", "Fetch the", "Fiddles the", "Fire",
             "Fizzle the", "Flapper the", "Flappy", "Flash the", "Flopsie the", "Fluff the", "Fluffy", "Flynn the",
             "Force", "Forest the", "Forester", "Frankenstein", "Freaky", "Freckles the", "Frenzy the", "Friskie the",
             "Frisky the", "Frosty the", "Fudge", "Fury", "Fury the", "Fuzz the", "Fuzzy", "Fyre the"],
-           ["Phantom", "Falcon", "Ferret", "Fish", "Flamingo", "Fairy", "Fly", "Fox", "Frog", "Phoenix", "Pheasant"]], [
+           ["Phantom", "Falcon", "Ferret", "Fish", "Flamingo", "Fairy", "Fly", "Fox", "Frog", "Phoenix", "Pheasant"]
+    ], [
            ["Gadget the", "Gale the", "Gallop the", "Gambit the", "Garry", "Gargle the", "Gargoyle the", "Genghis",
             "George the", "Ghost", "Giggle the", "Giggles the", "Gil the", "Gillian", "Gizmo the", "Gloom the",
             "Glutton the", "Glyde the", "Gnaw the", "Gobbles the", "Goble the", "Godzilla", "Golem the", "Goliath the",
             "Gouge the", "Grand", "Gray the", "Grayson the", "Griffin the", "Grim the", "Grinch the", "Grog the",
             "Grouch the", "Grouchy", "Grave", "Grover the", "Grumpy", "Grump the", "Grunt the", "Gumball the",
             "Gunner the", "Gus the"],
-           ["Gibbon", "Goat", "Goblin", "Ghost", "Griffin", "Goose", "Gopher", "Gator", "Gorilla"]], [
+           ["Gibbon", "Goat", "Goblin", "Ghost", "Griffin", "Goose", "Gopher", "Gator", "Gorilla"]
+    ], [
            ["Hades the", "Hambo the", "Hamilton", "Hamlet the", "Hammer the", "Handsome", "Hank the", "Hannibal",
             "Hardy the", "Harry", "Haven the", "Havoc the", "Havock the", "Hawke the", "Haze the", "Hector",
             "Hercules the", "Herman the", "Hermit the", "Hershel the", "Hogger the", "Hooch the", "Hopper the",
             "Hopscotch the", "Houdini", "Hudini", "Hulk", "Hunter the", "Hurley the", "Hyde the", "Hyperion the"],
-           ["Hamster", "Hare", "Hawk", "Hedgehog", "Hippo", "Hog", "Horse", "Hunter", "Hound", "Human", "Hyena"]], [
+           ["Hamster", "Hare", "Hawk", "Hedgehog", "Hippo", "Hog", "Horse", "Hunter", "Hound", "Human", "Hyena"]
+    ], [
            ["Jabba the", "Jackson the", "Jaffa the", "Jaws the", "Jax", "Jeckyll the", "Jet the", "Jethro the",
-            "Jingle", "Jitters the", "Judge", "Jumbo the", "Junior", "Juno the"], ["Jackal", "Jaguar", "Giant"]], [
+            "Jingle", "Jitters the", "Judge", "Jumbo the", "Junior", "Juno the"], ["Jackal", "Jaguar", "Giant"]
+    ], [
            ["Lad the", "Laddy the", "Laika the", "Lance the", "Lancelot the", "Lash the", "Leaps the", "Leapy the",
             "Lecter", "Legend the", "Leo the", "Leon the", "Licorice", "Lightning", "Lionel", "Lockhart the",
             "Lockjaw the", "Logan the", "Loki the", "Lucifer", "Lucky the", "Lupin the", "Lupus the", "Lycan the"],
-           ["Lemming", "Lemur", "Lord", "Leopard", "Lion", "Lizard", "Llama", "Lobster", "Locust", "Lynx"]], [
+           ["Lemming", "Lemur", "Lord", "Leopard", "Lion", "Lizard", "Llama", "Lobster", "Locust", "Lynx"]
+    ], [
            ["Macho", "Macho the", "Maddock the", "Madeye", "Magma", "Magnum the", "Magnus the", "Mako the", "Mambo the",
             "Mammoth", "Marble", "Marlin the", "Marlow the", "Mason the", "Matrix", "Maverick", "Max the", "Maximus",
             "Mayhem the", "Mello", "Mellow", "Menace the", "Mercury", "Merlin the", "Midas the", "Midnight the",
             "Miles the", "Mirage the", "Mittens the", "Moe the", "Mohawk", "Momo the", "Monty", "Mort the", "Muds the",
             "Muffin the", "Murdoch the", "Murky", "Muse the", "Myst the"],
            ["Macaw", "Mandrill", "Mantis", "Meerkat", "Mage", "Mobster", "Mutant", "Mole", "Mongoose", "Mongrel",
-            "Monkey", "Monster", "Moose", "Moth", "Mouse", "Mule"]], [
+            "Monkey", "Monster", "Moose", "Moth", "Mouse", "Mule"]
+    ], [
            ["Nacho the", "Nanook the", "Nemesis the", "Nemo the", "Nemoo the", "Neo the", "Neptune the", "Nero the",
             "Newton the", "Nibbler the", "Nibbles the", "Nightmare", "Nightmare the", "Nightshade the", "Nightwing the",
             "Niles the", "Nocturn the", "Noodle the", "Norbert the", "Norton the", "Nova the", "Nugget the",
             "Nukem the", "Nyx the"],
-           ["Gnoll", "Gnome", "Numbat", "Nightingale", "Neanderthal", "Knight", "Ninja", "Nymph", "Newt"]], [
+           ["Gnoll", "Gnome", "Numbat", "Nightingale", "Neanderthal", "Knight", "Ninja", "Nymph", "Newt"]
+    ], [
            ["Oak the", "Obsidian", "Odin the", "Omega the", "Omega", "Omen the", "Onyx", "Onyx the", "Oreo the",
             "Orion the", "Otis the", "Outlaw", "Owen the", "Ozzy the"],
-           ["Ocelot", "Oracle", "Orc", "Octopus", "Ogre", "Orc", "Ostrich", "Owl"]], [
+           ["Ocelot", "Oracle", "Orc", "Octopus", "Ogre", "Orc", "Ostrich", "Owl"]
+    ], [
            ["Pace the", "Paddington", "Paladin", "Pandora the", "Patch the", "Patches the", "Patriot", "Patton the",
             "Payne the", "Peanut the", "Pebble the", "Pebbles the", "Pepper the", "Piccolo", "Pickles the", "Pitch the",
             "Plunge the", "Pogo the", "Poison the", "Popcorn the", "Popeye the", "Poppers the", "Poseidon the",
             "Pounce the", "Prancer the", "Predator", "Pride the", "Prince", "Prometheus", "Puddle the", "Puddles the",
             "Pudge the", "Puff the", "Puggy", "Punky", "Pyre the", "Pyro the"],
            ["Panda", "Panther", "Pirate", "Parrot", "Peacock", "Pelican", "Penguin", "Pig", "Pigeon", "Piranha", "Pony",
-            "Porcupine", "Possum", "Puma"]], [
+            "Porcupine", "Possum", "Puma"]
+    ], [
            ["Rabies the", "Rage", "Ragget the", "Rain the", "Rainbow the", "Ralph the", "Rambo", "Rampage the",
             "Ranger", "Rascal", "Ray the", "Razor the", "Reaper the", "Rebel", "Rex the", "Rhonin the", "Riggs the",
             "Ripley the", "Rocky the", "Rogue", "Rogue the", "Rohan the", "Romulus", "Rosco the", "Rover the",
             "Rowan the", "Rowdy the", "Ruff the", "Rufus the", "Rumble the", "Russell the", "Rusty the", "Rusty"],
-           ["Rabbit", "Ranger", "Rogue", "Raccoon", "Ram", "Rat", "Raven", "Rhino"]], [
+           ["Rabbit", "Ranger", "Rogue", "Raccoon", "Ram", "Rat", "Raven", "Rhino"]
+    ], [
            ["Sabath the", "Saber the", "Salt the", "Salty", "Satin the", "Saul the", "Savage the", "Sawyer the",
             "Scamper the", "Scandal the", "Scar the", "Scooter the", "Scourge the", "Scratches the", "Scratchy the",
             "Screech the", "Psych the", "Psyche the", "Psycho the", "Scruffy the", "Sebastion", "Shade the",
@@ -94,21 +116,31 @@ nm1 = [[["Abalone", "Ace the", "Achilles", "Acro the", "Acrobat", "Admiral", "Aj
             "Spartacus the", "Spartan the", "Spectre the", "Speedy the", "Spike the", "Spitfire", "Splinter the",
             "Sprite the", "Spudnik the", "Steele the", "Stitches the", "Summit the", "Sunny the", "Storm the"],
            ["Salamander", "Satyr", "Scorpion", "Centipede", "Seal", "Shark", "Sheep", "Skunk", "Sloth", "Slug", "Snail",
-            "Snake", "Sparrow", "Centaur", "Scout", "Spy", "Spider", "Squid", "Squirrel", "Stork", "Swallow", "Swan"]],
-       [["Taboo the", "Tad the", "Tango the", "Tank the", "Terror", "Thor the", "Thunder the", "Thunder", "Tiberius",
+            "Snake", "Sparrow", "Centaur", "Scout", "Spy", "Spider", "Squid", "Squirrel", "Stork", "Swallow", "Swan"]
+    ], [
+        ["Taboo the", "Tad the", "Tango the", "Tank the", "Terror", "Thor the", "Thunder the", "Thunder", "Tiberius",
          "Tickles the", "Timber the", "Tiny", "Titan the", "Titanium", "Tooth the", "Torment the", "Trace the",
          "Tremor the", "Triton the", "Triumph the", "Trouble the", "Troy the", "Tumble the", "Tumnus the",
          "Tweedle the", "Twitch the", "Tyde the", "Tyson the"],
-        ["Tarantula", "Tiger", "Toad", "Tortoise", "Toucan", "Troll", "Turkey", "Turtle"]],
-       [["Vamp the", "Vanilla", "Vapor the", "Vegas the", "Venom the", "Victor", "Vlad the", "Vladimir"],
-        ["Vampire", "Viper", "Vulture"]], [
+        ["Tarantula", "Tiger", "Toad", "Tortoise", "Toucan", "Troll", "Turkey", "Turtle"]
+    ], [
+        ["Vamp the", "Vanilla", "Vapor the", "Vegas the", "Venom the", "Victor", "Vlad the", "Vladimir"],
+        ["Vampire", "Viper", "Vulture"]
+    ], [
            ["Waddle the", "Waddles the", "Walnut the", "Ward the", "Warpath the", "Wasabi the", "Wayde the",
             "Wayne the", "Weirdo the", "Wellington", "Whisper the", "Wicked", "Wiggles the", "Wilburt", "Willow the",
             "Wolfgang the", "Woods the", "Woody", "Wrath the"],
            ["Walrus", "Warthog", "Wasp", "Weasel", "Wolf", "Wolverine", "Wombat", "Werewolf", "Wizard", "Woodpecker",
-            "Worm"]], [["Yoghi the", "Yoghurt the", "Yogi the"], ["Yak"]],
-       [["Ziggy the", "Zion the", "Zug the"], ["Zebra"]]]
-nm2 = [[["Abalone", "Abby", "Acadia the", "Aerial the", "Aggie", "Aggy", "Agnes the", "Alexi", "Alexia", "Alexis",
+            "Worm"]
+    ], [
+        ["Yoghi the", "Yoghurt the", "Yogi the"], ["Yak"]
+    ], [
+        ["Ziggy the", "Zion the", "Zug the"], ["Zebra"]
+    ]
+]
+
+nm2 = [
+    [["Abalone", "Abby", "Acadia the", "Aerial the", "Aggie", "Aggy", "Agnes the", "Alexi", "Alexia", "Alexis",
          "Algee", "Alibi the", "Alize the", "Alpine the", "Amazone the", "Amazonia the", "Amber", "Amethyst the",
          "Angel the", "Angi", "Angie", "Annabella", "Aphrodite the", "Apple the", "April the", "Aqua", "Ares the",
          "Aria", "Arial the", "Ariel the", "Arizona", "Artica the", "Ash the", "Ashelia", "Ashes the", "Ashley",
@@ -211,4 +243,148 @@ nm2 = [[["Abalone", "Abby", "Acadia the", "Aerial the", "Aggie", "Aggy", "Agnes 
             "Winter the", "Wobbles the"],
            ["Walrus", "Warthog", "Wasp", "Weasel", "Wolf", "Wolverine", "Wombat", "Werewolf", "Witch", "Woodpecker",
             "Worm"]], [["Yoghi the", "Yoghurt the", "Yogi the"], ["Yak"]],
-       [["Zelda the", "Ziggy the", "Zippy the", "Zoe the"], ["Zebra"]]]
+       [["Zelda the", "Ziggy the", "Zippy the", "Zoe the"], ["Zebra"]]
+    ]
+
+nm3 = [
+    [
+        ["Abalone", "Ace the", "Achilles", "Acro the", "Acrobat", "Admiral", "Ajax the", "Alfie",
+        "Alpha", "Ammo the", "Angel", "Anger the", "Apple", "Arrow the", "Artic", "Ash the",
+        "Ashes", "Astro the", "Aura the", "Aurora the", "Avalanche", "Axe the", "Axel the",
+        "Axis the", "Azrael the"],
+        ["Angel", "Astronaut", "Alligator", "Ant", "Ape", "Anaconda"]
+    ], [
+        ["Babbit", "Bacon the", "Badger the", "Bailey", "Bandit the", "Bane the", "Basil",
+        "Batista", "Bay the", "Bazal the", "Beacon the", "Beaker the", "Belch the", "Belcher",
+        "Bingo", "Berry", "Beta the", "Big B the", "Bigglesworth", "Biggs the", "Biggy",
+        "Bing the", "Binky the", "Biscuit the", "Blackjack the", "Blade the", "Blaze the",
+        "Blazer", "Bleach the", "Blight the", "Blister the", "Blitz the", "Blizz the",
+        "Bloats the", "Blob the", "Blood the", "Blue the", "Bluster the", "Bolt the", "Bones the",
+        "Booboo", "Boogy the", "Booker the", "Boomer the", "Boomerang the", "Booth the",
+        "Boots the", "Bosco the", "Boulder the", "Bounce the", "Brawn the", "Brownie the",
+        "Bubbles the", "Buff the", "Buffles the", "Bullet the", "Bumble the", "Butch the",
+        "Butters the", "Button", "Buttons the", "Buzz the"],
+        ["Baboon", "Badger", "Bandicoot", "Bandit", "Bat", "Bear", "Beaver", "Bee", "Bigfoot",
+        "Bird", "Bison", "Boar", "Buffalo"]
+    ], [
+        ["Caine the", "Camelot", "Captain", "Cashew the", "Catastrophe", "Chaos the",
+        "Clacker the", "Claw the", "Clawford the", "Claws the", "Clawz the", "Clicker the",
+        "Clipper the", "Cloud the", "Coal the", "Coloss the", "Colt the", "Comet the",
+        "Cookie the", "Cosmo the", "Cotton the", "Courage the", "Cozmo", "Crackle the",
+        "Crash the", "Crazy", "Crook the", "Crooked", "Cruise the", "Crunch the", "Cruncher the",
+        "Crunchy", "Crust the", "Crusty", "Cuddles the", "Cupcake the", "Cupid the", "Kargo",
+        "Killer", "Kindle theg"],
+        ["Camel", "Cat", "Chameleon", "Cobra", "Cockroach", "Cougar", "Coyote", "Crab", "Crane",
+        "Croc", "Crow", "Kangaroo", "Koala", "Kobold", "Komodo"]
+    ], [
+        ["Dagger the", "Dancer the", "Dane the", "Danger the", "Dapper the", "Darkness the",
+        "Dart the", "Darth the", "Dash the", "Dawson the", "Delta", "Diablo the", "Digger the",
+        "Ding", "Ding the", "Dipper the", "Diver the", "Doctor", "Doc the", "Doc", "Dodge the",
+        "Dodger the", "Domino", "Doodle", "Doom", "Doom the", "Dova the", "Dover the", "Dozer the",
+        "Drake the", "Dread the", "Dread", "Drummer the", "Duffy", "Duke", "Dune the", "Dusk the",
+        "Dust the", "Dusty"],
+        ["Dingo", "Demon", "Dwarf", "Deer", "Dino", "Dodo", "Dog", "Donkey", "Dragon", "Duck"]
+    ], [
+        ["Echo the", "Eclipse the", "Edge the", "Elmo the", "Equinox the", "Excalibur the"],
+        ["Elf", "Eagle", "Elephant"]
+    ], [
+        ["Fable the", "Fang the", "Fangs the", "Fatty", "Fetch the", "Fiddles the", "Fire",
+        "Fizzle the", "Flapper the", "Flappy", "Flash the", "Flopsie the", "Fluff the", "Fluffy",
+        "Force", "Forester", "Freaky", "Freckles the", "Frenzy the", "Friskie the", "Frisky the",
+        "Frosty the", "Fudge", "Fury", "Fury the", "Fuzz the", "Fuzzy", "Fyre the"],
+        ["Phantom", "Falcon", "Ferret", "Fish", "Flamingo", "Fairy", "Fly", "Fox", "Frog",
+        "Phoenix", "Pheasant"]
+    ], [
+        ["Gadget the", "Gale the", "Gallop the", "Gambit the", "Gargle the", "Gargoyle the",
+        "Georgie the", "Ghost", "Giggle the", "Giggles the", "Gil the", "Gillian", "Gizmo the",
+        "Gloom the", "Glutton the", "Glyde the", "Gnaw the", "Gobbles the", "Goble the",
+        "Godzilla", "Golem the", "Goliath the", "Grand", "Gray the", "Griffin the", "Grim the",
+        "Grinch the", "Grog the", "Grouch the", "Grouchy", "Grave", "Grumpy", "Grump the",
+        "Grunt the", "Gumball the", "Gunner the"],
+        ["Gibbon", "Goat", "Goblin", "Ghost", "Griffin", "Goose", "Gopher", "Gator", "Gorilla"]
+    ], [
+        ["Hammer the", "Handsome", "Hardy the", "Haven the", "Havoc the", "Havock the", "Haze the",
+        "Hermit the", "Hogger the", "Hooch the", "Hopper the", "Hopscotch the", "Hunter the"],
+        ["Hamster", "Hare", "Hawk", "Hedgehog", "Hippo", "Hog", "Horse", "Hunter", "Hound",
+        "Human", "Hyena"]
+    ], [
+        ["Jabba the", "Jackson the", "Jaffa the", "Jaws the", "Jingle", "Jitters the", "Judge",
+        "Jumbo the", "Junior"],
+        ["Jackal", "Jaguar", "Giant"]
+    ], [
+        ["Laika the", "Lash the", "Leaps the", "Leapy the", "Legend the", "Licorice", "Lightning",
+        "Lockhart the", "Lockjaw the", "Loki the", "Lucky the", "Lupin the", "Lupus the",
+        "Lycan the"],
+        ["Lemming", "Lemur", "Lord", "Leopard", "Lion", "Lizard", "Llama", "Lobster", "Locust",
+        "Lynx"]
+    ], [
+        ["Macho", "Macho the", "Maddock the", "Madeye", "Magma", "Magnum the", "Magnus the",
+        "Mako the", "Mambo the", "Mammoth", "Marble", "Marlin the", "Marlow the", "Mason the",
+        "Matrix", "Mayhem the", "Mello", "Mellow", "Menace the", "Mercury", "Midnight the",
+        "Mirage the", "Mittens the", "Mohawk", "Momo the", "Muds the", "Muffin the", "Murky",
+        "Muse the", "Myst the"],
+        ["Macaw", "Mandrill", "Mantis", "Meerkat", "Mage", "Mobster", "Mutant", "Mole", "Mongoose",
+        "Mongrel", "Monkey", "Monster", "Moose", "Moth", "Mouse", "Mule"]
+    ], [
+        ["Nacho the", "Nanook the", "Nemesis the", "Nemo the", "Nemoo the", "Newton the",
+        "Nibbler the", "Nibbles the", "Nightmare", "Nightmare the", "Nightshade the",
+        "Nightwing the", "Nocturn the", "Noodle the", "Nova the", "Nugget the", "Nukem the",
+        "Nyx the"],
+        ["Gnoll", "Gnome", "Numbat", "Nightingale", "Neanderthal", "Knight", "Ninja", "Nymph",
+        "Newt"]
+    ], [
+        ["Oak the", "Obsidian", "Omega the", "Omega", "Omen the", "Onyx", "Onyx the", "Oreo the",
+        "Outlaw"],
+        ["Ocelot", "Oracle", "Orc", "Octopus", "Ogre", "Orc", "Ostrich", "Owl"]
+    ], [
+        ["Pace the", "Paddington", "Paladin", "Pandora the", "Patch the", "Patches the", "Patriot",
+        "Patton the", "Payne the", "Peanut the", "Pebble the", "Pebbles the", "Pepper the",
+        "Piccolo", "Pickles the", "Pitch the", "Plunge the", "Pogo the", "Poison the",
+        "Popcorn the", "Poppers the", "Pounce the", "Prancer the", "Predator", "Pride the",
+        "Prince", "Puddle the", "Puddles the", "Pudge the", "Puff the", "Puggy", "Punky",
+        "Pyre the", "Pyro the"],
+        ["Panda", "Panther", "Pirate", "Parrot", "Peacock", "Pelican", "Penguin", "Pig", "Pigeon",
+        "Piranha", "Pony", "Porcupine", "Possum", "Puma"]
+    ], [
+        ["Rabies the", "Rage", "Ragget the", "Rain the", "Rainbow the", "Rampage the", "Ranger",
+        "Rascal", "Ray the", "Razor the", "Reaper the", "Rebel", "Rhonin the", "Ripley the",
+        "Rocky the", "Rogue", "Rogue the", "Rohan the", "Rover the", "Rowan the", "Rowdy the",
+        "Ruff the", "Rumble the", "Rusty"],
+        ["Rabbit", "Ranger", "Rogue", "Raccoon", "Ram", "Rat", "Raven", "Rhino"]
+    ], [
+        ["Sabath the", "Saber the", "Salt the", "Salty", "Satin the", "Saul the", "Savage the",
+        "Scamper the", "Scandal the", "Scar the", "Scourge the", "Scratches the", "Scratchy the",
+        "Screech the", "Psych the", "Psyche the", "Psycho the", "Scruffy the", "Shade the",
+        "Shadow the", "Shamrock the", "Shawn the", "Shimmy the", "Shmooch the", "Shrapnel the",
+        "Shredder the", "Sidney", "Silver the", "Skinner the", "Skipper the", "Skittles the",
+        "Slate the", "Slick the", "Slimes the", "Slinky the", "Sly the", "Smiles the",
+        "Smokey the", "Smooch the", "Smudge the", "Snapper the", "Snookums the", "Snowball the",
+        "Snowflake the", "Snuffles the", "Solace the", "Soots the", "Sparks the", "Sparky the",
+        "Spectre the", "Speedy the", "Spike the", "Spitfire", "Splinter the", "Sprite the",
+        "Spudnik the", "Steele the", "Stitches the", "Summit the", "Sunny the", "Storm the"],
+        ["Salamander", "Satyr", "Scorpion", "Centipede", "Seal", "Shark", "Sheep", "Skunk",
+        "Sloth", "Slug", "Snail", "Snake", "Sparrow", "Centaur", "Scout", "Spy", "Spider", "Squid",
+        "Squirrel", "Stork", "Swallow", "Swan"]
+    ], [
+        ["Taboo the", "Tad the", "Tango the", "Tank the", "Terror", "Thunder the", "Thunder",
+        "Tickles the", "Timber the", "Tiny", "Titan the", "Titanium", "Tooth the", "Torment the",
+        "Trace the", "Tremor the", "Triton the", "Triumph the", "Trouble the", "Tumble the",
+        "Tweedle the", "Twitch the", "Tyde the"],
+        ["Tarantula", "Tiger", "Toad", "Tortoise", "Toucan", "Troll", "Turkey", "Turtle"]
+    ], [
+        ["Vamp the", "Vanilla", "Vapor the", "Vegas the", "Venom the"],
+        ["Vampire", "Viper", "Vulture"]
+    ], [
+        ["Waddle the", "Waddles the", "Walnut the", "Ward the", "Warpath the", "Wasabi the",
+        "Weirdo the", "Wellington", "Whisper the", "Wicked", "Wiggles the", "Willow the",
+        "Wolfgang the", "Woods the", "Woody", "Wrath the"],
+        ["Walrus", "Warthog", "Wasp", "Weasel", "Wolf", "Wolverine", "Wombat", "Werewolf",
+        "Wizard", "Woodpecker", "Worm"]
+    ], [
+        ["Yoghi the", "Yoghurt the", "Yogi the"],
+        ["Yak"]
+    ], [
+        ["Ziggy the", "Zion the", "Zug the"],
+        ["Zebra"]
+    ],
+]

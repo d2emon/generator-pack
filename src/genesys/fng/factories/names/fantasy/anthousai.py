@@ -28,24 +28,19 @@ DB = Database('anthousai', {
 })
 
 
-class AnthousaiNameFactory(GenderNameBlockFactory):
+class AnthousaiNameFactory(ComplexFactory):
     """Anthousai Name Factory."""
 
-    class MaleNameFactory(ComplexFactory):
-        """Method #1."""
-
-        model = AnthousaiName
-        block_map = {
-            'nm1': 1,
-        }
-
-    class FemaleNameFactory(ComplexFactory):
-        """Method #2."""
-
-        model = AnthousaiName
-        block_map = {
-            'nm1': 2,
-        }
-
-    model = AnthousaiName
     default_data = DB
+    model = AnthousaiName
+    block_map = {
+        'nm1': 1,
+    }
+
+
+class FrenchAnthousaiNameFactory(ComplexFactory):
+    """Anthousai Name Factory."""
+
+    block_map = {
+        'nm1': 2,
+    }

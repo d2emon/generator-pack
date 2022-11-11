@@ -29,6 +29,8 @@ DB = Database('anime', {
     4: fantasy.anime_character.nm4,
     5: fantasy.anime_character.nm5,
     6: fantasy.anime_character.nm6,
+    7: fantasy.anime_character.nm7,
+    8: fantasy.anime_character.nm8,
 })
 
 
@@ -53,6 +55,17 @@ class AnimeNameFactory(GenderNameBlockFactory):
         block_map = {
             'nm1': 3,
             'nm2': 4,
+            'nm3': 5,
+            'nm4': 6,
+        }
+
+    class NeutralNameFactory(ComplexFactory):
+        """Method #3."""
+
+        model = AnimeCharacterName
+        block_map = {
+            'nm1': 7,
+            'nm2': 8,
             'nm3': 5,
             'nm4': 6,
         }
