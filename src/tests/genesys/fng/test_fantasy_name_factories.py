@@ -7,6 +7,7 @@ from genesys.fng.names.fantasy.animal_species import AnimalSpeciesNameFactory
 from genesys.fng.names.fantasy.animatronic import AnimatronicNameFactory
 from genesys.fng.names.fantasy.anime_character import AnimeNameFactory
 from genesys.fng.names.fantasy.anthousai import AnthousaiNameFactory
+from genesys.fng.names.fantasy.anzu import AnzuNameFactory
 from genesys.fng.names.fantasy.apocalypse import ApocalypseNicknameFactory
 from genesys.fng.names.fantasy.artificial_itelligence import ArtificialIntelligenceNameFactory
 from genesys.fng.names.fantasy.bandit import BanditNameFactory
@@ -23,6 +24,7 @@ __factories = [
     AnimatronicNameFactory,
     AnimeNameFactory,
     AnthousaiNameFactory,
+    AnzuNameFactory,
     ApocalypseNicknameFactory,
     ArtificialIntelligenceNameFactory,
     BanditNameFactory,

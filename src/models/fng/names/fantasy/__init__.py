@@ -107,6 +107,12 @@ class AnthousaiName(Name):
         return f"{self.data['nm1']}"
 
 
+class AnzuName(Name):
+    @property
+    def value(self):
+        return f"{self.data['nm1']}{self.data['nm2']}"
+
+
 class ApocalypseNickname(Name):
     @property
     def value(self):
