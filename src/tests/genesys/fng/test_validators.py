@@ -1,6 +1,6 @@
 import unittest
 import uuid
-from genesys.fng.factories.validators import item_is_not_unique, item_equals, generate_while
+from genesys.fng.validators import item_is_not_unique, item_equals, generate_while
 
 
 class TestValidators(unittest.TestCase):

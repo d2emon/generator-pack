@@ -17,7 +17,7 @@ from data.fng.names import fantasy
 from genesys.fng.database import Database
 from genesys.fng.factories.name_block_factory import MultipleFactoryNameFactory
 from genesys.fng.factories.name_factory import ComplexFactory
-from genesys.fng.factories.validators import item_is_unique, item_is_not_empty, validate_if
+from genesys.fng.validators import item_is_unique, item_is_not_empty, validate_if
 from models.fng.names.fantasy import AlienName
 
 

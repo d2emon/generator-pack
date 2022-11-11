@@ -15,7 +15,6 @@ import random
 from utils.genders import MALE
 from models.fng.names.name import Name
 from factories.factory import Factory
-from genesys.fng.factories.validators import generate_while
 
 
 class DbFactory(Factory):

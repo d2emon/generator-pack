@@ -1,7 +1,6 @@
 from data.fng.names import fantasy
 from models.fng.names.name import Name
 from .barbarian import BarbarianName, BarbarianName1, BarbarianName2, MaleBarbarianName3, FemaleBarbarianName3
-from genesys.fng.factories.validators import item_is_unique, item_equals, item_is_not_empty
 
 
 class AlienName(Name):
