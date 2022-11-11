@@ -1,17 +1,17 @@
 import unittest
-from genesys.fng.factories.names.fantasy.alien import AlienNameFactory
-from genesys.fng.factories.names.fantasy.amazon import AmazonNameFactory
-from genesys.fng.factories.names.fantasy.anansi import AnansiNameFactory
-from genesys.fng.factories.names.fantasy.angel import AngelNameFactory
-from genesys.fng.factories.names.fantasy.animal_species import AnimalSpeciesNameFactory
-from genesys.fng.factories.names.fantasy.animatronic import AnimatronicNameFactory
-from genesys.fng.factories.names.fantasy.anime_character import AnimeNameFactory
-from genesys.fng.factories.names.fantasy.anthousai import AnthousaiNameFactory
-from genesys.fng.factories.names.fantasy.apocalypse import ApocalypseNicknameFactory
-from genesys.fng.factories.names.fantasy.artificial_itelligence import ArtificialIntelligenceNameFactory
-from genesys.fng.factories.names.fantasy.bandit import BanditNameFactory
-from genesys.fng.factories.names.fantasy.banshee import BansheeNameFactory
-from genesys.fng.factories.names.fantasy.barbarian import BarbarianNameFactory
+from genesys.fng.names.fantasy.alien import AlienNameFactory
+from genesys.fng.names.fantasy.amazon import AmazonNameFactory
+from genesys.fng.names.fantasy.anansi import AnansiNameFactory
+from genesys.fng.names.fantasy.angel import AngelNameFactory
+from genesys.fng.names.fantasy.animal_species import AnimalSpeciesNameFactory
+from genesys.fng.names.fantasy.animatronic import AnimatronicNameFactory
+from genesys.fng.names.fantasy.anime_character import AnimeNameFactory
+from genesys.fng.names.fantasy.anthousai import AnthousaiNameFactory
+from genesys.fng.names.fantasy.apocalypse import ApocalypseNicknameFactory
+from genesys.fng.names.fantasy.artificial_itelligence import ArtificialIntelligenceNameFactory
+from genesys.fng.names.fantasy.bandit import BanditNameFactory
+from genesys.fng.names.fantasy.banshee import BansheeNameFactory
+from genesys.fng.names.fantasy.barbarian import BarbarianNameFactory
 
 
 __factories = [
