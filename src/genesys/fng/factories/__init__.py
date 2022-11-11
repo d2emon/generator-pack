@@ -41,11 +41,6 @@
 # "alien": RandomRace,
 
 
-# TODO: Remove it
-class OldStyleFactory:
-    pass
-
-
 class Tie:
     pass
 
