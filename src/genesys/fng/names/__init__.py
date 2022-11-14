@@ -1,8 +1,11 @@
-# from .fantasy import *
-# from .real import *
-# from .place import *
+"""
+Fantasy name factories.
+
+Packages:
+    fantasy: Fantasy & folklore names
+    real: Real names
+    place: Places & location names
+"""
 # from .other import *
 # from .pop_culture import *
 
-# # from .other.album import AlbumGenerator
-# # from .other.band import BandGenerator
