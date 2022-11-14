@@ -220,6 +220,20 @@ namesFemale = ["Arlissa", "Ariella", "Sybil", "Abagail", "Abbey", "Abbie", "Abbi
                "Vanesa", "Vanessa", "Veronica", "Victoria", "Violet", "Virginia", "Vivian", "Viviana", "Wendy",
                "Whitney", "Willow", "Wilona", "Winifred", "Winter", "Yasmin", "Yasmine", "Yazmin", "Yedda", "Yetta",
                "Yolanda", "Yuliana", "Yvette", "Yvonne", "Zaria", "Zoe", "Zoey", "Zoie"]
+namesNeutral = [
+    "Aaren", "Addison", "Aiden", "Alex", "Alexis", "Ali", "Angel", "Ash", "Ashley", "Ashton",
+    "Aubrey", "Avery", "Bailey", "Bennie", "Bev", "Billie", "Billy", "Blair", "Blake", "Bret",
+    "Brett", "Brice", "Brook", "Brynn", "Caden", "Cameron", "Carmen", "Carol", "Casey", "Charlie",
+    "Chris", "Clem", "Cory", "Dane", "Danni", "Danny", "Denny", "Drew", "Eli", "Elliot", "Emerson",
+    "Erin", "Fran", "Frankie", "Franky", "Gabby", "Gabe", "Gail", "Gale", "Gene", "Glen", "Glenn",
+    "Haiden", "Harley", "Harper", "Hayden", "Jackie", "Jaden", "Jaime", "Jamie", "Jess", "Jesse",
+    "Jessie", "Jo", "Jody", "Jordan", "Jude", "Justice", "Kai", "Kerry", "Kiran", "Kit", "Kris",
+    "Lane", "Lee", "Leigh", "Lesley", "Leslie", "Logan", "Lynn", "Maddox", "Marley", "Mason",
+    "Mel", "Mell", "Morgan", "Nicky", "Noel", "Phoenix", "Quinn", "Ray", "Raylee", "Reed",
+    "Reggie", "Rene", "Riley", "River", "Robin", "Rory", "Rowan", "Rudy", "Ryan", "Sam", "Sammy",
+    "Shay", "Sidney", "Silver", "Skye", "Skylar", "Skyler", "Steff", "Tanner", "Taylor", "Terry",
+    "Tyler", "Val", "Vic", "Will", "Willy"
+]
 names2 = ["Angel Eyes", "Bandana", "Black Eye", "Black Eyes", "Blackjack", "Blue Eyes", "Bulletproof", "Bullettooth",
           "Bullseye", "Coins", "Crackers", "Crazy Eyes", "Danger", "Dangerous", "Diamond", "Eyepatch", "Fast Fingers",
           "Five Fingers", "Four Fingers", "Ghost", "Gold Digger", "Greed", "Grimm", "Grin", "Luck", "Mad Dog",

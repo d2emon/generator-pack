@@ -19,6 +19,7 @@ from utils import genders
 DB = Database('bandit', {
     genders.MALE: fantasy.bandit.namesMale,
     genders.FEMALE: fantasy.bandit.namesFemale,
+    genders.NEUTRAL: fantasy.bandit.namesNeutral,
     2: fantasy.bandit.names2,
     3: fantasy.bandit.names3,
 })
@@ -75,10 +76,31 @@ class BanditNameFactory(GenderNameBlockFactory):
                 'nm2': genders.FEMALE,
             }
 
+    class NeutralNameFactory(MultipleFactoryNameFactory):
+        """Method #1."""
+
+        class NeutralNameFactory1(ComplexFactory):
+            """Method #1."""
+
+            model = BanditName
+            block_map = {
+                'nm1': genders.NEUTRAL,
+                'nm2': 2,
+            }
+
+        class NeutralNameFactory2(ComplexFactory):
+            """Method #2."""
+
+            model = BanditName
+            block_map = {
+                'nm1': 3,
+                'nm2': genders.NEUTRAL,
+            }
+
         model = BanditName
         factory_classes = [
-            FemaleNameFactory1,
-            FemaleNameFactory2,
+            NeutralNameFactory1,
+            NeutralNameFactory2,
         ]
 
     model = BanditName
