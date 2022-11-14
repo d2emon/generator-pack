@@ -2,7 +2,7 @@ from models.nested_model import NestedModel
 
 
 class Model(NestedModel):
-    # factories.generator.Generated
+    # Name model
     def __init__(self):
         super().__init__()
         self.value = None

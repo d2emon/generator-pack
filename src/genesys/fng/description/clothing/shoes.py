@@ -1,4 +1,4 @@
-class ShoesGenerator(ListGenerator):
+class ShoesGenerator(ListFactory):
     generated_class = Shoes
     shoetypes = [
         "boots",

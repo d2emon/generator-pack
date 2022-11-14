@@ -1,4 +1,4 @@
-from factories.factory import ListFactory
+from factories.list_factory import ListFactory
 
 from genesys.fixtures.fixtures import belt
 from genesys.fixtures.fixtures import gloves

@@ -1,11 +1,10 @@
-from factories.factory import ListFactory
-from factories.generator import ListGenerated
-
+from factories.list_factory import ListFactory
 from genesys.fixtures.fixtures import adjective
 from genesys.fixtures.fixtures.place.world import noun
+from models.fng.names.name import Name
 
 
-class World(ListGenerated):
+class World(Name):
     data = {
         'adjective': ListFactory(adjective),
         'noun': ListFactory(noun),

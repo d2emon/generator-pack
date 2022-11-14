@@ -1,5 +1,5 @@
 from factories.providers.list_provider import ComplexFactory
-from factories.generator import Generated, ComplexGenerated
+from models.fng.names.name import Name
 
 from data.fixtures.fixtures import vowel_sounds, consonants, double_vowel_sounds, double_consonants
 from data.fixtures.fixtures import endings
@@ -9,7 +9,7 @@ single_letter_provider = ComplexFactory.from_lists(consonants, vowel_sounds, dou
 double_letter_provider = ComplexFactory.from_lists(double_consonants, double_vowel_sounds + vowel_sounds)
 
 
-class BaseToponym(Generated):
+class BaseToponym(Name):
     providers = None
 
     def __init__(self, part1="", part2="", part3="", end=""):
@@ -48,7 +48,7 @@ class Toponym5(BaseToponym):
     providers = double_letter_provider + ComplexFactory.from_lists(consonants, endings[2])
 
 
-class Toponym(ComplexGenerated):
+class Toponym(ComplexFactory):
     generators = {
         20: Toponym1,
         40: Toponym2,

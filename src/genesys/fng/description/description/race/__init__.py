@@ -1,10 +1,12 @@
+from factories.list_factory import ListFactory
+from models.fng.names.name import Name
 from .generators import *
 from .face import *
 from .fixtures import *
 
 
 
-class Race(Generated):
+class Race(Name):
     fields = [
         'race_type',
         'body',

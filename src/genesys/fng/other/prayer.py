@@ -1,15 +1,15 @@
-from factories.list_factory import ListFactory
-from factories.generator import ListGenerated, ComplexGenerated
-
 from data.fixtures.fixtures.other.prayer import forgive, deity
 from data.fixtures.fixtures.other.prayer import aid
+from factories.list_factory import ListFactory
+from factories.providers.list_provider import ComplexFactory
+from models.fng.names.name import Name
 
 RANDOM_PRAYER = 0
 FORGIVE_PRAYER = 1
 AID_PRAYER = 2
 
 
-class Deity(ListGenerated):
+class Deity(Name):
     template = "{title} {name}, {long_title}"
     providers = {
         'title': ListFactory(deity.titles),
@@ -39,7 +39,7 @@ class Deity(ListGenerated):
         return cls(**next_data)
 
 
-class BasePrayer(ListGenerated):
+class BasePrayer(Name):
     deity_provider = Deity
 
     @classmethod
@@ -125,7 +125,7 @@ class AidPrayer(BasePrayer):
         )
 
 
-class Prayer(ComplexGenerated):
+class Prayer(ComplexFactory):
     deity_provider = Deity
 
     generators = {

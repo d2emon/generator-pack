@@ -1,9 +1,7 @@
 from factories.list_factory import ListFactory
-from factories.generator import Generated
-
-
+from models.fng.names.name import Name
 from data.fixtures.fixtures import school_subjects
 
 
-class SchoolSubject(Generated):
+class SchoolSubject(Name):
     provider = ListFactory(school_subjects)

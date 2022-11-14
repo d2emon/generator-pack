@@ -1,18 +1,18 @@
-from factories.list_factory import ListFactory
-from factories.generator import ListGenerator, PercentGenerator
-from factories.generator import Generated
 from data.fixtures.fixtures import names1, names2, names3, names4, names5
+from factories.list_factory import ListFactory
+from genesys.fng.factories.name_factory import PercentFactory
+from models.fng.names.name import Name
 
 
-class Band(Generated):
+class Band(Name):
     title = "Band"
 
 
-class BandSubGenerator(ListGenerator):
+class BandSubGenerator(ListFactory):
     generated_class = Band
 
 
-class BandGenerator(PercentGenerator):
+class BandGenerator(PercentFactory):
     class BandSubGenerator1(BandSubGenerator):
         template = "{name1} {name2}"
         data = {

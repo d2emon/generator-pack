@@ -1,4 +1,5 @@
-from factories import DictFactory, ListFactory, PercentFactory, TemplateFactory
+from factories import DictFactory, PercentFactory, TemplateFactory
+from factories.list_factory import ListFactory
 # from factories.template import FactoryTemplate
 from genesys.generator_models.space import Galaxy
 

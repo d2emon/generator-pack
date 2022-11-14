@@ -33,7 +33,7 @@ class FabricGenerator(ListFactory):
         return generated
 
 
-class DressGenerator(ListGenerator):
+class DressGenerator(ListFactory):
     generated_class = Dress
     styles = [
         "delicate",

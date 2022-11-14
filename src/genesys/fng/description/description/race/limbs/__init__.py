@@ -1,8 +1,8 @@
-from factories.generator import Generated
+from models.fng.names.name import Name
 from num2words import num2words
 
 
-class Limbs(Generated):
+class Limbs(Name):
     @property
     def count(self):
         if type(self.value) is dict:
@@ -69,7 +69,7 @@ class DorsalFin(Limbs):
         return "a {}{} dorsal fin".format(self.countText, self.description)
 
 
-class Tail(Generated):
+class Tail(Name):
     title = "Tail"
 
     def __init__(self, value=dict(), **kwargs):

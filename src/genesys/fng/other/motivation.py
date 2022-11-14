@@ -1,7 +1,7 @@
 from factories.list_factory import ListFactory
-from factories.generator import Generated
+from models.fng.names.name import Name
 from data.fixtures.fixtures.other.motivation import motivation
 
 
-class CharacterGoal(Generated):
+class CharacterGoal(Name):
     provider = ListFactory(motivation)

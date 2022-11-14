@@ -1,7 +1,7 @@
-from factories.generator import Generated
+from models.fng.names.name import Name
 
 
-class Body(Generated):
+class Body(Name):
     title = "Body"
     fields = [
         'arms',
@@ -35,7 +35,7 @@ class Body(Generated):
         )
 
 
-class BodyParts(Generated):
+class BodyParts(Name):
     def __str__(self):
         return str(self.value)
 
@@ -73,7 +73,7 @@ Their {} colors are mostly {}, which tend to become {} as they age."""
         )
 
 
-class Divercity(Generated):
+class Divercity(Name):
     title = "Divercity"
     fields = [
         'm',

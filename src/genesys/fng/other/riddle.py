@@ -1,10 +1,9 @@
 from factories.list_factory import ListFactory
-from factories.generator import ListGenerated
-
 from data.fixtures.fixtures.other.riddle import riddle
+from models.fng.names.name import Name
 
 
-class Riddle(ListGenerated):
+class Riddle(Name):
     provider = ListFactory(riddle)
 
     def __init__(self, args):

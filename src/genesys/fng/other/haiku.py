@@ -1,11 +1,11 @@
 import random
 from factories.providers.list_provider import ComplexFactory
-from factories.generator import ListGenerated
 from data.fixtures.fixtures import haiku_middle
 from data.fixtures.fixtures.other.haiku import haiku
+from models.fng.names.name import Name
 
 
-class HaikuString(ListGenerated):
+class HaikuString(Name):
     providers = []
 
     @classmethod
@@ -18,7 +18,7 @@ class HaikuString(ListGenerated):
         return cls(next_data)
 
 
-class Haiku(ListGenerated):
+class Haiku(Name):
     class HaikuString1(HaikuString):
         providers = [
             ComplexFactory.from_lists(haiku[0]),

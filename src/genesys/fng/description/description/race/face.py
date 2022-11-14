@@ -1,14 +1,12 @@
 from num2words import num2words
-
-from factories.generator import Generated
-
+from models.fng.names.name import Name
 from .fixtures import RaceFixtures, FishFixtures, BirdFixtures
 
 
 lang = 'en'
 
 
-class FacePart(Generated):
+class FacePart(Name):
     def __str__(self):
         return self.value or ''
 
@@ -59,7 +57,7 @@ class Ears(FacePart):
 
 
 class BaseGenerator:
-    generated_class = Generated
+    generated_class = Name
     default_data = None
 
     def __init__(self, data=None):

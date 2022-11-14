@@ -14,6 +14,8 @@ from genesys.fng.names.fantasy.bandit import BanditNameFactory
 from genesys.fng.names.fantasy.banshee import BansheeNameFactory
 from genesys.fng.names.fantasy.barbarian import BarbarianNameFactory
 from genesys.fng.names.fantasy.basilisk import BasiliskNameFactory
+####
+from genesys.fng.names.place.amusement_park import AmusementPark
 
 
 __factories = [
@@ -47,6 +49,14 @@ class TestFantasyNameFactories(unittest.TestCase):
                 model = factory()
                 print(repr(model))
                 self.assertEqual(model.__class__, factory_id)
+
+    def test_place_factories(self):
+        print()
+        factory = AmusementPark()
+        for _ in range(10):
+            model = factory()
+            print(repr(model))
+            self.assertEqual(model.__class__, AmusementPark)
 
 
 if __name__ == "__main__":

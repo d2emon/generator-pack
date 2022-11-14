@@ -1,10 +1,10 @@
-from factories.generator import Generated
-from factories.list_factory import ListFactory
-
 from data.fixtures.fixtures.other.battlecry import battlecry
+from factories.list_factory import ListFactory
+from models.fng.names.name import Name
 
 
-class BattleCry(Generated):
+
+class BattleCry(Name):
     provider = ListFactory(battlecry)
 
     def __str__(self):

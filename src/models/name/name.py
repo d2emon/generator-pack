@@ -1,7 +1,7 @@
-from ..generated_model import GeneratedModel
+from models.fng.names.name import Name
 
 
-class TextModel(GeneratedModel):
+class TextModel(Name):
     """
     Model for text data
     """
