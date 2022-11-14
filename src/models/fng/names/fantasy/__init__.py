@@ -135,3 +135,13 @@ class BansheeName(Name):
     @property
     def value(self):
         return f"The {self.data['nm1']} {self.data['nm2']}"
+
+
+class BasiliskName(Name):
+    @property
+    def value(self):
+        if len(self.data) == 7:
+            return f"{self.data['nm1']}{self.data['nm2']}{self.data['nm3']}{self.data['nm4']}{self.data['nm5']}" \
+                f"{self.data['nm6']}{self.data['nm7']}"
+
+        return f"{self.data['nm1']}{self.data['nm2']}{self.data['nm3']}{self.data['nm4']}{self.data['nm5']}"

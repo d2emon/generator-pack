@@ -13,6 +13,7 @@ from genesys.fng.names.fantasy.artificial_itelligence import ArtificialIntellige
 from genesys.fng.names.fantasy.bandit import BanditNameFactory
 from genesys.fng.names.fantasy.banshee import BansheeNameFactory
 from genesys.fng.names.fantasy.barbarian import BarbarianNameFactory
+from genesys.fng.names.fantasy.basilisk import BasiliskNameFactory
 
 
 __factories = [
@@ -30,6 +31,7 @@ __factories = [
     BanditNameFactory,
     BansheeNameFactory,
     BarbarianNameFactory,
+    BasiliskNameFactory,
 ]
 
 
