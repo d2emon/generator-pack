@@ -1,5 +1,5 @@
-from genesys.fng.factories.names.other.other.album import AlbumGenerator
-from genesys.fng.factories.names.other.other.band import BandGenerator
+from genesys.fng.names.other.album import AlbumGenerator
+from genesys.fng.names.other.band import BandGenerator
 
 from .history import BoxHistory
 
