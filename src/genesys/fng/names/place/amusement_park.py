@@ -24,7 +24,7 @@ DB = Database('amusement-park', {
 })
 
 
-class AmusementPark(Name):
+class AmusementParkName(Name):
     """Amusement park name model."""
 
     @property
@@ -53,7 +53,7 @@ class AmusementParkFactory1(ComplexFactory):
         'first1',
         'last1',
     ]
-    model = AmusementPark
+    model = AmusementParkName
 
 
 class AmusementParkFactory2(ComplexFactory):
@@ -68,24 +68,15 @@ class AmusementParkFactory2(ComplexFactory):
         'first2',
         'last2',
     ]
-    model = AmusementPark
+    model = AmusementParkName
 
 
 class AmusementParkFactory(MultipleFactoryNameFactory):
-    """
-    Amusement park name factory.
-
-    This name generator will give you 10 random names for amusement parks, theme parks and other
-    similar businesses.
-
-    The names in this generator have been based on existing amusement park names, but I mostly
-    stuck to the fairly generic names. Real parks usually have those names, but sometimes also
-    include a place name or a person's name in their name (sort of like Disneyland Paris in a way).
-    """
+    """Amusement park name factory."""
 
     default_data = DB
     factory_classes = [
         AmusementParkFactory1,
         AmusementParkFactory2,
     ]
-    model = AmusementPark
+    model = AmusementParkName
