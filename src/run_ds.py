@@ -2,14 +2,14 @@ import random
 
 
 def get_middle(value1, value2):
-    delta = 10 * 0.01
+    delta = 1 * 0.01
     middle = (value1 + value2) / 2
     middle += middle * random.uniform(-delta, delta)
     if middle < 0:
         middle = 0
     if middle > 100:
         middle = 100
-    return int(middle)
+    return middle
 
 
 def diamond_square_row(item1, item2):
@@ -87,6 +87,7 @@ def get_char(value):
     else:
         color = DEEP
 
+    value = int(value)
     if value < 50:
         char_id = int(122 - 25 * (value / 50))
     else:
@@ -98,7 +99,7 @@ if __name__ == "__main__":
     start_size = 2
     block = [
         [
-            random.randint(0, 100)
+            random.uniform(0, 100)
             for _ in range(start_size)
         ]
         for _ in range(start_size)
