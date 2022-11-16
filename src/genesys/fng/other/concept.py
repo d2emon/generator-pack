@@ -1,5 +1,5 @@
 from data.fixtures.fixtures import beings, places, characters, events
-from factories.providers.list_provider import ComplexFactory
+from genesys.fng.factories.name_factory import ComplexFactory
 from models.fng.names.name import Name
 
 

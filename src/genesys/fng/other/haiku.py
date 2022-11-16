@@ -1,5 +1,5 @@
 import random
-from factories.providers.list_provider import ComplexFactory
+from genesys.fng.factories.name_factory import ComplexFactory
 from data.fixtures.fixtures import haiku_middle
 from data.fixtures.fixtures.other.haiku import haiku
 from models.fng.names.name import Name

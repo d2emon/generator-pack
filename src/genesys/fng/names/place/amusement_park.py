@@ -35,16 +35,27 @@ else:
 """
 
 from data.fng.names.place.amusement_park import first1, first2, second1, second2
+from genesys.fng.database import Database
 from factories.list_factory import ListFactory
-from factories.providers.list_provider import ComplexFactory
+from genesys.fng.factories.name_block_factory import MultipleFactoryNameFactory
+from genesys.fng.factories.name_factory import ComplexFactory
 from models.fng.names.name import Name
 
 
-class BaseAmusementPark(Name):
-    def __init__(self, first="", last=""):
+DB = Database('amusement-park', {
+    'first1': first1,
+    'first2': first2,
+    'last1': second1,
+    'last2': second2,
+})
+
+
+class AmusementPark(Name):
+    def __init__(self, first="", last="", method=1):
         super().__init__()
         self.first = first
         self.last = last
+        self.method = method
 
         
     @property
@@ -52,28 +63,47 @@ class BaseAmusementPark(Name):
         """
         :return: Model as string
         """
-        return f"{self.first} {self.last}"
+        if self.method == 2:
+            return f"{self.first} {self.last}"
+
+        return f"{self.first}{self.last}"
 
 
-class AmusementPark1(BaseAmusementPark):
-    data = {
-        'first': ListFactory(first1),
-        'last': ListFactory(second1),
+class AmusementParkFactory1(ComplexFactory):
+
+    block_map = {
+        'first': 'first1',
+        'last': 'last1',
+    }
+
+    model = AmusementPark
+
+    static_kwargs = {
+        'method': 1,
     }
 
     def __str__(self):
         return "{}{}".format(self.first, self.last)
 
 
-class AmusementPark2(BaseAmusementPark):
-    data = {
-        'first': ListFactory(first2),
-        'last': ListFactory(second2),
+class AmusementParkFactory2(ComplexFactory):
+
+    block_map = {
+        'first': 'first2',
+        'last': 'last2',
+    }
+
+    model = AmusementPark
+
+    static_kwargs = {
+        'method': 2,
     }
 
 
-class AmusementPark(ComplexFactory):
-    generators = {
-        50: AmusementPark1,
-        100: AmusementPark2,
-    }
+class AmusementParkFactory(MultipleFactoryNameFactory):
+    default_data = DB
+    factory_classes = [
+        AmusementParkFactory1,
+        AmusementParkFactory2,
+    ]
+    model = AmusementPark

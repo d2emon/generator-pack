@@ -1,8 +1,7 @@
-from factories.providers.list_provider import ComplexFactory
-from models.fng.names.name import Name
-
 from data.fixtures.fixtures import vowel_sounds, consonants, double_vowel_sounds, double_consonants
 from data.fixtures.fixtures import endings
+from genesys.fng.factories.name_factory import ComplexFactory
+from models.fng.names.name import Name
 
 
 single_letter_provider = ComplexFactory.from_lists(consonants, vowel_sounds, double_consonants)
@@ -45,7 +44,7 @@ class Toponym4(BaseToponym):
 
 
 class Toponym5(BaseToponym):
-    providers = double_letter_provider + ComplexFactory.from_lists(consonants, endings[2])
+    providers = double_letter_provider.set_factory('new', ComplexFactory.from_lists(consonants, endings[2]))
 
 
 class Toponym(ComplexFactory):

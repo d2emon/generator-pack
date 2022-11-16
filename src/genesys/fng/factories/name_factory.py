@@ -12,9 +12,10 @@ Classes:
 """
 
 import random
-from utils.genders import MALE
-from models.fng.names.name import Name
 from factories.factory import Factory
+from factories.list_factory import ListFactory
+from models.fng.names.name import Name
+from utils.genders import MALE
 
 
 class DbFactory(Factory):
@@ -63,6 +64,7 @@ class ModelFactory(Factory):
         Returns:
             list: Args for model.
         """
+        # return [next(factory.items) for factory in self.factories]
         return [*self.static_args]
 
     def build_kwargs(self, *args, **kwargs) -> dict:
@@ -130,7 +132,7 @@ class ComplexFactory(ModelFactory, DbFactory):
     validators = {}
     update_values = {}
 
-    def __init__(self, data=None):
+    def __init__(self, data=None, providers=None):
         """
         Construct factory with nested factories.
 
@@ -140,6 +142,7 @@ class ComplexFactory(ModelFactory, DbFactory):
         super().__init__(data)
 
         self.factories = self.get_factories(self.data)
+        self.providers = providers or []
 
     # TODO: Remove it
     def __getitem__(self, item_id):
@@ -298,6 +301,15 @@ class ComplexFactory(ModelFactory, DbFactory):
             **factories,
             **data_factories,
         }
+
+    def set_factory(self, factory_id, factory):
+        self.factories[factory_id] = factory
+        return self
+
+    @classmethod
+    def from_lists(cls, *parts):
+        return cls(providers=[ListFactory(provider) for provider in parts])
+
 
 
 class PolymorphFactory(ComplexFactory):

@@ -1,7 +1,7 @@
 from data.fixtures.fixtures.other.prayer import forgive, deity
 from data.fixtures.fixtures.other.prayer import aid
 from factories.list_factory import ListFactory
-from factories.providers.list_provider import ComplexFactory
+from genesys.fng.factories.name_factory import ComplexFactory
 from models.fng.names.name import Name
 
 RANDOM_PRAYER = 0
