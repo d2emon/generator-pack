@@ -10,3 +10,6 @@ coverage run -m unittest -v \
     tests.genesys.fng.test_fantasy_name_factories
 coverage xml
 coverage html
+pylint genesys/fng/names/fantasy
+pylint genesys/fng/names/real
+pylint genesys/fng/names/place

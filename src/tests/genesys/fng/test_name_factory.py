@@ -171,8 +171,11 @@ class TestNameFactory(unittest.TestCase):
         data = self.complex_name_factory.build_kwargs()
         self.assertIsInstance(data, dict)
         for factory_id, item in data.items():
-            key = self.complex_name_factory.block_map[factory_id]
-            self.assertIn(item.value, self.data[key])
+            if factory_id == 'built_with':
+                self.assertEqual(item, self.complex_name_factory)
+            else:
+                key = self.complex_name_factory.block_map[factory_id]
+                self.assertIn(item.value, self.data[key])
 
     def test_complex_name_factory_validate_all(self):
         data = self.complex_name_factory.build_kwargs()

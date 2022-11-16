@@ -7,7 +7,7 @@ There are no last names, but some of the first names could also be used as a las
 plenty of real name generators to offer you surnames though.
 """
 
-from data.fng.names import fantasy
+from data.fng.names.fantasy import bandit
 from genesys.fng.database import Database
 from genesys.fng.factories.name_block_factory import MultipleFactoryNameFactory, \
     GenderNameBlockFactory
@@ -17,11 +17,11 @@ from utils import genders
 
 
 DB = Database('bandit', {
-    genders.MALE: fantasy.bandit.namesMale,
-    genders.FEMALE: fantasy.bandit.namesFemale,
-    genders.NEUTRAL: fantasy.bandit.namesNeutral,
-    2: fantasy.bandit.names2,
-    3: fantasy.bandit.names3,
+    genders.MALE: bandit.namesMale,
+    genders.FEMALE: bandit.namesFemale,
+    genders.NEUTRAL: bandit.namesNeutral,
+    2: bandit.names2,
+    3: bandit.names3,
 })
 
 

@@ -64,7 +64,6 @@ class ModelFactory(Factory):
         Returns:
             list: Args for model.
         """
-        # return [next(factory.items) for factory in self.factories]
         return [*self.static_args]
 
     def build_kwargs(self, *args, **kwargs) -> dict:
@@ -122,6 +121,7 @@ class ComplexFactory(ModelFactory, DbFactory):
         factories (dict[Factory]): Nested factories.
         factory_classes (dict[class]): Classes for nested factories.
         model (Model): Model to build. Inherited from BaseNameFactory.
+        parts (list): List of fields to build args for model.
         static_args (list): List of static args for model.
         static_kwargs (dict): Static kwargs for model.
         validators (dict[function]): Validators for model fields.
@@ -129,6 +129,7 @@ class ComplexFactory(ModelFactory, DbFactory):
 
     block_map = {}
     factory_classes = {}
+    parts = []
     validators = {}
     update_values = {}
 
@@ -142,6 +143,7 @@ class ComplexFactory(ModelFactory, DbFactory):
         super().__init__(data)
 
         self.factories = self.get_factories(self.data)
+        self.args_factories = list(self.get_args_factories(self.data))
         self.providers = providers or []
 
     # TODO: Remove it
@@ -183,6 +185,26 @@ class ComplexFactory(ModelFactory, DbFactory):
         factory = self.factory(factory_id)
         return factory(*args, **kwargs) if factory is not None else None
 
+    def build_args(self, *args, **kwargs) -> list:
+        """
+        Build args for model.
+
+        Args:
+            *args (list): Args from factory method.
+            **kwargs (dict): Kwargs from factory method.
+
+        Returns:
+            list: Args for model.
+        """
+        data = [*self.static_args]
+
+        # Validate model data
+        for factory in self.args_factories:
+            data.append(factory(*args, **kwargs))
+
+        return data
+
+
     def build_kwargs(self, *args, **kwargs) -> dict:
         """
         Build data for model.
@@ -194,7 +216,10 @@ class ComplexFactory(ModelFactory, DbFactory):
         Returns:
             dict: Data for model.
         """
-        data = { **self.static_kwargs }
+        data = {
+            'built_with': self,
+            **self.static_kwargs,
+        }
 
         # Validate model data
         invalid = [*self.block_map.keys()]
@@ -301,6 +326,20 @@ class ComplexFactory(ModelFactory, DbFactory):
             **factories,
             **data_factories,
         }
+
+    @classmethod
+    def get_args_factories(cls, data):
+        """
+        Create list of nested factories.
+
+        Args:
+            data (Database): Database for nested factories.
+
+        Returns:
+            dict[Factory]: Nested factories.
+        """
+        for block_id in cls.parts:
+            yield cls.get_data_factory(block_id, data)
 
     def set_factory(self, factory_id, factory):
         self.factories[factory_id] = factory

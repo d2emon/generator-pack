@@ -6,10 +6,17 @@ class Model:
     Base model
     """
 
-    def __init__(self, *args, **fields):
+    def __init__(self, *args, built_with=None, **fields):
         self.uuid = None
+        self.built_with = built_with
+        self.values = [str(arg) for arg in args]
         self.__fields = {}
         self.fill(**fields)
+
+        # print("Model", repr(self), self.uuid)
+        # print("With", self.built_with)
+        # print("Args", args, fields)
+
 
     @classmethod
     def field_property(cls, field_name, default=None):

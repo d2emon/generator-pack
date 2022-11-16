@@ -21,7 +21,6 @@ from genesys.fng.database import Database
 from genesys.fng.factories.name_block_factory import MultipleFactoryNameFactory, \
     GenderNameBlockFactory
 from genesys.fng.factories.name_factory import ComplexFactory
-from genesys.fng.validators import generate_while
 from models.fng.names.fantasy import BarbarianName
 
 
