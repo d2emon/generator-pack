@@ -19,17 +19,6 @@ class TemplateFactory(Factory):
 
     template = '{c}{n}'
 
-    @classmethod
-    def glue(cls, parts, glue=""):
-        """
-        Glue parts into one text
-
-        :param parts: Text parts
-        :param glue: Glue
-        :return: Glued text
-        """
-        return glue.join(next(i) for i in parts)
-
     # From provider
 
     @property
@@ -39,12 +28,11 @@ class TemplateFactory(Factory):
             '{n}': NumberFactory(),
         }
 
-    def __apply_replacer(self, pattern, value):
+    def __apply_replacer(self, value, pattern, replacer):
         replaced = value
-        replacer = self.__replacers.get(pattern)
 
-        if replacer is None:
-            return replaced
+        # if replacer is None:
+        #     return replaced
 
         while pattern in replaced:
             replaced = replaced.replace(pattern, next(replacer), 1)
@@ -58,8 +46,8 @@ class TemplateFactory(Factory):
         """
         replaced = value
 
-        for pattern in self.__replacers.keys():
-            replaced = self.__apply_replacer(pattern, replaced)
+        for pattern, replacer in self.__replacers.items():
+            replaced = self.__apply_replacer(replaced, pattern, replacer)
 
         return replaced
 

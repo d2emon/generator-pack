@@ -55,14 +55,6 @@ class BaseGalaxyFactory(ComplexFactory):
         'nm2',
     ]
 
-    @property
-    def text(self):
-        """
-        Generate text from factory data
-        :return: str
-        """
-        return f"{self.data['part1']} {self.data['part2']}"
-
 
 class GalaxyGenerator1(BaseGalaxyFactory):
     """

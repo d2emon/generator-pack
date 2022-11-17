@@ -1,6 +1,7 @@
 coverage run -m unittest -v \
     tests.database.test_data_block \
     tests.factories.test_factory \
+    tests.factories.test_list_factory \
     tests.genesys.fng.test_database \
     tests.genesys.fng.test_name_factory \
     tests.genesys.fng.test_name_block_factory \
