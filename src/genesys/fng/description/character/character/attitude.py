@@ -1,4 +1,4 @@
-from factories.dict_factory import DictFactory
+from genesys.fng.factories.name_factory import ComplexFactory
 # TODO: Fix circular
 # from genesys.generator_models.character import Attitude
 
@@ -7,7 +7,7 @@ class Attitude:
     pass
 
 
-class MaleAttitudeFactory(DictFactory):
+class MaleAttitudeFactory(ComplexFactory):
     generated_class = Attitude
     attitudes = [
         "keep their distance",

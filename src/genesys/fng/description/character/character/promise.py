@@ -1,8 +1,8 @@
-from factories.dict_factory import DictFactory
+from genesys.fng.factories.name_factory import ComplexFactory
 from models.generator_models.character.promise import Promise
 
 
-class PromiseFactory(DictFactory):
+class PromiseFactory(ComplexFactory):
     generated_class = Promise
     settlements = [
         "village",

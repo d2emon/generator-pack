@@ -1,4 +1,4 @@
-from factories.dict_factory import DictFactory
+from genesys.fng.factories.name_factory import ComplexFactory
 # TODO: Fix circular and uncomment
 # from genesys.generator_models.character import Frame
 
@@ -8,7 +8,7 @@ class Frame:
     pass
 
 
-class FrameFactory(DictFactory):
+class FrameFactory(ComplexFactory):
     generated_class = Frame
     heights = [
         "tall among",

@@ -1,11 +1,11 @@
 import random
-from factories import DictFactory
+from genesys.fng.factories.name_factory import ComplexFactory
 from genesys.generator_models.space import Star
 from genesys.fixtures.generator_fixtures.space import suns
 from .planet import PlanetFactory
 
 
-class StarFactory(DictFactory):
+class StarFactory(ComplexFactory):
     generated_class = Star
     sun_list = suns[:30]
     blue_sun_list = suns[30:]

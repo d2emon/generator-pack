@@ -16,6 +16,7 @@ from genesys.fng.names.fantasy.barbarian import BarbarianNameFactory
 from genesys.fng.names.fantasy.basilisk import BasiliskNameFactory
 ####
 from genesys.fng.names.place.amusement_park import AmusementParkFactory
+from genesys.fng.names.place.galaxy import GalaxyFactory
 from genesys.fng.names.place.world import WorldFactory
 
 
@@ -37,6 +38,7 @@ __name_factories = [
     BasiliskNameFactory,
     ####
     AmusementParkFactory,
+    GalaxyFactory,
     WorldFactory,
 ]
 
@@ -51,7 +53,11 @@ class TestFantasyNameFactories(unittest.TestCase):
         for factory_id, factory in load_factories().items():
             for _ in range(10):
                 model = factory()
-                print(repr(model))
+                built_with = model.built_with
+                factory_name = 'UNKNOWN'
+                if built_with is not None:
+                    factory_name = built_with.__class__
+                print(f"{repr(model)}:\t{factory_name}")
                 self.assertEqual(model.__class__, factory_id)
 
 

@@ -349,6 +349,19 @@ class ComplexFactory(ModelFactory, DbFactory):
     def from_lists(cls, *parts):
         return cls(providers=[ListFactory(provider) for provider in parts])
 
+    # DictFactory
+
+    @classmethod
+    def from_factories(cls, **factories):
+        factory = cls()
+        factory.factories = { **factories }
+        return factory
+
+    def __len__(self):
+        """
+        :return: Data length
+        """
+        return len(self.args_factories) + len(self.factories)
 
 
 class PolymorphFactory(ComplexFactory):

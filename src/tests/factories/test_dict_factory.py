@@ -1,7 +1,7 @@
 import random
 import unittest
 from factories.list_factory import ListFactory
-from factories.dict_factory import DictFactory
+from genesys.fng.factories.name_factory import ComplexFactory
 
 
 class TestDictFactory(unittest.TestCase):
@@ -13,7 +13,7 @@ class TestDictFactory(unittest.TestCase):
             "list_factory_1": self.list_factory_1,
             "list_factory_2": self.list_factory_2,
         }
-        self.factory = DictFactory(**self.factories)
+        self.factory = ComplexFactory.from_factories(**self.factories)
 
     def test_dict_factory(self):
         self.assertEqual(self.factory.factories, self.factories)

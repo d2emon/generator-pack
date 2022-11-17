@@ -1,4 +1,4 @@
-from factories.dict_factory import DictFactory
+from genesys.fng.factories.name_factory import ComplexFactory
 from factories.model_factory import ModelFactory
 from genesys.storm.world.shape import ShapeFactory
 from models.world import World
@@ -12,7 +12,7 @@ class WorldFactory(ModelFactory):
         super().__init__()
 
         self.provider = provider
-        self.factory = DictFactory(
+        self.factory = ComplexFactory.from_factories(
             # name=provider.names_factory(),
             world_type=WorldTypeFactory(),
             shape=ShapeFactory(),

@@ -1,8 +1,6 @@
 # from .factory import Factory
-# from .dict_factory import DictFactory
 # from .list_factory import ListFactory
 # from .dice import DiceFactory
-# from .percent import PercentFactory
 # from .template import TemplateFactory
 # # from ._unknown.motivation import MotivationGenerator
 # # from ._unknown.world import WorldGenerator

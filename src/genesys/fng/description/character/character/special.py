@@ -1,4 +1,4 @@
-from factories.dict_factory import DictFactory
+from genesys.fng.factories.name_factory import ComplexFactory
 # TODO: Fix circular
 # from genesys.generator_models.character import SpecialSign, Scar, Tattoo, TribalMark, Moles, Freckles, Beard
 
@@ -31,7 +31,7 @@ class Beard:
     pass
 
 
-class SpecialSignFactory(DictFactory):
+class SpecialSignFactory(ComplexFactory):
     generated_class = SpecialSign
     memories = [
         "a pleasant memory",

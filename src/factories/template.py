@@ -1,4 +1,15 @@
 from .factory import Factory
+from .list_factory import ListFactory
+
+
+class LetterFactory(ListFactory):
+    def __init__(self):
+        super().__init__([chr(c) for c in range(ord('A'), ord('Z') + 1)])
+
+
+class NumberFactory(ListFactory):
+    def __init__(self):
+        super().__init__([str(n) for n in range(0, 9)])
 
 
 class TemplateFactory(Factory):
@@ -6,15 +17,7 @@ class TemplateFactory(Factory):
     Generate text from template
     """
 
-    def __init__(self, provider):
-        super().__init__()
-        self.template = '{c}{n}'
-        self.__data = provider
-        self.__text = None
-
-    @property
-    def data(self):
-        return self.__data
+    template = '{c}{n}'
 
     @classmethod
     def glue(cls, parts, glue=""):
@@ -27,8 +30,40 @@ class TemplateFactory(Factory):
         """
         return glue.join(next(i) for i in parts)
 
+    # From provider
+
     @property
-    def build(self, *args, **kwargs):
+    def __replacers(self):
+        return {
+            '{c}': LetterFactory(),
+            '{n}': NumberFactory(),
+        }
+
+    def __apply_replacer(self, pattern, value):
+        replaced = value
+        replacer = self.__replacers.get(pattern)
+
+        if replacer is None:
+            return replaced
+
+        while pattern in replaced:
+            replaced = replaced.replace(pattern, next(replacer), 1)
+
+        return replaced
+
+    def __text_provider(self, value):
+        """
+        Generate text from factory data
+        :return: str
+        """
+        replaced = value
+
+        for pattern in self.__replacers.keys():
+            replaced = self.__apply_replacer(pattern, replaced)
+
+        return replaced
+
+    def build_args(self, *args, **kwargs):
         """
         Apply providers for templates
 
@@ -36,4 +71,6 @@ class TemplateFactory(Factory):
         :param kwargs: Provider.kwargs
         :return: Text from factory data
         """
-        return self.data.text(self.template)
+        return [
+            self.__text_provider(self.template),
+        ]

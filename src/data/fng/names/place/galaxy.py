@@ -1,5 +1,5 @@
-from models.generator_models.space.star_type import SunType
-from models.generator_models.space.planet_subs import PlanetAtmosphere, EarthPlanet, LayerPlanet, TerPlanet, MoonPlanet, GasPlanet, PlanetSize, SolarSystemSize, PlanetSubtype
+# from models.generator_models.space.star_type import SunType
+# from models.generator_models.space.planet_subs import PlanetAtmosphere, EarthPlanet, LayerPlanet, TerPlanet, MoonPlanet, GasPlanet, PlanetSize, SolarSystemSize, PlanetSubtype
 
 
 galaxy_names = [
@@ -219,7 +219,8 @@ galaxy_names = [
     ],
 ]
 
-suns = [SunType("sun%d" % (i + 1), i > 29) for i in range(40)]
+suns = []
+# suns = [SunType("sun%d" % (i + 1), i > 29) for i in range(40)]
 
 environments = [
     "Hospitable",
@@ -245,50 +246,50 @@ maps = [
 ]
 atmospheres = [
     None,
-    PlanetAtmosphere("Thick"),
-    PlanetAtmosphere("Thin"),
-    PlanetAtmosphere("Unknown"),
-    PlanetAtmosphere("Fairly thick"),
-    PlanetAtmosphere("Fairly thin"),
-    PlanetAtmosphere("Very thick"),
-    PlanetAtmosphere("Very thin")
+    # PlanetAtmosphere("Thick"),
+    # PlanetAtmosphere("Thin"),
+    # PlanetAtmosphere("Unknown"),
+    # PlanetAtmosphere("Fairly thick"),
+    # PlanetAtmosphere("Fairly thin"),
+    # PlanetAtmosphere("Very thick"),
+    # PlanetAtmosphere("Very thin")
 ]
 
 
-earthPlanets = [EarthPlanet(i + 1) for i in range(40)]
-layerPlanets = [LayerPlanet(i + 1) for i in range(40)]
-terplanets = [TerPlanet(i + 1) for i in range(40)]
-moonPlanets = [MoonPlanet(i + 1) for i in range(40)]
-gasPlanets = [GasPlanet(i + 1) for i in range(40)]
+earthPlanets = []  # [EarthPlanet(i + 1) for i in range(40)]
+layerPlanets = []  # [LayerPlanet(i + 1) for i in range(40)]
+terplanets = []  # [TerPlanet(i + 1) for i in range(40)]
+moonPlanets = []  # [MoonPlanet(i + 1) for i in range(40)]
+gasPlanets = []  # [GasPlanet(i + 1) for i in range(40)]
 
 non_earthPlanets = (layerPlanets * 2) + terplanets + moonPlanets + gasPlanets
 allPlanets = earthPlanets + non_earthPlanets
 
 planet_sizes = [
-    PlanetSize(
-        min_size=0.2,
-        max_size=3,
-        min_grav=0.2,
-        max_grav=3,
-    ),
-    PlanetSize(
-        min_size=3,
-        max_size=8,
-        min_grav=1,
-        max_grav=5,
-    ),
-    PlanetSize(
-        min_size=8,
-        max_size=20,
-        min_grav=3,
-        max_grav=8,
-    ),
-    PlanetSize(
-        min_size=20,
-        max_size=40,
-        min_grav=5,
-        max_grav=15,
-    ),
+    # PlanetSize(
+    #     min_size=0.2,
+    #     max_size=3,
+    #     min_grav=0.2,
+    #     max_grav=3,
+    # ),
+    # PlanetSize(
+    #     min_size=3,
+    #     max_size=8,
+    #     min_grav=1,
+    #     max_grav=5,
+    # ),
+    # PlanetSize(
+    #     min_size=8,
+    #     max_size=20,
+    #     min_grav=3,
+    #     max_grav=8,
+    # ),
+    # PlanetSize(
+    #     min_size=20,
+    #     max_size=40,
+    #     min_grav=5,
+    #     max_grav=15,
+    # ),
 ]
 
 planet_names = [
@@ -328,81 +329,81 @@ intelligent_planet_name_origins = planet_name_origins + [
     "%s, as it's named by the native population,",
 ]
 planet_types_a = [
-    PlanetSubtype("a terrestial"),
-    PlanetSubtype("a carbon"),
-    PlanetSubtype("a desert"),
-    PlanetSubtype("an earth-like"),
-    PlanetSubtype("an iron"),
-    PlanetSubtype("an ice"),
+    # PlanetSubtype("a terrestial"),
+    # PlanetSubtype("a carbon"),
+    # PlanetSubtype("a desert"),
+    # PlanetSubtype("an earth-like"),
+    # PlanetSubtype("an iron"),
+    # PlanetSubtype("an ice"),
 ]
 planet_types_b = [
-    PlanetSubtype("an ocean", has_continents=False),
-    PlanetSubtype("a gas dwarf", has_continents=False),
-    PlanetSubtype("a gas giant", has_continents=False),
-    PlanetSubtype("a rogue"),
-    PlanetSubtype("an iron"),
-    PlanetSubtype("an ice"),
-    PlanetSubtype("an ice giant"),
-    PlanetSubtype("a desert"),
-    PlanetSubtype("a terrestial"),
+    # PlanetSubtype("an ocean", has_continents=False),
+    # PlanetSubtype("a gas dwarf", has_continents=False),
+    # PlanetSubtype("a gas giant", has_continents=False),
+    # PlanetSubtype("a rogue"),
+    # PlanetSubtype("an iron"),
+    # PlanetSubtype("an ice"),
+    # PlanetSubtype("an ice giant"),
+    # PlanetSubtype("a desert"),
+    # PlanetSubtype("a terrestial"),
 ]
 planet_types_c = [
-    PlanetSubtype("an ocean", has_continents=False),
-    PlanetSubtype("a terrestial", has_continents=False),
-    PlanetSubtype("an iron", has_continents=False),
-    PlanetSubtype("an earth-like"),
-    PlanetSubtype("a rogue"),
-    PlanetSubtype("a carbon"),
-    PlanetSubtype("a diamond"),
-    PlanetSubtype("an ice"),
-    PlanetSubtype("an ice giant"),
-    PlanetSubtype("a terrestial"),
-    PlanetSubtype("an iron"),
-    PlanetSubtype("an earth-like"),
-    PlanetSubtype("a rogue"),
-    PlanetSubtype("a carbon"),
-    PlanetSubtype("a diamond"),
-    PlanetSubtype("an ice"),
-    PlanetSubtype("an ice giant"),
-    PlanetSubtype("a terrestial"),
-    PlanetSubtype("an iron"),
-    PlanetSubtype("an earth-like"),
-    PlanetSubtype("a rogue"),
-    PlanetSubtype("a carbon"),
-    PlanetSubtype("a diamond"),
-    PlanetSubtype("an ice"),
-    PlanetSubtype("an ice giant"),
+    # PlanetSubtype("an ocean", has_continents=False),
+    # PlanetSubtype("a terrestial", has_continents=False),
+    # PlanetSubtype("an iron", has_continents=False),
+    # PlanetSubtype("an earth-like"),
+    # PlanetSubtype("a rogue"),
+    # PlanetSubtype("a carbon"),
+    # PlanetSubtype("a diamond"),
+    # PlanetSubtype("an ice"),
+    # PlanetSubtype("an ice giant"),
+    # PlanetSubtype("a terrestial"),
+    # PlanetSubtype("an iron"),
+    # PlanetSubtype("an earth-like"),
+    # PlanetSubtype("a rogue"),
+    # PlanetSubtype("a carbon"),
+    # PlanetSubtype("a diamond"),
+    # PlanetSubtype("an ice"),
+    # PlanetSubtype("an ice giant"),
+    # PlanetSubtype("a terrestial"),
+    # PlanetSubtype("an iron"),
+    # PlanetSubtype("an earth-like"),
+    # PlanetSubtype("a rogue"),
+    # PlanetSubtype("a carbon"),
+    # PlanetSubtype("a diamond"),
+    # PlanetSubtype("an ice"),
+    # PlanetSubtype("an ice giant"),
 ]
 solar_system_sizes = [
-    SolarSystemSize(
-        description="a small solar system with "
-    ),
-    SolarSystemSize(
-        description="a thinly populated solar system with only "
-    ),
-    SolarSystemSize(
-        description="a fairly small solar system with "
-    ),
-    SolarSystemSize(
-        min_planets=12,
-        max_planets=20,
-        description="a fairly large solar system with "
-    ),
-    SolarSystemSize(
-        min_planets=12,
-        max_planets=28,
-        description="a densely populated solar system with "
-    ),
-    SolarSystemSize(
-        min_planets=12,
-        max_planets=28,
-        description="a huge solar system filled with "
-    ),
-    SolarSystemSize(
-        min_planets=12,
-        max_planets=28,
-        description="a vast solar system with "
-    ),
+    # SolarSystemSize(
+    #     description="a small solar system with "
+    # ),
+    # SolarSystemSize(
+    #     description="a thinly populated solar system with only "
+    # ),
+    # SolarSystemSize(
+    #     description="a fairly small solar system with "
+    # ),
+    # SolarSystemSize(
+    #     min_planets=12,
+    #     max_planets=20,
+    #     description="a fairly large solar system with "
+    # ),
+    # SolarSystemSize(
+    #     min_planets=12,
+    #     max_planets=28,
+    #     description="a densely populated solar system with "
+    # ),
+    # SolarSystemSize(
+    #     min_planets=12,
+    #     max_planets=28,
+    #     description="a huge solar system filled with "
+    # ),
+    # SolarSystemSize(
+    #     min_planets=12,
+    #     max_planets=28,
+    #     description="a vast solar system with "
+    # ),
 ]
 sun_colors = [
     "a red",

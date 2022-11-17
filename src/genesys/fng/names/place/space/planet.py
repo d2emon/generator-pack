@@ -1,5 +1,6 @@
 import random
-from factories import Factory, TemplateFactory
+from factories import Factory
+from factories.template import TemplateFactory
 from genesys.generator_models.space import PlanetType, Planet1, StarSystemType, StarSystem, LifeType, Planet
 from genesys.fixtures.generator_fixtures.space import atmospheres, environments, maps, non_earthPlanets, allPlanets, planet_names, planet_sizes, planet_name_origins
 from utils.loaders import load_lines

@@ -1,4 +1,4 @@
-from factories.dict_factory import DictFactory
+from genesys.fng.factories.name_factory import ComplexFactory
 # TODO: Fix circular
 # from genesys.generator_models.character import Strange
 
@@ -8,7 +8,7 @@ class Strange:
     pass
 
 
-class StrangeFactory(DictFactory):
+class StrangeFactory(ComplexFactory):
     generated_class = Strange
     descriptions = [
         "alluring",
