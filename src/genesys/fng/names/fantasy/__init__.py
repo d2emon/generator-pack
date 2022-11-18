@@ -1,46 +1,48 @@
-"""Fantasy name factories."""
+"""
+Fantasy name factories.
 
-# from .alien import AlienNameFactory
-# from .amazon import AmazonNameFactory
-# from .anansi import AnansiNameFactory
-# from .angel import AngelNameFactory
-# from .animal_species import AnimalSpeciesNameFactory
-# from .animatronic import AnimatronicNameFactory
-# from .anime_character import AnimeNameFactory
-# from .anthousai import AnthousaiNameFactory
-# from .apocalypse import ApocalypseNicknameFactory
-# from .artificial_itelligence import ArtificialIntelligenceNameFactory
-# from .bandit import BanditNameFactory
-# from .banshee import BansheeNameFactory
-# from .barbarian import BarbarianNameFactory
-# <li><a href="http://www.fantasynamegenerators.com/basilisk-names.php">Basilisk Names</a></li>
-# <li><a href="http://www.fantasynamegenerators.com/birdfolk-names.php">Birdfolk Names</a></li>
-# Bluecap
-# <li><a href="http://www.fantasynamegenerators.com/bounty-hunter-names.php">
-#   Bounty Hunter Names
-# </a></li>
-# <li><a href="http://www.fantasynamegenerators.com/brownie-names.php">Brownie Names</a></li>
-# <li><a href="http://www.fantasynamegenerators.com/cat-people-nekojin-names.php">
-#   Cat-people/Nekojin Names
-# </a></li>
-# <li><a href="http://www.fantasynamegenerators.com/cavemen-names.php">Cavemen Names</a></li>
-# <li><a href="http://www.fantasynamegenerators.com/centaur-names.php">Centaur Names</a></li>
-# <li><a href="http://www.fantasynamegenerators.com/christmas-elf-names.php">
-#   Christmas Elf Names
-# </a></li>
-# <li><a href="http://www.fantasynamegenerators.com/cockatrice-names.php">Cockatrice Names</a></li>
-# <li><a href="http://www.fantasynamegenerators.com/code-names.php">Code Names</a></li>
-# <li><a href="http://www.fantasynamegenerators.com/cowboy-names.php">Cowboy/girl Names</a></li>
-# <li><a href="http://www.fantasynamegenerators.com/cyberpunk-names.php">
-#   Cyberpunk (Nick)Names
-# </a></li>
-# <li><a href="http://www.fantasynamegenerators.com/dark-elf-names.php">Dark Elf Names</a></li>
-# <li><a href="http://www.fantasynamegenerators.com/death-names.php">Death Names</a></li>
-# DeathWorm
-# <li><a href="http://www.fantasynamegenerators.com/demon_names.php">Demon Names</a></li>
-# <li><a href="http://www.fantasynamegenerators.com/detective-names.php">Detective Names</a></li>
+Modules:
 
-####
+    * alien: Alien Names
+    * amazon: Amazon Names
+    * anansi: Anansi Names
+    * angel: Angel Names
+    * animal_species: Animal Species Names
+    * animatronic: Animatronic Names
+    * anime_character: Anime Character Names
+    * anthousai: Anthousai Names
+    * anzu: Anzû Names - New!
+    * apocalypse: Apocalypse/Mutant Names
+    * artificial_itelligence: Artificial Intelligence Names
+    * bandit: Bandit Names
+    * banshee: Banshee Names
+    * barbarian: Barbarian Names
+    * basilisk: Basilisk Names
+    * Birdfolk Names
+    * Bluecap Names
+    * Bounty Hunter Names
+    * Brownie NamesCaladrius Names
+    * Cat-people/Nekojin Names
+    * Cavemen Names
+    * Centaur Names
+    * Cerberus Names - New!
+    * Christmas Elf Names
+    * Cockatrice Names
+    * Code Names
+    * Cowboy/girl Names
+    * Cyberpunk (Nick)Names
+    * Dark Elf Names
+    * Death Names
+    * Death Worm Names
+    * Demon Names
+    
+    * Detective Names
+    * Dracaenae NamesDragon NamesDragon Names (Chinese)Dragon Names (Japanese)
+    * Dragonkin NamesDruid Groves - New!Dryad NamesDwarf NamesElemental NamesElf Names
+    * Ent/Tree creature NamesEvil NamesFaery Court NamesFairy NamesFantasy Animal Names
+    * Fantasy Creature NamesFantasy Race NamesFantasy SurnamesFursona NamesFuturistic Names
+    * Gargoyle NamesGenie NamesGhost ClassificationsGhost/Spirit NamesGhoul NamesGiant Names
+    * Gnoll NamesGnome NamesGoblin NamesGod & Goddess NamesGolem NamesGorgon Names
 
 # <li><a href="http://www.fantasynamegenerators.com/dracaenae-names.php">Dracaenae Names</a></li>
 # <li><a href="http://www.fantasynamegenerators.com/dragon_names.php">Dragon Names</a></li>
@@ -82,10 +84,15 @@
 # <li><a href="http://www.fantasynamegenerators.com/god-names.php">God &amp; Goddess Names</a></li>
 # <li><a href="http://www.fantasynamegenerators.com/golem-names.php">Golem Names</a></li>
 # <li><a href="http://www.fantasynamegenerators.com/gorgon-names.php">Gorgon Names</a></li>
+
+    * Graeae NamesGriffin NamesGrootslang NamesGuardian NamesHalf-Elf NamesHalf-Orc Names
+    * Harpy NamesHellhound NamesHobbit Names(Heroic) Horse NamesHydra NamesIfrit NamesImp Names
+    * Jackalopes & WolpertingersJotunn NamesKaiju NamesKiller NamesKitsune NamesKnight Names
+    * Kobold NamesLamia NamesLegendary Creature NamesLich NamesLizardfolk NamesMad Scientist Names
+    * Magic User NamesManananggal NamesManticore NamesMecha NamesMedieval Names
+    * Mermaid/Merman NamesMinotaur NamesMirrored Twin Names
+
 # <li><a href="http://www.fantasynamegenerators.com/graeae-names.php">Graeae Names</a></li>
-
-####
-
 # <li><a href="http://www.fantasynamegenerators.com/griffin-names.php">Griffin Names</a></li>
 # <li><a href="grootslang-names.php">Grootslang Names</a></li>
 # <li><a href="http://www.fantasynamegenerators.com/guardian-names.php">Guardian Names</a></li>
@@ -118,11 +125,17 @@
 # <li><a href="http://www.fantasynamegenerators.com/mecha-names.php">Mecha Names</a></li>
 # <li><a href="http://www.fantasynamegenerators.com/medieval-names.php">Medieval Names</a></li>
 # <li><a href="http://www.fantasynamegenerators.com/mermaid-names.php">Mermaid/Merman Names</a></li>
-
-####
-
 # <li><a href="http://www.fantasynamegenerators.com/minotaur-names.php">Minotaur Names</a></li>
 # <li><a href="http://www.fantasynamegenerators.com/twin_names.php">Mirrored Twin Names</a></li>
+
+    * Monster NamesMoon Rabbit Names
+    * Morgen NamesMutant Species NamesNaga NamesNecromancer NamesNephilim Names
+    * Ninja & Assassin NamesNon-Magic User NamesNorse Raven NamesNymph NamesOgre NamesOrc Names
+    * Pegasus NamesPets / Companions >Phoenix NamesPirate NamesPixie NamesPlague Doctors - New!
+    * Prophet NamesPuppet NamesQuetzalcoatl NamesRakshasa NamesRobot NamesRoc Names
+    * Satyr & Faun NamesSea Creature NamesSelkie NamesServant NamesShapeshifter NamesSiren Names
+    * Slave Names
+
 # <li><a href="http://www.fantasynamegenerators.com/monster-names.php">Monster Names</a></li>
 # <li><a href="moon-rabbit-names.php">Moon Rabbit Names</a></li>
 # <li><a href="morgen-names.php">Morgen Names</a></li>
@@ -207,11 +220,16 @@
 # <li><a href="http://www.fantasynamegenerators.com/shapeshifter-names.php">
 #   Shapeshifter Names
 # </a></li>
-
-####
-
 # <li><a href="http://www.fantasynamegenerators.com/siren-names.php">Siren Names</a></li>
 # <li><a href="http://www.fantasynamegenerators.com/slave-names.php">Slave Names</a></li>
+
+    * Species NamesSphinx NamesSpiderfolk NamesSteampunk NamesSuccubus Names
+    * Superhero NamesSuperhero Team NamesSuper Villain NamesSylph NamesTanuki/Bake-danuki - New!
+    * Titan NamesTokoloshe Names - New!Troll NamesUnicorn NamesValkyrie NamesVampire Names
+    * Vampire Clan NamesWarrior NicknamesWerewolf NamesWerewolf Pack NamesWitch Names
+    * Witch Coven NamesWizard NamesWorld Defender NamesWorld Destroyer NamesWuxia >Wyvern Names
+    * Xana NamesXianxia TitlesYeti NamesZaratan NamesZombie Types
+
 # <li><a href="http://www.fantasynamegenerators.com/species-names.php">Species Names</a></li>
 # <li><a href="sphinx-names.php">Sphinx Names</a></li>
 # <li><a href="spiderfolk-names.php">Spiderfolk Names</a></li>
@@ -255,3 +273,5 @@
 # <li><a href="http://www.fantasynamegenerators.com/yeti-names.php">Yeti Names</a></li>
 # <li><a href="http://www.fantasynamegenerators.com/zaratan-names.php">Zaratan Names</a></li>
 # <li><a href="http://www.fantasynamegenerators.com/zombie-types.php">Zombie Types</a></li>
+
+"""

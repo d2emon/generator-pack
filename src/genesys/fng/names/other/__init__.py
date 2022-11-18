@@ -2,6 +2,13 @@
 # from ..band import BandGenerator, Band
 
 """
+Afterlife NamesAirline Names - New!Alchemy IngredientsAlliance NamesAnimal Group Names
+Anime & Manga NamesApocalypse NamesArmor Names >Army Names >Artifact NamesArtwork Names
+Attack Move NamesAttack Names (Anime)Award NamesBattle NamesBoard Game NamesBook Titles
+Bouquet NamesBoxer NamesBrand NamesBug Species NamesCall Signs - New!Candy NamesCard Game Names
+Chivalric Order NamesChosen One TitlesClothing Brand NamesClown NamesClown Names (Evil)Color Names
+Computer Virus NamesConsole NamesConstellation Names
+
 										<li><a href="http://www.fantasynamegenerators.com/afterlife-names.php">Afterlife Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/alliance-names.php">Alliance Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/animal-group-names.php">Animal Group Names</a></li>
@@ -42,6 +49,14 @@
 										<li><a href="http://www.fantasynamegenerators.com/computer-virus-names.php">Computer Virus Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/console-names.php">Console Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/constellation-names.php">Constellation Names</a></li>
+
+Council NamesCrop NamesCult NamesCurrency NamesCurse NamesDance NamesDate NamesDisease Names
+Disease (Magical) NamesDisease (Scientific) NamesDinosaur NamesDJ NamesDrink NamesDrag Queen Names
+Drug NamesEnchantment NamesEnchanted Gear NamesEnergy TypesEpithetsEvil OrganizationsFamiliar Types
+Fantasy Plant NamesFantasy Tree NamesFantasy Profession NamesFood NamesFood Names (Fantasy)
+Fraternity & Sorority NamesFruit & Veg. NamesFungus NamesGame Engine NamesGame Soundtrack Names
+Gang / Clan NamesGemstone/Mineral
+
 										<li><a href="http://www.fantasynamegenerators.com/council-names.php">Council Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/crop-names.php">Crop Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/currency-names.php">Currency Names</a></li>
@@ -71,6 +86,15 @@
 										<li><a href="http://www.fantasynamegenerators.com/game-soundtrack-names.php">Game Soundtrack Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/gang-names.php">Gang / Clan Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/gem-mineral-names.php">Gemstone/Mineral</a></li>
+
+Government types/titlesGraffiti TagsGuild / Clan NamesHacker NamesHeist NamesHerb & Spice Names
+Holiday NamesHoly Book NamesHonorificsHuman Species NamesInstrument NamesInvention Names
+J-Pop Group NamesJewelry NamesLanguage NamesLaw Enforcement AgenciesLove nicknamesK-Pop Group Names
+Magazine NamesMagic TypesMagic School BooksMartial Arts NamesMascot NamesMaterial Names
+Measurement NamesMedicine NamesMercenary Band NamesMetal/Element NamesMeteor Names
+Military Division NamesMilitary Honor Names
+Military Operation NamesMilitary Rank Names
+
 										<li><a href="http://www.fantasynamegenerators.com/graffiti-tags.php">Graffiti Tags</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/guild_names.php">Guild / Clan Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/hacker-names.php">Hacker Names</a></li>
@@ -95,6 +119,14 @@
 										<li><a href="http://www.fantasynamegenerators.com/military-honor-names.php">Military Honor Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/military-operation-names.php">Military Operation Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/military-rank-names.php">Military Rank Names</a></li>
+
+Mobster NamesMolecule NamesMotorcycle ClubsMotorsport RacesMusic Album NamesMusic Band Names
+Musician NamesMutant Plant NamesNatural Disaster NamesNecronomicon Names - New!Newspaper Names
+NicknamesNoble House NamesPirate Crew NamesPlague NamesPlant and Tree NamesPlayer Class & NPC Types
+Poison NamesPolitical Party NamesPost-Apocalyptic SocietyPotion NamesRacer NamesRailway Names
+Rank NamesRebellion NamesRecord Label NamesReligion NamesRune NamesSatellite Names
+Scientific Bird NamesScientific Creature NamesScientific Device NamesScientific Plant Names
+
 										<li><a href="http://www.fantasynamegenerators.com/mobster-names.php">Mobster Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/molecule-names.php">Molecule Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/motorcycle-club-names.php">Motorcycle Clubs</a></li>
@@ -124,6 +156,14 @@
 										<li><a href="http://www.fantasynamegenerators.com/scientific-creature-names.php">Scientific Creature Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/plant_names.php">Scientific Plant Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/magic-school-book-names.php">School Book Names (Magic)</a></li>
+
+Season NamesSecret Order NamesSiege Engine NamesSoftware NamesSong TitlesSpace Fleet Names
+Spell NamesSport NamesSports Team NamesSquad NamesSteampunk Walker NamesSupercomputer Names
+SuperpowersTeleportation NamesTheme Park Ride NamesThrone NamesTime Period NamesTitle Names
+Tool NicknamesTreaty NamesTribal NamesTribe NamesUsernamesVehicle Names >Video Game Names
+Vocal Group NamesWeapon AbilitiesWeapon Names >Web SeriesWine NamesWorld Tree NamesWrestler Names
+Wrestling Move Names
+
 										<li><a href="http://www.fantasynamegenerators.com/siege-engine-names.php">Siege Engine Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/software-names.php">Software Names</a></li>
 										<li><a href="http://www.fantasynamegenerators.com/song-title-generator.php">Song Titles</a></li>

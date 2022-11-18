@@ -1,4 +1,10 @@
 """
+A Court of Thorns and RosesAnimal Crossing TownsArthurian Names
+Attack on Titan: TitansAvatar (TLA) Names >BayonettaBionicleBleach >Borderlands Names
+Creepypasta NamesDanganronpa UltimatesDark SoulsDC Comics >Demon SlayerDestiny >Diablo >
+Digimon NamesDoctor Who >Dragon Age Races >Dragon Ball Races >Dune - New!>
+
+
 <a href="http://www.fantasynamegenerators.com/arthurian-names.php">Arthurian Names</a></li>
 <a href="http://www.fantasynamegenerators.com/attack-on-titan-names.php">Attack on Titan: Titans</a></li>
 <a href="http://www.fantasynamegenerators.com/avatar-last-airbender-names.php">Avatar (TLA) Names</a></li>
@@ -52,6 +58,11 @@ Dragon Ball Races
 		<a href="http://www.fantasynamegenerators.com/db-other-names.php">Other</a></li>
 		<a href="http://www.fantasynamegenerators.com/db-saiyan-names.php">Saiyan</a></li>
 		<a href="http://www.fantasynamegenerators.com/db-tuffle-names.php">Tuffle</a></li>
+
+Dragonriders of PernDungeons & Dragons >Dungeons & Dragons NPCs >Elder Scrolls >EVE Online >
+Fairy Tail >Final Fantasy XIV >Fullmetal Alchemist NamesGame of Thrones >Guild Wars Races >Halo >
+Harry Potter >His Dark Materials >Hollow Knight NamesHomestuck NamesHorizon Zero Dawn >
+Httyd Dragon NamesHunger Games NamesHyborian NamesInheritance Cycle >Invader Zim Names
 
 <a href="http://www.fantasynamegenerators.com/dragonriders-of-pern-names.php">Dragonriders of Pern</a></li>
 
@@ -189,6 +200,12 @@ Inheritance Cycle
 		<a href="http://www.fantasynamegenerators.com/inheritance-cycle-human-names.php">Human</a></li>
 		<a href="http://www.fantasynamegenerators.com/inheritance-cycle-urgal-names.php">Urgal</a></li>
 
+JoJo's Bizarre AdventureLeague of Legends >Legend of Zelda >Lord of the Rings >
+Lord of the Rings Online >Lovecraftian NamesMagic: The Gathering >Marvel Comics >Mass Effect >
+Maze Runner NamesMegaMan NamesMinecraft >Mistborn - New! >Mortal Kombat Names
+My Hero Academia QuirksMy Little Pony NamesNa'vi (Avatar) NamesNaruto >One Piece >
+One-Punch Man NamesPacific Rim Names
+
 Legend of Zelda
 
 		<a href="http://www.fantasynamegenerators.com/zelda-anouki-names.php">Anouki</a></li>
@@ -283,6 +300,12 @@ Lord of the Rings
 <a href="http://www.fantasynamegenerators.com/avatar-names.php">Na'vi (Avatar) Names</a></li>
 <a href="http://www.fantasynamegenerators.com/one-piece-devil-fruit-names.php">One Piece Devil Fruit Names</a></li>
 <a href="http://www.fantasynamegenerators.com/pacific-rim-names.php">Pacific Rim Names</a></li>
+
+Pathfinder >Pokemon DescriptionsPokemon NamesPower Rangers TeamsPredator/Yautja NamesRift Races >
+RuneScape Races >RWBY NamesRWBY Weapons & SemblancesShadowhunter ChroniclesShadowrun Names
+Skulduggery PleasantSkylanders NamesStarCraft NamesStarfinder >Stargate >Star Trek Races >
+Star Wars Races >Star Wars (TOR) Races >Stormlight Archive NamesSuper Sentai Names
+
 										<li style="font-size: 100%; padding: 3px 0.5%;">Pathfinder &gt;
 											<ol style="max-width: 20%;">
 												<ol class="subNavOls">
@@ -439,6 +462,12 @@ Lord of the Rings
 											</ol>
 										</li>
 <a href="http://www.fantasynamegenerators.com/stormlight-archive-names.php">Stormlight Archive Names</a></li>
+
+The Chronicles of Narnia >The Dark Crystal >The Dark Eye >The Witcher >Throne of Glass Names
+ThunderCats Names - New!Tokyo Ghoul AliasesTransformers NamesTsolyani NamesVoltron >Wakfu >
+Warhammer >Warhammer 40k >Warrior Cat NamesWheel Of Time NamesWildstar >Wings of Fire Names
+World of Warcraft NPCs >World of Warcraft Pets >World of Warcraft Races >
+
 										<li style="font-size: 100%; padding: 3px 0.5%;">The Chronicles of Narnia &gt;
 											<ol style="max-width: 20%;">
 												<ol class="subNavOls">

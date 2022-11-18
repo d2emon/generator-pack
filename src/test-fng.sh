@@ -1,3 +1,4 @@
+echo "Tests"
 coverage run -m unittest -v \
     tests.database.test_data_block \
     tests.factories.test_factory \
@@ -11,6 +12,15 @@ coverage run -m unittest -v \
     tests.genesys.fng.test_fantasy_name_factories
 coverage xml
 coverage html
+
+echo "Lint"
 pylint genesys/fng/names/fantasy
 pylint genesys/fng/names/real
 pylint genesys/fng/names/place
+pylint genesys/fng/names/pop_culture
+
+echo "Documentation"
+pydocstyle genesys/fng/names/fantasy
+pydocstyle genesys/fng/names/real
+pydocstyle genesys/fng/names/place
+pydocstyle genesys/fng/names/pop_culture
