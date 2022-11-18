@@ -1,5 +1,5 @@
 """
-City & Town Names
+City & Town Names.
 
 *   central-african-town-names.php">African Towns (Central)</a></li>
 *   central-east-african-town-names.php">African Towns (Central East)</a></li>
