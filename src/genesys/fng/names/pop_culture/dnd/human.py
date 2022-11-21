@@ -1,4 +1,348 @@
-"""Human names for DnD."""
+"""
+Human names - Dungeons & Dragons.
+
+This name generator will give you human names fit for the various types of humans in the Dungeons &
+Dragons universe.
+
+Just like the real world, humans come in many different shapes, types and sizes. They have
+countless different ambitions, dreams, and goals. What they lack in strength they make up for in
+determination, and while their hearts may not always be pure, many will do anything to get what
+their heart desires. As such, humans could make the perfect or worst party member. They could be a
+glorious leader or filthy backstabber. They could do what's best for them or what's best for the
+group.
+
+As far as names go, human names are as diverse as humans themselves. I've covered each human race
+mentioned in the player handbook (5e): Calashite, Chondathan, Damaran, Illuskan, Mulan, Rashemi,
+Shou, and Turami.
+
+You'll probably notice each of these races has names based on existing cultures, but they're often
+tweaked enough to be different from the names we use in real life. That doesn't mean you can't
+simply use real life names of course, it's a fantasy game in which you make up the world after all.
+
+Old version: This name generator used to be simpler, generating only mostly English sounding names.
+If you prefer this type of name, you can still use Old factory.
+
+
+Method #1.
+    n_ms = ''
+    while n_ms == '':
+        n_ms = nameFem()
+
+
+Method #2.
+    n_ms = ''
+    while n_ms == '':
+        n_ms = nameMas()
+
+
+Method #3.
+    n_ms = ''
+    while n_ms == '':
+        n_ms = next(nm83)
+
+
+Method #4.
+    n_ms = ''
+    while n_ms == '':
+        n_ms = next(nm84)
+
+
+Surname.
+    lname = ''
+    while lname == '':
+        lname = nameSur()
+
+
+return f"{name} {surname}"
+
+
+function nameSur() {
+    if (i < 2) {
+        rnd = Math.floor(Math.random() * nm9.length);
+        rnd2 = Math.floor(Math.random() * nm10.length);
+        rnd3 = Math.floor(Math.random() * nm11.length);
+        rnd4 = Math.floor(Math.random() * nm10.length);
+        rnd5 = Math.floor(Math.random() * nm12.length);
+        lname = nm9[rnd] + nm10[rnd2] + nm11[rnd3] + nm10[rnd4] + nm12[rnd5];
+    } else if (i < 4) {
+        rnd = Math.floor(Math.random() * nm21.length);
+        rnd2 = Math.floor(Math.random() * nm22.length);
+        while (rnd === rnd2) {
+            rnd2 = Math.floor(Math.random() * nm22.length);
+        }
+        lname = nm21[rnd] + nm22[rnd2];
+    } else if (i < 6) {
+        rnd = Math.floor(Math.random() * nm30.length);
+        rnd2 = Math.floor(Math.random() * nm31.length);
+        rnd5 = Math.floor(Math.random() * nm33.length);
+        if (i === 4) {
+            lname = nm30[rnd] + nm31[rnd2] + nm33[rnd5];
+        } else {
+            rnd3 = Math.floor(Math.random() * nm32.length);
+            rnd4 = Math.floor(Math.random() * nm31.length);
+            lname = nm30[rnd] + nm31[rnd2] + nm32[rnd3] + nm31[rnd4] + nm33[rnd5];
+        }
+    } else if (i < 8) {
+        rnd = Math.floor(Math.random() * nm21.length);
+        rnd2 = Math.floor(Math.random() * nm22.length);
+        while (rnd === rnd2) {
+            rnd2 = Math.floor(Math.random() * nm22.length);
+        }
+        lname = nm21[rnd] + nm22[rnd2];
+    } else if (i < 10) {
+        rnd = Math.floor(Math.random() * nm50.length);
+        rnd2 = Math.floor(Math.random() * nm51.length);
+        rnd3 = Math.floor(Math.random() * nm52.length);
+        rnd4 = Math.floor(Math.random() * nm51.length);
+        rnd5 = Math.floor(Math.random() * nm53.length);
+        if (i === 8) {
+            rnd6 = Math.floor(Math.random() * nm52.length);
+            rnd7 = Math.floor(Math.random() * nm51.length);
+            lname = nm50[rnd] + nm51[rnd2] + nm52[rnd3] + nm51[rnd4] + nm52[rnd6] + nm51[rnd7]
+                + nm53[rnd5];
+        } else {
+            lname = nm50[rnd] + nm51[rnd2] + nm52[rnd3] + nm51[rnd4] + nm53[rnd5];
+        }
+    } else if (i < 12) {
+        rnd = Math.floor(Math.random() * nm62.length);
+        rnd2 = Math.floor(Math.random() * nm63.length);
+        rnd3 = Math.floor(Math.random() * nm64.length);
+        rnd4 = Math.floor(Math.random() * nm63.length);
+        rnd5 = Math.floor(Math.random() * nm64.length);
+        rnd6 = Math.floor(Math.random() * nm63.length);
+        if (i === 10) {
+            rnd7 = Math.floor(Math.random() * nm64.length);
+            rnd8 = Math.floor(Math.random() * nm63.length);
+            lname = nm62[rnd] + nm63[rnd2] + nm64[rnd3] + nm63[rnd4] + nm64[rnd5] + nm63[rnd6]
+                + nm64[rnd7] + nm63[rnd8];
+        } else {
+            lname = nm62[rnd] + nm63[rnd2] + nm64[rnd3] + nm63[rnd4] + nm64[rnd5] + nm63[rnd6];
+        }
+    } else if (i < 14) {
+        rnd = Math.floor(Math.random() * nm70.length);
+        rnd2 = Math.floor(Math.random() * nm71.length);
+        rnd3 = Math.floor(Math.random() * nm72.length);
+        if (rnd3 < 3) {
+            while (rnd < 3) {
+                rnd = Math.floor(Math.random() * nm70.length);
+            }
+        }
+        lname = nm70[rnd] + nm71[rnd2] + nm72[rnd3];
+    } else {
+        rnd = Math.floor(Math.random() * nm80.length);
+        rnd2 = Math.floor(Math.random() * nm14.length);
+        rnd3 = Math.floor(Math.random() * nm81.length);
+        rnd4 = Math.floor(Math.random() * nm14.length);
+        rnd6 = Math.floor(Math.random() * nm81.length);
+        rnd7 = Math.floor(Math.random() * nm14.length);
+        rnd5 = Math.floor(Math.random() * nm82.length);
+        lname = nm80[rnd] + nm14[rnd2] + nm81[rnd3] + nm14[rnd4] + nm81[rnd6] + nm14[rnd7]
+            + nm82[rnd5];
+    }
+    testSwear(lname);
+}
+
+function nameFem() {
+    if (i < 2) {
+        rnd = Math.floor(Math.random() * nm5.length);
+        rnd2 = Math.floor(Math.random() * nm6.length);
+        rnd3 = Math.floor(Math.random() * nm7.length);
+        rnd4 = Math.floor(Math.random() * nm6.length);
+        rnd5 = Math.floor(Math.random() * nm8.length);
+        if (i === 0) {
+            rnd6 = Math.floor(Math.random() * nm7.length);
+            rnd7 = Math.floor(Math.random() * nm6.length);
+            nMs = nm5[rnd] + nm6[rnd2] + nm7[rnd3] + nm6[rnd4] + nm7[rnd6] + nm6[rnd7] + nm8[rnd5];
+        } else {
+            nMs = nm5[rnd] + nm6[rnd2] + nm7[rnd3] + nm6[rnd4] + nm8[rnd5];
+        }
+    } else if (i < 4) {
+        rnd = Math.floor(Math.random() * nm17.length);
+        rnd2 = Math.floor(Math.random() * nm18.length);
+        rnd3 = Math.floor(Math.random() * nm19.length);
+        rnd4 = Math.floor(Math.random() * nm18.length);
+        rnd5 = Math.floor(Math.random() * nm20.length);
+        if (i === 2) {
+            rnd6 = Math.floor(Math.random() * nm19.length);
+            rnd7 = Math.floor(Math.random() * nm18.length);
+            nMs = nm17[rnd] + nm18[rnd2] + nm19[rnd3] + nm18[rnd4] + nm19[rnd6] + nm18[rnd7]
+                + nm20[rnd5];
+        } else {
+            nMs = nm17[rnd] + nm18[rnd2] + nm19[rnd3] + nm18[rnd4] + nm20[rnd5];
+        }
+    } else if (i < 6) {
+        rnd = Math.floor(Math.random() * nm27.length);
+        rnd2 = Math.floor(Math.random() * nm24.length);
+        rnd5 = Math.floor(Math.random() * nm29.length);
+        if (i === 4) {
+            rnd3 = Math.floor(Math.random() * nm28.length);
+            rnd4 = Math.floor(Math.random() * nm24.length);
+            nMs = nm27[rnd] + nm24[rnd2] + nm28[rnd3] + nm24[rnd4] + nm29[rnd5];
+        } else {
+            nMs = nm27[rnd] + nm24[rnd2] + nm29[rnd5];
+        }
+    } else if (i < 8) {
+        rnd = Math.floor(Math.random() * nm38.length);
+        rnd2 = Math.floor(Math.random() * nm24.length);
+        rnd3 = Math.floor(Math.random() * nm39.length);
+        rnd4 = Math.floor(Math.random() * nm24.length);
+        rnd5 = Math.floor(Math.random() * nm40.length);
+        if (i === 6) {
+            rnd6 = Math.floor(Math.random() * nm39.length);
+            rnd7 = Math.floor(Math.random() * nm24.length);
+            nMs = nm38[rnd] + nm24[rnd2] + nm39[rnd3] + nm24[rnd4] + nm39[rnd6] + nm24[rnd7]
+                + nm40[rnd5];
+        } else {
+            nMs = nm38[rnd] + nm24[rnd2] + nm39[rnd3] + nm24[rnd4] + nm40[rnd5];
+        }
+    } else if (i < 10) {
+        rnd = Math.floor(Math.random() * nm47.length);
+        rnd2 = Math.floor(Math.random() * nm14.length);
+        rnd3 = Math.floor(Math.random() * nm48.length);
+        rnd4 = Math.floor(Math.random() * nm14.length);
+        rnd5 = Math.floor(Math.random() * nm49.length);
+        if (i === 8) {
+            rnd6 = Math.floor(Math.random() * nm48.length);
+            rnd7 = Math.floor(Math.random() * nm14.length);
+            nMs = nm47[rnd] + nm14[rnd2] + nm48[rnd3] + nm14[rnd4] + nm48[rnd6] + nm14[rnd7]
+                + nm49[rnd5];
+        } else {
+            nMs = nm47[rnd] + nm14[rnd2] + nm48[rnd3] + nm14[rnd4] + nm49[rnd5];
+        }
+    } else if (i < 12) {
+        rnd = Math.floor(Math.random() * nm58.length);
+        rnd2 = Math.floor(Math.random() * nm59.length);
+        rnd3 = Math.floor(Math.random() * nm60.length);
+        rnd4 = Math.floor(Math.random() * nm59.length);
+        rnd5 = Math.floor(Math.random() * nm61.length);
+        if (i === 10) {
+            rnd6 = Math.floor(Math.random() * nm60.length);
+            rnd7 = Math.floor(Math.random() * nm59.length);
+            nMs = nm58[rnd] + nm59[rnd2] + nm60[rnd3] + nm59[rnd4] + nm60[rnd6] + nm59[rnd7]
+                + nm61[rnd5];
+        } else {
+            nMs = nm58[rnd] + nm59[rnd2] + nm60[rnd3] + nm59[rnd4] + nm61[rnd5];
+        }
+    } else if (i < 14) {
+        rnd = Math.floor(Math.random() * nm68.length);
+        rnd2 = Math.floor(Math.random() * nm69.length);
+        nMs = nm68[rnd] + nm69[rnd2];
+    } else {
+        rnd = Math.floor(Math.random() * nm77.length);
+        rnd2 = Math.floor(Math.random() * nm78.length);
+        rnd3 = Math.floor(Math.random() * nm79.length);
+        rnd4 = Math.floor(Math.random() * nm77.length);
+        if (i === 10) {
+            rnd6 = Math.floor(Math.random() * nm79.length);
+            rnd7 = Math.floor(Math.random() * nm77.length);
+            nMs = nm77[rnd] + nm78[rnd2] + nm79[rnd3] + nm77[rnd4] + nm79[rnd6] + nm77[rnd7];
+        } else {
+            nMs = nm77[rnd] + nm78[rnd2] + nm79[rnd3] + nm77[rnd4];
+        }
+    }
+    testSwear(nMs);
+}
+
+function nameMas() {
+    if (i < 2) {
+        rnd = Math.floor(Math.random() * nm1.length);
+        rnd2 = Math.floor(Math.random() * nm2.length);
+        rnd3 = Math.floor(Math.random() * nm3.length);
+        rnd4 = Math.floor(Math.random() * nm2.length);
+        rnd5 = Math.floor(Math.random() * nm4.length);
+        nMs = nm1[rnd] + nm2[rnd2] + nm3[rnd3] + nm2[rnd4] + nm4[rnd5];
+    } else if (i < 4) {
+        rnd = Math.floor(Math.random() * nm13.length);
+        rnd2 = Math.floor(Math.random() * nm14.length);
+        rnd3 = Math.floor(Math.random() * nm15.length);
+        rnd4 = Math.floor(Math.random() * nm14.length);
+        rnd5 = Math.floor(Math.random() * nm16.length);
+        if (rnd5 < 3) {
+            rnd3 = 0;
+        } else {
+            while (rnd3 === 0) {
+                rnd3 = Math.floor(Math.random() * nm15.length);
+            }
+        }
+        nMs = nm13[rnd] + nm14[rnd2] + nm15[rnd3] + nm14[rnd4] + nm16[rnd5];
+    } else if (i < 6) {
+        rnd = Math.floor(Math.random() * nm23.length);
+        rnd2 = Math.floor(Math.random() * nm24.length);
+        rnd5 = Math.floor(Math.random() * nm26.length);
+        if (i === 4) {
+            rnd3 = Math.floor(Math.random() * nm25.length);
+            rnd4 = Math.floor(Math.random() * nm24.length);
+            nMs = nm23[rnd] + nm24[rnd2] + nm25[rnd3] + nm24[rnd4] + nm26[rnd5];
+        } else {
+            nMs = nm23[rnd] + nm24[rnd2] + nm26[rnd5];
+        }
+    } else if (i < 8) {
+        rnd = Math.floor(Math.random() * nm34.length);
+        rnd2 = Math.floor(Math.random() * nm35.length);
+        rnd5 = Math.floor(Math.random() * nm37.length);
+        if (i === 6) {
+            rnd3 = Math.floor(Math.random() * nm36.length);
+            rnd4 = Math.floor(Math.random() * nm35.length);
+            nMs = nm34[rnd] + nm35[rnd2] + nm36[rnd3] + nm35[rnd4] + nm37[rnd5];
+        } else {
+            nMs = nm34[rnd] + nm35[rnd2] + nm37[rnd5];
+        }
+    } else if (i < 10) {
+        rnd = Math.floor(Math.random() * nm43.length);
+        rnd2 = Math.floor(Math.random() * nm44.length);
+        rnd3 = Math.floor(Math.random() * nm45.length);
+        rnd4 = Math.floor(Math.random() * nm44.length);
+        rnd5 = Math.floor(Math.random() * nm46.length);
+        if (i === 8) {
+            rnd6 = Math.floor(Math.random() * nm45.length);
+            rnd7 = Math.floor(Math.random() * nm44.length);
+            nMs = nm43[rnd] + nm44[rnd2] + nm45[rnd3] + nm44[rnd4] + nm45[rnd6] + nm44[rnd7]
+                + nm46[rnd5];
+        } else {
+            nMs = nm43[rnd] + nm44[rnd2] + nm45[rnd3] + nm44[rnd4] + nm46[rnd5];
+        }
+    } else if (i < 12) {
+        rnd = Math.floor(Math.random() * nm54.length);
+        rnd2 = Math.floor(Math.random() * nm55.length);
+        rnd3 = Math.floor(Math.random() * nm56.length);
+        rnd4 = Math.floor(Math.random() * nm55.length);
+        rnd5 = Math.floor(Math.random() * nm57.length);
+        if (i === 10) {
+            rnd6 = Math.floor(Math.random() * nm56.length);
+            rnd7 = Math.floor(Math.random() * nm55.length);
+            nMs = nm54[rnd] + nm55[rnd2] + nm56[rnd3] + nm55[rnd4] + nm56[rnd6] + nm55[rnd7]
+                + nm57[rnd5];
+        } else {
+            nMs = nm54[rnd] + nm55[rnd2] + nm56[rnd3] + nm55[rnd4] + nm57[rnd5];
+        }
+    } else if (i < 14) {
+        rnd = Math.floor(Math.random() * nm65.length);
+        rnd2 = Math.floor(Math.random() * nm66.length);
+        rnd3 = Math.floor(Math.random() * nm67.length);
+        if (rnd3 < 3) {
+            while (rnd < 2) {
+                rnd = Math.floor(Math.random() * nm65.length);
+            }
+        }
+        nMs = nm65[rnd] + nm66[rnd2] + nm67[rnd3];
+    } else {
+        rnd = Math.floor(Math.random() * nm73.length);
+        rnd2 = Math.floor(Math.random() * nm74.length);
+        rnd3 = Math.floor(Math.random() * nm75.length);
+        rnd4 = Math.floor(Math.random() * nm74.length);
+        rnd5 = Math.floor(Math.random() * nm76.length);
+        if (i === 14) {
+            rnd6 = Math.floor(Math.random() * nm75.length);
+            rnd7 = Math.floor(Math.random() * nm74.length);
+            nMs = nm73[rnd] + nm74[rnd2] + nm75[rnd3] + nm74[rnd4] + nm75[rnd6] + nm74[rnd7]
+                + nm76[rnd5];
+        } else {
+            nMs = nm73[rnd] + nm74[rnd2] + nm75[rnd3] + nm74[rnd4] + nm76[rnd5];
+        }
+    }
+    testSwear(nMs);
+}
+"""
 
 import random
 from data.fng.names.pop_culture import dnd
@@ -963,7 +1307,31 @@ def names_list(subrace_id):
     return TuramiNames
 
 
-def name_gen(name_type=0):
+def __name_male(name_id, names, surname):
+    name = ''
+    while not name:
+        name = test_swear(names.male(name_id)).title()
+
+    return name + " " + surname
+
+
+def __name_female(name_id, names, surname):
+    name = ''
+    while not name:
+        name = test_swear(names.female(name_id)).title()
+
+    return name + " " + surname
+
+
+def __name_male_old(name_id, names, surname):
+    return OldNames.male().title()
+
+
+def __name_female_old(name_id, names, surname):
+    return OldNames.female().title()
+
+
+def name_gen(name_type=0, name_id=0):
     """
     Summary.
 
@@ -973,24 +1341,17 @@ def name_gen(name_type=0):
     Yields:
         _type_: _description_
     """
-    # $('#placeholder').css('textTransform', 'capitalize');
-    for i in range(16):
-        names = names_list(i)
+    names = names_list(name_id)
 
-        name = ""
-        surname = ""
-        while not surname:
-            surname = test_swear(names.surname(i)).title()
+    surname = ""
+    while not surname:
+        surname = test_swear(names.surname(name_id)).title()
 
-        if name_type == 1:
-            while not name:
-                name = test_swear(names.female(i)).title()
-            yield name + " " + surname
-        elif name_type == 3:
-            yield OldNames.male().title()
-        elif name_type == 4:
-            yield OldNames.female().title()
-        else:
-            while not name:
-                name = test_swear(names.male(i)).title()
-            yield name + " " + surname
+    if name_type == 1:
+        return __name_female(name_id, names, surname)
+    elif name_type == 2:
+        return __name_male(name_id, names, surname)
+    elif name_type == 3:
+        return __name_male_old(name_id, names, surname)
+    elif name_type == 4:
+        return __name_female_old(name_id, names, surname)
