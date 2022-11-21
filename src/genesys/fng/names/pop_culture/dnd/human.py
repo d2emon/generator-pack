@@ -57,89 +57,6 @@ return f"{name} {surname}"
 
 
 function nameSur() {
-    if (i < 2) {
-        rnd = Math.floor(Math.random() * nm9.length);
-        rnd2 = Math.floor(Math.random() * nm10.length);
-        rnd3 = Math.floor(Math.random() * nm11.length);
-        rnd4 = Math.floor(Math.random() * nm10.length);
-        rnd5 = Math.floor(Math.random() * nm12.length);
-        lname = nm9[rnd] + nm10[rnd2] + nm11[rnd3] + nm10[rnd4] + nm12[rnd5];
-    } else if (i < 4) {
-        rnd = Math.floor(Math.random() * nm21.length);
-        rnd2 = Math.floor(Math.random() * nm22.length);
-        while (rnd === rnd2) {
-            rnd2 = Math.floor(Math.random() * nm22.length);
-        }
-        lname = nm21[rnd] + nm22[rnd2];
-    } else if (i < 6) {
-        rnd = Math.floor(Math.random() * nm30.length);
-        rnd2 = Math.floor(Math.random() * nm31.length);
-        rnd5 = Math.floor(Math.random() * nm33.length);
-        if (i === 4) {
-            lname = nm30[rnd] + nm31[rnd2] + nm33[rnd5];
-        } else {
-            rnd3 = Math.floor(Math.random() * nm32.length);
-            rnd4 = Math.floor(Math.random() * nm31.length);
-            lname = nm30[rnd] + nm31[rnd2] + nm32[rnd3] + nm31[rnd4] + nm33[rnd5];
-        }
-    } else if (i < 8) {
-        rnd = Math.floor(Math.random() * nm21.length);
-        rnd2 = Math.floor(Math.random() * nm22.length);
-        while (rnd === rnd2) {
-            rnd2 = Math.floor(Math.random() * nm22.length);
-        }
-        lname = nm21[rnd] + nm22[rnd2];
-    } else if (i < 10) {
-        rnd = Math.floor(Math.random() * nm50.length);
-        rnd2 = Math.floor(Math.random() * nm51.length);
-        rnd3 = Math.floor(Math.random() * nm52.length);
-        rnd4 = Math.floor(Math.random() * nm51.length);
-        rnd5 = Math.floor(Math.random() * nm53.length);
-        if (i === 8) {
-            rnd6 = Math.floor(Math.random() * nm52.length);
-            rnd7 = Math.floor(Math.random() * nm51.length);
-            lname = nm50[rnd] + nm51[rnd2] + nm52[rnd3] + nm51[rnd4] + nm52[rnd6] + nm51[rnd7]
-                + nm53[rnd5];
-        } else {
-            lname = nm50[rnd] + nm51[rnd2] + nm52[rnd3] + nm51[rnd4] + nm53[rnd5];
-        }
-    } else if (i < 12) {
-        rnd = Math.floor(Math.random() * nm62.length);
-        rnd2 = Math.floor(Math.random() * nm63.length);
-        rnd3 = Math.floor(Math.random() * nm64.length);
-        rnd4 = Math.floor(Math.random() * nm63.length);
-        rnd5 = Math.floor(Math.random() * nm64.length);
-        rnd6 = Math.floor(Math.random() * nm63.length);
-        if (i === 10) {
-            rnd7 = Math.floor(Math.random() * nm64.length);
-            rnd8 = Math.floor(Math.random() * nm63.length);
-            lname = nm62[rnd] + nm63[rnd2] + nm64[rnd3] + nm63[rnd4] + nm64[rnd5] + nm63[rnd6]
-                + nm64[rnd7] + nm63[rnd8];
-        } else {
-            lname = nm62[rnd] + nm63[rnd2] + nm64[rnd3] + nm63[rnd4] + nm64[rnd5] + nm63[rnd6];
-        }
-    } else if (i < 14) {
-        rnd = Math.floor(Math.random() * nm70.length);
-        rnd2 = Math.floor(Math.random() * nm71.length);
-        rnd3 = Math.floor(Math.random() * nm72.length);
-        if (rnd3 < 3) {
-            while (rnd < 3) {
-                rnd = Math.floor(Math.random() * nm70.length);
-            }
-        }
-        lname = nm70[rnd] + nm71[rnd2] + nm72[rnd3];
-    } else {
-        rnd = Math.floor(Math.random() * nm80.length);
-        rnd2 = Math.floor(Math.random() * nm14.length);
-        rnd3 = Math.floor(Math.random() * nm81.length);
-        rnd4 = Math.floor(Math.random() * nm14.length);
-        rnd6 = Math.floor(Math.random() * nm81.length);
-        rnd7 = Math.floor(Math.random() * nm14.length);
-        rnd5 = Math.floor(Math.random() * nm82.length);
-        lname = nm80[rnd] + nm14[rnd2] + nm81[rnd3] + nm14[rnd4] + nm81[rnd6] + nm14[rnd7]
-            + nm82[rnd5];
-    }
-    testSwear(lname);
 }
 
 function nameFem() {
@@ -346,19 +263,243 @@ function nameMas() {
 
 import random
 from data.fng.names.pop_culture import dnd
+from data.fng.names import fantasy
+from genesys.fng.database import Database
+from genesys.fng.factories.name_block_factory import MultipleFactoryNameFactory
+from genesys.fng.factories.name_factory import ComplexFactory
+from genesys.fng.validators import item_is_unique, item_is_not_empty, validate_if
+from models.fng.names.fantasy import AlienName
+from models.fng.names.name import Name
 
 
-def test_swear(name):
-    """
-    Summary.
+DB = Database('dnd.human', {
+    # 1: fantasy.alien.nm1,
+    # 2: fantasy.alien.nm2,
+    # 3: fantasy.alien.nm3,
+    # 4: fantasy.alien.nm4,
+    # 5: fantasy.alien.nm5,
 
-    Args:
-        name (_type_): _description_
+    # 6: fantasy.alien.nm6,
+    # 7: fantasy.alien.nm7,
+    # 8: fantasy.alien.nm8,
 
-    Returns:
-        _type_: _description_
-    """
-    return name
+    9: dnd.human.nm9,
+    10: dnd.human.nm10,
+    11: dnd.human.nm11,
+    12: dnd.human.nm11,
+
+    14: dnd.human.nm14,
+
+    21: dnd.human.nm21,
+
+    30: dnd.human.nm30,
+    31: dnd.human.nm31,
+    32: dnd.human.nm32,
+    33: dnd.human.nm33,
+
+    50: dnd.human.nm50,
+    51: dnd.human.nm51,
+    52: dnd.human.nm52,
+    53: dnd.human.nm53,
+
+    62: dnd.human.nm62,
+    63: dnd.human.nm63,
+    64: dnd.human.nm64,
+
+    80: dnd.human.nm80,
+    81: dnd.human.nm81,
+    82: dnd.human.nm82,
+})
+
+
+class BaseSurnameFactory(ComplexFactory):
+    """Base factory for surname."""
+
+    default_data = DB
+    model = Name
+
+    def test_swear(self, name):
+        """
+        Summary.
+
+        Args:
+            name (_type_): _description_
+
+        Returns:
+            _type_: _description_
+        """
+        return name
+
+    def build_surname(self, lname):
+        return self.testSwear(lname)
+
+
+class CalashiteSurnameFactory(BaseSurnameFactory):
+    """Method #1."""
+
+    parts = [
+        9,
+        10,
+        11,
+        10,
+        12,
+    ]
+
+
+class ChondathanSurnameFactory(BaseSurnameFactory):
+    """Method #2."""
+
+    parts = [
+        21,
+        12,
+    ]
+    validators = {
+        1: lambda items: item_is_unique([items[0]]),
+    }
+
+
+class DamaranSurnameFactory1(BaseSurnameFactory):
+    """Method #3.1."""
+
+    parts = [
+        30,
+        31,
+        33,
+    ]
+
+
+class DamaranSurnameFactory2(BaseSurnameFactory):
+    """Method #3.2."""
+
+    parts = [
+        30,
+        31,
+        32,
+        31,
+        33,
+    ]
+
+
+class IlluskanSurnameFactory(BaseSurnameFactory):
+    """Method #4."""
+
+    parts = [
+        21,
+        22,
+    ]
+    validators = {
+        1: lambda items: item_is_unique([items[0]]),
+    }
+
+
+class MulanSurnameFactory1(ComplexFactory):
+    """Method #5."""
+
+    default_data = DB
+    model = Name
+    parts = [
+        50,
+        51,
+        52,
+        51,
+        52,
+        51,
+        53,
+    ]
+
+
+class MulanSurnameFactory2(ComplexFactory):
+    """Method #5."""
+
+    default_data = DB
+    model = Name
+    parts = [
+        50,
+        51,
+        52,
+        51,
+        53,
+    ]
+
+
+class RashemiSurnameFactory1(ComplexFactory):
+    """Method #6."""
+
+    default_data = DB
+    model = Name
+    parts = [
+        62,
+        63,
+        64,
+        63,
+        64,
+        63,
+        64,
+        63,
+    ]
+
+
+class RashemiSurnameFactory2(ComplexFactory):
+    """Method #6."""
+
+    default_data = DB
+    model = Name
+    parts = [
+        62,
+        63,
+        64,
+        63,
+        64,
+        63,
+    ]
+
+
+class ShouFactory(ComplexFactory):
+    """Method #7."""
+
+    default_data = DB
+    model = Name
+    parts = [
+        70,
+        71,
+        72,
+    ]
+
+    def surname(self, subrace=12):
+        """
+        Summary.
+
+        Args:
+            subrace (int, optional): _description_. Defaults to 12.
+
+        Returns:
+            _type_: _description_
+        """
+        rnd1 = self.data.nm70
+        rnd2 = self.data.nm71
+        rnd3 = self.data.nm72
+
+        if self.data.nm72.index(rnd3) < 3:
+            while self.data.nm70.index(rnd1) < 3:
+                rnd1 = self.data.nm70
+
+        return "".join([rnd1, rnd2, rnd3])
+
+
+class TuramiSurnameFactory(ComplexFactory):
+    """Method #8."""
+
+    default_data = DB
+    model = Name
+    parts = [
+        80,
+        14,
+        81,
+        14,
+        81,
+        14,
+        82,
+    ]
 
 
 class Names:
@@ -397,19 +538,6 @@ class Names:
         """
         raise NotImplementedError
 
-    @classmethod
-    def surname(cls, subrace=0):
-        """
-        Summary.
-
-        Args:
-            subrace (int, optional): _description_. Defaults to 0.
-
-        Raises:
-            NotImplementedError: _description_
-        """
-        raise NotImplementedError
-
 
 # 0-1
 class CalashiteNames(Names):
@@ -437,25 +565,6 @@ class CalashiteNames(Names):
     nm10 = dnd.human.nm10
     nm11 = dnd.human.nm11
     nm12 = dnd.human.nm12
-
-    @classmethod
-    def surname(cls, subrace=0):
-        """
-        Summary.
-
-        Args:
-            subrace (int, optional): _description_. Defaults to 0.
-
-        Returns:
-            _type_: _description_
-        """
-        return "".join([
-            random.choice(cls.nm9),
-            random.choice(cls.nm10),
-            random.choice(cls.nm11),
-            random.choice(cls.nm10),
-            random.choice(cls.nm12),
-        ])
 
     @classmethod
     def male(cls, subrace=0):
@@ -530,23 +639,6 @@ class ChondathanNames(Names):
 
     nm21 = dnd.human.nm21
     nm22 = dnd.human.nm22
-
-    @classmethod
-    def surname(cls, subrace=2):
-        """
-        Summary.
-
-        Args:
-            subrace (int, optional): _description_. Defaults to 2.
-
-        Returns:
-            _type_: _description_
-        """
-        rnd1 = random.choice(cls.nm21)
-        rnd2 = rnd1
-        while rnd2 == rnd1:
-            rnd2 = random.choice(cls.nm22)
-        return "".join([rnd1, rnd2])
 
     @classmethod
     def male(cls, subrace=2):
@@ -631,30 +723,6 @@ class DamaranNames(Names):
     nm32 = dnd.human.nm32
     nm33 = dnd.human.nm33
 
-    @classmethod
-    def surname(cls, subrace=4):
-        """
-        Summary.
-
-        Args:
-            subrace (int, optional): _description_. Defaults to 4.
-
-        Returns:
-            _type_: _description_
-        """
-        if subrace == 4:
-            return "".join([
-                random.choice(cls.nm30),
-                random.choice(cls.nm31),
-                random.choice(cls.nm33),
-            ])
-        return "".join([
-            random.choice(cls.nm30),
-            random.choice(cls.nm31),
-            random.choice(cls.nm32),
-            random.choice(cls.nm31),
-            random.choice(cls.nm33),
-        ])
 
     @classmethod
     def male(cls, subrace=4):
@@ -728,23 +796,6 @@ class IlluskanNames(DamaranNames, ChondathanNames):
     nm38 = dnd.human.nm38
     nm39 = dnd.human.nm39
     nm40 = dnd.human.nm40
-
-    @classmethod
-    def surname(cls, subrace=0):
-        """
-        Summary.
-
-        Args:
-            subrace (int, optional): _description_. Defaults to 0.
-
-        Returns:
-            _type_: _description_
-        """
-        rnd1 = random.choice(cls.nm21)
-        rnd2 = rnd1
-        while rnd2 == rnd1:
-            rnd2 = random.choice(cls.nm22)
-        return "".join([rnd1, rnd2])
 
     @classmethod
     def male(cls, subrace=6):
@@ -826,35 +877,6 @@ class MulanNames(ChondathanNames):
     nm51 = dnd.human.nm51
     nm52 = dnd.human.nm52
     nm53 = dnd.human.nm53
-
-    @classmethod
-    def surname(cls, subrace=8):
-        """
-        Summary.
-
-        Args:
-            subrace (int, optional): _description_. Defaults to 8.
-
-        Returns:
-            _type_: _description_
-        """
-        if subrace == 8:
-            return "".join([
-                random.choice(cls.nm50),
-                random.choice(cls.nm51),
-                random.choice(cls.nm52),
-                random.choice(cls.nm51),
-                random.choice(cls.nm52),
-                random.choice(cls.nm51),
-                random.choice(cls.nm53),
-            ])
-        return "".join([
-            random.choice(cls.nm50),
-            random.choice(cls.nm51),
-            random.choice(cls.nm52),
-            random.choice(cls.nm51),
-            random.choice(cls.nm53),
-        ])
 
     @classmethod
     def male(cls, subrace=8):
@@ -942,37 +964,6 @@ class RashemiNames(Names):
     nm64 = dnd.human.nm64
 
     @classmethod
-    def surname(cls, subrace=10):
-        """
-        Summary.
-
-        Args:
-            subrace (int, optional): _description_. Defaults to 10.
-
-        Returns:
-            _type_: _description_
-        """
-        if subrace == 10:
-            return "".join([
-                random.choice(cls.nm62),
-                random.choice(cls.nm63),
-                random.choice(cls.nm64),
-                random.choice(cls.nm63),
-                random.choice(cls.nm64),
-                random.choice(cls.nm63),
-                random.choice(cls.nm64),
-                random.choice(cls.nm63),
-            ])
-        return "".join([
-            random.choice(cls.nm62),
-            random.choice(cls.nm63),
-            random.choice(cls.nm64),
-            random.choice(cls.nm63),
-            random.choice(cls.nm64),
-            random.choice(cls.nm63),
-        ])
-
-    @classmethod
     def male(cls, subrace=10):
         """
         Summary.
@@ -1055,25 +1046,6 @@ class ShouNames(Names):
     nm72 = dnd.human.nm72
 
     @classmethod
-    def surname(cls, subrace=12):
-        """
-        Summary.
-
-        Args:
-            subrace (int, optional): _description_. Defaults to 12.
-
-        Returns:
-            _type_: _description_
-        """
-        rnd1 = random.choice(cls.nm70)
-        rnd2 = random.choice(cls.nm71)
-        rnd3 = random.choice(cls.nm72)
-        if cls.nm72.index(rnd3) < 3:
-            while cls.nm70.index(rnd1) < 3:
-                rnd1 = random.choice(cls.nm70)
-        return "".join([rnd1, rnd2, rnd3])
-
-    @classmethod
     def male(cls, subrace=12):
         """
         Summary.
@@ -1136,27 +1108,6 @@ class TuramiNames(ChondathanNames):
     nm80 = dnd.human.nm80
     nm81 = dnd.human.nm81
     nm82 = dnd.human.nm82
-
-    @classmethod
-    def surname(cls, subrace=10):
-        """
-        Summary.
-
-        Args:
-            subrace (int, optional): _description_. Defaults to 10.
-
-        Returns:
-            _type_: _description_
-        """
-        return "".join([
-            random.choice(cls.nm80),
-            random.choice(cls.nm14),
-            random.choice(cls.nm81),
-            random.choice(cls.nm14),
-            random.choice(cls.nm81),
-            random.choice(cls.nm14),
-            random.choice(cls.nm82),
-        ])
 
     @classmethod
     def male(cls, subrace=10):
@@ -1309,16 +1260,16 @@ def names_list(subrace_id):
 
 def __name_male(name_id, names, surname):
     name = ''
-    while not name:
-        name = test_swear(names.male(name_id)).title()
+    # while not name:
+    #     name = test_swear(names.male(name_id)).title()
 
     return name + " " + surname
 
 
 def __name_female(name_id, names, surname):
     name = ''
-    while not name:
-        name = test_swear(names.female(name_id)).title()
+    # while not name:
+    #     name = test_swear(names.female(name_id)).title()
 
     return name + " " + surname
 
@@ -1344,8 +1295,8 @@ def name_gen(name_type=0, name_id=0):
     names = names_list(name_id)
 
     surname = ""
-    while not surname:
-        surname = test_swear(names.surname(name_id)).title()
+    # while not surname:
+    #     surname = test_swear(names.surname(name_id)).title()
 
     if name_type == 1:
         return __name_female(name_id, names, surname)
