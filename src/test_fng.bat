@@ -1,6 +1,7 @@
 coverage run -m unittest -v ^
     tests.database.test_data_block ^
     tests.factories.test_factory ^
+    tests.factories.test_list_factory ^
     tests.genesys.fng.test_database ^
     tests.genesys.fng.test_name_factory ^
     tests.genesys.fng.test_name_block_factory ^
@@ -10,4 +11,8 @@ coverage run -m unittest -v ^
     tests.genesys.fng.test_fantasy_name_factories
 coverage xml
 coverage html
-pylint .\genesys\fng\factories\names\fantasy
+
+pylint .\genesys\fng\names\fantasy
+pylint .\genesys\fng\names\real
+pylint .\genesys\fng\names\place
+pylint .\genesys\fng\names\pop_culture
