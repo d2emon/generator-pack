@@ -196,13 +196,24 @@ class ComplexFactory(ModelFactory, DbFactory):
         Returns:
             list: Args for model.
         """
-        data = [*self.static_args]
+        invalid = []
+        data = []
 
-        # Validate model data
-        for factory in self.args_factories:
-            data.append(factory(*args, **kwargs))
+        for factory_id in range(len(self.args_factories)):
+            invalid.append(factory_id)
+            data.append(None)
 
-        return data
+        while len(invalid) > 0:
+            for factory_id in invalid:
+                factory = self.factory(factory_id)
+                data[factory_id] = factory(*args, **kwargs)
+
+            invalid = list(self.validate_args(data))
+
+        return [
+            *self.static_args,
+            *data,
+        ]
 
 
     def build_kwargs(self, *args, **kwargs) -> dict:
@@ -250,6 +261,31 @@ class ComplexFactory(ModelFactory, DbFactory):
             return None
 
         return factory(*args, **kwargs)
+
+    def validate_args(self, data):
+        """
+        Validate values from data.
+
+        Args:
+            data (dict): Values for model.
+
+        Returns:
+            list(str): List of invalid fields.
+        """
+        for item_id in range(len(self.args_factories)):
+            # updater = self.update_values.get(item_id)
+
+            # if updater is not None:
+            #     data[item_id] = updater(self, data)
+
+            validator = self.validators.get(item_id)
+
+            if validator is None:
+                continue
+
+            item_validator = validator(data)
+            if not item_validator(data[item_id]):
+                yield item_id
 
     def validate(self, data):
         """

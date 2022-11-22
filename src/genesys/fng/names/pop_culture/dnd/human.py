@@ -318,21 +318,6 @@ class BaseSurnameFactory(ComplexFactory):
     default_data = DB
     model = Name
 
-    def test_swear(self, name):
-        """
-        Summary.
-
-        Args:
-            name (_type_): _description_
-
-        Returns:
-            _type_: _description_
-        """
-        return name
-
-    def build_surname(self, lname):
-        return self.testSwear(lname)
-
 
 class CalashiteSurnameFactory(BaseSurnameFactory):
     """Method #1."""
@@ -465,25 +450,23 @@ class ShouFactory(ComplexFactory):
         72,
     ]
 
-    def surname(self, subrace=12):
+    def shou_surname_validator(items):
         """
-        Summary.
+        Check if item is not unique
 
-        Args:
-            subrace (int, optional): _description_. Defaults to 12.
-
-        Returns:
-            _type_: _description_
+        :param unique_with: Values to check
+        :return: Item validator
         """
-        rnd1 = self.data.nm70
-        rnd2 = self.data.nm71
-        rnd3 = self.data.nm72
 
-        if self.data.nm72.index(rnd3) < 3:
-            while self.data.nm70.index(rnd1) < 3:
-                rnd1 = self.data.nm70
+        def f(item):
+            if items[2].item_id < 3:
+                return item.item_id >= 3
 
-        return "".join([rnd1, rnd2, rnd3])
+        return f
+
+    validators = {
+        1: shou_surname_validator,
+    }
 
 
 class TuramiSurnameFactory(ComplexFactory):
@@ -1231,6 +1214,18 @@ class OldNames(Names):
 # 10-11 Rashemi
 # 12-13 Shou
 # 14-15 Turami
+__SUBRACES = {
+    0: TuramiNames,
+    1: CalashiteNames,
+    2: ChondathanNames,
+    3: DamaranNames,
+    4: IlluskanNames,
+    5: MulanNames,
+    6: RashemiNames,
+    7: ShouNames,
+}
+
+
 def names_list(subrace_id):
     """
     Summary.
@@ -1258,27 +1253,29 @@ def names_list(subrace_id):
     return TuramiNames
 
 
-def __name_male(name_id, names, surname):
-    name = ''
-    # while not name:
-    #     name = test_swear(names.male(name_id)).title()
+def __name_male(subrace_id, name_id):
+    names = __SUBRACES.get(subrace_id)
+
+    name = names.male(name_id).title()
+    surname = names.surname(name_id).title()
 
     return name + " " + surname
 
 
-def __name_female(name_id, names, surname):
-    name = ''
-    # while not name:
-    #     name = test_swear(names.female(name_id)).title()
+def __name_female(subrace_id, name_id):
+    names = __SUBRACES.get(subrace_id)
+
+    name = names.female(name_id).title()
+    surname = names.surname(name_id).title()
 
     return name + " " + surname
 
 
-def __name_male_old(name_id, names, surname):
+def __name_male_old():
     return OldNames.male().title()
 
 
-def __name_female_old(name_id, names, surname):
+def __name_female_old():
     return OldNames.female().title()
 
 
@@ -1292,17 +1289,14 @@ def name_gen(name_type=0, name_id=0):
     Yields:
         _type_: _description_
     """
-    names = names_list(name_id)
 
-    surname = ""
-    # while not surname:
-    #     surname = test_swear(names.surname(name_id)).title()
+    subrace_id = int(name_id / 2)
 
     if name_type == 1:
-        return __name_female(name_id, names, surname)
+        return __name_female(subrace_id, name_id)
     elif name_type == 2:
-        return __name_male(name_id, names, surname)
+        return __name_male(subrace_id, name_id)
     elif name_type == 3:
-        return __name_male_old(name_id, names, surname)
+        return __name_male_old()
     elif name_type == 4:
-        return __name_female_old(name_id, names, surname)
+        return __name_female_old()
