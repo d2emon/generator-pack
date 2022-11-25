@@ -205,7 +205,7 @@ class ComplexFactory(ModelFactory, DbFactory):
 
         while len(invalid) > 0:
             for factory_id in invalid:
-                factory = self.factory(factory_id)
+                factory = self.args_factories[factory_id]
                 data[factory_id] = factory(*args, **kwargs)
 
             invalid = list(self.validate_args(data))
@@ -350,16 +350,16 @@ class ComplexFactory(ModelFactory, DbFactory):
         Returns:
             dict[Factory]: Nested factories.
         """
-        factories = {
-            factory_id: cls.get_factory(factory_id, data)
-            for factory_id, factory in cls.factory_classes.items()
-        }
+        # factories = {
+        #     factory_id: cls.get_factory(factory_id, data)
+        #     for factory_id, factory in cls.factory_classes.items()
+        # }
         data_factories = {
             factory_id: cls.get_data_factory(block_id, data)
             for factory_id, block_id in cls.block_map.items()
         }
         return {
-            **factories,
+            # **factories,
             **data_factories,
         }
 

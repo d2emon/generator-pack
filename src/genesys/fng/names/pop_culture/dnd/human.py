@@ -25,7 +25,6 @@ If you prefer this type of name, you can still use Old factory.
 
 import random
 from data.fng.names.pop_culture import dnd
-from data.fng.names import fantasy
 from genesys.fng.database import Database
 from genesys.fng.factories.name_block_factory import MultipleFactoryNameFactory
 from genesys.fng.factories.name_factory import ComplexFactory
@@ -707,7 +706,7 @@ class OldNames(NamesFactory):
 # 10-11 Rashemi
 # 12-13 Shou
 # 14-15 Turami
-__SUBRACES = {
+SUBRACES = {
     0: TuramiNames,
     1: CalashiteNames,
     2: ChondathanNames,
@@ -746,30 +745,60 @@ def names_list(subrace_id):
     return TuramiNames
 
 
-def __name_male(subrace_id, name_id):
-    names = __SUBRACES.get(subrace_id)
+class __BaseNameFactory:
+    model = Name
 
-    name = names.male(name_id).title()
-    surname = names.surname(name_id).title()
+    def factory(self, subrace_id=None):
+        if subrace_id is None:
+            subrace_id = random.randrange(7)
 
-    return name + " " + surname
+        names_factory = SUBRACES.get(subrace_id)
+        names = names_factory()
+        return names
+
+    def name(self, names):
+        factory = names.factory('male')
+        return factory()
+
+    def surname(self, names):
+        factory = names.factory('surname')
+        return factory()
+
+    def __call__(self, *args, subrace_id=None, **kwargs):
+        names = self.factory(subrace_id)
+        name = self.name(names)
+        surname = self.surname(names)
+        return self.model(value=f"{name} {surname}", built_with=names)
 
 
-def __name_female(subrace_id, name_id):
-    names = __SUBRACES.get(subrace_id)
+class __MaleNameFactory(__BaseNameFactory):
 
-    name = names.female(name_id).title()
-    surname = names.surname(name_id).title()
-
-    return name + " " + surname
+    def name(self, names):
+        factory = names.factory('male')
+        return factory()
 
 
-def __name_male_old():
-    return OldNames.male().title()
+class __FemaleNameFactory(__BaseNameFactory):
+
+    def name(self, names):
+        factory = names.factory('female')
+        return factory()
 
 
-def __name_female_old():
-    return OldNames.female().title()
+def name_male(subrace_id=None):
+    return __MaleNameFactory()
+
+
+def name_female(subrace_id=None):
+    return __FemaleNameFactory()
+
+
+def name_male_old():
+    return OldNames.male
+
+
+def name_female_old():
+    return OldNames.female
 
 
 def name_gen(name_type=0, name_id=0):
@@ -786,10 +815,10 @@ def name_gen(name_type=0, name_id=0):
     subrace_id = int(name_id / 2)
 
     if name_type == 1:
-        return __name_female(subrace_id, name_id)
+        return name_female(subrace_id, name_id)
     elif name_type == 2:
-        return __name_male(subrace_id, name_id)
+        return name_male(subrace_id, name_id)
     elif name_type == 3:
-        return __name_male_old()
+        return name_male_old()
     elif name_type == 4:
-        return __name_female_old()
+        return name_female_old()

@@ -18,6 +18,9 @@ from genesys.fng.names.fantasy.basilisk import BasiliskNameFactory
 from genesys.fng.names.place.amusement_park import AmusementParkFactory
 from genesys.fng.names.place.galaxy import GalaxyFactory
 from genesys.fng.names.place.world import WorldFactory
+####
+from genesys.fng.names.pop_culture.dnd.human import name_male, name_male_old, name_female, \
+    name_female_old
 
 
 __name_factories = [
@@ -59,6 +62,24 @@ class TestFantasyNameFactories(unittest.TestCase):
                     factory_name = built_with.__class__
                 print(f"{repr(model)}:\t{factory_name}")
                 self.assertEqual(model.__class__, factory_id)
+
+    def test_dnd_human_name_factories(self):
+        print()
+        factories = [
+            name_male(),
+            # name_male_old,
+            name_female(),
+            # name_female_old,
+        ]
+        for factory in factories:
+            for _ in range(10):
+                model = factory()
+                built_with = model.built_with
+                factory_name = 'UNKNOWN'
+                if built_with is not None:
+                    factory_name = built_with.__class__
+                print(f"{repr(model)}:\t{factory_name}")
+                self.assertEqual(model.__class__, factory.model)
 
 
 if __name__ == "__main__":
