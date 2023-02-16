@@ -2,12 +2,13 @@ from flask import jsonify
 from config import DB_CONFIG
 from ..app import app
 
+from .and_why import *
+
 
 __DATA = [
     'and_why',
     # data
     # genesys
-    # models
     'campsite',
     # data
     # genesys
