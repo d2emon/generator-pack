@@ -1,4 +1,4 @@
-from factories.model import ModelFactory
+from factories.model.model import ModelFactory
 from ..models import Doll
 from .gender import GenderFactory
 
