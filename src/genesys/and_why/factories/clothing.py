@@ -16,6 +16,8 @@ class ClothingFactory(Factory):
 
     def __call__(self, gender=None, items=None, *args, **kwargs):
         to_fill = items or self.__clothing_provider.by_gender(gender)
+        if not to_fill:
+            return
 
         for slot in self.__slot_factory():
             item = to_fill.by_slot(slot).random_item()
