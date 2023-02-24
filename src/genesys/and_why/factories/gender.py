@@ -1,11 +1,10 @@
 from factories.factory import Factory
-from factories.list_factory import ListFactory
-from ..providers.gender_provider import GENDER_PROVIDER
+from ..providers import PROVIDER
 
 
 class GenderFactory(Factory):
     def __init__(self, data=None):
-        self.__data = data or GENDER_PROVIDER
+        self.__data = data or PROVIDER
 
     @property
     def data(self):

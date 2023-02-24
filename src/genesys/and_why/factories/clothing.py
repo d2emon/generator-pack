@@ -1,6 +1,6 @@
 from factories.factory import Factory
-from ..providers.clothing_provider import CLOTHING_PROVIDER
 from .slot import SlotFactory
+from ..providers import PROVIDER
 
 
 class ClothingFactory(Factory):
@@ -8,19 +8,18 @@ class ClothingFactory(Factory):
         super().__init__()
 
         # Providers
-        self.__clothing_provider = data or CLOTHING_PROVIDER
-        self.__slot_provider = self.__clothing_provider.slot_provider
+        self.__provider = data or PROVIDER
 
         # Factories
-        self.__slot_factory = SlotFactory(self.__slot_provider)
+        self.__slot_factory = SlotFactory(self.__provider)
 
     def __call__(self, gender=None, items=None, *args, **kwargs):
-        to_fill = items or self.__clothing_provider.by_gender(gender)
+        to_fill = items or self.__provider.by_gender(gender)
         if not to_fill:
             return
 
         for slot in self.__slot_factory():
-            item = to_fill.by_slot(slot).random_item()
+            item = to_fill.by_slot(slot).random()
             if item is not None:
                 yield item
 

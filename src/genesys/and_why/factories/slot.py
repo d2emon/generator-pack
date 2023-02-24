@@ -1,20 +1,27 @@
 import random
-from factories.list_factory import ListFactory
-from ..providers.slot_provider import SLOT_PROVIDER
+from factories.factory import Factory
+from ..providers import PROVIDER
 
 
-class SlotFactory(ListFactory):
-    probability = 75
-
+class SlotFactory(Factory):
     def __init__(self, data=None):
-        super().__init__(data or SLOT_PROVIDER)
+        self.data = data or PROVIDER
 
-    def __check_probability(self):
-        return random.randrange(100) < self.probability
+    @property
+    def probability(self):
+        return self.data.probability
+
+    @property
+    def slots(self):
+        return self.data.slots
+
+    def __check_probability(self, value=None):
+        if value is None:
+            value = random.randrange(100)
+
+        return value < self.probability
 
     def __call__(self, *args, **kwargs):
-        return (
-            slot
-            for slot in self.data.slots
-            if self.__check_probability()
-        )
+        for slot in self.slots:
+            if self.__check_probability():
+                yield slot
