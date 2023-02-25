@@ -10,32 +10,28 @@ GENDERS = (
     MALE,
     FEMALE,
 )
-
-def show_model(item):
-    return item.data
-
-
-def show_item(item):
-    return item
-
-
-def show_items(item):
-    return list(item)
-
-
-def show_factory(factory_class, view):
-    factory = factory_class()
-    print(factory_class.__name__)
-
-    for gender in GENDERS:
-        item = factory(gender=gender)
-        print('\t', gender)
-        print('\t\t', repr(item))
-        print('\t\t', view(item))
-
+MODELS_COUNT = 5
+CHANGE_COUNT = 5
 
 if __name__ == "__main__":
-    show_factory(ClothingFactory, show_items)
-    show_factory(DollFactory, show_model)
-    show_factory(GenderFactory, show_item)
-    show_factory(SlotFactory, show_items)
+    clothing_factory = ClothingFactory()
+    doll_factory = DollFactory()
+    slot_factory = SlotFactory()
+
+    for gender in GENDERS:
+        for _ in range(MODELS_COUNT):
+            slot = slot_factory(gender=gender)
+            doll = doll_factory(gender=gender)
+
+            print()
+            print("Slot", gender, list(slot))
+
+            print()
+            print('Doll', gender, repr(doll))
+
+            for _ in range(CHANGE_COUNT):
+                print()
+                clothing = clothing_factory(gender=gender)
+                for item in clothing:
+                    doll.put_on(item)
+                print(doll.slots)
