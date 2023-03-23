@@ -1,6 +1,6 @@
 import random
 from factories.factory import Factory
-from models.v4.keyed.markov import MarkovUnit
+from models.markov import MarkovUnit
 
 
 class MarkovProvider(Factory):

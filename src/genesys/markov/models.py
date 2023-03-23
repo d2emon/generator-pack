@@ -1,4 +1,4 @@
-from models.v4.keyed import MarkovChain
+from models.markov import MarkovChain
 from models.model import Model
 
 

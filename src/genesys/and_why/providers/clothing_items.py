@@ -1,5 +1,5 @@
 from database.array_database import ArrayDatabase
-from models.v4.keyed.slotted import SlotItem
+from models.slotted import SlotItem
 
 
 class ClothingItems(ArrayDatabase):

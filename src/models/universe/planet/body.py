@@ -5,7 +5,7 @@
 - TerraformedMoon
 """
 from models.nested_model import NestedModel
-# from models.v4.mixins import TerraformedMixin
+# from models.mixins import TerraformedMixin
 # from models.v5.life import Life
 # from models.v5.terrain import Ocean, Sky
 from .atmosphere import Atmosphere

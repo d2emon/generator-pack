@@ -1,5 +1,5 @@
 from data.and_why import genders
-from models.v4.keyed.slotted import Slotted
+from models.slotted import Slotted
 
 
 class Doll(Slotted):

@@ -4,7 +4,7 @@
 - TelluricPlanet
 - GasGiant
 """
-# from models.v4.mixins import TerraformedMixin
+# from models.mixins import TerraformedMixin
 from .body import PlanetLike, Moon
 
 
