@@ -1,4 +1,4 @@
-from models.v4.models import DescriptiveModel
+from models.descriptive_model import DescriptiveModel
 
 
 class ClothingModel(DescriptiveModel):
