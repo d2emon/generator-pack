@@ -20,6 +20,7 @@ class TestEncounterManager(unittest.TestCase):
         result = encounters_manager.encounters(count)
 
         for day_id, day in enumerate(result):
+            print("Day:", day, repr(day))
             self.assertEqual(str(day), f"День {day_id + 1} из {count}")
 
 

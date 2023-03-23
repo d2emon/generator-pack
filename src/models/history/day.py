@@ -32,3 +32,6 @@ class Day(Events):
     def get_events(self):
         yield from self.daily
         yield from self.nightly
+
+    def __str__(self) -> str:
+        return str(self.value)

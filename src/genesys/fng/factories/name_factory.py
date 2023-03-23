@@ -389,8 +389,19 @@ class ComplexFactory(ModelFactory, DbFactory):
 
     @classmethod
     def from_factories(cls, **factories):
-        factory = cls()
-        factory.factories = { **factories }
+        class FromFactories(cls):
+            def __init__(self):
+                super().__init__()
+                self.factories = { **factories }
+
+            def __call__(self, *args, **kwargs):
+                items = {key: factory(*args, **kwargs) for key, factory in self.factories.items()}
+                return {
+                    **kwargs,
+                    **items,
+                }
+
+        factory = FromFactories()
         return factory
 
     def __len__(self):
