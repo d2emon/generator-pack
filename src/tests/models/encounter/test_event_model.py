@@ -1,6 +1,6 @@
 import random
 import unittest
-from models.distance import Distance
+from models.scales.distance import Distance
 from models.history.time import Time
 from models.events.event import Event, DailyEvent, NightlyEvent
 

@@ -1,5 +1,5 @@
 from factories.factory import Factory
-from models.distance import Distance
+from models.scales.distance import Distance
 
 
 class DistanceFactory(Factory):

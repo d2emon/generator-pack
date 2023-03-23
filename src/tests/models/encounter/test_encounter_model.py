@@ -1,7 +1,7 @@
 import random
 import unittest
-from models.distance import Distance
-from models.distance.distance_group import DistanceGroup
+from models.scales.distance import Distance
+from models.scales.distance.distance_group import DistanceGroup
 from models.encounters import Encounter
 from models.encounters.clash import ClashEncounter, MeetEncounter, HaltEncounter
 from models.encounters.hint import HintEncounter

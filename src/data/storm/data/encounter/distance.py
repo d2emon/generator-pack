@@ -1,5 +1,5 @@
 from dice.dice import Dice
-from models.distance.distance_group import DistanceGroup
+from models.scales.distance.distance_group import DistanceGroup
 from models.history.time import Time
 
 

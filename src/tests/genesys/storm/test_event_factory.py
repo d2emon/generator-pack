@@ -2,7 +2,7 @@ import random
 import unittest
 from genesys.storm.encounter.event import EventFactory, DailyEventFactory, NightlyEventFactory
 from genesys.storm.encounter.distance import DistanceFactory
-from models.distance import Distance
+from models.scales.distance import Distance
 from models.encounters import Encounter
 from models.events.event import Event, DailyEvent, NightlyEvent
 
