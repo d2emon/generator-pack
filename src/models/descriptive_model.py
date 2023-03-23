@@ -1,25 +1,12 @@
 import random
-from .complex_model import ComplexModel
+from .model import Model
 
 
-class DescriptiveModel(ComplexModel):
-    fields = []
-
-    class Factory:
-        def __init__(self, provider):
-            self.provider = provider
-
-        def __call__(self, *args, **kwargs):
-            return next(self.provider())
-
-    def __init__(self, value=None, factory=None, **kwargs):
-        self.__value = value
-        self.__factory = None
+class DescriptiveModel(Model):
+    def __init__(self, value=None, **kwargs):
         super().__init__(**kwargs)
 
-    @property
-    def value(self):
-        return self.__value
+        self.value = value
 
     @property
     def description(self):
@@ -27,56 +14,49 @@ class DescriptiveModel(ComplexModel):
 
     @description.setter
     def description(self, value):
-        self.__value = value
+        self.value = value
 
     def __str__(self):
         return self.description
 
-    def __get_factory(self):
-        f = self.Factory(None)
 
-        def build(*args, **kwargs):
-            if f is None:
-                return None
-
-            data = f(*args, **kwargs)
-            return self.__class__(**data)
-
-        return build
-
-    @property
-    def factory(self):
-        if self.__factory is None:
-            self.__factory = self.__get_factory()
-        return self.__factory
-
-    def build(self, *args, **kwargs):
-        factory = self.factory
-
-        if factory is None:
-            return None
-
-        return factory(*args, **kwargs)
-
-
-class ComplexModelV4(DescriptiveModel):
-    factories = dict()
-
-    @classmethod
-    def by_chance(cls, chance=0.0):
-        return next((cls.factories[c] for c in sorted(cls.factories.keys()) if c >= chance), None)
-
-    def __get_factory(self):
-        return self.by_chance(random.uniform(0, 100))
-
-    @property
-    def factory(self):
-        if self.__factory is None:
-            self.__factory = self.__get_factory()
-        return self.__factory
-
-
-class ListModelV4(DescriptiveModel):
+class ListDescriptiveModel(DescriptiveModel):
     @property
     def description(self):
         return " ".join(self.value)
+
+
+class FactoryModel(Model):
+    def __init__(self, *args, factory=None, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.factory = factory
+
+    def build(self, *args, **kwargs):
+        return self.factory(*args, **kwargs)
+
+
+class ModelFactory:
+    def fields_factory(self, *args, **kwargs):
+        raise NotImplementedError()
+
+    def __call__(self, *args, **kwargs):
+        fields_factory = self.fields_factory()
+
+        if fields_factory is None:
+            return None
+
+        data = fields_factory(*args, **kwargs)
+        return self.model(**data)
+
+
+class ChanceFactory:
+    def __init__(self):
+        super().__init__()
+        self.factories = dict()
+
+    def by_chance(self, chance=0.0):
+        return next((self.factories[c] for c in sorted(self.factories.keys()) if c >= chance), None)
+
+    def __call__(self, *args, **kwargs):
+        return self.by_chance(random.uniform(0, 100))
