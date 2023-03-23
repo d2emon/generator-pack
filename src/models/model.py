@@ -130,7 +130,6 @@ class Model:
         Returns:
             str: Model value.
         """
-        # return str(self.value).title()
         return str(self.value)
 
     def __repr__(self) -> str:
