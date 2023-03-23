@@ -51,16 +51,19 @@ class TestModel(unittest.TestCase):
         self.assertEqual(model.value, "new value")
 
     def test_data(self):
-        model = Model(**self.data)
+        model = Model()
+
+        model.data = self.data
 
         self.assertEqual(model.data, self.data)
         self.assertEqual(model.value, self.data['value'])
         self.assertEqual(model['value1'], self.data['value1'])
 
-        model['value1'] = "new value"
+        model.value = "new value"
+        self.assertEqual(model.value, "new value")
 
-        self.assertEqual(model['value1'], "new value")
-
+        model['value1'] = "new value 1"
+        self.assertEqual(model['value1'], "new value 1")
 
     def test_str(self):
         text = str(self.model.value)
@@ -70,7 +73,7 @@ class TestModel(unittest.TestCase):
         self.assertEqual(len(self.model), len(text))
 
     def test_named_model(self):
-        model = Named(name='NAME')
+        model = Named(name='Name')
         self.assertEqual(str(model), "Name")
 
 
