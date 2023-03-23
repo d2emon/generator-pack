@@ -84,7 +84,7 @@ class Model:
         Returns:
             str: Model value.
         """
-        return self.data['value']
+        return self.data.get('value')
 
     @value.setter
     def value(self, value: str) -> None:
