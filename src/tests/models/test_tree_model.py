@@ -6,7 +6,6 @@ class TestTreeModel(unittest.TestCase):
     def setUp(self) -> None:
         class NewTreeModel(TreeModel):
             value = TreeModel.child_property(TreeModel)
-            values = TreeModel.children_property(TreeModel)
 
         self.items = [TreeModel() for _ in range(10)]
         self.model = NewTreeModel(*self.items, parent="PARENT")

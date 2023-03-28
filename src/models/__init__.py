@@ -10,12 +10,12 @@ models.markov.MarkovUnit - Markov chain unit model. [UNTESTED]
 models.markov.MarkovChain - Markov chain model. [UNTESTED]
 models.name_model.Name - Base name model. [UNTESTED]
 models.named_model.NamedModel - Model with name.
-...models.nested_model - Base model. [UNTESTED]
-...models.placeholder - Base model. [UNTESTED]
-...models.point - Base model. [UNTESTED]
-...models.preparable_model - Base model. [UNTESTED]
-...models.simple_item - Base model. [UNTESTED]
-...models.slotted - Base model. [UNTESTED]
-...models.thing - Base model. [UNTESTED]
-...models.tree_model - Base model. [UNTESTED]
+models.nested_model - Model with name, parent and children.
+...models.placeholder - Base model. [UNUSED] [UNTESTED]
+...models.point - Base model. [UNUSED] [UNTESTED]
+...models.preparable_model - Base model. [UNUSED] [UNTESTED]
+...models.simple_item - Base model. [UNUSED] [UNTESTED]
+...models.slotted - Base model. [UNUSED] [UNTESTED]
+...models.thing - Base model. [UNUSED] [UNTESTED]
+models.tree_model.TreeModel - Model with children and parent.
 """
