@@ -38,7 +38,12 @@ class TestEncounterModel(unittest.TestCase):
         self.assertFalse(encounter.is_surprised)
         self.assertFalse(encounter.is_surprising)
         self.assertEqual(encounter.text, encounter_text)
+        self.assertEqual(encounter.description, 'DESCRIPTION')
         self.assertEqual(str(encounter), 'DESCRIPTION')
+
+        encounter.value = 'DESCRIPTION2'
+        self.assertEqual(encounter.description, 'DESCRIPTION2')
+        self.assertEqual(str(encounter), 'DESCRIPTION2')
 
     def test_encounter_surprised(self):
         encounter_text = '\n'.join([

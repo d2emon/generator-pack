@@ -1,4 +1,5 @@
 from dice.dice import Dice
+from models.model import Model
 
 
 class Fraction:
@@ -8,6 +9,7 @@ class Fraction:
         *args,
         **kwargs,
     ):
+        super().__init__(*args, **kwargs)
         self.surprised = surprised
 
     def check_surprise(self):
