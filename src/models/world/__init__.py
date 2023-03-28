@@ -1,4 +1,5 @@
 from models.complex_model import ComplexModel
+from models.named_model import NamedModel
 from .shape import WorldShape
 from .size import WorldSize
 from .world_type import WorldType
@@ -180,16 +181,13 @@ from .world_type import WorldType
 #     путешествие, торговля.
 
 
-class World(ComplexModel):
+class World(ComplexModel, NamedModel):
     children = {
         'shape': WorldShape,
         'world_type': WorldType,
         'size_class': WorldSize,
     }
 
-    value = ComplexModel.field_property('name', '')
-
-    name = ComplexModel.field_property('name', '')
     shape = ComplexModel.field_property('shape')
     size_class = ComplexModel.field_property('size_class')
     world_size = ComplexModel.field_property('world_size', 0)
@@ -208,7 +206,7 @@ class World(ComplexModel):
     @property
     def description(self):
         return "\n".join([
-            f"{self}"
+            f"{self}",
             f"{self.world_type} {self.shape} ({self.world_size} миль)",
             f"{self.world_type.description}",
             f"Возможные столкновения: {self.world_type.encounters}",

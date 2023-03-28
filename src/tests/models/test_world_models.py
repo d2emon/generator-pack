@@ -121,7 +121,9 @@ class TestWorldsModel(unittest.TestCase):
                 "ENCOUNTER 2",
             ]
         )
+        name = "WORLD NAME"
         description = "\n".join([
+            f"{name}",
             f"{world_type} {shape} ({world_size} миль)",
             f"{world_type.description}",
             f"Возможные столкновения: {world_type.encounters}",
@@ -130,6 +132,7 @@ class TestWorldsModel(unittest.TestCase):
         ])
 
         model = World(
+            name=name,
             world_size=world_size,
             size_class=size_class,
             shape=shape,
