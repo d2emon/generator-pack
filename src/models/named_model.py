@@ -1,22 +1,60 @@
-class NamedModel:
+"""Named model class."""
+from .model import Model
+
+
+class NamedModel(Model):
+    """Model with name.
+
+    Attribute:
+        default_name (str): Default name for model.
+    """
+
     default_name = None
 
     def __init__(self, name=None):
+        """Initialize model.
+
+        Args:
+            name (str, optional): Initial name for model. Defaults to None.
+        """
+        super().__init__()
         self.__name = name
 
     @property
-    def name(self):
+    def value(self) -> str:
+        """Get model value.
+
+        Returns:
+            str: Model value.
+        """
         if self.__name is None:
             self.__name = self.default_name or self.__class__.__name__
         
         return self.__name
 
-    @name.setter
-    def name(self, value):
+    @value.setter
+    def value(self, value: str):
+        """Set model value.
+
+        Args:
+            value (str): Model value.
+        """
         self.__name = value
 
-    def __str__(self):
-        return str(self.name)
+    @property
+    def name(self) -> str:
+        """Get model name.
 
-    def __repr__(self):
-        return "<{} \"{}\">".format(self.__class__.__name__, str(self))
+        Returns:
+            str: Model name.
+        """
+        return self.value
+
+    @name.setter
+    def name(self, value: str):
+        """Set model name.
+
+        Args:
+            value (str): Model name.
+        """
+        self.value = value

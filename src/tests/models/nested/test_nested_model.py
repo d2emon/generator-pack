@@ -6,7 +6,7 @@ class TestNestedModel(unittest.TestCase):
     def setUp(self) -> None:
         class NewModel(NestedModel):
             value = NestedModel.child_property(NestedModel)
-            values = NestedModel.children_property(NestedModel)
+            # values = NestedModel.children_property(NestedModel)
 
         self.items = [NestedModel() for _ in range(10)]
         self.model = NewModel(
