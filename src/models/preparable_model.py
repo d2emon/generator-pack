@@ -1,34 +1,39 @@
+"""Preparable model class."""
 from .model import Model
 
 
 class PreparableModel(Model):
-    """
-    Model with prepare data
-    """
+    """Model with prepare data."""
 
     @classmethod
-    def check_swear(cls, value) -> str:
-        """
-        Check name for bad words
+    def check_swear(cls, value: str) -> str:
+        """Check name for bad words.
 
-        :param name: Uncleaned name
-        :return: Cleaned name
+        Args:
+            value (str): Name to test.
+
+        Returns:
+            str: Name without bad words.
         """
         return value
 
     @classmethod
-    def prepare(cls, value) -> str:
-        """
-        Prepare model
+    def prepare(cls, value: str) -> str:
+        """Prepare value for model.
 
-        :param name: Unprepared model
-        :return: Prepared model
+        Args:
+            value (str): Unprepared value.
+
+        Returns:
+            str: Prepared model.
         """
         return cls.check_swear(str(value))
         
     @property
     def value(self) -> str:
-        """
-        :return: Model as string
+        """Get model value.
+
+        Returns:
+            str: Model value.
         """
         return self.prepare(self['value'] or '')

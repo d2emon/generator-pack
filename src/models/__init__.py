@@ -12,7 +12,7 @@ models.name_model.Name - Base name model. [UNTESTED]
 models.named_model.NamedModel - Model with name.
 models.nested_model.NestedModel - Model with name, parent and children.
 models.point.Point - Model with x and y. [UNTESTED]
-...models.preparable_model - Base model. [UNUSED] [UNTESTED]
+models.preparable_model.PreparableModel - Preparable model.
 ...models.simple_item - Base model. [UNUSED] [UNTESTED]
 ...models.slotted - Base model. [UNUSED] [UNTESTED]
 ...models.thing - Base model. [UNUSED] [UNTESTED]
