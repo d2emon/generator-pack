@@ -12,14 +12,6 @@ class Name(Model):
 
     glue = ""
 
-    def __init__(self, *items, built_with=None, **fields):
-        """Create data model.
-
-        Args:
-            built_with (Factory, optional): Model factory. Defaults to None.
-        """
-        super().__init__(*items, built_with=built_with, **fields)
-
     @property
     def value(self) -> str:
         """Get model value.

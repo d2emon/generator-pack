@@ -5,7 +5,7 @@ from .model import Model
 
 class ComplexModel(Model):
     """Model with children.
-    
+
     Attributes:
         uuid (str): Model UUID.
         built_with (Factory): Model factory.

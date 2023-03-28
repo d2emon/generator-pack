@@ -28,7 +28,7 @@ class PreparableModel(Model):
             str: Prepared model.
         """
         return cls.check_swear(str(value))
-        
+
     @property
     def value(self) -> str:
         """Get model value.

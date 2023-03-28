@@ -29,7 +29,7 @@ class NamedModel(Model):
         """
         if self.__name is None:
             self.__name = self.default_name or self.__class__.__name__
-        
+
         return self.__name
 
     @value.setter

@@ -4,7 +4,7 @@ from typing import Any, Collection
 
 class Model:
     """Base model.
-    
+
     Attributes:
         uuid (str): Model UUID.
         built_with (Factory): Model factory.
@@ -101,7 +101,7 @@ class Model:
         self.__fields = {
             name: value
             for name, value in fields.items()
-            if not len(field_names) or name in field_names
+            if not field_names or name in field_names
         }
 
     def __getitem__(self, key: str) -> Any:

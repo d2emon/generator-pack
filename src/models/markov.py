@@ -1,5 +1,4 @@
-"""Models for Markov chains. """
-from typing import Any
+"""Models for Markov chains."""
 from .model import Model
 
 
@@ -49,7 +48,7 @@ class MarkovChain(Model):
         Returns:
             MarkovUnit: Last unit of chain.
         """
-        return self.values[-1] if len(self.values) else ''
+        return self.values[-1] if self.values else ''
 
     @property
     def value(self) -> str:

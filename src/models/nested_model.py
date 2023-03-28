@@ -6,21 +6,21 @@ from .tree_model import TreeModel
 
 class NestedModel(TreeModel, NamedModel):
     """Model with name, parent, children and placeholders."""
+
     def __init__(
         self,
         name=None,
         *children,
         parent=None,
         placeholders=None,
-        **kwargs,
     ):
         """Initialize nested model.
 
         Args:
             name (str, optional): Model name. Defaults to None.
             parent (Model, optional): Parent model. Defaults to None.
-            placeholders (Collection[Callable[[], TreeModel]], optional): Factories to build children.
-              Defaults to None.
+            placeholders (Collection[Callable[[], TreeModel]], optional):
+              Factories to build children. Defaults to None.
         """
         super().__init__(
             *children,
@@ -44,7 +44,7 @@ class NestedModel(TreeModel, NamedModel):
         """Build children from placeholders."""
         super().build_children()
 
-        if not len(self.__placeholders):
+        if not self.__placeholders:
             return
 
         for placeholder in filter(None, self.__placeholders):

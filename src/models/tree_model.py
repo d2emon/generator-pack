@@ -50,13 +50,16 @@ class TreeModel(Model):
         """
         return self.__parent
 
-    # TODO: Update parent if changed
+    @parent.setter
+    def parent(self, value: Model) -> None:
+        # TODO: Update parent if changed
+        self.__parent = value
 
     def build_children(self) -> None:
         """Build unbuilt children."""
-        for id, child in enumerate(self.__children):
+        for child_id, child in enumerate(self.__children):
             if isinstance(child, Factory):
-                self.__children[id] = child()
+                self.__children[child_id] = child()
 
     def add_child(self, child: Model) -> None:
         """Add child model.
@@ -65,7 +68,7 @@ class TreeModel(Model):
             child (TreeModel): Child model.
         """
         self.__children.append(child)
-        child.__parent = self
+        child.parent = self
 
     def remove_child(self, child: Model) -> None:
         """Remove child model.
@@ -75,7 +78,7 @@ class TreeModel(Model):
         """
         if child in self.__children:
             self.__children.remove(child)
-        child.__parent = None
+        child.parent = None
 
     def children_by_class(self, *child_classes) -> Collection:
         """Get children with one of classes.
@@ -117,11 +120,35 @@ class TreeModel(Model):
 
     # Search
 
-    def __by_class(self, child_class):
+    def __by_class(self, child_class) -> Collection:
+        """Get children by class.
+
+        Args:
+            child_class (class): Class to search.
+
+        Returns:
+            Collection[Model]: Selected children.
+        """
         return (child for child in self.children if isinstance(child, child_class))
 
-    def all_by_class(self, child_class):
+    def all_by_class(self, child_class) -> Collection:
+        """List children by class.
+
+        Args:
+            child_class (class): Class to search.
+
+        Returns:
+            Collection[Model]: Selected children.
+        """
         return list(self.__by_class(child_class))
 
-    def first_by_class(self, child_class):
+    def first_by_class(self, child_class) -> Model:
+        """Get child by class.
+
+        Args:
+            child_class (class): Class to search.
+
+        Returns:
+            Model: Selected child.
+        """
         return next(self.__by_class(child_class), None)

@@ -5,7 +5,7 @@ from .model import Model
 
 
 class Point(Model):
-    """Model with x and y
+    """Model with x and y.
 
     Attributes:
         field_names (Collection): Field names.
@@ -105,10 +105,10 @@ class Point(Model):
         Returns:
             Point: Point in the middle
         """
-        percent = random.uniform(100)
-        dx = point2.x - point1.x
-        dy = point2.y - point1.y
+        percent = random.uniform(0, 100)
+        d_x = point2.x - point1.x
+        d_y = point2.y - point1.y
         return cls(
-            int(point1.x + percent * dx),
-            int(point1.y + percent * dy),
+            int(point1.x + percent * d_x),
+            int(point1.y + percent * d_y),
         )
