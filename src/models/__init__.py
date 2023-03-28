@@ -11,7 +11,6 @@ models.markov.MarkovChain - Markov chain model. [UNTESTED]
 models.name_model.Name - Base name model. [UNTESTED]
 models.named_model.NamedModel - Model with name.
 models.nested_model - Model with name, parent and children.
-...models.placeholder - Base model. [UNUSED] [UNTESTED]
 ...models.point - Base model. [UNUSED] [UNTESTED]
 ...models.preparable_model - Base model. [UNUSED] [UNTESTED]
 ...models.simple_item - Base model. [UNUSED] [UNTESTED]
