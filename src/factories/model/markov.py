@@ -1,10 +1,6 @@
-from models.model import Model
+from models.markov import MarkovChain
 # TODO: Resolve circular and uncomment this
 # from factories.model import ModelFactory
-
-
-class MarkovChain(Model):
-    pass
 
 
 # TODO: Resolve circular and remove this

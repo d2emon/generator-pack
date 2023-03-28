@@ -1,55 +1,89 @@
-from models.model import Model
+"""Models for Markov chains. """
+from typing import Any
+from .model import Model
 
 
 class MarkovUnit(Model):
-    fields = [
+    """Model for unit of chain.
+
+    Attributes:
+        field_names (Collection): Field names.
+        prev: (Any): Previous unit value.
+        value (Any): Unit value.
+    """
+
+    field_names = [
         'prev',
         'value',
     ]
 
+    prev = Model.field_property('prev')
+    value = Model.field_property('value')
+
     def __init__(self, prev, value):
+        """Initialize model.
+
+        Args:
+            prev (Any): Previous unit value.
+            value (Any): Unit value.
+        """
         super().__init__(prev=prev, value=value)
-
-    @property
-    def prev(self):
-        return self['prev']
-
-    @property
-    def value(self):
-        return self['value']
-
-    def __str__(self):
-        return str(self.value)
 
 
 class MarkovChain(Model):
-    fields = [
-        'units',
-    ]
+    """Model for Markov chain."""
 
     def __init__(self, units=None):
-        super().__init__(units=units or [])
+        """Initialize Markov chain.
+
+        Args:
+            units (list, optional): List of MarkovUnit. Defaults to None.
+        """
+        super().__init__()
+        self.values = units or []
 
     @property
-    def units(self):
-        return self['units']
+    def last(self) -> MarkovUnit:
+        """Get last unit of chain.
+
+        Returns:
+            MarkovUnit: Last unit of chain.
+        """
+        return self.values[-1] if len(self.values) else ''
 
     @property
-    def last(self):
-        return self.units[-1] if len(self.units) else ''
+    def value(self) -> str:
+        """Get chain as str.
 
-    @property
-    def value(self):
-        return ''.join(map(str, self.units)).strip()
+        Returns:
+            str: Chain as str.
+        """
+        return ''.join(map(str, self.values)).strip()
 
-    def __len__(self):
-        return len(self.units)
+    def __len__(self) -> int:
+        """Get chain length.
 
-    def __str__(self):
+        Returns:
+            int: Chain units count.
+        """
+        return len(self.values)
+
+    def __str__(self) -> str:
+        """Get chain as str.
+
+        Returns:
+            str: Chain as str.
+        """
         return self.value
 
-    def reset(self):
-        self['units'] = []
+    def reset(self) -> None:
+        """Reset chain units."""
+        self.values = []
 
-    def append(self, unit):
-        self.units.append(unit)
+    def append(self, unit: MarkovUnit) -> None:
+        """Add unit to chain.
+
+        Args:
+            unit (MarkovUnit): Unit to add.
+        """
+        self.values.append(unit)

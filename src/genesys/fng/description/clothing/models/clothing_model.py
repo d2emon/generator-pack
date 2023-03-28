@@ -1,8 +1,5 @@
-from models.descriptive_model import DescriptiveModel, FactoryModel
+from models.descriptive_model import DescriptiveModel
 
 
-class ClothingModel(DescriptiveModel, FactoryModel):
-
-    @classmethod
-    def model_factory(cls, *args, **kwargs):
-        return None
+class ClothingModel(DescriptiveModel):
+    pass
