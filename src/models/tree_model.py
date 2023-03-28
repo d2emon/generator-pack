@@ -11,13 +11,14 @@ class TreeModel(Model):
         self,
         *children,
         parent=None,
+        **fields,
     ):
         """Initialize tree model.
 
         Args:
             parent (TreeModel, optional): Parent for model. Defaults to None.
         """
-        super().__init__()
+        super().__init__(**fields)
         self.__children = list(children)
         self.__parent = parent
 
@@ -113,3 +114,14 @@ class TreeModel(Model):
             return next(self.children_by_class(child_classes), None)
 
         return property(get_child, None, None, doc)
+
+    # Search
+
+    def __by_class(self, child_class):
+        return (child for child in self.children if isinstance(child, child_class))
+
+    def all_by_class(self, child_class):
+        return list(self.__by_class(child_class))
+
+    def first_by_class(self, child_class):
+        return next(self.__by_class(child_class), None)

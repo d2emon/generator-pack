@@ -1,9 +1,8 @@
-from factories.list_factory import ListFactory
-from factories.model.nested import ThingFactory, MultipleFactory, ProbableFactory
-from models.simple_item import SimpleItem
+from .list_factory import ListFactory
+from .model.nested import ThingFactory, MultipleFactory, ProbableFactory
 
 
-class Thing(SimpleItem):
+class ThingFactories:
     class ChildrenFactory:
         default = []
 
@@ -17,6 +16,12 @@ class Thing(SimpleItem):
         def __next__(self):
             return (child.factory().generate() for child in self.data() if child is not None)
 
+        def __call__(self):
+            return list(next(self))
+
+    class DataFactory:
+        default = []
+
     class NameFactory:
         default = ''
 
@@ -26,11 +31,12 @@ class Thing(SimpleItem):
         def __next__(self):
             return self.default
 
-    def __init__(self, name=None, children=None, **fields):
-        super().__init__(**fields)
-        self.__name = name
-        self.__children = children
-        self.__children_factory = None
+        def __call__(self):
+            return next(self)
+
+    __children_factory = None
+    __data_factory = None
+    __name_factory = None
 
     @classmethod
     def children_factory(cls):
@@ -42,15 +48,25 @@ class Thing(SimpleItem):
             cls.__children_factory = cls.ChildrenFactory()
         return cls.__children_factory
 
-    @property
-    def children(self):
-        if self.__children is None:
-            self.__children = list(next(self.children_factory()))
-        return self.__children
+    @classmethod
+    def data_factory(cls):
+        """
+        Data factory getter
+        :return: Data factory
+        """
+        if cls.__data_factory is None:
+            cls.__data_factory = cls.DataFactory()
+        return cls.__data_factory
 
-    @children.setter
-    def children(self, value):
-        self.__children = value
+    @classmethod
+    def name_factory(cls):
+        """
+        Name factory getter
+        :return: Name factory
+        """
+        if cls.__name_factory is None:
+            cls.__name_factory = cls.NameFactory()
+        return cls.__name_factory
 
     @classmethod
     def children_data(cls):
@@ -96,14 +112,3 @@ class Thing(SimpleItem):
     @classmethod
     def new_children_factory(cls):
         return cls.ChildrenFactory()
-
-    # Search
-
-    def __by_class(self, child_class):
-        return (child for child in self.children if isinstance(child, child_class))
-
-    def all_by_class(self, child_class):
-        return list(self.__by_class(child_class))
-
-    def first_by_class(self, child_class):
-        return next(self.__by_class(child_class), None)
