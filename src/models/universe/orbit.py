@@ -6,7 +6,7 @@
 """
 from models.tree_model import TreeModel
 # from ..v5.life import Life
-from .planet.body import PlanetLike
+from ..planet.body import PlanetLike
 
 
 class Orbit(TreeModel):

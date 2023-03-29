@@ -1,5 +1,5 @@
 from factories.nested_factory import NestedFactory
-from models.universe.planet.body import PlanetLike, Asteroid, Moon, TerraformedMoon
+from models.planet.body import PlanetLike, Asteroid, Moon, TerraformedMoon
 # from .body import Asteroid, Moon, TerraformedMoon
 # from ...temporary import ContinentFactory
 # from ...life import AsteroidLifeFactory, MoonLifeFactory

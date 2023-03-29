@@ -1,6 +1,6 @@
 from genesys.nested.factories.nested_factory import NestedFactory
-from models.universe.planet import GasGiant
-from models.universe.planet.atmosphere import Atmosphere
+from models.planet import GasGiant
+from models.planet.atmosphere import Atmosphere
 from . import PlanetFactory
 
 

@@ -1,4 +1,4 @@
-from models.universe.planet.core import PlanetCore
+from models.planet.core import PlanetCore
 from factories.nested_factory import NestedFactory
 # from ...life import PlanetCoreLifeFactory
 # from ...materials import RockFactory, IronFactory, DiamondFactory, MagmaFactory

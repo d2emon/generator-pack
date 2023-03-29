@@ -1,5 +1,5 @@
 from genesys.nested.factories.nested_factory import NestedFactory
-from models.universe.planet import Planet, BarrenPlanet, TelluricPlanet
+from models.planet import Planet, BarrenPlanet, TelluricPlanet
 # from ...temporary import VisitorCityFactory, VisitorInstallationFactory, ContinentFactory, FutureContinentFactory, \
 #     MedievalContinentFactory, AncientContinentFactory, FutureMoonFactory
 # from ...life import BarrenPlanetLifeFactory, VisitorPlanetLifeFactory

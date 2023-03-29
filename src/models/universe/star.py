@@ -6,7 +6,7 @@ from models.tree_model import TreeModel
 # from models.v5.materials import Atom
 # from models.v5.life import Life
 from .orbit import Orbit, PlanetOrbit, AsteroidBelt
-from .planet import Planet
+from ..planet import Planet
 
 
 class Star(TreeModel):

@@ -1,6 +1,6 @@
 from factories.nested_factory import NestedFactory
 from models.universe.orbit import AsteroidBelt
-from models.universe.planet.body import Asteroid
+from models.planet.body import Asteroid
 from .body import PlanetLikeFactory
 
 
