@@ -1,10 +1,10 @@
-from models.field_mixins import WithName
+from models.named_model import NamedModel
 
 
-class WorldShape(WithName):
+class WorldShape(NamedModel):
     field_names = [
-        *WithName.field_names,
+        *NamedModel.field_names,
         'description',
     ]
 
-    description = WithName.field_property('description', '')
+    description = NamedModel.field_property('description', '')

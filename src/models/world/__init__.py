@@ -1,5 +1,5 @@
 from models.complex_model import ComplexModel
-from models.field_mixins import WithName
+from models.named_model import NamedModel
 from .shape import WorldShape
 from .size import WorldSize
 from .world_type import WorldType
@@ -181,9 +181,9 @@ from .world_type import WorldType
 #     путешествие, торговля.
 
 
-class World(ComplexModel, WithName):
+class World(ComplexModel, NamedModel):
     field_names = [
-        *WithName.field_names,
+        *NamedModel.field_names,
         'world_size',
     ]
     children = {

@@ -1,20 +1,19 @@
-from models.model import Model
-from models.field_mixins import WithName
+from models.named_model import NamedModel
 
 
-class WorldSize(WithName):
+class WorldSize(NamedModel):
     field_names = [
-        *WithName.field_names,
+        *NamedModel.field_names,
         'max_size',
         'min_size',
         'size',
         'size_class',
     ]
 
-    size = WithName.field_property('size', '')
-    size_class = WithName.field_property('size_class', '')
+    size = NamedModel.field_property('size', '')
+    size_class = NamedModel.field_property('size_class', '')
 
-    value = WithName.field_property('size_class', '')
+    value = NamedModel.field_property('size_class', '')
 
     @property
     def max_size(self):
