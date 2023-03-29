@@ -1,24 +1,40 @@
-# basic materials and particles
-# (these are very rough simplifications, don't hold all the inaccuracies against me)
+"""
+basic materials and particles
+(these are very rough simplifications, don't hold all the inaccuracies against me)
+
+Models:
+
+models.minerals.Diamond
+models.minerals.Oil
+models.minerals.Magma
+models.minerals.Rock
+models.minerals.Silica
+
+Need:
+
+aluminium
+calcium
+carbon
+iron
+lipids
+oxygen
+potassium
+silicon
+sodium
+"""
+
 
 from .elements import Nucleus, Atom
 from .fire import Fire, Ash
 from .matter import Molecule, Matter, Gas, Steel
-from .minerals import Ammonia, Salt, Silica, Rock, Diamond, Magma, Carbon, Iron
+from .minerals import Ammonia, Salt, Carbon, Iron
 from .organics import OrganicMolecule, Methane, Chitin, Proteins, Lipids, Glucids, Alcohol, Polymers, OrganicMatter, \
-    Oil, Polymeric, Plastic, Rubber, Keratin, Sweat
+    Polymeric, Plastic, Rubber, Keratin, Sweat
 from .particles import Qwubble, Quark, UpQuark, DownQuark, Electron, Particle, Proton, Neutron
 from .portal import Portal
 from .water import Water, Steam, Dew, Ice, Snowflakes, Snow
 
 """
-//basic materials and particles
-//(these are very rough simplifications, don't hold all the inaccuracies against me)
-new Thing("diamond",["carbon"]);
-new Thing("oil",["lipids"]);
-new Thing("magma",[".rock"]);
-new Thing("rock",["silica", "aluminium,30%", "iron,20%", "potassium,20%", "sodium,50%", "calcium,50%"]);
-new Thing("silica",["silicon", "oxygen"]);
 new Thing("chitin",["carbon", "hydrogen", "oxygen", "nitrogen"]);
 new Thing("salt",["chlorine", "sodium"]);
 new Thing("water",["hydrogen", "oxygen"]);

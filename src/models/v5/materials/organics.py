@@ -62,8 +62,8 @@ class OrganicMatter(Matter):
     molecules = Matter.children_property(Molecule)
 
 
-class Oil(OrganicMatter):
-    pass
+# class Oil(OrganicMatter):
+#     pass
 
 
 class Polymeric(OrganicMatter):

@@ -3,8 +3,10 @@
 """
 //basic materials and particles
 //(these are very rough simplifications, don't hold all the inaccuracies against me)
-new Thing("diamond",["carbon"]);
-new Thing("oil",["lipids"]);
+
+models.minerals.diamond
+models.minerals.oil
+
 new Thing("magma",[".rock"]);
 new Thing("rock",["silica","aluminium,30%","iron,20%","potassium,20%","sodium,50%","calcium,50%"]);
 new Thing("silica",["silicon","oxygen"]);
