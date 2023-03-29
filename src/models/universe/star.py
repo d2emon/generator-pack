@@ -2,25 +2,25 @@
 - Star
 - StarSystem
 """
-from models.nested_model import NestedModel
+from models.tree_model import TreeModel
 # from models.v5.materials import Atom
 # from models.v5.life import Life
 from .orbit import Orbit, PlanetOrbit, AsteroidBelt
 from .planet import Planet
 
 
-class Star(NestedModel):
-    # life = NestedModel.child_property(Life)
-    # matter = NestedModel.children_property(Atom)
+class Star(TreeModel):
+    # life = TreeModel.child_property(Life)
+    # matter = TreeModel.children_property(Atom)
     pass
 
 
-class StarSystem(NestedModel):
-    main_star = NestedModel.child_property(Star)
-    stars = NestedModel.children_property(Star)
-    orbits = NestedModel.children_property(Orbit)
-    planets = NestedModel.children_property(Planet)
-    asteroid_belts = NestedModel.children_property(AsteroidBelt)
+class StarSystem(TreeModel):
+    main_star = TreeModel.child_property(Star)
+    stars = TreeModel.children_property(Star)
+    orbits = TreeModel.children_property(Orbit)
+    planets = TreeModel.children_property(Planet)
+    asteroid_belts = TreeModel.children_property(AsteroidBelt)
     # dyson_surfaces = Model.children_property(DysonSurface)
 
 

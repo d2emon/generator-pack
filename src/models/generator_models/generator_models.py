@@ -1,7 +1,7 @@
-from models.nested_model import NestedModel
+from models.tree_model import TreeModel
 
 
-class Model(NestedModel):
+class Model(TreeModel):
     # Name model
     def __init__(self):
         super().__init__()

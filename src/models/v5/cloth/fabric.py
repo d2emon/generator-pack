@@ -5,7 +5,7 @@
 - Leather
 - Cloth
 """
-from models.nested_model import NestedModel as Model
+from models.tree_model import TreeModel as Model
 from ..life.cell import Cell
 from ..materials import Keratin
 

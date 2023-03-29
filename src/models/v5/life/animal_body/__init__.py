@@ -1,4 +1,4 @@
-from models.nested_model import NestedModel as Model
+from models.tree_model import TreeModel as Model
 from .venom import Venom
 from .jelly import Jelly
 from .hair import Hair, Fur, Whiskers

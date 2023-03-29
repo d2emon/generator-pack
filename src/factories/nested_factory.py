@@ -67,6 +67,7 @@ class NestedFactory(ModelFactory):
         **kwargs,
     ):
         return {
+            'name': self.name_factory(provider=self.provider),
             **kwargs,
         }
 
@@ -74,12 +75,9 @@ class NestedFactory(ModelFactory):
         self,
         *children,
         model=None,
-        name=None,
         **kwargs,
     ):
         model_factory = model or self.model_factory
-
-        name = self.name_factory(provider=self.provider)
 
         if len(children) > 0:
             args = children
@@ -89,7 +87,6 @@ class NestedFactory(ModelFactory):
         data = self.get_data(**kwargs)
 
         return model_factory(
-            name,
             *list(args),
             **data,
         )

@@ -20,7 +20,8 @@ class TestNestedModel(unittest.TestCase):
         self.assertEqual(self.model.children, self.items)
 
     def test_placeholders(self):
-        self.model.add_placeholder(NestedModel)
+        self.model.placeholders.append(NestedModel)
+
         self.assertEqual(len(self.model.children), len(self.items) + 1)
         for child in self.model.children_by_class(NestedModel):
             self.assertTrue(isinstance(child, NestedModel))

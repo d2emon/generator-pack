@@ -1,10 +1,10 @@
 """Base tree model class."""
 from typing import Collection
 from factories.factory import Factory
-from .model import Model
+from .named_model import NamedModel
 
 
-class TreeModel(Model):
+class TreeModel(NamedModel):
     """Model with parent and children."""
 
     def __init__(
@@ -42,7 +42,7 @@ class TreeModel(Model):
         self.__children = value
 
     @property
-    def parent(self) -> Model:
+    def parent(self) -> NamedModel:
         """Get parent model.
 
         Returns:
@@ -51,7 +51,7 @@ class TreeModel(Model):
         return self.__parent
 
     @parent.setter
-    def parent(self, value: Model) -> None:
+    def parent(self, value: NamedModel) -> None:
         # TODO: Update parent if changed
         self.__parent = value
 
@@ -61,7 +61,7 @@ class TreeModel(Model):
             if isinstance(child, Factory):
                 self.__children[child_id] = child()
 
-    def add_child(self, child: Model) -> None:
+    def add_child(self, child: NamedModel) -> None:
         """Add child model.
 
         Args:
@@ -70,7 +70,7 @@ class TreeModel(Model):
         self.__children.append(child)
         child.parent = self
 
-    def remove_child(self, child: Model) -> None:
+    def remove_child(self, child: NamedModel) -> None:
         """Remove child model.
 
         Args:
@@ -113,7 +113,7 @@ class TreeModel(Model):
         Returns:
             property: Property to deal with child.
         """
-        def get_child(self) -> Model:
+        def get_child(self) -> NamedModel:
             return next(self.children_by_class(child_classes), None)
 
         return property(get_child, None, None, doc)
@@ -142,7 +142,7 @@ class TreeModel(Model):
         """
         return list(self.__by_class(child_class))
 
-    def first_by_class(self, child_class) -> Model:
+    def first_by_class(self, child_class) -> NamedModel:
         """Get child by class.
 
         Args:

@@ -1,11 +1,11 @@
 """
+Universe stuff
+
 - Supercluster
 - Universe
 - Multiverse
 
 ####
-
-Universe stuff
 
 - Barren Planet
 - Visitor Planet
@@ -33,18 +33,19 @@ Universe stuff
 - D2emon Psyche
 - D2emon Thoughts
 """
-from models.nested_model import NestedModel as Model
+from models.tree_model import TreeModel
 from .galaxy import Galaxy
 
 
-class Supercluster(Model):
+class Supercluster(TreeModel):
     default_name = 'galactic supercluster'
-    galaxies = Model.children_property(Galaxy)
+
+    galaxies = TreeModel.children_property(Galaxy)
 
 
-class Universe(Model):
-    clusters = Model.children_property(Supercluster)
+class Universe(TreeModel):
+    clusters = TreeModel.children_property(Supercluster)
 
 
-class Multiverse(Model):
-    universes = Model.children_property(Universe)
+class Multiverse(TreeModel):
+    universes = TreeModel.children_property(Universe)
