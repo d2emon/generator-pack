@@ -10,21 +10,19 @@ class ComplexModel(Model):
         uuid (str): Model UUID.
         built_with (Factory): Model factory.
         values (Collection): Model values.
-        static_field_names (Collection): Model field names.
         children (dict): Model children.
     """
 
-    static_field_names = []
     children = {}
 
     @property
-    def field_names(self) -> Collection:
+    def allowed_field_names(self) -> Collection:
         """Get field names.
 
         Yields:
             Iterator[Collection]: Field name.
         """
-        yield from self.static_field_names
+        yield from self.field_names
         yield from self.children.keys()
 
     def with_children(self) -> Model:

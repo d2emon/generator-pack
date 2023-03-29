@@ -10,10 +10,10 @@ class ThingModel(Model):
     name = Model.field_property('name')
     image = Model.field_property('image')
 
-    @property
-    def field_names(self):
-        yield "name"
-        yield "image"
+    field_names = [
+        "name",
+        "image",
+    ]
 
 
 class Factory(BaseFactory):

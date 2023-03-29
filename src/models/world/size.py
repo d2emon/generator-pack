@@ -1,20 +1,20 @@
 from models.model import Model
+from models.field_mixins import WithName
 
 
-class WorldSize(Model):
-    value = Model.field_property('size_class', '')
+class WorldSize(WithName):
+    field_names = [
+        *WithName.field_names,
+        'max_size',
+        'min_size',
+        'size',
+        'size_class',
+    ]
 
-    name = Model.field_property('name', '')
-    size = Model.field_property('size', '')
-    size_class = Model.field_property('size_class', '')
+    size = WithName.field_property('size', '')
+    size_class = WithName.field_property('size_class', '')
 
-    @property
-    def field_names(self):
-        yield "max_size"
-        yield "min_size"
-        yield "name"
-        yield "size"
-        yield "size_class"
+    value = WithName.field_property('size_class', '')
 
     @property
     def max_size(self):

@@ -10,11 +10,10 @@ class SerializableModel(Model):
         "field1",
         "field2",
     ]
-
-    @property
-    def field_names(self):
-        yield "field1"
-        yield "field2"
+    field_names = [
+        "field1",
+        "field2",
+    ]
 
 
 class ComplexModel(BaseComplexModel):
@@ -23,8 +22,7 @@ class ComplexModel(BaseComplexModel):
         "child_value_field": "VALUE",
         "pregenerated_child": "OLD_PREGENERATED",
     }
-
-    static_field_names = [
+    field_names = [
         "value",
     ]
 

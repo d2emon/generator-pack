@@ -2,7 +2,10 @@ from models.model import Model
 
 
 class WithName(Model):
-    name = Model.field_property('name', '')
+    field_names = [
+        'name',
+    ]
+    value_field_name = 'name'
 
     @property
     def name(self) -> str:
@@ -25,23 +28,13 @@ class WithName(Model):
         """
         self['name'] = value
 
-    @property
-    def value(self) -> str:
-        """Get model value.
-
-        Returns:
-            str: Model value.
-        """
-        return self.name
-
-    @value.setter
-    def value(self, value: str) -> None:
-        """Set model value.
-
-        Args:
-            value (str): Model value.
-        """
-        self.name = value
-
     def get_name(self):
         return ''
+
+
+class WithDescription(Model):
+    field_names = [
+        'description',
+    ]
+
+    name = Model.field_property('description', '')

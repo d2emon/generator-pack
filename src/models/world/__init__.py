@@ -182,26 +182,21 @@ from .world_type import WorldType
 
 
 class World(ComplexModel, WithName):
+    field_names = [
+        *WithName.field_names,
+        'world_size',
+    ]
     children = {
         'shape': WorldShape,
         'world_type': WorldType,
         'size_class': WorldSize,
     }
 
-    shape = ComplexModel.field_property('shape')
-    size_class = ComplexModel.field_property('size_class')
     world_size = ComplexModel.field_property('world_size', 0)
+
+    shape = ComplexModel.field_property('shape')
     world_type = ComplexModel.field_property('world_type')
-
-    @property
-    def field_names(self):
-        yield "name"
-        yield "world_size"
-        yield "size_class"
-
-        # Children
-        yield "shape"
-        yield "world_type"
+    size_class = ComplexModel.field_property('size_class')
 
     @property
     def description(self):

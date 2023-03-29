@@ -33,9 +33,9 @@ class TestModel(unittest.TestCase):
 
     def test_field_names(self):
         class FieldNamesModel(Model):
-            @property
-            def field_names(self):
-                yield "field1"
+            field_names = [
+                "field1",
+            ]
 
         model = FieldNamesModel(
             field1="value1",

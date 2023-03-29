@@ -9,8 +9,7 @@ class ComplexModel(BaseComplexModel):
         "child_value_field": lambda: "VALUE",
         "pregenerated_child": lambda: "OLD_PREGENERATED",
     }
-
-    static_field_names = [
+    field_names = [
         "value",
     ]
 

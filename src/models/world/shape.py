@@ -1,12 +1,10 @@
-from models.model import Model
+from models.field_mixins import WithName
 
 
-class WorldShape(Model):
-    value = Model.field_property('name', '')
+class WorldShape(WithName):
+    field_names = [
+        *WithName.field_names,
+        'description',
+    ]
 
-    description = Model.field_property('description', '')
-
-    @property
-    def field_names(self):
-        yield "description"
-        yield "name"
+    description = WithName.field_property('description', '')

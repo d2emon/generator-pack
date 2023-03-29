@@ -9,7 +9,11 @@ class Model:
         uuid (str): Model UUID.
         built_with (Factory): Model factory.
         values (Collection): Model values.
+        field_names (Collection): Model field names.
     """
+
+    field_names = []
+    value_field_name = '_value'
 
     def __init__(self, *args, built_with=None, **fields):
         """Create data model.
@@ -51,13 +55,13 @@ class Model:
         )
 
     @property
-    def field_names(self) -> Collection:
+    def allowed_field_names(self) -> Collection:
         """Get field names.
 
         Yields:
             Iterator[Collection]: Field name.
         """
-        yield from []
+        yield from self.field_names
 
     @property
     def data(self) -> dict:
@@ -78,13 +82,31 @@ class Model:
         self.__fields = value
 
     @property
-    def value(self) -> str:
+    def _value(self) -> str:
         """Get model value.
 
         Returns:
             str: Model value.
         """
         return self.data.get('value')
+
+    @_value.setter
+    def _value(self, value: str) -> None:
+        """Set model value.
+
+        Args:
+            value (str): Model value.
+        """
+        self.data['value'] = value
+
+    @property
+    def value(self) -> str:
+        """Get model value.
+
+        Returns:
+            str: Model value.
+        """
+        return getattr(self, self.value_field_name, '')
 
     @value.setter
     def value(self, value: str) -> None:
@@ -93,11 +115,11 @@ class Model:
         Args:
             value (str): Model value.
         """
-        self.data['value'] = value
+        setattr(self, self.value_field_name, value)
 
     def fill(self, **fields) -> None:
         """Fill model fields."""
-        field_names = list(self.field_names)
+        field_names = list(self.allowed_field_names)
         self.__fields = {
             name: value
             for name, value in fields.items()
