@@ -1,4 +1,4 @@
-from genesys.nested.models import Model
+from models.nested_model import NestedModel as Model
 
 
 Button = Model
