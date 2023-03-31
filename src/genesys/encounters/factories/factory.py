@@ -1,6 +1,6 @@
 from factories.factory import Factory
 from models.encounters import Encounter
-from models.item import Item
+from models.model import Model
 
 
 class EncounterFactory(Factory):
@@ -8,4 +8,4 @@ class EncounterFactory(Factory):
 
 
 class ItemFactory(Factory):
-    model = Item
+    model = Model
