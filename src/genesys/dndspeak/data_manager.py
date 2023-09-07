@@ -1,8 +1,4 @@
 class DataManager:
-    # TODO: Remove it
-    class DataProvider:
-        pass
-
     __instance = None
 
     def __init__(self, provider=None):

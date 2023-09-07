@@ -1,11 +1,11 @@
 from genesys.dndspeak import dndspeak
-from factories.providers.data_manager import DataManager
 from factories.providers.random_item import RandomItemProvider
 from data.dndspeak import groups
+from .data_manager import DataManager
 
 
 class EncounterManager(DataManager):
-    class DataProvider(DataManager.DataProvider):
+    class DataProvider:
         def __init__(self):
             self.__desert_encounters = RandomItemProvider(groups.DESERT_ENCOUNTERS)
             self.__sailing_conditions = RandomItemProvider(groups.DESERT_ENCOUNTERS)
