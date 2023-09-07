@@ -1,5 +1,5 @@
 from models.point import Point
-from ..factory import Factory
+from factories.factory import Factory
 
 
 class RadiationFactory(Factory):

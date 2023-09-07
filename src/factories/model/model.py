@@ -1,5 +1,5 @@
 # from orm.models import Model
-from ..factory import Factory
+from factories.factory import Factory
 
 
 class ModelFactory(Factory):
