@@ -1,4 +1,4 @@
-from .factory import Factory
+from factories.factory import Factory
 
 
 class TextFactory(Factory):

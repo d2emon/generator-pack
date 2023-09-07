@@ -1,9 +1,22 @@
-# from .factory import Factory
-# from .list_factory import ListFactory
-# from .dice import DiceFactory
-# from .template import TemplateFactory
-# # from ._unknown.motivation import MotivationGenerator
-# # from ._unknown.world import WorldGenerator
-# # from ._unknown.space.galaxy import GalaxyGenerator
-# # from ._unknown.space.star import StarGenerator
-# # from ._unknown.space.planet import PlanetGenerator
+"""
+Base factories
+
+* Factory
+  * ChildFactory
+  * DbFactory
+  * DiceFactory
+  * ListFactory
+    * LetterFactory
+    * NumberFactory
+  * ModelFactory
+    * DataFactory
+    * ListModelFactory
+    * MarkovFactory
+    * NestedFactory
+    * thing.MultipleFactory
+    * thing.ProbableFactory
+  * providers.RandomItemProvider
+  * TemplateFactory
+* providers.ListItemProvider
+* thing.ThingFactories
+"""

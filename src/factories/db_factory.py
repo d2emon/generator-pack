@@ -1,7 +1,8 @@
 from database.serializer import deserialize_decorator, deserialize_all_decorator, serialize
+from .factory import Factory
 
 
-class DbFactory:
+class DbFactory(Factory):
     def __init__(self, model, database):
         self.model = model
         self.database = database

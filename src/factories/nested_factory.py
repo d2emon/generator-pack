@@ -1,113 +1,139 @@
 import random
 from models.model import Model
-from .factory import Factory
+from .child_factory import ChildFactory
 from .model_factory import ModelFactory
 
 
-class ChildFactory(Factory):
-    def __init__(
-        self,
-        factory_class,
-        min_count=1,
-        max_count=None,
-        probability=100,
-    ):
-        self.factory_class = factory_class
-        self.min_count = min_count
-        self.max_count = max_count
-        self.probability = probability
-
-    @classmethod
-    def get_probability(cls, probability=100):
-        if probability >= 100:
-            return True
-
-        return random.uniform(0, 100) < probability
-
-    @classmethod
-    def get_count(self, min_count=1, max_count=None):
-        if max_count is None:
-            return min_count
-        
-        return random.randint(min_count, max_count)
-
-    def __call__(
-        self,
-        provider=None,
-    ):
-        if not self.get_probability(self.probability):
-            return
-
-        count = self.get_count(min_count=self.min_count, max_count=self.max_count)
-        for _ in range(count):
-            yield self.factory_class(
-                provider=provider,
-            )
-
-
 class NestedFactory(ModelFactory):
+    """
+    Nested model Factory.
+
+    Attributes:
+        default_model (Model): Default model class.
+        default_name (str): Default model name.
+        default_children (list[Factory]): Default model children factories.
+
+    """
+
     default_model = Model
     default_name = None
     default_children = []
 
     def __init__(self, provider=None, *args, **kwargs):
+        """Creates nested factory
+
+        Args:
+            provider (Provider, optional): Data provider for factory. Defaults to None.
+        """
         self.provider = provider
+
+    def children(self):
+        """Children to build
+
+        Yields:
+            Factory: Child factory
+        """
+        yield from self.default_children
+
+    # Factory methods
+
+    def children_factories(self, *args, **kwargs):
+        """Create children factories
+
+        Args:
+            *args: Data args.
+            **kwargs: Data kwargs.
+
+        Yields:
+            Factory: Child factory
+        """
+        for child_factory in self.children():
+            if child_factory is not None:
+                yield from child_factory()
+
+    def model_factory(self, *children, **kwargs):
+        """Create model
+
+        Args:
+            *children: Data args.
+            **kwargs: Data kwargs.
+
+        Returns:
+            Model: Resulting model
+        """
+        return self.model(*children, **kwargs)
+
+    def name_factory(self, *args, **kwargs):
+        """Generate name
+
+        Args:
+            *args: Data args.
+            **kwargs: Data kwargs.
+
+        Returns:
+            str: Resulting name
+        """
+        return self.default_name
+
+    # Inherited methods
 
     @property
     def model(self):
+        """Model to build.
+
+        Returns:
+            Model: Model class
+        """
         return self.default_model
 
-    def children(self):
-        yield from self.default_children
+    def get_args(self, *args, **kwargs):
+        """Generates args for model
 
-    # Inherited methods
+        Args:
+            *args: Data args.
+            **kwargs: Data kwargs.
+
+        Returns:
+            list: Args for model
+        """
+        if len(args) > 0:
+            return [*args]
+
+        return self.children_factories()
 
     def get_data(
         self,
         **kwargs,
     ):
+        """Generates data for model
+
+        Args:
+            *args: Data args.
+            **kwargs: Data kwargs.
+
+        Returns:
+            dict: Data for model
+        """
         return {
             'name': self.name_factory(provider=self.provider),
             **kwargs,
         }
 
-    def __call__(
-        self,
-        *children,
-        model=None,
-        **kwargs,
-    ):
-        model_factory = model or self.model_factory
-
-        if len(children) > 0:
-            args = children
-        else:
-            args = self.children_factories()
-
-        data = self.get_data(**kwargs)
-
-        return model_factory(
-            *list(args),
-            **data,
-        )
-
-    # Factory methods
-
-    def model_factory(self, *children, **kwargs):
-        return self.model(*children, **kwargs)
-
-    def name_factory(self, *args, **kwargs):
-        return self.default_name
-
-    def children_factories(self, *args, **kwargs):
-        for child_factory in self.children():
-            if child_factory is not None:
-                yield from child_factory()
-
     # Helper methods
 
     @classmethod
     def as_child(cls, min_count=1, max_count=None, probability=100):
+        """Create child factory
+
+        Args:
+            min_count (int, optional): Minimal children count. Defaults to 1.
+            max_count (int, optional): Maximal children count. Defaults to None.
+            probability (int, optional): Chance to build child. Defaults to 100.
+
+        Returns:
+            Factory: Child factory
+        """
+        # TODO: Remove it
         return ChildFactory(
             cls,
             min_count=min_count,
@@ -117,12 +143,40 @@ class NestedFactory(ModelFactory):
 
     @classmethod
     def probable(cls, probability=100):
+        """Create child factory with probability
+
+        Args:
+            probability (int, optional): Chance to build child. Defaults to 100.
+
+        Returns:
+            Factory: Child factory
+        """
+        # TODO: Remove it
         return ChildFactory(cls, probability=probability)
 
     @classmethod
     def multiple(cls, min_items=1, max_items=None):
+        """Create child factory with multiple items
+
+        Args:
+            min_count (int, optional): Minimal children count. Defaults to 1.
+            max_count (int, optional): Maximal children count. Defaults to None.
+
+        Returns:
+            Factory: Child factory
+        """
+        # TODO: Remove it
         return ChildFactory(cls, min_count=min_items, max_count=max_items)
 
     @classmethod
     def select_item(cls, *items):
+        """Get random item from list
+
+        Args:
+            *items: Data items.
+
+        Returns:
+            _type_: _description_
+        """
+        # TODO: Remove it
         return random.choice(items) if len(items) else None

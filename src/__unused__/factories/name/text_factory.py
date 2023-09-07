@@ -1,4 +1,4 @@
-from factories.model.model import ModelFactory
+from factories.model_factory import ModelFactory
 from models.name_model import Name
 
 
