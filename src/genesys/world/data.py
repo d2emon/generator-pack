@@ -1,5 +1,5 @@
+import config
 import os
-from config import BASE_ROOT
 from factories.list_factory import ListFactory
 from utils.loaders import load_lines
 
@@ -17,5 +17,5 @@ class WorldDataProvider:
 
 
 DEFAULT_DATA_PROVIDER = WorldDataProvider(
-    names=load_lines(os.path.join(BASE_ROOT, 'data', 'world.txt')),
+    names=load_lines(os.path.join(config.DATA_PATH, 'world.txt')),
 )

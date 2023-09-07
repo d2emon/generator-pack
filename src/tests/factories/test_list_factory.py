@@ -2,7 +2,6 @@ import os
 import random
 import unittest
 from unittest.mock import patch, mock_open
-from config import CURRENT_PATH
 from factories.list_factory import ListFactory
 
 
