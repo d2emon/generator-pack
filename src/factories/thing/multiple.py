@@ -1,8 +1,8 @@
 import random
-from .thing import ThingFactory
+from factories.model_factory import ModelFactory
 
 
-class MultipleFactory(ThingFactory):
+class MultipleFactory(ModelFactory):
     """
     Generate multiple items
     """
@@ -22,10 +22,6 @@ class MultipleFactory(ThingFactory):
         self.min_count = min_count
         self.max_count = max_count
 
-    @property
-    def data(self):
-        raise NotImplementedError()
-
     def count(self):
         """
         Random items count
@@ -34,6 +30,7 @@ class MultipleFactory(ThingFactory):
         """
         if self.max_count is None:
             return self.min_count
+
         return random.randint(self.min_count, self.max_count)
 
     def build(self, count=None, *args, **kwargs):

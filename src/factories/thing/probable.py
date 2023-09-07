@@ -1,8 +1,8 @@
 import random
-from .thing import ThingFactory
+from factories.model_factory import ModelFactory
 
 
-class ProbableFactory(ThingFactory):
+class ProbableFactory(ModelFactory):
     """
     Generate probable item
     """
@@ -18,10 +18,6 @@ class ProbableFactory(ThingFactory):
         """
         super().__init__()
         self.probability = probability
-
-    @property
-    def data(self):
-        raise NotImplementedError()
 
     def probable(self, probability=None):
         """

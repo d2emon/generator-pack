@@ -1,5 +1,7 @@
-from .list_factory import ListFactory
-from .model.nested import ThingFactory, MultipleFactory, ProbableFactory
+from factories.model_factory import ModelFactory
+from .multiple import MultipleFactory
+from .probable import ProbableFactory
+from ..list_factory import ListFactory
 
 
 class ThingFactories:
@@ -91,7 +93,7 @@ class ThingFactories:
 
     @classmethod
     def factory(cls):
-        return ThingFactory(cls)
+        return ModelFactory(cls)
 
     @classmethod
     def multiple_factory(cls, min_count, max_count=None):

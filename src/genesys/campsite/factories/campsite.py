@@ -1,5 +1,5 @@
 import random
-from factories.model import ModelFactory
+from factories.model_factory import ModelFactory
 from ..models import Campsite
 
 

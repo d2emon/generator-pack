@@ -1,4 +1,4 @@
-from factories.model import MarkovFactory
+from factories.markov import MarkovFactory
 from .models import StreetChain
 from .providers import StreetUnitProvider
 

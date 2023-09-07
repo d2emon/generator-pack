@@ -1,5 +1,5 @@
 from models.markov import MarkovChain
-from .model import ModelFactory
+from .model_factory import ModelFactory
 
 
 class MarkovFactory(ModelFactory):

@@ -21,4 +21,5 @@ class ModelFactory(Factory):
         :param kwargs: Model kwargs
         :return: Generated model
         """
+        # return self.model(**kwargs)
         return self.model(**self.get_data(*args, **kwargs))

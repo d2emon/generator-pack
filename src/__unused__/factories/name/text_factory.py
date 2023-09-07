@@ -1,5 +1,5 @@
+from factories.model.model import ModelFactory
 from models.name_model import Name
-from ..model import ModelFactory
 
 
 class TextFactory(ModelFactory):
