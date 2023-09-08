@@ -1,7 +1,7 @@
 from data.and_why.slots import SLOTS
 from data.and_why.genders import DEFAULT, GENDERS
+from factories.data_item_factory import DataItemFactory
 from factories.list_factory import ListFactory
-from factories.providers.random_item import RandomItemProvider
 from utils.genders import MALE, FEMALE
 from .clothing_items import ClothingItems
 from ..models import clothing
@@ -30,7 +30,7 @@ class Provider:
     }
 
     def __init__(self):
-        self.__gender_item_providers = { gender: RandomItemProvider(gender) for gender in GENDERS.values() }
+        self.__gender_item_providers = { gender: DataItemFactory(gender) for gender in GENDERS.values() }
         self.__slots = SLOTS.values()
 
         # Factories

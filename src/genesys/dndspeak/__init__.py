@@ -1,5 +1,5 @@
 from genesys.dndspeak import dndspeak
-from factories.providers.random_item import RandomItemProvider
+from factories.data_item_factory import DataItemFactory
 from data.dndspeak import groups
 from .data_manager import DataManager
 
@@ -7,8 +7,8 @@ from .data_manager import DataManager
 class EncounterManager(DataManager):
     class DataProvider:
         def __init__(self):
-            self.__desert_encounters = RandomItemProvider(groups.DESERT_ENCOUNTERS)
-            self.__sailing_conditions = RandomItemProvider(groups.DESERT_ENCOUNTERS)
+            self.__desert_encounters = DataItemFactory(groups.DESERT_ENCOUNTERS)
+            self.__sailing_conditions = DataItemFactory(groups.DESERT_ENCOUNTERS)
 
         @property
         def desert_encounters(self):

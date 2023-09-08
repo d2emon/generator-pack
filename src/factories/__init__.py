@@ -14,7 +14,6 @@ Base factories
     * thing.NestedFactory
     * thing.MultipleFactory
     * thing.ProbableFactory
-  * providers.RandomItemProvider
   * TemplateFactory
 * thing.ThingFactories
 """
