@@ -1,5 +1,5 @@
 from models.v5 import life
-from factories.nested_factory import NestedFactory as Factory
+from factories.thing.nested_factory import NestedFactory as Factory
 from .skeleton import MuscleFactory
 from .skin import SkinFactory, ScalesFactory
 

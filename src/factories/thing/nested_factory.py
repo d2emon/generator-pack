@@ -1,7 +1,41 @@
 import random
+from factories.factory import Factory
+from factories.model_factory import ModelFactory
 from models.model import Model
-from .child_factory import ChildFactory
-from .model_factory import ModelFactory
+from .multiple import MultipleFactory
+from .probable import ProbableFactory
+
+
+class ProxyFactory(Factory):
+    def __init__(self, factory):
+        super().__init__()
+        self.factory = factory
+
+    def probable(self, probability=100):
+        """Create child factory with probability
+
+        Args:
+            probability (int, optional): Chance to build child. Defaults to 100.
+
+        Returns:
+            Factory: Child factory
+        """
+        return ProbableFactory(self, probability=probability)
+
+    def multiple(self, min_items=1, max_items=None):
+        """Create child factory with multiple items
+
+        Args:
+            min_count (int, optional): Minimal children count. Defaults to 1.
+            max_count (int, optional): Maximal children count. Defaults to None.
+
+        Returns:
+            Factory: Child factory
+        """
+        return MultipleFactory(self, min_count=min_items, max_count=max_items)
+
+    def __call__(self, *args, **kwargs):
+        return self.factory(*args, **kwargs)
 
 
 class NestedFactory(ModelFactory):
@@ -122,24 +156,13 @@ class NestedFactory(ModelFactory):
     # Helper methods
 
     @classmethod
-    def as_child(cls, min_count=1, max_count=None, probability=100):
+    def proxy(cls):
         """Create child factory
-
-        Args:
-            min_count (int, optional): Minimal children count. Defaults to 1.
-            max_count (int, optional): Maximal children count. Defaults to None.
-            probability (int, optional): Chance to build child. Defaults to 100.
 
         Returns:
             Factory: Child factory
         """
-        # TODO: Remove it
-        return ChildFactory(
-            cls,
-            min_count=min_count,
-            max_count=max_count,
-            probability=probability,
-        )
+        return ProxyFactory(cls)
 
     @classmethod
     def probable(cls, probability=100):
@@ -151,8 +174,7 @@ class NestedFactory(ModelFactory):
         Returns:
             Factory: Child factory
         """
-        # TODO: Remove it
-        return ChildFactory(cls, probability=probability)
+        return cls.proxy().probable(probability)
 
     @classmethod
     def multiple(cls, min_items=1, max_items=None):
@@ -165,8 +187,24 @@ class NestedFactory(ModelFactory):
         Returns:
             Factory: Child factory
         """
+        return cls.proxy().multiple(min_items, max_items)
+
+    @classmethod
+    def as_child(cls, min_count=1, max_count=None, probability=100):
+        """Create child factory
+
+        Args:
+            min_count (int, optional): Minimal children count. Defaults to 1.
+            max_count (int, optional): Maximal children count. Defaults to None.
+            probability (int, optional): Chance to build child. Defaults to 100.
+
+        Returns:
+            Factory: Child factory
+        """
         # TODO: Remove it
-        return ChildFactory(cls, min_count=min_items, max_count=max_items)
+        return cls.proxy()\
+            .probable(probability)\
+            .multiple(min_count, max_count)
 
     @classmethod
     def select_item(cls, *items):

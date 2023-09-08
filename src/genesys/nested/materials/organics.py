@@ -1,5 +1,5 @@
 from models.v5 import materials
-from factories.nested_factory import NestedFactory as Factory
+from factories.thing.nested_factory import NestedFactory as Factory
 from .matter import MoleculeFactory
 from .minerals import SaltFactory
 from .water import WaterMoleculeFactory

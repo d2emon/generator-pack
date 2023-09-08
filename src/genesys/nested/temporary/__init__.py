@@ -1,5 +1,5 @@
 from models.tree_model import TreeModel as Model
-from factories.nested_factory import NestedFactory as Factory
+from factories.thing.nested_factory import NestedFactory as Factory
 
 
 class ContinentFactory(Factory):

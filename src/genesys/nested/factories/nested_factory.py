@@ -1,4 +1,4 @@
-from factories.nested_factory import NestedFactory as Factory
+from factories.thing.nested_factory import NestedFactory as Factory
 
 # TODO: Remove them
 import random

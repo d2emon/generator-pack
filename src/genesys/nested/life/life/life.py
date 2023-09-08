@@ -1,5 +1,5 @@
 from models.v5 import life
-from factories.nested_factory import NestedFactory as Factory
+from factories.thing.nested_factory import NestedFactory as Factory
 from ..body import PersonFactory
 from ..vegetation import TreeFactory, GrassBladeFactory
 from ..animals import PlanktonFactory, ClamFactory, CnidariaFactory, MolluskFactory, CrustaceanFactory

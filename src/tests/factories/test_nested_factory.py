@@ -1,5 +1,5 @@
 import unittest
-from factories.nested_factory import NestedFactory
+from factories.thing.nested_factory import NestedFactory
 from models.model import Model
 
 

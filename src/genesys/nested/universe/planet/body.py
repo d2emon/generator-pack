@@ -1,4 +1,4 @@
-from factories.nested_factory import NestedFactory
+from factories.thing.nested_factory import NestedFactory
 from models.planet.body import PlanetLike, Asteroid, Moon, TerraformedMoon
 # from .body import Asteroid, Moon, TerraformedMoon
 # from ...temporary import ContinentFactory

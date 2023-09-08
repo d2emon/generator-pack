@@ -1,5 +1,5 @@
 from models.universe.black_hole import EndOfUniverseNote, Everything, Answer42, BlackHole, WhiteHole, InsideTheBlackHole
-from factories.nested_factory import NestedFactory
+from factories.thing.nested_factory import NestedFactory
 # from ..life import BlackHoleLifeFactory
 # from ..temporary import PastaFactory
 

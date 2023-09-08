@@ -1,5 +1,5 @@
 from models.v5 import mind
-from factories.nested_factory import NestedFactory as Factory
+from factories.thing.nested_factory import NestedFactory as Factory
 
 
 class MemoryFactory(Factory):

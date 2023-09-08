@@ -1,6 +1,6 @@
 from models.v5 import materials
 from .matter import MoleculeFactory
-from factories.nested_factory import NestedFactory as Factory
+from factories.thing.nested_factory import NestedFactory as Factory
 
 
 class WaterMoleculeFactory(MoleculeFactory):

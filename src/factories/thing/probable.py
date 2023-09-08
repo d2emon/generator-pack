@@ -9,38 +9,57 @@ class ProbableFactory(ModelFactory):
 
     def __init__(
         self,
+        factory,
         probability=100,
     ):
-        """
-        Probable factory constructor
+        """Constructor for ChildFactory.
 
-        :param probability: Item probability
+        Args:
+            factory (Factory): Factory to build child
+            probability (int, optional): Chance to build child. Defaults to 100.
         """
         super().__init__()
+        self.factory = factory
         self.probability = probability
 
     def probable(self, probability=None):
-        """
-        Have chance to generate
+        """Check if need to build model
 
-        :param probability: Probability of model
-        :return: If generation is needed
+        Args:
+            probability (int, optional): Pregenersted chance to build model. Defaults to None.
+
+        Returns:
+            bool: Need to build model
         """
         if self.probability <= 0:
             return False
+
         if self.probability >= 100:
             return True
+
         if probability is None:
             probability = random.uniform(0, 100)
+
         return probability <= self.probability
 
-    def build(self, probability=None, *args, **kwargs):
-        """
-        Get model if needed
+    def __call__(
+        self,
+        *args,
+        probability=None,
+        **kwargs,
+    ):
+        """Build model with chance
 
-        :param probability: Probability of model
-        :param args: Model args
-        :param kwargs: Model kwargs
-        :return: Model
+        Args:
+            probability (int, optional): Pregenerated chance to build model. Defaults to None.
+
+        Yields:
+            Model: Generated model
         """
-        return next(super()) if self.probable(probability) else None
+        if not self.probable(probability):
+            return
+
+        yield self.factory(
+            *args,
+            **kwargs,
+        )

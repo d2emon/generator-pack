@@ -2,7 +2,6 @@
 Base factories
 
 * Factory
-  * ChildFactory
   * DbFactory
   * DiceFactory
   * ListFactory

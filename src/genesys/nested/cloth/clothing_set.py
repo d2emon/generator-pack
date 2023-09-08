@@ -1,5 +1,5 @@
 from models.v5 import cloth
-from factories.nested_factory import NestedFactory
+from factories.thing.nested_factory import NestedFactory
 from .clothing import HatFactory, GlassesFactory, PantsFactory, ShirtFactory, CoatFactory, SocksFactory, \
     ShoesFactory, UnderwearFactory
 

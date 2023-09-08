@@ -1,5 +1,5 @@
 from models.v5 import life
-from factories.nested_factory import NestedFactory as Factory
+from factories.thing.nested_factory import NestedFactory as Factory
 from ....materials import MoleculeFactory
 from ....mind import ThoughtFactory, ThoughtsFactory, PsycheFactory
 from ...animal_body.head import BrainFactory

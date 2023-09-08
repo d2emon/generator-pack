@@ -1,5 +1,5 @@
 from models.universe.planet.plate import Plate
-from factories.nested_factory import NestedFactory as Factory
+from factories.thing.nested_factory import NestedFactory as Factory
 from ...materials import RockFactory, IceFactory
 
 

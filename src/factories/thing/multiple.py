@@ -9,38 +9,52 @@ class MultipleFactory(ModelFactory):
 
     def __init__(
         self,
+        factory,
         min_count=1,
         max_count=None,
     ):
-        """
-        Multiple factory constructor
+        """Constructor for ChildFactory.
 
-        :param min_count: Minimal items
-        :param max_count: Maximal items
+        Args:
+            factory (Factory): Factory to build child
+            min_count (int, optional): Minimal count of items. Defaults to 1.
+            max_count (int, optional): Maximal count of items. Defaults to None.
         """
         super().__init__()
+        self.factory = factory
         self.min_count = min_count
         self.max_count = max_count
 
     def count(self):
-        """
-        Random items count
+        """Get random items count
 
-        :return: Items count
+        Returns:
+            int: Random items count
         """
         if self.max_count is None:
             return self.min_count
 
         return random.randint(self.min_count, self.max_count)
 
-    def build(self, count=None, *args, **kwargs):
-        """
-        Generate some models
+    def __call__(
+        self,
+        *args,
+        count=None,
+        **kwargs,
+    ):
+        """Build some models
 
-        :param count: NUmber of models
-        :param args: Model args
-        :param kwargs: Model kwargs
-        :return: Models
+        Args:
+            count (int, optional): Pregenerated models count. Defaults to None.
+
+        Yields:
+            Model: Generated model
         """
-        for _ in range(count or self.count()):
-            yield from next(super())
+        if count is None:
+            count = self.count()
+
+        for _ in range(count):
+            yield self.factory(
+                *args,
+                **kwargs,
+            )
