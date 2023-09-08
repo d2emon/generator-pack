@@ -1,6 +1,4 @@
 import random
-
-from utils.loaders import load_lines
 from .factory import Factory
 
 
@@ -55,11 +53,6 @@ class ListFactory(Factory):
         values = self.shuffle()
         for _ in range(count):
             yield next(values)
-
-    @classmethod
-    def from_text_file(cls, filename):
-        data = list(load_lines(filename))
-        return cls(data)
 
     def find(self, **kwargs):
         """

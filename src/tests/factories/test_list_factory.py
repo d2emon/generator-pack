@@ -2,6 +2,7 @@ import os
 import random
 import unittest
 from unittest.mock import patch, mock_open
+from database.text_file_loader import TextFileLoader
 from factories.list_factory import ListFactory
 
 
@@ -39,7 +40,7 @@ class TestListFactory(unittest.TestCase):
         full_path = os.path.join(current_path, filename)
 
         with patch("builtins.open", mock_open(read_data=text)) as mock_open_file:
-            factory = ListFactory.from_text_file(filename)
+            factory = TextFileLoader.from_text_file(filename)
             self.assertEqual(factory.data, text_values)
 
         mock_open_file.assert_called_with(full_path, 'r', encoding='utf-8')
