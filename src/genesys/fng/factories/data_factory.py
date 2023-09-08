@@ -1,4 +1,4 @@
-from database.data_block import NameBlock
+from database.models.data_block import NameBlock
 from models.name.name import TextModel
 from factories.factory import Factory
 

@@ -1,13 +1,7 @@
 """
-* NameBlock
-* NameItem
-
-----
-
-* DataItem
-
-----
-
+* models.NameBlock
+* models.NameItem
+* models.DataItem
 * BaseDatabase
   * ArrayDatabase
     * DatabaseLoader

@@ -1,4 +1,4 @@
-from database.data_block import NameBlock
+from database.models.data_block import NameBlock
 
 
 def with_gender(f, gender_id, default_values=None):
