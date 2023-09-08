@@ -1,9 +1,8 @@
 from utils import genders
 from data.fng import description
-from database.models.data_block import NameItem, NameBlock
 from models.fng.description import Character, CharacterDescription, Hair, Face, Eyes, MarkDescription, Name, \
     Personality
-from database.models.data_block import load_data
+from models.name_block import load_data
 from factories.factory import Factory
 from genesys.fng.factories.name_factory import NameFactory
 # from v1.factories.fng.validators import generate_while

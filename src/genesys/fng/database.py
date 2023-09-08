@@ -1,5 +1,5 @@
 import random
-from database.models.data_block import fill_data
+from models.name_block import fill_data
 
 
 class Database:

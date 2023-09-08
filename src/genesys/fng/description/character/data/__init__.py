@@ -1,4 +1,4 @@
-from database.models.data_block import NameBlock
+from models.name_block import NameBlock
 from .races import races
 from .marks import marks
 

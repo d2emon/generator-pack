@@ -1,4 +1,4 @@
-from database.models.data_block import NameBlock
+from models.name_block import NameBlock
 from models.name.name import TextModel
 from factories.factory import Factory
 
@@ -28,4 +28,4 @@ def load_data(data) -> dict:
     :param data: Dict with data to load
     :return: Dict with NameBlocks
     """
-    return {item_id: DataFactory(NameBlock().fill(*values)) for item_id, values in data.items()}
+    return {item_id: DataFactory(NameBlock.filled(*values)) for item_id, values in data.items()}

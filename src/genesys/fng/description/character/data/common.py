@@ -1,4 +1,4 @@
-from database.models.data_block import NameBlock
+from models.name_block import NameBlock
 
 
 def with_gender(f, gender_id, default_values=None):
@@ -18,7 +18,7 @@ def with_gender(f, gender_id, default_values=None):
 
 def add_items(group_id, gender_id, map_item=lambda item: item):
     def f(items):
-        blocks = NameBlock().fill(
+        blocks = NameBlock.filled(
             *items,
             group_id=group_id,
             gender_id=gender_id,

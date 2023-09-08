@@ -1,7 +1,8 @@
 import random
 import unittest
 import uuid
-from database.models.data_block import NameItem, NameBlock, load_data, fill_data
+from database.models.data_block import NameItem
+from models.name_block import NameBlock, load_data, fill_data
 
 
 class TestDataBlock(unittest.TestCase):
