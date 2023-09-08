@@ -1,4 +1,4 @@
-from database.serializer import deserialize_decorator, deserialize_all_decorator, serialize
+from database.helpers.serializer import deserialize_decorator, deserialize_all_decorator, serialize
 from .model_factory import ModelFactory
 
 

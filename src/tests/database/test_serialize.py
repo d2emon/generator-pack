@@ -2,7 +2,7 @@ import unittest
 from uuid import uuid4
 from models.model import Model
 from models.complex_model import ComplexModel as BaseComplexModel
-from database.serializer import serialize, deserialize
+from database.helpers.serializer import serialize, deserialize
 
 
 class SerializableModel(Model):
