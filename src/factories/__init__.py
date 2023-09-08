@@ -5,6 +5,7 @@ Base factories
   * ListFactory
     * LetterFactory
     * NumberFactory
+    * DataItemFactory
   * ModelFactory
     * DataFactory
     * DbFactory
