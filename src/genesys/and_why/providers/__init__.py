@@ -1,9 +1,9 @@
-from data.and_why.slots import SLOTS
-from data.and_why.genders import DEFAULT, GENDERS
 from factories.data_item_factory import DataItemFactory
 from factories.list_factory import ListFactory
-from utils.genders import MALE, FEMALE
 from .clothing_items import ClothingItems
+from ..data.genders import DEFAULT, MALE, FEMALE
+from ..database.genders import GENDERS
+from ..database.slots import SLOTS
 from ..models import clothing
 
 import data.and_why.egypt
@@ -14,12 +14,12 @@ class Provider:
     Provider for slots.
 
     Attributes:
-        clothing_classes: Classes for clothing
+        clothing_models: Dict for clothing models
         probability: Probability to fill slot
         slots: List of slots
     """
 
-    __classes = {
+    __clothing_models = {
         'Accessory': clothing.Accessory,
         'Headdress': clothing.Headdress,
         'Collar': clothing.Collar,
@@ -30,15 +30,22 @@ class Provider:
     }
 
     def __init__(self):
-        self.__gender_item_providers = { gender: DataItemFactory(gender) for gender in GENDERS.values() }
+        """Create data provider"""
+        self.__genders = GENDERS.values()
         self.__slots = SLOTS.values()
 
         # Factories
-        self.__gender_factory = ListFactory(self.__gender_item_providers.keys())
+        self.__gender_item_providers = { gender: DataItemFactory(gender) for gender in self.__genders }
+        self.__gender_factory = ListFactory(self.__genders)
 
     @property
-    def clothing_classes(self):
-        return self.__classes
+    def clothing_models(self):
+        """Clothing models for ...
+
+        Returns:
+            dict: Dict with clothing models
+        """
+        return self.__clothing_models
 
     @property
     def probability(self):
@@ -64,35 +71,6 @@ class Provider:
     def gender_item_providers(self):
         return self.__gender_item_providers
 
-    def __clothing_class(self, clothing_type):
-        """
-        Translate clothing type to clothing class.
-
-        Args:
-            clothing_type: Type of clothing.
-
-        Returns:
-            __class__: Class for clothing.
-        """
-        return self.clothing_classes.get(clothing_type)
-
-    def __clothing(self, values):
-        """
-        Create clothing item.
-
-        Args:
-            values: values for clothing.
-
-        Returns:
-            Clothing: Clothing from provider classes.
-        """
-        clothing_class = self.__clothing_class(values.get('type'))
-
-        if not clothing_class:
-            raise ValueError()
-
-        return clothing_class(values.get('name', ''))
-
     def gender(self):
         """
         Build gender by factory.
@@ -112,7 +90,7 @@ class Provider:
         Returns:
             Data from provider.
         """
-        provider = self.__gender_item_providers.get(gender)
+        provider = self.gender_item_providers.get(gender)
         return provider.data if provider else None
 
     def by_gender(self, gender):
@@ -126,10 +104,7 @@ class Provider:
             ClothingItems: Clothing items for gender.
         """
         data = self.data_by_gender(gender)
-        if data is None:
-            return None
-
-        return ClothingItems((self.__clothing(values) for values in data))
+        return ClothingItems.by_data(data, self.clothing_models)
 
 
 PROVIDER = Provider()

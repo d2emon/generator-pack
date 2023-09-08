@@ -1,7 +1,10 @@
 import random
 import unittest
 from uuid import UUID
-from data.and_why import egypt, genders, slots
+from data.and_why import egypt
+from genesys.and_why.data import genders, slots
+from genesys.and_why.database.genders import GENDERS
+from genesys.and_why.database.slots import SLOTS
 
 
 class TestAndWhy(unittest.TestCase):
@@ -55,11 +58,11 @@ class TestAndWhy(unittest.TestCase):
     def test_genders(self):
         self.assertEqual(genders.DEFAULT, genders.MALE)
 
-        for value in genders.GENDERS.values():
+        for value in GENDERS.values():
             self.assertIn(value, self.genders_data)
 
     def test_slots(self):
-        for value in slots.SLOTS.values():
+        for value in SLOTS.values():
             self.assertIn(value, self.slots_data)
 
 

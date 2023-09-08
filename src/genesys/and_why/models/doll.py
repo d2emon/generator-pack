@@ -1,4 +1,4 @@
-from data.and_why import genders
+from ..data import genders
 from models.slotted import Slotted
 
 

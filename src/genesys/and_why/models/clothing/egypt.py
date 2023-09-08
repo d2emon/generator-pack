@@ -1,4 +1,4 @@
-from data.and_why import slots
+from ...data import slots
 from .clothing import Clothing
 
 

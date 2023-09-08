@@ -5,7 +5,7 @@ from ..providers import PROVIDER
 
 class SlotFactory(Factory):
     def __init__(self, data=None):
-        self.data = data or PROVIDER
+        super().__init__(data or PROVIDER)
 
     @property
     def probability(self):

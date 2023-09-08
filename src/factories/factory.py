@@ -3,6 +3,13 @@ class Factory:
 
     __instance = None
 
+    def __init__(self, data=None):
+        self.__data_provider = data
+
+    @property
+    def data_provider(self):
+        return self.__data_provider
+
     @classmethod
     def instance(cls, *args, **kwargs):
         """

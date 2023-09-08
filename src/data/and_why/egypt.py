@@ -1,5 +1,5 @@
-from database.data_item_database import DataItemDatabase
 from data.genders import MALE, FEMALE
+from database.data_item_database import DataItemDatabase
 
 
 def __inject_gender(gender, items):

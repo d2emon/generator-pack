@@ -19,3 +19,34 @@ class ClothingItems(ArrayDatabase):
 
     def __str__(self):
         return str(self.data)
+
+    @classmethod
+    def __create_item(cls, data, models):
+        """
+        Create clothing item.
+
+        Args:
+            data: Clothing data.
+            models: Clothing models.
+
+        Returns:
+            Clothing: Clothing item.
+        """
+        clothing_type = data.get('type')
+        name = data.get('name', '')
+
+        model = models.get(clothing_type)
+
+        if not model:
+            raise ValueError()
+
+        return model(name)
+
+
+    @classmethod
+    def by_data(cls, data, models):
+        if data is None:
+            return None
+
+        items = (cls.__create_item(item, models) for item in data)
+        return cls(items)

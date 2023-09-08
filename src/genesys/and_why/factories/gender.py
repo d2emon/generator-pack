@@ -4,11 +4,7 @@ from ..providers import PROVIDER
 
 class GenderFactory(Factory):
     def __init__(self, data=None):
-        self.__data = data or PROVIDER
-
-    @property
-    def data(self):
-        return self.__data
+        super().__init__(data or PROVIDER)
 
     @property
     def male(self):
@@ -27,7 +23,7 @@ class GenderFactory(Factory):
         :param kwargs: Roll kwargs
         :return: Random item
         """
-        if (gender is not None):
+        if gender is not None:
             return gender
 
         return self.data.gender()
