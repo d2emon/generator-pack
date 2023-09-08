@@ -1,5 +1,4 @@
 """
-* models.DataItem
 * BaseDatabase
   * ArrayDatabase
     * DatabaseLoader

@@ -1,5 +1,5 @@
 from .database_loader import DatabaseLoader
-from .models.data_item import DataItem
+from models.data_item import DataItem
 
 
 class DataItemSource:
