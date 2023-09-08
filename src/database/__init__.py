@@ -1,5 +1,4 @@
 """
-* models.NameItem
 * models.DataItem
 * BaseDatabase
   * ArrayDatabase

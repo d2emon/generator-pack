@@ -1,6 +1,6 @@
 import random
-from database.models.data_block import NameItem
 from .model import Model
+from .name_item import NameItem
 
 
 class NameBlock(Model):
