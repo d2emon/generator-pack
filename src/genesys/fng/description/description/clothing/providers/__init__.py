@@ -1,4 +1,4 @@
-from factories.providers.list_item_provider import ListItemProvider
+from factories.list_factory import ListFactory
 
 
 class DataProvider:
@@ -22,7 +22,7 @@ class DataProvider:
         "at the bottom right side",
         "slightly off-center",
     ]
-    jacket_materials = ListItemProvider([
+    jacket_materials = ListFactory([
         # Material("leather"),
         # Material("hide"),
         # Material("furred"),
@@ -31,7 +31,7 @@ class DataProvider:
         # Material("silky"),
         # Material("velvety"),
     ])
-    jacket_covers = ListItemProvider([
+    jacket_covers = ListFactory([
         "just below his waist",
         "well below his waist",
         "just below his groin",
@@ -48,7 +48,7 @@ class DataProvider:
         "his knees",
         "his groin",
     ])
-    jacket_necklines = ListItemProvider([
+    jacket_necklines = ListFactory([
         "round neckline",
         "wide, round neckline",
         "narrow, round neckline",

@@ -1,11 +1,11 @@
 from utils import genders
-from .list_item_provider import ListItemProvider
-from __unused__.providers.name_data_provider import NameDataProvider
+from factories.list_factory import ListFactory
+from .name_data_provider import NameDataProvider
 
 
 class DictDataProvider(NameDataProvider):
     # default = []
-    data = ListItemProvider([])
+    data = ListFactory()
 
     def query(self, *args, **kwargs):
         """

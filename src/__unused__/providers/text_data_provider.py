@@ -1,11 +1,11 @@
 from factories.factory import Factory
-from factories.providers.list_item_provider import ListItemProvider
+from factories.list_factory import ListFactory
 
 
 class TextDataProvider(Factory):
     # default = generator_data
     block_id = ''
-    groups = ListItemProvider([])
+    groups = ListFactory()
     data = {}
 
     def __call__(self):

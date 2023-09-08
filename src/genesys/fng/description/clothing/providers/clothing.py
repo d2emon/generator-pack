@@ -1,4 +1,4 @@
-from factories.providers.list_item_provider import ListItemProvider
+from factories.list_factory import ListFactory
 from genesys.fng.factories.description.character import Male, Female
 from genesys.fng.factories import SleeveLength
 
@@ -7,7 +7,7 @@ class DataProvider:
     class TieDataProvider:
         @property
         def descriptions(self):
-            return ListItemProvider([
+            return ListFactory([
                 "tightly tied with string",
                 "loosely tied with string",
                 "buttoned up completely",
@@ -20,7 +20,7 @@ class DataProvider:
 
         @property
         def positions(self):
-            return ListItemProvider([
+            return ListFactory([
                 "at the center",
                 "at the left side",
                 "at the right side",
@@ -34,7 +34,7 @@ class DataProvider:
     class SleeveDataProvider:
         @property
         def lengths(self):
-            return ListItemProvider([
+            return ListFactory([
                 SleeveLength("long", True),
                 SleeveLength("very long", True),
                 SleeveLength("fairly long", True),
@@ -45,7 +45,7 @@ class DataProvider:
 
         @property
         def widths(self):
-            return ListItemProvider([
+            return ListFactory([
                 "incredibly wide",
                 "very wide",
                 "quite wide",
@@ -60,7 +60,7 @@ class DataProvider:
 
         @property
         def reachs(self):
-            return ListItemProvider([
+            return ListFactory([
                 "his hands",
                 "just above his hands",
                 "well below his hands",
@@ -75,7 +75,7 @@ class DataProvider:
 
         @property
         def decorations(self):
-            return ListItemProvider([
+            return ListFactory([
                 "a single thread lining from top to bottom",
                 "several thread linings from top to bottom",
                 "a single thread lining at the sleeve ends",
@@ -88,7 +88,7 @@ class DataProvider:
     class DressSleeveDataProvider(SleeveDataProvider):
         @property
         def lengths(self):
-            return ListItemProvider([
+            return ListFactory([
                 SleeveLength("very long", True),
                 SleeveLength("quite long", True),
                 SleeveLength("a little too long", True),
@@ -104,7 +104,7 @@ class DataProvider:
 
         @property
         def widths(self):
-            return ListItemProvider([
+            return ListFactory([
                 "incredibly wide",
                 "very wide",
                 "quite wide",
@@ -119,7 +119,7 @@ class DataProvider:
 
         @property
         def reachs(self):
-            return ListItemProvider([
+            return ListFactory([
                 "his hands",
                 "just above his hands",
                 "well below his hands",
@@ -134,7 +134,7 @@ class DataProvider:
 
         @property
         def decorations(self):
-            return ListItemProvider([
+            return ListFactory([
                 "a single thread lining from top to bottom",
                 "several thread linings from top to bottom",
                 "a single thread lining at the sleeve ends",
@@ -146,7 +146,7 @@ class DataProvider:
 
         @property
         def change_positions(self):
-            return ListItemProvider([
+            return ListFactory([
                 "just below the shoulder",
                 "just below the elbow",
                 "just above the elbow",
@@ -162,7 +162,7 @@ class DataProvider:
 
         @property
         def change_types(self):
-            return ListItemProvider([
+            return ListFactory([
                 "they change color and where ",
                 "",
             ])
@@ -170,7 +170,7 @@ class DataProvider:
     class MaterialDataProvider:
         @property
         def materials(self):
-            return ListItemProvider([
+            return ListFactory([
                 ("leather",),
                 ("hide",),
                 ("furred",),
@@ -181,7 +181,7 @@ class DataProvider:
 
         @property
         def rarities(self):
-            return ListItemProvider([
+            return ListFactory([
                 "rare",
                 "very rare",
                 "fairly rare",
@@ -196,7 +196,7 @@ class DataProvider:
     class ShirtDataProvider:
         @property
         def styles(self):
-            return ListItemProvider([
+            return ListFactory([
                 "rough",
                 "elegant",
                 "fancy",
@@ -215,7 +215,7 @@ class DataProvider:
 
     @property
     def genders(self):
-        return ListItemProvider([
+        return ListFactory([
             Male,
             Female,
         ])
