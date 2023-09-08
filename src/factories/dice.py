@@ -1,7 +1,8 @@
-from .factory import Factory
+from models.roll import Roll
+from .model_factory import ModelFactory
 
 
-class DiceFactory(Factory):
+class DiceFactory(ModelFactory):
     """
     Generate dice roll
     """
@@ -14,6 +15,15 @@ class DiceFactory(Factory):
         """
         super().__init__()
         self.dice = dice
+
+    @property
+    def model(self):
+        """Model to build.
+
+        Returns:
+            Model: Model class
+        """
+        return Roll
 
     @property
     def data(self):
@@ -29,12 +39,14 @@ class DiceFactory(Factory):
         """
         return self.dice.roll(*args, **kwargs)
 
-    def build(self, *args, **kwargs):
-        """
-        Get result of roll
+    def model_factory(self, *args, **kwargs):
+        """Create model
 
-        :param args: Roll args
-        :param kwargs: Roll kwargs
-        :return: Roll result
+        Args:
+            *args: Data args.
+            **kwargs: Data kwargs.
+
+        Returns:
+            Model: Resulting model
         """
-        return sum(self.roll(*args, **kwargs))
+        return self.model(self.roll(*args, **kwargs))

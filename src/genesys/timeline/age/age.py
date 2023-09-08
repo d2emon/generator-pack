@@ -1,8 +1,8 @@
 from dice.dice import Dice
-from ..models import Event
-from factories.factory import Factory
 from factories.dice import DiceFactory
+from factories.factory import Factory
 from factories.list_factory import ListFactory
+from ..models import Event
 
 
 class Age(Factory):
@@ -17,10 +17,10 @@ class Age(Factory):
         self.__event_factories = ListFactory([{"value": value} for value in self.events_data])
 
     def get_count(self):
-        return self.__count_factory()
+        return self.__count_factory().result
 
     def get_year(self):
-        return self.__year_factory()
+        return self.__year_factory().result
 
     def get_event_factory(self):
         item = self.__event_factories()
