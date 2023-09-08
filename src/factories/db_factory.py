@@ -1,8 +1,8 @@
 from database.serializer import deserialize_decorator, deserialize_all_decorator, serialize
-from .factory import Factory
+from .model_factory import ModelFactory
 
 
-class DbFactory(Factory):
+class DbFactory(ModelFactory):
     def __init__(self, model, database):
         self.model = model
         self.database = database
@@ -59,7 +59,3 @@ class DbFactory(Factory):
         :return: Model
         """
         return self.database.random()
-
-    def __call__(self, *args, **kwargs):
-        data = self.get_data(**kwargs)
-        return self.model(*args, **data)

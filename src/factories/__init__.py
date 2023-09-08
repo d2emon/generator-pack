@@ -2,16 +2,16 @@
 Base factories
 
 * Factory
-  * DbFactory
   * DiceFactory
   * ListFactory
     * LetterFactory
     * NumberFactory
   * ModelFactory
     * DataFactory
+    * DbFactory
     * ListModelFactory
     * MarkovFactory
-    * NestedFactory
+    * thing.NestedFactory
     * thing.MultipleFactory
     * thing.ProbableFactory
   * providers.RandomItemProvider
