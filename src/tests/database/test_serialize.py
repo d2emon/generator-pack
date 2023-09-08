@@ -1,8 +1,8 @@
 import unittest
 from uuid import uuid4
+from helpers.serializer import serialize, deserialize
 from models.model import Model
 from models.complex_model import ComplexModel as BaseComplexModel
-from database.helpers.serializer import serialize, deserialize
 
 
 class SerializableModel(Model):

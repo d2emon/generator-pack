@@ -1,4 +1,4 @@
-from database.helpers.serializer import serialize, deserialize, deserialize_decorator, deserialize_all_decorator
+from helpers.serializer import serialize, deserialize, deserialize_decorator, deserialize_all_decorator
 
 
 class ModelDatabase:
