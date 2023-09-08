@@ -1,20 +1,28 @@
-from uuid import uuid4
-from .array_database import ArrayDatabase
+from .database_loader import DatabaseLoader
 from .data_item import DataItem
 
 
-class DataItemDatabase(ArrayDatabase):
-    def __init__(self, *data):
-        super().__init__()
+class DataItemSource:
+    def __init__(self, data):
+        self.__data = data
 
-        self._data = [self.output(value) for value in data]
+    def load(self):
+        for value in self.__data:
+            yield {"value": value}
 
-    @property
-    def data(self):
-        """
-        :return: Data from db
-        """
-        return self._data
+    def save(self, data):
+        self.__data = data
+
+
+class DataItemDatabase(DatabaseLoader):
+    def __init__(self, *data, **config):
+        super().__init__(**config)
+
+        self.__data_items = data
+
+    def open(self):
+        """Open data source"""
+        return DataItemSource(self.__data_items)
 
     def find(self, query):
         return (
@@ -22,21 +30,6 @@ class DataItemDatabase(ArrayDatabase):
             for item in self.data
             if query(item.get("value"))
         )
-
-    # Helpers
-
-    @classmethod
-    def output(cls, record):
-        """
-        Prepare loaded record
-
-        :param record: Record
-        :return: Prepared record
-        """
-        return {
-            "uuid": uuid4(),
-            "value": record,
-        }
 
     # New methods
 

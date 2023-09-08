@@ -1,7 +1,6 @@
 import os
 from config import DB_CONFIG
-from database.csv_database import CSVDatabase
-from database.json_database import JSONDatabase
+from database.file_database import CSVDatabase, JSONDatabase
 
 
 CONFIG = DB_CONFIG.get('storm', {})

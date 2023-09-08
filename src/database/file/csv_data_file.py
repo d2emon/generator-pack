@@ -1,12 +1,8 @@
 import csv
-from .file_database import DataFile, FileDatabase
+from .data_file import DataFile
 
 
 class CSVDataFile(DataFile):
-    def __init__(self, filename, fields=None):
-        super().__init__(filename)
-        self.fields = fields
-
     def __output(self, record):
         """
         Inject uuid to record
@@ -25,15 +21,3 @@ class CSVDataFile(DataFile):
             writer = csv.writer(f)
             for record in data:
                 writer.writerow(record)
-
-
-class CSVDatabase(FileDatabase):
-    def __init__(self, filename='', fields=None, **config):
-        super().__init__(filename, **config)
-        self.fields = fields or []
-
-    def open(self):
-        """
-        :return: Data file
-        """
-        return CSVDataFile(self.filename, self.fields)
