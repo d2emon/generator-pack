@@ -16,6 +16,8 @@ Contents:
   * Unready
 * demographics
   * Generate fantasy demographics
+  * Unique factories
+  * TODO: use global factories
 * dndspeak
   * Generate encounters with description
   * Use DataItemDatabase
@@ -32,11 +34,15 @@ Contents:
   * Use DbFactory
 * lexicon
   * Generate topics for lexicon game
+  * Unique factories
+  * TODO: use global factories
 * markov
   * Generate from Markov chain
   * Use MarkovFactory
 * media
   * Generate media charts
+  * Unique factories
+  * TODO: use global factories
 * nested
   * Generate nested data
   * Use NestedFactory
@@ -47,6 +53,8 @@ Contents:
   * Use ListModelFactory
 * scales
   * Generate item by scale
+  * Unique factories
+  * TODO: use global factories
 * storm
   * Generators from stormtower magazine
   * Use CSVDatabase
