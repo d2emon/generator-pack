@@ -39,7 +39,7 @@ class DiceFactory(ModelFactory):
         """
         return self.dice.roll(*args, **kwargs)
 
-    def model_factory(self, *args, **kwargs):
+    def build(self, *args, **kwargs):
         """Create model
 
         Args:

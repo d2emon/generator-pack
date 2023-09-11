@@ -11,17 +11,17 @@ class TextFactory(ModelFactory):
         self.__data = provider
 
     @property
-    def model_class(self):
+    def model(self):
         return Name
 
     @property
     def data(self):
         return self.__data
 
-    def model(self, **kwargs):
-        return self.model_class(*self.data.parts(**kwargs), generator=self)
+    def build(self, **kwargs):
+        return self.model(*self.data.parts(**kwargs), generator=self)
 
-    def build(self, group_id=None, *args, **kwargs):
+    def __call__(self, group_id=None, *args, **kwargs):
         """
         Get name
 
@@ -30,4 +30,4 @@ class TextFactory(ModelFactory):
         :param kwargs: Name kwargs
         :return: Name
         """
-        return self.model(group_id=group_id, **kwargs)
+        return self.build(group_id=group_id, **kwargs)

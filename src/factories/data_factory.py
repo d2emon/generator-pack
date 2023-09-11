@@ -13,7 +13,7 @@ class DataFactory(ModelFactory):
         self.factory_data = self.data_factory(data or self.default_data)
 
     @classmethod
-    def data_factory(self, data):
+    def data_factory(cls, data):
         """
         Build model
 

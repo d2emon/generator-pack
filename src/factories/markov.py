@@ -17,7 +17,7 @@ class MarkovFactory(ModelFactory):
         return self.__data
 
     @property
-    def model_class(self):
+    def model(self):
         return MarkovChain
 
     def fill(self, chain):

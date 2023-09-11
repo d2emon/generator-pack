@@ -38,7 +38,7 @@ class ModelFactory(Factory):
         """
         return {**kwargs}
 
-    def model_factory(self, *args, **kwargs):
+    def build(self, *args, **kwargs):
         """Create model
 
         Args:
@@ -66,12 +66,12 @@ class ModelFactory(Factory):
         Returns:
             Model: Generated model
         """
-        model_factory = model or self.model_factory
+        factory = model or self.build
 
         model_args = self.get_args(*args)
         model_kwargs = self.get_data(**kwargs)
 
-        return model_factory(
+        return factory(
             *list(model_args),
             **model_kwargs,
         )

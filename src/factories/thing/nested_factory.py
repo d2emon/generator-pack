@@ -85,18 +85,6 @@ class NestedFactory(ModelFactory):
             if child_factory is not None:
                 yield from child_factory()
 
-    def model_factory(self, *children, **kwargs):
-        """Create model
-
-        Args:
-            *children: Data args.
-            **kwargs: Data kwargs.
-
-        Returns:
-            Model: Resulting model
-        """
-        return self.model(*children, **kwargs)
-
     def name_factory(self, *args, **kwargs):
         """Generate name
 
