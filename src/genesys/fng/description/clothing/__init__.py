@@ -1,4 +1,4 @@
-from genesys.fng.factories.name_factory import DbFactory
+from factories.model_factory import ModelFactory
 from genesys.fng.factories.description.clothing.models import MaleClothing, FemaleClothing
 # from genesys.generator_models.character import Male, Female
 
@@ -10,8 +10,8 @@ from .shirt import ShirtFactory
 # from .dress import DressFactory
 
 
-class BaseClothingFactory(DbFactory):
-    def __call__(self, *args, **kwargs):
+class BaseClothingFactory(ModelFactory):
+    def build(self, *args, **kwargs):
         return ( # MaleClothing(
             # # race=next(self.providers.races)
             # # mark = next(self.providers.marks)
@@ -39,8 +39,8 @@ class BaseClothingFactory(DbFactory):
         )
 
 
-class MaleClothingFactory(DbFactory):
-    def __call__(self, *args, **kwargs):
+class MaleClothingFactory(ModelFactory):
+    def build(self, *args, **kwargs):
         return ( # MaleClothing(
             # jacket=next(JacketFactory()),
             # shirt=next(ShirtFactory()),
@@ -50,8 +50,8 @@ class MaleClothingFactory(DbFactory):
         )
 
 
-class FemaleClothingFactory(DbFactory):
-    def __call__(self, *args, **kwargs):
+class FemaleClothingFactory(ModelFactory):
+    def build(self, *args, **kwargs):
         return ( # FemaleClothing(
             # dress=next(DressFactory),
             # underdress=next(DressFactory()),
@@ -64,7 +64,7 @@ class FemaleClothingFactory(DbFactory):
         )
 
 
-class ClothingFactory(DbFactory):
+class ClothingFactory(ModelFactory):
     def get_factory(self, gender=None):
         factories = {
             # Male: MaleClothingFactory(self.provider),
@@ -73,6 +73,6 @@ class ClothingFactory(DbFactory):
         gender = gender or next(self.provider.genders)
         return factories.get(gender)
 
-    def __call__(self, *args, **kwargs):
+    def build(self, *args, **kwargs):
         factory = self.get_factory()
         return factory() if factory else None

@@ -1,10 +1,23 @@
 class Factory:
-    """Generate value."""
+    """
+    Base factory to build something with data.
 
+    Attributes:
+        data_provider (Database): Database for factory.
+        default_data (Database): Default database for factory.
+    """
+
+    default_data = None
     __instance = None
 
     def __init__(self, data=None):
-        self.__data_provider = data
+        """
+        Construct factory with data from database.
+
+        Args:
+            data (Database, optional): Database for factory. Defaults to None.
+        """
+        self.__data_provider = data or self.default_data
 
     @property
     def data_provider(self):

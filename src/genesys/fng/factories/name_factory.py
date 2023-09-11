@@ -2,7 +2,6 @@
 NameBlock factories.
 
 Classes:
-    DbFactory: Base factory to build model with data from database.
     ModelFactory: Base factory to build model.
     BaseNameFactory: Base factory to build name model.
     ComplexFactory: Base factory to build complex model.
@@ -16,27 +15,6 @@ from factories.factory import Factory
 from factories.list_factory import ListFactory
 from models.fng.names.name import Name
 from utils.genders import MALE
-
-
-class DbFactory(Factory):
-    """
-    Base factory to build model with data from database.
-
-    Attributes:
-        data (Database): Database for factory.
-        default_data (Database): Default database for factory.
-    """
-
-    default_data = None
-
-    def __init__(self, data=None):
-        """
-        Construct factory with data from database.
-
-        Args:
-            data (Database, optional): Database for factory. Defaults to None.
-        """
-        self.data = data or self.default_data
 
 
 class ModelFactory(Factory):
@@ -95,7 +73,7 @@ class ModelFactory(Factory):
         return self.model(*model_args, **model_kwargs)
 
 
-class BaseNameFactory(ModelFactory, DbFactory):
+class BaseNameFactory(ModelFactory):
     """
     Base factory to build name model with data form database.
 
@@ -108,7 +86,7 @@ class BaseNameFactory(ModelFactory, DbFactory):
     model = Name
 
 
-class ComplexFactory(ModelFactory, DbFactory):
+class ComplexFactory(ModelFactory):
     """
     Complex Factory.
 
@@ -116,8 +94,8 @@ class ComplexFactory(ModelFactory, DbFactory):
 
     Attributes:
         block_map (dict): Map model fields to database blocks.
-        data (Database): Database for factory. Inherited from DbFactory.
-        default_data (Database): Default database for factory. Inherited from DbFactory.
+        data (Database): Database for factory. Inherited from Factory.
+        default_data (Database): Default database for factory. Inherited from Factory.
         factories (dict[Factory]): Nested factories.
         factory_classes (dict[class]): Classes for nested factories.
         model (Model): Model to build. Inherited from BaseNameFactory.

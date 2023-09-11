@@ -1,16 +1,11 @@
 from helpers.serializer import deserialize_decorator, deserialize_all_decorator, serialize
-from .model_factory import ModelFactory
+from ..factories.model_factory import ModelFactory
 
 
 class DbFactory(ModelFactory):
     def __init__(self, model, database):
         self.model = model
         self.database = database
-
-    def get_data(self, **kwargs):
-        data = {}
-        data.update(kwargs)
-        return data
 
     def save(self, model):
         """

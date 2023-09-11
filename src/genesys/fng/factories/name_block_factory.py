@@ -17,7 +17,7 @@ class MultipleFactoryNameFactory(BaseNameFactory):
 
     Attributes:
         data (Database): Database for factory. Inherited from DBFactory.
-        default_data (Database): Default database for factory. Inherited from DbFactory.
+        default_data (Database): Default database for factory. Inherited from Factory.
         factories (list[Factory]): Nested factories.
         factory_classes (list[class]): Classes for nested factories.
         model (Model): Model to build. Inherited from BaseNameFactory.
