@@ -1,3 +1,4 @@
+# TODO: Convert to Model
 class Instance:
     def __init__(self, thing, parent=None):
         # self.id = uuid
@@ -6,6 +7,7 @@ class Instance:
         self.parent = parent
         self.children = []
 
+        # TODO: Rename to factory
         self.thing = thing
 
         self.__grown = False
