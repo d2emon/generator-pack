@@ -7,8 +7,6 @@ Base factories
     * NumberFactory
     * DataItemFactory
   * ModelFactory
-    * DataFactory
-    * DbFactory
     * DiceFactory
     * ListModelFactory
     * MarkovFactory

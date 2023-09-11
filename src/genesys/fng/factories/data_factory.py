@@ -1,6 +1,15 @@
 from models.name_block import NameBlock
 from models.name.name import TextModel
-from factories.factory import Factory
+from factories.model_factory import ModelFactory
+
+
+class DataFactory(ModelFactory):
+    """
+    Factory for block data
+    """
+    @property
+    def model(self):
+        return TextModel
 
 
 class FactoriesBlock:
@@ -10,15 +19,6 @@ class FactoriesBlock:
 
     def factory(self, factory_id):
         return DataFactory(self.blocks.filtered(group_id=factory_id))
-
-
-class DataFactory(Factory):
-    """
-    Factory for block data
-    """
-    @property
-    def model(self):
-        return TextModel
 
 
 def load_data(data) -> dict:

@@ -1,4 +1,4 @@
-from .model_factory import ModelFactory
+from factories.model_factory import ModelFactory
 
 
 class DataFactory(ModelFactory):
