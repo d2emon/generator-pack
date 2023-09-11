@@ -4,7 +4,5 @@ from models.redlands.origin import Origin
 
 
 class OriginFactory(ListModelFactory):
+    default_data = ORIGINS
     model = Origin
-
-    def __init__(self, data=None):
-        super().__init__(data or ORIGINS)

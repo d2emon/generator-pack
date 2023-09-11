@@ -4,7 +4,5 @@ from models.redlands.movement import Movement
 
 
 class MovementFactory(ListModelFactory):
+    default_data = MOVEMENTS
     model = Movement
-
-    def __init__(self, data=None):
-        super().__init__(data or MOVEMENTS)

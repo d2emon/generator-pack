@@ -4,7 +4,5 @@ from models.redlands.template import Template
 
 
 class TemplateFactory(ListModelFactory):
+    default_data = TEMPLATES
     model = Template
-
-    def __init__(self, data=None):
-        super().__init__(data or TEMPLATES)
