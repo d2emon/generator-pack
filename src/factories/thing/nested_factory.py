@@ -53,14 +53,6 @@ class NestedFactory(ModelFactory):
     default_name = None
     default_children = []
 
-    def __init__(self, provider=None, *args, **kwargs):
-        """Creates nested factory
-
-        Args:
-            provider (Provider, optional): Data provider for factory. Defaults to None.
-        """
-        self.provider = provider
-
     def children(self):
         """Children to build
 
@@ -71,12 +63,8 @@ class NestedFactory(ModelFactory):
 
     # Factory methods
 
-    def children_factories(self, *args, **kwargs):
+    def children_factories(self):
         """Create children factories
-
-        Args:
-            *args: Data args.
-            **kwargs: Data kwargs.
 
         Yields:
             Factory: Child factory
@@ -108,12 +96,11 @@ class NestedFactory(ModelFactory):
         """
         return self.default_model
 
-    def get_args(self, *args, **kwargs):
+    def get_args(self, *args):
         """Generates args for model
 
         Args:
             *args: Data args.
-            **kwargs: Data kwargs.
 
         Returns:
             list: Args for model
@@ -136,10 +123,10 @@ class NestedFactory(ModelFactory):
         Returns:
             dict: Data for model
         """
-        return {
-            'name': self.name_factory(provider=self.provider),
+        return self.data_factory(
+            name=self.name_factory(data=self.data),
             **kwargs,
-        }
+        )
 
     # Helper methods
 

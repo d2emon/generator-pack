@@ -3,7 +3,7 @@ class Factory:
     Base factory to build something with data.
 
     Attributes:
-        data_provider (Database): Database for factory.
+        data (Database): Database for factory.
         default_data (Database): Default database for factory.
     """
 
@@ -17,11 +17,11 @@ class Factory:
         Args:
             data (Database, optional): Database for factory. Defaults to None.
         """
-        self.__data_provider = data or self.default_data
+        self.__data = data or self.default_data
 
     @property
-    def data_provider(self):
-        return self.__data_provider
+    def data(self):
+        return self.__data
 
     @classmethod
     def instance(cls, *args, **kwargs):

@@ -1,9 +1,20 @@
 from models.model import Model
 from .factory import Factory
+from .dict_factory import DictFactory
 
 
 class ModelFactory(Factory):
     """Generate model"""
+
+    def __init__(self, data=None):
+        """
+        Construct factory with data from database.
+
+        Args:
+            data (Database, optional): Database for factory. Defaults to None.
+        """
+        super().__init__(data)
+        self.data_factory = DictFactory()
 
     @property
     def model(self):
@@ -14,12 +25,11 @@ class ModelFactory(Factory):
         """
         return Model
 
-    def get_args(self, *args, **kwargs):
+    def get_args(self, *args):
         """Generates args for model
 
         Args:
             *args: Data args.
-            **kwargs: Data kwargs.
 
         Returns:
             list: Args for model
@@ -36,7 +46,7 @@ class ModelFactory(Factory):
         Returns:
             dict: Data for model
         """
-        return {**kwargs}
+        return self.data_factory(*args, **kwargs)
 
     def build(self, *args, **kwargs):
         """Create model
@@ -68,10 +78,10 @@ class ModelFactory(Factory):
         """
         factory = model or self.build
 
-        model_args = self.get_args(*args)
-        model_kwargs = self.get_data(**kwargs)
+        model_args = [*self.get_args(*args)]
+        model_kwargs = {**self.get_data(**kwargs)}
 
         return factory(
-            *list(model_args),
+            *model_args,
             **model_kwargs,
         )

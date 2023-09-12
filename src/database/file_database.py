@@ -2,6 +2,7 @@ import os
 from .database_loader import DatabaseLoader
 from .file.csv_data_file import CSVDataFile
 from .file.json_data_file import JSONDataFile
+from .file.text_file import TextDataFile
 
 
 class FileDatabase(DatabaseLoader):
@@ -37,3 +38,7 @@ class CSVDatabase(FileDatabase):
 
 class JSONDatabase(FileDatabase):
     source_factory = JSONDataFile
+
+
+class TextDatabase(FileDatabase):
+    source_factory = TextDataFile

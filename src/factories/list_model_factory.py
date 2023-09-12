@@ -6,7 +6,7 @@ class ListModelFactory(ModelFactory):
     def __init__(self, data=None):
         super().__init__(data)
 
-        self.__data_factory = ListFactory(data)
+        self.data_factory = ListFactory(data)
 
     @property
     def model(self):
@@ -16,15 +16,3 @@ class ListModelFactory(ModelFactory):
         :return: Model, built by factory
         """
         raise NotImplementedError()
-
-    def get_data(self, *args, **kwargs):
-        """Generates data for model
-
-        Args:
-            *args: Data args.
-            **kwargs: Data kwargs.
-
-        Returns:
-            dict: Data for model
-        """
-        return self.__data_factory(*args, **kwargs)

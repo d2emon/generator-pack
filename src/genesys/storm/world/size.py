@@ -27,10 +27,7 @@ class SizeFactory(Factory):
 
 
 class SizeClassFactory(ModelFactory):
-    def __init__(self, provider=DEFAULT_DATA_PROVIDER):
-        super().__init__()
-
-        self.provider = provider
+    default_data = DEFAULT_DATA_PROVIDER
 
     @property
     def model(self):
@@ -38,9 +35,9 @@ class SizeClassFactory(ModelFactory):
 
     def get_data(self, size_class=None, *args, **kwargs):
         if size_class is None:
-            return self.provider.size_factory()
+            return self.data.size_factory()
         else:
-            return self.provider.find_size_class(size_class, *args, **kwargs) or {}
+            return self.data.find_size_class(size_class, *args, **kwargs) or {}
 
     def by_world_type(self, world_type, *args, **kwargs):
         size_class = random.choice(world_type.sizes) if world_type.sizes and len(world_type.sizes) > 0 else None
@@ -50,6 +47,6 @@ class SizeClassFactory(ModelFactory):
         size_class_data = self(size_class=size_class) if size_class is not None else None
 
         return SizeFactory(
-            provider=self.provider,
+            data=self.data,
             size_class=size_class_data,
         )

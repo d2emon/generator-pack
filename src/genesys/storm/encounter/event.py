@@ -46,7 +46,7 @@ class EventFactory(ModelFactory):
         )
 
     def get_data(self, *args, **kwargs):
-        return {
+        return self.data_factory({
             'time': self.time(),
             'encounter': self.encounter(
                 # Fraction(),
@@ -55,7 +55,7 @@ class EventFactory(ModelFactory):
             # 'encounter_type': self.encounter_type(),
             # 'encounter_distance': self.distance_factory(),
             **kwargs,
-        }
+        })
 
 
 class DailyEventFactory(EventFactory):

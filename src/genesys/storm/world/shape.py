@@ -4,13 +4,11 @@ from .data import DEFAULT_DATA_PROVIDER
 
 
 class ShapeFactory(ModelFactory):
-    def __init__(self, provider=DEFAULT_DATA_PROVIDER):
-        super().__init__()
-        self.provider = provider
+    default_data = DEFAULT_DATA_PROVIDER
 
     @property
     def model(self):
         return WorldShape
 
     def get_data(self, *args, **kwargs):
-        return self.provider.shape_factory(*args, **kwargs)
+        return self.data.shape_factory(*args, **kwargs)

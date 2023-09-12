@@ -7,14 +7,7 @@ class ListFactory(Factory):
     Generate random value from list
     """
 
-    default = []
-
-    def __init__(self, data=()):
-        self.__data = data or self.default
-
-    @property
-    def data(self):
-        return self.__data
+    default_data = []
 
     def __len__(self):
         """
