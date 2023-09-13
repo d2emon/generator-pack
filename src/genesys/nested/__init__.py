@@ -63,6 +63,12 @@ new Thing("down quark",["qwubble"]);
 new Thing("qwubble",["multiverse,1-5"]);
 new Thing("portal",["universe"]);
 
+####
+
+? genesys.nested.factories.universe
+
+####
+
 //universe stuff
 new Thing("multiverse",["universe,10-30"],["multiverse", "lasagnaverse", "doughnutverse", "towelverse", "baconverse", "sharkverse", "nestedverse", "tastyverse", "upverse", "downverse", "layerverse", "clusterverse", "metaverse", "quantiverse", "paraverse", "epiverse", "alterverse", "hypoverse", "dimensioverse", "planiverse", "pluriverse", "polyverse", "maniverse", "stackoverse", "antiverse", "superverse", "upperverse", "maxiverse", "megaverse", "babyverse", "tinyverse", "retroverse", "ultraverse", "topoverse", "otherverse", "bubbleverse", "esreverse", "versiverse", "'verse", "cookieverse", "grandmaverse"]);
 new Thing("universe",["supercluster,10-30"]);
