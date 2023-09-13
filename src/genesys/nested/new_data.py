@@ -61,63 +61,7 @@ UNIVERSE_FACTORIES = {
 
 
 NEW_FACTORIES = {
-    # basic materials and particles
-    # (these are very rough simplifications, don't hold all the inaccuracies against me)
-    # new Thing("diamond",["carbon"]);
-    # new Thing("oil",["lipids"]);
-    # new Thing("magma",[".rock"]);
-    # new Thing("rock",["silica","aluminium,30%","iron,20%","potassium,20%","sodium,50%","calcium,50%"]);
-    # new Thing("silica",["silicon","oxygen"]);
-    # new Thing("chitin",["carbon","hydrogen","oxygen","nitrogen"]);
-    # new Thing("salt",["chlorine","sodium"]);
-    # new Thing("water",["hydrogen","oxygen"]);
-    # new Thing("fire",["oxygen","carbon"]);
-    # new Thing("ash",["organic matter","carbon"]);
-    # new Thing("dew",["water"]);
-    # new Thing("ice",["water"]);
-    # new Thing("snow",["snowflakes"]);
-    # new Thing("snowflakes",["water"]);
-    # new Thing("ammonia",["hydrogen","nitrogen"]);
-    # new Thing("methane",["hydrogen","carbon"]);
-    # new Thing("hydrogen",[".hydrogen atom"]);
-    # new Thing("hydrogen atom",["proton","electron"],["atoms"]);
-    # new Thing("plastic",["polymers"]);
-    # new Thing("rubber",["polymers"]);
-    # new Thing("polymers",[".glucids"]);
-    # new Thing("alcohol",[".glucids"]);
-    # new Thing("carbon",[".atom"]);
-    # new Thing("sodium",[".atom"]);
-    # new Thing("chlorine",[".atom"]);
-    # new Thing("oxygen",[".atom"]);
-    # new Thing("helium",[".atom"]);
-    # new Thing("potassium",[".atom"]);
-    # new Thing("aluminium",[".atom"]);
-    # new Thing("iron",[".atom"]);
-    # new Thing("copper",[".atom"]);
-    # new Thing("lead",[".atom"]);
-    # new Thing("steel",["iron","carbon"]);
-    # new Thing("gold",[".atom"]);
-    # new Thing("silver",[".atom"]);
-    # new Thing("silicon",[".atom"]);
-    # new Thing("calcium",[".atom"]);
-    # new Thing("nitrogen",[".atom"]);
-    # new Thing("sulfur",[".atom"]);
-    # new Thing("phosphorus",[".atom"]);
-    # alright, I'm not doing the whole periodic table.
-    # new Thing("proteins",[".molecule"]);
-    # new Thing("lipids",[".molecule"]);
-    # new Thing("glucids",["carbon","hydrogen","oxygen"],"glucose");
-    # new Thing("organic matter",[["proteins","lipids","glucids"],["proteins","lipids","glucids",""],"salt,30%"]);
-    # new Thing("atom",["proton","neutron","electron"],["atoms"]);
-    # new Thing("molecule",["atom"],["molecules"]);
-    # new Thing("proton",["up quark,2","down quark"]);
-    # new Thing("neutron",["down quark,2","up quark"]);
-    # new Thing("electron",["qwubble"]);
-    # new Thing("up quark",["qwubble"]);
-    # new Thing("down quark",["qwubble"]);
-    # new Thing("qwubble",["multiverse,1-5"]);
-    # new Thing("portal",["universe"]);
-
+    # .materials.FACTORIES
     **UNIVERSE_FACTORIES,
 }
 
@@ -181,7 +125,9 @@ new Thing("head",["mouth", "nose", "eye,99%", "eye,99%", "ear,2", "skull", "head
 new Thing("eye",["eyelashes", "eye flesh", "tear,2%"],"eye");
 new Thing("eye flesh",["water", "blood vessels", "fat"],"eyeball");
 new Thing("eyelashes",[".hair"],"eyelashes");
-new Thing("tear",["water", "salt"]);
+new Thing("tear",["water",
+    SaltFactory.one(),
+    ]);
 new Thing("ear",[".soft body part"],"ear");
 new Thing("brain",["bacteria,20%", "brain cell"],"brain");
 new Thing("skull",["brain", ".bones"]);
@@ -218,7 +164,9 @@ new Thing("leather",["skin cell"]);
 new Thing("textile",["textile fibre"]);
 new Thing("textile fibre",["keratin"],["textile fibres"]);
 new Thing("keratin",["proteins"]);
-new Thing("sweat",["water", "salt", "glucids"]);
+new Thing("sweat",["water",
+    SaltFactory.one(),
+    "glucids"]);
 new Thing("clothing",["textile", "dead skin,40%", "sweat,15%"]);
 new Thing("pocket",["dust,20%", "crumbs,20%", "lint,30%", "donut,1%", "coin,20%", "coin,20%", "coin,10%", "pen,10%", "pen,2%", "button,10%", "button,5%", "button,1%", "note,15%", "note,5%", "handgun,0.4%", "pasta,0.2%", "textile"]);
 
@@ -237,32 +185,48 @@ new Thing("glasses",["plastic", "glass", "metal,10%"],["glasses", "glasses", "gl
 //terrain stuff
 new Thing("ocean",["sea water", "sea life", "beach,10-20", ["iceberg,2-6", "", "", "", ""], "abyss"]);
 new Thing("sea",["sea water", "sea life", "beach,2-6"],[["great", "wide", "big", "old", "young", "large", "small", "dead", "shallow", "deep", "red", "yellow", "green", "blue", "orange", "brown", "grey", "black", "white", "purple", "shady", "bright", "silver"], [" sea"]]);
-new Thing("sea water",["water", "salt"]);
+new Thing("sea water",["water",
+    SaltFactory.one(),
+    ]);
 new Thing("iceberg",["bear,30%", "bear,10%", "ice"]);
 new Thing("beach",["beach life", "sand"]);
 new Thing("abyss",["sand", "abyss life"]);
-new Thing("sand",["silica"]);
-new Thing("soil",[["worm,0-2", "", ""], ["insect,0-2", "", ""], "silica"],"dirt");
-new Thing("mud",[["worm,0-2", "", ""], ["insect,0-2", "", ""], "water", "silica"]);
+new Thing("sand",[
+    SilicaFactory.one(),
+    ]);
+new Thing("soil",[["worm,0-2", "", ""], ["insect,0-2", "", ""],
+    SilicaFactory.one(),
+    ],"dirt");
+new Thing("mud",[["worm,0-2", "", ""], ["insect,0-2", "", ""], "water",
+    SilicaFactory.one(),
+    ]);
 
 new Thing("river",["river life", "water", "soil", "mud"],["river", "stream", "brook", "creek"]);
 new Thing("lake",["lake life", "water", "soil", "mud"],["lake", "lagoon", "pond", "marsh", "creek", "cove"]);
 new Thing("plain",["fire,0.3%", "land life", "river,0-3", "lake,0-1", "grass", "soil", "snow,5%"],["plain", "steppe", "valley", "canyon", "flatland", "moor", "grassland", "prairie", "desert", "savannah", "tundra", "wasteland"]);
 new Thing("forest",["fire,0.5%", "forest life", "river,0-2", "trees", "grass", "humus", "soil", "snow,5%"],["forest", "woods", "copse"]);
 new Thing("jungle",["fire,0.5%", "jungle life", "river,0-2", "jungle trees", "grass", "humus", "soil"],["jungle", "rainforest"]);
-new Thing("mountain",["mountain life", "river,0-3", "lake,0-1", "cave,30%", "cave,30%", "cave,20%", "trees", "soil", "rock", "snow,40%"],["mountain", "peak", "hill", "volcano", "bluff", "cliff", "mesa", "plateau"]);
-new Thing("cave",["cave life", "dragon lair,1%", "river,20%", "lake,10%", "rock", "iron,2%"],["cave", "cavern", "grotto"]);
+new Thing("mountain",["mountain life", "river,0-3", "lake,0-1", "cave,30%", "cave,30%", "cave,20%", "trees", "soil",
+    RockFactory.one(),
+    "snow,40%"],["mountain", "peak", "hill", "volcano", "bluff", "cliff", "mesa", "plateau"]);
+new Thing("cave",["cave life", "dragon lair,1%", "river,20%", "lake,10%",
+    RockFactory.one(),
+    "iron,2%"],["cave", "cavern", "grotto"]);
 
 new Thing("ancient plain",["fire,0.3%", "caveman settlement,40%", "ancient land life", "river,0-3", "lake,0-1", "grass", "soil", "snow,5%"],["plain", "steppe", "valley", "canyon", "flatland", "moor", "grassland", "prairie", "desert", "savannah", "tundra", "wasteland"]);
 new Thing("ancient forest",["fire,0.5%", "caveman settlement,40%", "ancient forest life", "river,0-2", "trees", "grass", "humus", "soil", "snow,5%"],["forest", "woods", "copse"]);
 new Thing("ancient jungle",["fire,0.5%", "caveman settlement,40%", "ancient jungle life", "river,0-2", "jungle trees", "grass", "humus", "soil"],["jungle", "rainforest"]);
-new Thing("ancient mountain",["caveman settlement,40%", "ancient mountain life", "ancient cave,30%", "ancient cave,20%", "ancient cave,10%", "river,0-3", "lake,0-1", "trees", "soil", "rock", "snow,40%"],["mountain", "peak", "hill", "volcano", "bluff", "cliff", "mesa", "plateau"]);
+new Thing("ancient mountain",["caveman settlement,40%", "ancient mountain life", "ancient cave,30%", "ancient cave,20%", "ancient cave,10%", "river,0-3", "lake,0-1", "trees", "soil",,
+    RockFactory.one(),
+    "snow,40%"],["mountain", "peak", "hill", "volcano", "bluff", "cliff", "mesa", "plateau"]);
 new Thing("ancient cave",["caveman settlement,65%", "wall painting,50%", "wall painting,30%", "wall painting,30%", ".cave"],["cave", "cavern", "grotto"]);
 
 new Thing("future sky",["sprowseship,4-12", ".sky"],"sky");
 new Thing("terraformed sky",["plane,1-8", "rocketship,20%", ".sky"],"sky");
 new Thing("sky",["visitor ship,10%", "meteorite,3%", "sky life", "precipitation,50%", "cloud,2-8", "oxygen", "carbon", "ozone"],"sky");
-new Thing("meteorite",["space animal,6%", "ice,60%", "rock", "iron,40%"],"meteorite");
+new Thing("meteorite",["space animal,6%", "ice,60%",
+    RockFactory.one(),
+    "iron,40%"],"meteorite");
 new Thing("ozone",["oxygen"]);
 new Thing("cloud",["water"]);
 new Thing("precipitation",["water"],["rain", "snow", "hail", "mist", "fog", "drizzle", "storm"]);
@@ -321,17 +285,35 @@ new Thing("fish tail",["muscles", "scales"],"tail");
 new Thing("fish skin",["scales"],"skin");
 new Thing("cetacean flipper",["muscles", "skin"],"flipper");
 new Thing("cetacean fin",["muscles", "skin"],"fin");
-new Thing("crustacean claw",["chitin", "muscles", "fat"],"claw");
-new Thing("crustacean leg",["chitin", "muscles", "fat"],"leg");
-new Thing("crustacean shell",["chitin"],"shell");
+new Thing("crustacean claw",[
+    ChitinFactory.one(),
+    "muscles", "fat"],"claw");
+new Thing("crustacean leg",[
+    ChitinFactory.one(),
+    "muscles", "fat"],"leg");
+new Thing("crustacean shell",[
+    ChitinFactory.one(),
+    ],"shell");
 new Thing("clam shell",["calcium"],"shell");
 new Thing("simple eye",[".eye flesh"],"eye");
-new Thing("exoskeleton",["chitin"],"exoskeleton");
-new Thing("insect leg",["chitin", "muscles", "fat"],"leg");
-new Thing("insect claw",["chitin", "muscles", "fat"],"claw");
-new Thing("stinger",["chitin", "venom"],"stinger");
-new Thing("antenna",["chitin"],"antenna");
-new Thing("insect wing",[["chitin", "scales"], "dew,2%"],"wing");
+new Thing("exoskeleton",[
+    ChitinFactory.one(),
+    ],"exoskeleton");
+new Thing("insect leg",[
+    ChitinFactory.one(),
+    "muscles", "fat"],"leg");
+new Thing("insect claw",[
+    ChitinFactory.one(),
+    "muscles", "fat"],"claw");
+new Thing("stinger",[
+    ChitinFactory.one(),
+    "venom"],"stinger");
+new Thing("antenna",[
+    ChitinFactory.one(),
+    ],"antenna");
+new Thing("insect wing",[[
+    ChitinFactory.one(),
+    "scales"], "dew,2%"],"wing");
 new Thing("wing",["feathers", ".body part"],"wing");
 new Thing("reptile wing",["scales", ".body part"],"wing");
 new Thing("bird wing",["feathers", ".body part"],"wing");
@@ -481,7 +463,9 @@ new Thing("dragon",["dragon body", "dragon thoughts"],[["fire", "ice", "forst", 
 new Thing("dragon thoughts",["dragon thought,1-2"],["thoughts"]);
 new Thing("dragon thought",[],["You shouldn't be here.", "Leave. Now.", "You need to leave.", "Well well well. What do we have here?", "I will make quick work of you.", "You smell like food. Are you food?", "I will eat your mind before I eat your body.", "You'll be dead before you realize what's happening to you.", "They... they took my egg...", "My treasure. Must protect my treasure!", "I guard, undisturbed.", "I'm older than most of these mountains.", "I've seen things you wouldn't believe.", "Leave at once, mortal.", "Turn back if you value your life.", "Act with great care now, for this is the very last thing you'll ever do.", "Knights in armor cook just like canned beans.", "People seem to value treasure more than their own life.", "There's no honor, no valor nowadays.", "I'm on fire today.", "Ooooh burn."]);
 new Thing("dragon body",["reptile head", "pyrolith", "scales", "reptile leg,4", ["reptile wing,2", ""], "tail", "flesh"],"body");
-new Thing("pyrolith",["rock"]);
+new Thing("pyrolith",[,
+    RockFactory.one(),
+    ]);
 new Thing("dragon lair",["dragon,98%", "medieval servant,10%", "dragon nest,40%", "pile of treasure,90%", "medieval corpse,0-3"]);
 new Thing("dragon nest",["egg shell,20%", "dragon egg,0-3", "pile of treasure"]);
 new Thing("dragon egg",["egg thoughts", "egg shell", "soft flesh", "organic matter"],"dragon egg");
@@ -626,7 +610,7 @@ new Thing("souvenir",[["wood", "plastic", "metal", "glass"]],[["tower", "pyramid
 new Thing("museum",["painting,0-3", "museum room,2-12", "tourist,2-10", "clerk,1-3", "desk,1-2", "chair,2-6", "souvenir,0-3", ".building"]);
 new Thing("museum room",["painting,1-10", "tourist,0-20", "tv,5%", "chair,0-2"],"exhibition room");
 new Thing("painting",["paint", "wooden frame"],"*PAINTING*");
-new Thing("paint",["oil", "pigment"]);
+new Thing("paint",[OilFactory.one(), "pigment"]);
 new Thing("wooden frame",["wood"]);
 
 //services
@@ -677,8 +661,12 @@ new Thing("cemetery",["gravedigger,0-2", "person,0-3", "cemetery shed,0-2", "mau
 new Thing("gravedigger",[".person", "shovel,30%"],"*PERSON*| (gravedigger)");
 new Thing("shovel",["wood", "metal"]);
 new Thing("cemetery shed",["gravedigger,0-2", "table,20%", "tv,20%", "fridge,30%", "chair,0-2", "shovel,0-3", "corpse,1%", "ghost,1%", ".building"],"shed");
-new Thing("mausoleum",["tourist,8%", "coffin,1-6", "ghost,4%", ["concrete", "rock", "marble"]]);
-new Thing("grave",["coffin", "coffin,5%", "worm,0-2", "insect,0-1", ["concrete", "rock", "marble"], "dirt"]);
+new Thing("mausoleum",["tourist,8%", "coffin,1-6", "ghost,4%", ["concrete",
+    RockFactory.one(),
+    "marble"]]);
+new Thing("grave",["coffin", "coffin,5%", "worm,0-2", "insect,0-1", ["concrete",
+    RockFactory.one(),
+    "marble"], "dirt"]);
 new Thing("coffin",["person,0.2%", "corpse,98%", "corpse,2%", "ghost,2%", "worm,0-3", "insect,0-2", "wood", "cloth", "nails"]);
 
 new Thing("ectoplasm",["proton,3-7"],[["purple", "fetid", "green", "yellow", "blood-red", "shiny", "wispy", "sparkly"], [" "], ["ectoplasm"]]);
@@ -691,7 +679,7 @@ new Thing("ghost thought",[],["if only - she could hear me -", "he needs to know
 new Thing("street",["traffic accident,1%", "urban life", "person,0-5", "driven car,0-20", "driven bike,0-3", "car,0-5", "road", "pavement"],[["*PERSON*|"], [" "], ["street", "avenue", "boulevard", "road", "alley", "bend", "drive", "place", "hill", "plaza"]]);
 new Thing("road",[["asphalt", "stone"]]);
 new Thing("pavement",["note,3%", "coin,4%", "stone", "dirt,5%"]);
-new Thing("asphalt",["oil", ".concrete"]);
+new Thing("asphalt",[OilFactory.one(), ".concrete"]);
 new Thing("car",["engine", "mechanics", "tire,4"],[["parked "], ["blue", "red", "white", "black", "grey"], [" "], ["Chr", "F", "Chevr", "Cad", "H", "Hyund", "Maz", "Niss", "Suz", "Lex", "Merc", "Aud", "Volv"], ["ysler", "ord", "olet", "illac", "onda", "ai", "da", "an", "uki", "us", "edes", "i", "o"]]);
 new Thing("driven car",["person,1-4", ".car"],[["blue", "red", "white", "black"], [" "], ["Chr", "F", "Chevr", "Cad", "H", "Hyund", "Maz", "Niss", "Suz", "Lex", "Merc", "Aud", "Volv"], ["ysler", "ord", "olet", "illac", "onda", "ai", "da", "an", "uki", "us", "edes", "i", "o"]]);
 new Thing("tire",["rubber", "metal"]);
@@ -708,8 +696,12 @@ new Thing("walls",["door,1-4", "window,0-6", ["wall,4", "wall,4-8"]]);
 new Thing("wall",[["plaster", "wood"], "dirt,5%"]);
 new Thing("plaster",["calcium", "sulfur"]);
 new Thing("marble",["calcium"]);
-new Thing("stone",["rock"]);
-new Thing("concrete",["rock", "cement", "water"]);
+new Thing("stone",[,
+    RockFactory.one(),
+    ]);
+new Thing("concrete",[,
+    RockFactory.one(),
+    "cement", "water"]);
 new Thing("cement",["calcium"]);
 new Thing("marble",["calcium"]);
 new Thing("door",["wood frame", "glass,10%"]);
@@ -736,8 +728,12 @@ new Thing("pipes",["metal", "dirt"]);
 new Thing("nails",["iron"]);
 new Thing("metal",["iron"]);
 new Thing("metal grill",["metal"]);
-new Thing("porcelain",["silica"]);
-new Thing("ceramic",["silica"]);
+new Thing("porcelain",[
+    SilicaFactory.one(),
+    ]);
+new Thing("ceramic",[
+    SilicaFactory.one(),
+    ]);
 new Thing("chair",[["wood", "plastic"], "nails,50%"]);
 new Thing("armchair",[".chair", "cloth"]);
 new Thing("couch",[".armchair", "tv remote,5%", "coin,5%", "pen,5%"],["couch", "sofa"]);
@@ -758,7 +754,9 @@ new Thing("pillow",["feather", "cloth"]);
 new Thing("feather",["keratin"]);
 new Thing("feathers",[".feather"]);
 new Thing("mirror",["glass", "portal,0.1%"]);
-new Thing("glass",["silica"]);
+new Thing("glass",[
+    SilicaFactory.one(),
+    ]);
 new Thing("desk",["wood frame", "drawer,0-6"]);
 new Thing("cupboard",["cup,0-6", "drinking glass,0-6", "bowl,0-4", "plate,0-8", "wood frame", "wood shelf,1-4", "drawer,0-2"]);
 new Thing("drinking glass",["glass"],"glass");
@@ -784,7 +782,7 @@ new Thing("wood",["cellulose", "worm,1%"]);
 new Thing("cellulose",["glucids"]);
 new Thing("paragraph",["character,50-300"]);
 new Thing("character",["ink"],"*CHAR*");
-new Thing("ink",["alcohol", "oil"]);
+new Thing("ink",["alcohol", OilFactory.one()]);
 new Thing("bathtub",["porcelain", "pipes", "dirt,30%", "insect,5%", "hair,30%"]);
 new Thing("shower",["porcelain", "pipes", "dirt,30%", "insect,5%", "hair,30%"]);
 new Thing("tv",["tv show", "tv remote,20%", "plastic", "electronics"],[["plasma", "wide-screen", "high-resolution", "black and white", "small", "cheap"], [" TV"]]);
@@ -853,18 +851,30 @@ new Thing("juice bottle",[".bottle", "juice"]);
 new Thing("soda bottle",[".bottle", "soda"]);
 new Thing("juice",["water", "sugar"],[["apple", "pear", "banana", "tomato", "pineapple", "pumpkin", "carrot", "grape", "orange", "papaya", "kiwi", "mango"], [" juice", " juice", " juice", " smoothie"]]);
 new Thing("soda",["water", "sugar"],[["apple", "pineapple", "grape", "orange", "purple", "brown"], [" soda"]]);
-new Thing("can",["water", "sugar", "salt", "mold,3%", "metal"],[["canned "], ["apple bits", "pear bits", "tomatoes", "pineapple", "pumpkin", "carrots", "meat", "pork", "beef", "peas", "mushrooms", "olives", "fish", "burger", "corn"]]);
-new Thing("cookie box",["sugar", "salt,70%", "mold,3%", "cardboard"],[["box of "], ["cheesy", "cheese", "sugar", "cream", "milk", "milky", "whole-grain", "frosted", "glazed", "apple", "nut", "fruit", "chocolate", "butter", "oat", "wheat", "corn", "animal-shaped", "meat", "crunchy", "crispy"], [" "], ["puffs", "poofs", "cookies", "biscuits", "rolls", "pops", "snacks", "crackers", "cereals", "pies", "tarts"]]);
+new Thing("can",["water", "sugar",
+    SaltFactory.one(),
+    "mold,3%", "metal"],[["canned "], ["apple bits", "pear bits", "tomatoes", "pineapple", "pumpkin", "carrots", "meat", "pork", "beef", "peas", "mushrooms", "olives", "fish", "burger", "corn"]]);
+new Thing("cookie box",["sugar",
+    SaltFactory.one().probable(70),
+    "mold,3%", "cardboard"],[["box of "], ["cheesy", "cheese", "sugar", "cream", "milk", "milky", "whole-grain", "frosted", "glazed", "apple", "nut", "fruit", "chocolate", "butter", "oat", "wheat", "corn", "animal-shaped", "meat", "crunchy", "crispy"], [" "], ["puffs", "poofs", "cookies", "biscuits", "rolls", "pops", "snacks", "crackers", "cereals", "pies", "tarts"]]);
 new Thing("yeast",[".cell"]);
 new Thing("yoghurt",["milk", "sugar", "yeast"],[["strawberry", "vanilla", "cherry", "pear", "plain"], [" yoghurt"]]);
 new Thing("ice cream",["milk", "sugar", "ice"],[["strawberry", "vanilla", "cherry", "chocolate"], [" ice cream"]]);
 new Thing("cheese",["milk", "yeast", "mold,30%"],[["roquefort", "cheddar", "gouda", "edam", "colby", "mozarella", "processed cheese", "stilton", "goat cheese", "gorgonzola", "brie", "camembert"]]);
 new Thing("roast",[".meat", "spices"],[["chicken", "beef", "pork", "duck", "mutton"], [" roast"]]);
 new Thing("spices",[".organic matter"],[["pepper", "garlic", "onions", "rosemary", "sage", "thyme"]]);
-new Thing("meat",["blood vessels,5%", "bones,5%", "fat,50%", "muscles", "salt"]);
-new Thing("tomato sauce",["glucids", "meat,20%", "salt"]);
-new Thing("pasta",["salt", "glucids", "cheese,5%", "tomato sauce,20%"],["spaghetti", "noodles", "fusilli", "fettuccine", "fettuce", "tagliatelle", "cannelloni", "penne", "rigatoni", "farfalle", "tortelloni", "ravioli", "gnocchi"]);
-new Thing("pastry",["sugar", "salt", "dough"],"pastry");
+new Thing("meat",["blood vessels,5%", "bones,5%", "fat,50%", "muscles",
+    SaltFactory.one(),
+    ]);
+new Thing("tomato sauce",["glucids", "meat,20%",
+    SaltFactory.one(),
+    ]);
+new Thing("pasta",[
+    SaltFactory.one(),
+    "glucids", "cheese,5%", "tomato sauce,20%"],["spaghetti", "noodles", "fusilli", "fettuccine", "fettuce", "tagliatelle", "cannelloni", "penne", "rigatoni", "farfalle", "tortelloni", "ravioli", "gnocchi"]);
+new Thing("pastry",["sugar",
+    SaltFactory.one(),
+    "dough"],"pastry");
 new Thing("pie",[["fruit jam", "meat"], ".pastry"],"pie");
 new Thing("cake",[".pastry"],[["chocolate", "white chocolate", "chestnut", "fruit", "huge", "impressive", "ornate", "glazed", "colorful", "cheese", "nut", "delicious"], [" cake"]]);
 new Thing("fruit jam",["plant cell", "sugar"]);
@@ -996,7 +1006,9 @@ new Thing("medieval apothecary shop",["potion,1-8", "unusual stone,1-8", "unusua
 new Thing("medieval inn",["medieval innkeeper,1-2", "medieval peasant,0-3", "medieval guard,0-3", "medieval noble,50%", "medieval bedroom,2-6", "tankard,1-4", "ale keg,1-4", "medieval table,1-3", "medieval chair,2-4", "medieval chest,0-2", "medieval clutter,1-3", ".medieval building"],[["inn of the ", "tavern of the "], ["bleeding", "smoking", "witching", "flying", "burning", "rabid", "winking", "dead", "standing", "tasty", "meaty", "fat", "thirsty", "hungry", "starving", "lone", "cheerful", "singing", "dancing", "travelling", "lost", "haunted", "cursed", "holy", "magic", "sorcerous", "shy", "fair", "tipsy", "drunk", "sleeping", "snoring", "screaming", "moaning", "iron", "resting", "sulking", "hidden", "raving", "prancing", "filthy", "nested", "squealing"], [" "], ["walrus", "king", "queen", "princess", "prince", "bear", "witch", "wizard", "mage", "barbarian", "shark", "dog", "cat", "castle", "fish", "rabbit", "bull", "spider", "cake", "potion", "wanderer", "traveller", "tree", "fairy", "pixie", "unicorn", "dragon", "mandrake", "tankard", "bottle", "cobbler", "blacksmith", "jester", "nettle", "cookpot", "anvil", "scholar", "monk", "idiot", "raven", "squire", "skeleton", "beggar", "gembaby", "pig"]]);
 new Thing("wizard tower",["wizard,95%", "wizard,20%", "medieval servant,30%", "unusual ingredient,1-4", "medieval table,80%", "medieval chair,1-3", "medieval chest,1-4", "medieval clutter,2-4", ".medieval building"]);
 new Thing("medieval cemetery",["medieval gravedigger,0-2", "medieval person,0-3", "medieval grave,10-30", "ghost,20%", "ghost,10%"],"graveyard");
-new Thing("medieval grave",["medieval corpse,98%", "ghost,2%", "worm,0-3", "insect,0-1", "rock", "dirt"],"grave");
+new Thing("medieval grave",["medieval corpse,98%", "ghost,2%", "worm,0-3", "insect,0-1",
+    RockFactory.one(),
+    "dirt"],"grave");
 
 new Thing("medieval chair",["wood", "nails,50%"],"chair");
 new Thing("medieval bench",["stone"],"bench");
@@ -1012,7 +1024,9 @@ new Thing("medieval chest",[".medieval chest content", "wood frame", "metal"],["
 new Thing("medieval chest content",["medieval clutter,0-2", ["medieval clutter,0-5", "unusual stone,0-2", "unusual plant,0-5", "unusual ingredient,0-2", "potion,0-5", "sack of grain,0-3", "sack of medieval food,0-3", "medieval food,0-5", "medieval meat,0-6", "treasure,0-2"], "insect,10%", "insect,10%"],["chest content"]);
 new Thing("medieval clutter",[["metal", "wood"]],["spoon", "fork", "knife", "torch", "broom", "pot", "jug", "candlestick", "goblet", "flagon", "plate", "platter", "bowl", "ladle", "clothes iron", "figurine", "hammer", "tongs", "bellows", "spigot", "axe", "pickaxe", "saw", "hoe", "shovel", "quill", "calipers", "oar", "paint brush", "pitchfork", "shears", "weight"]);
 new Thing("anvil",["steel"]);
-new Thing("unusual stone",["rock"],["crystal", "bezoar", "agate", "amber", "amethyst", "bloodstone", "carnelian", "garnet", "hematite", "jade", "jasper", "lapis", "moonstone", "obsidian", "opal", "sapphire", "tiger's eye", "turquoise", "zircon"]);
+new Thing("unusual stone",[
+    RockFactory.one(),
+    ],["crystal", "bezoar", "agate", "amber", "amethyst", "bloodstone", "carnelian", "garnet", "hematite", "jade", "jasper", "lapis", "moonstone", "obsidian", "opal", "sapphire", "tiger's eye", "turquoise", "zircon"]);
 new Thing("unusual ingredient",["organic matter"],["dragon tooth", "dragon claw", "dragon scale", "unicorn horn", "goblin mucus", "giant snail shell", "troll blood clot", "imp nose", "fairy fingers", "pixie wings", "demon tail", "behemoth plate", "mindsucker lips", "slime porridge", "ladyfly ocella", "spider silk", "gold cocoon", "silver chrysalis", "oaf bladder", "angel larva", "sugarfey fudge", "whale blubber", "mummified gembaby", "basilisk feather", "mage fingernails", "screamfiber", "brainpod", "footface nipple", "cephalite eyelashes"]);
 new Thing("unusual plant",["plant cell"],["mandrake", "myrrh", "vervain", "lotus", "pomegranate", "myrtle", "blackroot", "silkbean", "drypod", "pigweed", "thistle", "marigold", "mistletoe", "spearmint", "mugwort", "aconite", "aloe", "amaranth", "anise", "belladonna", "bergamot", "bladderwrack", "cloves", "clover", "comphrey", "dragonblood", "eucalyptus", "incense", "garlic", "ginger", "ginseng", "hemlock", "holly", "honeysuckle", "licorice", "jasmine", "juniper", "nutmeg", "oakmoss", "orchid", "rue", "saffron", "sage", "vetivert", "wormwood", "witchgrass", "agaric", "bolete"]);
 //http://www.janih.com/lady/herbs/magick/

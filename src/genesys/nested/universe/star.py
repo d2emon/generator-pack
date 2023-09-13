@@ -1,5 +1,6 @@
 from genesys.nested.factories.nested_factory import NestedFactory
 from models.universe.star import Star, StarSystem
+from utils.nested import select_item
 from .planet import VisitorPlanetFactory, FuturePlanetFactory, TerraformedPlanetFactory, MedievalPlanetFactory, \
     AncientPlanetFactory, BarrenPlanetFactory
 from .planet.asteroid import AsteroidBeltFactory
@@ -20,7 +21,7 @@ class StarSystemFactory(NestedFactory):
     default_model = StarSystem
 
     def stars(self):
-        yield StarFactory.as_child()
+        yield StarFactory.one()
         yield StarFactory.probable(3)
 
     def orbits(self):
@@ -96,7 +97,7 @@ class StarFactory(NestedFactory):
         yield from self.matter()
 
     def name_factory(self, *args, **kwargs):
-        return f"{self.select_item(*self.names)} star"
+        return f"{select_item(*self.names)} star"
 
 
 ####

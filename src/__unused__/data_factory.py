@@ -10,10 +10,10 @@ class DataFactory(ModelFactory):
 
         :param data: Array of data dicts
         """
-        self.factory_data = self.data_factory(data or self.default_data)
+        self.factory_data = self.factory(data or self.default_data)
 
     @classmethod
-    def data_factory(cls, data):
+    def factory(cls, data):
         """
         Build model
 
@@ -21,5 +21,5 @@ class DataFactory(ModelFactory):
         """
         raise NotImplementedError()
 
-    def get_data(self, *args, **kwargs):
+    def data_factory(self, *args, **kwargs):
         return self.factory_data.get_random(*args, **kwargs)

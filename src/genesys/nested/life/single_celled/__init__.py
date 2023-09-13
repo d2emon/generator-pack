@@ -1,4 +1,5 @@
 from models.v5 import life
+from utils.nested import select_item
 from ...mind import ThoughtFactory, ThoughtsFactory, PsycheFactory
 from ..cell import CellFactory
 from ..animals.animal import AnimalFactory
@@ -46,7 +47,7 @@ class BacteriaFactory(AnimalFactory):
     bacteria_types = ["amoeba", "bacteria", "virus"]
 
     def generate_name(self):
-        return f'{self.select_item(*self.names)}{self.select_item(*self.bacteria_types)}'
+        return f'{select_item(*self.names)}{select_item(*self.bacteria_types)}'
 
     @property
     def body_factory(self):

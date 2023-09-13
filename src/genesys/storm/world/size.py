@@ -33,7 +33,7 @@ class SizeClassFactory(ModelFactory):
     def model(self):
         return WorldSize
 
-    def get_data(self, size_class=None, *args, **kwargs):
+    def data_factory(self, size_class=None, *args, **kwargs):
         if size_class is None:
             return self.data.size_factory()
         else:

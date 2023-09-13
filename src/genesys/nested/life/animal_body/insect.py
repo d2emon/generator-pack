@@ -1,5 +1,6 @@
 from models.v5 import life
 from factories.thing.nested_factory import NestedFactory as Factory
+from utils.nested import select_item
 from ...materials import ChitinFactory, DewFactory
 from ..animals.crustacean import CrustaceanLegFactory, CrustaceanClawFactory
 from .skin import ScalesFactory
@@ -33,7 +34,7 @@ class InsectWingFactory(Factory):
     default_model = life.InsectWing
 
     def children(self):
-        yield self.select_item(
+        yield select_item(
             ChitinFactory(),
             ScalesFactory(),
         )

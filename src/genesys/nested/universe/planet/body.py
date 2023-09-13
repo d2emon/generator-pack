@@ -1,5 +1,6 @@
 from factories.thing.nested_factory import NestedFactory
 from models.planet.body import PlanetLike, Asteroid, Moon, TerraformedMoon
+from utils.nested import select_item
 # from .body import Asteroid, Moon, TerraformedMoon
 # from ...temporary import ContinentFactory
 # from ...life import AsteroidLifeFactory, MoonLifeFactory
@@ -73,7 +74,7 @@ class MoonFactory(PlanetLikeFactory):
         yield PlanetCoreFactory
 
     def name_factory(self):
-        return f"{self.select_item(*self.names)} moon"
+        return f"{select_item(*self.names)} moon"
 
 
 class TerraformedMoonFactory(MoonFactory):
@@ -106,7 +107,7 @@ class TerraformedMoonFactory(MoonFactory):
         yield None
 
     def name_factory(self):
-        return f"{self.select_item(*self.names)} moon"
+        return f"{select_item(*self.names)} moon"
 
 
 class FutureMoonFactory(TerraformedMoonFactory):

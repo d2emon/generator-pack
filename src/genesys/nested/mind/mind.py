@@ -1,5 +1,6 @@
 from models.v5 import mind
 from factories.thing.nested_factory import NestedFactory as Factory
+from utils.nested import select_item
 
 
 class MemoryFactory(Factory):
@@ -18,7 +19,7 @@ class ThoughtFactory(Factory):
     thoughts = []
 
     def generate_name(self):
-        return self.select_item(*self.thoughts)
+        return select_item(*self.thoughts)
 
 
 class SadThoughtFactory(ThoughtFactory):

@@ -1,5 +1,6 @@
 from models.universe.black_hole import EndOfUniverseNote, Everything, Answer42, BlackHole, WhiteHole, InsideTheBlackHole
 from factories.thing.nested_factory import NestedFactory
+from utils.nested import select_item
 # from ..life import BlackHoleLifeFactory
 # from ..temporary import PastaFactory
 
@@ -12,7 +13,7 @@ class EndOfUniverseNoteFactory(NestedFactory):
     ]
 
     def generate_name(self):
-        return self.select_item(*self.notes)
+        return select_item(*self.notes)
 
     def children(self):
         # yield PastaFactory.probable(0.1)
@@ -51,8 +52,4 @@ class BlackHoleFactory(NestedFactory):
     default_model = BlackHole
 
     def children(self):
-        yield InsideTheBlackHoleFactory.as_child()
-
-
-"""
-"""
+        yield InsideTheBlackHoleFactory.one()

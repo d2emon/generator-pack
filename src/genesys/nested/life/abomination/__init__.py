@@ -1,4 +1,5 @@
 from models.v5 import life
+from utils.nested import select_item
 from ...mind import PsycheFactory, ThoughtsFactory, ThoughtFactory
 from ..animal_body import WeirdSoftOrganFactory, WeirdHardOrganFactory, CrustaceanClawFactory, StingerFactory, \
     MouthFactory, NoseFactory, EarFactory, EyeFactory, SkullFactory
@@ -69,11 +70,11 @@ class AbominationBodyFactory(BodyFactory):
         yield AbominationHeadFactory()
         yield AbominationHeadFactory().probable(5)
         yield AbominationTorsoFactory()
-        yield self.select_item(
+        yield select_item(
             ArmFactory().multiple(0, 8),
             ArmFactory().multiple(0, 4),
         )
-        yield self.select_item(
+        yield select_item(
             LegFactory().multiple(0, 8),
             LegFactory().multiple(0, 4),
         )

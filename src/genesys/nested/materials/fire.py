@@ -6,15 +6,15 @@ from .organics import OrganicFactory
 
 
 class FireFactory(Factory):
-    default_model = materials.Fire
+    model = materials.Fire
 
     def children(self):
         yield from MoleculeFactory.elements('C', 'O')
 
 
 class AshFactory(Factory):
-    default_model = materials.Ash
+    model = materials.Ash
 
     def children(self):
-        yield OrganicFactory()
-        yield CarbonFactory()
+        yield OrganicFactory.one()
+        yield CarbonFactory.one()

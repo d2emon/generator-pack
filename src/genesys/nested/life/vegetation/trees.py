@@ -1,5 +1,6 @@
 from models.v5 import life
 from factories.thing.nested_factory import NestedFactory as Factory
+from utils.nested import select_item
 from ...materials import DewFactory, OrganicFactory
 from ...mind import PsycheFactory, ThoughtsFactory, ThoughtFactory
 from .twig import TwigFactory
@@ -117,7 +118,7 @@ class TreeFactory(Factory):
     ]
 
     def generate_name(self):
-        return self.select_item(*self.names)
+        return select_item(*self.names)
 
     def children(self):
         yield TreePsycheFactory()

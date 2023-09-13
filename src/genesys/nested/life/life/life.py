@@ -1,5 +1,6 @@
 from models.v5 import life
 from factories.thing.nested_factory import NestedFactory as Factory
+from utils.nested import select_item
 from ..body import PersonFactory
 from ..vegetation import TreeFactory, GrassBladeFactory
 from ..animals import PlanktonFactory, ClamFactory, CnidariaFactory, MolluskFactory, CrustaceanFactory
@@ -9,7 +10,7 @@ class LifeFactory(Factory):
     default_model = life.Life
 
     def children(self):
-        yield self.select_item(
+        yield select_item(
             # "bird"
             # "poultry"
             # "fish"

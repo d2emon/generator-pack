@@ -1,5 +1,6 @@
 from models.v5 import universe
 from factories.thing.nested_factory import NestedFactory as Factory
+from utils.nested import select_item
 from ..cloth import ClothingSetFactory
 from ..life import BodyFactory
 from ..temporary import ComputerFactory
@@ -16,7 +17,7 @@ class D2emonThoughtsFactory(Factory):
     ]
 
     def generate_name(self):
-        return self.select_item(*self.thoughts)
+        return select_item(*self.thoughts)
 
 
 class D2emonPsycheFactory(Factory):

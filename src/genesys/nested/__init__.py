@@ -1,67 +1,7 @@
 # Inspired by: https://orteil.dashnet.org/nested
 
 """
-//basic materials and particles
-//(these are very rough simplifications, don't hold all the inaccuracies against me)
-
-# new Thing("diamond",["carbon"]);
-# new Thing("oil",["lipids"]);
-
-models.minerals.diamond
-models.minerals.oil
-
-new Thing("magma",[".rock"]);
-new Thing("rock",["silica", "aluminium,30%", "iron,20%", "potassium,20%", "sodium,50%", "calcium,50%"]);
-new Thing("silica",["silicon", "oxygen"]);
-new Thing("chitin",["carbon", "hydrogen", "oxygen", "nitrogen"]);
-new Thing("salt",["chlorine", "sodium"]);
-new Thing("water",["hydrogen", "oxygen"]);
-new Thing("fire",["oxygen", "carbon"]);
-new Thing("ash",["organic matter", "carbon"]);
-new Thing("dew",["water"]);
-new Thing("ice",["water"]);
-new Thing("snow",["snowflakes"]);
-new Thing("snowflakes",["water"]);
-new Thing("ammonia",["hydrogen", "nitrogen"]);
-new Thing("methane",["hydrogen", "carbon"]);
-new Thing("hydrogen",[".hydrogen atom"]);
-new Thing("hydrogen atom",["proton", "electron"],["atoms"]);
-new Thing("plastic",["polymers"]);
-new Thing("rubber",["polymers"]);
-new Thing("polymers",[".glucids"]);
-new Thing("alcohol",[".glucids"]);
-new Thing("carbon",[".atom"]);
-new Thing("sodium",[".atom"]);
-new Thing("chlorine",[".atom"]);
-new Thing("oxygen",[".atom"]);
-new Thing("helium",[".atom"]);
-new Thing("potassium",[".atom"]);
-new Thing("aluminium",[".atom"]);
-new Thing("iron",[".atom"]);
-new Thing("copper",[".atom"]);
-new Thing("lead",[".atom"]);
-new Thing("steel",["iron", "carbon"]);
-new Thing("gold",[".atom"]);
-new Thing("silver",[".atom"]);
-new Thing("silicon",[".atom"]);
-new Thing("calcium",[".atom"]);
-new Thing("nitrogen",[".atom"]);
-new Thing("sulfur",[".atom"]);
-new Thing("phosphorus",[".atom"]);
-//alright, I'm not doing the whole periodic table.
-new Thing("proteins",[".molecule"]);
-new Thing("lipids",[".molecule"]);
-new Thing("glucids",["carbon", "hydrogen", "oxygen"],"glucose");
-new Thing("organic matter",[["proteins", "lipids", "glucids"], ["proteins", "lipids", "glucids", ""], "salt,30%"]);
-new Thing("atom",["proton", "neutron", "electron"],["atoms"]);
-new Thing("molecule",["atom"],["molecules"]);
-new Thing("proton",["up quark,2", "down quark"]);
-new Thing("neutron",["down quark,2", "up quark"]);
-new Thing("electron",["qwubble"]);
-new Thing("up quark",["qwubble"]);
-new Thing("down quark",["qwubble"]);
-new Thing("qwubble",["multiverse,1-5"]);
-new Thing("portal",["universe"]);
+genesys.nested.materials
 
 ####
 
@@ -77,26 +17,42 @@ new Thing("galaxy",["galaxy center", "galaxy arm,2-6"]);
 new Thing("galaxy arm",["galactic life,5%", "dyson sphere,4%", "dyson sphere,2%", "star system,20-50", "nebula,0-12", "black hole,20%", "black hole,20%"],"arm");
 new Thing("galaxy center",["black hole", "galactic life,10%", "dyson sphere,4%", "dyson sphere,2%", "star system,20-50", "nebula,0-12"],"galactic center");
 new Thing("nebula",["galactic life,15%", "star,2%", "star,2%", "star,2%", "interstellar cloud,1-6"]);
-new Thing("interstellar cloud",["helium", "hydrogen", "carbon,80%", "water,5%", "ammonia,5%", "nitrogen,5%", "iron,5%", "sulfur,5%", "oxygen,15%"],[["a bright pink", "a faint", "a fading", "a pale", "a fluo", "a glowing", "a green", "a bright green", "a dark brown", "a brooding", "a magenta", "a bright red", "a dark red", "a blueish", "a deep blue", "a turquoise", "a teal", "a golden", "a multicolored", "a silver", "a dramatic", "a luminous", "a colossal", "a purple", "a gold-trimmed", "an opaline", "a silvery", "a shimmering"], [" "], ["interstellar cloud"]]);
+new Thing("interstellar cloud",["helium", "hydrogen", "carbon,80%",
+    WaterFactory.one().probable(5),
+    "ammonia,5%", "nitrogen,5%", "iron,5%", "sulfur,5%", "oxygen,15%"],[["a bright pink", "a faint", "a fading", "a pale", "a fluo", "a glowing", "a green", "a bright green", "a dark brown", "a brooding", "a magenta", "a bright red", "a dark red", "a blueish", "a deep blue", "a turquoise", "a teal", "a golden", "a multicolored", "a silver", "a dramatic", "a luminous", "a colossal", "a purple", "a gold-trimmed", "an opaline", "a silvery", "a shimmering"], [" "], ["interstellar cloud"]]);
 new Thing("star system",["star", "star,3%", "visitor planet,5%", "future planet,10%", "future planet,10%", "terraformed planet,50%", "terraformed planet,20%", "terraformed planet,10%", "medieval planet,30%", "medieval planet,20%", "ancient planet,50%", "ancient planet,30%", "ancient planet,10%", "barren planet,60%", "barren planet,40%", "barren planet,20%", "gas giant,60%", "gas giant,40%", "gas giant,20%", "gas giant,10%", "asteroid belt,0-2"]);
 new Thing("dyson sphere",["star", "star,3%", "dyson surface", "future planet,1-8", "barren planet,60%", "barren planet,40%", "barren planet,20%", "gas giant,60%", "gas giant,40%", "gas giant,20%", "gas giant,10%", "asteroid belt,0-2"]);
 new Thing("star",["ghost,0.1%", "space monster,0.2%", "hydrogen", "helium"],[["white", "faint", "yellow", "red", "blue", "green", "purple", "bright", "double", "twin", "triple", "old", "young", "dying", "small", "giant", "large", "pale", "dark", "hell", "horrific", "twisted", "spectral"], [" star"]]);
 new Thing("planet",[".terraformed planet"],"telluric planet");
-new Thing("barren planet",["galactic life,10%", "rock", "ice,50%", ".planet composition"],"telluric planet");
-new Thing("visitor planet",["visitor city,1-8", "visitor installation,2-6", "galactic life", "rock", "ice,50%", ".planet composition"],"telluric planet");
+new Thing("barren planet",["galactic life,10%",
+    RockFactory.one(),
+    "ice,50%", ".planet composition"],"telluric planet");
+new Thing("visitor planet",["visitor city,1-8", "visitor installation,2-6", "galactic life",
+    RockFactory.one(),
+    "ice,50%", ".planet composition"],"telluric planet");
 new Thing("future planet",["future continent,2-7", "ocean,1-7", "future sky", ".future moon,30%", ".planet composition"],"telluric planet");
 new Thing("terraformed planet",["continent,2-7", "ocean,1-7", "terraformed sky", ".terraformed moon,30%", ".planet composition"],"telluric planet");
 new Thing("medieval planet",["medieval continent,2-4", "ancient continent,0-3", "ocean,1-7", "sky", ".planet composition"],"telluric planet");
 new Thing("ancient planet",["ancient continent,2-7", "ocean,1-7", "sky", ".planet composition"],"telluric planet");
 new Thing("planet composition",["planet core", "moon,40%", "moon,20%", "moon,10%"],"planet");
-new Thing("moon",["ghost,0.1%", "rock", "planet core"],[["young", "old", "large", "small", "pale", "white", "dark", "black", "old"], [" moon"]]);
+new Thing("moon",["ghost,0.1%",
+    RockFactory.one(),
+    "planet core"],[["young", "old", "large", "small", "pale", "white", "dark", "black", "old"], [" moon"]]);
 new Thing("terraformed moon",[".planet composition", "continent,1-4", "ocean,1-4", "sky"],[["young", "old", "large", "small", "pale", "white", "dark", "black", "old", "green", "lush", "blue", "city", "colonized", "life"], [" moon"]]);
 new Thing("asteroid belt",["galactic life,20%", "asteroid,10-30"]);
 new Thing("earth",[".asteroid belt"],"Earth");
-new Thing("asteroid",["space animal,0.5%", "rock", "ice,30%"],"asteroid");
+new Thing("asteroid",["space animal,0.5%",
+    RockFactory.one(),
+    "ice,30%"],"asteroid");
 new Thing("gas giant",["gas giant atmosphere", "planet core,50%", "moon,0-3", "terraformed moon,20%", "terraformed moon,10%"]);
-new Thing("gas giant atmosphere",["galactic life,10%", "helium", "hydrogen", "water,50%", "ammonia,50%", "methane,50%"],"atmosphere");
-new Thing("planet core",["space monster,0.5%", "iron", "rock", "diamond,2%", "magma"],"core");
+new Thing("gas giant atmosphere",["galactic life,10%", "helium", "hydrogen",
+    WaterFactory.one().probable(50),
+    "ammonia,50%", "methane,50%"],"atmosphere");
+new Thing("planet core",["space monster,0.5%", "iron",
+    RockFactory.one(),
+    DiamondFactory.one().probable(2),
+    MagmaFactory.one(),
+],"core");
 
 new Thing("black hole",["inside the black hole"]);
 new Thing("inside the black hole",["end of universe note,0.5%", "crustacean,0.2%", "white hole"]);

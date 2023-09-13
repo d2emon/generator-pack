@@ -1,5 +1,6 @@
 from models.v5 import terrain
 from factories.thing.nested_factory import NestedFactory as Factory
+from utils.nested import select_item
 from ..life import SkyLifeFactory
 from ..materials import RockFactory, IronFactory, IceFactory, SteamFactory, WaterFactory
 
@@ -13,7 +14,7 @@ class PrecipitationFactory(WaterFactory):
     names = ['rain', 'snow', 'hail', 'mist', 'fog', 'drizzle', 'storm']
 
     def generate_name(self):
-        return self.select_item(*self.names)
+        return select_item(*self.names)
 
 
 class MeteoriteFactory(Factory):

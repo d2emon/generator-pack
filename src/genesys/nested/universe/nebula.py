@@ -1,5 +1,6 @@
 from genesys.nested.factories.nested_factory import NestedFactory
 from models.universe.nebula import Nebula, InterstellarCloud
+from utils.nested import select_item
 # from ..life import NebulaLifeFactory
 # from ..materials import MoleculeFactory, SteamFactory, AmmoniaFactory
 from .star import StarFactory
@@ -46,7 +47,7 @@ class InterstellarCloudFactory(NestedFactory):
         yield None
 
     def name_factory(self):
-        return f"{self.select_item(*self.provider.interstellar_cloud)} interstellar cloud"
+        return f"{select_item(*self.provider.interstellar_cloud)} interstellar cloud"
 
 
 """

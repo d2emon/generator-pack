@@ -3,6 +3,7 @@ Cell stuff
 """
 from models.v5 import life
 from factories.thing.nested_factory import NestedFactory as Factory
+from utils.nested import select_item
 from ..materials import OrganicMoleculeFactory, LipidsFactory, GlucidsFactory, ProteinsFactory
 
 
@@ -10,7 +11,7 @@ class NucleotideFactory(Factory):
     names = ["A", "T", "G", "C"]
 
     def generate_name(self):
-        return self.select_item(*self.names)
+        return select_item(*self.names)
 
     def children(self):
         yield OrganicMoleculeFactory()

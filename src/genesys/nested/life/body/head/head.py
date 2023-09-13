@@ -1,5 +1,6 @@
 from models.v5 import life
 from factories.thing.nested_factory import NestedFactory as Factory
+from utils.nested import select_item
 from ...animal_body.skin import DeadSkinFactory
 from ...animal_body.hair import HairFactory
 from ...animal_body.head import NoseFactory, EyeFactory
@@ -18,7 +19,7 @@ class HeadHairFactory(HairFactory):
     names = ["brown", "black", "gray", "light", "blonde", "red", "dark"]
 
     def generate_name(self):
-        return f"{self.select_item(*self.names)} hair"
+        return f"{select_item(*self.names)} hair"
 
     def children(self):
         yield DandruffFactory()

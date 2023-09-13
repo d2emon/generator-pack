@@ -1,5 +1,6 @@
 from models.v5 import terrain
 from factories.thing.nested_factory import NestedFactory as Factory
+from utils.nested import select_item
 from ..materials import FireFactory, SnowFactory, RockFactory, IronFactory
 from ..life import GrassFactory, TreesFactory, JungleTreesFactory, HumusFactory, LandLifeFactory, ForestLifeFactory, \
     JungleLifeFactory, MountainLifeFactory, CaveLifeFactory
@@ -46,7 +47,7 @@ class PlainFactory(LandscapeFactory):
     ]
 
     def generate_name(self):
-        return self.select_item(*self.names)
+        return select_item(*self.names)
 
     @classmethod
     def life(cls):
@@ -59,7 +60,7 @@ class ForestFactory(LandscapeFactory):
     names = ['forest', 'woods', 'copse']
 
     def generate_name(self):
-        return self.select_item(*self.names)
+        return select_item(*self.names)
 
     @classmethod
     def life(cls):
@@ -87,7 +88,7 @@ class JungleFactory(ForestFactory):
     names = ['jungle', 'rainforest']
 
     def generate_name(self):
-        return self.select_item(*self.names)
+        return select_item(*self.names)
 
     @classmethod
     def life(cls):
@@ -107,7 +108,7 @@ class CaveFactory(LandscapeFactory):
     names = ['cave', 'cavern', 'grotto']
 
     def generate_name(self):
-        return self.select_item(*self.names)
+        return select_item(*self.names)
 
     @classmethod
     def life(cls):
@@ -139,7 +140,7 @@ class MountainFactory(LandscapeFactory):
     ]
 
     def generate_name(self):
-        return self.select_item(*self.names)
+        return select_item(*self.names)
 
     @classmethod
     def life(cls):

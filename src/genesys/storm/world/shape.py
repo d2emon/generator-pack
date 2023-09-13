@@ -10,5 +10,5 @@ class ShapeFactory(ModelFactory):
     def model(self):
         return WorldShape
 
-    def get_data(self, *args, **kwargs):
+    def data_factory(self, *args, **kwargs):
         return self.data.shape_factory(*args, **kwargs)

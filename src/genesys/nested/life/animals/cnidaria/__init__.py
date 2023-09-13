@@ -1,4 +1,5 @@
 from models.v5 import life
+from utils.nested import select_item
 from ....mind import ThoughtFactory, ThoughtsFactory, PsycheFactory
 from ...animal_body.head import SimpleMouthFactory
 from ...animal_body.jelly import JellyFactory
@@ -32,7 +33,7 @@ class CnidariaThoughtFactory(ThoughtFactory):
     part2 = ["urp", "orp", "arp", "urps", "orpsss"]
 
     def generate_name(self):
-        return f'{self.select_item(*self.part1)}{self.select_item(*self.part2)}'
+        return f'{select_item(*self.part1)}{select_item(*self.part2)}'
 
 
 class CnidariaThoughtsFactory(ThoughtsFactory):

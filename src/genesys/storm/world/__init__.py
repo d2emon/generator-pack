@@ -25,7 +25,7 @@ class WorldFactory(ModelFactory):
     def model(self):
         return World
 
-    def get_data(self, *args, **kwargs):
+    def data_factory(self, *args, **kwargs):
         data = self.factory(*args, **kwargs)
 
         world_type = data.get('world_type')

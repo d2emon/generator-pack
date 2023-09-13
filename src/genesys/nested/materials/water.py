@@ -4,33 +4,35 @@ from factories.thing.nested_factory import NestedFactory as Factory
 
 
 class WaterMoleculeFactory(MoleculeFactory):
-    def children(self):
-        yield from self.elements('H', 'O')
+    contents = 'H', 'O'
 
 
 class WaterFactory(Factory):
+    model = materials.Water
+
     def children(self):
-        yield WaterMoleculeFactory()
+        yield WaterMoleculeFactory.one()
 
 
 class SteamFactory(WaterFactory):
+    # TODO: Refactor it
     default_model = materials.Steam
 
 
 class DewFactory(WaterFactory):
-    default_model = materials.Dew
+    model = materials.Dew
 
 
 class IceFactory(WaterFactory):
-    default_model = materials.Ice
+    model = materials.Ice
 
 
 class SnowflakesFactory(WaterFactory):
-    default_model = materials.Snowflakes
+    model = materials.Snowflakes
 
 
 class SnowFactory(Factory):
-    default_model = materials.Snow
+    model = materials.Snow
 
     def children(self):
-        yield SnowflakesFactory()
+        yield SnowflakesFactory.one()

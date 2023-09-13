@@ -1,5 +1,6 @@
 from models.v5 import terrain
 from factories.thing.nested_factory import NestedFactory as Factory
+from utils.nested import select_item
 from ..materials import SilicaFactory, WaterFactory
 
 
@@ -8,12 +9,12 @@ class SoilFactory(Factory):
 
     @classmethod
     def life(cls):
-        yield from cls.select_item(
+        yield from select_item(
             # Worm.multiple(0, 2),
             [],
             [],
         )
-        yield from cls.select_item(
+        yield from select_item(
             # Insect.multiple(0, 2),
             [],
             [],

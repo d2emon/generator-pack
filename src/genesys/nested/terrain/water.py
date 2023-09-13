@@ -1,5 +1,6 @@
 from models.v5 import terrain
 from factories.thing.nested_factory import NestedFactory as Factory
+from utils.nested import select_item
 from ..materials import WaterFactory, SaltFactory, IceFactory
 from ..life import AbyssLifeFactory, BeachLifeFactory, SeaLifeFactory, RiverLifeFactory, LakeLifeFactory
 from .soil import SandFactory, SoilFactory, MudFactory
@@ -46,7 +47,7 @@ class SeaFactory(Factory):
     ]
 
     def generate_name(self):
-        return f'{self.select_item(*self.names)} sea'
+        return f'{select_item(*self.names)} sea'
 
     @classmethod
     def water(cls):
@@ -80,7 +81,7 @@ class OceanFactory(SeaFactory):
 
     @classmethod
     def icebergs(cls):
-        yield from cls.select_item(
+        yield from select_item(
             IcebergFactory().multiple(2, 6),
             [],
             [],
@@ -103,7 +104,7 @@ class RiverFactory(Factory):
     names = ['river', 'stream', 'brook', 'creek']
 
     def generate_name(self):
-        return self.select_item(*self.names)
+        return select_item(*self.names)
 
     def children(self):
         yield RiverLifeFactory()
@@ -117,7 +118,7 @@ class LakeFactory(Factory):
     names = ['lake', 'lagoon', 'pond', 'marsh', 'creek', 'cove']
 
     def generate_name(self):
-        return self.select_item(*self.names)
+        return select_item(*self.names)
 
     def children(self):
         yield LakeLifeFactory()

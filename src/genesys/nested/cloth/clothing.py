@@ -1,5 +1,6 @@
 from models.v5 import cloth
 from factories.thing.nested_factory import NestedFactory as Factory
+from utils.nested import select_item
 from ..materials import SweatFactory, PlasticFactory
 from genesys.nested.factories.life.animal_body.skin import DeadSkinFactory
 from .fabric import TextileFactory, LeatherFactory
@@ -44,7 +45,7 @@ class PantsFactory(ClothingFactory):
     ]
 
     def generate_name(self):
-        return self.select_item(*self.names)
+        return select_item(*self.names)
 
     def children(self):
         yield PocketFactory().multiple(0, 4)
@@ -58,7 +59,7 @@ class ShirtFactory(ClothingFactory):
     ]
 
     def generate_name(self):
-        return self.select_item(*self.names)
+        return select_item(*self.names)
 
 
 class UnderwearFactory(ClothingFactory):
@@ -72,7 +73,7 @@ class CoatFactory(ClothingFactory):
     ]
 
     def generate_name(self):
-        return self.select_item(*self.names)
+        return select_item(*self.names)
 
     def children(self):
         yield PocketFactory().multiple(0, 4)
@@ -100,7 +101,7 @@ class ShoesFactory(ClothingFactory):
     ]
 
     def generate_name(self):
-        return self.select_item(*self.names)
+        return select_item(*self.names)
 
     def children(self):
         yield LeatherFactory().probable(40)
@@ -114,7 +115,7 @@ class HatFactory(ClothingFactory):
     ]
 
     def generate_name(self):
-        return self.select_item(*self.names)
+        return select_item(*self.names)
 
 
 class GlassesFactory(ClothingFactory):
@@ -124,7 +125,7 @@ class GlassesFactory(ClothingFactory):
     ]
 
     def generate_name(self):
-        return self.select_item(*self.names)
+        return select_item(*self.names)
 
     def children(self):
         yield PlasticFactory()

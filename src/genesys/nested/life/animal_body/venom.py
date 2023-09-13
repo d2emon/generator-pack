@@ -8,6 +8,6 @@ class VenomFactory(OrganicFactory):
     def children(self):
         yield ProteinsFactory()
         yield LipidsFactory().probable(40)
-        yield MoleculeFactory().from_elements('N').probable(40)
-        yield MoleculeFactory().from_elements('Na').probable(40)
-        yield MoleculeFactory().from_elements('Cl').probable(40)
+        yield MoleculeFactory.from_elements('N').probable(40)
+        yield MoleculeFactory.from_elements('Na').probable(40)
+        yield MoleculeFactory.from_elements('Cl').probable(40)

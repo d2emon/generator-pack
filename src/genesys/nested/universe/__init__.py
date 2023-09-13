@@ -3,6 +3,7 @@ Universe stuff
 """
 from genesys.nested.factories.nested_factory import NestedFactory
 from models.universe import Supercluster, Universe, Multiverse
+from utils.nested import select_item
 from .galaxy import GalaxyFactory
 
 # from .orbit import OrbitFactory, PlanetOrbitFactory, BarrenOrbitFactory, VisitorOrbitFactory, FutureOrbitFactory, \
@@ -31,7 +32,7 @@ class MultiverseFactory(NestedFactory):
         yield UniverseFactory.multiple(10, 30)
 
     def name_factory(self, provider, *args, **kwargs):
-        return self.select_item(*provider.multiverse)
+        return select_item(*provider.multiverse)
 
 
 class UniverseFactory(NestedFactory):

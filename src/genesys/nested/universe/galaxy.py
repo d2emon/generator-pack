@@ -15,7 +15,7 @@ class GalaxyFactory(NestedFactory):
     default_model = Galaxy
 
     def contents(self):
-        yield GalaxyCenterFactory.as_child()
+        yield GalaxyCenterFactory.one()
         yield GalaxyArmFactory.multiple(2, 6)
 
 
@@ -49,7 +49,7 @@ class GalaxyArmFactory(GalaxyPartFactory):
     default_name = "arm"
 
     def life(self):
-        # # yield GalaxyArmLifeFactory.as_child()
+        # # yield GalaxyArmLifeFactory.one()
         # yield GalacticLifeFactory.probable(5)
         yield None
 
@@ -68,7 +68,7 @@ class GalaxyCenterFactory(GalaxyPartFactory):
         yield None
 
     def black_holes(self):
-        yield BlackHoleFactory.as_child()
+        yield BlackHoleFactory.one()
 
 
 """

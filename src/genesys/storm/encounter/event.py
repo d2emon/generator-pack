@@ -45,8 +45,17 @@ class EventFactory(ModelFactory):
             is_surprised=enemies.surprised,
         )
 
-    def get_data(self, *args, **kwargs):
-        return self.data_factory({
+    def data_factory(self, *args, **kwargs):
+        """Generate data
+
+        Args:
+            *args: Data args.
+            **kwargs: Data kwargs.
+
+        Returns:
+            str: Resulting name
+        """
+        return {
             'time': self.time(),
             'encounter': self.encounter(
                 # Fraction(),
@@ -55,7 +64,7 @@ class EventFactory(ModelFactory):
             # 'encounter_type': self.encounter_type(),
             # 'encounter_distance': self.distance_factory(),
             **kwargs,
-        })
+        }
 
 
 class DailyEventFactory(EventFactory):

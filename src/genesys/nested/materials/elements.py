@@ -127,3 +127,10 @@ element_factories = {
     # At
     # Rn
 }
+
+
+def build_elements(*elements):
+    for element in elements:
+        factory = element_factories.get(element)
+        if factory is not None:
+            yield factory

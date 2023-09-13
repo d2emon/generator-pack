@@ -1,5 +1,6 @@
 from models.v5 import life
 from factories.thing.nested_factory import NestedFactory as Factory
+from utils.nested import select_item
 from ..single_celled import BacteriaFactory
 from .blood import BloodVesselsFactory
 from .skeleton import BonesFactory, MuscleFactory, FatFactory
@@ -64,7 +65,7 @@ class WeirdSoftOrganFactory(SkinlessSoftBodyPartFactory):
     ]
 
     def generate_name(self):
-        return f'{self.select_item(*self.descriptions)} {self.select_item(*self.names)}'
+        return f'{select_item(*self.descriptions)} {select_item(*self.names)}'
 
 
 class WeirdHardOrganFactory(SkinlessBodyPartFactory):
@@ -81,4 +82,4 @@ class WeirdHardOrganFactory(SkinlessBodyPartFactory):
     ]
 
     def generate_name(self):
-        return f'{self.select_item(*self.descriptions)} {self.select_item(*self.names)}'
+        return f'{select_item(*self.descriptions)} {select_item(*self.names)}'

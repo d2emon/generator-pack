@@ -15,8 +15,8 @@ Wikipedia was used extensively for this project. I am now aware of the compositi
 import random
 
 
-def choose__(arr):
-    return random.choice(arr)
+def select_item(*items):
+    return random.choice(items) if len(items) else None
 
 
 def weighted_choose__(data, weight_choose=1):

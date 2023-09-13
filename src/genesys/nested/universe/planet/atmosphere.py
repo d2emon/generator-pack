@@ -7,9 +7,7 @@ from ..life import GasGiantLifeFactory
 
 class OzoneFactory(MoleculeFactory):
     default_model = terrain.Ozone
-
-    def children(self):
-        yield from self.elements('O')
+    contents = 'O'
 
 
 class AtmosphereFactory(Factory):

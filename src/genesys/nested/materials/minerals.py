@@ -4,25 +4,22 @@ from .matter import MoleculeFactory
 
 
 class AmmoniaMoleculeFactory(MoleculeFactory):
-    def children(self):
-        yield from self.elements('N', 'H')
+    # TODO: Refactor it
+    contents = 'N', 'H'
 
 
 class SilicaFactory(MoleculeFactory):
-    default_model = materials.Silica
-
-    def children(self):
-        yield from self.elements('Si', 'O')
+    model = materials.Silica
+    contents = 'Si', 'O'
 
 
 class SaltFactory(MoleculeFactory):
-    default_model = materials.Salt
-
-    def children(self):
-        yield from self.elements('Na', 'Cl')
+    model = materials.Salt
+    contents = 'Na', 'Cl'
 
 
 class AmmoniaFactory(Factory):
+    # TODO: Refactor it
     default_model = materials.Ammonia
 
     def children(self):
@@ -30,10 +27,10 @@ class AmmoniaFactory(Factory):
 
 
 class RockFactory(Factory):
-    default_model = materials.Rock
+    model = materials.Rock
 
     def children(self):
-        yield SilicaFactory
+        yield SilicaFactory.one()
         yield MoleculeFactory.from_elements('Al').probable(30)
         yield MoleculeFactory.from_elements('Fe').probable(20)
         yield MoleculeFactory.from_elements('K').probable(20)
@@ -42,21 +39,22 @@ class RockFactory(Factory):
 
 
 class CarbonFactory(RockFactory):
-    default_model = materials.Carbon
+    model = materials.Carbon
 
     def children(self):
         yield MoleculeFactory.from_elements('C')
 
 
 class DiamondFactory(CarbonFactory):
-    default_model = materials.Diamond
+    model = materials.Diamond
 
 
 class MagmaFactory(RockFactory):
-    default_model = materials.Magma
+    model = materials.Magma
 
 
 class IronFactory(RockFactory):
+    # TODO: Refactor it
     default_model = materials.Iron
 
     def children(self):
