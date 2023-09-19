@@ -29,18 +29,18 @@ class RockFactory(Factory):
 
     def children(self):
         yield SilicaFactory.one()
-        yield MoleculeFactory.from_elements('Al').probable(30)
-        yield MoleculeFactory.from_elements('Fe').probable(20)
-        yield MoleculeFactory.from_elements('K').probable(20)
-        yield MoleculeFactory.from_elements('Na').probable(50)
-        yield MoleculeFactory.from_elements('Ca').probable(50)
+        yield MoleculeFactory.element_factory('Al').probable(30)
+        yield MoleculeFactory.element_factory('Fe').probable(20)
+        yield MoleculeFactory.element_factory('K').probable(20)
+        yield MoleculeFactory.element_factory('Na').probable(50)
+        yield MoleculeFactory.element_factory('Ca').probable(50)
 
 
 class CarbonFactory(RockFactory):
     model = materials.Carbon
 
     def children(self):
-        yield MoleculeFactory.from_elements('C')
+        yield MoleculeFactory.element_factory('C')
 
 
 class DiamondFactory(CarbonFactory):
@@ -55,4 +55,4 @@ class IronFactory(RockFactory):
     model = materials.Iron
 
     def children(self):
-        yield MoleculeFactory.from_elements('Fe')
+        yield MoleculeFactory.element_factory('Fe')

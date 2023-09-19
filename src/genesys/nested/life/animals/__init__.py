@@ -147,7 +147,7 @@ new Thing("bird egg",["egg thoughts","egg shell","soft flesh",
     OrganicFactory.one(),
 ],"egg");
 new Thing("egg shell",[
-    element_factories['Ca'].one(),
+    ELEMENTS['Ca'].one(),
 ],"shell");
 new Thing("egg thoughts",["egg thought"],"thought");
 new Thing("egg thought",[],[["...","...","...","...","I...","the...","a...","ah..."]]);

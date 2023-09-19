@@ -1,6 +1,6 @@
 from models.v5 import materials
 from factories.thing.nested_factory import NestedFactory as Factory
-from .elements import build_elements
+from .elements import AtomFactory
 
 
 class MoleculeFactory(Factory):
@@ -8,22 +8,16 @@ class MoleculeFactory(Factory):
     default_name = 'molecules'
     model = materials.Molecule
 
+    @classmethod
+    def element_factory(cls, element):
+        return AtomFactory.element_factory(element)
+
+    @classmethod
+    def element_factories(cls, *elements):
+        return AtomFactory.element_factories(*elements)
+
     def children(self):
-        yield from self.elements(*self.contents)
-
-    @classmethod
-    def elements(cls, *elements):
-        for element in build_elements(*elements):
-            yield element.one()
-
-    @classmethod
-    def from_atoms(cls, *atoms):
-        return cls(placeholders=atoms).one()
-
-    @classmethod
-    def from_elements(cls, *elements):
-        atoms = build_elements(*elements)
-        return cls(placeholders=atoms).one()
+        yield from self.element_factories(*self.contents)
 
 
 class SteelFactory(Factory):

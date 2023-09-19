@@ -38,10 +38,10 @@ new Thing("tv remote",[
 new Thing("coin",[
     OrganicFactory.one().probable(2),
     "dirt,2%",
-    element_factories['Cu'].one()
+    ELEMENTS['Cu'].one()
 ]);
 new Thing("gold coin",[
-    element_factories['Au'].one(),
+    ELEMENTS['Au'].one(),
 ]);
 new Thing("dirt",[
     OrganicFactory.one().probable(50),
@@ -123,17 +123,17 @@ new Thing("cables",[
     PlasticFactory.one(),
     "wire"]);
 new Thing("wire",[
-    element_factories['Cu'].one()
+    ELEMENTS['Cu'].one()
 ]);
 
 new Thing("engine",["mechanics"]);
 new Thing("mechanics",["cog,2-12","push-button,0-3","electronics,30%","cables,75%","wire,0-2","tube,0-3","nails,40%","insect,5%"],"mechanical components");
 new Thing("cog",[[
-    element_factories['Cu'].one()
+    ELEMENTS['Cu'].one()
     PlasticFactory.one(),
     IronFactory.one(),
     SteelFactory.one(),
-    element_factory['Al'].one(),
+    ELEMENTS['Al'].one(),
 ]],["cog","gear","spur gear","helical gear","bevel gear","harmonic drive","spring","pump","sprocket","wheel","chain","belt","track","bolts","gizmo","pulley","puffer","smoker","vent"]);
 new Thing("push-button",[
     PlasticFactory.one(),
@@ -145,14 +145,14 @@ new Thing("tube",[[
 new Thing("electronics",["microchip,1-6","electronic component,1-6","wire,0-2"]);
 new Thing("microchip",["electronic component,1-15",
     PlasticFactory.probable(75),
-    element_factories['Cu'].one().probable(75),
-    element_factories['Si'].one().probable(25),
-    element_factories['Au'].one().probable(5),
+    ELEMENTS['Cu'].one().probable(75),
+    ELEMENTS['Si'].one().probable(25),
+    ELEMENTS['Au'].one().probable(5),
 ],["microchip"]);
 new Thing("electronic component",[
     PlasticFactory.probable(75),
-    element_factories['Cu'].one().probable(75),
-    element_factories['Si'].one().probable(25),
-    element_factories['Au'].one().probable(5),
+    ELEMENTS['Cu'].one().probable(75),
+    ELEMENTS['Si'].one().probable(25),
+    ELEMENTS['Au'].one().probable(5),
 ],["transistor","inductor","capacitor","diode","metagizmo","transmorpher","beeper"]);
 """

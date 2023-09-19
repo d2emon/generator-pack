@@ -11,7 +11,7 @@ class ClamShellFactory(Factory):
     default_model = life.ClamShell
 
     def children(self):
-        yield MoleculeFactory.from_elements('Ca')
+        yield MoleculeFactory.element_factories('Ca')
 
 
 class ClamBodyFactory(AnimalBodyFactory):

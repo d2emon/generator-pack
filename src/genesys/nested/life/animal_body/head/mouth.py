@@ -8,8 +8,7 @@ class TeethFactory(BodyPartFactory):
     default_model = life.Teeth
 
     def children(self):
-        yield MoleculeFactory.from_elements('Ca')
-        yield MoleculeFactory.from_elements('P')
+        yield MoleculeFactory.element_factories('Ca', 'P')
 
 
 class SimpleMouthFactory(SkinlessSoftBodyPartFactory):

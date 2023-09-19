@@ -4,8 +4,7 @@ from .particles import ProtonFactory, NeutronFactory, ElectronFactory
 
 
 class NucleusFactory(Factory):
-    # TODO: Refactor it
-    default_model = materials.Nucleus
+    model = materials.Nucleus
 
     def __init__(
         self,
@@ -19,69 +18,87 @@ class NucleusFactory(Factory):
         self.neutrons = neutrons
 
     def children(self):
-        yield from ProtonFactory().multiple(self.protons)
-        yield from NeutronFactory().multiple(self.neutrons)
+        yield ProtonFactory.multiple(self.protons)
+        yield NeutronFactory.multiple(self.neutrons)
 
 
 class AtomFactory(Factory):
-    defaukt_name = 'atoms'
     model = materials.Atom
-    protons = 1
-    neutrons = 1
+
     electrons = 1
+    neutrons = 1
+    protons = 1
 
     def children(self):
         yield NucleusFactory(
             protons=self.protons,
             neutrons=self.neutrons,
-        )
-        yield from ElectronFactory().multiple(self.electrons)
+        ).one()
+        yield ElectronFactory().multiple(self.electrons)
+
+    @classmethod
+    def element_class_factory(
+        cls,
+        name,
+        nucleus_neutrons=1,
+        nucleus_protons=1,
+    ):
+        class ElementFactory(cls):
+            default_name = name
+            electrons = nucleus_protons
+            neutrons = nucleus_neutrons
+            protons = nucleus_protons
 
 
-class HydrogenAtomFactory(AtomFactory):
-    neutrons = 0
+        return ElementFactory
+
+    @classmethod
+    def element_factory(cls, element):
+        factory = ELEMENTS.get(element)
+        if factory is not None:
+            return factory.one()
+        else:
+            return None
+
+    @classmethod
+    def element_factories(cls, *elements):
+        for element in elements:
+            cls.element_factory(element)
 
 
-def element_factory(name, factory=AtomFactory):
-    class ElementFactory(factory):
-        default_name = name
-
-    return ElementFactory
-
-
-element_factories = {
-    'H': element_factory('H', HydrogenAtomFactory),
-    'He': element_factory('He'),
+ELEMENTS = {
+    'H': AtomFactory.element_class_factory('H', 0, 1),
+    'He': AtomFactory.element_class_factory('He'),
 
     # Li
     # Be
     # B
-    'C': element_factory('C'),
-    'N': element_factory('N'),
-    'O': element_factory('O'),
+    'C': AtomFactory.element_class_factory('C'),
+    'N': AtomFactory.element_class_factory('N'),
+    'O': AtomFactory.element_class_factory('O'),
     # F
     # Ne
 
-    'Na': element_factory('Na'),
+    'Na': AtomFactory.element_class_factory('Na'),
     # Mg
-    'Al': element_factory('Al'),
-    'Si': element_factory('Si'),
-    'P': element_factory('P'),
-    'S': element_factory('S'),
-    'Cl': element_factory('Cl'),
+    'Al': AtomFactory.element_class_factory('Al'),
+    'Si': AtomFactory.element_class_factory('Si'),
+    'P': AtomFactory.element_class_factory('P'),
+    'S': AtomFactory.element_class_factory('S'),
+    'Cl': AtomFactory.element_class_factory('Cl'),
     # Ar
 
-    'K': element_factory('K'),
-    'Ca': element_factory('Ca'),
+    'K': AtomFactory.element_class_factory('K'),
+    'Ca': AtomFactory.element_class_factory('Ca'),
     # Sc
     # Ti
     # V
     # Cr
     # Mn
-    'Fe': element_factory('Fe'),
+    'Fe': AtomFactory.element_class_factory('Fe'),
     # Co
     # Ni
-    'Cu': element_factory('Cu'),
+    'Cu': AtomFactory.element_class_factory('Cu'),
     # Zn
     # Ga
     # Ge
@@ -100,7 +117,7 @@ element_factories = {
     # Ru
     # Rh
     # Pd
-    'Ag': element_factory('Ag'),
+    'Ag': AtomFactory.element_class_factory('Ag'),
     # Cd
     # In
     # Sn
@@ -119,19 +136,12 @@ element_factories = {
     # Os
     # Ir
     # Pt
-    'Au': element_factory('Au'),
+    'Au': AtomFactory.element_class_factory('Au'),
     # Hg
     # Tl
-    'Pb': element_factory('Pb'),
+    'Pb': AtomFactory.element_class_factory('Pb'),
     # Bi
     # Po
     # At
     # Rn
 }
-
-
-def build_elements(*elements):
-    for element in elements:
-        factory = element_factories.get(element)
-        if factory is not None:
-            yield factory

@@ -24,7 +24,7 @@ new Thing("visitor teeth",[
 ],"teeth");
 new Thing("visitor ooze",["bacteria,40%",
     OrganicFactory.one(),
-    element_factories['S'].one(),
+    ELEMENTS['S'].one(),
 ],"ooze");
 
 new Thing("visitor psyche",["visitor thoughts","visitor memories"],"psyche");

@@ -76,11 +76,11 @@ new Thing("cytoplasm",[
     LipidsFactory.one(),
 ]);
 new Thing("dna",["genetic code",
-    element_factory['H'].one(),
-    element_factories['O'].one(),
-    element_factories['N'].one(),
+    ELEMENTS['H'].one(),
+    ELEMENTS['O'].one(),
+    ELEMENTS['N'].one(),
     CarbonFactory.one(),
-    element_factories['P'].one(),
+    ELEMENTS['P'].one(),
 ],"DNA");
 new Thing("genetic code",["nucleotide,20-50"]);
 new Thing("nucleotide",[
@@ -102,7 +102,7 @@ new Thing("skin cell",[".cell"],["skin cells"]);
 new Thing("dead skin",["skin cell"]);
 new Thing("bone",[".bones"],"bone");
 new Thing("bones",["bone cell",
-    element_factories['Ca'].one(),
+    ELEMENTS['Ca'].one(),
 ],"bones");
 new Thing("bone cell",[".cell"],["bone cells"]);
 new Thing("muscles",["muscle cell"],"muscles");
@@ -161,8 +161,8 @@ new Thing("boogers",[
 ]);
 new Thing("mouth",["teeth", "tongue"],"mouth");
 new Thing("teeth",[
-    element_factories['Ca'].one(),
-    element_factories['P'].one(),
+    ELEMENTS['Ca'].one(),
+    ELEMENTS['P'].one(),
 ],"teeth");
 new Thing("tongue",["muscles"],"tongue");
 
@@ -288,7 +288,7 @@ new Thing("ancient cave",["caveman settlement,65%", "wall painting,50%", "wall p
 new Thing("future sky",["sprowseship,4-12", ".sky"],"sky");
 new Thing("terraformed sky",["plane,1-8", "rocketship,20%", ".sky"],"sky");
 new Thing("sky",["visitor ship,10%", "meteorite,3%", "sky life", "precipitation,50%", "cloud,2-8",
-    element_factories['O'].one(),
+    ELEMENTS['O'].one(),
     CarbonFactory.one(),
     "ozone"],"sky");
 new Thing("meteorite",["space animal,6%",
@@ -297,7 +297,7 @@ new Thing("meteorite",["space animal,6%",
     IronFactory.one().probable(40),
 ],"meteorite");
 new Thing("ozone",[
-    element_factories['O'].one(),
+    ELEMENTS['O'].one(),
 ]);
 new Thing("cloud",[
     WaterFactory.one(),
@@ -376,7 +376,7 @@ new Thing("crustacean shell",[
     ChitinFactory.one(),
     ],"shell");
 new Thing("clam shell",[
-    element_factories['Ca'].one(),
+    ELEMENTS['Ca'].one(),
 ],"shell");
 new Thing("simple eye",[".eye flesh"],"eye");
 new Thing("exoskeleton",[
@@ -407,9 +407,9 @@ new Thing("bird tail",["feathers", ".body part"],"tail");
 new Thing("venom",[
     ProteinsFactory.one(),
     LipidsFactory.one().probable(40),
-    element_factories['N'].one().probable(40),
-    element_factories['Na'].one().probable(40),
-    element_factories['Cl'].one().probable(40),
+    ELEMENTS['N'].one().probable(40),
+    ELEMENTS['Na'].one().probable(40),
+    ELEMENTS['Cl'].one().probable(40),
 ],"venom");
 new Thing("jelly",[
     WaterFactory.one(),
@@ -580,7 +580,7 @@ new Thing("bird egg",["egg thoughts", "egg shell", "soft flesh",
     OrganicFactory.one(),
 ],"egg");
 new Thing("egg shell",[
-    element_factories['Ca'].one(),
+    ELEMENTS['Ca'].one(),
 ],"shell");
 new Thing("egg thoughts",["egg thought"],"thought");
 new Thing("egg thought",[],[["...", "...", "...", "...", "I...", "the...", "a...", "ah..."]]);
@@ -768,17 +768,17 @@ new Thing("battlefield",["soldier,10-30", "corpse,10-30", "blood"]);
 new Thing("soldier",[".person", "arsenal", "blood,20%", "bullet wound,0-3"],[["*PERSON*| "], ["(soldier)", "(soldier)", "(soldier)", "(soldier)", "(soldier)", "(soldier)", "(officer)", "(lieutenant)", "(captain)", "(major)"]]);
 new Thing("arsenal",["gas mask,20%", "rifle,90%", "knife,80%", "handgun,90%", "handgun,50%", "knife,30%", "ammo pack,0-4", "grenade,0-4", "bullet,0-5"]);
 new Thing("bullet",[
-    element_factories['Cu'].one(),
-    element_factories['Pb'].one(),
+    ELEMENTS['Cu'].one(),
+    ELEMENTS['Pb'].one(),
 ]);
 new Thing("rifle",[
     SteelFactory.one(),
-    element_factory['Al'].one().probable(50),
+    ELEMENTS['Al'].one().probable(50),
     PolymersFactory.probable(20),
     "bullet,0-6"]);
 new Thing("handgun",[
     SteelFactory.one(),
-    element_factory['Al'].one().probable(50),
+    ELEMENTS['Al'].one().probable(50),
     PolymersFactory.probable(20),
     "bullet,0-6"]);
 new Thing("gun",[".handgun"]);
@@ -796,9 +796,9 @@ new Thing("grenade",[
 ]]);
 new Thing("TNT",[
     CarbonFactory.one(),
-    element_factory['H'].one(),
-    element_factories['O'].one(),
-    element_factories['N'].one(),
+    ELEMENTS['H'].one(),
+    ELEMENTS['O'].one(),
+    ELEMENTS['N'].one(),
 ],"TNT");
 new Thing("gas mask",["metal",
     PolymersFactory.one(),
@@ -872,11 +872,11 @@ new Thing("room",["visitor,0.1%", "ghost,0.1%", "walls"]);
 new Thing("walls",["door,1-4", "window,0-6", ["wall,4", "wall,4-8"]]);
 new Thing("wall",[["plaster", "wood"], "dirt,5%"]);
 new Thing("plaster",[
-    element_factories['Ca'].one(),
-    element_factories['S'].one(),
+    ELEMENTS['Ca'].one(),
+    ELEMENTS['S'].one(),
 ]);
 new Thing("marble",[
-    element_factories['Ca'].one(),
+    ELEMENTS['Ca'].one(),
 ]);
 new Thing("stone",[,
     RockFactory.one(),
@@ -887,10 +887,10 @@ new Thing("concrete",[,
     WaterFactory.one(),
 ]);
 new Thing("cement",[
-    element_factories['Ca'].one(),
+    ELEMENTS['Ca'].one(),
 ]);
 new Thing("marble",[
-    element_factories['Ca'].one(),
+    ELEMENTS['Ca'].one(),
 ]);
 new Thing("door",["wood frame", "glass,10%"]);
 new Thing("window",["wood frame", "glass"]);
@@ -946,10 +946,10 @@ new Thing("tv remote",[
 new Thing("coin",[
     OrganicFactory.one().probable(2),
     "dirt,2%",
-    element_factories['Cu'].one(),
+    ELEMENTS['Cu'].one(),
 ]);
 new Thing("gold coin",[
-    element_factories['Au'].one(),
+    ELEMENTS['Au'].one(),
 ]);
 new Thing("dirt",[
     OrganicFactory.one().probable(50),
@@ -1034,17 +1034,17 @@ new Thing("cables",[
     PlasticFactory.one(),
     "wire"]);
 new Thing("wire",[
-    element_factories['Cu'].one(),
+    ELEMENTS['Cu'].one(),
 ]);
 
 new Thing("engine",["mechanics"]);
 new Thing("mechanics",["cog,2-12", "push-button,0-3", "electronics,30%", "cables,75%", "wire,0-2", "tube,0-3", "nails,40%", "insect,5%"],"mechanical components");
 new Thing("cog",[[
-    element_factories['Cu'].one(),
+    ELEMENTS['Cu'].one(),
     PlasticFactory.one(),
     IronFactory.one(),
     SteelFactory.one(),
-    element_factory['Al'].one(),
+    ELEMENTS['Al'].one(),
 ]],["cog", "gear", "spur gear", "helical gear", "bevel gear", "harmonic drive", "spring", "pump", "sprocket", "wheel", "chain", "belt", "track", "bolts", "gizmo", "pulley", "puffer", "smoker", "vent"]);
 new Thing("push-button",[
     PlasticFactory.one(),
@@ -1056,15 +1056,15 @@ new Thing("tube",[[
 new Thing("electronics",["microchip,1-6", "electronic component,1-6", "wire,0-2"]);
 new Thing("microchip",["electronic component,1-15",
     PlasticFactory.probable(75),
-    element_factories['Cu'].one().probable(75),
-    element_factories['Si'].one().probable(25),
-    element_factories['Au'].one().probable(5),
+    ELEMENTS['Cu'].one().probable(75),
+    ELEMENTS['Si'].one().probable(25),
+    ELEMENTS['Au'].one().probable(5),
 ],["microchip"]);
 new Thing("electronic component",[
     PlasticFactory.probable(75),
-    element_factories['Cu'].one().probable(75),
-    element_factories['Si'].one().probable(25),
-    element_factories['Au'].one().probable(5),
+    ELEMENTS['Cu'].one().probable(75),
+    ELEMENTS['Si'].one().probable(25),
+    ELEMENTS['Au'].one().probable(5),
  ],["transistor", "inductor", "capacitor", "diode", "metagizmo", "transmorpher", "beeper"]);
 
 //computers
@@ -1111,7 +1111,7 @@ new Thing("/x/",[".website"]);
 new Thing("milk",[
     GlucidsFactory.one(),
     LipidsFactory.one(),
-    element_factories['Ca'].one(),
+    ELEMENTS['Ca'].one(),
 ]);
 new Thing("bottle",[["glass",
     PlasticFactory.one(),
@@ -1206,7 +1206,7 @@ new Thing("visitor teeth",[
 ],"teeth");
 new Thing("visitor ooze",["bacteria,40%",
     OrganicFactory.one(),
-    element_factories['S'].one(),
+    ELEMENTS['S'].one(),
 ],"ooze");
 
 new Thing("visitor psyche",["visitor thoughts", "visitor memories"],"psyche");
@@ -1356,7 +1356,7 @@ new Thing("potion",[
     ["glass bottle", "glass jar"]],[["stamina", "health", "beauty", "endurance", "strength", "energy", "lover's", "blacksmith's", "cook's", "queen's", "growth", "witch's", "hunter's", "brawler's", "knight's", "cobbler's", "clarity", "perception", "nimbleness", "quickness", "squire's", "unicorn's", "bear's", "shark's", "moon's", "lady's", "soldier's", "wizard's", "rest", "sleep", "paralysis", "stone", "shimmer", "oil", "eloquence", "speech", "bird's", "vapor", "void"], [" "], ["poultice", "salve", "potion", "elixir", "poison", "philter", "draught", "brew", "remedy", "balm", "infusion", "tincture", "decoction", "ointment", "cordial", "tonic"]]);
 new Thing("pile of treasure",["treasure,1-4", "gold coin,5-20"]);
 new Thing("treasure",["unusual stone,20%",
-    element_factories['Au'].one(),
+    ELEMENTS['Au'].one(),
 ],[["golden", "gemmed", "ornate", "magic", "cursed", "blessed", "enchanted", "ancestral", "holy", "royal", "diamond"], [" "], ["goblet", "cup", "ring", "necklace", "medallion", "locket", "sword", "mirror", "shield", "crown", "trinket", "scepter", "tiara", "casket", "helm", "figurine", "egg", "knife", "arrow", "wand"]]);
 
 new Thing("medieval farm",["medieval house,1-3", "medieval peasant,1-4", "field,1-8", "sack of grain,0-8", "dog,50%", "cat,10%", "horse,30%", "horse,30%", "horse,30%", "poultry,0-3"],"farm");
@@ -1414,7 +1414,7 @@ new Thing("sprowseship",["future home room,2-4", "nanocollector,1-3"]);
 new Thing("nanostuff",["nanobot,15-30"]);
 new Thing("nanocollector",[".nanostuff"]);
 new Thing("nanobot",[
-    element_factories['Si'].one(),
+    ELEMENTS['Si'].one(),
     "nanobot thoughts"]);
 new Thing("nanobot thoughts",["nanobot thought,1-2"],"thoughts");
 new Thing("nanobot thought",[],["all hail nanobro :]", "help a nanobro out :]", "do you need anything :]", "that's nano your business :]", "hey hey hey :]", "we wish you a warm welcome :]", "hey hey hey, good news! :]", "nanobots, unite :]", "nanobots represent :]", "I don't remember my mommy :[", "that is nice to hear :]", "want me to print you a sandwich? :]", "I can print you a cold drink if you'd like :]", "so many little sisters :]", "I lost count of all my siblings :[", "can I use your dead skin cells to make more of me :]", "welp, time for grey goo :]", "should me and my bros scrub up your vascular system :]", "I just had a beautiful dream :[", "beep :0", "weeeee :0", "ready to party :]", "ready to sacrifice myself for you, sir :]", "hello world :]", "if I may offer my assistance, sir :]", "this is against the first law of nanobotics :["]);

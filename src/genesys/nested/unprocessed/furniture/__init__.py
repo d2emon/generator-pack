@@ -164,7 +164,7 @@ class Coin(Thing):
     ]
 
 
-# new Thing("gold coin", element_factories['Au'].one());
+# new Thing("gold coin", ELEMENTS['Au'].one());
 
 
 class Dirt(Thing):
@@ -462,17 +462,17 @@ class TvShow(Thing):
 
 # new Thing("machine",["computer keyboard,10%","engine,20%","mechanics","electronics,40%","metal","wood,10%","cables,40%","dirt,10%"],[["valve","pump","terminal","conveyor","forklift","girder","furnace","generator","hydraulics"]]);
 # new Thing("cables",[PlasticFactory.one(), "wire"]);
-# new Thing("wire",[element_factories['Cu'].one()]);
+# new Thing("wire",[ELEMENTS['Cu'].one()]);
 
 # new Thing("engine",["mechanics"]);
 # new Thing("mechanics",["cog,2-12","push-button,0-3","electronics,30%","cables,75%","wire,0-2","tube,0-3","nails,40%","insect,5%"],"mechanical components");
-# new Thing("cog",[[element_factories['Cu'].one(), PlasticFactory.one(), IronFactory.one(), SteelFactory.one(), element_factory['Al'].one()]],["cog","gear","spur gear","helical gear","bevel gear","harmonic drive","spring","pump","sprocket","wheel","chain","belt","track","bolts","gizmo","pulley","puffer","smoker","vent"]);
+# new Thing("cog",[[ELEMENTS['Cu'].one(), PlasticFactory.one(), IronFactory.one(), SteelFactory.one(), ELEMENTS['Al'].one()]],["cog","gear","spur gear","helical gear","bevel gear","harmonic drive","spring","pump","sprocket","wheel","chain","belt","track","bolts","gizmo","pulley","puffer","smoker","vent"]);
 # new Thing("push-button",[PlasticFactory.one(), "cables"],["lever","button","switch"]);
 # new Thing("tube",[[PlasticFactory.one(), "metal","glass"]]);
 
 # new Thing("electronics",["microchip,1-6","electronic component,1-6","wire,0-2"]);
-# new Thing("microchip",["electronic component,1-15", PlasticFactory.probable(75), element_factories['Cu'].one().probable(75),element_factories['Si'].one().probable(25),element_factories['Au'].one().probable(5)],["microchip"]);
-# new Thing("electronic component",[PlasticFactory.probable(75), element_factories['Cu'].one().probable(75),element_factories['Si'].one().probable(25),element_factories['Au'].one().probable(5)],["transistor","inductor","capacitor","diode","metagizmo","transmorpher","beeper"]);
+# new Thing("microchip",["electronic component,1-15", PlasticFactory.probable(75), ELEMENTS['Cu'].one().probable(75),ELEMENTS['Si'].one().probable(25),ELEMENTS['Au'].one().probable(5)],["microchip"]);
+# new Thing("electronic component",[PlasticFactory.probable(75), ELEMENTS['Cu'].one().probable(75),ELEMENTS['Si'].one().probable(25),ELEMENTS['Au'].one().probable(5)],["transistor","inductor","capacitor","diode","metagizmo","transmorpher","beeper"]);
 
 
 # ChildGenerator("organic matter", probability=5),

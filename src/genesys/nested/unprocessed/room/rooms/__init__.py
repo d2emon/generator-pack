@@ -7,21 +7,21 @@ new Thing("room",["visitor,0.1%","ghost,0.1%","walls"]);
 new Thing("walls",["door,1-4","window,0-6",["wall,4","wall,4-8"]]);
 new Thing("wall",[["plaster","wood"],"dirt,5%"]);
 new Thing("plaster",[
-    element_factories['Ca'].one(),
-    element_factories['S'].one(),
+    ELEMENTS['Ca'].one(),
+    ELEMENTS['S'].one(),
 ]);
 new Thing("marble",[
-    element_factories['Ca'].one(),
+    ELEMENTS['Ca'].one(),
 ]);
 new Thing("stone",["rock"]);
 new Thing("concrete",["rock","cement",
     WaterFactory.one(),
 ]);
 new Thing("cement",[
-    element_factories['Ca'].one(),
+    ELEMENTS['Ca'].one(),
 ]);
 new Thing("marble",[
-    element_factories['Ca'].one(),
+    ELEMENTS['Ca'].one(),
 ]);
 new Thing("door",["wood frame","glass,10%"]);
 new Thing("window",["wood frame","glass"]);

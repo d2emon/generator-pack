@@ -89,8 +89,7 @@ class StarFactory(NestedFactory):
         yield None
 
     def matter(self):
-        # yield MoleculeFactory.from_elements('H')
-        # yield MoleculeFactory.from_elements('He')
+        # yield MoleculeFactory.element_factories('H', 'He')
         yield None
 
     def contents(self):

@@ -13,7 +13,7 @@ class BonesFactory(Factory):
 
     def children(self):
         yield BoneCellFactory()
-        yield MoleculeFactory.from_elements('Ca')
+        yield MoleculeFactory.element_factories('Ca')
 
 
 class BoneFactory(BonesFactory):

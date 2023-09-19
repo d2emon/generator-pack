@@ -3,7 +3,7 @@
 new Thing("milk",[
     GlucidsFactory.one(),
     LipidsFactory.one(),
-    element_factories['Ca'].one(),
+    ELEMENTS['Ca'].one(),
 ]);
 new Thing("bottle",[["glass",
     PlasticFactory.one(),

@@ -40,8 +40,8 @@ class GasGiantAtmosphereFactory(NestedFactory):
         yield None
 
     def contents(self):
-        # yield MoleculeFactory.from_elements('He')
-        # yield MoleculeFactory.from_elements('H')
+        # yield MoleculeFactory.element_factory('He')
+        # yield MoleculeFactory.element_factory('H')
         # yield SteamFactory().probable(50)
         # yield AmmoniaFactory().probable(50)
         # yield MethaneFactory().probable(50)

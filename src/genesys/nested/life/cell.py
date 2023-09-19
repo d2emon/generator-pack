@@ -23,11 +23,12 @@ class GeneticCodeFactory(Factory):
 
 
 class DNAFactory(OrganicMoleculeFactory):
-    default_model = life.DNA
+    model = life.DNA
+    contents = 'H', 'O', 'N', 'C', 'P'
 
     def children(self):
         yield GeneticCodeFactory()
-        yield from self.elements('H', 'O', 'N', 'C', 'P')
+        yield from super().children()
 
 
 class CytoplasmFactory(Factory):

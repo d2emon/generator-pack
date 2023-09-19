@@ -17,8 +17,7 @@ class AtmosphereFactory(Factory):
         yield None
 
     def gases(self):
-        yield MoleculeFactory.from_elements('O')
-        yield MoleculeFactory.from_elements('C')
+        yield MoleculeFactory.element_factories('O', 'C')
         yield OzoneFactory()
 
     def children(self):

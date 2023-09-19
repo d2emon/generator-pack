@@ -35,15 +35,14 @@ class InterstellarCloudFactory(NestedFactory):
     default_model = InterstellarCloud
 
     def contents(self):
-        # yield MoleculeFactory.from_elements('He')
-        # yield MoleculeFactory.from_elements('H')
-        # yield MoleculeFactory.from_elements('C').probable(80)
+        # yield MoleculeFactory.element_factories('He', 'H')
+        # yield MoleculeFactory.element_factory('C').probable(80)
         # yield SteamFactory.probable(5)
         # yield AmmoniaFactory.probable(5)
-        # yield MoleculeFactory.from_elements('N').probable(5)
-        # yield MoleculeFactory.from_elements('Fe').probable(5)
-        # yield MoleculeFactory.from_elements('S').probable(5)
-        # yield MoleculeFactory.from_elements('O').probable(15)
+        # yield MoleculeFactory.element_factory('N').probable(5)
+        # yield MoleculeFactory.element_factory('Fe').probable(5)
+        # yield MoleculeFactory.element_factory('S').probable(5)
+        # yield MoleculeFactory.element_factory('O').probable(15)
         yield None
 
     def name_factory(self):

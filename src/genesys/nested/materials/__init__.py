@@ -1,67 +1,9 @@
 """
 Basic materials and particles
 (these are very rough simplifications, don't hold all the inaccuracies against me)
-
-.minerals.DiamondFactory
-.organics.OilFactory
-.minerals.MagmaFactory
-.minerals.RockFactory
-.minerals.SilicaFactory
-.organics.ChitinFactory
-.minerals.SaltFactory
-.water.WaterFactory
-.fire.FireFactory
-.fire.AshFactory
-.water.DewFactory
-.water.IceFactory
-.water.SnowFactory
-.water.SnowflakesFactory
-.minerals.AmmoniaFactory
-.organics.MethaneFactory
-.elements.element_factories[H]
-.elements.HydrogenAtomFactory
-.organics.PlasticFactory
-.organics.RubberFactory
-.organics.PolymersFactory
-.organics.AlcoholFactory
-.minerals.CarbonFactory
-.elements.element_factories[Na]
-.elements.element_factories[Cl]
-.elements.element_factories[O]
-.elements.element_factories[He]
-.elements.element_factories[K]
-.elements.element_factories[Al]
-.minerals.IronFactory
-.elements.element_factories[Cu]
-.elements.element_factories[Pb]
-.elements.element_factories[Na]
-.matter.SteelFactory
-.elements.element_factories[Au]
-.elements.element_factories[Ag]
-.elements.element_factories[Si]
-.elements.element_factories[Ca]
-.elements.element_factories[N]
-.elements.element_factories[S]
-.elements.element_factories[P]
-
-//alright, I'm not doing the whole periodic table.
-
-.organics.ProteinsFactory
-.organics.LipidsFactory
-.organics.GlucidsFactory
-.organics.OrganicFactory
-.elements.AtomFactory
-.matter.MoleculeFactory
-.particles.ProtonFactory
-.particles.NeutronFactory
-.particles.ElectronFactory
-.particles.UpQuarkFactory
-.particles.DownQuarkFactory
-.particles.QwubbleFactory
-.portal.PortalFactory
 """
 
-from .elements import NucleusFactory, AtomFactory, HydrogenAtomFactory, element_factories
+from .elements import AtomFactory, ELEMENTS
 from .fire import FireFactory, AshFactory
 from .matter import MoleculeFactory, SteelFactory
 from .minerals import AmmoniaMoleculeFactory, AmmoniaFactory, SilicaFactory, SaltFactory, RockFactory, DiamondFactory, \
@@ -93,30 +35,30 @@ FACTORIES = {
     'snowflakes': SnowflakesFactory,
     'ammonia': AmmoniaFactory,
     'methane': MethaneFactory,
-    'hydrogen': element_factories['H'],
-    'hydrogen atom': HydrogenAtomFactory,
+    'hydrogen': ELEMENTS['H'],
+    'hydrogen atom': ELEMENTS['H'],
     'plastic': PlasticFactory,
     'rubber': RubberFactory,
     'polymers': PolymersFactory,
     'alcohol': AlcoholFactory,
     'carbon': CarbonFactory,
-    'sodium': element_factories['Na'],
-    'chlorine': element_factories['Cl'],
-    'oxygen': element_factories['O'],
-    'helium': element_factories['He'],
-    'potassium': element_factories['K'],
-    'aluminium': element_factories['Al'],
+    'sodium': ELEMENTS['Na'],
+    'chlorine': ELEMENTS['Cl'],
+    'oxygen': ELEMENTS['O'],
+    'helium': ELEMENTS['He'],
+    'potassium': ELEMENTS['K'],
+    'aluminium': ELEMENTS['Al'],
     'iron': IronFactory,
-    'copper': element_factories['Cu'],
-    'lead': element_factories['Pb'],
+    'copper': ELEMENTS['Cu'],
+    'lead': ELEMENTS['Pb'],
     'steel': SteelFactory,
-    'gold': element_factories['Au'],
-    'silver': element_factories['Ag'],
-    'silicon': element_factories['Si'],
-    'calcium': element_factories['Ca'],
-    'nitrogen': element_factories['N'],
-    'sulfur': element_factories['S'],
-    'phosphorus': element_factories['P'],
+    'gold': ELEMENTS['Au'],
+    'silver': ELEMENTS['Ag'],
+    'silicon': ELEMENTS['Si'],
+    'calcium': ELEMENTS['Ca'],
+    'nitrogen': ELEMENTS['N'],
+    'sulfur': ELEMENTS['S'],
+    'phosphorus': ELEMENTS['P'],
 
     # alright, I'm not doing the whole periodic table.
 
