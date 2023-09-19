@@ -1,20 +1,23 @@
 from factories.thing.nested_factory import NestedFactory as Factory
 from models.v5 import materials
 from utils.nested import select_item
-from .elements import MoleculeFactory
+from .molecules import MoleculeFactory, SaltFactory
 from .water import WaterMoleculeFactory
 
 
-# Molecules
+# Chitin
 
 
-class AmmoniaMoleculeFactory(MoleculeFactory):
-    contents = 'N', 'H'
+class ChitinMoleculeFactory(MoleculeFactory):
+    model = materials.Chitin
+    contents = 'C', 'H', 'N', 'O'
 
 
-class SaltFactory(MoleculeFactory):
-    model = materials.Salt
-    contents = 'Na', 'Cl'
+class ChitinFactory(Factory):
+    model = materials.Chitin
+
+    def children(self):
+        yield ChitinMoleculeFactory.one()
 
 
 # Organic Molecules
@@ -23,16 +26,6 @@ class SaltFactory(MoleculeFactory):
 class OrganicMoleculeFactory(MoleculeFactory):
     model = materials.OrganicMolecule
     contents = 'C', 'H', 'O'
-
-
-class MethaneMoleculeFactory(MoleculeFactory):
-    model = materials.Methane
-    contents = 'C', 'H'
-
-
-class ChitinMoleculeFactory(MoleculeFactory):
-    model = materials.Chitin
-    contents = 'C', 'H', 'N', 'O'
 
 
 class ProteinsFactory(OrganicMoleculeFactory):
@@ -45,33 +38,6 @@ class LipidsFactory(OrganicMoleculeFactory):
 
 class GlucidsFactory(OrganicMoleculeFactory):
     model = materials.Glucids
-
-
-# Gases
-
-
-class AmmoniaFactory(Factory):
-    model = materials.Ammonia
-
-    def children(self):
-        yield AmmoniaMoleculeFactory.one()
-
-
-class MethaneFactory(Factory):
-    model = materials.Methane
-
-    def children(self):
-        yield MethaneMoleculeFactory.one()
-
-
-class ChitinFactory(Factory):
-    model = materials.Chitin
-
-    def children(self):
-        yield ChitinMoleculeFactory.one()
-
-
-# Glucids
 
 
 class AlcoholFactory(GlucidsFactory):

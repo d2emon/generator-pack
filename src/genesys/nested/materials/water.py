@@ -1,6 +1,6 @@
 from factories.thing.nested_factory import NestedFactory as Factory
 from models.v5 import materials
-from .elements import MoleculeFactory
+from .molecules import MoleculeFactory
 
 
 class WaterMoleculeFactory(MoleculeFactory):
@@ -12,11 +12,6 @@ class WaterFactory(Factory):
 
     def children(self):
         yield WaterMoleculeFactory.one()
-
-
-class SteamFactory(WaterFactory):
-    # TODO: Refactor it
-    default_model = materials.Steam
 
 
 class DewFactory(WaterFactory):
@@ -36,3 +31,7 @@ class SnowFactory(Factory):
 
     def children(self):
         yield SnowflakesFactory.one()
+
+
+class SteamFactory(WaterFactory):
+    model = materials.Steam

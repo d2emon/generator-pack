@@ -1,17 +1,6 @@
 from factories.thing.nested_factory import NestedFactory as Factory
 from models.v5 import materials
-from .elements import MoleculeFactory
-
-
-# Molecules
-
-
-class SilicaFactory(MoleculeFactory):
-    model = materials.Silica
-    contents = 'Si', 'O'
-
-
-# Rocks
+from .molecules import MoleculeFactory, SilicaFactory
 
 
 class RockFactory(Factory):

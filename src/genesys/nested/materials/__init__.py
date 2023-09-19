@@ -4,13 +4,15 @@ Basic materials and particles
 """
 
 from .particles import DownQuarkFactory, ElectronFactory, NeutronFactory, ProtonFactory, QwubbleFactory, UpQuarkFactory
-from .elements import AtomFactory, MoleculeFactory, ELEMENTS
+from .elements import AtomFactory, ELEMENTS
+from .molecules import MoleculeFactory, SaltFactory, SilicaFactory
+from .gases import AmmoniaFactory, MethaneFactory
 from .metal import IronFactory, SteelFactory
-from .minerals import CarbonFactory, DiamondFactory, MagmaFactory, RockFactory, SilicaFactory
-from .water import WaterMoleculeFactory, WaterFactory, SteamFactory, DewFactory, IceFactory, SnowflakesFactory, \
-    SnowFactory
-from .organics import AmmoniaFactory, AlcoholFactory, ChitinFactory, GlucidsFactory, LipidsFactory, MethaneFactory, OilFactory, \
-    OrganicFactory, PlasticFactory, PolymersFactory, ProteinsFactory, RubberFactory, SaltFactory
+from .minerals import CarbonFactory, DiamondFactory, MagmaFactory, RockFactory
+from .water import WaterFactory, DewFactory, IceFactory, SnowflakesFactory, SnowFactory
+    # SteamFactory
+from .organics import AlcoholFactory, ChitinFactory, GlucidsFactory, LipidsFactory, OilFactory, OrganicFactory, PlasticFactory, \
+    PolymersFactory, ProteinsFactory, RubberFactory
     # KeratinFactory, SweatFactory
 from .fire import AshFactory, FireFactory
 from .portal import PortalFactory

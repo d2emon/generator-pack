@@ -1,14 +1,9 @@
-from factories.thing.nested_factory import NestedFactory as Factory
 from models.v5 import materials
-from .elements import AtomFactory
+from .molecules import MoleculeFactory
 
 
-class MetalFactory(Factory):
-    contents = []
-
-    def children(self):
-        for element in self.contents:
-            yield AtomFactory.element_factory(element)
+class MetalFactory(MoleculeFactory):
+    pass
 
 
 class IronFactory(MetalFactory):
