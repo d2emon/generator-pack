@@ -3,7 +3,7 @@ from factories.thing.nested_factory import NestedFactory as Factory
 
 
 class QwubbleFactory(Factory):
-    default_model = materials.Qwubble
+    model = materials.Qwubble
 
     def children(self):
         from ..universe import MultiverseFactory
@@ -12,26 +12,27 @@ class QwubbleFactory(Factory):
 
 
 class QuarkFactory(Factory):
-    default_model = materials.Quark
+    model = materials.Quark
 
     def children(self):
         yield QwubbleFactory()
 
 
 class UpQuarkFactory(QuarkFactory):
-    default_model = materials.UpQuark
+    model = materials.UpQuark
 
 
 class DownQuarkFactory(QuarkFactory):
-    default_model = materials.DownQuark
+    model = materials.DownQuark
 
 
 class ElectronFactory(QuarkFactory):
-    default_model = materials.Electron
+    model = materials.Electron
 
 
 class ParticleFactory(Factory):
-    default_model = materials.Particle
+    # TODO: Refactor it
+    model = materials.Particle
     up_quarks = 1
     down_quarks = 1
 
@@ -41,12 +42,12 @@ class ParticleFactory(Factory):
 
 
 class ProtonFactory(ParticleFactory):
-    default_model = materials.Proton
+    model = materials.Proton
     up_quarks = 2
     down_quarks = 1
 
 
 class NeutronFactory(ParticleFactory):
-    default_model = materials.Neutron
+    model = materials.Neutron
     up_quarks = 1
     down_quarks = 2

@@ -24,7 +24,7 @@ class NucleusFactory(Factory):
 
 
 class AtomFactory(Factory):
-    # TODO: Refactor it
+    defaukt_name = 'atoms'
     model = materials.Atom
     protons = 1
     neutrons = 1

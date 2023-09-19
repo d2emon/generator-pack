@@ -83,7 +83,9 @@ new Thing("dna",["genetic code",
     element_factories['P'].one(),
 ],"DNA");
 new Thing("genetic code",["nucleotide,20-50"]);
-new Thing("nucleotide",["molecule"],["A", "T", "G", "C"]);
+new Thing("nucleotide",[
+    MoleculeFactory.one(),
+],["A", "T", "G", "C"]);
 
 //body stuff
 new Thing("body part",["bacteria,30%", "bacteria,10%", "skin", "blood vessels", "bones", "fat", "muscles"],"body part");
@@ -815,7 +817,12 @@ new Thing("patient",[".person", "blood,15%", "wound,0-3"],"*PERSON*| (patient)")
 new Thing("research facility",["researcher,2-8", "security guard,1-4", "soldier,0-6", "doctor,0-2", "nurse,0-2", ["corpse,0-3", "", ""], "containment room,1-12", "top secret drawer,1-6", ".building"]);
 new Thing("researcher",[".person"],"*PERSON*| (researcher)");
 new Thing("security guard",[".person", "handgun", "ammo pack,0-1"],"*PERSON*| (security guard)");
-new Thing("containment room",[["portal", "space animal", "space monster", "sea monster", "bird", "poultry", "cat", "dog", "cetacean", "fish", "mollusk", "plankton", "reptile", "amphibian", "snake", "small mammal", "predatory mammal", "herbivorous mammal", "clam", "worm", "monkey", "bear", "shark", "horse", "insect", "crustacean", "dragon", "person", "ghost", "ectoplasm", "abomination", "corpse", "house", "tree", "machine", "dinosaur", "visitor", "visitor furniture", "medieval person", "caveman", "painting", "", "", ""], "portal,1%",
+new Thing("containment room",[
+    [
+        PortalFactory.one(),
+        "space animal", "space monster", "sea monster", "bird", "poultry", "cat", "dog", "cetacean", "fish", "mollusk", "plankton", "reptile", "amphibian", "snake", "small mammal", "predatory mammal", "herbivorous mammal", "clam", "worm", "monkey", "bear", "shark", "horse", "insect", "crustacean", "dragon", "person", "ghost", "ectoplasm", "abomination", "corpse", "house", "tree", "machine", "dinosaur", "visitor", "visitor furniture", "medieval person", "caveman", "painting", "", "", ""
+    ],
+    PortalFactory.one().probable(1),
     FireFactory.probable(1),
     "researcher,5%", "researcher,5%", "soldier,5%", "soldier,5%", "corpse,5%", "corpse,5%", "corpse,5%", "corpse,5%"]);
 new Thing("top secret drawer",["top secret folder,1-8", "note,0-8", "pen,30%", "pen,10%", "pen,5%", "donut box,5%", "can,2%", "book,20%", "book,20%", "book,5%", "book,5%", "button,10%", "button,10%", "dust,60%", "lint,40%"],"classified files");
@@ -835,7 +842,9 @@ new Thing("grave",["coffin", "coffin,5%", "worm,0-2", "insect,0-1", ["concrete",
     "marble"], "dirt"]);
 new Thing("coffin",["person,0.2%", "corpse,98%", "corpse,2%", "ghost,2%", "worm,0-3", "insect,0-2", "wood", "cloth", "nails"]);
 
-new Thing("ectoplasm",["proton,3-7"],[["purple", "fetid", "green", "yellow", "blood-red", "shiny", "wispy", "sparkly"], [" "], ["ectoplasm"]]);
+new Thing("ectoplasm",[
+    ProtonFactory.multiple(3, 7),
+],[["purple", "fetid", "green", "yellow", "blood-red", "shiny", "wispy", "sparkly"], [" "], ["ectoplasm"]]);
 new Thing("ghost",["ghost body", "ghost thoughts"],[["depressed", "sad", "lonely", "wailing", "screaming", "stretching", "clinking", "sneezing", "breathing", "screeching", "spinning", "gasping", "moaning", "regretful", "remorseful", "vengeful", "friendly neighborhood", "skeletal", "tentacled", "conjoined", "grasping", "slimy", "floating", "mournful"], [" "], ["ghost", "spirit", "apparition", "phantom", "poltergeist", "specter", "hauntling"]]);
 new Thing("ghost body",["ectoplasm"],["\"body\""]);
 new Thing("ghost thoughts",["ghost thought", "ghost thought,20%"],["thoughts"]);
@@ -948,7 +957,9 @@ new Thing("dirt",[
 new Thing("grease",[
     LipidsFactory.one(),
     "dust"]);
-new Thing("dust",["molecule"]);
+new Thing("dust",[
+    MoleculeFactory.one(),
+]);
 new Thing("crumbs",[
     OrganicFactory.one(),
 ]);
@@ -965,17 +976,21 @@ new Thing("bed",[".armchair", "pillow,0-3"]);
 new Thing("pillow",["feather", "cloth"]);
 new Thing("feather",["keratin"]);
 new Thing("feathers",[".feather"]);
-new Thing("mirror",["glass", "portal,0.1%"]);
+new Thing("mirror",["glass",
+    PortalFactory.one().probable(0.1),
+]);
 new Thing("glass",[
     SilicaFactory.one(),
-    ]);
+]);
 new Thing("desk",["wood frame", "drawer,0-6"]);
 new Thing("cupboard",["cup,0-6", "drinking glass,0-6", "bowl,0-4", "plate,0-8", "wood frame", "wood shelf,1-4", "drawer,0-2"]);
 new Thing("drinking glass",["glass"],"glass");
 new Thing("bowl",["ceramic"]);
 new Thing("cup",["ceramic"]);
 new Thing("plate",["ceramic"]);
-new Thing("closet",["portal,0.1%", "skeleton,0.1%", "hat,30%", "hat,15%", "pants,0-5", "shirt,0-5", "underwear,0-6", "coat,0-3", "socks,0-8", "shoes,0-6", "button,20%", "wood frame", "wood shelf,0-2"]);
+new Thing("closet",[
+    PortalFactory.one().probable(0.1),
+    "skeleton,0.1%", "hat,30%", "hat,15%", "pants,0-5", "shirt,0-5", "underwear,0-6", "coat,0-3", "socks,0-8", "shoes,0-6", "button,20%", "wood frame", "wood shelf,0-2"]);
 new Thing("living-room table",[".table", "drawer,0-2"],"table");
 new Thing("table",[["wood",
     PlasticFactory.one(),
@@ -1471,7 +1486,9 @@ new Thing("sorry",["consolation universe"],"(Sorry!)");
 new Thing("consolation universe",[".universe"]);
 
 //this is for the nice people who help support the site.
-new Thing("thanks",["can of nightmare", "cake", "portal"],"Thank you for donating!");
+new Thing("thanks",["can of nightmare", "cake",
+    PortalFactory.one(),
+], "Thank you for donating!");
 
 //to add :
 //cows,fungi,more shops,temples,more buildings,paintings,internal organs,phones,lamps,abandoned plants/castles,spaceships oh god

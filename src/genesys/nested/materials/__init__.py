@@ -50,20 +50,16 @@ Basic materials and particles
 .organics.LipidsFactory
 .organics.GlucidsFactory
 .organics.OrganicFactory
-
-new Thing("atom",["proton", "neutron", "electron"],["atoms"]);
-new Thing("molecule",["atom"],["molecules"]);
-new Thing("proton",["up quark,2", "down quark"]);
-new Thing("neutron",["down quark,2", "up quark"]);
-new Thing("electron",["qwubble"]);
-new Thing("up quark",["qwubble"]);
-new Thing("down quark",["qwubble"]);
-new Thing("qwubble",["multiverse,1-5"]);
-new Thing("portal",["universe"]);
+.elements.AtomFactory
+.matter.MoleculeFactory
+.particles.ProtonFactory
+.particles.NeutronFactory
+.particles.ElectronFactory
+.particles.UpQuarkFactory
+.particles.DownQuarkFactory
+.particles.QwubbleFactory
+.portal.PortalFactory
 """
-
-# particles
-# portal
 
 from .elements import NucleusFactory, AtomFactory, HydrogenAtomFactory, element_factories
 from .fire import FireFactory, AshFactory
@@ -129,13 +125,13 @@ FACTORIES = {
     'glucids': GlucidsFactory,
     'organic matter': OrganicFactory,
 
-    'atom': AtomFactory(),
-    'molecule': MoleculeFactory(),
-    'proton': ProtonFactory(),
-    'neutron': NeutronFactory(),
-    'electron': ElectronFactory(),
-    'up quark': UpQuarkFactory(),
-    'down quark': DownQuarkFactory(),
-    'qwubble': QwubbleFactory(),
-    'portal': PortalFactory(),
+    'atom': AtomFactory,
+    'molecule': MoleculeFactory,
+    'proton': ProtonFactory,
+    'neutron': NeutronFactory,
+    'electron': ElectronFactory,
+    'up quark': UpQuarkFactory,
+    'down quark': DownQuarkFactory,
+    'qwubble': QwubbleFactory,
+    'portal': PortalFactory,
 }

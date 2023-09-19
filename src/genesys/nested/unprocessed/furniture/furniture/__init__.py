@@ -49,7 +49,9 @@ new Thing("dirt",[
 new Thing("grease",[
     LipidsFactory.one(),
     "dust"]);
-new Thing("dust",["molecule"]);
+new Thing("dust",[
+    MoleculeFactory.one(),
+]);
 new Thing("crumbs",[
     OrganicFactory.one(),
 ]);
@@ -66,7 +68,9 @@ new Thing("bed",[".armchair","pillow,0-3"]);
 new Thing("pillow",["feather","cloth"]);
 new Thing("feather",["keratin"]);
 new Thing("feathers",[".feather"]);
-new Thing("mirror",["glass","portal,0.1%"]);
+new Thing("mirror",["glass",
+    PortalFactory.one().probable(0.1),
+]);
 new Thing("glass",["silica"]);
 new Thing("desk",["wood frame","drawer,0-6"]);
 new Thing("cupboard",["cup,0-6","drinking glass,0-6","bowl,0-4","plate,0-8","wood frame","wood shelf,1-4","drawer,0-2"]);
@@ -74,7 +78,9 @@ new Thing("drinking glass",["glass"],"glass");
 new Thing("bowl",["ceramic"]);
 new Thing("cup",["ceramic"]);
 new Thing("plate",["ceramic"]);
-new Thing("closet",["portal,0.1%","skeleton,0.1%","hat,30%","hat,15%","pants,0-5","shirt,0-5","underwear,0-6","coat,0-3","socks,0-8","shoes,0-6","button,20%","wood frame","wood shelf,0-2"]);
+new Thing("closet",[
+    PortalFactory.one().probable(0.1),
+    "skeleton,0.1%","hat,30%","hat,15%","pants,0-5","shirt,0-5","underwear,0-6","coat,0-3","socks,0-8","shoes,0-6","button,20%","wood frame","wood shelf,0-2"]);
 new Thing("living-room table",[".table","drawer,0-2"],"table");
 new Thing("table",[["wood",
     PlasticFactory.one(),
