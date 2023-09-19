@@ -1,5 +1,5 @@
-from models.v5 import materials
 from factories.thing.nested_factory import NestedFactory as Factory
+from models.v5 import materials
 
 
 class QwubbleFactory(Factory):
