@@ -46,14 +46,11 @@ Basic materials and particles
 
 //alright, I'm not doing the whole periodic table.
 
-new Thing("proteins",[".molecule"]);
-new Thing("lipids",[".molecule"]);
-new Thing("glucids",[
-    CarbonFactory.one(),
-    element_factory['H'].one(),
-    element_factories['O'].one(),
-],"glucose");
-new Thing("organic matter",[["proteins", "lipids", "glucids"], ["proteins", "lipids", "glucids", ""], SaltFactory.one().probable(30)]);
+.organics.ProteinsFactory
+.organics.LipidsFactory
+.organics.GlucidsFactory
+.organics.OrganicFactory
+
 new Thing("atom",["proton", "neutron", "electron"],["atoms"]);
 new Thing("molecule",["atom"],["molecules"]);
 new Thing("proton",["up quark,2", "down quark"]);
@@ -127,10 +124,11 @@ FACTORIES = {
 
     # alright, I'm not doing the whole periodic table.
 
-    'proteins': ProteinsFactory(),
-    'lipids': LipidsFactory(),
-    'glucids': GlucidsFactory(),
-    'organic matter': OrganicFactory(),
+    'proteins': ProteinsFactory,
+    'lipids': LipidsFactory,
+    'glucids': GlucidsFactory,
+    'organic matter': OrganicFactory,
+
     'atom': AtomFactory(),
     'molecule': MoleculeFactory(),
     'proton': ProtonFactory(),

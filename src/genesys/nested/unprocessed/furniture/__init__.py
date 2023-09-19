@@ -174,7 +174,7 @@ class Dirt(Thing):
     ]
 
 
-# new Thing("grease",["lipids","dust"]);
+# new Thing("grease",[LipidsFactory.one(), "dust"]);
 
 
 class Dust(Thing):
@@ -379,7 +379,7 @@ class WoodFrame(Thing):
 # new Thing("paper",["cellulose"]);
 # new Thing("cardboard",["cellulose"]);
 # new Thing("wood",["cellulose","worm,1%"]);
-# new Thing("cellulose",["glucids"]);
+# new Thing("cellulose",[GlucidsFactory.one()]);
 # new Thing("paragraph",["character,50-300"]);
 # new Thing("character",["ink"],"*CHAR*");
 # new Thing("ink",[AlcoholFactory.one(), "oil"]);

@@ -26,5 +26,7 @@ new Thing("campfire",[
     "wood","stone"]);
 new Thing("ancient meat rack",["meat,1-4","wood"],[["mammoth","saber-toothed cat","mountain lion","wooly rhinoceros","wolf","auroch","rabbit"],[" meat rack"]]);
 new Thing("wall painting",["pigment"],[["Wall painting ("],["humans","wild beasts","rabbits","spirits","aurochs","bears","monsters","mountain lions","saber-toothed cats","wolves","mammoths","old gods"],[" "],["being chased by","hunting","running with","killing","maiming","eating"],[" "],["humans","wild beasts","rabbits","spirits","aurochs","bears","monsters","mountain lions","saber-toothed cats","wolves","mammoths","old gods"],[")"]]);
-new Thing("pigment",["organic matter"]);
+new Thing("pigment",[
+    OrganicFactory.one(),
+]);
 """

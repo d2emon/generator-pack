@@ -1,6 +1,8 @@
 """
 //food
-new Thing("milk",["glucids","lipids",
+new Thing("milk",[
+    GlucidsFactory.one(),
+    LipidsFactory.one(),
     element_factories['Ca'].one(),
 ]);
 new Thing("bottle",[["glass",
@@ -36,16 +38,27 @@ new Thing("ice cream",["milk","sugar",
 ],[["strawberry","vanilla","cherry","chocolate"],[" ice cream"]]);
 new Thing("cheese",["milk","yeast","mold,30%"],[["roquefort","cheddar","gouda","edam","colby","mozarella","processed cheese","stilton","goat cheese","gorgonzola","brie","camembert"]]);
 new Thing("roast",[".meat","spices"],[["chicken","beef","pork","duck","mutton"],[" roast"]]);
-new Thing("spices",[".organic matter"],[["pepper","garlic","onions","rosemary","sage","thyme"]]);
+new Thing("spices",
+    (OrganicFactory.one()),
+    [["pepper","garlic","onions","rosemary","sage","thyme"]]);
 new Thing("meat",["blood vessels,5%","bones,5%","fat,50%","muscles","salt"]);
-new Thing("tomato sauce",["glucids","meat,20%","salt"]);
-new Thing("pasta",["salt","glucids","cheese,5%","tomato sauce,20%"],["spaghetti","noodles","fusilli","fettuccine","fettuce","tagliatelle","cannelloni","penne","rigatoni","farfalle","tortelloni","ravioli","gnocchi"]);
+new Thing("tomato sauce",[
+    GlucidsFactory.one(),
+    "meat,20%","salt"]);
+new Thing("pasta",["salt",
+    GlucidsFactory.one(),
+    "cheese,5%","tomato sauce,20%"],["spaghetti","noodles","fusilli","fettuccine","fettuce","tagliatelle","cannelloni","penne","rigatoni","farfalle","tortelloni","ravioli","gnocchi"]);
 new Thing("pastry",["sugar","salt","dough"],"pastry");
 new Thing("pie",[["fruit jam","meat"],".pastry"],"pie");
 new Thing("cake",[".pastry"],[["chocolate","white chocolate","chestnut","fruit","huge","impressive","ornate","glazed","colorful","cheese","nut","delicious"],[" cake"]]);
 new Thing("fruit jam",["plant cell","sugar"]);
 new Thing("donut box",["donut,0-12","cardboard"],"doughnut box");
 new Thing("donut",[".pastry"],[["vanilla ","strawberry ","raspberry ","cherry ","chocolate ","coconut ","cream ","cinnamon ","bacon ","sprinkly ","frosted ","glazed ","powdered ",""],["doughnut"]]);
-new Thing("sugar",["glucids"]);
-new Thing("dough",["glucids","lipids"]);
+new Thing("sugar",[
+    GlucidsFactory.one(),
+]);
+new Thing("dough",[
+    GlucidsFactory.one(),
+    LipidsFactory.one(),
+]);
 """

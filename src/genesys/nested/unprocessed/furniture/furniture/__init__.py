@@ -10,10 +10,13 @@ new Thing("oven",[["pie","cake","roast","",""],
     PlasticFactory.one(),
     "metal grill,1-3","electronics"]);
 new Thing("kitchen sink",[".sink"]);
-new Thing("sink",[["porcelain","metal"],"organic matter,5%","pipes"]);
+new Thing("sink",[["porcelain","metal"],
+    OrganicFactory.one().probable(5),
+    "pipes"]);
 new Thing("toilet",[
     WaterFactory.one(),
-    "organic matter,15%","pasta,0.1%","porcelain","pipes"]);
+    OrganicFactory.one().probable(15),
+    "pasta,0.1%","porcelain","pipes"]);
 new Thing("pipes",["metal","dirt"]);
 new Thing("nails",[
     IronFactory.one(),
@@ -32,16 +35,24 @@ new Thing("couch",[".armchair","tv remote,5%","coin,5%","pen,5%"],["couch","sofa
 new Thing("tv remote",[
     PlasticFactory.one(),
     "electronics"],"TV remote");
-new Thing("coin",["organic matter,2%","dirt,2%",
+new Thing("coin",[
+    OrganicFactory.one().probable(2),
+    "dirt,2%",
     element_factories['Cu'].one()
 ]);
 new Thing("gold coin",[
     element_factories['Au'].one(),
 ]);
-new Thing("dirt",["organic matter,50%","dust"]);
-new Thing("grease",["lipids","dust"]);
+new Thing("dirt",[
+    OrganicFactory.one().probable(50),
+    "dust"]);
+new Thing("grease",[
+    LipidsFactory.one(),
+    "dust"]);
 new Thing("dust",["molecule"]);
-new Thing("crumbs",["organic matter"]);
+new Thing("crumbs",[
+    OrganicFactory.one(),
+]);
 new Thing("lint",["textile fibre"]);
 new Thing("pen",[
     PlasticFactory.one(),
@@ -82,7 +93,9 @@ new Thing("page",["paragraph,1-8","paper"]);
 new Thing("paper",["cellulose"]);
 new Thing("cardboard",["cellulose"]);
 new Thing("wood",["cellulose","worm,1%"]);
-new Thing("cellulose",["glucids"]);
+new Thing("cellulose",[
+    GlucidsFactory.one(),
+]);
 new Thing("paragraph",["character,50-300"]);
 new Thing("character",["ink"],"*CHAR*");
 new Thing("ink",[

@@ -23,18 +23,16 @@ class ChitinFactory(OrganicMoleculeFactory):
 
 
 class ProteinsFactory(OrganicMoleculeFactory):
-    # TODO: Refactor it
-    default_model = materials.Proteins
+    model = materials.Proteins
 
 
 class LipidsFactory(OrganicMoleculeFactory):
-    # TODO: Refactor it
-    default_model = materials.Lipids
+    model = materials.Lipids
 
 
 class GlucidsFactory(OrganicMoleculeFactory):
-    # TODO: Refactor it
-    default_model = materials.Glucids
+    model = materials.Glucids
+    default_name = 'glucose'
 
 
 class AlcoholFactory(GlucidsFactory):

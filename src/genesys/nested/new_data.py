@@ -68,8 +68,13 @@ NEW_FACTORIES = {
 """
 //cell stuff
 new Thing("cell",["nucleus", "cytoplasm"],["cells"]);
-new Thing("nucleus",["dna", "proteins"]);
-new Thing("cytoplasm",["glucids", "lipids"]);
+new Thing("nucleus",["dna",
+    ProteinsFactory.one(),
+]);
+new Thing("cytoplasm",[
+    GlucidsFactory.one(),
+    LipidsFactory.one(),
+]);
 new Thing("dna",["genetic code",
     element_factory['H'].one(),
     element_factories['O'].one(),
@@ -100,7 +105,9 @@ new Thing("bones",["bone cell",
 new Thing("bone cell",[".cell"],["bone cells"]);
 new Thing("muscles",["muscle cell"],"muscles");
 new Thing("muscle cell",[".cell"],["muscle cells"]);
-new Thing("fat",["lipids"],"fat");
+new Thing("fat",[
+    LipidsFactory.one(),
+],"fat");
 new Thing("brain cell",[".cell"],["brain cells"]);
 new Thing("dandruff",["dead skin"]);
 
@@ -147,7 +154,9 @@ new Thing("hair",["bacteria,30%", "keratin"],"hair");
 new Thing("nose",["nostril,2", ".body part"],"nose");
 new Thing("nostril",["nostril hair", "boogers,0-1", ".soft body part"],"nostril");
 new Thing("nostril hair",[".hair"],"nostril hair");
-new Thing("boogers",["organic matter"]);
+new Thing("boogers",[
+    OrganicFactory.one(),
+]);
 new Thing("mouth",["teeth", "tongue"],"mouth");
 new Thing("teeth",[
     element_factories['Ca'].one(),
@@ -177,11 +186,14 @@ new Thing("cloth",["textile"]);
 new Thing("leather",["skin cell"]);
 new Thing("textile",["textile fibre"]);
 new Thing("textile fibre",["keratin"],["textile fibres"]);
-new Thing("keratin",["proteins"]);
+new Thing("keratin",[
+    ProteinsFactory.one(),
+]);
 new Thing("sweat",[
     WaterFactory.one(),
     SaltFactory.one(),
-    "glucids"]);
+    GlucidsFactory.one(),
+]);
 new Thing("clothing",["textile", "dead skin,40%", "sweat,15%"]);
 new Thing("pocket",["dust,20%", "crumbs,20%", "lint,30%", "donut,1%", "coin,20%", "coin,20%", "coin,10%", "pen,10%", "pen,2%", "button,10%", "button,5%", "button,1%", "note,15%", "note,5%", "handgun,0.4%", "pasta,0.2%", "textile"]);
 
@@ -318,7 +330,9 @@ new Thing("tree trunk",["insect,4%", "wood", "bark"]);
 new Thing("bark",["insect,10%", "worm,10%", "wood"]);
 new Thing("jungle trees",["jungle tree,20-150"],"trees");
 new Thing("jungle tree",[".tree"],["tree"]);
-new Thing("humus",["insect,0-3", "worm,0-3", "twig,0-3", "leaf,0-6", "organic matter", "dirt"]);
+new Thing("humus",["insect,0-3", "worm,0-3", "twig,0-3", "leaf,0-6",
+    OrganicFactory.one(),
+"dirt"]);
 new Thing("nest",["bird,50%", "egg shell,20%", "bird egg,0-6", "twig,6-12"]);
 
 //life
@@ -388,7 +402,9 @@ new Thing("reptile wing",["scales", ".body part"],"wing");
 new Thing("bird wing",["feathers", ".body part"],"wing");
 new Thing("bird leg",["feathers", ".body part"],"leg");
 new Thing("bird tail",["feathers", ".body part"],"tail");
-new Thing("venom",["proteins", "lipids,40%",
+new Thing("venom",[
+    ProteinsFactory.one(),
+    LipidsFactory.one().probable(40),
     element_factories['N'].one().probable(40),
     element_factories['Na'].one().probable(40),
     element_factories['Cl'].one().probable(40),
@@ -496,7 +512,9 @@ new Thing("social insect",["insect body", "social insect thoughts"],["worker", "
 new Thing("insect queen",["insect body", "social insect thoughts"],["queen"]);
 new Thing("anthill",["social insect,10-30", "insect queen", "insect egg,2-10", "dirt"],["anthill", "termite mound"]);
 new Thing("beehive",["social insect,10-30", "insect queen", "insect egg,2-10", "paper"],["beehive", "wasp nest", "hornet nest"]);
-new Thing("insect egg",["egg thoughts", "egg shell", "soft flesh", "organic matter"],"egg");
+new Thing("insect egg",["egg thoughts", "egg shell", "soft flesh",
+    OrganicFactory.one(),
+],"egg");
 new Thing("social insect thoughts",["social insect thought,1-2"],["thoughts"]);
 new Thing("social insect thought",[],["hello intruder", "you should stay away intruder", "intruder we may be forced to chop you up into little pieces if you stay here", "this is no place for you intruder", "why don't you go back to your intruder nest with all the other intruders", "we have no need for intruders right now", "hey intruder ever heard of personal space", "sorry intruder but you're kind of in the way", "intruder that's enough now", "intruder why don't you come back another time", "sorry intruder we're all super-busy here", "hey intruder you're like very big so please don't stay here", "i trophallaxized a girl and i liked it"]);
 
@@ -543,7 +561,9 @@ new Thing("pyrolith",[,
     ]);
 new Thing("dragon lair",["dragon,98%", "medieval servant,10%", "dragon nest,40%", "pile of treasure,90%", "medieval corpse,0-3"]);
 new Thing("dragon nest",["egg shell,20%", "dragon egg,0-3", "pile of treasure"]);
-new Thing("dragon egg",["egg thoughts", "egg shell", "soft flesh", "organic matter"],"dragon egg");
+new Thing("dragon egg",["egg thoughts", "egg shell", "soft flesh",
+    OrganicFactory.one(),
+],"dragon egg");
 
 //birds
 new Thing("bird",["bird body", "bird thoughts"],["pigeon", "starling", "swallow", "robin", "sparrow", "eagle", "vulture", "hawk", "condor", "osprey", "buzzard", "crane", "bustard", "pheasant", "woodpecker", "seagull", "albatross", "petrel", "grebe", "flamingo", "stork", "ibis", "heron", "swan", "magpie", "crow", "raven", "jay", "chough", "quail", "grouse", "partridge", "egret", "pelican", "cormorant", "avocet", "lapwing", "plover", "curlew", "gull", "tern", "skua", "guillemot", "auk", "sandgrouse", "dove", "parrot", "lorikeet", "cockatoo", "parakeet", "macaw", "turaco", "cuckoo", "coucal", "owl", "snowy owl", "frogmouth", "nightjar", "swift", "hummingbird", "quetzal", "toucan", "shrike", "wren", "oriole", "fantail", "paradise bird", "lark", "skylark", "warbler", "babbler", "thrasher", "mockingbird", "lyrebird", "bluebird", "thrush", "nightingale", "sunbird", "finch", "kingfisher", "trogon", "pitta", "manakin", "chickadee", "sula"]);
@@ -554,7 +574,9 @@ new Thing("bird thoughts",["bird thought,1-2"],["thoughts"]);
 new Thing("bird thought",[],["caw", "caw caw", ":V", ":V caw", "you think i care", "yeah bring it", "like for real", "come say that to my face", "chirp", "so high right now", "pooping on people, from far above, doop-dee-doop", "do i care, no i don't, doop-dee-doop", "me and my mates are gonna ruin your day", "can i peck your face", "please can i peck at you just a bit", "everything i sing is super-lewd", "i'm a lewd dude", "so yeah", "i am bird hi", "i'm pretty fly", "hey can i steal that", "what now", "that's not what your mom said last night", "yes that's right", "yes indeed", "see what happens", "oh god what happen", "riveting", "aw yiss", "bred crums yisss", "i am the birdest", "bird and bird accessories", "hey have you heard", "turns out i'm the word"]);
 new Thing("poultry thoughts",["poultry thought,1-2"],["thoughts"]);
 new Thing("poultry thought",[],["cluck", "bwucluck", ":U", ":U cluck", "i'm gonna strut around a bit while bobbing my head like that", "i got weird feet why", "you think i care", "like for real", "yeah bring it", "come say that to my face", "why do i poop on my feet", "oh my god i have the best voice", "i'm like super-good at songs okay", "let me sing you something plz", "so yeah", "i am bird hi", "this is most fowl", "yeah i got laid when i was born, what now gurl", "what now", "that's not what your mom said last night", "yes that's right", "yes indeed", "see what happens", "oh god what happen", "riveting", "aw yiss", "bred crums yisss", "i am the birdest", "bird and bird accessories", "hey have you heard", "turns out i'm the word"]);
-new Thing("bird egg",["egg thoughts", "egg shell", "soft flesh", "organic matter"],"egg");
+new Thing("bird egg",["egg thoughts", "egg shell", "soft flesh",
+    OrganicFactory.one(),
+],"egg");
 new Thing("egg shell",[
     element_factories['Ca'].one(),
 ],"shell");
@@ -883,10 +905,13 @@ new Thing("oven",[["pie", "cake", "roast", "", ""],
     PlasticFactory.one(),
     "metal grill,1-3", "electronics"]);
 new Thing("kitchen sink",[".sink"]);
-new Thing("sink",[["porcelain", "metal"], "organic matter,5%", "pipes"]);
+new Thing("sink",[["porcelain", "metal"],
+    OrganicFactory.one().probable(5),
+    "pipes"]);
 new Thing("toilet",[
     WaterFactory.one(),
-    "organic matter,15%", "pasta,0.1%", "porcelain", "pipes"]);
+    OrganicFactory.one().probable(15),
+    "pasta,0.1%", "porcelain", "pipes"]);
 new Thing("pipes",["metal", "dirt"]);
 new Thing("nails",[
     IronFactory.one(),
@@ -909,16 +934,24 @@ new Thing("couch",[".armchair", "tv remote,5%", "coin,5%", "pen,5%"],["couch", "
 new Thing("tv remote",[
     PlasticFactory.one(),
     "electronics"],"TV remote");
-new Thing("coin",["organic matter,2%", "dirt,2%",
+new Thing("coin",[
+    OrganicFactory.one().probable(2),
+    "dirt,2%",
     element_factories['Cu'].one(),
 ]);
 new Thing("gold coin",[
     element_factories['Au'].one(),
 ]);
-new Thing("dirt",["organic matter,50%", "dust"]);
-new Thing("grease",["lipids", "dust"]);
+new Thing("dirt",[
+    OrganicFactory.one().probable(50),
+    "dust"]);
+new Thing("grease",[
+    LipidsFactory.one(),
+    "dust"]);
 new Thing("dust",["molecule"]);
-new Thing("crumbs",["organic matter"]);
+new Thing("crumbs",[
+    OrganicFactory.one(),
+]);
 new Thing("lint",["textile fibre"]);
 new Thing("pen",[
     PlasticFactory.one(),
@@ -962,7 +995,9 @@ new Thing("page",["paragraph,1-8", "paper"]);
 new Thing("paper",["cellulose"]);
 new Thing("cardboard",["cellulose"]);
 new Thing("wood",["cellulose", "worm,1%"]);
-new Thing("cellulose",["glucids"]);
+new Thing("cellulose",[
+    GlucidsFactory.one(),
+]);
 new Thing("paragraph",["character,50-300"]);
 new Thing("character",["ink"],"*CHAR*");
 new Thing("ink",[
@@ -1058,7 +1093,9 @@ new Thing("/v/",[".website"]);
 new Thing("/x/",[".website"]);
 
 //food
-new Thing("milk",["glucids", "lipids",
+new Thing("milk",[
+    GlucidsFactory.one(),
+    LipidsFactory.one(),
     element_factories['Ca'].one(),
 ]);
 new Thing("bottle",[["glass",
@@ -1098,16 +1135,21 @@ new Thing("ice cream",["milk", "sugar",
 ],[["strawberry", "vanilla", "cherry", "chocolate"], [" ice cream"]]);
 new Thing("cheese",["milk", "yeast", "mold,30%"],[["roquefort", "cheddar", "gouda", "edam", "colby", "mozarella", "processed cheese", "stilton", "goat cheese", "gorgonzola", "brie", "camembert"]]);
 new Thing("roast",[".meat", "spices"],[["chicken", "beef", "pork", "duck", "mutton"], [" roast"]]);
-new Thing("spices",[".organic matter"],[["pepper", "garlic", "onions", "rosemary", "sage", "thyme"]]);
+new Thing("spices",
+    (OrganicFactory),
+    [["pepper", "garlic", "onions", "rosemary", "sage", "thyme"]]);
 new Thing("meat",["blood vessels,5%", "bones,5%", "fat,50%", "muscles",
     SaltFactory.one(),
     ]);
-new Thing("tomato sauce",["glucids", "meat,20%",
+new Thing("tomato sauce",[
+    GlucidsFactory.one(),
+    "meat,20%",
     SaltFactory.one(),
     ]);
 new Thing("pasta",[
     SaltFactory.one(),
-    "glucids", "cheese,5%", "tomato sauce,20%"],["spaghetti", "noodles", "fusilli", "fettuccine", "fettuce", "tagliatelle", "cannelloni", "penne", "rigatoni", "farfalle", "tortelloni", "ravioli", "gnocchi"]);
+    GlucidsFactory.one(),
+    "cheese,5%", "tomato sauce,20%"],["spaghetti", "noodles", "fusilli", "fettuccine", "fettuce", "tagliatelle", "cannelloni", "penne", "rigatoni", "farfalle", "tortelloni", "ravioli", "gnocchi"]);
 new Thing("pastry",["sugar",
     SaltFactory.one(),
     "dough"],"pastry");
@@ -1116,8 +1158,13 @@ new Thing("cake",[".pastry"],[["chocolate", "white chocolate", "chestnut", "frui
 new Thing("fruit jam",["plant cell", "sugar"]);
 new Thing("donut box",["donut,0-12", "cardboard"],"doughnut box");
 new Thing("donut",[".pastry"],[["vanilla ", "strawberry ", "raspberry ", "cherry ", "chocolate ", "coconut ", "cream ", "cinnamon ", "bacon ", "sprinkly ", "frosted ", "glazed ", "powdered ", ""], ["doughnut"]]);
-new Thing("sugar",["glucids"]);
-new Thing("dough",["glucids", "lipids"]);
+new Thing("sugar",[
+    GlucidsFactory.one(),
+]);
+new Thing("dough",[
+    GlucidsFactory.one(),
+    LipidsFactory.one(),
+]);
 
 //visitors
 new Thing("visitor",["visitor body", "visitor psyche"],"visitor");
@@ -1142,7 +1189,8 @@ new Thing("visitor mouth",["visitor teeth", "tongue,2", "visitor ooze"],"mouth")
 new Thing("visitor teeth",[
     SteelFactory.one(),
 ],"teeth");
-new Thing("visitor ooze",["bacteria,40%", "organic matter",
+new Thing("visitor ooze",["bacteria,40%",
+    OrganicFactory.one(),
     element_factories['S'].one(),
 ],"ooze");
 
@@ -1158,9 +1206,13 @@ new Thing("visitor city",["named visitor,0-8", ["space animal,0-3", ""], "visito
 new Thing("visitor neighborhood",["named visitor,0-8", ["space animal,0-3", ""], "visitor building,2-16"],"neighborhood");
 new Thing("visitor building",[["named visitor,0-8", ""], "visitor room,1-8"],[["a tall", "a wide", "a spiralicious", "a twisty", "a holographic", "a composite", "a stout", "a long", "a domed", "an underground", "a submerged", "a gigantic"], [", "], ["green", "blue", "purple", "white", "gray", "translucent", "bright", "porous", "microsthetic", "turbified", "motorized", "hovering", "meshed", "towered", "automated", "ridged"], [" "], ["glumporium", "swapmarket", "slickmarket", "juicehouse", "scienceteria", "faceteria", "homezone", "orbshop", "oozeshop", "marklorion", "hive", "holotekt"]]);
 new Thing("visitor room",["named visitor,60%", "named visitor,30%", "named visitor,10%", "named visitor,10%", "named visitor,10%", "space animal,10%", "visitor furniture,1-6", ".room"],"room");
-new Thing("visitor furniture",["abomination,1%", "space animal,3%", "named visitor,2%", "organic matter,5%", ["glass", "metal", "concrete",
-    PlasticFactory.one(),
-]],[["symbio", "opto", "auto", "synchro", "thru", "ato", "ecto", "diplo", "plasti", "pasta", "pluta", "elu", "gubri", "capra", "lubio", "logi", "plato", "micro", "alto", "tele", "meta", "anti", "poly", "mono", "corvo"], ["shid", "synth", "shaver", "shist", "mizer", "mucus", "twister", "ridger", "cutter", "mac", "maker", "ctory", "ctamid", "chton", "leaker", "grater", "board", "frame", "table", "stand", "plug", "masher", "greeter", "mobile", "pin", "vat", "tron", "drone", "chron", "tub", "fridge", "pool", "box", "cube", "morpher", "phraser"]]);
+new Thing("visitor furniture",["abomination,1%", "space animal,3%", "named visitor,2%",
+    OrganicFactory.one().probable(5),
+    [
+        "glass", "metal", "concrete",
+        PlasticFactory.one(),
+    ]
+],[["symbio", "opto", "auto", "synchro", "thru", "ato", "ecto", "diplo", "plasti", "pasta", "pluta", "elu", "gubri", "capra", "lubio", "logi", "plato", "micro", "alto", "tele", "meta", "anti", "poly", "mono", "corvo"], ["shid", "synth", "shaver", "shist", "mizer", "mucus", "twister", "ridger", "cutter", "mac", "maker", "ctory", "ctamid", "chton", "leaker", "grater", "board", "frame", "table", "stand", "plug", "masher", "greeter", "mobile", "pin", "vat", "tron", "drone", "chron", "tub", "fridge", "pool", "box", "cube", "morpher", "phraser"]]);
 new Thing("visitor installation",["named visitor,0-4", ["space animal,0-3", ""], "visitor building,1-3"],[["pod", "grub", "egg", "limb", "ooze", "tendril", "bulb", "pulp", "energy", "smoke", "hive", "moisture", "cat"], [" "], ["materializer", "synthesizer", "factory", "farm", "collector", "cultures", "pit", "fields", "crops", "barn", "vat"]]);
 new Thing("visitor ship",["named visitor,1-3", "person,20%", "space animal,30%", "visitor furniture,1-6", "metal"],"visitor UFO");
 
@@ -1278,10 +1330,13 @@ new Thing("anvil",[
 new Thing("unusual stone",[
     RockFactory.one(),
     ],["crystal", "bezoar", "agate", "amber", "amethyst", "bloodstone", "carnelian", "garnet", "hematite", "jade", "jasper", "lapis", "moonstone", "obsidian", "opal", "sapphire", "tiger's eye", "turquoise", "zircon"]);
-new Thing("unusual ingredient",["organic matter"],["dragon tooth", "dragon claw", "dragon scale", "unicorn horn", "goblin mucus", "giant snail shell", "troll blood clot", "imp nose", "fairy fingers", "pixie wings", "demon tail", "behemoth plate", "mindsucker lips", "slime porridge", "ladyfly ocella", "spider silk", "gold cocoon", "silver chrysalis", "oaf bladder", "angel larva", "sugarfey fudge", "whale blubber", "mummified gembaby", "basilisk feather", "mage fingernails", "screamfiber", "brainpod", "footface nipple", "cephalite eyelashes"]);
+new Thing("unusual ingredient",[
+    OrganicFactory.one(),
+],["dragon tooth", "dragon claw", "dragon scale", "unicorn horn", "goblin mucus", "giant snail shell", "troll blood clot", "imp nose", "fairy fingers", "pixie wings", "demon tail", "behemoth plate", "mindsucker lips", "slime porridge", "ladyfly ocella", "spider silk", "gold cocoon", "silver chrysalis", "oaf bladder", "angel larva", "sugarfey fudge", "whale blubber", "mummified gembaby", "basilisk feather", "mage fingernails", "screamfiber", "brainpod", "footface nipple", "cephalite eyelashes"]);
 new Thing("unusual plant",["plant cell"],["mandrake", "myrrh", "vervain", "lotus", "pomegranate", "myrtle", "blackroot", "silkbean", "drypod", "pigweed", "thistle", "marigold", "mistletoe", "spearmint", "mugwort", "aconite", "aloe", "amaranth", "anise", "belladonna", "bergamot", "bladderwrack", "cloves", "clover", "comphrey", "dragonblood", "eucalyptus", "incense", "garlic", "ginger", "ginseng", "hemlock", "holly", "honeysuckle", "licorice", "jasmine", "juniper", "nutmeg", "oakmoss", "orchid", "rue", "saffron", "sage", "vetivert", "wormwood", "witchgrass", "agaric", "bolete"]);
 //http://www.janih.com/lady/herbs/magick/
-new Thing("potion",["organic matter",
+new Thing("potion",[
+    OrganicFactory.one(),
     WaterFactory.one(),
     ["glass bottle", "glass jar"]],[["stamina", "health", "beauty", "endurance", "strength", "energy", "lover's", "blacksmith's", "cook's", "queen's", "growth", "witch's", "hunter's", "brawler's", "knight's", "cobbler's", "clarity", "perception", "nimbleness", "quickness", "squire's", "unicorn's", "bear's", "shark's", "moon's", "lady's", "soldier's", "wizard's", "rest", "sleep", "paralysis", "stone", "shimmer", "oil", "eloquence", "speech", "bird's", "vapor", "void"], [" "], ["poultice", "salve", "potion", "elixir", "poison", "philter", "draught", "brew", "remedy", "balm", "infusion", "tincture", "decoction", "ointment", "cordial", "tonic"]]);
 new Thing("pile of treasure",["treasure,1-4", "gold coin,5-20"]);
@@ -1291,8 +1346,12 @@ new Thing("treasure",["unusual stone,20%",
 
 new Thing("medieval farm",["medieval house,1-3", "medieval peasant,1-4", "field,1-8", "sack of grain,0-8", "dog,50%", "cat,10%", "horse,30%", "horse,30%", "horse,30%", "poultry,0-3"],"farm");
 new Thing("sack of grain",["grain", "cloth", "worm,5%", "worm,5%"],[["sack of "], ["oats", "wheat", "corn", "barley", "ruined grain", "rice", "soy beans", "rye"]]);
-new Thing("sack of medieval food",["organic matter", "cloth", "worm,5%", "worm,5%"],[["sack of "], ["tomatoes", "potatoes", "apples", "peanuts", "raisins", "leeks", "dead mice"]]);
-new Thing("medieval food",["organic matter", "worm,5%"],["tomato", "potato", "apple", "corn cob", "roasted leeks", "cheese wheel", "bread loaf", "meat pie", "apple pie", "peanut pie", "fish pie", "corn pie", "mice pie", "sludge pie", "honey cake", "butter cake", "rabbit stew"]);
+new Thing("sack of medieval food",[
+    OrganicFactory.one(),
+    "cloth", "worm,5%", "worm,5%"],[["sack of "], ["tomatoes", "potatoes", "apples", "peanuts", "raisins", "leeks", "dead mice"]]);
+new Thing("medieval food",[
+    OrganicFactory.one(),
+    "worm,5%"],["tomato", "potato", "apple", "corn cob", "roasted leeks", "cheese wheel", "bread loaf", "meat pie", "apple pie", "peanut pie", "fish pie", "corn pie", "mice pie", "sludge pie", "honey cake", "butter cake", "rabbit stew"]);
 new Thing("medieval meat",["soft flesh"],[["cured ", "prepared ", "salted ", "smoked ", "breaded ", "roasted "], ["beef", "pork", "mutton", "veal", "horse", "fish", "ham", "rabbit", "pheasant", "chicken", "clams", "bear"]]);
 
 //dungeons
@@ -1401,7 +1460,9 @@ new Thing("campfire",[
     "wood", "stone"]);
 new Thing("ancient meat rack",["meat,1-4", "wood"],[["mammoth", "saber-toothed cat", "mountain lion", "wooly rhinoceros", "wolf", "auroch", "rabbit"], [" meat rack"]]);
 new Thing("wall painting",["pigment"],[["Wall painting ("], ["humans", "wild beasts", "rabbits", "spirits", "aurochs", "bears", "monsters", "mountain lions", "saber-toothed cats", "wolves", "mammoths", "old gods"], [" "], ["being chased by", "hunting", "running with", "killing", "maiming", "eating"], [" "], ["humans", "wild beasts", "rabbits", "spirits", "aurochs", "bears", "monsters", "mountain lions", "saber-toothed cats", "wolves", "mammoths", "old gods"], [")"]]);
-new Thing("pigment",["organic matter"]);
+new Thing("pigment",[
+    OrganicFactory.one(),
+]);
 
 //meta
 new Thing("later",["sorry"],"will do later");
