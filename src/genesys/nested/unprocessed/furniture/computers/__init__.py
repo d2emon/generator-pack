@@ -60,7 +60,9 @@ new Thing("internet",["website,20"],"The Internet");
 new Thing("google",[".website"]);
 new Thing("wikipedia",[".website"]);
 new Thing("4chan",[".website"]);
-new Thing("v1",["universe"],"www.orteil.dashnet.org/v1");
+new Thing("v1",[
+    UniverseFactory.one(),
+],"www.orteil.dashnet.org/v1");
 new Thing("reddit",[".website"]);
 new Thing("facebook",[".website"]);
 new Thing("/tg/",[".website"]);

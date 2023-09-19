@@ -1,96 +1,27 @@
-from genesys.nested.factories.nested_factory import NestedFactory
-from models.universe.star import Star, StarSystem
+from factories.thing.nested_factory import NestedFactory
+from models.universe import star
 from utils.nested import select_item
-from .planet import VisitorPlanetFactory, FuturePlanetFactory, TerraformedPlanetFactory, MedievalPlanetFactory, \
-    AncientPlanetFactory, BarrenPlanetFactory
-from .planet.asteroid import AsteroidBeltFactory
-from .planet.gas_giant import GasGiantFactory
+from ..materials import ELEMENTS
+from .data_provider import PROVIDER
+from .orbit import AncientOrbitFactory, AsteroidBeltFactory, BarrenOrbitFactory, FutureOrbitFactory, GasGiantOrbitFactory, \
+    MedievalOrbitFactory, TerraformedOrbitFactory, VisitorOrbitFactory
 # from ..temporary import DysonSurfaceFactory
 # from ..life import StarLifeFactory
-# from ..materials import MoleculeFactory
-# from .orbit import BarrenOrbitFactory, VisitorOrbitFactory, FutureOrbitFactory, TerraformedOrbitFactory, \
-#     MedievalOrbitFactory, AncientOrbitFactory, AsteroidBeltFactory, GasGiantOrbitFactory
-
-
-# StarSystem
-# DysonSphere
-# Star
-
-
-class StarSystemFactory(NestedFactory):
-    default_model = StarSystem
-
-    def stars(self):
-        yield StarFactory.one()
-        yield StarFactory.probable(3)
-
-    def orbits(self):
-        yield VisitorPlanetFactory.probable(5)
-
-        yield FuturePlanetFactory.probable(10)
-        yield FuturePlanetFactory.probable(10)
-
-        yield TerraformedPlanetFactory.probable(50)
-        yield TerraformedPlanetFactory.probable(20)
-        yield TerraformedPlanetFactory.probable(10)
-
-        yield MedievalPlanetFactory.probable(30)
-        yield MedievalPlanetFactory.probable(20)
-
-        yield AncientPlanetFactory.probable(50)
-        yield AncientPlanetFactory.probable(30)
-        yield AncientPlanetFactory.probable(10)
-
-        yield BarrenPlanetFactory.probable(60)
-        yield BarrenPlanetFactory.probable(40)
-        yield BarrenPlanetFactory.probable(20)
-
-        yield GasGiantFactory.probable(60)
-        yield GasGiantFactory.probable(40)
-        yield GasGiantFactory.probable(20)
-        yield GasGiantFactory.probable(10)
-
-        yield AsteroidBeltFactory.multiple(0, 2)
-
-    def contents(self):
-        yield from self.stars()
-        yield from self.orbits()
-
-
-class DysonSphereFactory(StarSystemFactory):
-    # default_model = DysonSphere
-
-    def orbits(self):
-        # yield DysonSurfaceFactory()
-
-        yield FuturePlanetFactory.multiple(1, 8)
-
-        yield BarrenPlanetFactory.probable(60)
-        yield BarrenPlanetFactory.probable(40)
-        yield BarrenPlanetFactory.probable(20)
-
-        yield GasGiantFactory.probable(60)
-        yield GasGiantFactory.probable(40)
-        yield GasGiantFactory.probable(20)
-        yield GasGiantFactory.probable(10)
-
-        yield AsteroidBeltFactory.multiple(0, 2)
 
 
 class StarFactory(NestedFactory):
-    default_model = Star
-    names = [
-        "white", "faint", "yellow", "red", "blue", "green", "purple", "bright", "double", "twin", "triple", "old",
-        "young", "dying", "small", "giant", "large", "pale", "dark", "hell", "horrific", "twisted", "spectral",
-    ]
+    default_data = PROVIDER
+    model = star.Star
 
     def life(self):
+        # ghost,0.1%
+        # space monster,0.2%
         # yield StarLifeFactory()
         yield None
 
     def matter(self):
-        # yield MoleculeFactory.element_factories('H', 'He')
-        yield None
+        yield ELEMENTS['He'].one()
+        yield ELEMENTS['H'].one()
 
     def contents(self):
         yield from self.matter()
@@ -99,71 +30,69 @@ class StarFactory(NestedFactory):
         return f"{select_item(*self.names)} star"
 
 
-####
+class StarSystemFactory(NestedFactory):
+    model = star.StarSystem
+
+    def stars(self):
+        yield StarFactory.one()
+        yield StarFactory.probable(3)
+
+    def orbits(self):
+        yield VisitorOrbitFactory.probable(5)
+
+        yield FutureOrbitFactory.probable(10)
+        yield FutureOrbitFactory.probable(10)
+
+        yield TerraformedOrbitFactory.probable(50)
+        yield TerraformedOrbitFactory.probable(20)
+        yield TerraformedOrbitFactory.probable(10)
+
+        yield MedievalOrbitFactory.probable(30)
+        yield MedievalOrbitFactory.probable(20)
+
+        yield AncientOrbitFactory.probable(50)
+        yield AncientOrbitFactory.probable(30)
+        yield AncientOrbitFactory.probable(10)
+
+        yield BarrenOrbitFactory.probable(60)
+        yield BarrenOrbitFactory.probable(40)
+        yield BarrenOrbitFactory.probable(20)
+
+        yield GasGiantOrbitFactory.probable(60)
+        yield GasGiantOrbitFactory.probable(40)
+        yield GasGiantOrbitFactory.probable(20)
+        yield GasGiantOrbitFactory.probable(10)
+
+        yield AsteroidBeltFactory.multiple(0, 2)
+
+    def children(self):
+        yield from self.stars()
+        yield from self.orbits()
+
+
+class DysonSphereFactory(StarSystemFactory):
+    model = star.DysonSphere
+
+    def orbits(self):
+        # yield DysonSurfaceFactory.one()
+
+        yield FutureOrbitFactory.multiple(1, 8)
+
+        yield BarrenOrbitFactory.probable(60)
+        yield BarrenOrbitFactory.probable(40)
+        yield BarrenOrbitFactory.probable(20)
+
+        yield GasGiantOrbitFactory.probable(60)
+        yield GasGiantOrbitFactory.probable(40)
+        yield GasGiantOrbitFactory.probable(20)
+        yield GasGiantOrbitFactory.probable(10)
+
+        yield AsteroidBeltFactory.multiple(0, 2)
 
 
 class SingleStarFactory(StarSystemFactory):
     def stars(self):
-        yield StarFactory()
-
-    def inhabited(self):
-        yield None
+        yield StarFactory.one()
 
     def orbits(self):
         yield None
-
-
-"""
-new Thing("star system",[
-    "star",
-    "star,3%",
-    ####
-    "visitor planet,5%",
-    "future planet,10%",
-    "future planet,10%",
-    "terraformed planet,50%",
-    "terraformed planet,20%",
-    "terraformed planet,10%",
-    "medieval planet,30%",
-    "medieval planet,20%",
-    "ancient planet,50%",
-    "ancient planet,30%",
-    "ancient planet,10%",
-    "barren planet,60%",
-    "barren planet,40%",
-    "barren planet,20%",
-    # "gas giant,60%",
-    # "gas giant,40%",
-    # "gas giant,20%",
-    # "gas giant,10%",
-    # "asteroid belt,0-2",
-]);
-new Thing("dyson sphere",[
-    "star",
-    "star,3%",
-    ####
-    # "dyson surface",
-    "future planet,1-8",
-    "barren planet,60%",
-    "barren planet,40%",
-    "barren planet,20%",
-    # "gas giant,60%",
-    # "gas giant,40%",
-    # "gas giant,20%",
-    # "gas giant,10%",
-    # "asteroid belt,0-2",
-]);
-new Thing("star",[
-    # "ghost,0.1%",
-    # "space monster,0.2%",
-    # "hydrogen",
-    # "helium"
-],[
-    [
-        "white","faint","yellow","red","blue","green","purple","bright","double","twin","triple","old","young",
-        "dying","small","giant","large","pale","dark","hell","horrific","twisted","spectral"
-    ],[
-        " star"
-    ]
-]);
-"""

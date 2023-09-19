@@ -1,9 +1,9 @@
-from factories.thing.nested_factory import NestedFactory as Factory
+from factories.thing.nested_factory import NestedFactory
 from models.v5 import materials
 from .molecules import MoleculeFactory, SilicaFactory
 
 
-class RockFactory(Factory):
+class RockFactory(NestedFactory):
     model = materials.Rock
 
     def children(self):

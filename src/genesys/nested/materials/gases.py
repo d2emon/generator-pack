@@ -1,4 +1,4 @@
-from factories.thing.nested_factory import NestedFactory as Factory
+from factories.thing.nested_factory import NestedFactory
 from models.v5 import materials
 from .molecules import MoleculeFactory
 
@@ -15,14 +15,14 @@ class MethaneMoleculeFactory(MoleculeFactory):
 # Gases
 
 
-class AmmoniaFactory(Factory):
+class AmmoniaFactory(NestedFactory):
     model = materials.Ammonia
 
     def children(self):
         yield AmmoniaMoleculeFactory.one()
 
 
-class MethaneFactory(Factory):
+class MethaneFactory(NestedFactory):
     model = materials.Methane
 
     def children(self):

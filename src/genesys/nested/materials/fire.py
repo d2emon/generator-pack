@@ -1,11 +1,11 @@
-from factories.thing.nested_factory import NestedFactory as Factory
+from factories.thing.nested_factory import NestedFactory
 from models.v5 import materials
 from .elements import AtomFactory
 from .minerals import CarbonFactory
 from .organics import OrganicFactory
 
 
-class FireFactory(Factory):
+class FireFactory(NestedFactory):
     model = materials.Fire
 
     def children(self):
@@ -13,7 +13,7 @@ class FireFactory(Factory):
         yield AtomFactory.element_factory('O')
 
 
-class AshFactory(Factory):
+class AshFactory(NestedFactory):
     model = materials.Ash
 
     def children(self):

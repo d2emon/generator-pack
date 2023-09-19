@@ -1,20 +1,20 @@
-from factories.thing.nested_factory import NestedFactory as Factory
+from factories.thing.nested_factory import NestedFactory
 from models.v5 import materials
 
 
-class QwubbleFactory(Factory):
+class QwubbleFactory(NestedFactory):
     model = materials.Qwubble
 
     def children(self):
         from ..universe import MultiverseFactory
 
-        yield from MultiverseFactory.multiple(1, 5)
+        yield MultiverseFactory.multiple(1, 5)
 
 
 # Quarks
 
 
-class QuarkFactory(Factory):
+class QuarkFactory(NestedFactory):
     model = materials.Quark
 
     def children(self):
@@ -36,7 +36,7 @@ class ElectronFactory(QuarkFactory):
 # Particles
 
 
-class ParticleFactory(Factory):
+class ParticleFactory(NestedFactory):
     model = materials.Particle
     up_quarks = 1
     down_quarks = 1

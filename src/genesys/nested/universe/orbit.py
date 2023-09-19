@@ -1,13 +1,13 @@
+from factories.thing.nested_factory import NestedFactory
 from models.v5 import universe
-from factories.thing.nested_factory import NestedFactory as Factory
-from ..life import AsteroidBeltLifeFactory
+# from ..life import AsteroidBeltLifeFactory
 from .planet.body import AsteroidFactory
-from .planet.planet import BarrenPlanetFactory, VisitorPlanetFactory, FuturePlanetFactory, TerraformedPlanetFactory, \
+from .planet import BarrenPlanetFactory, VisitorPlanetFactory, FuturePlanetFactory, TerraformedPlanetFactory, \
     MedievalPlanetFactory, AncientPlanetFactory, GasGiantFactory
 
 
-class OrbitFactory(Factory):
-    default_model = universe.Orbit
+class OrbitFactory(NestedFactory):
+    model = universe.Orbit
 
     def life(self):
         yield None
@@ -21,53 +21,56 @@ class OrbitFactory(Factory):
 
 
 class PlanetOrbitFactory(OrbitFactory):
-    default_model = universe.Orbit
+    pass
 
 
 class BarrenOrbitFactory(PlanetOrbitFactory):
     def planets(self):
-        yield BarrenPlanetFactory()
+        yield BarrenPlanetFactory.one()
 
 
 class VisitorOrbitFactory(PlanetOrbitFactory):
     def planets(self):
-        yield VisitorPlanetFactory()
+        yield VisitorPlanetFactory.one()
 
 
 class FutureOrbitFactory(PlanetOrbitFactory):
     def planets(self):
-        yield FuturePlanetFactory()
+        yield FuturePlanetFactory.one()
 
 
 class TerraformedOrbitFactory(PlanetOrbitFactory):
     def planets(self):
-        yield TerraformedPlanetFactory()
+        yield TerraformedPlanetFactory.one()
 
 
 class MedievalOrbitFactory(PlanetOrbitFactory):
     def planets(self):
-        yield MedievalPlanetFactory()
+        yield MedievalPlanetFactory.one()
 
 
 class AncientOrbitFactory(PlanetOrbitFactory):
     def planets(self):
-        yield AncientPlanetFactory()
+        yield AncientPlanetFactory.one()
 
 
 class GasGiantOrbitFactory(PlanetOrbitFactory):
     def planets(self):
-        yield GasGiantFactory()
+        yield GasGiantFactory.one()
 
 
 class AsteroidBeltFactory(OrbitFactory):
-    default_model = universe.AsteroidBelt
+    # TODO: Refactor It
+    model = universe.AsteroidBelt
 
     def life(self):
-        yield AsteroidBeltLifeFactory()
+        # yield AsteroidBeltLifeFactory()
+        yield None
 
     def planets(self):
-        yield from AsteroidFactory().multiple(10, 30)
+        yield from AsteroidFactory.multiple(10, 30)
 
 
 class EarthFactory(AsteroidBeltFactory):
+    # TODO: Refactor It
     default_name = 'Earth'

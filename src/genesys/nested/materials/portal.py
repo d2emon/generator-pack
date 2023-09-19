@@ -1,11 +1,11 @@
-from factories.thing.nested_factory import NestedFactory as Factory
+from factories.thing.nested_factory import NestedFactory
 from models.v5 import materials
 
 
-class PortalFactory(Factory):
+class PortalFactory(NestedFactory):
     model = materials.Portal
 
     def children(self):
         from ..universe import UniverseFactory
 
-        yield from UniverseFactory.one()
+        yield UniverseFactory.one()

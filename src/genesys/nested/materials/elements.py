@@ -1,9 +1,9 @@
-from factories.thing.nested_factory import NestedFactory as Factory
+from factories.thing.nested_factory import NestedFactory
 from models.v5 import materials
 from .particles import ProtonFactory, NeutronFactory, ElectronFactory
 
 
-class NucleusFactory(Factory):
+class NucleusFactory(NestedFactory):
     model = materials.Nucleus
 
     def __init__(
@@ -22,7 +22,7 @@ class NucleusFactory(Factory):
         yield NeutronFactory.multiple(self.neutrons)
 
 
-class AtomFactory(Factory):
+class AtomFactory(NestedFactory):
     model = materials.Atom
 
     electrons = 1

@@ -1,5 +1,5 @@
 from factories.thing.nested_factory import NestedFactory
-from models.planet.body import PlanetLike, Asteroid, Moon, TerraformedMoon
+from models.planet import body
 from utils.nested import select_item
 # from .body import Asteroid, Moon, TerraformedMoon
 # from ...temporary import ContinentFactory
@@ -14,7 +14,7 @@ from .core import PlanetCoreFactory
 
 
 class PlanetLikeFactory(NestedFactory):
-    default_model = PlanetLike
+    default_model = body.PlanetLike
 
     def life(self):
         yield None
@@ -54,7 +54,7 @@ class PlanetLikeFactory(NestedFactory):
 
 
 class MoonFactory(PlanetLikeFactory):
-    default_model = Moon
+    default_model = body.Moon
     names = ["young", "old", "large", "small", "pale", "white", "dark", "black", "old"]
 
     def life(self):
@@ -78,7 +78,7 @@ class MoonFactory(PlanetLikeFactory):
 
 
 class TerraformedMoonFactory(MoonFactory):
-    default_model = TerraformedMoon
+    default_model = body.TerraformedMoon
     names = [
         "young", "old", "large", "small", "pale", "white", "dark", "black", "old", "green", "lush", "blue", "city",
         "colonized", "life",

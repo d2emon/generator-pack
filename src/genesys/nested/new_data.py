@@ -1,67 +1,8 @@
-"""
-//And now, the fun begins!
-
-//How to add a new Thing :
-//	new Thing(name,contains,name generator);
-//		-name is the referral name for this Thing. Unless a name generator is specified, this name will be the default name for any instances of this Thing.
-//		-contains is an array of Things that an instance of this Thing contains, specified by their name.
-//			-For example, ["banana"] means this Thing contains exactly 1 instance of a banana. ["banana","orange"] means it contains 1 banana and 1 orange.
-//			-["banana","strawberry,25%"] means it will contain 1 banana, and has a 25% probability of also containing a strawberry.
-//			-["banana,2-7"] means it will contain between 2 and 7 bananas.
-//			-[".banana"] will not include a banana in the Thing; instead, the Thing will contain whatever the banana normally contains.
-//			-["banana",["sugar","honey"]] will include a banana, and either sugar or honey. Unfortunately, this does not work with the format ".sugar" or ".honey".
-//		-name generator is optional; if specified, the instance of the Thing will be named according to this.
-//			It can be either an array containing other arrays (the name will be patched up from an element of each array) or an identifier for the Name function, like *BOOK*.
-//			A name generator of [["blue ","red "],["frog","toad"]] will produce names such as "blue frog" or "red toad".
-"""
-
 # from .life import *
+from .universe import FACTORIES as UNIVERSE_FACTORIES
 
 
-UNIVERSE_FACTORIES = {
-    # 'multiverse': MultiverseFactory(),
-    # 'universe': UniverseFactory(),
-    # 'supercluster': SuperclusterFactory(),
-    # # 'galaxy': GalaxyFactory(),
-    # # 'galaxy arm': GalaxyArmFactory(),
-    # # 'galaxy center': GalaxyCenterFactory(),
-    # # 'nebula': NebulaFactory(),
-    # # 'interstellar cloud': InterstellarCloudFactory(),
-    # # 'star system': StarSystemFactory(),
-    # # 'dyson sphere': DysonSphereFactory(),
-    # # 'star': StarFactory(),
-    # # 'planet': DefaultPlanetFactory(),
-    # # 'barren planet': BarrenPlanetFactory(),
-    # # 'visitor planet': VisitorPlanetFactory(),
-    # # 'future planet': FuturePlanetFactory(),
-    # # 'terraformed planet': FuturePlanetFactory(),
-    # # 'medieval planet': FuturePlanetFactory(),
-    # # 'ancient planet': FuturePlanetFactory(),
-    # # 'planet composition': PlanetFactory(),
-    # # 'moon': MoonFactory(),
-    # # 'terraformed moon': TerraformedMoonFactory(),
-    # # 'asteroid belt': AsteroidBeltFactory(),
-    # # 'earth': EarthFactory(),
-    # # 'asteroid': AsteroidFactory(),
-    # # 'gas giant': GasGiantFactory(),
-    # # 'gas giant atmosphere': GasGiantAtmosphereFactory(),
-    # # 'planet core': PlanetCoreFactory(),
-
-    # # 'black hole': BlackHoleFactory(),
-    # # 'inside the black hole': InsideTheBlackHoleFactory(),
-    # # 'white hole': WhiteHoleFactory(),
-    # # '42': Answer42Factory(),
-    # # 'everything': EverythingFactory(),
-    # # 'end of universe note': EndOfUniverseNoteFactory(),
-    # # 'orteil': D2emonFactory(),
-    # # 'god': GodFactory(),
-    # # 'orteil psyche': D2emonPsycheFactory(),
-    # # 'orteil thoughts': D2emonThoughtsFactory(),
-}
-
-
-NEW_FACTORIES = {
-    # .materials.FACTORIES
+FACTORIES = {
     **UNIVERSE_FACTORIES,
 }
 
@@ -1099,7 +1040,9 @@ new Thing("internet",["website,20"],"The Internet");
 new Thing("google",[".website"]);
 new Thing("wikipedia",[".website"]);
 new Thing("4chan",[".website"]);
-new Thing("nested",["universe"],"www.orteil.dashnet.org/nested");
+new Thing("nested",[
+    UniverseFactory.one(),
+],"www.orteil.dashnet.org/nested");
 new Thing("reddit",[".website"]);
 new Thing("facebook",[".website"]);
 new Thing("/tg/",[".website"]);
@@ -1483,7 +1426,9 @@ new Thing("pigment",[
 new Thing("later",["sorry"],"will do later");
 new Thing("error",["sorry"],"Uh oh... It looks like you didn't supply a valid element to create.");
 new Thing("sorry",["consolation universe"],"(Sorry!)");
-new Thing("consolation universe",[".universe"]);
+new Thing("consolation universe",[
+    (UniverseFactory.one()),
+]);
 
 //this is for the nice people who help support the site.
 new Thing("thanks",["can of nightmare", "cake",

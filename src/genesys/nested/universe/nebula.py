@@ -1,82 +1,49 @@
-from genesys.nested.factories.nested_factory import NestedFactory
-from models.universe.nebula import Nebula, InterstellarCloud
+from factories.thing.nested_factory import NestedFactory
+from models.universe import nebula
 from utils.nested import select_item
+from ..materials import ELEMENTS, AmmoniaFactory
+from ..materials.water import SteamFactory
 # from ..life import NebulaLifeFactory
-# from ..materials import MoleculeFactory, SteamFactory, AmmoniaFactory
-from .star import StarFactory
+from .data_provider import PROVIDER
+from .star import SingleStarFactory
 
 
-# Nebula
-# InterstellarCloud
+class InterstellarCloudFactory(NestedFactory):
+    default_data = PROVIDER
+    model = nebula.InterstellarCloud
+
+    def contents(self):
+        yield ELEMENTS['He'].one()
+        yield ELEMENTS['H'].one()
+        yield ELEMENTS['C'].probable(80)
+        yield SteamFactory.probable(5)
+        yield AmmoniaFactory.probable(5)
+        yield ELEMENTS['N'].probable(5),
+        yield ELEMENTS['Fe'].probable(5),
+        yield ELEMENTS['S'].probable(5),
+        yield ELEMENTS['O'].probable(15),
+
+    def name_factory(self):
+        return f"{select_item(*self.data.interstellar_cloud)} interstellar cloud"
 
 
 class NebulaFactory(NestedFactory):
-    default_model = Nebula
+    model = nebula.Nebula
 
     def life(self):
+        # galactic life,15%
         # yield NebulaLifeFactory()
         yield None
 
     def stars(self):
-        yield StarFactory.probable(2)
-        yield StarFactory.probable(2)
-        yield StarFactory.probable(2)
-        yield None
+        yield SingleStarFactory.probable(2)
+        yield SingleStarFactory.probable(2)
+        yield SingleStarFactory.probable(2)
 
     def clouds(self):
         yield InterstellarCloudFactory.multiple(1, 6)
 
-    def contents(self):
+    def children(self):
+        yield from self.life()
         yield from self.stars()
         yield from self.clouds()
-
-
-class InterstellarCloudFactory(NestedFactory):
-    default_model = InterstellarCloud
-
-    def contents(self):
-        # yield MoleculeFactory.element_factories('He', 'H')
-        # yield MoleculeFactory.element_factory('C').probable(80)
-        # yield SteamFactory.probable(5)
-        # yield AmmoniaFactory.probable(5)
-        # yield MoleculeFactory.element_factory('N').probable(5)
-        # yield MoleculeFactory.element_factory('Fe').probable(5)
-        # yield MoleculeFactory.element_factory('S').probable(5)
-        # yield MoleculeFactory.element_factory('O').probable(15)
-        yield None
-
-    def name_factory(self):
-        return f"{select_item(*self.provider.interstellar_cloud)} interstellar cloud"
-
-
-"""
-new Thing("nebula",[
-    # "galactic life,15%",
-    ####
-    "star,2%",
-    "star,2%",
-    "star,2%",
-    ####
-    "interstellar cloud,1-6"
-]);
-new Thing("interstellar cloud",[
-    # "helium",
-    # "hydrogen",
-    # "carbon,80%",
-    # "water,5%",
-    # "ammonia,5%",
-    # "nitrogen,5%",
-    # "iron,5%",
-    # "sulfur,5%",
-    # "oxygen,15%"
-],[
-    [
-        "a bright pink","a faint","a fading","a pale","a fluo","a glowing","a green","a bright green",
-        "a dark brown","a brooding","a magenta","a bright red","a dark red","a blueish","a deep blue",
-        "a turquoise","a teal","a golden","a multicolored","a silver","a dramatic","a luminous","a colossal",
-        "a purple","a gold-trimmed","an opaline","a silvery","a shimmering"
-    ],
-    [" "],
-    ["interstellar cloud"]
-]);
-"""

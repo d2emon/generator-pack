@@ -1,4 +1,4 @@
-from factories.thing.nested_factory import NestedFactory as Factory
+from factories.thing.nested_factory import NestedFactory
 from models.v5 import materials
 from utils.nested import select_item
 from .molecules import MoleculeFactory, SaltFactory
@@ -13,7 +13,7 @@ class ChitinMoleculeFactory(MoleculeFactory):
     contents = 'C', 'H', 'N', 'O'
 
 
-class ChitinFactory(Factory):
+class ChitinFactory(NestedFactory):
     model = materials.Chitin
 
     def children(self):
@@ -51,7 +51,7 @@ class PolymersFactory(GlucidsFactory):
 # Organics
 
 
-class OrganicFactory(Factory):
+class OrganicFactory(NestedFactory):
     model = materials.OrganicMatter
 
     @classmethod
