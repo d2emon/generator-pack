@@ -13,8 +13,7 @@ class OrganicMoleculeFactory(MoleculeFactory):
 
 
 class MethaneFactory(OrganicMoleculeFactory):
-    # TODO: Refactor it
-    default_model = materials.Methane
+    model = materials.Methane
     contents = 'C', 'H'
 
 

@@ -16,9 +16,9 @@ Basic materials and particles
 .water.IceFactory
 .water.Snow
 .water.Snowflakes
+.minerals.Ammonia
+.organics.Methane
 
-new Thing("ammonia",["hydrogen", "nitrogen"]);
-new Thing("methane",["hydrogen", "carbon"]);
 new Thing("hydrogen",[".hydrogen atom"]);
 new Thing("hydrogen atom",["proton", "electron"],["atoms"]);
 new Thing("plastic",["polymers"]);
@@ -94,9 +94,9 @@ FACTORIES = {
     'ice': IceFactory,
     'snow': SnowFactory,
     'snowflakes': SnowflakesFactory,
-    ####
     'ammonia': AmmoniaFactory(),
     'methane': MethaneFactory(),
+    ####
     'hydrogen': element_factories['H'](),
     'hydrogen atom': HydrogenAtomFactory(),
     'plastic': PlasticFactory(),

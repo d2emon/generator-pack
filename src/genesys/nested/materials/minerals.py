@@ -4,7 +4,6 @@ from .matter import MoleculeFactory
 
 
 class AmmoniaMoleculeFactory(MoleculeFactory):
-    # TODO: Refactor it
     contents = 'N', 'H'
 
 
@@ -19,8 +18,7 @@ class SaltFactory(MoleculeFactory):
 
 
 class AmmoniaFactory(Factory):
-    # TODO: Refactor it
-    default_model = materials.Ammonia
+    model = materials.Ammonia
 
     def children(self):
         yield AmmoniaMoleculeFactory()
