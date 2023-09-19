@@ -8,8 +8,8 @@ class PlateFactory(Factory):
     ice_probability = 50
 
     def children(self):
-        yield RockFactory()
-        yield IceFactory().probable(self.ice_probability)
+        yield RockFactory.one()
+        yield IceFactory.probable(self.ice_probability)
 
 
 class MoonPlateFactory(PlateFactory):

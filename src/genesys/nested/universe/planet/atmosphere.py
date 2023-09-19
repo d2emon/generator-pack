@@ -1,8 +1,7 @@
-from models.universe.planet.atmosphere import Atmosphere
+from factories.thing.nested_factory import NestedFactory
+from models.universe import planet
 from models.v5 import terrain
-from factories.thing.nested_factory import NestedFactory as Factory
-from ...materials import MoleculeFactory, SteamFactory, AmmoniaFactory, MethaneFactory
-from ..life import GasGiantLifeFactory
+from ...materials import MoleculeFactory
 
 
 class OzoneFactory(MoleculeFactory):
@@ -10,8 +9,8 @@ class OzoneFactory(MoleculeFactory):
     contents = 'O'
 
 
-class AtmosphereFactory(Factory):
-    default_model = Atmosphere
+class AtmosphereFactory(NestedFactory):
+    default_model = planet.atmosphere.Atmosphere
 
     def life(self):
         yield None

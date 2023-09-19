@@ -1,20 +1,15 @@
 from factories.thing.nested_factory import NestedFactory
-from models.planet import body
+from models import planet
 from utils.nested import select_item
-# from .body import Asteroid, Moon, TerraformedMoon
-# from ...temporary import ContinentFactory
-# from ...life import AsteroidLifeFactory, MoonLifeFactory
-# from ...terrain import OceanFactory, SkyFactory
-# from .plate import AsteroidPlateFactory, MoonPlateFactory, PlateFactory
+from ...materials import IceFactory, RockFactory
+from ..data_provider import PROVIDER
+from ..unsorted_life import GhostFactory, SpaceAnimalFactory
+from ..unsorted_terrain import ContinentFactory, OceanFactory, SkyFactory
 from .core import PlanetCoreFactory
 
 
-# Moon
-# TerraformedMoon
-
-
 class PlanetLikeFactory(NestedFactory):
-    default_model = body.PlanetLike
+    model = planet.body.PlanetLike
 
     def life(self):
         yield None
@@ -44,86 +39,77 @@ class PlanetLikeFactory(NestedFactory):
     def visited(self):
         yield None
 
-    def contents(self):
+    def children(self):
         yield from self.atmosphere()
         yield from self.core()
         yield from self.moons()
         yield from self.plates()
         yield from self.sky()
         yield from self.visited()
+        yield from self.life()
+
+
+class AsteroidFactory(PlanetLikeFactory):
+    default_model = planet.body.Asteroid
+
+    def life(self):
+        yield SpaceAnimalFactory.probable(0.5)
+
+    def continents(self):
+        yield RockFactory.one()
+
+    def oceans(self):
+        yield IceFactory.probable(30)
 
 
 class MoonFactory(PlanetLikeFactory):
-    default_model = body.Moon
-    names = ["young", "old", "large", "small", "pale", "white", "dark", "black", "old"]
+    default_data = PROVIDER
+    model = planet.body.Moon
 
     def life(self):
-        # yield MoonLifeFactory()
-        # ghost,0.1%
-        yield None
+        yield GhostFactory.probable(0.1)
 
     def continents(self):
         # yield MoonPlateFactory()
-        # rock
-        yield None
-
-    def oceans(self):
-        yield None
+        yield RockFactory.one()
 
     def core(self):
-        yield PlanetCoreFactory
+        yield PlanetCoreFactory.one()
 
     def name_factory(self):
-        return f"{select_item(*self.names)} moon"
+        return f"{select_item(*self.data.moon)} moon"
+
+
+class PlanetFactory(PlanetLikeFactory):
+    # .planet composition
+    default_name = 'planet'
+    model = planet.Planet
+
+    def core(self):
+        yield PlanetCoreFactory.one()
+
+    def moons(self):
+        yield MoonFactory.probable(40)
+        yield MoonFactory.probable(20)
+        yield MoonFactory.probable(10)
 
 
 class TerraformedMoonFactory(MoonFactory):
-    default_model = body.TerraformedMoon
-    names = [
-        "young", "old", "large", "small", "pale", "white", "dark", "black", "old", "green", "lush", "blue", "city",
-        "colonized", "life",
-    ]
-
-    def life(self):
-        yield None
-
-    def core(self):
-        # yield from PlanetCompositionFactory.planet_composition()
-        yield None
+    default_data = PROVIDER
+    model = planet.body.TerraformedMoon
 
     def continents(self):
-        # yield from ContinentFactory().multiple(1, 4)
-        # continent,1-4
-        yield None
+        yield ContinentFactory.multiple(1, 4)
 
     def oceans(self):
-        # yield from OceanFactory().multiple(1, 4)
-        # ocean,1-4
-        yield None
+        yield OceanFactory.multiple(1, 4)
 
     def sky(self):
-        # yield SkyFactory()
-        # sky
-        yield None
+        yield SkyFactory.one()
 
     def name_factory(self):
-        return f"{select_item(*self.names)} moon"
+        return f"{select_item(*self.data.terraformed_moon)} moon"
 
 
 class FutureMoonFactory(TerraformedMoonFactory):
     pass
-
-
-"""
-new Thing("moon",[
-    "ghost,0.1%",
-    "rock",
-    "planet core"
-],[["young","old","large","small","pale","white","dark","black","old"],[" moon"]]);
-new Thing("terraformed moon",[
-    ".planet composition",
-    "continent,1-4",
-    "ocean,1-4",
-    "sky"
-],[["young","old","large","small","pale","white","dark","black","old","green","lush","blue","city","colonized","life"],[" moon"]]);
-"""

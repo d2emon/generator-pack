@@ -17,6 +17,13 @@ class DataProvider:
             'white', 'faint', 'yellow', 'red', 'blue', 'green', 'purple', 'bright', 'double', 'twin', 'triple', 'old', 'young', 'dying',
             'small', 'giant', 'large', 'pale', 'dark', 'hell', 'horrific', 'twisted', 'spectral',
         ]
+        self.moon = [
+            'young', 'old', 'large', 'small', 'pale', 'white', 'dark', 'black', 'old',
+        ]
+        self.terraformed_moon = [
+            'young', 'old', 'large', 'small', 'pale', 'white', 'dark', 'black', 'old', 'green', 'lush', 'blue', 'city', 'colonized',
+            'life',
+        ]
 
 
 PROVIDER = DataProvider()

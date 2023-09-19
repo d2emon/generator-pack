@@ -3,9 +3,9 @@ from models.universe import nebula
 from utils.nested import select_item
 from ..materials import ELEMENTS, AmmoniaFactory
 from ..materials.water import SteamFactory
-# from ..life import NebulaLifeFactory
 from .data_provider import PROVIDER
 from .star import SingleStarFactory
+from .unsorted_life import GalacticLifeFactory
 
 
 class InterstellarCloudFactory(NestedFactory):
@@ -31,9 +31,7 @@ class NebulaFactory(NestedFactory):
     model = nebula.Nebula
 
     def life(self):
-        # galactic life,15%
-        # yield NebulaLifeFactory()
-        yield None
+        yield GalacticLifeFactory.probable(15)
 
     def stars(self):
         yield SingleStarFactory.probable(2)

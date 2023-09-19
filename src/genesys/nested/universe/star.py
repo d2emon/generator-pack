@@ -5,8 +5,8 @@ from ..materials import ELEMENTS
 from .data_provider import PROVIDER
 from .orbit import AncientOrbitFactory, AsteroidBeltFactory, BarrenOrbitFactory, FutureOrbitFactory, GasGiantOrbitFactory, \
     MedievalOrbitFactory, TerraformedOrbitFactory, VisitorOrbitFactory
-# from ..temporary import DysonSurfaceFactory
-# from ..life import StarLifeFactory
+from .unsorted_life import GhostFactory, SpaceMonsterFactory
+from .unsorted_terrain import DysonSurfaceFactory
 
 
 class StarFactory(NestedFactory):
@@ -14,10 +14,8 @@ class StarFactory(NestedFactory):
     model = star.Star
 
     def life(self):
-        # ghost,0.1%
-        # space monster,0.2%
-        # yield StarLifeFactory()
-        yield None
+        yield GhostFactory.probable(0.1)
+        yield SpaceMonsterFactory.probable(0.2)
 
     def matter(self):
         yield ELEMENTS['He'].one()
@@ -27,7 +25,7 @@ class StarFactory(NestedFactory):
         yield from self.matter()
 
     def name_factory(self, *args, **kwargs):
-        return f"{select_item(*self.names)} star"
+        return f"{select_item(*self.data.star)} star"
 
 
 class StarSystemFactory(NestedFactory):
@@ -74,7 +72,7 @@ class DysonSphereFactory(StarSystemFactory):
     model = star.DysonSphere
 
     def orbits(self):
-        # yield DysonSurfaceFactory.one()
+        yield DysonSurfaceFactory.one()
 
         yield FutureOrbitFactory.multiple(1, 8)
 

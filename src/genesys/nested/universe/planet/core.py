@@ -1,36 +1,21 @@
-from models.planet.core import PlanetCore
 from factories.thing.nested_factory import NestedFactory
-# from ...life import PlanetCoreLifeFactory
-# from ...materials import RockFactory, IronFactory, DiamondFactory, MagmaFactory
+from models.planet import core
+from ...materials import DiamondFactory, IronFactory, MagmaFactory, RockFactory
+from ..unsorted_life import SpaceMonsterFactory
 
 
 class PlanetCoreFactory(NestedFactory):
-    default_model = PlanetCore
-    default_name = "core"
+    model = core.PlanetCore
 
     def life(self):
-        # yield PlanetCoreLifeFactory()
-        # space monster,0.5%
-        yield None
+        yield SpaceMonsterFactory.probable(0,5)
 
-    def contents(self):
-        # yield IronFactory()
-        # yield RockFactory()
-        # yield DiamondFactory().probable(2)
-        # yield MagmaFactory()
-        # iron
-        # rock
-        # diamond,2%
-        # magma
-        yield None
+    def minerals(self):
+        yield IronFactory.one()
+        yield RockFactory.one()
+        yield DiamondFactory.probable(2)
+        yield MagmaFactory.one()
 
-
-"""
-new Thing("planet core",[
-    "space monster,0.5%",
-    "iron",
-    "rock",
-    "diamond,2%",
-    "magma"
-],"core");
-"""
+    def children(self):
+        yield from self.life()
+        yield from self.minerals()

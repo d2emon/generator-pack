@@ -1,9 +1,10 @@
 from factories.thing.nested_factory import NestedFactory
 from models.v5 import universe
-# from ..life import AsteroidBeltLifeFactory
+from .planet import AncientPlanetFactory, BarrenPlanetFactory, FuturePlanetFactory, MedievalPlanetFactory, VisitorPlanetFactory, \
+    TerraformedPlanetFactory    
 from .planet.body import AsteroidFactory
-from .planet import BarrenPlanetFactory, VisitorPlanetFactory, FuturePlanetFactory, TerraformedPlanetFactory, \
-    MedievalPlanetFactory, AncientPlanetFactory, GasGiantFactory
+from .planet.gas_giant import GasGiantFactory
+from .unsorted_life import GalacticLifeFactory
 
 
 class OrbitFactory(NestedFactory):
@@ -59,18 +60,15 @@ class GasGiantOrbitFactory(PlanetOrbitFactory):
         yield GasGiantFactory.one()
 
 
-class AsteroidBeltFactory(OrbitFactory):
-    # TODO: Refactor It
+class AsteroidBeltFactory(NestedFactory):
     model = universe.AsteroidBelt
 
     def life(self):
-        # yield AsteroidBeltLifeFactory()
-        yield None
+        yield GalacticLifeFactory.probable(20)
 
     def planets(self):
-        yield from AsteroidFactory.multiple(10, 30)
+        yield AsteroidFactory.multiple(10, 30)
 
 
 class EarthFactory(AsteroidBeltFactory):
-    # TODO: Refactor It
     default_name = 'Earth'

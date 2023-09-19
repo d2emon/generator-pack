@@ -1,9 +1,9 @@
 from factories.thing.nested_factory import NestedFactory
 from models.universe import galaxy
-# from ..life import GalaxyArmLifeFactory, GalaxyCenterLifeFactory
 from .black_hole import BlackHoleFactory
 from .nebula import NebulaFactory
 from .star import DysonSphereFactory, StarSystemFactory
+from .unsorted_life import GalacticLifeFactory
 
 
 class GalaxyPartFactory(NestedFactory):
@@ -45,10 +45,7 @@ class GalaxyArmFactory(GalaxyPartFactory):
         yield BlackHoleFactory.probable(20)
 
     def life(self):
-        # galactic life,5%
-        # # yield GalaxyArmLifeFactory.one()
-        # yield GalacticLifeFactory.probable(5)
-        yield None
+        yield GalacticLifeFactory.probable(5)
 
 
 class GalaxyCenterFactory(GalaxyPartFactory):
@@ -58,10 +55,7 @@ class GalaxyCenterFactory(GalaxyPartFactory):
         yield BlackHoleFactory.one()
 
     def life(self):
-        # galactic life,10%
-        # # yield GalaxyCenterLifeFactory()
-        # yield GalacticLifeFactory.probable(10)
-        yield None
+        yield GalacticLifeFactory.probable(10)
 
 
 class GalaxyFactory(NestedFactory):
