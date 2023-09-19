@@ -1,5 +1,5 @@
-from models.v5 import materials
 from factories.thing.nested_factory import NestedFactory as Factory
+from models.v5 import materials
 from .particles import ProtonFactory, NeutronFactory, ElectronFactory
 
 
@@ -62,8 +62,23 @@ class AtomFactory(Factory):
 
     @classmethod
     def element_factories(cls, *elements):
-        for element in elements:
-            cls.element_factory(element)
+        return (cls.element_factory(element) for element in elements)
+
+
+class MoleculeFactory(Factory):
+    contents = []  # 'N', 'H'
+    model = materials.Molecule
+
+    @classmethod
+    def element_factory(cls, element):
+        return AtomFactory.element_factory(element)
+
+    @classmethod
+    def element_factories(cls, *elements):
+        return AtomFactory.element_factories(*elements)
+
+    def children(self):
+        yield from self.element_factories(*self.contents)
 
 
 ELEMENTS = {

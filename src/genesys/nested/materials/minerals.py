@@ -1,6 +1,6 @@
 from models.v5 import materials
 from factories.thing.nested_factory import NestedFactory as Factory
-from .matter import MoleculeFactory
+from .elements import MoleculeFactory
 
 
 class AmmoniaMoleculeFactory(MoleculeFactory):
@@ -49,10 +49,3 @@ class DiamondFactory(CarbonFactory):
 
 class MagmaFactory(RockFactory):
     model = materials.Magma
-
-
-class IronFactory(RockFactory):
-    model = materials.Iron
-
-    def children(self):
-        yield MoleculeFactory.element_factory('Fe')
