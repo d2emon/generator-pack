@@ -30,7 +30,7 @@ class LandscapeFactory(Factory):
         yield SoilFactory()
 
     def children(self):
-        yield FireFactory().probable(self.fire_probability)
+        yield from FireFactory.probable(self.fire_probability)
         yield from self.life()
         yield from self.water()
         yield from self.vegetation()

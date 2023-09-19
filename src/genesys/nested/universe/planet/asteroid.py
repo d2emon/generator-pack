@@ -53,6 +53,6 @@ new Thing("earth",[
 new Thing("asteroid",[
     "space animal,0.5%",
     "rock",
-    "ice,30%"
+    IceFactory.probable(30),
 ],"asteroid");
 """

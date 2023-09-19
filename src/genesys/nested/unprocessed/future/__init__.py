@@ -39,7 +39,9 @@ new Thing("nanopipe",[".nanostuff"]);
 new Thing("nanocarpet",[".nanostuff"]);
 new Thing("nanobookshelf",["book,2-20","nanoplasm"]);
 new Thing("nanocupboard",["future outfit,0-6","future hat,0-4","nanoplasm"]);
-new Thing("future bathroom stuff",["water","nanoplasm","nanopipe,1-2"],["bathtub","toilet","sink","shower","scrubber","steamomatic","steamheater"]);
+new Thing("future bathroom stuff",[
+    WaterFactory.one(),
+    "nanoplasm","nanopipe,1-2"],["bathtub","toilet","sink","shower","scrubber","steamomatic","steamheater"]);
 new Thing("future living-room stuff",["nanoplasm"],["chair","armchair","couch","table","shelf","lamp","endtable"]);
 new Thing("future bedroom stuff",["nanoplasm"],["bed","chair","desk","lamp","endtable"]);
 new Thing("future decoration stuff",["nanoplasm"],["potted plant","rug","statue","lamp","glowlamp","ceiling lamp"]);

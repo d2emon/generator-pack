@@ -123,11 +123,14 @@ new Thing("toenail",["dust,40%", "keratin"],"toenail");
 new Thing("knee",[".body part"],"knee");
 new Thing("head",["mouth", "nose", "eye,99%", "eye,99%", "ear,2", "skull", "head hair,85%", ".body part"],"head");
 new Thing("eye",["eyelashes", "eye flesh", "tear,2%"],"eye");
-new Thing("eye flesh",["water", "blood vessels", "fat"],"eyeball");
+new Thing("eye flesh",[
+    WaterFactory.one(),
+    "blood vessels", "fat"],"eyeball");
 new Thing("eyelashes",[".hair"],"eyelashes");
-new Thing("tear",["water",
+new Thing("tear",[
+    WaterFactory.one(),
     SaltFactory.one(),
-    ]);
+]);
 new Thing("ear",[".soft body part"],"ear");
 new Thing("brain",["bacteria,20%", "brain cell"],"brain");
 new Thing("skull",["brain", ".bones"]);
@@ -164,7 +167,8 @@ new Thing("leather",["skin cell"]);
 new Thing("textile",["textile fibre"]);
 new Thing("textile fibre",["keratin"],["textile fibres"]);
 new Thing("keratin",["proteins"]);
-new Thing("sweat",["water",
+new Thing("sweat",[
+    WaterFactory.one(),
     SaltFactory.one(),
     "glucids"]);
 new Thing("clothing",["textile", "dead skin,40%", "sweat,15%"]);
@@ -185,10 +189,13 @@ new Thing("glasses",["plastic", "glass", "metal,10%"],["glasses", "glasses", "gl
 //terrain stuff
 new Thing("ocean",["sea water", "sea life", "beach,10-20", ["iceberg,2-6", "", "", "", ""], "abyss"]);
 new Thing("sea",["sea water", "sea life", "beach,2-6"],[["great", "wide", "big", "old", "young", "large", "small", "dead", "shallow", "deep", "red", "yellow", "green", "blue", "orange", "brown", "grey", "black", "white", "purple", "shady", "bright", "silver"], [" sea"]]);
-new Thing("sea water",["water",
+new Thing("sea water",[
+    WaterFactory.one(),
     SaltFactory.one(),
-    ]);
-new Thing("iceberg",["bear,30%", "bear,10%", "ice"]);
+]);
+new Thing("iceberg",["bear,30%", "bear,10%",
+    IceFactory.one(),
+]);
 new Thing("beach",["beach life", "sand"]);
 new Thing("abyss",["sand", "abyss life"]);
 new Thing("sand",[
@@ -197,44 +204,78 @@ new Thing("sand",[
 new Thing("soil",[["worm,0-2", "", ""], ["insect,0-2", "", ""],
     SilicaFactory.one(),
     ],"dirt");
-new Thing("mud",[["worm,0-2", "", ""], ["insect,0-2", "", ""], "water",
+new Thing("mud",[["worm,0-2", "", ""], ["insect,0-2", "", ""],
+    WaterFactory.one(),
     SilicaFactory.one(),
-    ]);
+]);
 
-new Thing("river",["river life", "water", "soil", "mud"],["river", "stream", "brook", "creek"]);
-new Thing("lake",["lake life", "water", "soil", "mud"],["lake", "lagoon", "pond", "marsh", "creek", "cove"]);
-new Thing("plain",["fire,0.3%", "land life", "river,0-3", "lake,0-1", "grass", "soil", "snow,5%"],["plain", "steppe", "valley", "canyon", "flatland", "moor", "grassland", "prairie", "desert", "savannah", "tundra", "wasteland"]);
-new Thing("forest",["fire,0.5%", "forest life", "river,0-2", "trees", "grass", "humus", "soil", "snow,5%"],["forest", "woods", "copse"]);
-new Thing("jungle",["fire,0.5%", "jungle life", "river,0-2", "jungle trees", "grass", "humus", "soil"],["jungle", "rainforest"]);
+new Thing("river",["river life",
+    WaterFactory.one(),
+    "soil", "mud"],["river", "stream", "brook", "creek"]);
+new Thing("lake",["lake life",
+    WaterFactory.one(),
+    "soil", "mud"],["lake", "lagoon", "pond", "marsh", "creek", "cove"]);
+new Thing("plain",[
+    FireFactory.probable(0.3),
+    "land life", "river,0-3", "lake,0-1", "grass", "soil",
+    SnowFactory.probable(5),
+],["plain", "steppe", "valley", "canyon", "flatland", "moor", "grassland", "prairie", "desert", "savannah", "tundra", "wasteland"]);
+new Thing("forest",[
+    FireFactory.probable(0.5),
+    "forest life", "river,0-2", "trees", "grass", "humus", "soil",
+    SnowFactory.probable(5),
+],["forest", "woods", "copse"]);
+new Thing("jungle",[
+    FireFactory.probable(0.5),
+    "jungle life", "river,0-2", "jungle trees", "grass", "humus", "soil"],["jungle", "rainforest"]);
 new Thing("mountain",["mountain life", "river,0-3", "lake,0-1", "cave,30%", "cave,30%", "cave,20%", "trees", "soil",
     RockFactory.one(),
-    "snow,40%"],["mountain", "peak", "hill", "volcano", "bluff", "cliff", "mesa", "plateau"]);
+    SnowFactory.probable(40),
+],["mountain", "peak", "hill", "volcano", "bluff", "cliff", "mesa", "plateau"]);
 new Thing("cave",["cave life", "dragon lair,1%", "river,20%", "lake,10%",
     RockFactory.one(),
     "iron,2%"],["cave", "cavern", "grotto"]);
 
-new Thing("ancient plain",["fire,0.3%", "caveman settlement,40%", "ancient land life", "river,0-3", "lake,0-1", "grass", "soil", "snow,5%"],["plain", "steppe", "valley", "canyon", "flatland", "moor", "grassland", "prairie", "desert", "savannah", "tundra", "wasteland"]);
-new Thing("ancient forest",["fire,0.5%", "caveman settlement,40%", "ancient forest life", "river,0-2", "trees", "grass", "humus", "soil", "snow,5%"],["forest", "woods", "copse"]);
-new Thing("ancient jungle",["fire,0.5%", "caveman settlement,40%", "ancient jungle life", "river,0-2", "jungle trees", "grass", "humus", "soil"],["jungle", "rainforest"]);
+new Thing("ancient plain",[
+    FireFactory.probable(0.3),
+    "caveman settlement,40%", "ancient land life", "river,0-3", "lake,0-1", "grass", "soil",
+    SnowFactory.probable(5),
+],["plain", "steppe", "valley", "canyon", "flatland", "moor", "grassland", "prairie", "desert", "savannah", "tundra", "wasteland"]);
+new Thing("ancient forest",[
+    FireFactory.probable(0.5),
+    "caveman settlement,40%", "ancient forest life", "river,0-2", "trees", "grass", "humus", "soil",
+    SnowFactory.probable(5),
+],["forest", "woods", "copse"]);
+new Thing("ancient jungle",[
+    FireFactory.probable(0.5),
+    "caveman settlement,40%", "ancient jungle life", "river,0-2", "jungle trees", "grass", "humus", "soil"],["jungle", "rainforest"]);
 new Thing("ancient mountain",["caveman settlement,40%", "ancient mountain life", "ancient cave,30%", "ancient cave,20%", "ancient cave,10%", "river,0-3", "lake,0-1", "trees", "soil",,
     RockFactory.one(),
-    "snow,40%"],["mountain", "peak", "hill", "volcano", "bluff", "cliff", "mesa", "plateau"]);
+    SnowFactory.probable(40),
+],["mountain", "peak", "hill", "volcano", "bluff", "cliff", "mesa", "plateau"]);
 new Thing("ancient cave",["caveman settlement,65%", "wall painting,50%", "wall painting,30%", "wall painting,30%", ".cave"],["cave", "cavern", "grotto"]);
 
 new Thing("future sky",["sprowseship,4-12", ".sky"],"sky");
 new Thing("terraformed sky",["plane,1-8", "rocketship,20%", ".sky"],"sky");
 new Thing("sky",["visitor ship,10%", "meteorite,3%", "sky life", "precipitation,50%", "cloud,2-8", "oxygen", "carbon", "ozone"],"sky");
-new Thing("meteorite",["space animal,6%", "ice,60%",
+new Thing("meteorite",["space animal,6%",
+    IceFactory.probable(60),
     RockFactory.one(),
     "iron,40%"],"meteorite");
 new Thing("ozone",["oxygen"]);
-new Thing("cloud",["water"]);
-new Thing("precipitation",["water"],["rain", "snow", "hail", "mist", "fog", "drizzle", "storm"]);
+new Thing("cloud",[
+    WaterFactory.one(),
+]);
+new Thing("precipitation",[
+    WaterFactory.one(),
+],["rain", "snow", "hail", "mist", "fog", "drizzle", "storm"]);
 
 //vegetation
 new Thing("plant cell",[".cell"],["plant cells"]);
 new Thing("grass",["grass blade,50-100"]);
-new Thing("grass blade",["grass thoughts,2%", "dew,6%", "worm,3%", "insect,6%", "plant cell"]);
+new Thing("grass blade",["grass thoughts,2%",
+    DewFactory.probable(6),
+    "worm,3%", "insect,6%", "plant cell"]);
 new Thing("grass thoughts",["grass thought,1"],"thought");
 new Thing("grass thought",[],[":D", ":O", "D:", ":|", ":]", ">:0"]);
 new Thing("trees",["tree,20-50"]);
@@ -242,7 +283,9 @@ new Thing("tree",["tree thoughts,2%", "tree trunk", "branches", "leaves", "nest,
 new Thing("tree thoughts",["tree thought,1"],"thought");
 new Thing("tree thought",[],["Well. What is this all about.", "So. What's the hurry?", "Whoah. Slow down.", "Do like a tree. And go away.", "I seen some things.", "They're coming.", "We know.", "We've been watching you for hundreds of years.", "Do you have any idea how old I am?", "Yes. I remember you. I remember all of you."]);
 new Thing("leaves",["leaf,50-100"]);
-new Thing("leaf",["dew,6%", "insect,6%", "plant cell"]);
+new Thing("leaf",[
+    DewFactory.probable(6),
+    "insect,6%", "plant cell"]);
 new Thing("branches",["branch,10-30"]);
 new Thing("branch",["insect,6%", "leaf,10%", "plant cell"]);
 new Thing("twig",["plant cell"]);
@@ -313,14 +356,18 @@ new Thing("antenna",[
     ],"antenna");
 new Thing("insect wing",[[
     ChitinFactory.one(),
-    "scales"], "dew,2%"],"wing");
+    "scales"],
+    DewFactory.probable(2),
+],"wing");
 new Thing("wing",["feathers", ".body part"],"wing");
 new Thing("reptile wing",["scales", ".body part"],"wing");
 new Thing("bird wing",["feathers", ".body part"],"wing");
 new Thing("bird leg",["feathers", ".body part"],"leg");
 new Thing("bird tail",["feathers", ".body part"],"tail");
 new Thing("venom",["proteins", "lipids,40%", "nitrogen,40%", "sodium,40%", "chlorine,40%"],"venom");
-new Thing("jelly",["water"]);
+new Thing("jelly",[
+    WaterFactory.one(),
+]);
 
 new Thing("weird soft organ",[".skinless soft body part"],[["fleshy", "thick", "slimy", "scaly", "furry", "fuzzy", "feathery", "sharp", "pointy", "thorny", "bulbous", "leathery", "hidden", "soft", "bubbling", "distorted", "shapeless", "porous", "spongiform", "liquid-filled", "foamy", "smoking", "oozing", "drooling", "shivering", "quivering", "pulsing"], [" "], ["grasper", "tendril", "stinger", "claw", "tentacle", "sac", "egg sac", "pouch", "organ", "specialized organ", "bulb", "brain bulb", "gland", "epiderm", "sucker", "pod", "pseudolimb", "nervous bulb", "external muscle", "structure", "orifice", "proboscis", "tail"]]);
 new Thing("weird hard organ",[".skinless body part"],[["fleshy", "thick", "slimy", "scaly", "furry", "fuzzy", "sharp", "pointy", "thorny", "bulbous", "hidden", "flexible", "plated", "armored", "metallic", "distorted", "shapeless", "porous", "spongiform", "liquid-filled", "foamy", "smoking", "oozing", "drooling"], [" "], ["carapace", "shell", "bone structure", "skull", "grasper", "stinger", "claw", "organ", "specialized organ", "sucker", "pod", "pseudolimb", "structure"]]);
@@ -544,12 +591,18 @@ new Thing("commercial area",["street,1-5", "bargain shop,60%", "bargain shop,30%
 new Thing("office building",["building hall", "office,6-20", ".building"],[["a tall", "a stout", "an unimpressive", "a large", "a humongous", "a modern", "a classic", "a historic", "a gray", "a dull", "a white", "a black", "a concrete", "a glass-covered", "an impressive", "a beautiful", "an old-fashioned", "a boring", "a newly-built", "a fancy"], [" "], ["office building", "skyscraper", "building"]]);
 
 new Thing("residential area",["street,1-5", "house,5-20", "apartment building,0-5"]);
-new Thing("house",["fire,0.3%", "living-room", "kitchen", "bathroom,1-3", "bedroom,2-5", "attic", "study,0-2", "garden,90%", "garage,90%", ".building"],[["a small", "a large", "a big", "a cozy", "a bland", "a boring", "an old", "a new", "a freshly-painted", "a pretty", "an old-fashioned", "a creepy", "a spooky", "a gloomy", "a tall", "a tiny", "a fine", "a happy little"], [" pink", " grey", " green", " yellow", " orange", " red", " blue", " white", " brick", " stone", " wooden", "", "", ""], [" house"]]);
+new Thing("house",[
+    FireFactory.probable(0.3),
+    "living-room", "kitchen", "bathroom,1-3", "bedroom,2-5", "attic", "study,0-2", "garden,90%", "garage,90%", ".building"],[["a small", "a large", "a big", "a cozy", "a bland", "a boring", "an old", "a new", "a freshly-painted", "a pretty", "an old-fashioned", "a creepy", "a spooky", "a gloomy", "a tall", "a tiny", "a fine", "a happy little"], [" pink", " grey", " green", " yellow", " orange", " red", " blue", " white", " brick", " stone", " wooden", "", "", ""], [" house"]]);
 new Thing("apartment",["living-room,90%", "kitchen", "bathroom,1", "bedroom,1-3", "study,20%"]);
-new Thing("apartment building",["fire,0.3%", "apartment,6-20", ".building"]);
+new Thing("apartment building",[
+    FireFactory.probable(0.3),
+    "apartment,6-20", ".building"]);
 
 //farms
-new Thing("farm",["fire,0.3%", "house,1-3", "farmer,1-4", "field,1-8", "horse,30%", "horse,30%", "horse,30%", "poultry,0-3", "grain silo,0-2", "barn,0-2", "warehouse,0-2", "storage shed,0-2"]);
+new Thing("farm",[
+    FireFactory.probable(0.3),
+    "house,1-3", "farmer,1-4", "field,1-8", "horse,30%", "horse,30%", "horse,30%", "poultry,0-3", "grain silo,0-2", "barn,0-2", "warehouse,0-2", "storage shed,0-2"]);
 new Thing("field",["grain", "insect,5%", "bird,10%", "bird,5%", "haystack,30%"],["wheat field", "corn field", "soy field", "rice field", "oat field", "peanut field", "tomato field", "grape field", "barley field", "canola field", "rye field", "flower field"]);
 new Thing("farmer",[".person"],"*PERSON*| (farmer)");
 new Thing("grain",["plant cell"]);
@@ -578,7 +631,9 @@ new Thing("office toy",["plastic", "metal"],["colorcube", "colorsnake", "snowglo
 new Thing("panel",["plastic"]);
 new Thing("calendar",["paper", "ink"],[["calendar ("], ["firemen", "sexy athletes", "half-naked ladies", "kittens", "puppies", "ducklings", "flowery nature", "tourism", "sharks", "inspirational quotes", "famous people", "bears", "funny cartoons", "popular TV show characters", "mayan", "haikus", "1-word-a-day"], [")"]]);
 new Thing("nameplate",[["plastic", "wood", "metal"]]);
-new Thing("water cooler",["plastic", "water", "push-button"]);
+new Thing("water cooler",["plastic",
+    WaterFactory.one(),
+    "push-button"]);
 
 //small shops
 new Thing("shop",["clerk,1-6", ["customer,0-3", "customer,0-15"], "desk,1-3", "chair,0-3", "tv,20%", "warehouse,20%", ".building"]);
@@ -595,7 +650,9 @@ new Thing("vegetable pile",["plant cell", "insect,10%"],[["a pile of "], ["potat
 new Thing("pet shop",["pet container,2-12", "bird cage,1-6", "vivarium,1-6", "aquarium,1-6", ".shop"],[["Pet", "Cute", "Adopt", "Ani", "Anima", "World", "Care", "Woof", "Meow", "Purr"], ["woof", "meow", "purr", "dogz", "catz", "nimals", "friends"]]);
 new Thing("pet container",[["dog,1-4", "cat,1-4"], "plastic"],["pet cage", "pet box"]);
 new Thing("vivarium",[["reptile,1-4", "amphibian,1-4", "insect,1-4"], "plastic", "glass", "dirt"]);
-new Thing("aquarium",[["fish,1-6", "cnidaria,1-4", "mollusk,1-4", "crustacean,1-4"], ["fish,50%", "cnidaria,50%", "mollusk,50%", "crustacean,50%"], "plankton,0-3", "plastic", "glass", "water"]);
+new Thing("aquarium",[["fish,1-6", "cnidaria,1-4", "mollusk,1-4", "crustacean,1-4"], ["fish,50%", "cnidaria,50%", "mollusk,50%", "crustacean,50%"], "plankton,0-3", "plastic", "glass",
+    WaterFactory.one(),
+]);
 new Thing("bird cage",["bird", "plastic", "metal"]);
 new Thing("toy shop",["toy box,2-12", "video game console,40%", "video game console,20%", ".shop"],[["Toy", "Play", "Kidz", "Yay", "Magi", "Super", "Cosmo"], ["time", "pretend", "play", "toyz", "dolls", "blocks", "stuff", "fun"]]);
 new Thing("toy box",["office toy,20%", "office toy,20%", "toy,0-8", "doll,0-4"]);
@@ -614,7 +671,9 @@ new Thing("paint",[OilFactory.one(), "pigment"]);
 new Thing("wooden frame",["wood"]);
 
 //services
-new Thing("fire department",["fire,0.2%", "firefighter,3-6", "desk,0-3", "chair,1-4", "fridge,60%", "tv,60%", "fire truck", ".building"]);
+new Thing("fire department",[
+    FireFactory.probable(0.2),
+    "firefighter,3-6", "desk,0-3", "chair,1-4", "fridge,60%", "tv,60%", "fire truck", ".building"]);
 new Thing("firefighter",[".person"],"*PERSON*| (firefighter)");
 
 new Thing("police station",["police officer,2-6", "desk,0-2", "tv,40%", "small bookshelf,0-2", "chair,0-4", ".building"]);
@@ -651,7 +710,9 @@ new Thing("patient",[".person", "blood,15%", "wound,0-3"],"*PERSON*| (patient)")
 new Thing("research facility",["researcher,2-8", "security guard,1-4", "soldier,0-6", "doctor,0-2", "nurse,0-2", ["corpse,0-3", "", ""], "containment room,1-12", "top secret drawer,1-6", ".building"]);
 new Thing("researcher",[".person"],"*PERSON*| (researcher)");
 new Thing("security guard",[".person", "handgun", "ammo pack,0-1"],"*PERSON*| (security guard)");
-new Thing("containment room",[["portal", "space animal", "space monster", "sea monster", "bird", "poultry", "cat", "dog", "cetacean", "fish", "mollusk", "plankton", "reptile", "amphibian", "snake", "small mammal", "predatory mammal", "herbivorous mammal", "clam", "worm", "monkey", "bear", "shark", "horse", "insect", "crustacean", "dragon", "person", "ghost", "ectoplasm", "abomination", "corpse", "house", "tree", "machine", "dinosaur", "visitor", "visitor furniture", "medieval person", "caveman", "painting", "", "", ""], "portal,1%", "fire,1%", "researcher,5%", "researcher,5%", "soldier,5%", "soldier,5%", "corpse,5%", "corpse,5%", "corpse,5%", "corpse,5%"]);
+new Thing("containment room",[["portal", "space animal", "space monster", "sea monster", "bird", "poultry", "cat", "dog", "cetacean", "fish", "mollusk", "plankton", "reptile", "amphibian", "snake", "small mammal", "predatory mammal", "herbivorous mammal", "clam", "worm", "monkey", "bear", "shark", "horse", "insect", "crustacean", "dragon", "person", "ghost", "ectoplasm", "abomination", "corpse", "house", "tree", "machine", "dinosaur", "visitor", "visitor furniture", "medieval person", "caveman", "painting", "", "", ""], "portal,1%",
+    FireFactory.probable(1),
+    "researcher,5%", "researcher,5%", "soldier,5%", "soldier,5%", "corpse,5%", "corpse,5%", "corpse,5%", "corpse,5%"]);
 new Thing("top secret drawer",["top secret folder,1-8", "note,0-8", "pen,30%", "pen,10%", "pen,5%", "donut box,5%", "can,2%", "book,20%", "book,20%", "book,5%", "book,5%", "button,10%", "button,10%", "dust,60%", "lint,40%"],"classified files");
 new Thing("top secret folder",["top secret file,2-8", "paper"],[["Classified Folder n°"], ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "", ""], ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "", ""], ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]]);
 new Thing("top secret file",[],[["File ", "Document ", "Report "], ["X", "Z", "A", "B", "L", "S", "T"], ["-"], ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "", ""], ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "", ""], ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"], ["<br>-"], ["Containment breach ¤¤¤", "Subject ¤¤¤ attempted escape", "Unusual events occuring", "Possible breach of security measures in", "Subject ¤¤¤ sighted", "Witnesses report a ¤¤¤", "Rumors of ¤¤¤", "Singularity event", "Subject ¤¤¤ attempted singularity", "Retrieval of subject ¤¤¤", "Accidental termination of subject ¤¤¤", "Recovery of subject ¤¤¤", "Recovery of a number of ¤¤¤", "Accidental loss of ¤¤¤", "New leads on ¤¤¤", "Subject ¤¤¤ must now be kept away from ¤¤¤ at all times to avoid repeating the security breach that occurred", "Locals report sightings of ¤¤¤", "Subject ¤¤¤ transported", "A number of ¤¤¤ were sighted", "Subject ¤¤¤ has been predicted to have been", "Retrieving supplies", "Accidental destruction of all subjects", "Retrieval of artifact ¤¤¤", "Sightings of artifact ¤¤¤", "Subject ¤¤¤ tried to merge with ¤¤¤", "Subject ¤¤¤ sighted with artifact ¤¤¤", "Experimentation done on ¤¤¤", "Research ongoing on ¤¤¤", "True nature of ¤¤¤ revealed", "Gate to ¤¤¤ opened", "Portal to ¤¤¤ closed", "Relations friendly with ¤¤¤", "Relations hostile with ¤¤¤", "A team has been sent to investigate ¤¤¤", "No news from the team sent to", "Mission ¤¤¤ presumed to have been a failure; no further teams should be sent", "Met with subject ¤¤¤", "Artifact ¤¤¤ damaged but not destroyed", "Artifact ¤¤¤ suspected to have been destroyed", "Subject ¤¤¤ presumed dead", "Subject ¤¤¤ unfortunately still alive", "Phenomenons possibly caused by ¤¤¤ spotted", "Phenomenons matching ¤¤¤'s behavior have been observed", "Discussions on the whereabouts of ¤¤¤ took place", "Subject ¤¤¤ travelled from ¤¤¤ to ¤¤¤", "Subject ¤¤¤ sighted shape-shifting from a ¤¤¤ to a ¤¤¤", "Subject ¤¤¤ started duplicating", "Subject ¤¤¤ resumed duplicating", "Subject ¤¤¤ will have/has started to ¤¤¤", "Collision event between ¤¤¤ and ¤¤¤", "Evidence of ¤¤¤"], [" "], ["in sector", "in zone", "in secured location", "in facility", "near site"], [" "], ["X", "Z", "A", "B", "L", "S", "T"], ["-"], ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "", ""], ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "", ""], ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"], [" "], ["on ¤¤/¤¤/¤¤¤¤", "the day preceding ¤¤¤", "following the ¤¤¤", "in the hours leading to the ¤¤¤ event", "in the hours following the ¤¤¤ event", "directly after ¤¤¤", "during the ¤¤¤ event"], ["; all researchers involved terminated", "; all personnel involved terminated", "; casualties estimated high to very high", "; no casualties reported", "; proper measures have been triggered", "; more research is necessary", "; further testing still needed", "; casualties include half the local population", "; casualties include all local wildlife", ". Once again, do not, I repeat DO NOT ¤¤¤", ". Do not, under any circumstances, attempt to ¤¤¤", "; locals have been terminated", "; locals have no memory of the event", "; consequences of the event have been dealt with", "", "", "", "", "", ""], ["."]]);
@@ -701,7 +762,9 @@ new Thing("stone",[,
     ]);
 new Thing("concrete",[,
     RockFactory.one(),
-    "cement", "water"]);
+    "cement",
+    WaterFactory.one(),
+]);
 new Thing("cement",["calcium"]);
 new Thing("marble",["calcium"]);
 new Thing("door",["wood frame", "glass,10%"]);
@@ -723,7 +786,9 @@ new Thing("fridge content",["roast,15%", "pasta,40%", "pasta,10%", "can,15%", "d
 new Thing("oven",[["pie", "cake", "roast", "", ""], "plastic", "metal grill,1-3", "electronics"]);
 new Thing("kitchen sink",[".sink"]);
 new Thing("sink",[["porcelain", "metal"], "organic matter,5%", "pipes"]);
-new Thing("toilet",["water", "organic matter,15%", "pasta,0.1%", "porcelain", "pipes"]);
+new Thing("toilet",[
+    WaterFactory.one(),
+    "organic matter,15%", "pasta,0.1%", "porcelain", "pipes"]);
 new Thing("pipes",["metal", "dirt"]);
 new Thing("nails",["iron"]);
 new Thing("metal",["iron"]);
@@ -846,12 +911,20 @@ new Thing("label",["paper"]);
 new Thing("milk bottle",[".bottle", "milk"]);
 new Thing("wine bottle",[".bottle", "wine"]);
 new Thing("wine",["sugar", "alcohol"]);
-new Thing("water bottle",[".bottle", "water"]);
+new Thing("water bottle",[".bottle",
+    WaterFactory.one(),
+]);
 new Thing("juice bottle",[".bottle", "juice"]);
 new Thing("soda bottle",[".bottle", "soda"]);
-new Thing("juice",["water", "sugar"],[["apple", "pear", "banana", "tomato", "pineapple", "pumpkin", "carrot", "grape", "orange", "papaya", "kiwi", "mango"], [" juice", " juice", " juice", " smoothie"]]);
-new Thing("soda",["water", "sugar"],[["apple", "pineapple", "grape", "orange", "purple", "brown"], [" soda"]]);
-new Thing("can",["water", "sugar",
+new Thing("juice",[
+    WaterFactory.one(),
+    "sugar"],[["apple", "pear", "banana", "tomato", "pineapple", "pumpkin", "carrot", "grape", "orange", "papaya", "kiwi", "mango"], [" juice", " juice", " juice", " smoothie"]]);
+new Thing("soda",[
+    WaterFactory.one(),
+    "sugar"],[["apple", "pineapple", "grape", "orange", "purple", "brown"], [" soda"]]);
+new Thing("can",[
+    WaterFactory.one(),
+    "sugar",
     SaltFactory.one(),
     "mold,3%", "metal"],[["canned "], ["apple bits", "pear bits", "tomatoes", "pineapple", "pumpkin", "carrots", "meat", "pork", "beef", "peas", "mushrooms", "olives", "fish", "burger", "corn"]]);
 new Thing("cookie box",["sugar",
@@ -859,7 +932,9 @@ new Thing("cookie box",["sugar",
     "mold,3%", "cardboard"],[["box of "], ["cheesy", "cheese", "sugar", "cream", "milk", "milky", "whole-grain", "frosted", "glazed", "apple", "nut", "fruit", "chocolate", "butter", "oat", "wheat", "corn", "animal-shaped", "meat", "crunchy", "crispy"], [" "], ["puffs", "poofs", "cookies", "biscuits", "rolls", "pops", "snacks", "crackers", "cereals", "pies", "tarts"]]);
 new Thing("yeast",[".cell"]);
 new Thing("yoghurt",["milk", "sugar", "yeast"],[["strawberry", "vanilla", "cherry", "pear", "plain"], [" yoghurt"]]);
-new Thing("ice cream",["milk", "sugar", "ice"],[["strawberry", "vanilla", "cherry", "chocolate"], [" ice cream"]]);
+new Thing("ice cream",["milk", "sugar",
+    IceFactory.one(),
+],[["strawberry", "vanilla", "cherry", "chocolate"], [" ice cream"]]);
 new Thing("cheese",["milk", "yeast", "mold,30%"],[["roquefort", "cheddar", "gouda", "edam", "colby", "mozarella", "processed cheese", "stilton", "goat cheese", "gorgonzola", "brie", "camembert"]]);
 new Thing("roast",[".meat", "spices"],[["chicken", "beef", "pork", "duck", "mutton"], [" roast"]]);
 new Thing("spices",[".organic matter"],[["pepper", "garlic", "onions", "rosemary", "sage", "thyme"]]);
@@ -973,7 +1048,9 @@ new Thing("medieval capital",["castle", "townwall", "medieval monument,70%", "me
 new Thing("castle",["medieval peasant,1-4", "medieval noble,0-2", "medieval guard,2-8", "castle keep", "giant monster cage,1%", "watchtower,1-6", "medieval temple,30%", "medieval inn,40%", "medieval house,1-4", "medieval monument,70%", "medieval monument,20%", "moat,30%", "gatehouse", "medieval wall"]);
 new Thing("gatehouse",["medieval guard,1-3", "portcullis,1-2", "wood", "medieval wall"]);
 new Thing("portcullis",["wood", "metal"]);
-new Thing("moat",["water,50%", "dirt"]);
+new Thing("moat",[
+    WaterFactory.probable(50),
+    "dirt"]);
 new Thing("medieval monument",[["stone", "marble"]],["fountain", "memorial", "statue", "well", "altar"]);
 new Thing("townwall",["medieval guard,1-8", "watchtower,1-6", "medieval wall"]);
 new Thing("watchtower",["medieval guard,1-2", "medieval chest,30%", ".medieval building"]);
@@ -992,7 +1069,10 @@ new Thing("medieval bedroom",["medieval peasant,0-2", "medieval bed", "medieval 
 new Thing("medieval pantry",["medieval peasant,10%", "medieval meat,0-4", "sack of medieval food,0-8", "medieval food,0-8", "sack of grain,0-6", "ale keg,0-3", "medieval chest,0-2", "medieval clutter,0-2", "insect,0-4", ".medieval room"],"pantry");
 new Thing("noble medieval living quarters",["wizard,10%", "medieval noble,0-4", "medieval servant,0-3", "medieval pantry,0-2", "medieval table", "medieval table,60%", "medieval chair,1-8", "medieval chest,1-4", "medieval clutter,0-4", "medieval meat,30%", "sack of medieval food,0-2", "medieval food,0-2", "sack of grain,50%", "medieval fireplace", "medieval fireplace,50%", "dog,60%", "dog,30%", "cat,30%", ".medieval room"],"living quarters");
 new Thing("noble medieval bedroom",["medieval noble,0-2", "medieval servant,0-2", "medieval bed", "medieval bed,20%", "medieval table,50%", "medieval chair,0-4", "medieval chest,1-3", "medieval clutter,0-3", "medieval fireplace,80%", "dog,10%", "dog,10%", "cat,20%", ".medieval room"],"bedroom");
-new Thing("medieval fireplace",["fire", "ash", "wood", "stone"],"fireplace");
+new Thing("medieval fireplace",[
+    FireFactory.one(),
+    AshFactory.one(),
+    "wood", "stone"],"fireplace");
 new Thing("medieval temple",["medieval priest,1-3", "medieval noble,0-2", "medieval peasant,0-4", "medieval altar,1-2", "medieval table,70%", "medieval bench,2-6", "medieval chair,1-3", "medieval chest,1-4", "medieval clutter,0-4", "medieval fireplace,20%", ".medieval room"],[["temple of the", "church of the", "chapel of the", "house of the", "abbey of the", "cathedral of the", "shrine of the", "sanctuary of the", "priory of the"], [" "], ["blinding", "sacred", "holy", "unholy", "bloody", "cursed", "marvellous", "wondrous", "pious", "miraculous", "endless", "unending", "undying", "infinite", "unworldly", "worldly", "divine", "demonic", "ghostly", "monstrous", "tentacled", "all-knowing", "rational", "pretty good", "vengeful", "hallowed"], [" "], ["light", "star", "beam", "sphere", "goddess", "god", "lords", "sisterhood", "brotherhood", "skies", "pact", "sect", "harmony", "discord", "child", "entity", "ghost", "builders", "makers", "guide", "wit", "story", "tale", "unicorn", "flame", "fountain", "locust", "squid", "gembaby", "father", "mother"]]);
 new Thing("giant monster cage",[["dragon", "sea monster"]],"giant cage");
 
@@ -1030,7 +1110,9 @@ new Thing("unusual stone",[
 new Thing("unusual ingredient",["organic matter"],["dragon tooth", "dragon claw", "dragon scale", "unicorn horn", "goblin mucus", "giant snail shell", "troll blood clot", "imp nose", "fairy fingers", "pixie wings", "demon tail", "behemoth plate", "mindsucker lips", "slime porridge", "ladyfly ocella", "spider silk", "gold cocoon", "silver chrysalis", "oaf bladder", "angel larva", "sugarfey fudge", "whale blubber", "mummified gembaby", "basilisk feather", "mage fingernails", "screamfiber", "brainpod", "footface nipple", "cephalite eyelashes"]);
 new Thing("unusual plant",["plant cell"],["mandrake", "myrrh", "vervain", "lotus", "pomegranate", "myrtle", "blackroot", "silkbean", "drypod", "pigweed", "thistle", "marigold", "mistletoe", "spearmint", "mugwort", "aconite", "aloe", "amaranth", "anise", "belladonna", "bergamot", "bladderwrack", "cloves", "clover", "comphrey", "dragonblood", "eucalyptus", "incense", "garlic", "ginger", "ginseng", "hemlock", "holly", "honeysuckle", "licorice", "jasmine", "juniper", "nutmeg", "oakmoss", "orchid", "rue", "saffron", "sage", "vetivert", "wormwood", "witchgrass", "agaric", "bolete"]);
 //http://www.janih.com/lady/herbs/magick/
-new Thing("potion",["organic matter", "water", ["glass bottle", "glass jar"]],[["stamina", "health", "beauty", "endurance", "strength", "energy", "lover's", "blacksmith's", "cook's", "queen's", "growth", "witch's", "hunter's", "brawler's", "knight's", "cobbler's", "clarity", "perception", "nimbleness", "quickness", "squire's", "unicorn's", "bear's", "shark's", "moon's", "lady's", "soldier's", "wizard's", "rest", "sleep", "paralysis", "stone", "shimmer", "oil", "eloquence", "speech", "bird's", "vapor", "void"], [" "], ["poultice", "salve", "potion", "elixir", "poison", "philter", "draught", "brew", "remedy", "balm", "infusion", "tincture", "decoction", "ointment", "cordial", "tonic"]]);
+new Thing("potion",["organic matter",
+    WaterFactory.one(),
+    ["glass bottle", "glass jar"]],[["stamina", "health", "beauty", "endurance", "strength", "energy", "lover's", "blacksmith's", "cook's", "queen's", "growth", "witch's", "hunter's", "brawler's", "knight's", "cobbler's", "clarity", "perception", "nimbleness", "quickness", "squire's", "unicorn's", "bear's", "shark's", "moon's", "lady's", "soldier's", "wizard's", "rest", "sleep", "paralysis", "stone", "shimmer", "oil", "eloquence", "speech", "bird's", "vapor", "void"], [" "], ["poultice", "salve", "potion", "elixir", "poison", "philter", "draught", "brew", "remedy", "balm", "infusion", "tincture", "decoction", "ointment", "cordial", "tonic"]]);
 new Thing("pile of treasure",["treasure,1-4", "gold coin,5-20"]);
 new Thing("treasure",["unusual stone,20%", "gold"],[["golden", "gemmed", "ornate", "magic", "cursed", "blessed", "enchanted", "ancestral", "holy", "royal", "diamond"], [" "], ["goblet", "cup", "ring", "necklace", "medallion", "locket", "sword", "mirror", "shield", "crown", "trinket", "scepter", "tiara", "casket", "helm", "figurine", "egg", "knife", "arrow", "wand"]]);
 
@@ -1099,7 +1181,9 @@ new Thing("nanopipe",[".nanostuff"]);
 new Thing("nanocarpet",[".nanostuff"]);
 new Thing("nanobookshelf",["book,2-20", "nanoplasm"]);
 new Thing("nanocupboard",["future outfit,0-6", "future hat,0-4", "nanoplasm"]);
-new Thing("future bathroom stuff",["water", "nanoplasm", "nanopipe,1-2"],["bathtub", "toilet", "sink", "shower", "scrubber", "steamomatic", "steamheater"]);
+new Thing("future bathroom stuff",[
+    WaterFactory.one(),
+    "nanoplasm", "nanopipe,1-2"],["bathtub", "toilet", "sink", "shower", "scrubber", "steamomatic", "steamheater"]);
 new Thing("future living-room stuff",["nanoplasm"],["chair", "armchair", "couch", "table", "shelf", "lamp", "endtable"]);
 new Thing("future bedroom stuff",["nanoplasm"],["bed", "chair", "desk", "lamp", "endtable"]);
 new Thing("future decoration stuff",["nanoplasm"],["potted plant", "rug", "statue", "lamp", "glowlamp", "ceiling lamp"]);
@@ -1137,7 +1221,9 @@ new Thing("caveman settlement",["ancient person,1-8", "ancient tent,2-6", "wall 
 new Thing("ancient tent",["ancient person,0-3", "campfire,10%", "ancient meat rack,20%", "ancient meat rack,20%", "ceremonial headdress,2%", "fur coat,10%", "fur coat,10%", "fur boots,10%", "fur boots,10%", "decorative bone,20%", "decorative bone,10%", "ancient clutter pile,30%", "ancient clutter pile,30%", "bone heap,5%", "leather"],["tent"]);
 new Thing("ancient clutter pile",["leather,80%", "fur,80%", "bone,80%", "wood,80%", "stone"],["a pile of discarded tools", "a pile of stone tools", "a pile of broken spears", "a pile of unfinished spears", "a pile of harpoons", "a pile of discarded bones", "a pile of miscellaneous rock tools", "a pile of dry furs", "a pile of smooth rocks", "a pile of firewood", "a pile of sticks", "a pile of stone figurines"]);
 new Thing("bone heap",["bone,5-20"]);
-new Thing("campfire",["fire", "wood", "stone"]);
+new Thing("campfire",[
+    FireFactory.one(),
+    "wood", "stone"]);
 new Thing("ancient meat rack",["meat,1-4", "wood"],[["mammoth", "saber-toothed cat", "mountain lion", "wooly rhinoceros", "wolf", "auroch", "rabbit"], [" meat rack"]]);
 new Thing("wall painting",["pigment"],[["Wall painting ("], ["humans", "wild beasts", "rabbits", "spirits", "aurochs", "bears", "monsters", "mountain lions", "saber-toothed cats", "wolves", "mammoths", "old gods"], [" "], ["being chased by", "hunting", "running with", "killing", "maiming", "eating"], [" "], ["humans", "wild beasts", "rabbits", "spirits", "aurochs", "bears", "monsters", "mountain lions", "saber-toothed cats", "wolves", "mammoths", "old gods"], [")"]]);
 new Thing("pigment",["organic matter"]);

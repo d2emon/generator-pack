@@ -13,7 +13,9 @@ new Thing("vegetable pile",["plant cell","insect,10%"],[["a pile of "],["potatoe
 new Thing("pet shop",["pet container,2-12","bird cage,1-6","vivarium,1-6","aquarium,1-6",".shop"],[["Pet","Cute","Adopt","Ani","Anima","World","Care","Woof","Meow","Purr"],["woof","meow","purr","dogz","catz","nimals","friends"]]);
 new Thing("pet container",[["dog,1-4","cat,1-4"],"plastic"],["pet cage","pet box"]);
 new Thing("vivarium",[["reptile,1-4","amphibian,1-4","insect,1-4"],"plastic","glass","dirt"]);
-new Thing("aquarium",[["fish,1-6","cnidaria,1-4","mollusk,1-4","crustacean,1-4"],["fish,50%","cnidaria,50%","mollusk,50%","crustacean,50%"],"plankton,0-3","plastic","glass","water"]);
+new Thing("aquarium",[["fish,1-6","cnidaria,1-4","mollusk,1-4","crustacean,1-4"],["fish,50%","cnidaria,50%","mollusk,50%","crustacean,50%"],"plankton,0-3","plastic","glass",
+    WaterFactory.one(),
+]);
 new Thing("bird cage",["bird","plastic","metal"]);
 new Thing("toy shop",["toy box,2-12","video game console,40%","video game console,20%",".shop"],[["Toy","Play","Kidz","Yay","Magi","Super","Cosmo"],["time","pretend","play","toyz","dolls","blocks","stuff","fun"]]);
 new Thing("toy box",["office toy,20%","office toy,20%","toy,0-8","doll,0-4"]);

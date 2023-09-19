@@ -7,7 +7,9 @@ new Thing("fridge content",["roast,15%","pasta,40%","pasta,10%","can,15%","donut
 new Thing("oven",[["pie","cake","roast","",""],"plastic","metal grill,1-3","electronics"]);
 new Thing("kitchen sink",[".sink"]);
 new Thing("sink",[["porcelain","metal"],"organic matter,5%","pipes"]);
-new Thing("toilet",["water","organic matter,15%","pasta,0.1%","porcelain","pipes"]);
+new Thing("toilet",[
+    WaterFactory.one(),
+    "organic matter,15%","pasta,0.1%","porcelain","pipes"]);
 new Thing("pipes",["metal","dirt"]);
 new Thing("nails",["iron"]);
 new Thing("metal",["iron"]);

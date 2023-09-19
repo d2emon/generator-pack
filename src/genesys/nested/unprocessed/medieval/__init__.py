@@ -89,7 +89,7 @@ class MedievalCapital(City):
 # new Thing("castle",["medieval peasant,1-4","medieval noble,0-2","medieval guard,2-8","castle keep","giant monster cage,1%","watchtower,1-6","medieval temple,30%","medieval inn,40%","medieval house,1-4","medieval monument,70%","medieval monument,20%","moat,30%","gatehouse","medieval wall"]);
 # new Thing("gatehouse",["medieval guard,1-3","portcullis,1-2","wood","medieval wall"]);
 # new Thing("portcullis",["wood","metal"]);
-# new Thing("moat",["water,50%","dirt"]);
+# new Thing("moat",[WaterFactory.probable(50), "dirt"]);
 # new Thing("medieval monument",[["stone","marble"]],["fountain","memorial","statue","well","altar"]);
 # new Thing("townwall",["medieval guard,1-8","watchtower,1-6","medieval wall"]);
 # new Thing("watchtower",["medieval guard,1-2","medieval chest,30%",".medieval building"]);
@@ -193,7 +193,7 @@ class MedievalBedroom(MedievalRoom):
 # new Thing("medieval pantry",["medieval peasant,10%","medieval meat,0-4","sack of medieval food,0-8","medieval food,0-8","sack of grain,0-6","ale keg,0-3","medieval chest,0-2","medieval clutter,0-2","insect,0-4",".medieval room"],"pantry");
 # new Thing("noble medieval living quarters",["wizard,10%","medieval noble,0-4","medieval servant,0-3","medieval pantry,0-2","medieval table","medieval table,60%","medieval chair,1-8","medieval chest,1-4","medieval clutter,0-4","medieval meat,30%","sack of medieval food,0-2","medieval food,0-2","sack of grain,50%","medieval fireplace","medieval fireplace,50%","dog,60%","dog,30%","cat,30%",".medieval room"],"living quarters");
 # new Thing("noble medieval bedroom",["medieval noble,0-2","medieval servant,0-2","medieval bed","medieval bed,20%","medieval table,50%","medieval chair,0-4","medieval chest,1-3","medieval clutter,0-3","medieval fireplace,80%","dog,10%","dog,10%","cat,20%",".medieval room"],"bedroom");
-# new Thing("medieval fireplace",["fire","ash","wood","stone"],"fireplace");
+# new Thing("medieval fireplace",[FireFactory.one(), AshFactory.one(),"wood","stone"],"fireplace");
 # new Thing("medieval temple",["medieval priest,1-3","medieval noble,0-2","medieval peasant,0-4","medieval altar,1-2","medieval table,70%","medieval bench,2-6","medieval chair,1-3","medieval chest,1-4","medieval clutter,0-4","medieval fireplace,20%",".medieval room"],[["temple of the","church of the","chapel of the","house of the","abbey of the","cathedral of the","shrine of the","sanctuary of the","priory of the"],[" "],["blinding","sacred","holy","unholy","bloody","cursed","marvellous","wondrous","pious","miraculous","endless","unending","undying","infinite","unworldly","worldly","divine","demonic","ghostly","monstrous","tentacled","all-knowing","rational","pretty good","vengeful","hallowed"],[" "],["light","star","beam","sphere","goddess","god","lords","sisterhood","brotherhood","skies","pact","sect","harmony","discord","child","entity","ghost","builders","makers","guide","wit","story","tale","unicorn","flame","fountain","locust","squid","gembaby","father","mother"]]);
 # new Thing("giant monster cage",[["dragon","sea monster"]],"giant cage");
 

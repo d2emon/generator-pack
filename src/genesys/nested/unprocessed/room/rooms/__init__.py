@@ -9,7 +9,9 @@ new Thing("wall",[["plaster","wood"],"dirt,5%"]);
 new Thing("plaster",["calcium","sulfur"]);
 new Thing("marble",["calcium"]);
 new Thing("stone",["rock"]);
-new Thing("concrete",["rock","cement","water"]);
+new Thing("concrete",["rock","cement",
+    WaterFactory.one(),
+]);
 new Thing("cement",["calcium"]);
 new Thing("marble",["calcium"]);
 new Thing("door",["wood frame","glass,10%"]);

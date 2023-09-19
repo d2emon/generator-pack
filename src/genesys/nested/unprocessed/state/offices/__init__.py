@@ -12,5 +12,7 @@ new Thing("office toy",["plastic","metal"],["colorcube","colorsnake","snowglobe"
 new Thing("panel",["plastic"]);
 new Thing("calendar",["paper","ink"],[["calendar ("],["firemen","sexy athletes","half-naked ladies","kittens","puppies","ducklings","flowery nature","tourism","sharks","inspirational quotes","famous people","bears","funny cartoons","popular TV show characters","mayan","haikus","1-word-a-day"],[")"]]);
 new Thing("nameplate",[["plastic","wood","metal"]]);
-new Thing("water cooler",["plastic","water","push-button"]);
+new Thing("water cooler",["plastic",
+    WaterFactory.one(),
+    "push-button"]);
 """

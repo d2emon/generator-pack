@@ -213,7 +213,7 @@ new Thing("barren planet",[
     ##Continent##
     "rock",
     ##Ocean##
-    "ice,50%",
+    IceFactory.probable(50),
     ##Sky##
     ##Moon##
     ##Planet##
@@ -226,7 +226,7 @@ new Thing("visitor planet",[
     ##Continent##
     "rock",
     ##Ocean##
-    "ice,50%",
+    IceFactory.probable(50),
     ##Sky##
     ##Moon##
     ##Planet##

@@ -26,10 +26,12 @@ new Thing("star",["ghost,0.1%", "space monster,0.2%", "hydrogen", "helium"],[["w
 new Thing("planet",[".terraformed planet"],"telluric planet");
 new Thing("barren planet",["galactic life,10%",
     RockFactory.one(),
-    "ice,50%", ".planet composition"],"telluric planet");
+    IceFactory.probable(50),
+    ".planet composition"],"telluric planet");
 new Thing("visitor planet",["visitor city,1-8", "visitor installation,2-6", "galactic life",
     RockFactory.one(),
-    "ice,50%", ".planet composition"],"telluric planet");
+    IceFactory.probable(50),
+    ".planet composition"],"telluric planet");
 new Thing("future planet",["future continent,2-7", "ocean,1-7", "future sky", ".future moon,30%", ".planet composition"],"telluric planet");
 new Thing("terraformed planet",["continent,2-7", "ocean,1-7", "terraformed sky", ".terraformed moon,30%", ".planet composition"],"telluric planet");
 new Thing("medieval planet",["medieval continent,2-4", "ancient continent,0-3", "ocean,1-7", "sky", ".planet composition"],"telluric planet");
@@ -43,7 +45,8 @@ new Thing("asteroid belt",["galactic life,20%", "asteroid,10-30"]);
 new Thing("earth",[".asteroid belt"],"Earth");
 new Thing("asteroid",["space animal,0.5%",
     RockFactory.one(),
-    "ice,30%"],"asteroid");
+    IceFactory.probable(30),
+    ],"asteroid");
 new Thing("gas giant",["gas giant atmosphere", "planet core,50%", "moon,0-3", "terraformed moon,20%", "terraformed moon,10%"]);
 new Thing("gas giant atmosphere",["galactic life,10%", "helium", "hydrogen",
     WaterFactory.one().probable(50),
