@@ -8,14 +8,17 @@ class QwubbleFactory(Factory):
     def children(self):
         from ..universe import MultiverseFactory
 
-        yield from MultiverseFactory().multiple(1, 5)
+        yield from MultiverseFactory.multiple(1, 5)
+
+
+# Quarks
 
 
 class QuarkFactory(Factory):
     model = materials.Quark
 
     def children(self):
-        yield QwubbleFactory()
+        yield QwubbleFactory.one()
 
 
 class UpQuarkFactory(QuarkFactory):
@@ -30,15 +33,17 @@ class ElectronFactory(QuarkFactory):
     model = materials.Electron
 
 
+# Particles
+
+
 class ParticleFactory(Factory):
-    # TODO: Refactor it
     model = materials.Particle
     up_quarks = 1
     down_quarks = 1
 
     def children(self):
-        yield from UpQuarkFactory().multiple(self.up_quarks)
-        yield from DownQuarkFactory().multiple(self.down_quarks)
+        yield from UpQuarkFactory.multiple(self.up_quarks)
+        yield from DownQuarkFactory.multiple(self.down_quarks)
 
 
 class ProtonFactory(ParticleFactory):

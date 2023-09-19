@@ -3,8 +3,7 @@ Basic materials and particles
 (these are very rough simplifications, don't hold all the inaccuracies against me)
 """
 
-from .particles import ParticleFactory, ProtonFactory, NeutronFactory, QuarkFactory, UpQuarkFactory, DownQuarkFactory, \
-    ElectronFactory, QwubbleFactory
+from .particles import DownQuarkFactory, ElectronFactory, NeutronFactory, ProtonFactory, QwubbleFactory, UpQuarkFactory
 from .elements import AtomFactory, MoleculeFactory, ELEMENTS
 from .metal import IronFactory, SteelFactory
 from .minerals import CarbonFactory, DiamondFactory, MagmaFactory, RockFactory, SilicaFactory
