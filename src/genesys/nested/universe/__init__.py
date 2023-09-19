@@ -7,12 +7,12 @@ from factories.thing.nested_factory import NestedFactory
 from models import universe
 from utils.nested import select_item
 from .data_provider import PROVIDER
-from .orbit import AsteroidBeltFactory, EarthFactory
+from .planet.core import PlanetCoreFactory
+from .planet.body import AsteroidFactory, MoonFactory, PlanetFactory, TerraformedMoonFactory
+from .planet.gas_giant import GasGiantFactory, GasGiantAtmosphereFactory
 from .planet import AncientPlanetFactory, BarrenPlanetFactory, DefaultPlanetFactory, FuturePlanetFactory, MedievalPlanetFactory, \
     TerraformedPlanetFactory, VisitorPlanetFactory
-from .planet.body import AsteroidFactory, MoonFactory, PlanetFactory, TerraformedMoonFactory
-from .planet.core import PlanetCoreFactory
-from .planet.gas_giant import GasGiantFactory, GasGiantAtmosphereFactory
+from .orbit import AsteroidBeltFactory, EarthFactory
 from .star import DysonSphereFactory, StarFactory, StarSystemFactory
 from .nebula import InterstellarCloudFactory, NebulaFactory
 from .galaxy import GalaxyFactory, GalaxyArmFactory, GalaxyCenterFactory
