@@ -11,7 +11,9 @@ new Thing("knife",["steel","blood,10%"]);
 new Thing("wound",["blood","worm,5%"],"wound");
 new Thing("ammo pack",["bullet,0-20",["metal","plastic"]]);
 new Thing("grenade",["iron","TNT",["metal","plastic"]]);
-new Thing("TNT",["carbon","hydrogen","oxygen","nitrogen"],"TNT");
+new Thing("TNT",["carbon",
+    element_factory['H'].one(),
+    "oxygen","nitrogen"],"TNT");
 new Thing("gas mask",["metal","polymers","cloth"]);
 new Thing("bullet wound",["blood","worm,5%","bullet,50%","bullet,30%","bullet,10%","bullet,2%"],"wound");
 """

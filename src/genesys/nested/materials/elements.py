@@ -4,6 +4,7 @@ from .particles import ProtonFactory, NeutronFactory, ElectronFactory
 
 
 class NucleusFactory(Factory):
+    # TODO: Refactor it
     default_model = materials.Nucleus
 
     def __init__(
@@ -23,7 +24,8 @@ class NucleusFactory(Factory):
 
 
 class AtomFactory(Factory):
-    default_model = materials.Atom
+    # TODO: Refactor it
+    model = materials.Atom
     protons = 1
     neutrons = 1
     electrons = 1
@@ -42,7 +44,6 @@ class HydrogenAtomFactory(AtomFactory):
 
 def element_factory(name, factory=AtomFactory):
     class ElementFactory(factory):
-        model_class = materials.Atom
         default_name = name
 
     return ElementFactory

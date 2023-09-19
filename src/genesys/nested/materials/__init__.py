@@ -18,9 +18,9 @@ Basic materials and particles
 .water.Snowflakes
 .minerals.Ammonia
 .organics.Methane
+.elements.element_factories[H]
+.elements.HydrogenAtom
 
-new Thing("hydrogen",[".hydrogen atom"]);
-new Thing("hydrogen atom",["proton", "electron"],["atoms"]);
 new Thing("plastic",["polymers"]);
 new Thing("rubber",["polymers"]);
 new Thing("polymers",[".glucids"]);
@@ -46,7 +46,9 @@ new Thing("phosphorus",[".atom"]);
 //alright, I'm not doing the whole periodic table.
 new Thing("proteins",[".molecule"]);
 new Thing("lipids",[".molecule"]);
-new Thing("glucids",["carbon", "hydrogen", "oxygen"],"glucose");
+new Thing("glucids",["carbon",
+    element_factory['H'].one(),
+    "oxygen"],"glucose");
 new Thing("organic matter",[["proteins", "lipids", "glucids"], ["proteins", "lipids", "glucids", ""], SaltFactory.one().probable(30)]);
 new Thing("atom",["proton", "neutron", "electron"],["atoms"]);
 new Thing("molecule",["atom"],["molecules"]);
@@ -59,7 +61,6 @@ new Thing("qwubble",["multiverse,1-5"]);
 new Thing("portal",["universe"]);
 """
 
-# elements
 # matter
 # particles
 # portal
@@ -94,11 +95,11 @@ FACTORIES = {
     'ice': IceFactory,
     'snow': SnowFactory,
     'snowflakes': SnowflakesFactory,
-    'ammonia': AmmoniaFactory(),
-    'methane': MethaneFactory(),
+    'ammonia': AmmoniaFactory,
+    'methane': MethaneFactory,
+    'hydrogen': element_factories['H'],
+    'hydrogen atom': HydrogenAtomFactory,
     ####
-    'hydrogen': element_factories['H'](),
-    'hydrogen atom': HydrogenAtomFactory(),
     'plastic': PlasticFactory(),
     'rubber': RubberFactory(),
     'polymers': PolymersFactory(),
