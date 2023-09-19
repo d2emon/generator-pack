@@ -3,19 +3,18 @@ Basic materials and particles
 (these are very rough simplifications, don't hold all the inaccuracies against me)
 """
 
-from .elements import AtomFactory, MoleculeFactory, ELEMENTS
-from .fire import FireFactory, AshFactory
-from .metal import SteelFactory, IronFactory
-from .minerals import AmmoniaMoleculeFactory, AmmoniaFactory, SilicaFactory, SaltFactory, RockFactory, DiamondFactory, \
-    MagmaFactory, CarbonFactory
-from .organics import OrganicMoleculeFactory, MethaneFactory, ChitinFactory, ProteinsFactory, LipidsFactory,\
-    GlucidsFactory, AlcoholFactory, PolymersFactory, OrganicFactory, OilFactory, PolymericFactory, PlasticFactory, \
-    RubberFactory, KeratinFactory, SweatFactory
 from .particles import ParticleFactory, ProtonFactory, NeutronFactory, QuarkFactory, UpQuarkFactory, DownQuarkFactory, \
     ElectronFactory, QwubbleFactory
-from .portal import PortalFactory
+from .elements import AtomFactory, MoleculeFactory, ELEMENTS
+from .metal import IronFactory, SteelFactory
+from .minerals import CarbonFactory, DiamondFactory, MagmaFactory, RockFactory, SilicaFactory
 from .water import WaterMoleculeFactory, WaterFactory, SteamFactory, DewFactory, IceFactory, SnowflakesFactory, \
     SnowFactory
+from .organics import AmmoniaFactory, AlcoholFactory, ChitinFactory, GlucidsFactory, LipidsFactory, MethaneFactory, OilFactory, \
+    OrganicFactory, PlasticFactory, PolymersFactory, ProteinsFactory, RubberFactory, SaltFactory
+    # KeratinFactory, SweatFactory
+from .fire import AshFactory, FireFactory
+from .portal import PortalFactory
 
 
 FACTORIES = {

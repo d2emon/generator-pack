@@ -1,10 +1,9 @@
-from models.v5 import materials
 from factories.thing.nested_factory import NestedFactory as Factory
+from models.v5 import materials
 from .elements import MoleculeFactory
 
 
-class AmmoniaMoleculeFactory(MoleculeFactory):
-    contents = 'N', 'H'
+# Molecules
 
 
 class SilicaFactory(MoleculeFactory):
@@ -12,16 +11,7 @@ class SilicaFactory(MoleculeFactory):
     contents = 'Si', 'O'
 
 
-class SaltFactory(MoleculeFactory):
-    model = materials.Salt
-    contents = 'Na', 'Cl'
-
-
-class AmmoniaFactory(Factory):
-    model = materials.Ammonia
-
-    def children(self):
-        yield AmmoniaMoleculeFactory()
+# Rocks
 
 
 class RockFactory(Factory):

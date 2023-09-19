@@ -66,7 +66,7 @@ class AtomFactory(Factory):
 
 
 class MoleculeFactory(Factory):
-    contents = []  # 'N', 'H'
+    contents = []
     model = materials.Molecule
 
     @classmethod
