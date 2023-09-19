@@ -19,8 +19,12 @@ new Thing("visitor head",["visitor mouth","eye,0-4","skull"],"head");
 new Thing("visitor eye",["eye flesh","visitor ooze,20%"],"eye");
 new Thing("nose",["nostril,2",".body part"],"nose");
 new Thing("visitor mouth",["visitor teeth","tongue,2","visitor ooze"],"mouth");
-new Thing("visitor teeth",["steel"],"teeth");
-new Thing("visitor ooze",["bacteria,40%","organic matter","sulfur"],"ooze");
+new Thing("visitor teeth",[
+    SteelFactory.one(),
+],"teeth");
+new Thing("visitor ooze",["bacteria,40%","organic matter",
+    element_factories['S'].one(),
+],"ooze");
 
 new Thing("visitor psyche",["visitor thoughts","visitor memories"],"psyche");
 new Thing("visitor thoughts",["visitor thought,1-3"],"thoughts");

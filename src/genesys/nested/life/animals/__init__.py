@@ -140,7 +140,9 @@ new Thing("bird thought",[],["caw","caw caw",":V",":V caw","you think i care","y
 new Thing("poultry thoughts",["poultry thought,1-2"],["thoughts"]);
 new Thing("poultry thought",[],["cluck","bwucluck",":U",":U cluck","i'm gonna strut around a bit while bobbing my head like that","i got weird feet why","you think i care","like for real","yeah bring it","come say that to my face","why do i poop on my feet","oh my god i have the best voice","i'm like super-good at songs okay","let me sing you something plz","so yeah","i am bird hi","this is most fowl","yeah i got laid when i was born, what now gurl","what now","that's not what your mom said last night","yes that's right","yes indeed","see what happens","oh god what happen","riveting","aw yiss","bred crums yisss","i am the birdest","bird and bird accessories","hey have you heard","turns out i'm the word"]);
 new Thing("bird egg",["egg thoughts","egg shell","soft flesh","organic matter"],"egg");
-new Thing("egg shell",["calcium"],"shell");
+new Thing("egg shell",[
+    element_factories['Ca'].one(),
+],"shell");
 new Thing("egg thoughts",["egg thought"],"thought");
 new Thing("egg thought",[],[["...","...","...","...","I...","the...","a...","ah..."]]);
 

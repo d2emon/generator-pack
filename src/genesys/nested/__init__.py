@@ -17,17 +17,23 @@ new Thing("galaxy",["galaxy center", "galaxy arm,2-6"]);
 new Thing("galaxy arm",["galactic life,5%", "dyson sphere,4%", "dyson sphere,2%", "star system,20-50", "nebula,0-12", "black hole,20%", "black hole,20%"],"arm");
 new Thing("galaxy center",["black hole", "galactic life,10%", "dyson sphere,4%", "dyson sphere,2%", "star system,20-50", "nebula,0-12"],"galactic center");
 new Thing("nebula",["galactic life,15%", "star,2%", "star,2%", "star,2%", "interstellar cloud,1-6"]);
-new Thing("interstellar cloud",["helium",
+new Thing("interstellar cloud",[
+    element_factory['He'].one(),
     element_factory['H'].one(),
     CarbonFactory.one().probable(80),
     WaterFactory.one().probable(5),
     AmmoniaFactory.one().probable(5),
-    "nitrogen,5%", "iron,5%", "sulfur,5%", "oxygen,15%"],[["a bright pink", "a faint", "a fading", "a pale", "a fluo", "a glowing", "a green", "a bright green", "a dark brown", "a brooding", "a magenta", "a bright red", "a dark red", "a blueish", "a deep blue", "a turquoise", "a teal", "a golden", "a multicolored", "a silver", "a dramatic", "a luminous", "a colossal", "a purple", "a gold-trimmed", "an opaline", "a silvery", "a shimmering"], [" "], ["interstellar cloud"]]);
+    element_factories['N'].one().probable(5),
+    IronFactory.one().probable(5),
+    element_factories['S'].one().probable(5),
+    element_factories['O'].probable(15),
+],[["a bright pink", "a faint", "a fading", "a pale", "a fluo", "a glowing", "a green", "a bright green", "a dark brown", "a brooding", "a magenta", "a bright red", "a dark red", "a blueish", "a deep blue", "a turquoise", "a teal", "a golden", "a multicolored", "a silver", "a dramatic", "a luminous", "a colossal", "a purple", "a gold-trimmed", "an opaline", "a silvery", "a shimmering"], [" "], ["interstellar cloud"]]);
 new Thing("star system",["star", "star,3%", "visitor planet,5%", "future planet,10%", "future planet,10%", "terraformed planet,50%", "terraformed planet,20%", "terraformed planet,10%", "medieval planet,30%", "medieval planet,20%", "ancient planet,50%", "ancient planet,30%", "ancient planet,10%", "barren planet,60%", "barren planet,40%", "barren planet,20%", "gas giant,60%", "gas giant,40%", "gas giant,20%", "gas giant,10%", "asteroid belt,0-2"]);
 new Thing("dyson sphere",["star", "star,3%", "dyson surface", "future planet,1-8", "barren planet,60%", "barren planet,40%", "barren planet,20%", "gas giant,60%", "gas giant,40%", "gas giant,20%", "gas giant,10%", "asteroid belt,0-2"]);
 new Thing("star",["ghost,0.1%", "space monster,0.2%",
     element_factory['H'].one(),
-    "helium"],[["white", "faint", "yellow", "red", "blue", "green", "purple", "bright", "double", "twin", "triple", "old", "young", "dying", "small", "giant", "large", "pale", "dark", "hell", "horrific", "twisted", "spectral"], [" star"]]);
+    element_factory['He'].one(),
+],[["white", "faint", "yellow", "red", "blue", "green", "purple", "bright", "double", "twin", "triple", "old", "young", "dying", "small", "giant", "large", "pale", "dark", "hell", "horrific", "twisted", "spectral"], [" star"]]);
 new Thing("planet",[".terraformed planet"],"telluric planet");
 new Thing("barren planet",["galactic life,10%",
     RockFactory.one(),
@@ -53,13 +59,15 @@ new Thing("asteroid",["space animal,0.5%",
     IceFactory.probable(30),
     ],"asteroid");
 new Thing("gas giant",["gas giant atmosphere", "planet core,50%", "moon,0-3", "terraformed moon,20%", "terraformed moon,10%"]);
-new Thing("gas giant atmosphere",["galactic life,10%", "helium",
+new Thing("gas giant atmosphere",["galactic life,10%",
+    element_factory['He'].one(),
     element_factory['H'].one(),
     WaterFactory.one().probable(50),
     AmmoniaFactory.one().probable(50),
     MethaneFactory.one().probable(50),
 ],"atmosphere");
-new Thing("planet core",["space monster,0.5%", "iron",
+new Thing("planet core",["space monster,0.5%",
+    IronFactory.one(),
     RockFactory.one(),
     DiamondFactory.one().probable(2),
     MagmaFactory.one(),

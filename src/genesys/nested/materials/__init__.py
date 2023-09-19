@@ -25,33 +25,34 @@ Basic materials and particles
 .organics.PolymersFactory
 .organics.AlcoholFactory
 .minerals.CarbonFactory
+.elements.element_factories[Na]
+.elements.element_factories[Cl]
+.elements.element_factories[O]
+.elements.element_factories[He]
+.elements.element_factories[K]
+.elements.element_factories[Al]
+.minerals.IronFactory
+.elements.element_factories[Cu]
+.elements.element_factories[Pb]
+.elements.element_factories[Na]
+.matter.SteelFactory
+.elements.element_factories[Au]
+.elements.element_factories[Ag]
+.elements.element_factories[Si]
+.elements.element_factories[Ca]
+.elements.element_factories[N]
+.elements.element_factories[S]
+.elements.element_factories[P]
 
-new Thing("sodium",[".atom"]);
-new Thing("chlorine",[".atom"]);
-new Thing("oxygen",[".atom"]);
-new Thing("helium",[".atom"]);
-new Thing("potassium",[".atom"]);
-new Thing("aluminium",[".atom"]);
-new Thing("iron",[".atom"]);
-new Thing("copper",[".atom"]);
-new Thing("lead",[".atom"]);
-new Thing("steel",["iron",
-    CarbonFactory.one(),
-]);
-new Thing("gold",[".atom"]);
-new Thing("silver",[".atom"]);
-new Thing("silicon",[".atom"]);
-new Thing("calcium",[".atom"]);
-new Thing("nitrogen",[".atom"]);
-new Thing("sulfur",[".atom"]);
-new Thing("phosphorus",[".atom"]);
 //alright, I'm not doing the whole periodic table.
+
 new Thing("proteins",[".molecule"]);
 new Thing("lipids",[".molecule"]);
 new Thing("glucids",[
     CarbonFactory.one(),
     element_factory['H'].one(),
-    "oxygen"],"glucose");
+    element_factories['O'].one(),
+],"glucose");
 new Thing("organic matter",[["proteins", "lipids", "glucids"], ["proteins", "lipids", "glucids", ""], SaltFactory.one().probable(30)]);
 new Thing("atom",["proton", "neutron", "electron"],["atoms"]);
 new Thing("molecule",["atom"],["molecules"]);
@@ -64,7 +65,6 @@ new Thing("qwubble",["multiverse,1-5"]);
 new Thing("portal",["universe"]);
 """
 
-# matter
 # particles
 # portal
 
@@ -106,26 +106,27 @@ FACTORIES = {
     'rubber': RubberFactory,
     'polymers': PolymersFactory,
     'alcohol': AlcoholFactory,
-    'carbon': CarbonFactory(),
-    ####
-    'sodium': element_factories['Na'](),
-    'chlorine': element_factories['Cl'](),
-    'oxygen': element_factories['O'](),
-    'helium': element_factories['He'](),
-    'potassium': element_factories['K'](),
-    'aluminium': element_factories['Al'](),
-    'iron': IronFactory(),
-    'copper': element_factories['Cu'](),
-    'lead': element_factories['Pb'](),
-    'steel': SteelFactory(),
-    'gold': element_factories['Au'](),
-    'silver': element_factories['Ag'](),
-    'silicon': element_factories['Si'](),
-    'calcium': element_factories['Ca'](),
-    'nitrogen': element_factories['N'](),
-    'sulfur': element_factories['S'](),
-    'phosphorus': element_factories['P'](),
+    'carbon': CarbonFactory,
+    'sodium': element_factories['Na'],
+    'chlorine': element_factories['Cl'],
+    'oxygen': element_factories['O'],
+    'helium': element_factories['He'],
+    'potassium': element_factories['K'],
+    'aluminium': element_factories['Al'],
+    'iron': IronFactory,
+    'copper': element_factories['Cu'],
+    'lead': element_factories['Pb'],
+    'steel': SteelFactory,
+    'gold': element_factories['Au'],
+    'silver': element_factories['Ag'],
+    'silicon': element_factories['Si'],
+    'calcium': element_factories['Ca'],
+    'nitrogen': element_factories['N'],
+    'sulfur': element_factories['S'],
+    'phosphorus': element_factories['P'],
+
     # alright, I'm not doing the whole periodic table.
+
     'proteins': ProteinsFactory(),
     'lipids': LipidsFactory(),
     'glucids': GlucidsFactory(),

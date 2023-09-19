@@ -1,6 +1,8 @@
 """
 //food
-new Thing("milk",["glucids","lipids","calcium"]);
+new Thing("milk",["glucids","lipids",
+    element_factories['Ca'].one(),
+]);
 new Thing("bottle",[["glass",
     PlasticFactory.one(),
     "cardboard"],"label"]);

@@ -6,14 +6,23 @@ new Thing("roof tiles",["ceramic"],"tiles");
 new Thing("room",["visitor,0.1%","ghost,0.1%","walls"]);
 new Thing("walls",["door,1-4","window,0-6",["wall,4","wall,4-8"]]);
 new Thing("wall",[["plaster","wood"],"dirt,5%"]);
-new Thing("plaster",["calcium","sulfur"]);
-new Thing("marble",["calcium"]);
+new Thing("plaster",[
+    element_factories['Ca'].one(),
+    element_factories['S'].one(),
+]);
+new Thing("marble",[
+    element_factories['Ca'].one(),
+]);
 new Thing("stone",["rock"]);
 new Thing("concrete",["rock","cement",
     WaterFactory.one(),
 ]);
-new Thing("cement",["calcium"]);
-new Thing("marble",["calcium"]);
+new Thing("cement",[
+    element_factories['Ca'].one(),
+]);
+new Thing("marble",[
+    element_factories['Ca'].one(),
+]);
 new Thing("door",["wood frame","glass,10%"]);
 new Thing("window",["wood frame","glass"]);
 new Thing("living-room",[".room","person,0-4","cat,10%","cat,10%","stuff box,5%","tv,95%","armchair,50%","armchair,50%","couch,90%","living-room table,50%","chair,1-6","painting,70%","painting,20%","mirror,2%","bookshelf,0-3","small bookshelf,0-2","desk,40%","computer,40%"]);

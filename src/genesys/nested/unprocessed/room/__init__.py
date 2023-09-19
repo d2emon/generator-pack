@@ -78,7 +78,7 @@ class Window(Thing):
 # new Thing("marble",["calcium"]);
 # new Thing("stone",["rock"]);
 # new Thing("concrete",["rock","cement",WaterFactory.one()]);
-# new Thing("cement",["calcium"]);
+# new Thing("cement",[""]);
 # new Thing("marble",["calcium"]);
 
 

@@ -15,8 +15,12 @@ new Thing("toilet",[
     WaterFactory.one(),
     "organic matter,15%","pasta,0.1%","porcelain","pipes"]);
 new Thing("pipes",["metal","dirt"]);
-new Thing("nails",["iron"]);
-new Thing("metal",["iron"]);
+new Thing("nails",[
+    IronFactory.one(),
+]);
+new Thing("metal",[
+    IronFactory.one(),
+]);
 new Thing("metal grill",["metal"]);
 new Thing("porcelain",["silica"]);
 new Thing("ceramic",["silica"]);
@@ -28,8 +32,12 @@ new Thing("couch",[".armchair","tv remote,5%","coin,5%","pen,5%"],["couch","sofa
 new Thing("tv remote",[
     PlasticFactory.one(),
     "electronics"],"TV remote");
-new Thing("coin",["organic matter,2%","dirt,2%","copper"]);
-new Thing("gold coin",["gold"]);
+new Thing("coin",["organic matter,2%","dirt,2%",
+    element_factories['Cu'].one()
+]);
+new Thing("gold coin",[
+    element_factories['Au'].one(),
+]);
 new Thing("dirt",["organic matter,50%","dust"]);
 new Thing("grease",["lipids","dust"]);
 new Thing("dust",["molecule"]);
@@ -95,13 +103,19 @@ new Thing("machine",["computer keyboard,10%","engine,20%","mechanics","electroni
 new Thing("cables",[
     PlasticFactory.one(),
     "wire"]);
-new Thing("wire",["copper"]);
+new Thing("wire",[
+    element_factories['Cu'].one()
+]);
 
 new Thing("engine",["mechanics"]);
 new Thing("mechanics",["cog,2-12","push-button,0-3","electronics,30%","cables,75%","wire,0-2","tube,0-3","nails,40%","insect,5%"],"mechanical components");
-new Thing("cog",[["copper",
+new Thing("cog",[[
+    element_factories['Cu'].one()
     PlasticFactory.one(),
-    "iron","steel","aluminium"]],["cog","gear","spur gear","helical gear","bevel gear","harmonic drive","spring","pump","sprocket","wheel","chain","belt","track","bolts","gizmo","pulley","puffer","smoker","vent"]);
+    IronFactory.one(),
+    SteelFactory.one(),
+    element_factory['Al'].one(),
+]],["cog","gear","spur gear","helical gear","bevel gear","harmonic drive","spring","pump","sprocket","wheel","chain","belt","track","bolts","gizmo","pulley","puffer","smoker","vent"]);
 new Thing("push-button",[
     PlasticFactory.one(),
     "cables"],["lever","button","switch"]);
@@ -112,8 +126,14 @@ new Thing("tube",[[
 new Thing("electronics",["microchip,1-6","electronic component,1-6","wire,0-2"]);
 new Thing("microchip",["electronic component,1-15",
     PlasticFactory.probable(75),
-    "copper,75%","silicon,25%","gold,5%"],["microchip"]);
+    element_factories['Cu'].one().probable(75),
+    element_factories['Si'].one().probable(25),
+    element_factories['Au'].one().probable(5),
+],["microchip"]);
 new Thing("electronic component",[
     PlasticFactory.probable(75),
-    "copper,75%","silicon,25%","gold,5%"],["transistor","inductor","capacitor","diode","metagizmo","transmorpher","beeper"]);
+    element_factories['Cu'].one().probable(75),
+    element_factories['Si'].one().probable(25),
+    element_factories['Au'].one().probable(5),
+],["transistor","inductor","capacitor","diode","metagizmo","transmorpher","beeper"]);
 """

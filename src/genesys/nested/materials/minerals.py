@@ -52,8 +52,7 @@ class MagmaFactory(RockFactory):
 
 
 class IronFactory(RockFactory):
-    # TODO: Refactor it
-    default_model = materials.Iron
+    model = materials.Iron
 
     def children(self):
         yield MoleculeFactory.from_elements('Fe')

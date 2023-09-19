@@ -4,6 +4,7 @@ from .elements import build_elements
 
 
 class MoleculeFactory(Factory):
+    # TODO: Refactor it
     contents = 'N', 'H'
     default_model = materials.Molecule
 
@@ -26,7 +27,5 @@ class MoleculeFactory(Factory):
 
 
 class SteelFactory(Factory):
-    default_model = materials.Steel
-
-    def children(self):
-        yield MoleculeFactory.from_elements('Fe', 'C')
+    model = materials.Steel
+    contents = ['Fe', 'C']
