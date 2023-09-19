@@ -14,18 +14,18 @@ Basic materials and particles
 .fire.AshFactory
 .water.DewFactory
 .water.IceFactory
-.water.Snow
-.water.Snowflakes
-.minerals.Ammonia
-.organics.Methane
+.water.SnowFactory
+.water.SnowflakesFactory
+.minerals.AmmoniaFactory
+.organics.MethaneFactory
 .elements.element_factories[H]
-.elements.HydrogenAtom
+.elements.HydrogenAtomFactory
+.organics.PlasticFactory
+.organics.RubberFactory
+.organics.PolymersFactory
+.organics.AlcoholFactory
+.minerals.CarbonFactory
 
-new Thing("plastic",["polymers"]);
-new Thing("rubber",["polymers"]);
-new Thing("polymers",[".glucids"]);
-new Thing("alcohol",[".glucids"]);
-new Thing("carbon",[".atom"]);
 new Thing("sodium",[".atom"]);
 new Thing("chlorine",[".atom"]);
 new Thing("oxygen",[".atom"]);
@@ -35,7 +35,9 @@ new Thing("aluminium",[".atom"]);
 new Thing("iron",[".atom"]);
 new Thing("copper",[".atom"]);
 new Thing("lead",[".atom"]);
-new Thing("steel",["iron", "carbon"]);
+new Thing("steel",["iron",
+    CarbonFactory.one(),
+]);
 new Thing("gold",[".atom"]);
 new Thing("silver",[".atom"]);
 new Thing("silicon",[".atom"]);
@@ -46,7 +48,8 @@ new Thing("phosphorus",[".atom"]);
 //alright, I'm not doing the whole periodic table.
 new Thing("proteins",[".molecule"]);
 new Thing("lipids",[".molecule"]);
-new Thing("glucids",["carbon",
+new Thing("glucids",[
+    CarbonFactory.one(),
     element_factory['H'].one(),
     "oxygen"],"glucose");
 new Thing("organic matter",[["proteins", "lipids", "glucids"], ["proteins", "lipids", "glucids", ""], SaltFactory.one().probable(30)]);
@@ -99,12 +102,12 @@ FACTORIES = {
     'methane': MethaneFactory,
     'hydrogen': element_factories['H'],
     'hydrogen atom': HydrogenAtomFactory,
-    ####
-    'plastic': PlasticFactory(),
-    'rubber': RubberFactory(),
-    'polymers': PolymersFactory(),
-    'alcohol': AlcoholFactory(),
+    'plastic': PlasticFactory,
+    'rubber': RubberFactory,
+    'polymers': PolymersFactory,
+    'alcohol': AlcoholFactory,
     'carbon': CarbonFactory(),
+    ####
     'sodium': element_factories['Na'](),
     'chlorine': element_factories['Cl'](),
     'oxygen': element_factories['O'](),

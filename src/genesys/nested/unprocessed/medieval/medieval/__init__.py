@@ -98,7 +98,9 @@ new Thing("medieval bench",["stone"],"bench");
 new Thing("tankard",["ale,20%","metal"]);
 new Thing("ale keg",["ale,80%","wood","metal"]);
 new Thing("medieval altar",["potion,0-3","unusual stone,0-2","unusual ingredient,0-1",["marble","stone"]],"altar");
-new Thing("ale",["alcohol"]);
+new Thing("ale",[
+    AlcoholFactory.one(),
+]);
 new Thing("loom",["wood frame","metal"],"loom");
 new Thing("throne",["cloth","wood","metal"]);
 new Thing("medieval table",["wood","nails,50%"],"table");

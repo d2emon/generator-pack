@@ -382,7 +382,7 @@ class WoodFrame(Thing):
 # new Thing("cellulose",["glucids"]);
 # new Thing("paragraph",["character,50-300"]);
 # new Thing("character",["ink"],"*CHAR*");
-# new Thing("ink",["alcohol","oil"]);
+# new Thing("ink",[AlcoholFactory.one(), "oil"]);
 
 
 class Bathtub(Thing):
@@ -458,21 +458,21 @@ class TvShow(Thing):
     ]
 
 
-# new Thing("video game console",["plastic","electronics"],[["Mega","Ultra","Gene","Se","Ninten","Nin","Play","Game","Next","Retro","Dream","Sun","Kine","3D"],["station","do","sphere","sis","tron","ga","zor","boy","cast","nect","next"]]);
+# new Thing("video game console",[PlasticFactory.one(), "electronics"],[["Mega","Ultra","Gene","Se","Ninten","Nin","Play","Game","Next","Retro","Dream","Sun","Kine","3D"],["station","do","sphere","sis","tron","ga","zor","boy","cast","nect","next"]]);
 
 # new Thing("machine",["computer keyboard,10%","engine,20%","mechanics","electronics,40%","metal","wood,10%","cables,40%","dirt,10%"],[["valve","pump","terminal","conveyor","forklift","girder","furnace","generator","hydraulics"]]);
-# new Thing("cables",["plastic","wire"]);
+# new Thing("cables",[PlasticFactory.one(), "wire"]);
 # new Thing("wire",["copper"]);
 
 # new Thing("engine",["mechanics"]);
 # new Thing("mechanics",["cog,2-12","push-button,0-3","electronics,30%","cables,75%","wire,0-2","tube,0-3","nails,40%","insect,5%"],"mechanical components");
-# new Thing("cog",[["copper","plastic","iron","steel","aluminium"]],["cog","gear","spur gear","helical gear","bevel gear","harmonic drive","spring","pump","sprocket","wheel","chain","belt","track","bolts","gizmo","pulley","puffer","smoker","vent"]);
-# new Thing("push-button",["plastic","cables"],["lever","button","switch"]);
-# new Thing("tube",[["plastic","metal","glass"]]);
+# new Thing("cog",[["copper", PlasticFactory.one(), "iron","steel","aluminium"]],["cog","gear","spur gear","helical gear","bevel gear","harmonic drive","spring","pump","sprocket","wheel","chain","belt","track","bolts","gizmo","pulley","puffer","smoker","vent"]);
+# new Thing("push-button",[PlasticFactory.one(), "cables"],["lever","button","switch"]);
+# new Thing("tube",[[PlasticFactory.one(), "metal","glass"]]);
 
 # new Thing("electronics",["microchip,1-6","electronic component,1-6","wire,0-2"]);
-# new Thing("microchip",["electronic component,1-15","plastic,75%","copper,75%","silicon,25%","gold,5%"],["microchip"]);
-# new Thing("electronic component",["plastic,75%","copper,75%","silicon,25%","gold,5%"],["transistor","inductor","capacitor","diode","metagizmo","transmorpher","beeper"]);
+# new Thing("microchip",["electronic component,1-15", PlasticFactory.probable(75), "copper,75%","silicon,25%","gold,5%"],["microchip"]);
+# new Thing("electronic component",[PlasticFactory.probable(75), "copper,75%","silicon,25%","gold,5%"],["transistor","inductor","capacitor","diode","metagizmo","transmorpher","beeper"]);
 
 
 # ChildGenerator("organic matter", probability=5),

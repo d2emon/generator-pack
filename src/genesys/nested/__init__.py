@@ -19,7 +19,7 @@ new Thing("galaxy center",["black hole", "galactic life,10%", "dyson sphere,4%",
 new Thing("nebula",["galactic life,15%", "star,2%", "star,2%", "star,2%", "interstellar cloud,1-6"]);
 new Thing("interstellar cloud",["helium",
     element_factory['H'].one(),
-    "carbon,80%",
+    CarbonFactory.one().probable(80),
     WaterFactory.one().probable(5),
     AmmoniaFactory.one().probable(5),
     "nitrogen,5%", "iron,5%", "sulfur,5%", "oxygen,15%"],[["a bright pink", "a faint", "a fading", "a pale", "a fluo", "a glowing", "a green", "a bright green", "a dark brown", "a brooding", "a magenta", "a bright red", "a dark red", "a blueish", "a deep blue", "a turquoise", "a teal", "a golden", "a multicolored", "a silver", "a dramatic", "a luminous", "a colossal", "a purple", "a gold-trimmed", "an opaline", "a silvery", "a shimmering"], [" "], ["interstellar cloud"]]);

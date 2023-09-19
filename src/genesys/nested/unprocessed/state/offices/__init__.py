@@ -8,11 +8,18 @@ new Thing("office boss",[".person"],"*PERSON*| (boss)");
 new Thing("cubicle",["office worker,80%","office worker,10%","computer","computer,10%","small bookshelf,30%","fridge,2%","nameplate,8%","calendar,20%","office toy,0-3","desk","chair","panel,2-3"]);
 new Thing("boss's office",["office boss","office worker,10%","office worker,5%","computer","computer,10%","water cooler,10%",["bookshelf","small bookshelf"],"cupboard,0-2","fridge,20%","nameplate","calendar,80%","office toy,0-6","desk","armchair,50%","chair,2-4","tv,10%"]);
 new Thing("meeting room",["office boss,2%","office worker,0-8","cat,2%","computer,30%","computer,10%","water cooler,40%",["bookshelf","small bookshelf"],"cupboard,0-2","fridge,20%","nameplate,0-4","calendar,50%","office toy,0-6","table","chair,4-12","tv,60%"]);
-new Thing("office toy",["plastic","metal"],["colorcube","colorsnake","snowglobe","figurine","souvenir","toy magnet","kinetic toy","bobblehead","spinning top","executive ball clicker","bouncing ball","slinky","stress ball","magic 8-ball","yo-yo"]);
-new Thing("panel",["plastic"]);
+new Thing("office toy",[
+    PlasticFactory.one(),
+    "metal"],["colorcube","colorsnake","snowglobe","figurine","souvenir","toy magnet","kinetic toy","bobblehead","spinning top","executive ball clicker","bouncing ball","slinky","stress ball","magic 8-ball","yo-yo"]);
+new Thing("panel",[
+    PlasticFactory.one(),
+]);
 new Thing("calendar",["paper","ink"],[["calendar ("],["firemen","sexy athletes","half-naked ladies","kittens","puppies","ducklings","flowery nature","tourism","sharks","inspirational quotes","famous people","bears","funny cartoons","popular TV show characters","mayan","haikus","1-word-a-day"],[")"]]);
-new Thing("nameplate",[["plastic","wood","metal"]]);
-new Thing("water cooler",["plastic",
+new Thing("nameplate",[[
+    PlasticFactory.one(),
+    "wood","metal"]]);
+new Thing("water cooler",[
+    PlasticFactory.one(),
     WaterFactory.one(),
     "push-button"]);
 """

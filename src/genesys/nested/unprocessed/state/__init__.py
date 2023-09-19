@@ -351,7 +351,7 @@ class FutureBathroomStuff(Thing):
         ChildGenerator("nanoplasm"),
         ChildGenerator("nanopipe", (1, 2)),
     ]
-    names_data = ["bathtub", "toilet", "sink", "shower", "scrubber", "steamomatic", "steamheater"]
+    names_data = ["bathtub", "toilet", "sink", "shower", "sc", "steamomatic", "steamheater"]
 
 
 # new Thing("future living-room stuff",["nanoplasm"],["chair","armchair","couch","table","shelf","lamp","endtable"]);

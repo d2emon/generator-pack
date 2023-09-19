@@ -1,13 +1,17 @@
 """
 //food
 new Thing("milk",["glucids","lipids","calcium"]);
-new Thing("bottle",[["glass","plastic","cardboard"],"label"]);
+new Thing("bottle",[["glass",
+    PlasticFactory.one(),
+    "cardboard"],"label"]);
 new Thing("glass bottle",["glass"],"bottle");
 new Thing("glass jar",["glass"],"jar");
 new Thing("label",["paper"]);
 new Thing("milk bottle",[".bottle","milk"]);
 new Thing("wine bottle",[".bottle","wine"]);
-new Thing("wine",["sugar","alcohol"]);
+new Thing("wine",["sugar",
+    AlcoholFactory.one(),
+]);
 new Thing("water bottle",[".bottle",
     WaterFactory.one(),
 ]);

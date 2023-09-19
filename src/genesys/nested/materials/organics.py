@@ -37,14 +37,12 @@ class GlucidsFactory(OrganicMoleculeFactory):
     default_model = materials.Glucids
 
 
-class AlcoholFactory(OrganicMoleculeFactory):
-    # TODO: Refactor it
-    default_model = materials.Alcohol
+class AlcoholFactory(GlucidsFactory):
+    model = materials.Alcohol
 
 
 class PolymersFactory(OrganicMoleculeFactory):
-    # TODO: Refactor it
-    default_model = materials.Polymers
+    model = materials.Polymers
 
 
 class OrganicFactory(Factory):
@@ -73,21 +71,18 @@ class OilFactory(OrganicFactory):
 
 
 class PolymericFactory(OrganicFactory):
-    # TODO: Refactor it
-    default_model = materials.Polymeric
+    model = materials.Polymeric
 
     def children(self):
         yield PolymersFactory()
 
 
 class PlasticFactory(PolymericFactory):
-    # TODO: Refactor it
-    default_model = materials.Plastic
+    model = materials.Plastic
 
 
 class RubberFactory(PolymericFactory):
-    # TODO: Refactor it
-    default_model = materials.Rubber
+    model = materials.Rubber
 
 
 class KeratinFactory(OrganicFactory):

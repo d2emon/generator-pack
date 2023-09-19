@@ -6,7 +6,9 @@ new Thing("pavement",["note,3%","coin,4%","stone","dirt,5%"]);
 new Thing("asphalt",["oil",".concrete"]);
 new Thing("car",["engine","mechanics","tire,4"],[["parked "],["blue","red","white","black","grey"],[" "],["Chr","F","Chevr","Cad","H","Hyund","Maz","Niss","Suz","Lex","Merc","Aud","Volv"],["ysler","ord","olet","illac","onda","ai","da","an","uki","us","edes","i","o"]]);
 new Thing("driven car",["person,1-4",".car"],[["blue","red","white","black"],[" "],["Chr","F","Chevr","Cad","H","Hyund","Maz","Niss","Suz","Lex","Merc","Aud","Volv"],["ysler","ord","olet","illac","onda","ai","da","an","uki","us","edes","i","o"]]);
-new Thing("tire",["rubber","metal"]);
+new Thing("tire",[
+    RubberFactory.one(),
+    "metal"]);
 new Thing("bike",["mechanics","tire,2"]);
 new Thing("driven bike",["person","person,5%",".bike"],"bike");
 //["Chr","F","Chevr","Cad","H","Hyun","Maz","Niss","Suz","Lex","Merc","Aud","Volv"],["ysler","ord","olet","illac","onda","dai","da","an","uki","us","edes","i","o"]

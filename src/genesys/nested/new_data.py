@@ -72,7 +72,9 @@ new Thing("nucleus",["dna", "proteins"]);
 new Thing("cytoplasm",["glucids", "lipids"]);
 new Thing("dna",["genetic code",
     element_factory['H'].one(),
-    "oxygen", "nitrogen", "carbon", "phosphorus"],"DNA");
+    "oxygen", "nitrogen",
+    CarbonFactory.one(),
+    "phosphorus"],"DNA");
 new Thing("genetic code",["nucleotide,20-50"]);
 new Thing("nucleotide",["molecule"],["A", "T", "G", "C"]);
 
@@ -183,10 +185,14 @@ new Thing("coat",["pocket,0-4", ".clothing", "leather,30%"],["coat", "jacket", "
 new Thing("cozy von pocketworth",["pocket,20-40", ".clothing", "leather,30%"],["Cozy von Pocketworth"]);
 //lotsopokkits
 new Thing("socks",[".clothing"]);
-new Thing("shoes",["leather,40%", "plastic"],["shoes", "boots", "sneakers", "sandals"]);
+new Thing("shoes",["leather,40%",
+    PlasticFactory.one(),
+],["shoes", "boots", "sneakers", "sandals"]);
 //crocs //okay seriously no
 new Thing("hat",[".clothing"],["cap", "hat", "hat", "hat", "hat", "beret", "party hat", "top-hat"]);
-new Thing("glasses",["plastic", "glass", "metal,10%"],["glasses", "glasses", "glasses", "sunglasses", "monocle", "ski mask"]);
+new Thing("glasses",[
+    PlasticFactory.one(),
+    "glass", "metal,10%"],["glasses", "glasses", "glasses", "sunglasses", "monocle", "ski mask"]);
 
 //terrain stuff
 new Thing("ocean",["sea water", "sea life", "beach,10-20", ["iceberg,2-6", "", "", "", ""], "abyss"]);
@@ -259,7 +265,9 @@ new Thing("ancient cave",["caveman settlement,65%", "wall painting,50%", "wall p
 
 new Thing("future sky",["sprowseship,4-12", ".sky"],"sky");
 new Thing("terraformed sky",["plane,1-8", "rocketship,20%", ".sky"],"sky");
-new Thing("sky",["visitor ship,10%", "meteorite,3%", "sky life", "precipitation,50%", "cloud,2-8", "oxygen", "carbon", "ozone"],"sky");
+new Thing("sky",["visitor ship,10%", "meteorite,3%", "sky life", "precipitation,50%", "cloud,2-8", "oxygen",
+    CarbonFactory.one(),
+    "ozone"],"sky");
 new Thing("meteorite",["space animal,6%",
     IceFactory.probable(60),
     RockFactory.one(),
@@ -629,11 +637,18 @@ new Thing("office boss",[".person"],"*PERSON*| (boss)");
 new Thing("cubicle",["office worker,80%", "office worker,10%", "computer", "computer,10%", "small bookshelf,30%", "fridge,2%", "nameplate,8%", "calendar,20%", "office toy,0-3", "desk", "chair", "panel,2-3"]);
 new Thing("boss's office",["office boss", "office worker,10%", "office worker,5%", "computer", "computer,10%", "water cooler,10%", ["bookshelf", "small bookshelf"], "cupboard,0-2", "fridge,20%", "nameplate", "calendar,80%", "office toy,0-6", "desk", "armchair,50%", "chair,2-4", "tv,10%"]);
 new Thing("meeting room",["office boss,2%", "office worker,0-8", "cat,2%", "computer,30%", "computer,10%", "water cooler,40%", ["bookshelf", "small bookshelf"], "cupboard,0-2", "fridge,20%", "nameplate,0-4", "calendar,50%", "office toy,0-6", "table", "chair,4-12", "tv,60%"]);
-new Thing("office toy",["plastic", "metal"],["colorcube", "colorsnake", "snowglobe", "figurine", "souvenir", "toy magnet", "kinetic toy", "bobblehead", "spinning top", "executive ball clicker", "bouncing ball", "slinky", "stress ball", "magic 8-ball", "yo-yo"]);
-new Thing("panel",["plastic"]);
+new Thing("office toy",[
+    PlasticFactory.one(),
+    "metal"],["colorcube", "colorsnake", "snowglobe", "figurine", "souvenir", "toy magnet", "kinetic toy", "bobblehead", "spinning top", "executive ball clicker", "bouncing ball", "slinky", "stress ball", "magic 8-ball", "yo-yo"]);
+new Thing("panel",[
+    PlasticFactory.one(),
+]);
 new Thing("calendar",["paper", "ink"],[["calendar ("], ["firemen", "sexy athletes", "half-naked ladies", "kittens", "puppies", "ducklings", "flowery nature", "tourism", "sharks", "inspirational quotes", "famous people", "bears", "funny cartoons", "popular TV show characters", "mayan", "haikus", "1-word-a-day"], [")"]]);
-new Thing("nameplate",[["plastic", "wood", "metal"]]);
-new Thing("water cooler",["plastic",
+new Thing("nameplate",[[
+    PlasticFactory.one(),
+    "wood", "metal"]]);
+new Thing("water cooler",[
+    PlasticFactory.one(),
     WaterFactory.one(),
     "push-button"]);
 
@@ -643,27 +658,47 @@ new Thing("clerk",[".person"],"*PERSON*| (clerk)");
 new Thing("customer",[".person"],"*PERSON*| (customer)");
 
 new Thing("game shop",["video game stand,2-12", "video game console,1-4", "tv,1-3", "computer,0-3", ".shop"],[["Game", "Gamer", "Play"], ["pro", "shop", "hub", "go", "cash", "buy", "now", "grrrlz", "bro", "chump"]]);
-new Thing("video game stand",["video game,2-20", "plastic"],"video game stand");
+new Thing("video game stand",["video game,2-20",
+    PlasticFactory.one(),
+],"video game stand");
 new Thing("fresh produce shop",["produce stall,2-12", ".shop"],[["Fresh", "Green", "Bio", "Nature", "Eco", "Yum", "Tasty"], ["Produce", "Froots", "Fruits", "Veggies", "Vegetables", "Life", "Food"]]);
-new Thing("produce stall",[["fruit pile,1-4", "vegetable pile,1-4"], "glass", "plastic", "insect,10%"],"produce stall");
+new Thing("produce stall",[["fruit pile,1-4", "vegetable pile,1-4"], "glass",
+    PlasticFactory.one(),
+    "insect,10%"],"produce stall");
 new Thing("fruit pile",["sugar", "plant cell", "insect,10%"],[["a pile of "], ["apples", "oranges", "pears", "figs", "watermelons", "bananas", "kiwis", "coconuts", "lemons", "limes", "strawberries", "raspberries", "berries", "blackberries", "nuts", "grapes", "grapefruits", "melons", "peaches", "apricots", "pineapples", "cherries", "chestnuts", "ginger", "mangos", "passion fruits", "mangosteens", "plums", "lychees", "kumquats", "tangerines", "rhubarb", "durians", "mulberries"]]);
 new Thing("vegetable pile",["plant cell", "insect,10%"],[["a pile of "], ["potatoes", "carrots", "leeks", "onions", "garlic", "spices", "turnips", "cabbages", "lettuce", "corn cobs", "spinach leaves", "cress", "broccoli", "kale", "peas", "radish", "beets", "tomatoes", "cucumbers", "zucchinis", "peppers", "eggplants", "gourds", "pumpkins", "avocados", "cauliflowers", "artichokes", "fava beans", "beans", "green beans", "chickpeas", "peanuts", "soybeans", "celery", "asparagus", "rutabagas", "yams", "olives"]]);
 //I'm putting tomatoes with vegetables and you can't stop me
 new Thing("pet shop",["pet container,2-12", "bird cage,1-6", "vivarium,1-6", "aquarium,1-6", ".shop"],[["Pet", "Cute", "Adopt", "Ani", "Anima", "World", "Care", "Woof", "Meow", "Purr"], ["woof", "meow", "purr", "dogz", "catz", "nimals", "friends"]]);
-new Thing("pet container",[["dog,1-4", "cat,1-4"], "plastic"],["pet cage", "pet box"]);
-new Thing("vivarium",[["reptile,1-4", "amphibian,1-4", "insect,1-4"], "plastic", "glass", "dirt"]);
-new Thing("aquarium",[["fish,1-6", "cnidaria,1-4", "mollusk,1-4", "crustacean,1-4"], ["fish,50%", "cnidaria,50%", "mollusk,50%", "crustacean,50%"], "plankton,0-3", "plastic", "glass",
+new Thing("pet container",[["dog,1-4", "cat,1-4"],
+    PlasticFactory.one(),
+],["pet cage", "pet box"]);
+new Thing("vivarium",[["reptile,1-4", "amphibian,1-4", "insect,1-4"],
+    PlasticFactory.one(),
+    "glass", "dirt"]);
+new Thing("aquarium",[["fish,1-6", "cnidaria,1-4", "mollusk,1-4", "crustacean,1-4"], ["fish,50%", "cnidaria,50%", "mollusk,50%", "crustacean,50%"], "plankton,0-3",
+    PlasticFactory.one(),
+    "glass",
     WaterFactory.one(),
 ]);
-new Thing("bird cage",["bird", "plastic", "metal"]);
+new Thing("bird cage",["bird",
+    PlasticFactory.one(),
+    "metal"]);
 new Thing("toy shop",["toy box,2-12", "video game console,40%", "video game console,20%", ".shop"],[["Toy", "Play", "Kidz", "Yay", "Magi", "Super", "Cosmo"], ["time", "pretend", "play", "toyz", "dolls", "blocks", "stuff", "fun"]]);
 new Thing("toy box",["office toy,20%", "office toy,20%", "toy,0-8", "doll,0-4"]);
-new Thing("toy",[["wood", "plastic"]],["spinning top", "building blocks", "construction set", "castle playset", "city playset", "village playset", "animal playset", "dinosaur playset", "wizard playset", "family playset", "warrior playset", "underwater playset", "cow-boy playset", "space playset", "figurines", "chef playset", "market playset", "toy car", "toy racing car", "race tracks", "boat model", "airplane model", "spaceship model"]);
-new Thing("doll",["plastic", "cloth"],[["robot", "trendy", "fashion", "cyborg", "nurse", "chef", "firefighter", "police", "construction worker", "singing", "dancing", "talking", "super", "baby-care", "shopkeeper", "knight", "action hero", "wizard", "gardener", "science", "movie", "TV", "reporter", "alien", "cosmonaut", "rocket", "future", "time-travel", "ice-cream", "lovely", "romance", "radical", "pretend", "plastic", "mutant"], [" "], ["Cindy", "Stacy", "Barbara", "Lois", "Milly", "Emily", "Anette", "Gordon", "Brandon", "Steve", "Marcus", "Pascal", "Barney", "Boris", "baby", "unicorn", "dragon", "dinosaur", "monster", "pony", "teddy bear", "cat", "dog", "bunny", "bird", "shark"]]);
+new Thing("toy",[["wood",
+    PlasticFactory.one(),
+]],["spinning top", "building blocks", "construction set", "castle playset", "city playset", "village playset", "animal playset", "dinosaur playset", "wizard playset", "family playset", "warrior playset", "underwater playset", "cow-boy playset", "space playset", "figurines", "chef playset", "market playset", "toy car", "toy racing car", "race tracks", "boat model", "airplane model", "spaceship model"]);
+new Thing("doll",[
+    PlasticFactory.one(),
+    "cloth"],[["robot", "trendy", "fashion", "cyborg", "nurse", "chef", "firefighter", "police", "construction worker", "singing", "dancing", "talking", "super", "baby-care", "shopkeeper", "knight", "action hero", "wizard", "gardener", "science", "movie", "TV", "reporter", "alien", "cosmonaut", "rocket", "future", "time-travel", "ice-cream", "lovely", "romance", "radical", "pretend",
+    PlasticFactory.one(),
+    "mutant"], [" "], ["Cindy", "Stacy", "Barbara", "Lois", "Milly", "Emily", "Anette", "Gordon", "Brandon", "Steve", "Marcus", "Pascal", "Barney", "Boris", "baby", "unicorn", "dragon", "dinosaur", "monster", "pony", "teddy bear", "cat", "dog", "bunny", "bird", "shark"]]);
 new Thing("bargain shop",["stuff box,2-12", ".shop"],[["Cheap", "Haggle", "Price", "Poor", "Cent", "Money", "Best", "Save", "Get", "Found", "Salvage", "Dump"], ["more", "less", "buy", "shark", "bargain", "stuff", "things", "worth", "shop", "store", "market", "mart"]]);
 new Thing("stuff box",["office toy,0-2", "souvenir,20%", "book,0-2", "pants,20%", "shirt,20%", "underwear,20%", "coat,20%", "socks,20%", "shoes,20%", "hat,20%", "glasses,20%", "toy,0-2", "doll,30%", "video game console,10%", "video game console,10%", "cog,30%", "cog,10%", "unusual stone,1%", "helmet,1%", "armor,1%", "medieval weapon,1%", "painting,20%", "painting,10%", "dust,40%", "insect,10%"]);
 new Thing("souvenir shop",["souvenir,6-12", ".shop"],["souvenir shop", "gift shop"]);
-new Thing("souvenir",[["wood", "plastic", "metal", "glass"]],[["tower", "pyramid", "dome", "bridge", "statue", "palace", "castle", "cathedral", "arena", "opera", "ark", "city", "monument"], [" "], ["model", "replica", "souvenir"]]);
+new Thing("souvenir",[["wood",
+    PlasticFactory.one(),
+    "metal", "glass"]],[["tower", "pyramid", "dome", "bridge", "statue", "palace", "castle", "cathedral", "arena", "opera", "ark", "city", "monument"], [" "], ["model", "replica", "souvenir"]]);
 
 //museums
 new Thing("museum",["painting,0-3", "museum room,2-12", "tourist,2-10", "clerk,1-3", "desk,1-2", "chair,2-6", "souvenir,0-3", ".building"]);
@@ -689,17 +724,28 @@ new Thing("battlefield",["soldier,10-30", "corpse,10-30", "blood"]);
 new Thing("soldier",[".person", "arsenal", "blood,20%", "bullet wound,0-3"],[["*PERSON*| "], ["(soldier)", "(soldier)", "(soldier)", "(soldier)", "(soldier)", "(soldier)", "(officer)", "(lieutenant)", "(captain)", "(major)"]]);
 new Thing("arsenal",["gas mask,20%", "rifle,90%", "knife,80%", "handgun,90%", "handgun,50%", "knife,30%", "ammo pack,0-4", "grenade,0-4", "bullet,0-5"]);
 new Thing("bullet",["copper", "lead"]);
-new Thing("rifle",["steel", "aluminium,50%", "polymers,20%", "bullet,0-6"]);
-new Thing("handgun",["steel", "aluminium,50%", "polymers,20%", "bullet,0-6"]);
+new Thing("rifle",["steel", "aluminium,50%",
+    PolymersFactory.probable(20),
+    "bullet,0-6"]);
+new Thing("handgun",["steel", "aluminium,50%",
+    PolymersFactory.probable(20),
+    "bullet,0-6"]);
 new Thing("gun",[".handgun"]);
 new Thing("knife",["steel", "blood,10%"]);
 new Thing("wound",["blood", "worm,5%"],"wound");
-new Thing("ammo pack",["bullet,0-20", ["metal", "plastic"]]);
-new Thing("grenade",["iron", "TNT", ["metal", "plastic"]]);
-new Thing("TNT",["carbon",
+new Thing("ammo pack",["bullet,0-20", ["metal",
+    PlasticFactory.one(),
+]]);
+new Thing("grenade",["iron", "TNT", ["metal",
+    PlasticFactory.one(),
+]]);
+new Thing("TNT",[
+    CarbonFactory.one(),
     element_factory['H'].one(),
     "oxygen", "nitrogen"],"TNT");
-new Thing("gas mask",["metal", "polymers", "cloth"]);
+new Thing("gas mask",["metal",
+    PolymersFactory.one(),
+    "cloth"]);
 new Thing("bullet wound",["blood", "worm,5%", "bullet,50%", "bullet,30%", "bullet,10%", "bullet,2%"],"wound");
 
 //hospitals
@@ -747,7 +793,9 @@ new Thing("pavement",["note,3%", "coin,4%", "stone", "dirt,5%"]);
 new Thing("asphalt",[OilFactory.one(), ".concrete"]);
 new Thing("car",["engine", "mechanics", "tire,4"],[["parked "], ["blue", "red", "white", "black", "grey"], [" "], ["Chr", "F", "Chevr", "Cad", "H", "Hyund", "Maz", "Niss", "Suz", "Lex", "Merc", "Aud", "Volv"], ["ysler", "ord", "olet", "illac", "onda", "ai", "da", "an", "uki", "us", "edes", "i", "o"]]);
 new Thing("driven car",["person,1-4", ".car"],[["blue", "red", "white", "black"], [" "], ["Chr", "F", "Chevr", "Cad", "H", "Hyund", "Maz", "Niss", "Suz", "Lex", "Merc", "Aud", "Volv"], ["ysler", "ord", "olet", "illac", "onda", "ai", "da", "an", "uki", "us", "edes", "i", "o"]]);
-new Thing("tire",["rubber", "metal"]);
+new Thing("tire",[
+    RubberFactory.one(),
+    "metal"]);
 new Thing("bike",["mechanics", "tire,2"]);
 new Thing("driven bike",["person", "person,5%", ".bike"],"bike");
 //["Chr","F","Chevr","Cad","H","Hyun","Maz","Niss","Suz","Lex","Merc","Aud","Volv"],["ysler","ord","olet","illac","onda","dai","da","an","uki","us","edes","i","o"]
@@ -785,9 +833,13 @@ new Thing("hole",["corpse,20%", "corpse,5%", "blood,20%", "shovel,20%", "hole,0.
 //furniture
 new Thing("cabinet",["wood frame", "glass,30%", ".cabinet content"]);
 new Thing("cabinet content",["donut box,4%", ["cheese,0-3", ""], "water bottle,0-1", "juice bottle,0-1", "soda bottle,0-1", ["can,0-6", "cookie box,0-6"], "insect,2%"]);
-new Thing("fridge",[".fridge content", "plastic", "metal grill,1-4", "electronics"]);
+new Thing("fridge",[".fridge content",
+    PlasticFactory.one(),
+    "metal grill,1-4", "electronics"]);
 new Thing("fridge content",["roast,15%", "pasta,40%", "pasta,10%", "can,15%", "donut box,5%", "cake,3%", "pie,3%", ["yoghurt,0-6", ""], ["ice cream,0-6", ""], ["cheese,0-3", ""], "water bottle,0-1", "juice bottle,0-2", "soda bottle,0-2", "milk bottle,0-1", "wine bottle,10%"]);
-new Thing("oven",[["pie", "cake", "roast", "", ""], "plastic", "metal grill,1-3", "electronics"]);
+new Thing("oven",[["pie", "cake", "roast", "", ""],
+    PlasticFactory.one(),
+    "metal grill,1-3", "electronics"]);
 new Thing("kitchen sink",[".sink"]);
 new Thing("sink",[["porcelain", "metal"], "organic matter,5%", "pipes"]);
 new Thing("toilet",[
@@ -803,10 +855,14 @@ new Thing("porcelain",[
 new Thing("ceramic",[
     SilicaFactory.one(),
     ]);
-new Thing("chair",[["wood", "plastic"], "nails,50%"]);
+new Thing("chair",[["wood",
+    PlasticFactory.one(),
+], "nails,50%"]);
 new Thing("armchair",[".chair", "cloth"]);
 new Thing("couch",[".armchair", "tv remote,5%", "coin,5%", "pen,5%"],["couch", "sofa"]);
-new Thing("tv remote",["plastic", "electronics"],"TV remote");
+new Thing("tv remote",[
+    PlasticFactory.one(),
+    "electronics"],"TV remote");
 new Thing("coin",["organic matter,2%", "dirt,2%", "copper"]);
 new Thing("gold coin",["gold"]);
 new Thing("dirt",["organic matter,50%", "dust"]);
@@ -814,8 +870,12 @@ new Thing("grease",["lipids", "dust"]);
 new Thing("dust",["molecule"]);
 new Thing("crumbs",["organic matter"]);
 new Thing("lint",["textile fibre"]);
-new Thing("pen",["plastic", "ink,80%"]);
-new Thing("button",["plastic"]);
+new Thing("pen",[
+    PlasticFactory.one(),
+    "ink,80%"]);
+new Thing("button",[
+    PlasticFactory.one(),
+]);
 new Thing("note",["note writing", "paper"]);
 new Thing("note writing",[],["*NOTE*"]);
 new Thing("bed",[".armchair", "pillow,0-3"]);
@@ -834,14 +894,18 @@ new Thing("cup",["ceramic"]);
 new Thing("plate",["ceramic"]);
 new Thing("closet",["portal,0.1%", "skeleton,0.1%", "hat,30%", "hat,15%", "pants,0-5", "shirt,0-5", "underwear,0-6", "coat,0-3", "socks,0-8", "shoes,0-6", "button,20%", "wood frame", "wood shelf,0-2"]);
 new Thing("living-room table",[".table", "drawer,0-2"],"table");
-new Thing("table",[["wood", "plastic"], "nails,50%"]);
+new Thing("table",[["wood",
+    PlasticFactory.one(),
+], "nails,50%"]);
 new Thing("drawer",["note,0-8", "office toy,30%", "office toy,30%", "pen,30%", "pen,10%", "pen,5%", "donut box,4%", "can,2%", "book,20%", "book,20%", "book,5%", "book,5%", "button,10%", "button,10%", "dust,40%", "lint,40%"]);
 new Thing("note stack",["note,5-25"]);
 //lotsonotes
 new Thing("bookshelf",["book,5-30", ["plastic shelf,3-8", "wood shelf,3-8", "drawer,0-2"]]);
 new Thing("small bookshelf",["book,1-8", ["plastic shelf,1-6", "wood shelf,1-6"]],["bookshelf"]);
 new Thing("wood shelf",["wood", "nails"],"shelf");
-new Thing("plastic shelf",["plastic", "nails,50%"],"shelf");
+new Thing("plastic shelf",[
+    PlasticFactory.one(),
+    "nails,50%"],"shelf");
 new Thing("wood frame",["wood", "nails"]);
 new Thing("book",["page,20-100"],"*BOOK*");
 new Thing("page",["paragraph,1-8", "paper"]);
@@ -851,35 +915,60 @@ new Thing("wood",["cellulose", "worm,1%"]);
 new Thing("cellulose",["glucids"]);
 new Thing("paragraph",["character,50-300"]);
 new Thing("character",["ink"],"*CHAR*");
-new Thing("ink",["alcohol", OilFactory.one()]);
+new Thing("ink",[
+    AlcoholFactory.one(),
+    OilFactory.one()
+]);
 new Thing("bathtub",["porcelain", "pipes", "dirt,30%", "insect,5%", "hair,30%"]);
 new Thing("shower",["porcelain", "pipes", "dirt,30%", "insect,5%", "hair,30%"]);
-new Thing("tv",["tv show", "tv remote,20%", "plastic", "electronics"],[["plasma", "wide-screen", "high-resolution", "black and white", "small", "cheap"], [" TV"]]);
+new Thing("tv",["tv show", "tv remote,20%",
+    PlasticFactory.one(),
+    "electronics"],[["plasma", "wide-screen", "high-resolution", "black and white", "small", "cheap"], [" TV"]]);
 new Thing("tv show",[],[["A movie about", "A show about", "A sitcom about", "A TV show about", "A cartoon about", "A foreign show about", "An ad with"], [" "], ["stupid people", "boring people", "uninteresting people", "tan people", "foreigners", "a cute couple", "an obnoxious couple", "a dysfunctional couple", "magic kids", "space people", "scientists", "heroes", "antiheroes", "superheroes", "cavemen", "knights", "old-timey people", "awkward teenagers", "hundreds of people", "insane people", "cool hip kids", "a kid and his pet", "a kid and his teacher", "a boy and a girl", "businessmen", "an old man and his wife", "a young couple", "cow-boys", "pirates", "ninjas", "monsters", "wizards", "cleaning products", "aliens", "cute talking animals", "artists", "wacky animated animals", "beloved cartoon characters", "bears", "sharks", "small people"], [" "], ["struggling with their emotions", "trying to express their feelings", "and ecology", "and friendship", "and feelings", "and food", "talking about stuff", "doing things", "kicking butt and taking names", "in a post-apocalyptic world", "running away from zombies", "crying helplessly", "getting lost in the woods", "and their dream of starting a business", "trying to achieve their life-long dream", "trying to keep their promises", "trying to destroy a cursed artifact", "in school", "looking away from explosions", "hacking computers", "telling jokes", "delivering one-liners", "shooting stuff", "slaying monsters", "going to space", "travelling together", "learning about life", "dancing and singing", "doing way gross stuff", "learning martial arts", "trying to kill each other", "doing sports", "trying to defeat a government conspiracy", "in the century's biggest heist", "involving hilarious quiproquos and misunderstandings", "getting killed by a sociopath", "fighting robots", "killing aliens", "rescuing baby animals", "falling in love", "going on a date", "slowly turning evil", "learning that violence is not the answer", "doing magic", "coming up with convoluted plans", "exploring the sea", "saving the world", "involved in various mishaps", "involved in hilarious pranks", "with less-than-stellar writing", "with neat visual effects", "with a beautiful soundtrack", "with an impressive amount of clichés", "with a twist at the end", "with brilliant acting"], ["."]]);
-new Thing("video game console",["plastic", "electronics"],[["Mega", "Ultra", "Gene", "Se", "Ninten", "Nin", "Play", "Game", "Next", "Retro", "Dream", "Sun", "Kine", "3D"], ["station", "do", "sphere", "sis", "tron", "ga", "zor", "boy", "cast", "nect", "next"]]);
+new Thing("video game console",[
+    PlasticFactory.one(),
+    "electronics"],[["Mega", "Ultra", "Gene", "Se", "Ninten", "Nin", "Play", "Game", "Next", "Retro", "Dream", "Sun", "Kine", "3D"], ["station", "do", "sphere", "sis", "tron", "ga", "zor", "boy", "cast", "nect", "next"]]);
 
 new Thing("machine",["computer keyboard,10%", "engine,20%", "mechanics", "electronics,40%", "metal", "wood,10%", "cables,40%", "dirt,10%"],[["valve", "pump", "terminal", "conveyor", "forklift", "girder", "furnace", "generator", "hydraulics"]]);
-new Thing("cables",["plastic", "wire"]);
+new Thing("cables",[
+    PlasticFactory.one(),
+    "wire"]);
 new Thing("wire",["copper"]);
 
 new Thing("engine",["mechanics"]);
 new Thing("mechanics",["cog,2-12", "push-button,0-3", "electronics,30%", "cables,75%", "wire,0-2", "tube,0-3", "nails,40%", "insect,5%"],"mechanical components");
-new Thing("cog",[["copper", "plastic", "iron", "steel", "aluminium"]],["cog", "gear", "spur gear", "helical gear", "bevel gear", "harmonic drive", "spring", "pump", "sprocket", "wheel", "chain", "belt", "track", "bolts", "gizmo", "pulley", "puffer", "smoker", "vent"]);
-new Thing("push-button",["plastic", "cables"],["lever", "button", "switch"]);
-new Thing("tube",[["plastic", "metal", "glass"]]);
+new Thing("cog",[["copper",
+    PlasticFactory.one(),
+    "iron", "steel", "aluminium"]],["cog", "gear", "spur gear", "helical gear", "bevel gear", "harmonic drive", "spring", "pump", "sprocket", "wheel", "chain", "belt", "track", "bolts", "gizmo", "pulley", "puffer", "smoker", "vent"]);
+new Thing("push-button",[
+    PlasticFactory.one(),
+    "cables"],["lever", "button", "switch"]);
+new Thing("tube",[[
+    PlasticFactory.one(),
+    "metal", "glass"]]);
 
 new Thing("electronics",["microchip,1-6", "electronic component,1-6", "wire,0-2"]);
-new Thing("microchip",["electronic component,1-15", "plastic,75%", "copper,75%", "silicon,25%", "gold,5%"],["microchip"]);
-new Thing("electronic component",["plastic,75%", "copper,75%", "silicon,25%", "gold,5%"],["transistor", "inductor", "capacitor", "diode", "metagizmo", "transmorpher", "beeper"]);
+new Thing("microchip",["electronic component,1-15",
+    PlasticFactory.probable(75),
+    "copper,75%", "silicon,25%", "gold,5%"],["microchip"]);
+new Thing("electronic component",[
+    PlasticFactory.probable(75),
+    "copper,75%", "silicon,25%", "gold,5%"],["transistor", "inductor", "capacitor", "diode", "metagizmo", "transmorpher", "beeper"]);
 
 //computers
 new Thing("pixel paragraph",["pixel character,50-300"],"paragraph");
 new Thing("pixel character",["bit,8"],"*CHAR*");
 new Thing("computer",["computer screen", "computer keyboard", "computer mouse", "electronics"],[["P", "B", "M", "N", "T", "St", "Pl", "Bl", "Gr", "Fr", "Sht", "Fl"], ["apple", "indows", "inux", "oogle"], [" computer"]]);
 new Thing("laptop",[".computer"],[["P", "B", "M", "N", "T", "St", "Pl", "Bl", "Gr", "Fr", "Sht", "Fl"], ["apple", "indows", "inux", "oogle"], [" laptop"]]);
-new Thing("computer keyboard",["plastic", "electronics"],"keyboard");
-new Thing("computer mouse",["plastic", "electronics"],"mouse");
-new Thing("computer screen",["internet browser", "computer folder,1-4", "software,0-4", "video game,0-4", "computer trashbin", "plastic", "electronics"],"screen");
+new Thing("computer keyboard",[
+    PlasticFactory.one(),
+    "electronics"],"keyboard");
+new Thing("computer mouse",[
+    PlasticFactory.one(),
+    "electronics"],"mouse");
+new Thing("computer screen",["internet browser", "computer folder,1-4", "software,0-4", "video game,0-4", "computer trashbin",
+    PlasticFactory.one(),
+    "electronics"],"screen");
 new Thing("computer folder",["computer folder,0-2", ["computer folder,0-6", "disturbing computer image,1-10", "stupid computer image,1-10", "cute computer image,1-10", "software,1-6", "video game,1-6"]],[["/"], ["my ", "My ", "misc ", "Misc. ", "various ", "secret ", "family ", "Family ", "shared ", "Shared ", "important ", "Important ", "public ", "Public ", "private ", "Private ", "", "", ""], ["documents", "docs", "Documents", "Songs", "Music", "Movies", "Pictures", "pictures", "pics", "photos", "files", "Files", "things", "stuff", "stuff to sort"]]);
 new Thing("computer trashbin",["computer folder,0-4", "disturbing computer image,0-4"],"Trashbin");
 new Thing("video game",[".computer file"],[["Super ", "Mega ", "Ultra ", "Final ", "World of ", "", "", "", "", ""], ["Bl", "B", "Fl", "Gl", "Z", "Zw", "Dw", "M", "W", "Wh", "C", "F", "G", "Pl", "Spl"], ["ario", "antasy", "and", "astle", "ark", "ork", "org", "urg", "ink", "arf", "ine", "ar", "at", "uster", "aster", "alaxy", "ims", "ultima", "universe", "izzard"], ["craft", "vania", "arria", "arium", "'s Revenge", "'s Quest", " Bros", " Town", " Land", " World", " Party", " Quest", " RPG", " Horses", " Friends", " Girlz", " Online", " Fantasy", " Ultra", " Deluxe", " Fortress", " Racing", " Edit", " Maker", " Beta", " Trial", " Music", " Ultimate", " Resurrection", " The Movie : The Game", " 2", " 3", " II", " III", " 2000", " 3000", " GOTY Edition", " Deluxe Edition", " expansion pack", " [keygen]", " [CRACK]", " HD", "", "", "", "", "", "", "", "", "", "", ""], [".soft"]]);
@@ -908,13 +997,17 @@ new Thing("/x/",[".website"]);
 
 //food
 new Thing("milk",["glucids", "lipids", "calcium"]);
-new Thing("bottle",[["glass", "plastic", "cardboard"], "label"]);
+new Thing("bottle",[["glass",
+    PlasticFactory.one(),
+    "cardboard"], "label"]);
 new Thing("glass bottle",["glass"],"bottle");
 new Thing("glass jar",["glass"],"jar");
 new Thing("label",["paper"]);
 new Thing("milk bottle",[".bottle", "milk"]);
 new Thing("wine bottle",[".bottle", "wine"]);
-new Thing("wine",["sugar", "alcohol"]);
+new Thing("wine",["sugar",
+    AlcoholFactory.one(),
+]);
 new Thing("water bottle",[".bottle",
     WaterFactory.one(),
 ]);
@@ -997,7 +1090,9 @@ new Thing("visitor city",["named visitor,0-8", ["space animal,0-3", ""], "visito
 new Thing("visitor neighborhood",["named visitor,0-8", ["space animal,0-3", ""], "visitor building,2-16"],"neighborhood");
 new Thing("visitor building",[["named visitor,0-8", ""], "visitor room,1-8"],[["a tall", "a wide", "a spiralicious", "a twisty", "a holographic", "a composite", "a stout", "a long", "a domed", "an underground", "a submerged", "a gigantic"], [", "], ["green", "blue", "purple", "white", "gray", "translucent", "bright", "porous", "microsthetic", "turbified", "motorized", "hovering", "meshed", "towered", "automated", "ridged"], [" "], ["glumporium", "swapmarket", "slickmarket", "juicehouse", "scienceteria", "faceteria", "homezone", "orbshop", "oozeshop", "marklorion", "hive", "holotekt"]]);
 new Thing("visitor room",["named visitor,60%", "named visitor,30%", "named visitor,10%", "named visitor,10%", "named visitor,10%", "space animal,10%", "visitor furniture,1-6", ".room"],"room");
-new Thing("visitor furniture",["abomination,1%", "space animal,3%", "named visitor,2%", "organic matter,5%", ["glass", "metal", "concrete", "plastic"]],[["symbio", "opto", "auto", "synchro", "thru", "ato", "ecto", "diplo", "plasti", "pasta", "pluta", "elu", "gubri", "capra", "lubio", "logi", "plato", "micro", "alto", "tele", "meta", "anti", "poly", "mono", "corvo"], ["shid", "synth", "shaver", "shist", "mizer", "mucus", "twister", "ridger", "cutter", "mac", "maker", "ctory", "ctamid", "chton", "leaker", "grater", "board", "frame", "table", "stand", "plug", "masher", "greeter", "mobile", "pin", "vat", "tron", "drone", "chron", "tub", "fridge", "pool", "box", "cube", "morpher", "phraser"]]);
+new Thing("visitor furniture",["abomination,1%", "space animal,3%", "named visitor,2%", "organic matter,5%", ["glass", "metal", "concrete",
+    PlasticFactory.one(),
+]],[["symbio", "opto", "auto", "synchro", "thru", "ato", "ecto", "diplo", "plasti", "pasta", "pluta", "elu", "gubri", "capra", "lubio", "logi", "plato", "micro", "alto", "tele", "meta", "anti", "poly", "mono", "corvo"], ["shid", "synth", "shaver", "shist", "mizer", "mucus", "twister", "ridger", "cutter", "mac", "maker", "ctory", "ctamid", "chton", "leaker", "grater", "board", "frame", "table", "stand", "plug", "masher", "greeter", "mobile", "pin", "vat", "tron", "drone", "chron", "tub", "fridge", "pool", "box", "cube", "morpher", "phraser"]]);
 new Thing("visitor installation",["named visitor,0-4", ["space animal,0-3", ""], "visitor building,1-3"],[["pod", "grub", "egg", "limb", "ooze", "tendril", "bulb", "pulp", "energy", "smoke", "hive", "moisture", "cat"], [" "], ["materializer", "synthesizer", "factory", "farm", "collector", "cultures", "pit", "fields", "crops", "barn", "vat"]]);
 new Thing("visitor ship",["named visitor,1-3", "person,20%", "space animal,30%", "visitor furniture,1-6", "metal"],"visitor UFO");
 
@@ -1099,7 +1194,9 @@ new Thing("medieval bench",["stone"],"bench");
 new Thing("tankard",["ale,20%", "metal"]);
 new Thing("ale keg",["ale,80%", "wood", "metal"]);
 new Thing("medieval altar",["potion,0-3", "unusual stone,0-2", "unusual ingredient,0-1", ["marble", "stone"]],"altar");
-new Thing("ale",["alcohol"]);
+new Thing("ale",[
+    AlcoholFactory.one(),
+]);
 new Thing("loom",["wood frame", "metal"],"loom");
 new Thing("throne",["cloth", "wood", "metal"]);
 new Thing("medieval table",["wood", "nails,50%"],"table");

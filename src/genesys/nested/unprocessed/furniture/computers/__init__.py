@@ -4,9 +4,15 @@ new Thing("pixel paragraph",["pixel character,50-300"],"paragraph");
 new Thing("pixel character",["bit,8"],"*CHAR*");
 new Thing("computer",["computer screen","computer keyboard","computer mouse","electronics"],[["P","B","M","N","T","St","Pl","Bl","Gr","Fr","Sht","Fl"],["apple","indows","inux","oogle"],[" computer"]]);
 new Thing("laptop",[".computer"],[["P","B","M","N","T","St","Pl","Bl","Gr","Fr","Sht","Fl"],["apple","indows","inux","oogle"],[" laptop"]]);
-new Thing("computer keyboard",["plastic","electronics"],"keyboard");
-new Thing("computer mouse",["plastic","electronics"],"mouse");
-new Thing("computer screen",["internet browser","computer folder,1-4","software,0-4","video game,0-4","computer trashbin","plastic","electronics"],"screen");
+new Thing("computer keyboard",[
+    PlasticFactory.one(),
+    "electronics"],"keyboard");
+new Thing("computer mouse",[
+    PlasticFactory.one(),
+    "electronics"],"mouse");
+new Thing("computer screen",["internet browser","computer folder,1-4","software,0-4","video game,0-4","computer trashbin",
+    PlasticFactory.one(),
+    "electronics"],"screen");
 new Thing("computer folder",["computer folder,0-2",["computer folder,0-6","disturbing computer image,1-10","stupid computer image,1-10","cute computer image,1-10","software,1-6","video game,1-6"]],[["/"],["my ","My ","misc ","Misc. ","various ","secret ","family ","Family ","shared ","Shared ","important ","Important ","public ","Public ","private ","Private ","","",""],["documents","docs","Documents","Songs","Music","Movies","Pictures","pictures","pics","photos","files","Files","things","stuff","stuff to sort"]]);
 new Thing("computer trashbin",["computer folder,0-4","disturbing computer image,0-4"],"Trashbin");
 new Thing("video game",[".computer file"],[
