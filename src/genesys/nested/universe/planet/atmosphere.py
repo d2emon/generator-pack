@@ -5,11 +5,13 @@ from ...materials import MoleculeFactory
 
 
 class OzoneFactory(MoleculeFactory):
+    # TODO: Refactor it
     default_model = terrain.Ozone
     contents = 'O'
 
 
 class AtmosphereFactory(NestedFactory):
+    # TODO: Refactor it
     default_model = planet.atmosphere.Atmosphere
 
     def life(self):

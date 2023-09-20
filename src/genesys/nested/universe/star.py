@@ -24,8 +24,8 @@ class StarFactory(NestedFactory):
     def contents(self):
         yield from self.matter()
 
-    def name_factory(self, *args, **kwargs):
-        return f"{select_item(*self.data.star)} star"
+    def name_factory(self, data, *args, **kwargs):
+        return f"{select_item(*data.star)} star"
 
 
 class StarSystemFactory(NestedFactory):

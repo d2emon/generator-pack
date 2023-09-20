@@ -24,6 +24,10 @@ class DataProvider:
             'young', 'old', 'large', 'small', 'pale', 'white', 'dark', 'black', 'old', 'green', 'lush', 'blue', 'city', 'colonized',
             'life',
         ]
+        self.end_of_universe_note = [
+            'Help! I\'m trapped in a universe factory!', 'Okay, you can stop clicking now.',
+            'I want to get off Mr D2emon\'s Wild Ride', 'my sides',
+        ]
 
 
 PROVIDER = DataProvider()

@@ -4,6 +4,7 @@ from ...materials import RockFactory, IceFactory
 
 
 class PlateFactory(Factory):
+    # TODO: Refactor it
     default_model = Plate
     ice_probability = 50
 
@@ -13,8 +14,10 @@ class PlateFactory(Factory):
 
 
 class MoonPlateFactory(PlateFactory):
+    # TODO: Refactor it
     ice_probability = 0
 
 
 class AsteroidPlateFactory(PlateFactory):
+    # TODO: Refactor it
     ice_probability = 30

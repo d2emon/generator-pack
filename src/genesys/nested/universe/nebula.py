@@ -23,8 +23,8 @@ class InterstellarCloudFactory(NestedFactory):
         yield ELEMENTS['S'].probable(5),
         yield ELEMENTS['O'].probable(15),
 
-    def name_factory(self):
-        return f"{select_item(*self.data.interstellar_cloud)} interstellar cloud"
+    def name_factory(self, data, *args, **kwargs):
+        return f"{select_item(*data.interstellar_cloud)} interstellar cloud"
 
 
 class NebulaFactory(NestedFactory):

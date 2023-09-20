@@ -4,10 +4,10 @@ from .body import FutureMoonFactory, PlanetFactory, TerraformedMoonFactory
 from ..unsorted_life import GalacticLifeFactory
 from ..unsorted_terrain import ContinentFactory, AncientContinentFactory, MedievalContinentFactory, FutureContinentFactory, \
     OceanFactory, SkyFactory, TerraformedSkyFactory, FutureSkyFactory
+from ..unsorted_visitor import VisitorCityFactory, VisitorInstallationFactory
 
 
 class TelluricPlanetFactory(PlanetFactory):
-    # = planet composition
     model = planet.TelluricPlanet
 
     def life(self):
@@ -56,11 +56,8 @@ class VisitorPlanetFactory(BarrenPlanetFactory):
         yield GalacticLifeFactory.one()
 
     def visited(self):
-        # yield VisitorCityFactory.multiple(1, 8)
-        # yield from VisitorInstallationFactory().multiple(2, 6)
-        # visitor city,1-8
-        # visitor installation,2-6
-        yield None
+        yield VisitorCityFactory.multiple(1, 8)
+        yield VisitorInstallationFactory.multiple(2, 6)
 
 
 class FuturePlanetFactory(TelluricPlanetFactory):

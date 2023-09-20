@@ -15,3 +15,11 @@ class SpaceAnimalFactory(NestedFactory):
 
 class SpaceMonsterFactory(NestedFactory):
     pass
+
+
+class CrustaceanFactory(NestedFactory):
+    pass
+
+
+class PastaFactory(NestedFactory):
+    pass

@@ -1,55 +1,49 @@
-from models.universe.black_hole import EndOfUniverseNote, Everything, Answer42, BlackHole, WhiteHole, InsideTheBlackHole
 from factories.thing.nested_factory import NestedFactory
+from models.universe import black_hole
 from utils.nested import select_item
-# from ..life import BlackHoleLifeFactory
-# from ..temporary import PastaFactory
+from .data_provider import PROVIDER
+from .unsorted_life import CrustaceanFactory, PastaFactory
 
 
 class EndOfUniverseNoteFactory(NestedFactory):
-    default_model = EndOfUniverseNote
-    notes = [
-        "Help! I'm trapped in a universe factory!", "Okay, you can stop clicking now.",
-        "I want to get off Mr Orteil's Wild Ride", "my sides"
-    ]
+    default_data = PROVIDER
+    model = black_hole.EndOfUniverseNote
 
-    def generate_name(self):
-        return select_item(*self.notes)
+    def name_factory(self, data, *args, **kwargs):
+        return select_item(*data.end_of_universe_note)
 
     def children(self):
-        # yield PastaFactory.probable(0.1)
-        yield None
+        yield PastaFactory.probable(0.1)
 
 
 class EverythingFactory(NestedFactory):
-    default_model = Everything
+    model = black_hole.Everything
 
     def children(self):
-        # from . import UniverseFactory
+        from . import UniverseFactory
 
-        # yield UniverseFactory
-        yield None
+        yield UniverseFactory.one()
 
 
 class Answer42Factory(EverythingFactory):
-    default_model = Answer42
+    model = black_hole.Answer42
 
 
 class WhiteHoleFactory(EverythingFactory):
-    default_model = WhiteHole
+    model = black_hole.WhiteHole
 
 
 class InsideTheBlackHoleFactory(NestedFactory):
-    default_model = InsideTheBlackHole
+    model = black_hole.InsideTheBlackHole
 
     def children(self):
-        # yield EndOfUniverseNoteFactory.probable(0.5)
-        # yield BlackHoleLifeFactory
-        # yield WhiteHoleFactory
-        yield None
+        yield EndOfUniverseNoteFactory.probable(0.5)
+        yield CrustaceanFactory.probable(0.2)
+        yield WhiteHoleFactory
 
 
 class BlackHoleFactory(NestedFactory):
-    default_model = BlackHole
+    model = black_hole.BlackHole
 
     def children(self):
         yield InsideTheBlackHoleFactory.one()

@@ -17,8 +17,8 @@ from .star import DysonSphereFactory, StarFactory, StarSystemFactory
 from .nebula import InterstellarCloudFactory, NebulaFactory
 from .galaxy import GalaxyFactory, GalaxyArmFactory, GalaxyCenterFactory
 
-# from .black_hole import EndOfUniverseNoteFactory, EverythingFactory, Answer42Factory, WhiteHoleFactory, \
-#     InsideTheBlackHoleFactory, BlackHoleFactory
+from .black_hole import Answer42Factory, BlackHoleFactory, EndOfUniverseNoteFactory, EverythingFactory, InsideTheBlackHoleFactory, \
+    WhiteHoleFactory
 # from .god import D2emonThoughtsFactory, D2emonPsycheFactory, D2emonFactory, GodFactory
 
 
@@ -76,32 +76,22 @@ FACTORIES = {
     'gas giant atmosphere': GasGiantAtmosphereFactory,
     'planet core': PlanetCoreFactory,
 
-    # # 'black hole': BlackHoleFactory(),
-    # # 'inside the black hole': InsideTheBlackHoleFactory(),
-    # # 'white hole': WhiteHoleFactory(),
-    # # '42': Answer42Factory(),
-    # # 'everything': EverythingFactory(),
-    # # 'end of universe note': EndOfUniverseNoteFactory(),
+    'black hole': BlackHoleFactory,
+    'inside the black hole': InsideTheBlackHoleFactory,
+    'white hole': WhiteHoleFactory,
+    '42': Answer42Factory,
+    'everything': EverythingFactory,
+    'end of universe note': EndOfUniverseNoteFactory,
     # # 'orteil': D2emonFactory(),
+    # I do what I want
     # # 'god': GodFactory(),
+    # I'm a fucking god
     # # 'orteil psyche': D2emonPsycheFactory(),
     # # 'orteil thoughts': D2emonThoughtsFactory(),
 }
 
 
 """
-new Thing("black hole",["inside the black hole"]);
-new Thing("inside the black hole",["end of universe note,0.5%", "crustacean,0.2%", "white hole"]);
-new Thing("white hole",[
-    UniverseFactory.one(),
-]);
-new Thing("42",[
-    UniverseFactory.one(),
-]);
-new Thing("everything",[
-    UniverseFactory.one(),
-]);
-new Thing("end of universe note",["pasta,0.1%"],["Help! I'm trapped in a universe factory!", "Okay, you can stop clicking now.", "I want to get off Mr Orteil's Wild Ride", "my sides"]);
 new Thing("orteil",["body", "orteil psyche", "clothing set", "computer"],"Orteil");
 //I do what I want
 new Thing("god",[".orteil"],"Orteil");

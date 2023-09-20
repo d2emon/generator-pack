@@ -76,8 +76,8 @@ class MoonFactory(PlanetLikeFactory):
     def core(self):
         yield PlanetCoreFactory.one()
 
-    def name_factory(self):
-        return f"{select_item(*self.data.moon)} moon"
+    def name_factory(self, data, *args, **kwargs):
+        return f"{select_item(*data.moon)} moon"
 
 
 class PlanetFactory(PlanetLikeFactory):
@@ -107,8 +107,8 @@ class TerraformedMoonFactory(MoonFactory):
     def sky(self):
         yield SkyFactory.one()
 
-    def name_factory(self):
-        return f"{select_item(*self.data.terraformed_moon)} moon"
+    def name_factory(self, data, *args, **kwargs):
+        return f"{select_item(*data.terraformed_moon)} moon"
 
 
 class FutureMoonFactory(TerraformedMoonFactory):
