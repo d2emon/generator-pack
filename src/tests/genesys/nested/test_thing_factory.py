@@ -1,5 +1,5 @@
 import unittest
-from genesys.nested.factories.nested_factory import NestedFactory
+from genesys.nested.factories.old_nested_factory import NestedFactory
 from genesys.nested.factories import Things
 
 

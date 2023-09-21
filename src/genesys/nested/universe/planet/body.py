@@ -1,8 +1,7 @@
-from factories.thing.nested_factory import NestedFactory
+from genesys.nested.factories.nested_factory import NestedFactory
 from models import planet
 from utils.nested import select_item
 from ...materials import IceFactory, RockFactory
-from ..data_provider import PROVIDER
 from ..unsorted_life import GhostFactory, SpaceAnimalFactory
 from ..unsorted_terrain import ContinentFactory, OceanFactory, SkyFactory
 from .core import PlanetCoreFactory
@@ -63,7 +62,6 @@ class AsteroidFactory(PlanetLikeFactory):
 
 
 class MoonFactory(PlanetLikeFactory):
-    default_data = PROVIDER
     model = planet.body.Moon
 
     def life(self):
@@ -95,7 +93,6 @@ class PlanetFactory(PlanetLikeFactory):
 
 
 class TerraformedMoonFactory(MoonFactory):
-    default_data = PROVIDER
     model = planet.body.TerraformedMoon
 
     def continents(self):

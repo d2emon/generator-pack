@@ -1,15 +1,13 @@
-from factories.thing.nested_factory import NestedFactory
+from genesys.nested.factories.nested_factory import NestedFactory
 from models.universe import nebula
 from utils.nested import select_item
 from ..materials import ELEMENTS, AmmoniaFactory
 from ..materials.water import SteamFactory
-from .data_provider import PROVIDER
 from .star import SingleStarFactory
 from .unsorted_life import GalacticLifeFactory
 
 
 class InterstellarCloudFactory(NestedFactory):
-    default_data = PROVIDER
     model = nebula.InterstellarCloud
 
     def contents(self):

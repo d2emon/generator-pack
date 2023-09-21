@@ -1,14 +1,12 @@
-from factories.thing.nested_factory import NestedFactory
+from genesys.nested.factories.nested_factory import NestedFactory
 from models.v5 import universe
 from utils.nested import select_item
-from .data_provider import PROVIDER
 from ..cloth import ClothingSetFactory
 from ..life import BodyFactory
 from ..temporary import ComputerFactory
 
 
 class D2emonThoughtsFactory(NestedFactory):
-    default_data = PROVIDER
     model = universe.GodThoughts
 
     def name_factory(self, data, *args, **kwargs):

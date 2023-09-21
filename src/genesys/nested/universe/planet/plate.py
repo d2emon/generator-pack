@@ -1,9 +1,9 @@
+from genesys.nested.factories.nested_factory import NestedFactory
 from models.universe.planet.plate import Plate
-from factories.thing.nested_factory import NestedFactory as Factory
 from ...materials import RockFactory, IceFactory
 
 
-class PlateFactory(Factory):
+class PlateFactory(NestedFactory):
     # TODO: Refactor it
     default_model = Plate
     ice_probability = 50

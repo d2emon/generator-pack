@@ -2,7 +2,7 @@ import random
 import unittest
 from genesys.nested.factories.name_factory import NameFactory
 from genesys.nested.factories.child_factory import ChildFactory
-from genesys.nested.factories.nested_factory import NestedFactory as BaseFactory
+from genesys.nested.factories.old_nested_factory import NestedFactory as BaseFactory
 from models.model import Model
 
 

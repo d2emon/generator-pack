@@ -1,4 +1,4 @@
-from factories.thing.nested_factory import NestedFactory
+from genesys.nested.factories.nested_factory import NestedFactory
 from models.v5 import materials
 from utils.nested import select_item
 from .molecules import MoleculeFactory, SaltFactory

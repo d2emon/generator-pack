@@ -1,12 +1,10 @@
-from factories.thing.nested_factory import NestedFactory
+from genesys.nested.factories.nested_factory import NestedFactory
 from models.universe import black_hole
 from utils.nested import select_item
-from .data_provider import PROVIDER
 from .unsorted_life import CrustaceanFactory, PastaFactory
 
 
 class EndOfUniverseNoteFactory(NestedFactory):
-    default_data = PROVIDER
     model = black_hole.EndOfUniverseNote
 
     def name_factory(self, data, *args, **kwargs):

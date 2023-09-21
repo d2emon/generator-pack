@@ -1,9 +1,9 @@
-from factories.thing.nested_factory import NestedFactory as Factory
+from genesys.nested.factories.nested_factory import NestedFactory
 from models.v5 import materials
 from .elements import AtomFactory
 
 
-class MoleculeFactory(Factory):
+class MoleculeFactory(NestedFactory):
     contents = []
     model = materials.Molecule
 

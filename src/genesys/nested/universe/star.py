@@ -1,8 +1,7 @@
-from factories.thing.nested_factory import NestedFactory
+from genesys.nested.factories.nested_factory import NestedFactory
 from models.universe import star
 from utils.nested import select_item
 from ..materials import ELEMENTS
-from .data_provider import PROVIDER
 from .orbit import AncientOrbitFactory, AsteroidBeltFactory, BarrenOrbitFactory, FutureOrbitFactory, GasGiantOrbitFactory, \
     MedievalOrbitFactory, TerraformedOrbitFactory, VisitorOrbitFactory
 from .unsorted_life import GhostFactory, SpaceMonsterFactory
@@ -10,7 +9,6 @@ from .unsorted_terrain import DysonSurfaceFactory
 
 
 class StarFactory(NestedFactory):
-    default_data = PROVIDER
     model = star.Star
 
     def life(self):

@@ -1,10 +1,9 @@
 """
 Universe stuff
 """
-from factories.thing.nested_factory import NestedFactory
+from genesys.nested.factories.nested_factory import NestedFactory
 from models import universe
 from utils.nested import select_item
-from .data_provider import PROVIDER
 from .black_hole import Answer42Factory, BlackHoleFactory, EndOfUniverseNoteFactory, EverythingFactory, InsideTheBlackHoleFactory, \
     WhiteHoleFactory
 from .god import D2emonPsycheFactory, D2emonThoughtsFactory, GodFactory
@@ -34,7 +33,6 @@ class UniverseFactory(NestedFactory):
 
 
 class MultiverseFactory(NestedFactory):
-    default_data = PROVIDER
     model = universe.Multiverse
 
     def children(self):

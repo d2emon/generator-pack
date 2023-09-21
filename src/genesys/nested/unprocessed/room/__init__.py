@@ -1,5 +1,5 @@
 from genesys.nested.factories.child_factory import ChildFactory as ChildGenerator
-from genesys.nested.factories.nested_factory import NestedFactory as Thing
+from genesys.nested.factories.old_nested_factory import NestedFactory as Thing
 
 
 # rooms
