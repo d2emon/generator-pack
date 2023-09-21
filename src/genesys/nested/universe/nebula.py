@@ -4,7 +4,7 @@ from utils.nested import select_item
 from ..materials import ELEMENTS, AmmoniaFactory
 from ..materials.water import SteamFactory
 from .star import SingleStarFactory
-from .unsorted_life import GalacticLifeFactory
+from ..unsorted_life import GalacticLifeFactory
 
 
 class InterstellarCloudFactory(NestedFactory):

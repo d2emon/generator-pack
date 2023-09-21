@@ -4,7 +4,7 @@ from .planet import AncientPlanetFactory, BarrenPlanetFactory, FuturePlanetFacto
     TerraformedPlanetFactory    
 from .planet.body import AsteroidFactory
 from .planet.gas_giant import GasGiantFactory
-from .unsorted_life import GalacticLifeFactory
+from ..unsorted_life import GalacticLifeFactory
 
 
 class OrbitFactory(NestedFactory):

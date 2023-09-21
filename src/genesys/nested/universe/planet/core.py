@@ -1,7 +1,7 @@
 from genesys.nested.factories.nested_factory import NestedFactory
 from models.planet import core
 from ...materials import DiamondFactory, IronFactory, MagmaFactory, RockFactory
-from ..unsorted_life import SpaceMonsterFactory
+from ...unsorted_life import SpaceMonsterFactory
 
 
 class PlanetCoreFactory(NestedFactory):

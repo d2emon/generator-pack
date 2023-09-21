@@ -1,10 +1,10 @@
 from models import planet
 from ...materials import IceFactory, RockFactory
 from .body import FutureMoonFactory, PlanetFactory, TerraformedMoonFactory
-from ..unsorted_life import GalacticLifeFactory
-from ..unsorted_terrain import ContinentFactory, AncientContinentFactory, MedievalContinentFactory, FutureContinentFactory, \
+from ...unsorted_life import GalacticLifeFactory
+from ...unsorted_terrain import ContinentFactory, AncientContinentFactory, MedievalContinentFactory, FutureContinentFactory, \
     OceanFactory, SkyFactory, TerraformedSkyFactory, FutureSkyFactory
-from ..unsorted_visitor import VisitorCityFactory, VisitorInstallationFactory
+from ...unsorted_visitor import VisitorCityFactory, VisitorInstallationFactory
 
 
 class TelluricPlanetFactory(PlanetFactory):

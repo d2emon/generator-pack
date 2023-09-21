@@ -2,8 +2,8 @@ from genesys.nested.factories.nested_factory import NestedFactory
 from models import planet
 from utils.nested import select_item
 from ...materials import IceFactory, RockFactory
-from ..unsorted_life import GhostFactory, SpaceAnimalFactory
-from ..unsorted_terrain import ContinentFactory, OceanFactory, SkyFactory
+from ...unsorted_life import GhostFactory, SpaceAnimalFactory
+from ...unsorted_terrain import ContinentFactory, OceanFactory, SkyFactory
 from .core import PlanetCoreFactory
 
 

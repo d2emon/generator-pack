@@ -1,7 +1,7 @@
 from models import planet
 from ...materials import ELEMENTS, AmmoniaFactory, MethaneFactory
 from ...materials.water import SteamFactory
-from ..unsorted_life import GalacticLifeFactory
+from ...unsorted_life import GalacticLifeFactory
 from .atmosphere import AtmosphereFactory
 from .body import MoonFactory, PlanetFactory, TerraformedMoonFactory
 from .core import PlanetCoreFactory

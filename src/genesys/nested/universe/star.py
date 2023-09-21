@@ -4,8 +4,8 @@ from utils.nested import select_item
 from ..materials import ELEMENTS
 from .orbit import AncientOrbitFactory, AsteroidBeltFactory, BarrenOrbitFactory, FutureOrbitFactory, GasGiantOrbitFactory, \
     MedievalOrbitFactory, TerraformedOrbitFactory, VisitorOrbitFactory
-from .unsorted_life import GhostFactory, SpaceMonsterFactory
-from .unsorted_terrain import DysonSurfaceFactory
+from ..unsorted_life import GhostFactory, SpaceMonsterFactory
+from ..unsorted_terrain import DysonSurfaceFactory
 
 
 class StarFactory(NestedFactory):
