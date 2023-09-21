@@ -1,17 +1,10 @@
 from models.v5 import life
 from factories.thing.nested_factory import NestedFactory as Factory
 from utils.nested import select_item
-from ...animal_body.skin import DeadSkinFactory
-from ...animal_body.hair import HairFactory
-from ...animal_body.head import NoseFactory, EyeFactory
-from ...animal_body.mammal import MammalHeadFactory
-
-
-class DandruffFactory(Factory):
-    default_model = life.Dandruff
-
-    def children(self):
-        yield DeadSkinFactory()
+from ...body.skin import DeadSkinFactory
+from ...body.hair import HairFactory, DandruffFactory
+from ...body.head import NoseFactory, EyeFactory
+from ...body.mammal import MammalHeadFactory
 
 
 class HeadHairFactory(HairFactory):

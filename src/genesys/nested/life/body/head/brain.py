@@ -1,14 +1,16 @@
 from models.v5 import life
 from ...cell import CellFactory
-from ...single_celled import BacteriaFactory
 from ..body_parts import SoftBodyPartFactory
+# ???
+from ...single_celled import BacteriaFactory
 
 
 class BrainCellFactory(CellFactory):
-    default_model = life.BrainCell
+    model = life.BrainCell
 
 
 class BrainFactory(SoftBodyPartFactory):
+    # TODO: Refactor it
     default_model = life.Brain
 
     def children(self):

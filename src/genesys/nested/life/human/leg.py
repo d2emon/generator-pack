@@ -1,6 +1,6 @@
 from models.v5 import life
 from ...materials import SweatFactory, KeratinFactory
-from ..animal_body.body_parts import BodyPartFactory
+from ..body.body_parts import BodyPartFactory
 
 
 class KneeFactory(BodyPartFactory):

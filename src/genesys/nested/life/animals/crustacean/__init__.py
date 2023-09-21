@@ -2,10 +2,10 @@ from models.v5 import life
 from factories.thing.nested_factory import NestedFactory as Factory
 from ....materials import ChitinFactory
 from ....mind import ThoughtFactory, ThoughtsFactory, PsycheFactory
-from ...animal_body.head import SimpleEyeFactory, BrainFactory
-from ...animal_body.skin import ExoskeletonFactory
-from ...animal_body.body_parts import SoftFleshFactory
-from ...animal_body.skeleton import MuscleFactory, FatFactory
+from ...body.head import SimpleEyeFactory, BrainFactory
+from ...body.skin import ExoskeletonFactory
+from ...body.body_parts import SoftFleshFactory
+from ...body.skeleton import MuscleFactory, FatFactory
 from ..animal import AnimalFactory, AnimalBodyFactory
 
 

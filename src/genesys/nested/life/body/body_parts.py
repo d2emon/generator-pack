@@ -1,28 +1,48 @@
+from genesys.nested.factories.nested_factory import NestedFactory
 from models.v5 import life
-from factories.thing.nested_factory import NestedFactory as Factory
 from utils.nested import select_item
-from ..single_celled import BacteriaFactory
 from .blood import BloodVesselsFactory
 from .skeleton import BonesFactory, MuscleFactory, FatFactory
 from .skin import SkinFactory
 
+# ??? 
+from ..single_celled import BacteriaFactory
 
-class BodyPartFactory(Factory):
-    default_model = life.BodyPart
+
+class BodyPartFactory(NestedFactory):
+    model = life.BodyPart
 
     has_bones = True
     has_skin = True
 
-    def children(self):
-        yield BacteriaFactory().probable(30)
-        yield BacteriaFactory().probable(10)
-        if self.has_skin:
-            yield SkinFactory()
-        yield BloodVesselsFactory()
+    def bacterii(self):
+        yield BacteriaFactory.probable(30)
+        yield BacteriaFactory.probable(10)
+
+    def blood(self):
+        yield BloodVesselsFactory.one()
+
+    def bones(self):
         if self.has_bones:
-            yield BonesFactory()
-        yield FatFactory()
-        yield MuscleFactory()
+            yield BonesFactory.one()
+
+    def fat(self):
+        yield FatFactory.one()
+
+    def muscles(self):
+        yield MuscleFactory.one()
+
+    def skin(self):
+        if self.has_skin:
+            yield SkinFactory.one()
+
+    def children(self):
+        yield from self.bacterii()
+        yield from self.skin()
+        yield from self.blood()
+        yield from self.bones()
+        yield from self.fat()
+        yield from self.muscles()
 
 
 class SoftBodyPartFactory(BodyPartFactory):
@@ -41,16 +61,19 @@ class SkinlessSoftBodyPartFactory(BodyPartFactory):
 
 
 class FleshFactory(SkinlessBodyPartFactory):
+    # TODO: Refactor it
     default_model = life.Flesh
     has_bones = True
 
 
 class SoftFleshFactory(FleshFactory):
+    # TODO: Refactor it
     default_model = life.Flesh
     has_bones = False
 
 
 class WeirdSoftOrganFactory(SkinlessSoftBodyPartFactory):
+    # TODO: Refactor it
     default_model = life.WeirdOrgan
 
     descriptions = [
@@ -69,6 +92,7 @@ class WeirdSoftOrganFactory(SkinlessSoftBodyPartFactory):
 
 
 class WeirdHardOrganFactory(SkinlessBodyPartFactory):
+    # TODO: Refactor it
     default_model = life.WeirdOrgan
 
     descriptions = [

@@ -1,7 +1,7 @@
 from models.v5 import life
 from ...materials import SweatFactory, KeratinFactory
-from ..animal_body.body_parts import BodyPartFactory, SoftBodyPartFactory
-from ..animal_body.hair import HairFactory
+from ..body.body_parts import BodyPartFactory, SoftBodyPartFactory
+from ..body.hair import HairFactory
 
 
 class ArmpitHairFactory(HairFactory):

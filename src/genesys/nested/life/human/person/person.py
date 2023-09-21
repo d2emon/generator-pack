@@ -3,7 +3,7 @@ from factories.thing.nested_factory import NestedFactory as Factory
 from ....mind import PsycheFactory
 # from ....cloth import ClothingSetFactory
 from ...animals.animal import AnimalFactory
-from ...animal_body.blood import BloodFactory
+from ...body.blood import BloodFactory
 from ..body import BodyFactory
 
 

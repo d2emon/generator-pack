@@ -1,11 +1,13 @@
+from .body import FACTORIES as BODY_FACTORIES
 from .cell import FACTORIES as CELL_FACTORIES
-from .body import *
+from .human import *
 from .vegetation import *
 from .life import *
 
 
 FACTORIES = {
     **CELL_FACTORIES,
+    **BODY_FACTORIES,
 }
 
 

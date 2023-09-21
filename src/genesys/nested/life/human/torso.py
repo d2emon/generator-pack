@@ -1,7 +1,7 @@
 from models.v5 import life
 from ...materials import SweatFactory
-from ..animal_body.body_parts import BodyPartFactory, SoftBodyPartFactory
-from ..animal_body.skin import SkinFactory
+from ..body.body_parts import BodyPartFactory, SoftBodyPartFactory
+from ..body.skin import SkinFactory
 
 
 class ButtFactory(BodyPartFactory):

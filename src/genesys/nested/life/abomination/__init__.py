@@ -1,14 +1,14 @@
 from models.v5 import life
 from utils.nested import select_item
 from ...mind import PsycheFactory, ThoughtsFactory, ThoughtFactory
-from ..animal_body import WeirdSoftOrganFactory, WeirdHardOrganFactory, CrustaceanClawFactory, StingerFactory, \
+from ..body import WeirdSoftOrganFactory, WeirdHardOrganFactory, CrustaceanClawFactory, StingerFactory, \
     MouthFactory, NoseFactory, EarFactory, EyeFactory, SkullFactory
-from ..body.person import PersonFactory
-from ..body.body import BodyFactory
-from ..body.torso import TorsoFactory, ChestFactory, PelvisFactory
-from ..body.head import HeadFactory, HeadHairFactory
-from ..body.arm import ArmFactory
-from ..body.leg import LegFactory
+from ..human.person import PersonFactory
+from ..human.body import BodyFactory
+from ..human.torso import TorsoFactory, ChestFactory, PelvisFactory
+from ..human.head import HeadFactory, HeadHairFactory
+from ..human.arm import ArmFactory
+from ..human.leg import LegFactory
 
 
 class AbominationTorsoFactory(TorsoFactory):

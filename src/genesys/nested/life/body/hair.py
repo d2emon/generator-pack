@@ -1,10 +1,22 @@
+from genesys.nested.factories.nested_factory import NestedFactory
 from models.v5 import life
-from factories.thing.nested_factory import NestedFactory as Factory
+from .skin import DeadSkinFactory
+
+# ???
 from ...materials import KeratinFactory
+# ???
 from ..single_celled import BacteriaFactory
 
 
-class HairFactory(Factory):
+class DandruffFactory(NestedFactory):
+    model = life.Dandruff
+
+    def children(self):
+        yield DeadSkinFactory()
+
+
+class HairFactory(NestedFactory):
+    # TODO: Refactor it
     default_model = life.Hair
 
     def children(self):
@@ -13,6 +25,7 @@ class HairFactory(Factory):
 
 
 class FurFactory(HairFactory):
+    # TODO: Refactor it
     default_model = life.Fur
 
     def children(self):
@@ -20,4 +33,5 @@ class FurFactory(HairFactory):
 
 
 class WhiskersFactory(FurFactory):
+    # TODO: Refactor it
     default_model = life.Whiskers
