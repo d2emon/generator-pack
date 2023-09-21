@@ -1,8 +1,8 @@
 from models.v5 import life
 from factories.thing.nested_factory import NestedFactory as Factory
-from .body_parts import BodyPartFactory, FleshFactory
+from ..body.body_parts import BodyPartFactory, FleshFactory
 from .limb import WingFactory, TailFactory
-from .skin import ScalesFactory
+from ..body.skin import ScalesFactory
 
 
 class ReptileWingFactory(WingFactory):

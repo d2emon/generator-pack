@@ -20,24 +20,24 @@ from ..animals.crustacean import CrustaceanLegFactory, CrustaceanClawFactory, Cr
 # ???
 from .head import *
 # ???
-from .bird import BirdLimbFactory, BirdWingFactory, BirdLegFactory, BirdTailFactory, BeakFactory, BirdHeadFactory, \
+from ..animals.bird import BirdLimbFactory, BirdWingFactory, BirdLegFactory, BirdTailFactory, BeakFactory, BirdHeadFactory, \
     BirdBodyFactory
 # ???
-from .cetacean import CetaceanFinFactory, CetaceanFlipperFactory
+from ..animals.cetacean import CetaceanFinFactory, CetaceanFlipperFactory
 # ???
-from .fish import FishFinFactory, FishTailFactory, FishSkinFactory
+from ..animals.fish import FishFinFactory, FishTailFactory, FishSkinFactory
 # ???
-from .insect import InsectLegFactory, InsectClawFactory, StingerFactory, AntennaFactory, InsectWingFactory
+from ..animals.insect import InsectLegFactory, InsectClawFactory, StingerFactory, AntennaFactory, InsectWingFactory
 # ???
-from .jelly import JellyFactory
+from ..animals.jelly import JellyFactory
 # ???
-from .limb import WingFactory, TentacleFactory, TailFactory
+from ..animals.limb import WingFactory, TentacleFactory, TailFactory
 # ???
-from .mammal import MammalLegFactory, MammalHeadFactory, MammalBodyFactory
+from ..animals.mammal import MammalLegFactory, MammalHeadFactory, MammalBodyFactory
 # ???
-from .reptile import ReptileWingFactory, ReptileHeadFactory, ReptileLegFactory, ReptileBodyFactory, SnakeBodyFactory
+from ..animals.reptile import ReptileWingFactory, ReptileHeadFactory, ReptileLegFactory, ReptileBodyFactory, SnakeBodyFactory
 # ???
-from .venom import VenomFactory
+from ..animals.venom import VenomFactory
 
 
 FACTORIES = {

@@ -1,6 +1,6 @@
 from models.v5 import life
 from factories.thing.nested_factory import NestedFactory as Factory
-from .body_parts import SkinlessSoftBodyPartFactory, BodyPartFactory
+from ..body.body_parts import SkinlessSoftBodyPartFactory, BodyPartFactory
 
 
 class WingFactory(Factory):

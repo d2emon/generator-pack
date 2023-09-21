@@ -1,8 +1,8 @@
 from models.v5 import life
 from factories.thing.nested_factory import NestedFactory as Factory
-from .body_parts import BodyPartFactory, FleshFactory
-from .head import MouthFactory, SnoutFactory, EyeFactory, EarFactory, SkullFactory
-from .hair import FurFactory, WhiskersFactory
+from ..body.body_parts import BodyPartFactory, FleshFactory
+from ..body.head import MouthFactory, SnoutFactory, EyeFactory, EarFactory, SkullFactory
+from ..body.hair import FurFactory, WhiskersFactory
 from .limb import TailFactory
 
 

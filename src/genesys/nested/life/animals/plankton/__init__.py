@@ -2,7 +2,7 @@ from models.v5 import life
 from ....mind import ThoughtFactory, ThoughtsFactory, PsycheFactory
 from ...body.head import SimpleEyeFactory, SimpleMouthFactory
 from ...body.skin import ExoskeletonFactory
-from ...body.jelly import JellyFactory
+from ..jelly import JellyFactory
 from ...body.body_parts import SoftFleshFactory
 from ..animal import AnimalFactory, AnimalBodyFactory
 

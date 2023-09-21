@@ -2,8 +2,8 @@ from models.v5 import life
 from factories.thing.nested_factory import NestedFactory as Factory
 from utils.nested import select_item
 from ...materials import ChitinFactory, DewFactory
-from ..animals.crustacean import CrustaceanLegFactory, CrustaceanClawFactory
-from .skin import ScalesFactory
+from .crustacean import CrustaceanLegFactory, CrustaceanClawFactory
+from ..body.skin import ScalesFactory
 from .venom import VenomFactory
 
 

@@ -1,8 +1,8 @@
 from models.v5 import life
 from factories.thing.nested_factory import NestedFactory as Factory
-from .body_parts import BodyPartFactory, FleshFactory
-from .skeleton import BonesFactory
-from .head import EyeFactory, SkullFactory
+from ..body.body_parts import BodyPartFactory, FleshFactory
+from ..body.skeleton import BonesFactory
+from ..body.head import EyeFactory, SkullFactory
 
 
 class BirdLimbFactory(BodyPartFactory):

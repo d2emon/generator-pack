@@ -1,8 +1,8 @@
 from models.v5 import life
 from ....mind import ThoughtFactory, ThoughtsFactory, PsycheFactory
 from ...body.head import SimpleEyeFactory, MouthFactory
-from ...body.limb import TentacleFactory
-from ...body.jelly import JellyFactory
+from ..limb import TentacleFactory
+from ..jelly import JellyFactory
 from ...body.body_parts import SoftFleshFactory
 from ..animal import AnimalFactory, AnimalBodyFactory
 

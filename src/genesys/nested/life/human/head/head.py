@@ -4,7 +4,7 @@ from utils.nested import select_item
 from ...body.skin import DeadSkinFactory
 from ...body.hair import HairFactory, DandruffFactory
 from ...body.head import NoseFactory, EyeFactory
-from ...body.mammal import MammalHeadFactory
+from ...animals.mammal import MammalHeadFactory
 
 
 class HeadHairFactory(HairFactory):

@@ -2,7 +2,7 @@ from models.v5 import life
 from utils.nested import select_item
 from ....mind import ThoughtFactory, ThoughtsFactory, PsycheFactory
 from ...body.head import SimpleMouthFactory
-from ...body.jelly import JellyFactory
+from ..jelly import JellyFactory
 from ...body.body_parts import SoftFleshFactory
 from ..animal import AnimalFactory, AnimalBodyFactory
 
