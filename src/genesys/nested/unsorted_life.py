@@ -23,3 +23,7 @@ class CrustaceanFactory(NestedFactory):
 
 class PastaFactory(NestedFactory):
     pass
+
+
+class WormFactory(NestedFactory):
+    pass

@@ -1,6 +1,6 @@
 from .body import FACTORIES as BODY_FACTORIES
 from .cell import FACTORIES as CELL_FACTORIES
-from .human import *
+from .human import FACTORIES as HUMAN_FACTORIES
 from .vegetation import *
 from .life import *
 
@@ -8,115 +8,11 @@ from .life import *
 FACTORIES = {
     **CELL_FACTORIES,
     **BODY_FACTORIES,
+    **HUMAN_FACTORIES,
 }
 
 
 """
-new Thing("clothing set",["hat,2%", "glasses,20%", "pants,98%", "shirt,98%", "coat,50%", "socks,80%", "shoes,80%", "underwear,99%"],"clothing");
-new Thing("man",[".person"],"*MAN*");
-new Thing("woman",[".person"],"*WOMAN*");
-new Thing("person",["body", "psyche", "clothing set"],"*PERSON*");
-new Thing("corpse",["body", "clothing set",
-    BloodFactory.probable(35),
-    "worm,20%", "worm,10%"],"*PERSON*| (dead)");
-new Thing("body",["head", "torso", "arm,99%", "arm,99%", "leg,99%", "leg,99%"],"body");
-new Thing("torso",["chest", "pelvis",
-    (BodyPatFactory)
-    ]);
-new Thing("chest",["nipple,2", "bellybutton",
-    (BodyPatFactory)
-    ]);
-new Thing("bellybutton",[
-    SkinFactory.one(),
-    "lint,0-1"]);
-new Thing("nipple",[
-    SkinFactory.one(),
-    ]);
-new Thing("pelvis",["naughty bits", "butt",
-    (BodyPatFactory)
-    ]);
-new Thing("naughty bits",[
-    (SoftBodyPatFactory)
-    ]);
-new Thing("butt",["pasta,0.01%", "sweat,50%",
-    (BodyPatFactory)
-    ]);
-new Thing("arm",["hand", "elbow", "armpit",
-    (BodyPatFactory)
-    ],"arm");
-new Thing("hand",["finger,5",
-    (BodyPatFactory)
-    ]);
-new Thing("finger",["fingernail",
-    (BodyPatFactory)
-    ],"finger");
-new Thing("fingernail",["dust,30%", "keratin"],"fingernail");
-new Thing("elbow",[
-    (BodyPatFactory)
-    ]);
-new Thing("armpit",["armpit hair", "sweat,80%",
-    (SoftBodyPatFactory)
-    ]);
-new Thing("armpit hair",[".hair"],"hair");
-new Thing("leg",["foot", "knee",
-    (BodyPatFactory)
-    ],"leg");
-new Thing("foot",["toe,5", "sweat,30%",
-    (BodyPatFactory)
-    ]);
-new Thing("toe",["toenail",
-    (BodyPatFactory)
-    ],"toe");
-new Thing("toenail",["dust,40%", "keratin"],"toenail");
-new Thing("knee",[
-    (BodyPatFactory)
-    ],"knee");
-new Thing("head",["mouth", "nose", "eye,99%", "eye,99%", "ear,2", "skull", "head hair,85%",
-    (BodyPatFactory)
-    ],"head");
-new Thing("eye",["eyelashes", "eye flesh", "tear,2%"],"eye");
-new Thing("eye flesh",[
-    WaterFactory.one(),
-    BloodVesselsFactory.one(),
-    FatFactory.one(),
-    ],"eyeball");
-new Thing("eyelashes",[".hair"],"eyelashes");
-new Thing("tear",[
-    WaterFactory.one(),
-    SaltFactory.one(),
-]);
-new Thing("ear",[
-    (SoftBodyPartFactory)
-    ],"ear");
-new Thing("brain",["bacteria,20%",
-    BrainCellFactory.one(),
-    ],"brain");
-new Thing("skull",["brain",
-    (BonesFactory),
-    ]);
-new Thing("head hair",[".hair",
-    DandruffFactory.probable(10),
-    ],[["brown", "black", "gray", "light", "blonde", "red", "dark"], [" hair"]]);
-new Thing("hair",["bacteria,30%", "keratin"],"hair");
-new Thing("nose",["nostril,2",
-    (BodyPatFactory)
-    ],"nose");
-new Thing("nostril",["nostril hair", "boogers,0-1",
-    (SoftBodyPartFactory)
-    ],"nostril");
-new Thing("nostril hair",[".hair"],"nostril hair");
-new Thing("boogers",[
-    OrganicFactory.one(),
-]);
-new Thing("mouth",["teeth", "tongue"],"mouth");
-new Thing("teeth",[
-    ELEMENTS['Ca'].one(),
-    ELEMENTS['P'].one(),
-],"teeth");
-new Thing("tongue",[
-    MusclesFactory.one(),
-    ],"tongue");
-
 new Thing("abomination",["abomination body", "abomination psyche"],"*PERSON*| (abomination)");
 //nonononononono
 new Thing("abomination psyche",["abomination thoughts", "memories"],"psyche");

@@ -1,63 +1,62 @@
 from models.v5 import life
-from ...materials import SweatFactory
 from ..body.body_parts import BodyPartFactory, SoftBodyPartFactory
 from ..body.skin import SkinFactory
+from ...unsorted_life import PastaFactory
+from ...unsorted_organics import LintFactory, SweatFactory
+
+
+class NaughtyBitsFactory(SoftBodyPartFactory):
+    model = life.NaughtyBits
 
 
 class ButtFactory(BodyPartFactory):
     def children(self):
-        # yield Pasta.probable(0.01)
-        yield SweatFactory().probable(50)
+        yield PastaFactory.probable(0.01)
+        yield SweatFactory.probable(50)
         yield from super().children()
 
 
-class NaughtyBitsFactory(SoftBodyPartFactory):
-    default_model = life.NaughtyBits
-
-
 class PelvisFactory(BodyPartFactory):
-    default_model = life.Pelvis
+    model = life.Pelvis
 
     def children(self):
-        yield NaughtyBitsFactory()
-        yield ButtFactory()
+        yield NaughtyBitsFactory.one()
+        yield ButtFactory.one()
         yield from super().children()
 
 
 class NippleFactory(BodyPartFactory):
-    default_model = life.Nipple
+    model = life.Nipple
 
     def children(self):
-        yield SkinFactory()
+        yield SkinFactory.one()
 
 
 class BellybuttonFactory(BodyPartFactory):
-    default_model = life.Bellybutton
+    model = life.Bellybutton
 
     def children(self):
-        yield SkinFactory()
-        # yield from Lint.multiple(0, 1)
+        yield SkinFactory.one()
+        yield LintFactory.multiple(0, 1)
 
 
 class ChestFactory(BodyPartFactory):
-    default_model = life.Chest
+    model = life.Chest
 
     def children(self):
-        yield from NippleFactory().multiple(2)
-        yield BellybuttonFactory()
+        yield NippleFactory.multiple(2)
+        yield BellybuttonFactory.one()
         yield from super().children()
 
 
 class TorsoFactory(BodyPartFactory):
-    default_model = life.Torso
+    model = life.Torso
 
-    @classmethod
-    def chest(cls):
-        yield ChestFactory()
+    def chest(self):
+        yield ChestFactory.one()
 
-    @classmethod
-    def pelvis(cls):
-        yield PelvisFactory()
+    def pelvis(self):
+        yield PelvisFactory.one()
 
     def children(self):
         yield from self.chest()

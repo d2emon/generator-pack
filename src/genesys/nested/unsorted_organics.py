@@ -7,3 +7,11 @@ class DustFactory(NestedFactory):
 
 class SweatFactory(NestedFactory):
     pass
+
+
+class LintFactory(NestedFactory):
+    pass
+
+
+class KeratinFactory(NestedFactory):
+    pass

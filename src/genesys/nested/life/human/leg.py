@@ -1,41 +1,41 @@
 from models.v5 import life
-from ...materials import SweatFactory, KeratinFactory
 from ..body.body_parts import BodyPartFactory
-
-
-class KneeFactory(BodyPartFactory):
-    default_model = life.Knee
+from ...unsorted_organics import DustFactory, KeratinFactory, SweatFactory
 
 
 class ToenailFactory(BodyPartFactory):
-    default_model = life.Toenail
+    model = life.Toenail
 
     def children(self):
-        # "dust,40%"
-        yield KeratinFactory()
+        yield DustFactory.probable(40)
+        yield KeratinFactory.one()
 
 
 class ToeFactory(BodyPartFactory):
-    default_model = life.Toe
+    model = life.Toe
 
     def children(self):
-        yield from ToenailFactory()
+        yield ToenailFactory.one()
         yield from super().children()
 
 
 class FootFactory(BodyPartFactory):
-    default_model = life.Foot
+    model = life.Foot
 
     def children(self):
-        yield from ToeFactory().multiple(5)
-        yield SweatFactory().probable(30)
+        yield ToeFactory.multiple(5)
+        yield SweatFactory.probable(30)
         yield from super().children()
 
 
+class KneeFactory(BodyPartFactory):
+    model = life.Knee
+
+
 class LegFactory(BodyPartFactory):
-    default_model = life.Leg
+    model = life.Leg
 
     def children(self):
-        yield FootFactory()
-        yield KneeFactory()
+        yield FootFactory.one()
+        yield KneeFactory.one()
         yield from super().children()
