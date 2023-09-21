@@ -16,13 +16,19 @@ new Thing("ancient memory",[],["*ANCIENT MEMORY*"]);
 
 new Thing("fur coat",["leather","fur"],[["mammoth","saber-toothed cat","mountain lion","wooly rhinoceros","wolf","auroch","rabbit"],[" "],["pelts","coat","rags","loincloth"]]);
 new Thing("fur boots",["leather","fur"],[["mammoth","saber-toothed cat","mountain lion","wooly rhinoceros","wolf","auroch","rabbit"],[" "],["boots"]]);
-new Thing("decorative bone",["bone"],["bone necklace","bone earrings","bone pin","bone accessory"]);
+new Thing("decorative bone",[
+    BonesFactory.one(),
+    ],["bone necklace","bone earrings","bone pin","bone accessory"]);
 new Thing("ceremonial headdress",["fur","feather","pigment"]);
 
 new Thing("caveman settlement",["ancient person,1-8","ancient tent,2-6","wall painting,40%","wall painting,20%","campfire,80%","ancient meat rack,0-3","ancient clutter pile,0-3","bone heap,30%"],["settlement"]);
 new Thing("ancient tent",["ancient person,0-3","campfire,10%","ancient meat rack,20%","ancient meat rack,20%","ceremonial headdress,2%","fur coat,10%","fur coat,10%","fur boots,10%","fur boots,10%","decorative bone,20%","decorative bone,10%","ancient clutter pile,30%","ancient clutter pile,30%","bone heap,5%","leather"],["tent"]);
-new Thing("ancient clutter pile",["leather,80%","fur,80%","bone,80%","wood,80%","stone"],["a pile of discarded tools","a pile of stone tools","a pile of broken spears","a pile of unfinished spears","a pile of harpoons","a pile of discarded bones","a pile of miscellaneous rock tools","a pile of dry furs","a pile of smooth rocks","a pile of firewood","a pile of sticks","a pile of stone figurines"]);
-new Thing("bone heap",["bone,5-20"]);
+new Thing("ancient clutter pile",["leather,80%","fur,80%",
+    BonesFactory.probable(80),
+    "wood,80%","stone"],["a pile of discarded tools","a pile of stone tools","a pile of broken spears","a pile of unfinished spears","a pile of harpoons","a pile of discarded bones","a pile of miscellaneous rock tools","a pile of dry furs","a pile of smooth rocks","a pile of firewood","a pile of sticks","a pile of stone figurines"]);
+new Thing("bone heap",[
+    BonesFactory.multiple(5, 20),
+    ]);
 new Thing("campfire",[
     FireFactory.one(),
     "wood","stone"]);

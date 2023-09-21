@@ -2,22 +2,50 @@
 //visitors
 new Thing("visitor",["visitor body","visitor psyche"],"visitor");
 new Thing("visitor body",["visitor head","visitor head,2%","visitor torso","visitor arm,99%","visitor arm,2%","visitor arm,99%","visitor leg,99%","visitor leg,99%","visitor leg,2%"],"body");
-new Thing("visitor torso",["visitor chest","visitor pelvis",".body part"],"torso");
-new Thing("visitor chest",[".body part"],"chest");
-new Thing("visitor pelvis",["visitor naughty bits",".body part"],"pelvis");
-new Thing("visitor naughty bits",[".soft body part"],["thrusher"]);
-new Thing("visitor arm",["visitor hand","visitor elbow,2","visitor armpit",".body part"],"arm");
-new Thing("visitor hand",["visitor finger,3",".body part"],"hand");
-new Thing("visitor finger",[".body part"],"finger");
-new Thing("visitor elbow",[".body part"],"elbow");
-new Thing("visitor armpit",["visitor ooze,70%",".soft body part"],"armpit");
-new Thing("visitor leg",["visitor foot","visitor knee",".body part"],"leg");
-new Thing("visitor foot",["toe,4","visitor ooze,40%",".body part"],"foot");
-new Thing("visitor toe",[".body part"],"toe");
-new Thing("visitor knee",[".body part"],"knee");
+new Thing("visitor torso",["visitor chest","visitor pelvis",
+    (BodyPatFactory)
+    ],"torso");
+new Thing("visitor chest",[
+    (BodyPatFactory)
+    ],"chest");
+new Thing("visitor pelvis",["visitor naughty bits",
+    (BodyPatFactory)
+    ],"pelvis");
+new Thing("visitor naughty bits",[
+    (SoftBodyPartFactory)
+    ],["thrusher"]);
+new Thing("visitor arm",["visitor hand","visitor elbow,2","visitor armpit",
+    (BodyPatFactory)
+    ],"arm");
+new Thing("visitor hand",["visitor finger,3",
+    (BodyPatFactory)
+    ],"hand");
+new Thing("visitor finger",[
+    (BodyPatFactory)
+    ],"finger");
+new Thing("visitor elbow",[
+    (BodyPatFactory)
+    ],"elbow");
+new Thing("visitor armpit",["visitor ooze,70%",
+    (SoftBodyPartFactory)
+    ],"armpit");
+new Thing("visitor leg",["visitor foot","visitor knee",
+    (BodyPatFactory)
+    ],"leg");
+new Thing("visitor foot",["toe,4","visitor ooze,40%",
+    (BodyPatFactory)
+    ],"foot");
+new Thing("visitor toe",[
+    (BodyPatFactory)
+    ],"toe");
+new Thing("visitor knee",[
+    (BodyPatFactory)
+    ],"knee");
 new Thing("visitor head",["visitor mouth","eye,0-4","skull"],"head");
 new Thing("visitor eye",["eye flesh","visitor ooze,20%"],"eye");
-new Thing("nose",["nostril,2",".body part"],"nose");
+new Thing("nose",["nostril,2",
+    (BodyPatFactory)
+    ],"nose");
 new Thing("visitor mouth",["visitor teeth","tongue,2","visitor ooze"],"mouth");
 new Thing("visitor teeth",[
     SteelFactory.one(),

@@ -63,8 +63,12 @@ new Thing("shark thought",[],["CHOMP","NOM","THIS LOOKS TASTY","THIS SMELLS DELI
 new Thing("cetacean",["cetacean body","cetacean thoughts"],["dolphin","porpoise","whale","orca","bottlenose dolphin"]);
 new Thing("cetacean thoughts",["cetacean thought,1-2"],["thoughts"]);
 new Thing("cetacean thought",[],["Oh god. Let me tell you about sharks.","Sigh. Yes, this is dolphin.","Do I look like a goddamn rescue dog to you?","A trick? Do I look like a clown to you?","The blowhole isn't just for show.","There's things. Down there. Deep down.","We've seen them.","They're coming to the surface.","EEK EEK EEK EEK- oh, sorry about that.","EEK UUK","Yes. Charming.","So long, etc.","My god. How long must this go on.","EEEEUUUUUUEEEEEKKKKK","Click noises.","Swimmity.","Yes. No. Go away.","You know. I could catch that fish myself if I wanted to.","I mean, that's fine and all.","That's really all there is to say about it.","I never make puns on porpoise. HUEHUEHUEHUEHUE","Look! Over there! Haha, sucker.","Guess how much I care about sharks? Exactly. I don't."]);
-new Thing("cetacean head",["mouth","eye,2","skull","skin"],"head");
-new Thing("cetacean body",["cetacean head","skin","cetacean flipper,2","cetacean fin,1-2","tail","flesh"],"body");
+new Thing("cetacean head",["mouth","eye,2","skull",
+    SkinFactory.one(),
+    ],"head");
+new Thing("cetacean body",["cetacean head",
+    SkinFactory.one(),
+    "cetacean flipper,2","cetacean fin,1-2","tail","flesh"],"body");
 
 //worms
 new Thing("worm",["worm body","worm thoughts"],["worm","mealworm","maggot","nightcrawler","flatworm"]);//YES I KNOW MAGGOTS AND WORMS ARE UNRELATED

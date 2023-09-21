@@ -139,8 +139,12 @@ new Thing("library",["bookshelf,10-30", "painting,50%", "painting,50%", "paintin
 new Thing("librarian",[".person"],"*PERSON*| (librarian)");
 
 //war stuff
-new Thing("battlefield",["soldier,10-30", "corpse,10-30", "blood"]);
-new Thing("soldier",[".person", "arsenal", "blood,20%", "bullet wound,0-3"],[["*PERSON*| "], ["(soldier)", "(soldier)", "(soldier)", "(soldier)", "(soldier)", "(soldier)", "(officer)", "(lieutenant)", "(captain)", "(major)"]]);
+new Thing("battlefield",["soldier,10-30", "corpse,10-30",
+    BloodFactory.one(),
+    ]);
+new Thing("soldier",[".person", "arsenal",
+    BloodFactory.probable(20),
+    "bullet wound,0-3"],[["*PERSON*| "], ["(soldier)", "(soldier)", "(soldier)", "(soldier)", "(soldier)", "(soldier)", "(officer)", "(lieutenant)", "(captain)", "(major)"]]);
 new Thing("arsenal",["gas mask,20%", "rifle,90%", "knife,80%", "handgun,90%", "handgun,50%", "knife,30%", "ammo pack,0-4", "grenade,0-4", "bullet,0-5"]);
 new Thing("bullet",[
     ELEMENTS['Cu'].one(),
@@ -159,8 +163,11 @@ new Thing("handgun",[
 new Thing("gun",[".handgun"]);
 new Thing("knife",[
     SteelFactory.one(),
-    "blood,10%"]);
-new Thing("wound",["blood", "worm,5%"],"wound");
+    BloodFactory.probable(10),
+    ]);
+new Thing("wound",[
+    BloodFactory.one(),
+    "worm,5%"],"wound");
 new Thing("ammo pack",["bullet,0-20", ["metal",
     PlasticFactory.one(),
 ]]);
@@ -178,15 +185,25 @@ new Thing("TNT",[
 new Thing("gas mask",["metal",
     PolymersFactory.one(),
     "cloth"]);
-new Thing("bullet wound",["blood", "worm,5%", "bullet,50%", "bullet,30%", "bullet,10%", "bullet,2%"],"wound");
+new Thing("bullet wound",[
+    BloodFactory.one(),
+    "worm,5%", "bullet,50%", "bullet,30%", "bullet,10%", "bullet,2%"],"wound");
 
 //hospitals
 new Thing("hospital",["doctor,2-4", "nurse,2-4", "intern,2-4", "hospital room,3-8", "patient,0-3", "desk,0-2", "chair,0-2", ".building"]);
 new Thing("hospital room",["doctor,10%", "nurse,20%", "intern,20%", "bed,1-2", "patient,0-2", "tv", "table,75%", "chair,0-2", ".room"]);
-new Thing("nurse",[".woman", "blood,10%"],"*WOMAN*| (nurse)");
-new Thing("doctor",[".person", "blood,5%"],"*PERSON*| (doctor)");
-new Thing("intern",[".person", "blood,10%"],"*PERSON*| (intern)");
-new Thing("patient",[".person", "blood,15%", "wound,0-3"],"*PERSON*| (patient)");
+new Thing("nurse",[".woman",
+    BloodFactory.probable(10),
+    ],"*WOMAN*| (nurse)");
+new Thing("doctor",[".person",
+    BloodFactory.probable(5),
+    ],"*PERSON*| (doctor)");
+new Thing("intern",[".person",
+    BloodFactory.probable(10),
+    ],"*PERSON*| (intern)");
+new Thing("patient",[".person",
+    BloodFactory.pobable(15),
+    "wound,0-3"],"*PERSON*| (patient)");
 
 //[DATA EXPUNGED]
 new Thing("research facility",["researcher,2-8", "security guard,1-4", "soldier,0-6", "doctor,0-2", "nurse,0-2", ["corpse,0-3", "", ""], "containment room,1-12", "top secret drawer,1-6", ".building"]);
@@ -276,7 +293,9 @@ new Thing("bathroom",[".room", "person,10%", "person,1%", "cat,1%", "sink,95%", 
 new Thing("study",[".room", "person,30%", "person,5%", "stuff box,20%", "tv,20%", "desk,95%", "computer,90%", "chair,1-4", "bookshelf,0-6", "painting,70%", "painting,20%", "mirror,5%"]);
 new Thing("garden",["person,40%", "person,10%", "dog,20%", "dog,5%", "cat,15%", "grass", "tree,50%", "tree,50%", "tree,20%", "tree,5%", "flowers,30%", "hole,1%", "hole,1%", "hole,1%", "poultry,1%", "bird,20%", "bird,10%"],["garden", "lawn", "backyard"]);
 new Thing("garage",["person,20%", "cat,2%", "stuff box,30%", "stuff box,20%", "chair,0-3", "car,90%", "car,40%", "car,5%", "bike,40%", "bike,30%", "bike,10%", "computer,5%", "small bookshelf,30%", "hole,1%", "hole,0.5%", "small mammal,5%", "insect,15%", "insect,15%", "dirt,50%"]);
-new Thing("hole",["corpse,20%", "corpse,5%", "blood,20%", "shovel,20%", "hole,0.5%", "insect,25%", "insect,15%", "dirt"]);
+new Thing("hole",["corpse,20%", "corpse,5%",
+    BloodFactory.probable(20),
+    "shovel,20%", "hole,0.5%", "insect,25%", "insect,15%", "dirt"]);
 
 //furniture
 new Thing("cabinet",["wood frame", "glass,30%", ".cabinet content"]);
@@ -530,7 +549,11 @@ new Thing("roast",[".meat", "spices"],[["chicken", "beef", "pork", "duck", "mutt
 new Thing("spices",
     (OrganicFactory),
     [["pepper", "garlic", "onions", "rosemary", "sage", "thyme"]]);
-new Thing("meat",["blood vessels,5%", "bones,5%", "fat,50%", "muscles",
+new Thing("meat",[
+    BloodVesselsFactory.probable(5),
+    BonesFactory.probable(5),
+    FatFactory.probable(50),
+    MusclesFactory.one(),
     SaltFactory.one(),
     ]);
 new Thing("tomato sauce",[
@@ -561,22 +584,50 @@ new Thing("dough",[
 //visitors
 new Thing("visitor",["visitor body", "visitor psyche"],"visitor");
 new Thing("visitor body",["visitor head", "visitor head,2%", "visitor torso", "visitor arm,99%", "visitor arm,2%", "visitor arm,99%", "visitor leg,99%", "visitor leg,99%", "visitor leg,2%"],"body");
-new Thing("visitor torso",["visitor chest", "visitor pelvis", ".body part"],"torso");
-new Thing("visitor chest",[".body part"],"chest");
-new Thing("visitor pelvis",["visitor naughty bits", ".body part"],"pelvis");
-new Thing("visitor naughty bits",[".soft body part"],["thrusher"]);
-new Thing("visitor arm",["visitor hand", "visitor elbow,2", "visitor armpit", ".body part"],"arm");
-new Thing("visitor hand",["visitor finger,3", ".body part"],"hand");
-new Thing("visitor finger",[".body part"],"finger");
-new Thing("visitor elbow",[".body part"],"elbow");
-new Thing("visitor armpit",["visitor ooze,70%", ".soft body part"],"armpit");
-new Thing("visitor leg",["visitor foot", "visitor knee", ".body part"],"leg");
-new Thing("visitor foot",["toe,4", "visitor ooze,40%", ".body part"],"foot");
-new Thing("visitor toe",[".body part"],"toe");
-new Thing("visitor knee",[".body part"],"knee");
+new Thing("visitor torso",["visitor chest", "visitor pelvis",
+    (BodyPatFactory)
+    ],"torso");
+new Thing("visitor chest",[
+    (BodyPatFactory)
+    ],"chest");
+new Thing("visitor pelvis",["visitor naughty bits",
+    (BodyPatFactory)
+    ],"pelvis");
+new Thing("visitor naughty bits",[
+    (SoftBodyPatFactory)
+    ],["thrusher"]);
+new Thing("visitor arm",["visitor hand", "visitor elbow,2", "visitor armpit",
+    (BodyPatFactory)
+    ],"arm");
+new Thing("visitor hand",["visitor finger,3",
+    (BodyPatFactory)
+    ],"hand");
+new Thing("visitor finger",[
+    (BodyPatFactory)
+    ],"finger");
+new Thing("visitor elbow",[
+    (BodyPatFactory)
+    ],"elbow");
+new Thing("visitor armpit",["visitor ooze,70%",
+    (SoftBodyPatFactory)
+    ],"armpit");
+new Thing("visitor leg",["visitor foot", "visitor knee",
+    (BodyPatFactory)
+    ],"leg");
+new Thing("visitor foot",["toe,4", "visitor ooze,40%",
+    (BodyPatFactory)
+    ],"foot");
+new Thing("visitor toe",[
+    (BodyPatFactory)
+    ],"toe");
+new Thing("visitor knee",[
+    (BodyPatFactory)
+    ],"knee");
 new Thing("visitor head",["visitor mouth", "eye,0-4", "skull"],"head");
 new Thing("visitor eye",["eye flesh", "visitor ooze,20%"],"eye");
-new Thing("nose",["nostril,2", ".body part"],"nose");
+new Thing("nose",["nostril,2",
+    (BodyPatFactory)
+    ],"nose");
 new Thing("visitor mouth",["visitor teeth", "tongue,2", "visitor ooze"],"mouth");
 new Thing("visitor teeth",[
     SteelFactory.one(),
@@ -652,7 +703,9 @@ new Thing("medieval king",[".medieval person"],[["*MEDIEVAL MAN*| ("], ["king", 
 new Thing("medieval queen",[".medieval person"],[["*MEDIEVAL WOMAN*| ("], ["queen", "empress", "princess"], [")"]]);
 new Thing("wizard",[".medieval person"],[["*MEDIEVAL PERSON*| ("], ["court", "battle", "rogue", "corrupt", "druid", "bard", "adept", "thaumaturgist", "shaman", "healing", "ice", "frost", "snow", "arcane", "lightning", "thunder", "earth", "earthquake", "nature", "animal", "shape-shifting", "death", "undeath", "spark", "fire", "lava", "locust", "poison", "rainbow", "mist", "fog", "dust", "air", "wind", "cloud", "tornado", "shark", "punch", "kick", "song", "skeleton", "psycho", "illusion", "flying", "summoner", "thief", "barbarian", "dragon", "gem", "sky", "star", "dark", "paladin", "luck", "time", "space", "blade"], [" "], ["mage", "magician", "wizard"], [")"]]);
 new Thing("medieval gravedigger",[".medieval person", "shovel,30%"],"*MEDIEVAL PERSON*| (gravedigger)");
-new Thing("medieval corpse",["body", "medieval clothing set", "blood,35%", "worm,20%", "worm,10%"],"*MEDIEVAL PERSON*| (dead)");
+new Thing("medieval corpse",["body", "medieval clothing set",
+    BloodFactory.probable(35),
+    "worm,20%", "worm,10%"],"*MEDIEVAL PERSON*| (dead)");
 
 //medieval towns
 new Thing("medieval village",["townwall,20%", "watchtower,15%", "medieval monument,50%", "medieval residential area,1-4", "medieval commercial area,1-2", "medieval temple,0-2", "medieval farm,4-8", "medieval cemetery,50%", "wizard tower,5%"],"village");
@@ -846,13 +899,19 @@ new Thing("ancient memory",[],["*ANCIENT MEMORY*"]);
 
 new Thing("fur coat",["leather", "fur"],[["mammoth", "saber-toothed cat", "mountain lion", "wooly rhinoceros", "wolf", "auroch", "rabbit"], [" "], ["pelts", "coat", "rags", "loincloth"]]);
 new Thing("fur boots",["leather", "fur"],[["mammoth", "saber-toothed cat", "mountain lion", "wooly rhinoceros", "wolf", "auroch", "rabbit"], [" "], ["boots"]]);
-new Thing("decorative bone",["bone"],["bone necklace", "bone earrings", "bone pin", "bone accessory"]);
+new Thing("decorative bone",[
+    BonesFactory.one(),
+    ],["bone necklace", "bone earrings", "bone pin", "bone accessory"]);
 new Thing("ceremonial headdress",["fur", "feather", "pigment"]);
 
 new Thing("caveman settlement",["ancient person,1-8", "ancient tent,2-6", "wall painting,40%", "wall painting,20%", "campfire,80%", "ancient meat rack,0-3", "ancient clutter pile,0-3", "bone heap,30%"],["settlement"]);
 new Thing("ancient tent",["ancient person,0-3", "campfire,10%", "ancient meat rack,20%", "ancient meat rack,20%", "ceremonial headdress,2%", "fur coat,10%", "fur coat,10%", "fur boots,10%", "fur boots,10%", "decorative bone,20%", "decorative bone,10%", "ancient clutter pile,30%", "ancient clutter pile,30%", "bone heap,5%", "leather"],["tent"]);
-new Thing("ancient clutter pile",["leather,80%", "fur,80%", "bone,80%", "wood,80%", "stone"],["a pile of discarded tools", "a pile of stone tools", "a pile of broken spears", "a pile of unfinished spears", "a pile of harpoons", "a pile of discarded bones", "a pile of miscellaneous rock tools", "a pile of dry furs", "a pile of smooth rocks", "a pile of firewood", "a pile of sticks", "a pile of stone figurines"]);
-new Thing("bone heap",["bone,5-20"]);
+new Thing("ancient clutter pile",["leather,80%", "fur,80%",
+    BonesFactory.probable(80),
+    wood,80%", "stone"],["a pile of discarded tools", "a pile of stone tools", "a pile of broken spears", "a pile of unfinished spears", "a pile of harpoons", "a pile of discarded bones", "a pile of miscellaneous rock tools", "a pile of dry furs", "a pile of smooth rocks", "a pile of firewood", "a pile of sticks", "a pile of stone figurines"]);
+new Thing("bone heap",[
+    BonesFactory.multiple(5, 20),
+    ]);
 new Thing("campfire",[
     FireFactory.one(),
     "wood", "stone"]);

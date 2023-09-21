@@ -41,7 +41,13 @@ new Thing("roast",[".meat","spices"],[["chicken","beef","pork","duck","mutton"],
 new Thing("spices",
     (OrganicFactory.one()),
     [["pepper","garlic","onions","rosemary","sage","thyme"]]);
-new Thing("meat",["blood vessels,5%","bones,5%","fat,50%","muscles","salt"]);
+new Thing("meat",[
+    BloodVesselsFactory.probable(5),
+    BonesFactory.probable(5),
+    FatFactory.probable(50),
+    MusclesFactory.one(),
+    SaltFactory.one(),
+]);
 new Thing("tomato sauce",[
     GlucidsFactory.one(),
     "meat,20%","salt"]);

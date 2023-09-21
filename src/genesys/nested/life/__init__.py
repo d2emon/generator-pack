@@ -12,74 +12,98 @@ FACTORIES = {
 
 
 """
-//body stuff
-new Thing("body part",["bacteria,30%", "bacteria,10%", "skin", "blood vessels", "bones", "fat", "muscles"],"body part");
-new Thing("soft body part",["bacteria,30%", "bacteria,10%", "skin", "blood vessels", "fat", "muscles"],"body part");
-new Thing("skinless body part",["bacteria,30%", "bacteria,10%", "blood vessels", "bones", "fat", "muscles"],"body part");
-new Thing("skinless soft body part",["bacteria,30%", "bacteria,10%", "blood vessels", "fat", "muscles"],"body part");
-new Thing("blood vessels",["bacteria,30%", "blood"],"blood vessels");
-new Thing("blood",["blood cell"],"blood");
-new Thing("blood cell",[".cell"],["blood cells"]);
-new Thing("skin",["bacteria,1-3", "scar,0.5%", "pores", "skin cell", "dead skin", "dust,20%", "sweat,20%"],"skin");
-new Thing("scar",["dead skin"]);
-new Thing("pores",["bacteria,1-3", "skin cell", "dead skin,50%", "sweat,40%"],"pores");
-new Thing("skin cell",[".cell"],["skin cells"]);
-new Thing("dead skin",["skin cell"]);
-new Thing("bone",[".bones"],"bone");
-new Thing("bones",["bone cell",
-    ELEMENTS['Ca'].one(),
-],"bones");
-new Thing("bone cell",[".cell"],["bone cells"]);
-new Thing("muscles",["muscle cell"],"muscles");
-new Thing("muscle cell",[".cell"],["muscle cells"]);
-new Thing("fat",[
-    LipidsFactory.one(),
-],"fat");
-new Thing("brain cell",[".cell"],["brain cells"]);
-new Thing("dandruff",["dead skin"]);
-
 new Thing("clothing set",["hat,2%", "glasses,20%", "pants,98%", "shirt,98%", "coat,50%", "socks,80%", "shoes,80%", "underwear,99%"],"clothing");
 new Thing("man",[".person"],"*MAN*");
 new Thing("woman",[".person"],"*WOMAN*");
 new Thing("person",["body", "psyche", "clothing set"],"*PERSON*");
-new Thing("corpse",["body", "clothing set", "blood,35%", "worm,20%", "worm,10%"],"*PERSON*| (dead)");
+new Thing("corpse",["body", "clothing set",
+    BloodFactory.probable(35),
+    "worm,20%", "worm,10%"],"*PERSON*| (dead)");
 new Thing("body",["head", "torso", "arm,99%", "arm,99%", "leg,99%", "leg,99%"],"body");
-new Thing("torso",["chest", "pelvis", ".body part"]);
-new Thing("chest",["nipple,2", "bellybutton", ".body part"]);
-new Thing("bellybutton",["skin", "lint,0-1"]);
-new Thing("nipple",["skin"]);
-new Thing("pelvis",["naughty bits", "butt", ".body part"]);
-new Thing("naughty bits",[".soft body part"]);
-new Thing("butt",["pasta,0.01%", "sweat,50%", ".body part"]);
-new Thing("arm",["hand", "elbow", "armpit", ".body part"],"arm");
-new Thing("hand",["finger,5", ".body part"]);
-new Thing("finger",["fingernail", ".body part"],"finger");
+new Thing("torso",["chest", "pelvis",
+    (BodyPatFactory)
+    ]);
+new Thing("chest",["nipple,2", "bellybutton",
+    (BodyPatFactory)
+    ]);
+new Thing("bellybutton",[
+    SkinFactory.one(),
+    "lint,0-1"]);
+new Thing("nipple",[
+    SkinFactory.one(),
+    ]);
+new Thing("pelvis",["naughty bits", "butt",
+    (BodyPatFactory)
+    ]);
+new Thing("naughty bits",[
+    (SoftBodyPatFactory)
+    ]);
+new Thing("butt",["pasta,0.01%", "sweat,50%",
+    (BodyPatFactory)
+    ]);
+new Thing("arm",["hand", "elbow", "armpit",
+    (BodyPatFactory)
+    ],"arm");
+new Thing("hand",["finger,5",
+    (BodyPatFactory)
+    ]);
+new Thing("finger",["fingernail",
+    (BodyPatFactory)
+    ],"finger");
 new Thing("fingernail",["dust,30%", "keratin"],"fingernail");
-new Thing("elbow",[".body part"]);
-new Thing("armpit",["armpit hair", "sweat,80%", ".soft body part"]);
+new Thing("elbow",[
+    (BodyPatFactory)
+    ]);
+new Thing("armpit",["armpit hair", "sweat,80%",
+    (SoftBodyPatFactory)
+    ]);
 new Thing("armpit hair",[".hair"],"hair");
-new Thing("leg",["foot", "knee", ".body part"],"leg");
-new Thing("foot",["toe,5", "sweat,30%", ".body part"]);
-new Thing("toe",["toenail", ".body part"],"toe");
+new Thing("leg",["foot", "knee",
+    (BodyPatFactory)
+    ],"leg");
+new Thing("foot",["toe,5", "sweat,30%",
+    (BodyPatFactory)
+    ]);
+new Thing("toe",["toenail",
+    (BodyPatFactory)
+    ],"toe");
 new Thing("toenail",["dust,40%", "keratin"],"toenail");
-new Thing("knee",[".body part"],"knee");
-new Thing("head",["mouth", "nose", "eye,99%", "eye,99%", "ear,2", "skull", "head hair,85%", ".body part"],"head");
+new Thing("knee",[
+    (BodyPatFactory)
+    ],"knee");
+new Thing("head",["mouth", "nose", "eye,99%", "eye,99%", "ear,2", "skull", "head hair,85%",
+    (BodyPatFactory)
+    ],"head");
 new Thing("eye",["eyelashes", "eye flesh", "tear,2%"],"eye");
 new Thing("eye flesh",[
     WaterFactory.one(),
-    "blood vessels", "fat"],"eyeball");
+    BloodVesselsFactory.one(),
+    FatFactory.one(),
+    ],"eyeball");
 new Thing("eyelashes",[".hair"],"eyelashes");
 new Thing("tear",[
     WaterFactory.one(),
     SaltFactory.one(),
 ]);
-new Thing("ear",[".soft body part"],"ear");
-new Thing("brain",["bacteria,20%", "brain cell"],"brain");
-new Thing("skull",["brain", ".bones"]);
-new Thing("head hair",[".hair", "dandruff,10%"],[["brown", "black", "gray", "light", "blonde", "red", "dark"], [" hair"]]);
+new Thing("ear",[
+    (SoftBodyPartFactory)
+    ],"ear");
+new Thing("brain",["bacteria,20%",
+    BrainCellFactory.one(),
+    ],"brain");
+new Thing("skull",["brain",
+    (BonesFactory),
+    ]);
+new Thing("head hair",[".hair",
+    DandruffFactory.probable(10),
+    ],[["brown", "black", "gray", "light", "blonde", "red", "dark"], [" hair"]]);
 new Thing("hair",["bacteria,30%", "keratin"],"hair");
-new Thing("nose",["nostril,2", ".body part"],"nose");
-new Thing("nostril",["nostril hair", "boogers,0-1", ".soft body part"],"nostril");
+new Thing("nose",["nostril,2",
+    (BodyPatFactory)
+    ],"nose");
+new Thing("nostril",["nostril hair", "boogers,0-1",
+    (SoftBodyPartFactory)
+    ],"nostril");
 new Thing("nostril hair",[".hair"],"nostril hair");
 new Thing("boogers",[
     OrganicFactory.one(),
@@ -89,7 +113,9 @@ new Thing("teeth",[
     ELEMENTS['Ca'].one(),
     ELEMENTS['P'].one(),
 ],"teeth");
-new Thing("tongue",["muscles"],"tongue");
+new Thing("tongue",[
+    MusclesFactory.one(),
+    ],"tongue");
 
 new Thing("abomination",["abomination body", "abomination psyche"],"*PERSON*| (abomination)");
 //nonononononono
@@ -99,8 +125,12 @@ new Thing("abomination thoughts",[
     "abomination thought"],"thoughts");
 new Thing("abomination thought",[],["P-please...", "Don't look at me...", "Please... kill me...", "Kill... me...", "Why would I ever ask for this...", "I only wish for death.", "I only long for death now.", "I only demand... death...", "End my misery... I beg you...", "This is a mockery of existence...", "I miss her so much...", "I miss him so much...", "I miss my family...", "Why would they do that to me...", "How could they do this to me...", "What have I become...", "I feel... different...", "I can't feel... anything...", "I can't... see anything..."]);
 new Thing("abomination body",["abomination head", "abomination head,5%", "abomination torso", ["arm,0-8", "arm,0-4"], ["leg,0-8", "leg,0-4"], "crustacean claw,2%", "stinger,2%", "weird soft organ,10%", "weird soft organ,10%", "weird hard organ,10%", "weird hard organ,10%"],"misshapen body");
-new Thing("abomination head",["mouth,0-2", "nose,0-2", "eye,0-8", "ear,0-4", "skull,90%", "weird soft organ,20%", "weird hard organ,20%", "head hair,65%", ".body part"],"misshapen head");
-new Thing("abomination torso",["chest", "chest,10%", "pelvis", "pelvis,10%", "weird soft organ,20%", "weird hard organ,20%", ".body part"],"misshapen torso");
+new Thing("abomination head",["mouth,0-2", "nose,0-2", "eye,0-8", "ear,0-4", "skull,90%", "weird soft organ,20%", "weird hard organ,20%", "head hair,65%",
+    (BodyPatFactory)
+    ],"misshapen head");
+new Thing("abomination torso",["chest", "chest,10%", "pelvis", "pelvis,10%", "weird soft organ,20%", "weird hard organ,20%",
+    (BodyPatFactory)
+    ],"misshapen torso");
 
 //brain stuff
 new Thing("psyche",["thoughts", "memories"],"psyche");
@@ -114,7 +144,9 @@ new Thing("memory",[],["*MEMORY*"]);
 
 //cloth stuff
 new Thing("cloth",["textile"]);
-new Thing("leather",["skin cell"]);
+new Thing("leather",[
+    SkinCellFactory.one(),
+    ]);
 new Thing("textile",["textile fibre"]);
 new Thing("textile fibre",["keratin"],["textile fibres"]);
 new Thing("keratin",[
@@ -125,7 +157,9 @@ new Thing("sweat",[
     SaltFactory.one(),
     GlucidsFactory.one(),
 ]);
-new Thing("clothing",["textile", "dead skin,40%", "sweat,15%"]);
+new Thing("clothing",["textile",
+    DeadSkinFactory.probable(40),
+    "sweat,15%"]);
 new Thing("pocket",["dust,20%", "crumbs,20%", "lint,30%", "donut,1%", "coin,20%", "coin,20%", "coin,10%", "pen,10%", "pen,2%", "button,10%", "button,5%", "button,1%", "note,15%", "note,5%", "handgun,0.4%", "pasta,0.2%", "textile"]);
 
 new Thing("pants",["pocket,0-4", ".clothing"],["pants", "trousers", "sweatpants", "bermuda shorts", "shorts", "jeans", "cargo pants"]);
@@ -286,21 +320,41 @@ new Thing("urban life",["bird,0-8", "small mammal,5-10", "anthill,30%", "insect,
 new Thing("sky life",["shark,1%", "bird,5-20", "insect,0-2"],"life");
 new Thing("galactic life",["space monster,1%", "space animal,1-12"],"life");
 
-new Thing("skeleton",["bones"],"skeleton");
-new Thing("flesh",[".skinless body part"],"flesh");
-new Thing("soft flesh",[".skinless soft body part"],"flesh");
+new Thing("skeleton",[
+    BonesFactory.one(),
+    ],"skeleton");
+new Thing("flesh",[
+    (SkinlessBodyPartFactory)
+    ],"flesh");
+new Thing("soft flesh",[
+    (SkinlessSoftBodyPartFactory)
+    ],"flesh");
 new Thing("scales",["keratin"]);
-new Thing("fish fin",["muscles", "scales"],"fin");
-new Thing("fish tail",["muscles", "scales"],"tail");
+new Thing("fish fin",[
+    MusclesFactory.one(),
+    "scales"],"fin");
+new Thing("fish tail",[
+    MusclesFactory.one(),
+    "scales"],"tail");
 new Thing("fish skin",["scales"],"skin");
-new Thing("cetacean flipper",["muscles", "skin"],"flipper");
-new Thing("cetacean fin",["muscles", "skin"],"fin");
+new Thing("cetacean flipper",[
+    MusclesFactory.one(),
+    SkinFactory.one(),
+    ],"flipper");
+new Thing("cetacean fin",[
+    MusclesFactory.one(),
+    SkinFactory.one(),
+    ],"fin");
 new Thing("crustacean claw",[
     ChitinFactory.one(),
-    "muscles", "fat"],"claw");
+    MusclesFactory.one(),
+    FatFactory.one(),
+    ],"claw");
 new Thing("crustacean leg",[
     ChitinFactory.one(),
-    "muscles", "fat"],"leg");
+    MusclesFactory.one(),
+    FatFactory.one(),
+    ],"leg");
 new Thing("crustacean shell",[
     ChitinFactory.one(),
     ],"shell");
@@ -313,10 +367,14 @@ new Thing("exoskeleton",[
     ],"exoskeleton");
 new Thing("insect leg",[
     ChitinFactory.one(),
-    "muscles", "fat"],"leg");
+    MusclesFactory.one(),
+    FatFactory.one(),
+    ],"leg");
 new Thing("insect claw",[
     ChitinFactory.one(),
-    "muscles", "fat"],"claw");
+    MusclesFactory.one(),
+    FatFactory.one(),
+    ],"claw");
 new Thing("stinger",[
     ChitinFactory.one(),
     "venom"],"stinger");
@@ -328,11 +386,21 @@ new Thing("insect wing",[[
     "scales"],
     DewFactory.probable(2),
 ],"wing");
-new Thing("wing",["feathers", ".body part"],"wing");
-new Thing("reptile wing",["scales", ".body part"],"wing");
-new Thing("bird wing",["feathers", ".body part"],"wing");
-new Thing("bird leg",["feathers", ".body part"],"leg");
-new Thing("bird tail",["feathers", ".body part"],"tail");
+new Thing("wing",["feathers",
+    (BodyPatFactory)
+    ],"wing");
+new Thing("reptile wing",["scales",
+    (BodyPatFactory)
+    ],"wing");
+new Thing("bird wing",["feathers",
+    (BodyPatFactory)
+    ],"wing");
+new Thing("bird leg",["feathers",
+    (BodyPatFactory)
+    ],"leg");
+new Thing("bird tail",["feathers",
+    (BodyPatFactory)
+    ],"tail");
 new Thing("venom",[
     ProteinsFactory.one(),
     LipidsFactory.one().probable(40),
@@ -344,22 +412,40 @@ new Thing("jelly",[
     WaterFactory.one(),
 ]);
 
-new Thing("weird soft organ",[".skinless soft body part"],[["fleshy", "thick", "slimy", "scaly", "furry", "fuzzy", "feathery", "sharp", "pointy", "thorny", "bulbous", "leathery", "hidden", "soft", "bubbling", "distorted", "shapeless", "porous", "spongiform", "liquid-filled", "foamy", "smoking", "oozing", "drooling", "shivering", "quivering", "pulsing"], [" "], ["grasper", "tendril", "stinger", "claw", "tentacle", "sac", "egg sac", "pouch", "organ", "specialized organ", "bulb", "brain bulb", "gland", "epiderm", "sucker", "pod", "pseudolimb", "nervous bulb", "external muscle", "structure", "orifice", "proboscis", "tail"]]);
-new Thing("weird hard organ",[".skinless body part"],[["fleshy", "thick", "slimy", "scaly", "furry", "fuzzy", "sharp", "pointy", "thorny", "bulbous", "hidden", "flexible", "plated", "armored", "metallic", "distorted", "shapeless", "porous", "spongiform", "liquid-filled", "foamy", "smoking", "oozing", "drooling"], [" "], ["carapace", "shell", "bone structure", "skull", "grasper", "stinger", "claw", "organ", "specialized organ", "sucker", "pod", "pseudolimb", "structure"]]);
+new Thing("weird soft organ",[
+    (SkinlessSoftBodyPartFactory)
+    ],[["fleshy", "thick", "slimy", "scaly", "furry", "fuzzy", "feathery", "sharp", "pointy", "thorny", "bulbous", "leathery", "hidden", "soft", "bubbling", "distorted", "shapeless", "porous", "spongiform", "liquid-filled", "foamy", "smoking", "oozing", "drooling", "shivering", "quivering", "pulsing"], [" "], ["grasper", "tendril", "stinger", "claw", "tentacle", "sac", "egg sac", "pouch", "organ", "specialized organ", "bulb", "brain bulb", "gland", "epiderm", "sucker", "pod", "pseudolimb", "nervous bulb", "external muscle", "structure", "orifice", "proboscis", "tail"]]);
+new Thing("weird hard organ",[
+    (SkinlessBodyPartFactory)
+    ],[["fleshy", "thick", "slimy", "scaly", "furry", "fuzzy", "sharp", "pointy", "thorny", "bulbous", "hidden", "flexible", "plated", "armored", "metallic", "distorted", "shapeless", "porous", "spongiform", "liquid-filled", "foamy", "smoking", "oozing", "drooling"], [" "], ["carapace", "shell", "bone structure", "skull", "grasper", "stinger", "claw", "organ", "specialized organ", "sucker", "pod", "pseudolimb", "structure"]]);
 
-new Thing("tentacle",[".skinless soft body part"],"tentacle");
-new Thing("simple mouth",["teeth", ".skinless soft body part"],"mouth");
+new Thing("tentacle",[
+    (SkinlessSoftBodyPartFactory)
+    ],"tentacle");
+new Thing("simple mouth",["teeth", 
+    (SkinlessSoftBodyPartFactory)
+    ],"mouth");
 
-new Thing("beak",[".bones"],"beak");
+new Thing("beak",[
+    (BonesFactory),
+    ],"beak");
 
-new Thing("reptile head",["scales", ".body part"],"head");
-new Thing("reptile leg",["scales", ".body part"],"leg");
+new Thing("reptile head",["scales",
+    (BodyPatFactory)
+    ],"head");
+new Thing("reptile leg",["scales",
+    (BodyPatFactory)
+    ],"leg");
 
 new Thing("fur",["keratin"],"fur");
 new Thing("snout",[".nose"],"snout");
 new Thing("whiskers",["keratin"],"whiskers");
-new Thing("mammal leg",["fur", ".body part"],"leg");
-new Thing("tail",[".body part"],"tail");
+new Thing("mammal leg",["fur",
+    (BodyPatFactory)
+    ],"leg");
+new Thing("tail",[
+    (BodyPatFactory)
+    ],"tail");
 new Thing("mammal head",["mouth", "snout", "whiskers", "eye,2", "ear,2", "skull", "fur"],"head");
 new Thing("mammal body",["mammal head", "fur", "mammal leg,4", "tail", "flesh"],"body");
 new Thing("bird body",["bird head", "feathers", "bird leg,2", "bird wing,2", "bird tail", "flesh"],"body");
@@ -423,8 +509,12 @@ new Thing("shark thought",[],["CHOMP", "NOM", "THIS LOOKS TASTY", "THIS SMELLS D
 new Thing("cetacean",["cetacean body", "cetacean thoughts"],["dolphin", "porpoise", "whale", "orca", "bottlenose dolphin"]);
 new Thing("cetacean thoughts",["cetacean thought,1-2"],["thoughts"]);
 new Thing("cetacean thought",[],["Oh god. Let me tell you about sharks.", "Sigh. Yes, this is dolphin.", "Do I look like a goddamn rescue dog to you?", "A trick? Do I look like a clown to you?", "The blowhole isn't just for show.", "There's things. Down there. Deep down.", "We've seen them.", "They're coming to the surface.", "EEK EEK EEK EEK- oh, sorry about that.", "EEK UUK", "Yes. Charming.", "So long, etc.", "My god. How long must this go on.", "EEEEUUUUUUEEEEEKKKKK", "Click noises.", "Swimmity.", "Yes. No. Go away.", "You know. I could catch that fish myself if I wanted to.", "I mean, that's fine and all.", "That's really all there is to say about it.", "I never make puns on porpoise. HUEHUEHUEHUEHUE", "Look! Over there! Haha, sucker.", "Guess how much I care about sharks? Exactly. I don't."]);
-new Thing("cetacean head",["mouth", "eye,2", "skull", "skin"],"head");
-new Thing("cetacean body",["cetacean head", "skin", "cetacean flipper,2", "cetacean fin,1-2", "tail", "flesh"],"body");
+new Thing("cetacean head",["mouth", "eye,2", "skull",
+    SkinFactory.one(),
+    ],"head");
+new Thing("cetacean body",["cetacean head",
+    SkinFactory.one(),
+    "cetacean flipper,2", "cetacean fin,1-2", "tail", "flesh"],"body");
 
 //worms
 new Thing("worm",["worm body", "worm thoughts"],["worm", "mealworm", "maggot", "nightcrawler", "flatworm"]);

@@ -21,27 +21,6 @@
 #     AbominationThoughtFactory, AbominationBodyFactory, AbominationTorsoFactory, AbominationHeadFactory
 
 FACTORIES = {
-    # 'body part': BodyPartFactory(),
-    # 'soft body part': SoftBodyPartFactory(),
-    # 'skinless body part': SkinlessBodyPartFactory(),
-    # 'skinless soft body part': SkinlessSoftBodyPartFactory(),
-    # 'blood vessels': BloodVesselsFactory(),
-    # 'blood': BloodFactory(),
-    # 'blood cell': BloodCellFactory(),
-    # 'skin': SkinFactory(),
-    # 'scar': ScarFactory(),
-    # 'pores': PoresFactory(),
-    # 'skin cell': SkinCellFactory(),
-    # 'dead skin': DeadSkinFactory(),
-    # 'bone': BoneFactory(),
-    # 'bones': BonesFactory(),
-    # 'bone cell': BoneCellFactory(),
-    # 'muscles': MuscleFactory(),
-    # 'muscle cell': MuscleCellFactory(),
-    # 'fat': FatFactory(),
-    # 'brain cell': BrainCellFactory(),
-    # 'dandruff': DandruffFactory(),
-
     # 'clothing set': ClothingSetFactory(),
     # 'man': ManFactory(),
     # 'woman': WomanFactory(),
