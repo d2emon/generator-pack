@@ -28,6 +28,12 @@ class DataProvider:
             'Help! I\'m trapped in a universe factory!', 'Okay, you can stop clicking now.',
             'I want to get off Mr D2emon\'s Wild Ride', 'my sides',
         ]
+        self.d2emon_thoughts = [
+            'OH MY GOD WHAT ARE YOU DOING HERE TURN BACK IMMEDIATELY', 'WHAT IS WRONG WITH YOU', 'WHAT THE HELL GO AWAY',
+            'WHAT ARE YOU DOING OH GOD', 'WHY THE HELL ARE YOU HERE', 'I DO WHAT I WANT OKAY', 'NO I DON\'T CARE GO AWAY',
+            'WHAT DID I EVEN DO TO YOU', 'OH NO WHY THIS', 'OKAY JUST <a href=\'http://orteil.deviantart.com\'>GO THERE ALREADY</a>',
+            '<a href=\'http://twitter.com/orteil42\'>WHATEVER</a>'
+        ]
 
 
 PROVIDER = DataProvider()

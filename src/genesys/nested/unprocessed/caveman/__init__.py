@@ -7,7 +7,9 @@ new Thing("ancient person",["body","ancient psyche","ancient clothing set"],"*AN
 new Thing("caveman",[".ancient person"],"*ANCIENT PERSON*");
 
 new Thing("ancient psyche",["ancient thoughts","ancient memories"],"psyche");
-new Thing("ancient thoughts",["black hole,0.01%",["ancient thought,2-3"]],"thoughts");
+new Thing("ancient thoughts",[
+    BlackHole.Factory.probable(0.01),
+    ["ancient thought,2-3"]],"thoughts");
 new Thing("ancient thought",[],["*ANCIENT THOUGHT*"]);
 new Thing("ancient memories",["ancient memory,2-3"],"memories");
 new Thing("ancient memory",[],["*ANCIENT MEMORY*"]);

@@ -29,7 +29,7 @@ class MedievalPerson(Person):
 
 
 # new Thing("medieval psyche",["medieval thoughts","medieval memories"],"psyche");
-# new Thing("medieval thoughts",["black hole,0.01%",["medieval thought,2-3"]],"thoughts");
+# new Thing("medieval thoughts",[BlackHole.Factory.probable(0.01), ["medieval thought,2-3"]],"thoughts");
 # new Thing("medieval thought",[],["*MEDIEVAL THOUGHT*"]);
 # new Thing("medieval memories",["medieval memory,2-4"],"memories");
 # new Thing("medieval memory",[],["*MEDIEVAL MEMORY*"]);

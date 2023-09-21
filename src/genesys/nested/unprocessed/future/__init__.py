@@ -6,7 +6,9 @@ new Thing("future woman",[".future person"],"*FUTURE WOMAN*");
 new Thing("future person",["body","future psyche","future clothing set"],"*FUTURE PERSON*");
 
 new Thing("future psyche",["future thoughts","future memories"],"psyche");
-new Thing("future thoughts",["black hole,0.01%",["future thought,2-3"]],"thoughts");
+new Thing("future thoughts",[
+    BlackHole.Factory.probable(0.01),
+    ["future thought,2-3"]],"thoughts");
 new Thing("future thought",[],["*FUTURE THOUGHT*"]);
 new Thing("future memories",["future memory,2-4"],"memories");
 new Thing("future memory",[],["*FUTURE MEMORY*"]);

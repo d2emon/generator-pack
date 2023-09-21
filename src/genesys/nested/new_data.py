@@ -110,7 +110,9 @@ new Thing("tongue",["muscles"],"tongue");
 new Thing("abomination",["abomination body", "abomination psyche"],"*PERSON*| (abomination)");
 //nonononononono
 new Thing("abomination psyche",["abomination thoughts", "memories"],"psyche");
-new Thing("abomination thoughts",["black hole,0.01%", "abomination thought"],"thoughts");
+new Thing("abomination thoughts",[
+    BlackHole.Factory.probable(0.01),
+    "abomination thought"],"thoughts");
 new Thing("abomination thought",[],["P-please...", "Don't look at me...", "Please... kill me...", "Kill... me...", "Why would I ever ask for this...", "I only wish for death.", "I only long for death now.", "I only demand... death...", "End my misery... I beg you...", "This is a mockery of existence...", "I miss her so much...", "I miss him so much...", "I miss my family...", "Why would they do that to me...", "How could they do this to me...", "What have I become...", "I feel... different...", "I can't feel... anything...", "I can't... see anything..."]);
 new Thing("abomination body",["abomination head", "abomination head,5%", "abomination torso", ["arm,0-8", "arm,0-4"], ["leg,0-8", "leg,0-4"], "crustacean claw,2%", "stinger,2%", "weird soft organ,10%", "weird soft organ,10%", "weird hard organ,10%", "weird hard organ,10%"],"misshapen body");
 new Thing("abomination head",["mouth,0-2", "nose,0-2", "eye,0-8", "ear,0-4", "skull,90%", "weird soft organ,20%", "weird hard organ,20%", "head hair,65%", ".body part"],"misshapen head");
@@ -118,7 +120,9 @@ new Thing("abomination torso",["chest", "chest,10%", "pelvis", "pelvis,10%", "we
 
 //brain stuff
 new Thing("psyche",["thoughts", "memories"],"psyche");
-new Thing("thoughts",["black hole,0.01%", ["sad thought,2-4", "happy thought,2-4"]]);
+new Thing("thoughts",[
+    BlackHole.Factory.probable(0.01),
+    ["sad thought,2-4", "happy thought,2-4"]]);
 new Thing("sad thought",[],["*SADTHOUGHT*"]);
 new Thing("happy thought",[],["*HAPPYTHOUGHT*"]);
 new Thing("memories",["memory,2-4"]);
@@ -1189,7 +1193,9 @@ new Thing("medieval woman",[".medieval person"],"*MEDIEVAL WOMAN*");
 new Thing("medieval person",["body", "medieval psyche", "medieval clothing set"],"*MEDIEVAL PERSON*");
 
 new Thing("medieval psyche",["medieval thoughts", "medieval memories"],"psyche");
-new Thing("medieval thoughts",["black hole,0.01%", ["medieval thought,2-3"]],"thoughts");
+new Thing("medieval thoughts",[
+    BlackHole.Factory.probable(0.01),
+    ["medieval thought,2-3"]],"thoughts");
 new Thing("medieval thought",[],["*MEDIEVAL THOUGHT*"]);
 new Thing("medieval memories",["medieval memory,2-4"],"memories");
 new Thing("medieval memory",[],["*MEDIEVAL MEMORY*"]);
@@ -1339,7 +1345,9 @@ new Thing("future woman",[".future person"],"*FUTURE WOMAN*");
 new Thing("future person",["body", "future psyche", "future clothing set"],"*FUTURE PERSON*");
 
 new Thing("future psyche",["future thoughts", "future memories"],"psyche");
-new Thing("future thoughts",["black hole,0.01%", ["future thought,2-3"]],"thoughts");
+new Thing("future thoughts",[
+    BlackHole.Factory.probable(0.01),
+    ["future thought,2-3"]],"thoughts");
 new Thing("future thought",[],["*FUTURE THOUGHT*"]);
 new Thing("future memories",["future memory,2-4"],"memories");
 new Thing("future memory",[],["*FUTURE MEMORY*"]);
@@ -1399,7 +1407,9 @@ new Thing("ancient person",["body", "ancient psyche", "ancient clothing set"],"*
 new Thing("caveman",[".ancient person"],"*ANCIENT PERSON*");
 
 new Thing("ancient psyche",["ancient thoughts", "ancient memories"],"psyche");
-new Thing("ancient thoughts",["black hole,0.01%", ["ancient thought,2-3"]],"thoughts");
+new Thing("ancient thoughts",[
+    BlackHole.Factory.probable(0.01),
+    ["ancient thought,2-3"]],"thoughts");
 new Thing("ancient thought",[],["*ANCIENT THOUGHT*"]);
 new Thing("ancient memories",["ancient memory,2-3"],"memories");
 new Thing("ancient memory",[],["*ANCIENT MEMORY*"]);
