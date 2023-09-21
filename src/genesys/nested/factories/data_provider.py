@@ -34,6 +34,9 @@ class DataProvider:
             'WHAT DID I EVEN DO TO YOU', 'OH NO WHY THIS', 'OKAY JUST <a href=\'http://orteil.deviantart.com\'>GO THERE ALREADY</a>',
             '<a href=\'http://twitter.com/orteil42\'>WHATEVER</a>'
         ]
+        self.nucleotide = [
+            'A', 'T', 'G', 'C',
+        ]
 
 
 PROVIDER = DataProvider()

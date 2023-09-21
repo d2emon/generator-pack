@@ -20,10 +20,13 @@ How to add a new Thing :
 
 Inspired by: https://orteil.dashnet.org/nested
 """
-from  .materials import FACTORIES as MATERIAL_FACTORIES
+from .materials import FACTORIES as MATERIAL_FACTORIES
+from .universe import FACTORIES as UNIVERSE_FACTORIES
+from .life import FACTORIES as LIFE_FACTORIES
 
 
 FACTORIES = {
     **MATERIAL_FACTORIES,
-    # **UNIVERSE_FACTORIES,
+    **UNIVERSE_FACTORIES,
+    **LIFE_FACTORIES,
 }
