@@ -41,8 +41,13 @@ new Thing("visitor toe",[
 new Thing("visitor knee",[
     (BodyPatFactory)
     ],"knee");
-new Thing("visitor head",["visitor mouth","eye,0-4","skull"],"head");
-new Thing("visitor eye",["eye flesh","visitor ooze,20%"],"eye");
+new Thing("visitor head",["visitor mouth",
+    EyeFactory.multiple(0, 4),
+    SkullFactory.one(),
+    ],"head");
+new Thing("visitor eye",[
+    EyeFleshFactory.one(),
+    "visitor ooze,20%"],"eye");
 new Thing("nose",["nostril,2",
     (BodyPatFactory)
     ],"nose");
@@ -75,5 +80,7 @@ new Thing("visitor furniture",["abomination,1%","space animal,3%","named visitor
     ],
 ],[["symbio","opto","auto","synchro","thru","ato","ecto","diplo","plasti","pasta","pluta","elu","gubri","capra","lubio","logi","plato","micro","alto","tele","meta","anti","poly","mono","corvo"],["shid","synth","shaver","shist","mizer","mucus","twister","ridger","cutter","mac","maker","ctory","ctamid","chton","leaker","grater","board","frame","table","stand","plug","masher","greeter","mobile","pin","vat","tron","drone","chron","tub","fridge","pool","box","cube","morpher","phraser"]]);
 new Thing("visitor installation",["named visitor,0-4",["space animal,0-3",""],"visitor building,1-3"],[["pod","grub","egg","limb","ooze","tendril","bulb","pulp","energy","smoke","hive","moisture","cat"],[" "],["materializer","synthesizer","factory","farm","collector","cultures","pit","fields","crops","barn","vat"]]);
-new Thing("visitor ship",["named visitor,1-3","person,20%","space animal,30%","visitor furniture,1-6","metal"],"visitor UFO");
+new Thing("visitor ship",["named visitor,1-3",
+    PersonFactory.probable(20),
+    "space animal,30%","visitor furniture,1-6","metal"],"visitor UFO");
 """

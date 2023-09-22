@@ -26,7 +26,9 @@ from .crustacean import CrustaceanLegFactory, CrustaceanClawFactory, CrustaceanS
 
 //clams
 # new Thing("clam",["clam body","clam thoughts"],["oyster","mussel","scallop"]);
-# new Thing("clam body",["clam shell","clam shell","brain","soft flesh"],"body");
+# new Thing("clam body",["clam shell","clam shell",
+    BrainFactory.one(),
+    "soft flesh"],"body");
 # new Thing("clam thoughts",["clam thought,1-3"],["thoughts"]);
 # new Thing("clam thought",[],["what","wait","hold on","wait why","i don't","stay clam and carry on","oh no","why this","that's","no","yes","wait no","but","haha what","please explain","that's not","i'm confused","please why","slurp","okay","okay what","what is this","what's that"]);
 
@@ -38,19 +40,26 @@ from .crustacean import CrustaceanLegFactory, CrustaceanClawFactory, CrustaceanS
 
 //mollusks
 # new Thing("mollusk",["mollusk body","mollusk thoughts"],["sea slug","sea snail","squid","octopus","vampire squid","clione","sea angel","cuttlefish","nautilus","giant squid","colossal squid","mimic octopus"]);
-# new Thing("mollusk body",["simple eye,2","mouth","tentacle,6-8","jelly","soft flesh"],"body");
+# new Thing("mollusk body",["simple eye,2",
+    MouthFactory.one(),
+    "tentacle,6-8","jelly","soft flesh"],"body");
 # new Thing("mollusk thoughts",["mollusk thought,2"],["thoughts"]);
 # new Thing("mollusk thought",[],["party time","is it party time now","party now ok","party's over","okay let's party","ready to party","are you party","they don't look like they want to party","is the party over","this party's so hot it's stupid","this party getting crazy","partyyyyyyy","chug chug chug","we party now","wanna join in","we partyin","okay too much party","I have a secret for you","that's a secret","I kinda like partying","party yes nice","woooo party"]);
 
 //crustaceans
 # new Thing("crustacean",["crustacean body","crustacean thoughts"],["shrimp","prawn","langoustine","lobster","rock lobster","crab","spider crab","crayfish","krill","triops","copepod"]);
-# new Thing("crustacean body",["simple eye,2-6","brain","crustacean leg,6-8","crustacean claw,2","crustacean shell","soft flesh"],"body");
+# new Thing("crustacean body",["simple eye,2-6",
+    BrainFactory.one(),
+    "crustacean leg,6-8","crustacean claw,2","crustacean shell","soft flesh"],"body");
 # new Thing("crustacean thoughts",["crustacean thought,2-3"],["thoughts"]);
 # new Thing("crustacean thought",[],["skitter skitter","crawl crawl","dig dig","grab grab","gotta eat","gotta skitter","gotta catch food","gotta hide","gotta breed","breed breed","under the sea"]);
 
 //fish; getting those from http://homepages.cwi.nl/~sjoerd/fishlist.html just because I can
 new Thing("fish",["fish body","fish thoughts"],["anchovy","sardine","mackerel","tuna","albacore","herring","bream","bass","perch","mullet","brill","plaice","sole","angler","dab","flounder","skate","cod","haddock","pollack","whiting","pike","perch","trout","carp","eel","lamprey","salmon","catfish","dogfish","swordfish","sailfish","pufferfish","sunfish","manta ray","stingray"]);
-new Thing("fish body",["simple eye,2","brain","mouth","fish fin,2-6","fish skin","fish tail","flesh","worm,5%"],"body");
+new Thing("fish body",["simple eye,2",
+    BrainFactory.one(),
+    MouthFactory.one(),
+    "fish fin,2-6","fish skin","fish tail","flesh","worm,5%"],"body");
 new Thing("fish thoughts",["fish thought,2-3"],["thoughts"]);
 new Thing("fish thought",[],["blup","bloop","blwap","blep","gotta eat","gotta swim","gotta get food","gotta hide","gotta breed","oooh shiny"]);
 
@@ -63,7 +72,10 @@ new Thing("shark thought",[],["CHOMP","NOM","THIS LOOKS TASTY","THIS SMELLS DELI
 new Thing("cetacean",["cetacean body","cetacean thoughts"],["dolphin","porpoise","whale","orca","bottlenose dolphin"]);
 new Thing("cetacean thoughts",["cetacean thought,1-2"],["thoughts"]);
 new Thing("cetacean thought",[],["Oh god. Let me tell you about sharks.","Sigh. Yes, this is dolphin.","Do I look like a goddamn rescue dog to you?","A trick? Do I look like a clown to you?","The blowhole isn't just for show.","There's things. Down there. Deep down.","We've seen them.","They're coming to the surface.","EEK EEK EEK EEK- oh, sorry about that.","EEK UUK","Yes. Charming.","So long, etc.","My god. How long must this go on.","EEEEUUUUUUEEEEEKKKKK","Click noises.","Swimmity.","Yes. No. Go away.","You know. I could catch that fish myself if I wanted to.","I mean, that's fine and all.","That's really all there is to say about it.","I never make puns on porpoise. HUEHUEHUEHUEHUE","Look! Over there! Haha, sucker.","Guess how much I care about sharks? Exactly. I don't."]);
-new Thing("cetacean head",["mouth","eye,2","skull",
+new Thing("cetacean head",[
+    MouthFactory.one(),
+    EyeFactory.multiple(2),
+    SkullFactory.one(),
     SkinFactory.one(),
     ],"head");
 new Thing("cetacean body",["cetacean head",
@@ -78,7 +90,9 @@ new Thing("worm thought",[],["wiggle wiggle","squirm squirm","crawl crawl","weee
 
 //insects (arachnids etc too)
 new Thing("insect",["insect body","insect thoughts"],["ant","bee","wasp","hornet","ladybug","cockroach","termite","beetle","dung beetle","scarab beetle","bumblebee","spider","scorpion","tarantula","praying mantis","butterfly","moth","fly","cricket","mole cricket","cicada","weevil","stick insect","aphid","flea","lice","firefly","gnat","stinkbug","grasshopper","silverfish","locust","earwig"]);
-new Thing("insect body",["simple eye,2-8","brain",["insect leg,6","insect leg,8"],["insect claw,2",""],"exoskeleton","stinger,30%",["insect wing,2","insect wing,4","",""],["antenna,2",""],"flesh"],"body");//spiders with wings. because yeah
+new Thing("insect body",["simple eye,2-8",
+    BrainFactory.one(),
+    ["insect leg,6","insect leg,8"],["insect claw,2",""],"exoskeleton","stinger,30%",["insect wing,2","insect wing,4","",""],["antenna,2",""],"flesh"],"body");//spiders with wings. because yeah
 new Thing("insect thoughts",["insect thought,2-3"],["thoughts"]);
 new Thing("insect thought",[],["skitter","skitter skitter","squirm squirm","crawl crawl","buzz","big noisy things","small tasty things","too much sun","not enough sun","need water","need food","need shelter","food please","mating please","must defend nest","intruder detected","must spawn eggs","hey hey","let's be bros","no stomp please","go away"]);
 new Thing("social insect",["insect body","social insect thoughts"],["worker","soldier","drone"]);
@@ -92,16 +106,36 @@ new Thing("social insect thoughts",["social insect thought,1-2"],["thoughts"]);
 new Thing("social insect thought",[],["hello intruder","you should stay away intruder","intruder we may be forced to chop you up into little pieces if you stay here","this is no place for you intruder","why don't you go back to your intruder nest with all the other intruders","we have no need for intruders right now","hey intruder ever heard of personal space","sorry intruder but you're kind of in the way","intruder that's enough now","intruder why don't you come back another time","sorry intruder we're all super-busy here","hey intruder you're like very big so please don't stay here","i trophallaxized a girl and i liked it"]);
 
 //monsters
-new Thing("sea monster",["sea monster thoughts",["tentacle,0-6","fish fin,0-4","",""],"stinger,20%",["crustacean claw,0-4",""],["crustacean leg,0-8",""],["crustacean shell","scales","fur","exoskeleton",""],["mouth,1-2","beak,1-2"],"skull,80%",["eye,1-8","simple eye,1-8","",""],"weird soft organ,0-4","weird hard organ,0-4"],[["giant","timeless","colossal","abyssal","forgotten","ancient","gigantic","monstrous"],[" "],["craze","drift","dredge","dread","slumber","dream","wander","frost","magma","stone","slime","ooze","egg","larva","grudge","stride","flail","wail","time","star","crystal","terror","horror","scream","wrath","burst","dark","deep","tickle"],["fin","tail","sinker","sunk","singer","song","polyp","rifter","glider","squirmer","titan","colossus","brain","queen","king","child","guardian","seer","whale","worm","spider","crab","leech","fish","shark","squid","saur","buddy","lord"]]);
+new Thing("sea monster",["sea monster thoughts",["tentacle,0-6","fish fin,0-4","",""],"stinger,20%",["crustacean claw,0-4",""],["crustacean leg,0-8",""],["crustacean shell","scales","fur","exoskeleton",""],[
+    MouthFactory.multiple(1, 2),
+    "beak,1-2"],
+    SkullFactory.probable(80),
+    [
+        EyeFactory.multiple(1, 8),
+        "simple eye,1-8","",""],"weird soft organ,0-4","weird hard organ,0-4"],[["giant","timeless","colossal","abyssal","forgotten","ancient","gigantic","monstrous"],[" "],["craze","drift","dredge","dread","slumber","dream","wander","frost","magma","stone","slime","ooze","egg","larva","grudge","stride","flail","wail","time","star","crystal","terror","horror","scream","wrath","burst","dark","deep","tickle"],["fin","tail","sinker","sunk","singer","song","polyp","rifter","glider","squirmer","titan","colossus","brain","queen","king","child","guardian","seer","whale","worm","spider","crab","leech","fish","shark","squid","saur","buddy","lord"]]);
 new Thing("sea monster thoughts",["sea monster thought,1-2"],["thoughts"]);
 new Thing("sea monster thought",[],["IIIIII MUSSST SCREEEAAAM","I AMMMM AWAKENED","ALLLLLL FEAR MEEEEE","NOOOOONE SHALL LIVE","I MUSSSSST EATTTTT","DEEEEEEEEP I SSSSLUMBER","IIIII SHALL CONSSSSUME","IIIII SHALL DEVOUUUUURRRRR","LIFFFFFFE MUSSSSST PERISHHHHH","NNNNNNNNURISHMENT","ALL SHALLLLLLL GO INSSSSSSANE","SSSSSSANITY SHALL YIELDDDDD","EXXXXXILED I WASSSSS","EONSSSSS I HAVE SLUMBERED","EONSSSSS I HAVE WAITED","MORTALSSSSSS BEHOLDDDDD","I COMMMMME FROM DEEP","IMMMMMMOBILE I WATCHHHH","SSSSSKITTER","THEY FFFFFLOAAAAAT"]);
 
-new Thing("space monster",["space monster thoughts",["tentacle,0-6","fish fin,0-4","",""],"stinger,20%",["crustacean claw,0-4",""],["crustacean leg,0-8",""],["crustacean shell","scales","fur","exoskeleton",""],["mouth,1-2","beak,1-2"],"skull,80%",["eye,1-8","simple eye,1-8","",""],"weird soft organ,0-4","weird hard organ,0-4"],[["C'","Vr'","Ksh","Zn'","Sh","Hrl","X","O","Yog","Gorg","Morg","Marg","Magg"],["","","agn","soth","norgn","ngas","alx","orx","rgl","iirn","egw","thulh","t","g","m"],["org","orgon","orgus","orkus","oid","us","u","esth","ath","oth","um","ott","aur"],[""," the Forgotten"," the Entity"," the Ancient"," the Starchild"," the Seeder"," the Leech"," the Timeless"," the Eon"," the Many"," the Countless"," the Boundless"," the Prisoner"," the Child"," the Form"," the Shape"," the Drifter"," the Swarm"," the Vicious"," the Warden"," the Ender"," the Unworldly"," the Unfriendly"," the All-Consumer"]]);
+new Thing("space monster",["space monster thoughts",["tentacle,0-6","fish fin,0-4","",""],"stinger,20%",["crustacean claw,0-4",""],["crustacean leg,0-8",""],["crustacean shell","scales","fur","exoskeleton",""],[
+    MouthFactory.multiple(1, 2),
+    "beak,1-2"],
+    SkullFactory.probable(80),
+    [
+        EyeFactory.multiple(1, 8),
+        "simple eye,1-8","",""],"weird soft organ,0-4","weird hard organ,0-4"],[["C'","Vr'","Ksh","Zn'","Sh","Hrl","X","O","Yog","Gorg","Morg","Marg","Magg"],["","","agn","soth","norgn","ngas","alx","orx","rgl","iirn","egw","thulh","t","g","m"],["org","orgon","orgus","orkus","oid","us","u","esth","ath","oth","um","ott","aur"],[""," the Forgotten"," the Entity"," the Ancient"," the Starchild"," the Seeder"," the Leech"," the Timeless"," the Eon"," the Many"," the Countless"," the Boundless"," the Prisoner"," the Child"," the Form"," the Shape"," the Drifter"," the Swarm"," the Vicious"," the Warden"," the Ender"," the Unworldly"," the Unfriendly"," the All-Consumer"]]);
 new Thing("space monster thoughts",["space monster thought,1-2"],["thoughts"]);
 new Thing("space monster thought",[],["WWWWWWWIDER THAN STARRRRRRS","AWAKENNNN MY CHILDRENNNNNN","GALAXIESSSSS SHALL FALLLLLLL","I AMMMMMM INFFFFFINITE","I SSSSSSSPAN AGESSSS","WWWWWWEEEEE ARE UNDYINGGGGGG","WE COMMMMMMMME","WE ANSSSSSWER THE CALLLLLLL","I TRAVELLLLLLL SLLLLLLUMBERING","FROMMMMMM FARRRRRR I COMMMME","IIIIII MUSSST SCREEEAAAM","I AMMMM AWAKENED","ALLLLLL FEAR MEEEEE","NOOOOONE SHALL LIVE","I MUSSSSST EATTTTT","DEEEEEEEEP I SSSSLUMBER","IIIII SHALL CONSSSSUME","IIIII SHALL DEVOUUUUURRRRR","LIFFFFFFE MUSSSSST PERISHHHHH","NNNNNNNNURISHMENT","ALL SHALLLLLLL GO INSSSSSSANE","SSSSSSANITY SHALL YIELDDDDD","EXXXXXILED I WASSSSS","EONSSSSS I HAVE SLUMBERED","EONSSSSS I HAVE WAITED","MORTALSSSSSS BEHOLDDDDD","I COMMMMME FROM DEEP","IMMMMMMOBILE I WATCHHHH","SSSSSKITTER","HHHHHHHEY HOW YOU DOIN'","AWKWAAAAAAAAARD"]);
 
 new Thing("space animal",["space animal thoughts,85%","space animal body"],[["e","a","o","","","","","",""],["sm","cr","shn","sh","sn","gl","g","m","c","x","h","dr","r","l"],["o","a","u","i","e","ee"],["x","b","rv","z","s","gg","g","k","rf","gl","bl","th","kt","m","sh","l","dr","v","p","nt","nk"],["o","a","i","u","e"],["n","ne","se","b","m","l","s","sh","th","t","sk","zer","bbler","ggler","ddler","ter","nt","r","r","r"]]);
-new Thing("space animal body",[["tentacle,0-6","crustacean leg,0-8","fish fin,0-4","mammal leg,1-6","",""],["insect wing,0-6","",""],["crustacean claw,0-4","",""],"flesh,40%","snout,3%","stinger,10%","whiskers,3%",["crustacean shell","scales","fur","exoskeleton",""],["mouth,1-4","beak,1-4",""],"skull,30%","brain,50%",["eye,1-2","eye,1-6","simple eye,1-6",""],"weird soft organ,50%","weird soft organ,20%","weird hard organ,50%","weird hard organ,20%"],["body"]);
+new Thing("space animal body",[["tentacle,0-6","crustacean leg,0-8","fish fin,0-4","mammal leg,1-6","",""],["insect wing,0-6","",""],["crustacean claw,0-4","",""],"flesh,40%","snout,3%","stinger,10%","whiskers,3%",["crustacean shell","scales","fur","exoskeleton",""],[
+    MouthFactory.multiple(1, 4),
+    "beak,1-4",""],
+    SkullFactory.probable(30),
+    BrainFactory.probable(50),
+    [
+        EyeFactory.multiple(1, 2),
+        EyeFactory.multiple(1, 6),
+        "simple eye,1-6",""],"weird soft organ,50%","weird soft organ,20%","weird hard organ,50%","weird hard organ,20%"],["body"]);
 new Thing("space animal thoughts",["space animal thought,1-3"],["thoughts"]);
 new Thing("space animal thought",[],[
 ["sk'","mop","nanu","nug","gmap","shmu","dna","no","xle","doda","daia","de",""],["g ","gek ","th ","iap ","glib ","ph ","d't ","neig'","dip ","shna ","sh "],

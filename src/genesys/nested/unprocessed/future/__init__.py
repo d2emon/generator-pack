@@ -3,7 +3,9 @@
 new Thing("future clothing set",["future gizmo,10%","future gizmo,10%","future gizmo,10%","future hat,10%","future outfit,99.8%"],"clothing");
 new Thing("future man",[".future person"],"*FUTURE MAN*");
 new Thing("future woman",[".future person"],"*FUTURE WOMAN*");
-new Thing("future person",["body","future psyche","future clothing set"],"*FUTURE PERSON*");
+new Thing("future person",[
+    BodyFactory.one(),
+    "future psyche","future clothing set"],"*FUTURE PERSON*");
 
 new Thing("future psyche",["future thoughts","future memories"],"psyche");
 new Thing("future thoughts",[

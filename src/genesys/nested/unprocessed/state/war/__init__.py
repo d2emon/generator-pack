@@ -1,9 +1,12 @@
 """
 //war stuff
-new Thing("battlefield",["soldier,10-30","corpse,10-30",
+new Thing("battlefield",["soldier,10-30",
+    CorpseFactory.multiple(10, 30),
     BloodFactory.one(),
     ]);
-new Thing("soldier",[".person","arsenal",
+new Thing("soldier",[
+    (PersonFactory),
+    "arsenal",
     BloodFactory.probable(20),
     "bullet wound,0-3"],[["*PERSON*| "],["(soldier)","(soldier)","(soldier)","(soldier)","(soldier)","(soldier)","(officer)","(lieutenant)","(captain)","(major)"]]);
 new Thing("arsenal",["gas mask,20%","rifle,90%","knife,80%","handgun,90%","handgun,50%","knife,30%","ammo pack,0-4","grenade,0-4","bullet,0-5"]);

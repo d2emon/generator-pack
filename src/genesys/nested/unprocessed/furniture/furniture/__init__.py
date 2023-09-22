@@ -108,8 +108,12 @@ new Thing("ink",[
     AlcoholFactory.one(),
     "oil",
 ]);
-new Thing("bathtub",["porcelain","pipes","dirt,30%","insect,5%","hair,30%"]);
-new Thing("shower",["porcelain","pipes","dirt,30%","insect,5%","hair,30%"]);
+new Thing("bathtub",["porcelain","pipes","dirt,30%","insect,5%",
+    HairFactory.probable(30),
+    ]);
+new Thing("shower",["porcelain","pipes","dirt,30%","insect,5%",
+    HairFactory.probable(30),
+    ]);
 new Thing("tv",["tv show","tv remote,20%",
     PlasticFactory.one(),
     "electronics"],[["plasma","wide-screen","high-resolution","black and white","small","cheap"],[" TV"]]);

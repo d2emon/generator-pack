@@ -14,7 +14,9 @@ new Thing("capital",["monument,70%", "monument,40%", "monument,10%", "residentia
 
 //buildings
 new Thing("monument",["tourist,5-30", "souvenir shop,70%", "souvenir shop,30%"],"*MONUMENT*");
-new Thing("tourist",[".person"],"*PERSON*| (tourist)");
+new Thing("tourist",[
+    (PersonFactory)
+    ],"*PERSON*| (tourist)");
 
 new Thing("commercial area",["street,1-5", "bargain shop,60%", "bargain shop,30%", "souvenir shop,10%", "fresh produce shop,60%", "pet shop,60%", "toy shop,60%", "game shop,60%", "office building,1-12"]);
 new Thing("office building",["building hall", "office,6-20", ".building"],[["a tall", "a stout", "an unimpressive", "a large", "a humongous", "a modern", "a classic", "a historic", "a gray", "a dull", "a white", "a black", "a concrete", "a glass-covered", "an impressive", "a beautiful", "an old-fashioned", "a boring", "a newly-built", "a fancy"], [" "], ["office building", "skyscraper", "building"]]);
@@ -33,7 +35,9 @@ new Thing("farm",[
     FireFactory.probable(0.3),
     "house,1-3", "farmer,1-4", "field,1-8", "horse,30%", "horse,30%", "horse,30%", "poultry,0-3", "grain silo,0-2", "barn,0-2", "warehouse,0-2", "storage shed,0-2"]);
 new Thing("field",["grain", "insect,5%", "bird,10%", "bird,5%", "haystack,30%"],["wheat field", "corn field", "soy field", "rice field", "oat field", "peanut field", "tomato field", "grape field", "barley field", "canola field", "rye field", "flower field"]);
-new Thing("farmer",[".person"],"*PERSON*| (farmer)");
+new Thing("farmer",[
+    (PersonFactory)
+    ],"*PERSON*| (farmer)");
 new Thing("grain",["plant cell"]);
 new Thing("grain silo",["metal", "grain"]);
 new Thing("warehouse",["worker,0-2", "small mammal,8%", "ghost,0.3%", "machine,0-4", ".building"]);
@@ -43,16 +47,25 @@ new Thing("haystack",["grain", "insect,10%", "needle,0.1%"]);
 new Thing("needle",["metal"]);
 
 new Thing("factory",["worker,2-12", "machine,1-12", "pipes,40%", "cables,0-1", "public bathroom,60%", "warehouse,0-2", ".building"],[["toy", "chocolate", "car", "yoghurt", "processed food", "pork products", "canned beef", "juice", "soda", "shoe", "textile", "computer", "weapon", "hardware"], [" factory"]]);
-new Thing("worker",[".person"],"*PERSON*| (worker)");
+new Thing("worker",[
+    (PersonFactory)
+    ],"*PERSON*| (worker)");
 
-new Thing("public bathroom",[".room", "person,10%", "person,1%", "sink,1-4", "toilet,1-4", "mirror,0-3"],"restroom");
+new Thing("public bathroom",[".room",
+    PersonFactory.multiple(10)    
+    PersonFactory.multiple(1)
+    "sink,1-4", "toilet,1-4", "mirror,0-3"],"restroom");
 
 //offices
 new Thing("building hall",["office worker,0-3", "elevator,1-3", "public bathroom,75%"],"entrance hall");
 new Thing("elevator",["ghost,0.3%", "office worker,0-3", "metal", "cables", "mechanics"]);
 new Thing("office",["office worker,0-3", "cat,2%", "meeting room,0-2", "boss's office", "cubicle,2-12", "water cooler,0-2", "public bathroom,75%", "elevator"],[["Social", "Web", "Swift", "Smart", "Smooth", "Huge", "Large", "Greed", "Bank", "Media", "World", "Smith", "Channel", "Stock", "Dream", "One", "True", "We", "You", "People", "Planet", "Wild", "Standard", "Ever", "Quick", "Fast", "Real", "Good", "Great", "Neat", "Soft", "Hard", "Right", "Evil", "Okay", "Nice", "Mascot", "Clever", "Green", "Blue", "White", "Black", "Time", "Century", "Millenium", "NotCorrupt", "PrettyAlright", "PrettyDamnGood", "Actual", "Apex", "Nested", "Star", "Opti", "General", "Easy", "What", "Who", "Where", "This", "That", "Dat", "Dem", "Invest", "Painless", "Death", "First", "Shark", "Bear", "Truth", "Trust", "Venture", "Swell", "Kind", "Myth", "Mythic", "Crown", "Silver", "Gold", "Twin", "Single", "Double", "Triple", "Marvel", "Wonder", "Way", "Ward", "e", "I"], ["co", "alys", "isium", "arium", "orium", "orius", "arius", "aria", "oria", "arion", "orion", "ilton", "son", "cube", "Monkey", "Dog", "Century", "Year", "TV", "Big", "Money", "Rich", "Bucks", "Axis", "Venture", "Fine", "Universal", "Pro", "Unlimited", "brothers", "Tube", "Grow", "Friends", "Planet", "People", " People", " Plastics", " Fashion", " Trending", " TV", " Games", " Toys", " Video Games", " Video", " Sports", " Pets", " Social", " Websites", " Marketing", " Sales", " Trading", " Export", " Politics", " Strategy", " Health", " Medecine", " Gardening", " Agriculture", " Editions", " Mining", " Transports", " Voyages", " Tourism", " Art", " Assassinations", " Healthcare", " Software", " Hardware", " Automobile", " Care", " Education", " Security", " Security Systems", " Crafts", " Production", " Services", "Blood", " Space", " Transfer", " Backup", " Resources", " Secret Research", " Banking", " Funding", " Gambling", " Law", " Lawyers", " Pictures", " Religion", " Goods", " Weapons", " Laundering", " Cartoons", " Comics", " Agronomics", " Ergonomics", " Economics", " Supplies", " Things", " Stuff", " Printing", " Architecture", " Landscaping", " Construction", " Railroads", " Engineering", " Science", " News", " Testing", " Appliances", " Standards", "Studio", " Recording", " Enrichment", " Extraction", " Frivolities", " Realty", " Publishing", " Entertainment", " Propane", " Energy", " Business Solutions", " Councelling", " Event-planning", " Fundraising", " Electronics", " Electrics", " Records", " Slavery", " Distribution", " Distributors", " Accessories", " Fuels", " Motors", " Insurance", "Corp", " Procedurals"], [" "], ["Inc.", "Corp.", "Company", "L.P.", "Ltd.", "L.L.C.", "L.C.", "Associates", "Partners", "United", "Merger", "& Co", "International", "Conglomerate"]]);
-new Thing("office worker",[".person"],"*PERSON*| (employee)");
-new Thing("office boss",[".person"],"*PERSON*| (boss)");
+new Thing("office worker",[
+    (PersonFactory)
+    ],"*PERSON*| (employee)");
+new Thing("office boss",[
+    (PersonFactory)
+    ],"*PERSON*| (boss)");
 new Thing("cubicle",["office worker,80%", "office worker,10%", "computer", "computer,10%", "small bookshelf,30%", "fridge,2%", "nameplate,8%", "calendar,20%", "office toy,0-3", "desk", "chair", "panel,2-3"]);
 new Thing("boss's office",["office boss", "office worker,10%", "office worker,5%", "computer", "computer,10%", "water cooler,10%", ["bookshelf", "small bookshelf"], "cupboard,0-2", "fridge,20%", "nameplate", "calendar,80%", "office toy,0-6", "desk", "armchair,50%", "chair,2-4", "tv,10%"]);
 new Thing("meeting room",["office boss,2%", "office worker,0-8", "cat,2%", "computer,30%", "computer,10%", "water cooler,40%", ["bookshelf", "small bookshelf"], "cupboard,0-2", "fridge,20%", "nameplate,0-4", "calendar,50%", "office toy,0-6", "table", "chair,4-12", "tv,60%"]);
@@ -73,8 +86,12 @@ new Thing("water cooler",[
 
 //small shops
 new Thing("shop",["clerk,1-6", ["customer,0-3", "customer,0-15"], "desk,1-3", "chair,0-3", "tv,20%", "warehouse,20%", ".building"]);
-new Thing("clerk",[".person"],"*PERSON*| (clerk)");
-new Thing("customer",[".person"],"*PERSON*| (customer)");
+new Thing("clerk",[
+    (PersonFactory)
+    ],"*PERSON*| (clerk)");
+new Thing("customer",[
+    (PersonFactory)
+    ],"*PERSON*| (customer)");
 
 new Thing("game shop",["video game stand,2-12", "video game console,1-4", "tv,1-3", "computer,0-3", ".shop"],[["Game", "Gamer", "Play"], ["pro", "shop", "hub", "go", "cash", "buy", "now", "grrrlz", "bro", "chump"]]);
 new Thing("video game stand",["video game,2-20",
@@ -130,19 +147,30 @@ new Thing("wooden frame",["wood"]);
 new Thing("fire department",[
     FireFactory.probable(0.2),
     "firefighter,3-6", "desk,0-3", "chair,1-4", "fridge,60%", "tv,60%", "fire truck", ".building"]);
-new Thing("firefighter",[".person"],"*PERSON*| (firefighter)");
+new Thing("firefighter",[
+    (PersonFactory)
+    ],"*PERSON*| (firefighter)");
 
 new Thing("police station",["police officer,2-6", "desk,0-2", "tv,40%", "small bookshelf,0-2", "chair,0-4", ".building"]);
-new Thing("police officer",[".person"],"*PERSON*| (police officer)");
+new Thing("police officer",[
+    (PersonFactory)
+    ],"*PERSON*| (police officer)");
 
-new Thing("library",["bookshelf,10-30", "painting,50%", "painting,50%", "painting,50%", "desk,0-4", "computer,0-4", "chair,0-4", "librarian,1-4", "person,0-12", ".building"]);
-new Thing("librarian",[".person"],"*PERSON*| (librarian)");
+new Thing("library",["bookshelf,10-30", "painting,50%", "painting,50%", "painting,50%", "desk,0-4", "computer,0-4", "chair,0-4", "librarian,1-4",
+    PersonFactory.multiple(0, 12),
+    ".building"]);
+new Thing("librarian",[
+    (PersonFactory)
+    ],"*PERSON*| (librarian)");
 
 //war stuff
-new Thing("battlefield",["soldier,10-30", "corpse,10-30",
+new Thing("battlefield",["soldier,10-30",
+    CorpseFactory.multiple(10, 30),
     BloodFactory.one(),
     ]);
-new Thing("soldier",[".person", "arsenal",
+new Thing("soldier",[
+    (PersonFactory)
+    "arsenal",
     BloodFactory.probable(20),
     "bullet wound,0-3"],[["*PERSON*| "], ["(soldier)", "(soldier)", "(soldier)", "(soldier)", "(soldier)", "(soldier)", "(officer)", "(lieutenant)", "(captain)", "(major)"]]);
 new Thing("arsenal",["gas mask,20%", "rifle,90%", "knife,80%", "handgun,90%", "handgun,50%", "knife,30%", "ammo pack,0-4", "grenade,0-4", "bullet,0-5"]);
@@ -192,47 +220,79 @@ new Thing("bullet wound",[
 //hospitals
 new Thing("hospital",["doctor,2-4", "nurse,2-4", "intern,2-4", "hospital room,3-8", "patient,0-3", "desk,0-2", "chair,0-2", ".building"]);
 new Thing("hospital room",["doctor,10%", "nurse,20%", "intern,20%", "bed,1-2", "patient,0-2", "tv", "table,75%", "chair,0-2", ".room"]);
-new Thing("nurse",[".woman",
+new Thing("nurse",[
+    (WomanFactory),
     BloodFactory.probable(10),
     ],"*WOMAN*| (nurse)");
-new Thing("doctor",[".person",
+new Thing("doctor",[
+    (PersonFactory),
     BloodFactory.probable(5),
     ],"*PERSON*| (doctor)");
-new Thing("intern",[".person",
+new Thing("intern",[
+    (PersonFactory),
     BloodFactory.probable(10),
     ],"*PERSON*| (intern)");
-new Thing("patient",[".person",
+new Thing("patient",[
+    (PersonFactory),
     BloodFactory.pobable(15),
     "wound,0-3"],"*PERSON*| (patient)");
 
 //[DATA EXPUNGED]
-new Thing("research facility",["researcher,2-8", "security guard,1-4", "soldier,0-6", "doctor,0-2", "nurse,0-2", ["corpse,0-3", "", ""], "containment room,1-12", "top secret drawer,1-6", ".building"]);
-new Thing("researcher",[".person"],"*PERSON*| (researcher)");
-new Thing("security guard",[".person", "handgun", "ammo pack,0-1"],"*PERSON*| (security guard)");
+new Thing("research facility",["researcher,2-8", "security guard,1-4", "soldier,0-6", "doctor,0-2", "nurse,0-2",
+    [
+        CorpseFactory.multiple(0, 3),
+        "", ""
+    ],
+    "containment room,1-12", "top secret drawer,1-6", ".building"]);
+new Thing("researcher",[
+    (PersonFactory),
+    ],"*PERSON*| (researcher)");
+new Thing("security guard",[
+    (PersonFactory),
+    "handgun", "ammo pack,0-1"],"*PERSON*| (security guard)");
 new Thing("containment room",[
     [
         PortalFactory.one(),
-        "space animal", "space monster", "sea monster", "bird", "poultry", "cat", "dog", "cetacean", "fish", "mollusk", "plankton", "reptile", "amphibian", "snake", "small mammal", "predatory mammal", "herbivorous mammal", "clam", "worm", "monkey", "bear", "shark", "horse", "insect", "crustacean", "dragon", "person", "ghost", "ectoplasm", "abomination", "corpse", "house", "tree", "machine", "dinosaur", "visitor", "visitor furniture", "medieval person", "caveman", "painting", "", "", ""
+        "space animal", "space monster", "sea monster", "bird", "poultry", "cat", "dog", "cetacean", "fish", "mollusk", "plankton", "reptile", "amphibian", "snake", "small mammal", "predatory mammal", "herbivorous mammal", "clam", "worm", "monkey", "bear", "shark", "horse", "insect", "crustacean", "dragon",
+        (PersonFactory),
+        "ghost", "ectoplasm", "abomination",
+        CorpseFactory.one(),
+        "house", "tree", "machine", "dinosaur", "visitor", "visitor furniture", "medieval person", "caveman", "painting", "", "", ""
     ],
     PortalFactory.one().probable(1),
     FireFactory.probable(1),
-    "researcher,5%", "researcher,5%", "soldier,5%", "soldier,5%", "corpse,5%", "corpse,5%", "corpse,5%", "corpse,5%"]);
+    "researcher,5%", "researcher,5%", "soldier,5%", "soldier,5%",
+    CorpseFactory.probable(5),
+    CorpseFactory.probable(5),
+    CorpseFactory.probable(5),
+    CorpseFactory.probable(5),
+    ]);
 new Thing("top secret drawer",["top secret folder,1-8", "note,0-8", "pen,30%", "pen,10%", "pen,5%", "donut box,5%", "can,2%", "book,20%", "book,20%", "book,5%", "book,5%", "button,10%", "button,10%", "dust,60%", "lint,40%"],"classified files");
 new Thing("top secret folder",["top secret file,2-8", "paper"],[["Classified Folder n°"], ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "", ""], ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "", ""], ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]]);
 new Thing("top secret file",[],[["File ", "Document ", "Report "], ["X", "Z", "A", "B", "L", "S", "T"], ["-"], ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "", ""], ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "", ""], ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"], ["<br>-"], ["Containment breach ¤¤¤", "Subject ¤¤¤ attempted escape", "Unusual events occuring", "Possible breach of security measures in", "Subject ¤¤¤ sighted", "Witnesses report a ¤¤¤", "Rumors of ¤¤¤", "Singularity event", "Subject ¤¤¤ attempted singularity", "Retrieval of subject ¤¤¤", "Accidental termination of subject ¤¤¤", "Recovery of subject ¤¤¤", "Recovery of a number of ¤¤¤", "Accidental loss of ¤¤¤", "New leads on ¤¤¤", "Subject ¤¤¤ must now be kept away from ¤¤¤ at all times to avoid repeating the security breach that occurred", "Locals report sightings of ¤¤¤", "Subject ¤¤¤ transported", "A number of ¤¤¤ were sighted", "Subject ¤¤¤ has been predicted to have been", "Retrieving supplies", "Accidental destruction of all subjects", "Retrieval of artifact ¤¤¤", "Sightings of artifact ¤¤¤", "Subject ¤¤¤ tried to merge with ¤¤¤", "Subject ¤¤¤ sighted with artifact ¤¤¤", "Experimentation done on ¤¤¤", "Research ongoing on ¤¤¤", "True nature of ¤¤¤ revealed", "Gate to ¤¤¤ opened", "Portal to ¤¤¤ closed", "Relations friendly with ¤¤¤", "Relations hostile with ¤¤¤", "A team has been sent to investigate ¤¤¤", "No news from the team sent to", "Mission ¤¤¤ presumed to have been a failure; no further teams should be sent", "Met with subject ¤¤¤", "Artifact ¤¤¤ damaged but not destroyed", "Artifact ¤¤¤ suspected to have been destroyed", "Subject ¤¤¤ presumed dead", "Subject ¤¤¤ unfortunately still alive", "Phenomenons possibly caused by ¤¤¤ spotted", "Phenomenons matching ¤¤¤'s behavior have been observed", "Discussions on the whereabouts of ¤¤¤ took place", "Subject ¤¤¤ travelled from ¤¤¤ to ¤¤¤", "Subject ¤¤¤ sighted shape-shifting from a ¤¤¤ to a ¤¤¤", "Subject ¤¤¤ started duplicating", "Subject ¤¤¤ resumed duplicating", "Subject ¤¤¤ will have/has started to ¤¤¤", "Collision event between ¤¤¤ and ¤¤¤", "Evidence of ¤¤¤"], [" "], ["in sector", "in zone", "in secured location", "in facility", "near site"], [" "], ["X", "Z", "A", "B", "L", "S", "T"], ["-"], ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "", ""], ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "", ""], ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"], [" "], ["on ¤¤/¤¤/¤¤¤¤", "the day preceding ¤¤¤", "following the ¤¤¤", "in the hours leading to the ¤¤¤ event", "in the hours following the ¤¤¤ event", "directly after ¤¤¤", "during the ¤¤¤ event"], ["; all researchers involved terminated", "; all personnel involved terminated", "; casualties estimated high to very high", "; no casualties reported", "; proper measures have been triggered", "; more research is necessary", "; further testing still needed", "; casualties include half the local population", "; casualties include all local wildlife", ". Once again, do not, I repeat DO NOT ¤¤¤", ". Do not, under any circumstances, attempt to ¤¤¤", "; locals have been terminated", "; locals have no memory of the event", "; consequences of the event have been dealt with", "", "", "", "", "", ""], ["."]]);
 
 //cemeteries
-new Thing("cemetery",["gravedigger,0-2", "person,0-3", "cemetery shed,0-2", "mausoleum,0-3", "grave,10-30", "ghost,20%", "ghost,10%"],"cemetery");
-new Thing("gravedigger",[".person", "shovel,30%"],"*PERSON*| (gravedigger)");
+new Thing("cemetery",["gravedigger,0-2",
+    PersonFactory.multiple(0, 3),
+    "cemetery shed,0-2", "mausoleum,0-3", "grave,10-30", "ghost,20%", "ghost,10%"],"cemetery");
+new Thing("gravedigger",[
+    (PersonFactory),
+    "shovel,30%"],"*PERSON*| (gravedigger)");
 new Thing("shovel",["wood", "metal"]);
-new Thing("cemetery shed",["gravedigger,0-2", "table,20%", "tv,20%", "fridge,30%", "chair,0-2", "shovel,0-3", "corpse,1%", "ghost,1%", ".building"],"shed");
+new Thing("cemetery shed",["gravedigger,0-2", "table,20%", "tv,20%", "fridge,30%", "chair,0-2", "shovel,0-3",
+    CorpseFactory.probable(1),
+    "ghost,1%", ".building"],"shed");
 new Thing("mausoleum",["tourist,8%", "coffin,1-6", "ghost,4%", ["concrete",
     RockFactory.one(),
     "marble"]]);
 new Thing("grave",["coffin", "coffin,5%", "worm,0-2", "insect,0-1", ["concrete",
     RockFactory.one(),
     "marble"], "dirt"]);
-new Thing("coffin",["person,0.2%", "corpse,98%", "corpse,2%", "ghost,2%", "worm,0-3", "insect,0-2", "wood", "cloth", "nails"]);
+new Thing("coffin",[
+    PersonFactory.probable(0.2),
+    CorpseFactory.probable(98),
+    CorpseFactory.probable(2),
+    "ghost,2%", "worm,0-3", "insect,0-2", "wood", "cloth", "nails"]);
 
 new Thing("ectoplasm",[
     ProtonFactory.multiple(3, 7),
@@ -243,17 +303,24 @@ new Thing("ghost thoughts",["ghost thought", "ghost thought,20%"],["thoughts"]);
 new Thing("ghost thought",[],["if only - she could hear me -", "he needs to know - I'm sorry -", "alone - I - wait -", "I am so - very lonely -", "when - will it end -", "will it be - over soon -", "do I - deserve this -", "I regret - so much -", "I miss you - so much -", "please - never - ever die -", "I must - wait here -", "how many - centuries -", "such is - my burden -", "I cannot - feel a thing -", "I have lost - all hope -", "abandoned -", "I float - forever -", "I wander - for how long -", "so spooky - right now -", "that slime - isn't mine -", "I rest - at last -", "let's - be pals -", "I sense - a presence -", "you can - see me?", "who you - gonna call -", "can you - hear me now -"]);
 
 //infrastructure
-new Thing("street",["traffic accident,1%", "urban life", "person,0-5", "driven car,0-20", "driven bike,0-3", "car,0-5", "road", "pavement"],[["*PERSON*|"], [" "], ["street", "avenue", "boulevard", "road", "alley", "bend", "drive", "place", "hill", "plaza"]]);
+new Thing("street",["traffic accident,1%", "urban life",
+    PersonFactory.multiple(0, 5),
+    "driven car,0-20", "driven bike,0-3", "car,0-5", "road", "pavement"],[["*PERSON*|"], [" "], ["street", "avenue", "boulevard", "road", "alley", "bend", "drive", "place", "hill", "plaza"]]);
 new Thing("road",[["asphalt", "stone"]]);
 new Thing("pavement",["note,3%", "coin,4%", "stone", "dirt,5%"]);
 new Thing("asphalt",[OilFactory.one(), ".concrete"]);
 new Thing("car",["engine", "mechanics", "tire,4"],[["parked "], ["blue", "red", "white", "black", "grey"], [" "], ["Chr", "F", "Chevr", "Cad", "H", "Hyund", "Maz", "Niss", "Suz", "Lex", "Merc", "Aud", "Volv"], ["ysler", "ord", "olet", "illac", "onda", "ai", "da", "an", "uki", "us", "edes", "i", "o"]]);
-new Thing("driven car",["person,1-4", ".car"],[["blue", "red", "white", "black"], [" "], ["Chr", "F", "Chevr", "Cad", "H", "Hyund", "Maz", "Niss", "Suz", "Lex", "Merc", "Aud", "Volv"], ["ysler", "ord", "olet", "illac", "onda", "ai", "da", "an", "uki", "us", "edes", "i", "o"]]);
+new Thing("driven car",[
+    PersonFactory.multiple(1, 4),
+    ".car"],[["blue", "red", "white", "black"], [" "], ["Chr", "F", "Chevr", "Cad", "H", "Hyund", "Maz", "Niss", "Suz", "Lex", "Merc", "Aud", "Volv"], ["ysler", "ord", "olet", "illac", "onda", "ai", "da", "an", "uki", "us", "edes", "i", "o"]]);
 new Thing("tire",[
     RubberFactory.one(),
     "metal"]);
 new Thing("bike",["mechanics", "tire,2"]);
-new Thing("driven bike",["person", "person,5%", ".bike"],"bike");
+new Thing("driven bike",[
+    PersonFactory.one(),
+    PersonFactory.probable(5),
+    ".bike"],"bike");
 //["Chr","F","Chevr","Cad","H","Hyun","Maz","Niss","Suz","Lex","Merc","Aud","Volv"],["ysler","ord","olet","illac","onda","dai","da","an","uki","us","edes","i","o"]
 
 //rooms
@@ -286,14 +353,35 @@ new Thing("marble",[
 ]);
 new Thing("door",["wood frame", "glass,10%"]);
 new Thing("window",["wood frame", "glass"]);
-new Thing("living-room",[".room", "person,0-4", "cat,10%", "cat,10%", "stuff box,5%", "tv,95%", "armchair,50%", "armchair,50%", "couch,90%", "living-room table,50%", "chair,1-6", "painting,70%", "painting,20%", "mirror,2%", "bookshelf,0-3", "small bookshelf,0-2", "desk,40%", "computer,40%"]);
-new Thing("kitchen",[".room", "person,40%", "person,20%", "tv,40%", "kitchen sink", "cabinet,1-5", "fridge", "oven", "chair,0-3", "computer,5%", "small bookshelf,5%", "painting,30%", "painting,10%"]);
-new Thing("bedroom",[".room", "person,40%", "person,10%", "cat,5%", "stuff box,5%", "tv,60%", "bed", "chair,0-4", ["cupboard,90%", "closet,90%"], "mirror,50%", "bookshelf,0-2", "small bookshelf,0-3", "desk,40%", "computer,40%", "painting,60%", "painting,20%"]);
-new Thing("bathroom",[".room", "person,10%", "person,1%", "cat,1%", "sink,95%", ["bathtub", "shower"], "toilet", "painting,20%", "mirror,80%"]);
-new Thing("study",[".room", "person,30%", "person,5%", "stuff box,20%", "tv,20%", "desk,95%", "computer,90%", "chair,1-4", "bookshelf,0-6", "painting,70%", "painting,20%", "mirror,5%"]);
-new Thing("garden",["person,40%", "person,10%", "dog,20%", "dog,5%", "cat,15%", "grass", "tree,50%", "tree,50%", "tree,20%", "tree,5%", "flowers,30%", "hole,1%", "hole,1%", "hole,1%", "poultry,1%", "bird,20%", "bird,10%"],["garden", "lawn", "backyard"]);
-new Thing("garage",["person,20%", "cat,2%", "stuff box,30%", "stuff box,20%", "chair,0-3", "car,90%", "car,40%", "car,5%", "bike,40%", "bike,30%", "bike,10%", "computer,5%", "small bookshelf,30%", "hole,1%", "hole,0.5%", "small mammal,5%", "insect,15%", "insect,15%", "dirt,50%"]);
-new Thing("hole",["corpse,20%", "corpse,5%",
+new Thing("living-room",[".room",
+    PersonFactory.multiple(0, 4),
+    "cat,10%", "cat,10%", "stuff box,5%", "tv,95%", "armchair,50%", "armchair,50%", "couch,90%", "living-room table,50%", "chair,1-6", "painting,70%", "painting,20%", "mirror,2%", "bookshelf,0-3", "small bookshelf,0-2", "desk,40%", "computer,40%"]);
+new Thing("kitchen",[".room",
+    PersonFactory.probable(40),
+    PersonFactory.probable(20),
+    "tv,40%", "kitchen sink", "cabinet,1-5", "fridge", "oven", "chair,0-3", "computer,5%", "small bookshelf,5%", "painting,30%", "painting,10%"]);
+new Thing("bedroom",[".room",
+    PersonFactory.probable(40),
+    PersonFactory.probable(10),
+    "cat,5%", "stuff box,5%", "tv,60%", "bed", "chair,0-4", ["cupboard,90%", "closet,90%"], "mirror,50%", "bookshelf,0-2", "small bookshelf,0-3", "desk,40%", "computer,40%", "painting,60%", "painting,20%"]);
+new Thing("bathroom",[".room",
+    PersonFactory.probable(10),
+    PersonFactory.probable(1),
+    "cat,1%", "sink,95%", ["bathtub", "shower"], "toilet", "painting,20%", "mirror,80%"]);
+new Thing("study",[".room",
+    PersonFactory.probable(30),
+    PersonFactory.probable(5),
+    "stuff box,20%", "tv,20%", "desk,95%", "computer,90%", "chair,1-4", "bookshelf,0-6", "painting,70%", "painting,20%", "mirror,5%"]);
+new Thing("garden",[
+    PersonFactory.probable(40),
+    PersonFactory.probable(10),
+    "dog,20%", "dog,5%", "cat,15%", "grass", "tree,50%", "tree,50%", "tree,20%", "tree,5%", "flowers,30%", "hole,1%", "hole,1%", "hole,1%", "poultry,1%", "bird,20%", "bird,10%"],["garden", "lawn", "backyard"]);
+new Thing("garage",[
+    PersonFactory.probable(20),
+    "cat,2%", "stuff box,30%", "stuff box,20%", "chair,0-3", "car,90%", "car,40%", "car,5%", "bike,40%", "bike,30%", "bike,10%", "computer,5%", "small bookshelf,30%", "hole,1%", "hole,0.5%", "small mammal,5%", "insect,15%", "insect,15%", "dirt,50%"]);
+new Thing("hole",[
+    CorpseFactory.probable(20),
+    CorpseFactory.probable(5),
     BloodFactory.probable(20),
     "shovel,20%", "hole,0.5%", "insect,25%", "insect,15%", "dirt"]);
 
@@ -413,8 +501,12 @@ new Thing("ink",[
     AlcoholFactory.one(),
     OilFactory.one()
 ]);
-new Thing("bathtub",["porcelain", "pipes", "dirt,30%", "insect,5%", "hair,30%"]);
-new Thing("shower",["porcelain", "pipes", "dirt,30%", "insect,5%", "hair,30%"]);
+new Thing("bathtub",["porcelain", "pipes", "dirt,30%", "insect,5%",
+    HairFactory.probable(30),
+    ]);
+new Thing("shower",["porcelain", "pipes", "dirt,30%", "insect,5%",
+    HairFactory.probable(30),
+    ]);
 new Thing("tv",["tv show", "tv remote,20%",
     PlasticFactory.one(),
     "electronics"],[["plasma", "wide-screen", "high-resolution", "black and white", "small", "cheap"], [" TV"]]);
@@ -623,8 +715,13 @@ new Thing("visitor toe",[
 new Thing("visitor knee",[
     (BodyPatFactory)
     ],"knee");
-new Thing("visitor head",["visitor mouth", "eye,0-4", "skull"],"head");
-new Thing("visitor eye",["eye flesh", "visitor ooze,20%"],"eye");
+new Thing("visitor head",["visitor mouth",
+    EyeFactory.multiple(0, 4),
+    SkullFactory.one(),
+    ],"head");
+new Thing("visitor eye",[
+    EyeFleshFactory.one(),
+    "visitor ooze,20%"],"eye");
 new Thing("nose",["nostril,2",
     (BodyPatFactory)
     ],"nose");
@@ -657,7 +754,9 @@ new Thing("visitor furniture",["abomination,1%", "space animal,3%", "named visit
     ]
 ],[["symbio", "opto", "auto", "synchro", "thru", "ato", "ecto", "diplo", "plasti", "pasta", "pluta", "elu", "gubri", "capra", "lubio", "logi", "plato", "micro", "alto", "tele", "meta", "anti", "poly", "mono", "corvo"], ["shid", "synth", "shaver", "shist", "mizer", "mucus", "twister", "ridger", "cutter", "mac", "maker", "ctory", "ctamid", "chton", "leaker", "grater", "board", "frame", "table", "stand", "plug", "masher", "greeter", "mobile", "pin", "vat", "tron", "drone", "chron", "tub", "fridge", "pool", "box", "cube", "morpher", "phraser"]]);
 new Thing("visitor installation",["named visitor,0-4", ["space animal,0-3", ""], "visitor building,1-3"],[["pod", "grub", "egg", "limb", "ooze", "tendril", "bulb", "pulp", "energy", "smoke", "hive", "moisture", "cat"], [" "], ["materializer", "synthesizer", "factory", "farm", "collector", "cultures", "pit", "fields", "crops", "barn", "vat"]]);
-new Thing("visitor ship",["named visitor,1-3", "person,20%", "space animal,30%", "visitor furniture,1-6", "metal"],"visitor UFO");
+new Thing("visitor ship",["named visitor,1-3",
+    PersonFactory.probable(20),
+    "space animal,30%", "visitor furniture,1-6", "metal"],"visitor UFO");
 
 //medieval and ancient
 new Thing("medieval continent",["medieval land,1-6", "sea,1-5"],["explored continent"]);
@@ -671,7 +770,9 @@ new Thing("ancient land",["ancient plain,0-5", ["ancient forest,0-4", "ancient j
 new Thing("medieval clothing set",["medieval hat,30%", "medieval pants,98%", "medieval shirt,98%", "medieval coat,50%", "medieval shoes,80%", "medieval underwear,99%"],"clothing");
 new Thing("medieval man",[".medieval person"],"*MEDIEVAL MAN*");
 new Thing("medieval woman",[".medieval person"],"*MEDIEVAL WOMAN*");
-new Thing("medieval person",["body", "medieval psyche", "medieval clothing set"],"*MEDIEVAL PERSON*");
+new Thing("medieval person",[
+    BodyFactory.one(),
+    "medieval psyche", "medieval clothing set"],"*MEDIEVAL PERSON*");
 
 new Thing("medieval psyche",["medieval thoughts", "medieval memories"],"psyche");
 new Thing("medieval thoughts",[
@@ -703,7 +804,9 @@ new Thing("medieval king",[".medieval person"],[["*MEDIEVAL MAN*| ("], ["king", 
 new Thing("medieval queen",[".medieval person"],[["*MEDIEVAL WOMAN*| ("], ["queen", "empress", "princess"], [")"]]);
 new Thing("wizard",[".medieval person"],[["*MEDIEVAL PERSON*| ("], ["court", "battle", "rogue", "corrupt", "druid", "bard", "adept", "thaumaturgist", "shaman", "healing", "ice", "frost", "snow", "arcane", "lightning", "thunder", "earth", "earthquake", "nature", "animal", "shape-shifting", "death", "undeath", "spark", "fire", "lava", "locust", "poison", "rainbow", "mist", "fog", "dust", "air", "wind", "cloud", "tornado", "shark", "punch", "kick", "song", "skeleton", "psycho", "illusion", "flying", "summoner", "thief", "barbarian", "dragon", "gem", "sky", "star", "dark", "paladin", "luck", "time", "space", "blade"], [" "], ["mage", "magician", "wizard"], [")"]]);
 new Thing("medieval gravedigger",[".medieval person", "shovel,30%"],"*MEDIEVAL PERSON*| (gravedigger)");
-new Thing("medieval corpse",["body", "medieval clothing set",
+new Thing("medieval corpse",[
+    BodyFactory.one(),
+    "medieval clothing set",
     BloodFactory.probable(35),
     "worm,20%", "worm,10%"],"*MEDIEVAL PERSON*| (dead)");
 
@@ -825,7 +928,9 @@ new Thing("creature thought",[],["INTRUDER, INTRUDER!", "You no get out of here 
 new Thing("future clothing set",["future gizmo,10%", "future gizmo,10%", "future gizmo,10%", "future hat,10%", "future outfit,99.8%"],"clothing");
 new Thing("future man",[".future person"],"*FUTURE MAN*");
 new Thing("future woman",[".future person"],"*FUTURE WOMAN*");
-new Thing("future person",["body", "future psyche", "future clothing set"],"*FUTURE PERSON*");
+new Thing("future person",[
+    BodyFactory.one(),
+    "future psyche", "future clothing set"],"*FUTURE PERSON*");
 
 new Thing("future psyche",["future thoughts", "future memories"],"psyche");
 new Thing("future thoughts",[
@@ -886,7 +991,9 @@ new Thing("future commercial building",[["future food room,1-6", "future goods r
 new Thing("ancient clothing set",["ceremonial headdress,5%", "fur coat,95%", "fur boots,60%", "decorative bone,20%", "decorative bone,10%"],"clothing");
 new Thing("ancient man",[".ancient person"],"*ANCIENT MAN*");
 new Thing("ancient woman",[".ancient person"],"*ANCIENT WOMAN*");
-new Thing("ancient person",["body", "ancient psyche", "ancient clothing set"],"*ANCIENT PERSON*");
+new Thing("ancient person",[
+    BodyFactory.one(),
+    "ancient psyche", "ancient clothing set"],"*ANCIENT PERSON*");
 new Thing("caveman",[".ancient person"],"*ANCIENT PERSON*");
 
 new Thing("ancient psyche",["ancient thoughts", "ancient memories"],"psyche");

@@ -1,8 +1,12 @@
 """
 //small shops
 new Thing("shop",["clerk,1-6",["customer,0-3","customer,0-15"],"desk,1-3","chair,0-3","tv,20%","warehouse,20%",".building"]);
-new Thing("clerk",[".person"],"*PERSON*| (clerk)");
-new Thing("customer",[".person"],"*PERSON*| (customer)");
+new Thing("clerk",[
+    (PersonFactory),
+    ],"*PERSON*| (clerk)");
+new Thing("customer",[
+    (PersonFactory),
+    ],"*PERSON*| (customer)");
 
 new Thing("game shop",["video game stand,2-12","video game console,1-4","tv,1-3","computer,0-3",".shop"],[["Game","Gamer","Play"],["pro","shop","hub","go","cash","buy","now","grrrlz","bro","chump"]]);
 new Thing("video game stand",["video game,2-20",

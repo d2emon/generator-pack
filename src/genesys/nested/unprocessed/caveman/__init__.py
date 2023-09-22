@@ -3,7 +3,9 @@
 new Thing("ancient clothing set",["ceremonial headdress,5%","fur coat,95%","fur boots,60%","decorative bone,20%","decorative bone,10%"],"clothing");
 new Thing("ancient man",[".ancient person"],"*ANCIENT MAN*");
 new Thing("ancient woman",[".ancient person"],"*ANCIENT WOMAN*");
-new Thing("ancient person",["body","ancient psyche","ancient clothing set"],"*ANCIENT PERSON*");
+new Thing("ancient person",[
+    BodyFactory.one(),
+    "ancient psyche","ancient clothing set"],"*ANCIENT PERSON*");
 new Thing("caveman",[".ancient person"],"*ANCIENT PERSON*");
 
 new Thing("ancient psyche",["ancient thoughts","ancient memories"],"psyche");
