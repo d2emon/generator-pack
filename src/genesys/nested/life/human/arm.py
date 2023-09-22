@@ -1,9 +1,7 @@
 from models.v5 import life
 from ..body.body_parts import BodyPartFactory, SoftBodyPartFactory
+from .hair import HairFactory
 from ...unsorted_organics import DustFactory, KeratinFactory, SweatFactory
-
-# ???
-from ..body.hair import HairFactory
 
 
 class FingernailFactory(BodyPartFactory):

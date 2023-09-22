@@ -2,7 +2,7 @@ from models.v5 import life
 from factories.thing.nested_factory import NestedFactory as Factory
 from ..body.body_parts import BodyPartFactory, FleshFactory
 from ..body.head import MouthFactory, SnoutFactory, EyeFactory, EarFactory, SkullFactory
-from ..body.hair import FurFactory, WhiskersFactory
+from ..human.hair import FurFactory, WhiskersFactory
 from .limb import TailFactory
 
 

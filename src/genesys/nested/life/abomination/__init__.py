@@ -3,7 +3,7 @@ from utils.nested import select_item
 from ...mind import PsycheFactory, ThoughtsFactory, ThoughtFactory
 from ..body import WeirdSoftOrganFactory, WeirdHardOrganFactory, CrustaceanClawFactory, StingerFactory, \
     MouthFactory, NoseFactory, EarFactory, EyeFactory, SkullFactory
-from ..human.person.person import PersonFactory
+from ..human.person import PersonFactory
 from ..human.body import BodyFactory
 from ..human.torso import TorsoFactory, ChestFactory, PelvisFactory
 from ..human.head import HeadFactory, HeadHairFactory

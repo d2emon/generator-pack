@@ -1,27 +1,18 @@
 from genesys.nested.factories.nested_factory import NestedFactory
 from models.v5 import life
-from .skin import DeadSkinFactory
+from ..body.skin import DeadSkinFactory
 
-# ???
-from ...materials import KeratinFactory
+from ...unsorted_organics import KeratinFactory
 # ???
 from ..single_celled import BacteriaFactory
 
 
-class DandruffFactory(NestedFactory):
-    model = life.Dandruff
-
-    def children(self):
-        yield DeadSkinFactory()
-
-
 class HairFactory(NestedFactory):
-    # TODO: Refactor it
-    default_model = life.Hair
+    model = life.Hair
 
     def children(self):
-        yield BacteriaFactory().probable(30)
-        yield KeratinFactory()
+        yield BacteriaFactory.probable(30)
+        yield KeratinFactory.one()
 
 
 class FurFactory(HairFactory):

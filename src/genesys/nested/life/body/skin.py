@@ -1,7 +1,8 @@
 from genesys.nested.factories.nested_factory import NestedFactory
 from models.v5 import life
 from ..cell import CellFactory
-from ...unsorted_organics import DustFactory, SweatFactory
+from ...unsorted_organics import DustFactory, KeratinFactory, SweatFactory
+
 # ???
 from ...materials import KeratinFactory, ChitinFactory
 # ???
@@ -47,6 +48,13 @@ class SkinFactory(NestedFactory):
         yield DeadSkinFactory.one()
         yield DustFactory.probable(20)
         yield SweatFactory.probable(20)
+
+
+class DandruffFactory(NestedFactory):
+    model = life.Dandruff
+
+    def children(self):
+        yield DeadSkinFactory()
 
 
 class ScalesFactory(NestedFactory):

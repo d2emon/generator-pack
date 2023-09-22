@@ -2,23 +2,18 @@
 Body stuff
 """
 from .blood import BloodFactory, BloodCellFactory, BloodVesselsFactory
-from .skin import DeadSkinFactory, PoresFactory, ScarFactory, SkinFactory, SkinCellFactory, \
+from .skin import DeadSkinFactory, DandruffFactory, PoresFactory, ScarFactory, SkinFactory, SkinCellFactory, \
     ScalesFactory, ExoskeletonFactory
 from .skeleton import BoneFactory, BoneCellFactory, BonesFactory, FatFactory, MuscleFactory, MuscleCellFactory, \
     SkeletonFactory
 from .body_parts import BodyPartFactory, SkinlessBodyPartFactory, SkinlessSoftBodyPartFactory, SoftBodyPartFactory, \
     FleshFactory, SoftFleshFactory, WeirdSoftOrganFactory, WeirdHardOrganFactory
-from .head.brain import BrainCellFactory
-from .hair import DandruffFactory, \
-    HairFactory, FurFactory, WhiskersFactory
+from .brain import BrainCellFactory
 
 # ???
 from ..animals.mollusk.clam import ClamShellFactory
 # ???
 from ..animals.crustacean import CrustaceanLegFactory, CrustaceanClawFactory, CrustaceanShellFactory
-
-# ???
-from .head import *
 # ???
 from ..animals.bird import BirdLimbFactory, BirdWingFactory, BirdLegFactory, BirdTailFactory, BeakFactory, BirdHeadFactory, \
     BirdBodyFactory

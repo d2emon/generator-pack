@@ -37,6 +37,9 @@ class DataProvider:
         self.nucleotide = [
             'A', 'T', 'G', 'C',
         ]
+        self.head_hair = [
+            'brown', 'black', 'gray', 'light', 'blonde', 'red', 'dark',
+        ]
 
 
 PROVIDER = DataProvider()

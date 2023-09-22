@@ -4,7 +4,7 @@ Cell stuff
 from genesys.nested.factories.nested_factory import NestedFactory
 from models.v5 import life
 from utils.nested import select_item
-from ..materials.organics import GlucidsFactory, LipidsFactory, OrganicFactory, OrganicMoleculeFactory, ProteinsFactory
+from genesys.nested.materials.organics import GlucidsFactory, LipidsFactory, OrganicFactory, OrganicMoleculeFactory, ProteinsFactory
 
 
 class NucleotideFactory(NestedFactory):

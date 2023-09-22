@@ -1,26 +1,23 @@
 from models.v5 import life
 from utils.nested import select_item
-from ..body.body_parts import BodyPartFactory
-
-# ???
-# from ..body.skin import DeadSkinFactory
-# ???
-from ..body.hair import HairFactory, DandruffFactory
-# ???
-from ..body.head import NoseFactory, EyeFactory, MouthFactory, EarFactory, SkullFactory
-# ???
-# from ..animals.mammal import MammalHeadFactory
+from ...body.body_parts import BodyPartFactory
+from ...body.skin import DandruffFactory
+from ..hair import HairFactory
+from .ear import EarFactory
+from .eye import EyeFactory
+from .mouth import MouthFactory
+from .nose import NoseFactory
+from .skull import SkullFactory
 
 
 class HeadHairFactory(HairFactory):
-    default_model = life.HeadHair
-    names = ["brown", "black", "gray", "light", "blonde", "red", "dark"]
+    model = life.HeadHair
 
-    def generate_name(self):
-        return f"{select_item(*self.names)} hair"
+    def name_factory(self, data, *args, **kwargs):
+        return f"{select_item(*data.head_hair)} hair"
 
     def children(self):
-        yield DandruffFactory()
+        yield DandruffFactory.one()
         yield from super().children()
 
 

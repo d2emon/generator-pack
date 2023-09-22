@@ -1,7 +1,7 @@
 from genesys.nested.factories.nested_factory import NestedFactory
 from models.v5 import life
-from ...materials.elements import ELEMENTS
-from ...materials.organics import LipidsFactory
+from genesys.nested.materials.elements import ELEMENTS
+from genesys.nested.materials.organics import LipidsFactory
 from ..cell import CellFactory
 
 

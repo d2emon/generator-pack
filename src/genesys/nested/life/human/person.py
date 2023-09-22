@@ -3,11 +3,10 @@ from models.v5 import life
 from ...cloth.clothing_set import ClothingSetFactory
 from ...unsorted_life import WormFactory
 from ..body.blood import BloodFactory
+from .body import BodyFactory
 
 # ???
 from ...mind import PsycheFactory
-# ???
-from .body import BodyFactory
 
 
 class PersonFactory(NestedFactory):
