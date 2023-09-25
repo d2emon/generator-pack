@@ -51,7 +51,9 @@ new Thing("visitor eye",[
 new Thing("nose",["nostril,2",
     (BodyPatFactory)
     ],"nose");
-new Thing("visitor mouth",["visitor teeth","tongue,2","visitor ooze"],"mouth");
+new Thing("visitor mouth",["visitor teeth",
+    TeethFactory.multiple(2),
+    "visitor ooze"],"mouth");
 new Thing("visitor teeth",[
     SteelFactory.one(),
 ],"teeth");
@@ -72,7 +74,9 @@ new Thing("visitor city",["named visitor,0-8",["space animal,0-3",""],"visitor n
 new Thing("visitor neighborhood",["named visitor,0-8",["space animal,0-3",""],"visitor building,2-16"],"neighborhood");
 new Thing("visitor building",[["named visitor,0-8",""],"visitor room,1-8"],[["a tall","a wide","a spiralicious","a twisty","a holographic","a composite","a stout","a long","a domed","an underground","a submerged","a gigantic"],[", "],["green","blue","purple","white","gray","translucent","bright","porous","microsthetic","turbified","motorized","hovering","meshed","towered","automated","ridged"],[" "],["glumporium","swapmarket","slickmarket","juicehouse","scienceteria","faceteria","homezone","orbshop","oozeshop","marklorion","hive","holotekt"]]);
 new Thing("visitor room",["named visitor,60%","named visitor,30%","named visitor,10%","named visitor,10%","named visitor,10%","space animal,10%","visitor furniture,1-6",".room"],"room");
-new Thing("visitor furniture",["abomination,1%","space animal,3%","named visitor,2%",
+new Thing("visitor furniture",[
+    AbominationFactory.probable(1),
+    "space animal,3%","named visitor,2%",
     OrganicFactory.one().probable(5),
     [
         "glass","metal","concrete",

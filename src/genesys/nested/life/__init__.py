@@ -1,3 +1,4 @@
+from .abomination import FACTORIES as ABOMINATION_FACTORIES
 from .body import FACTORIES as BODY_FACTORIES
 from .cell import FACTORIES as CELL_FACTORIES
 from .human import FACTORIES as HUMAN_FACTORIES
@@ -9,37 +10,11 @@ FACTORIES = {
     **CELL_FACTORIES,
     **BODY_FACTORIES,
     **HUMAN_FACTORIES,
+    **ABOMINATION_FACTORIES,
 }
 
 
 """
-new Thing("abomination",["abomination body", "abomination psyche"],"*PERSON*| (abomination)");
-//nonononononono
-new Thing("abomination psyche",["abomination thoughts", "memories"],"psyche");
-new Thing("abomination thoughts",[
-    BlackHole.Factory.probable(0.01),
-    "abomination thought"],"thoughts");
-new Thing("abomination thought",[],["P-please...", "Don't look at me...", "Please... kill me...", "Kill... me...", "Why would I ever ask for this...", "I only wish for death.", "I only long for death now.", "I only demand... death...", "End my misery... I beg you...", "This is a mockery of existence...", "I miss her so much...", "I miss him so much...", "I miss my family...", "Why would they do that to me...", "How could they do this to me...", "What have I become...", "I feel... different...", "I can't feel... anything...", "I can't... see anything..."]);
-new Thing("abomination body",["abomination head", "abomination head,5%", "abomination torso", ["arm,0-8", "arm,0-4"], ["leg,0-8", "leg,0-4"], "crustacean claw,2%", "stinger,2%", "weird soft organ,10%", "weird soft organ,10%", "weird hard organ,10%", "weird hard organ,10%"],"misshapen body");
-new Thing("abomination head",[
-    MouthFactory.multiple(0, 2),
-    NoseFactory.multiple(0, 2),
-    EyeFactory.multiple(0, 8),
-    EarFactory.multiple(0, 4),
-    SkullFactory.probable(90),
-    "weird soft organ,20%", "weird hard organ,20%",
-    HeadHairFactory.probable(65),
-    (BodyPatFactory)
-    ],"misshapen head");
-new Thing("abomination torso",[
-    ChestFactory.one(),
-    "chest,10%",
-    PelvisFactory.one(),
-    PelvisFactory.probable(10),
-    "weird soft organ,20%", "weird hard organ,20%",
-    (BodyPatFactory)
-    ],"misshapen torso");
-
 //brain stuff
 new Thing("psyche",["thoughts", "memories"],"psyche");
 new Thing("thoughts",[
@@ -334,7 +309,8 @@ new Thing("weird hard organ",[
 new Thing("tentacle",[
     (SkinlessSoftBodyPartFactory)
     ],"tentacle");
-new Thing("simple mouth",["teeth", 
+new Thing("simple mouth",[
+    TeethFactory.one(),
     (SkinlessSoftBodyPartFactory)
     ],"mouth");
 

@@ -16,7 +16,8 @@ new Thing("containment room",[
         PortalFactory.one(),
         "space animal","space monster","sea monster","bird","poultry","cat","dog","cetacean","fish","mollusk","plankton","reptile","amphibian","snake","small mammal","predatory mammal","herbivorous mammal","clam","worm","monkey","bear","shark","horse","insect","crustacean","dragon",
         PersonFactory.one(),
-        "ghost","ectoplasm","abomination",
+        "ghost","ectoplasm",
+        AbominationFactory.one(),
         CorpseFactory.one(),
         "house","tree","machine","dinosaur","visitor","visitor furniture","medieval person","caveman","painting","","",""
     ],

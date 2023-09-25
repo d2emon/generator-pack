@@ -23,8 +23,6 @@ from .person import CorpseFactory, ManFactory, PersonFactory, WomanFactory
 #     TearFactory, EarFactory, BrainFactory, NoseFactory, NostrilFactory, NostrilHairFactory, BoogersFactory, \
 #     MouthFactory, TongueFactory, SkullFactory
 # from ..animal_body.blood import BloodCellFactory, BloodFactory, BloodVesselsFactory
-# from ..abomination import AbominationFactory, AbominationPsycheFactory, AbominationThoughtsFactory, \
-#     AbominationThoughtFactory, AbominationBodyFactory, AbominationTorsoFactory, AbominationHeadFactory
 
 
 FACTORIES = {
@@ -70,12 +68,4 @@ FACTORIES = {
     'mouth': MouthFactory,
     'teeth': TeethFactory,
     'tongue': TongueFactory,
-
-    # 'abomination': AbominationFactory(),
-    # 'abomination psyche': AbominationPsycheFactory(),
-    # 'abomination thoughts': AbominationThoughtsFactory(),
-    # 'abomination thought': AbominationThoughtFactory(),
-    # 'abomination body': AbominationBodyFactory(),
-    # 'abomination head': AbominationHeadFactory(),
-    # 'abomination torso': AbominationTorsoFactory(),
 }
