@@ -23,7 +23,7 @@ class Model:
         """
         self.uuid = None
         self.built_with = built_with
-        self.values = [str(arg) for arg in args]
+        self.values = [*args]
         self.__fields = {}
         self.fill(**fields)
 

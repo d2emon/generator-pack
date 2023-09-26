@@ -1,5 +1,22 @@
 """Models to generate.
 
+* encounters
+* events
+* fng
+* generator_models
+* history
+* minerals
+* name
+* person
+* planet
+* redlands
+* scales
+* universe
+* v5
+* world
+
+----
+
 * models.model.Model - Base model.
   * models.complex_model.ComplexModel - Model with children.
     Used in: storm
@@ -26,10 +43,8 @@
     Used in: fng
   * models.named_model.NamedModel - Model with name.
     Used in: nested, storm
-    * models.tree_model.TreeModel - Model with children and parent.
+    * models.nested_model.NestedModel - Model with name, parent and children.
       Used in: nested
-      * models.nested_model.NestedModel - Model with name, parent and children.
-        Used in: nested
   * models.point.Point - Model with x and y.
     [UNUSED] [UNTESTED]
   * models.preparable_model.PreparableModel - Preparable model.

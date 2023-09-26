@@ -1,5 +1,5 @@
 from genesys.nested.factories.nested_factory import NestedFactory
-from models.v5 import materials
+from models import minerals
 from .molecules import MoleculeFactory
 
 
@@ -8,7 +8,6 @@ class AmmoniaMoleculeFactory(MoleculeFactory):
 
 
 class MethaneMoleculeFactory(MoleculeFactory):
-    model = materials.Methane
     contents = 'C', 'H'
 
 
@@ -16,14 +15,14 @@ class MethaneMoleculeFactory(MoleculeFactory):
 
 
 class AmmoniaFactory(NestedFactory):
-    model = materials.Ammonia
+    model = minerals.Ammonia
 
     def children(self):
         yield AmmoniaMoleculeFactory.one()
 
 
 class MethaneFactory(NestedFactory):
-    model = materials.Methane
+    model = minerals.Methane
 
     def children(self):
         yield MethaneMoleculeFactory.one()

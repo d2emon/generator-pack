@@ -3,8 +3,8 @@
 - Clam Body
 - ClamShell
 """
-from models.nested_model import TreeModel as Model
-from ....materials import Molecule
+from models.nested_model import NestedModel as Model
+from models.materials.elements import Molecule
 from ..animal import Animal, AnimalBody
 
 

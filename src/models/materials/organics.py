@@ -1,7 +1,6 @@
 """
 - OrganicMolecule
 - Methane
-- Chitin
 - Proteins
 - Lipids
 - Glucids
@@ -15,32 +14,29 @@
 - Keratin
 - Sweat
 """
-from .matter import Molecule, Matter
-from .minerals import Salt
-from .water import Water
+from models.materials.elements import Molecule
+from models.materials.matter import Matter
+from models.materials.water import Water
+from models.minerals import Salt
 
 
 class OrganicMolecule(Molecule):
-    pass
-
-
-class Methane(OrganicMolecule):
-    pass
-
-
-class Chitin(OrganicMolecule):
+    # TODO: Refactor it
     pass
 
 
 class Proteins(OrganicMolecule):
+    # TODO: Refactor it
     pass
 
 
 class Lipids(OrganicMolecule):
+    # TODO: Refactor it
     pass
 
 
 class Glucids(OrganicMolecule):
+    # TODO: Refactor it
     default_name = 'glucose'
 
 
@@ -53,6 +49,7 @@ class Polymers(Glucids):
 
 
 class OrganicMatter(Matter):
+    # TODO: Refactor it
     proteins = Matter.children_property(Proteins)
     lipids = Matter.children_property(Lipids)
     glucids = Matter.children_property(Glucids)
@@ -62,8 +59,8 @@ class OrganicMatter(Matter):
     molecules = Matter.children_property(Molecule)
 
 
-# class Oil(OrganicMatter):
-#     pass
+class Chitin(OrganicMatter):
+    pass
 
 
 class Polymeric(OrganicMatter):
@@ -79,8 +76,10 @@ class Rubber(Polymeric):
 
 
 class Keratin(OrganicMatter):
+    # TODO: Refactor it
     pass
 
 
 class Sweat(OrganicMatter):
+    # TODO: Refactor it
     pass

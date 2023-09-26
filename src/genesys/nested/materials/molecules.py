@@ -1,11 +1,12 @@
 from genesys.nested.factories.nested_factory import NestedFactory
-from models.v5 import materials
+from models import minerals
+from models.materials import elements
 from .elements import AtomFactory
 
 
 class MoleculeFactory(NestedFactory):
     contents = []
-    model = materials.Molecule
+    model = elements.Molecule
 
     @classmethod
     def element_factory(cls, element):
@@ -20,10 +21,10 @@ class MoleculeFactory(NestedFactory):
 
 
 class SaltFactory(MoleculeFactory):
-    model = materials.Salt
+    model = minerals.Salt
     contents = 'Na', 'Cl'
 
 
 class SilicaFactory(MoleculeFactory):
-    model = materials.Silica
+    model = minerals.Silica
     contents = 'Si', 'O'

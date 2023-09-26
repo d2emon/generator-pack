@@ -5,7 +5,8 @@
 - Antenna
 - InsectWing
 """
-from ...materials import Chitin, Dew
+from models.materials.organics import Chitin
+from ...materials import Dew
 from ..animals.crustacean import CrustaceanLeg, CrustaceanClaw
 from .limb import Wing
 from .skin import Scales

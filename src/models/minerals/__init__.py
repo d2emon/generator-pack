@@ -1,50 +1,41 @@
-from models.named_model import NamedModel
+from ..materials.matter import Gas, Matter
 
 
-class Mineral(NamedModel):
-    field_names = [
-        *NamedModel.field_names,
-        'silicon',
-        'oxygen',
-        'lipids',
-    ]
-
-
-class Silica(Mineral):
-    silicon = Mineral.field_property('silicon')
-    oxygen = Mineral.field_property('oxygen')
+class Mineral(Matter):
+    pass
 
 
 class Oil(Mineral):
-    # OrganicMatter
-    lipids = Mineral.field_property('lipids')
+    pass
 
 
 class Rock(Mineral):
-    field_names = [
-        *Mineral.field_names,
-        'silica',
-        'aluminium',
-        'iron',
-        'potassium',
-        'sodium',
-        'calcium',
-        # Additional
-        'carbon',
-        'lipids',
-    ]
-
-    silica = Mineral.field_property('silica')
-    aluminium = Mineral.field_property('aluminium')
-    iron = Mineral.field_property('iron')
-    potassium = Mineral.field_property('potassium')
-    sodium = Mineral.field_property('sodium')
-    calcium = Mineral.field_property('calcium')
+    pass
 
 
-class Diamond(Rock):
-    carbon = Rock.field_property('carbon')
+class Carbon(Rock):
+    pass
 
 
-class Magma(Rock):
+class Diamond(Carbon):
+    pass
+
+
+class Silica(Rock):
+    pass
+
+
+class Salt(Mineral):
+    pass
+
+
+class Magma(Mineral):
+    pass
+
+
+class Ammonia(Gas):
+    pass
+
+
+class Methane(Gas):
     pass

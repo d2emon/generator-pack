@@ -7,15 +7,15 @@
 - Snowflakes
 - Snow
 """
-from models.nested_model import TreeModel as Model
-from .matter import Matter
+from models.nested_model import NestedModel
+from .matter import Matter, Gas
 
 
 class Water(Matter):
     state = Matter.LIQUID
 
 
-class Steam(Water):
+class Steam(Gas):
     state = Matter.GAS
 
 
@@ -31,5 +31,5 @@ class Snowflakes(Water):
     state = Matter.SOLID
 
 
-class Snow(Model):
-    flakes = Model.child_property(Snowflakes)
+class Snow(NestedModel):
+    flakes = NestedModel.child_property(Snowflakes)

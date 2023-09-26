@@ -1,16 +1,12 @@
-from models.v5 import materials
+from models.materials import metal
 from .molecules import MoleculeFactory
 
 
-class MetalFactory(MoleculeFactory):
-    pass
-
-
-class IronFactory(MetalFactory):
-    model = materials.Iron
+class IronFactory(MoleculeFactory):
+    model = metal.Iron
     contents = 'Fe',
 
 
-class SteelFactory(MetalFactory):
-    model = materials.Steel
+class SteelFactory(MoleculeFactory):
+    model = metal.Steel
     contents = 'Fe', 'C',

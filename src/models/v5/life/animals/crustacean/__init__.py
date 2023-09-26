@@ -6,7 +6,7 @@
 - Crustacean
 - Crustacean Body
 """
-from ....materials import Chitin
+from models.materials.organics import Chitin
 from ...animal_body.limb import Limb
 from ...animal_body.skin import Exoskeleton
 from ..animal import Animal, AnimalBody

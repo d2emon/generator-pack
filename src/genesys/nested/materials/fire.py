@@ -1,12 +1,12 @@
 from genesys.nested.factories.nested_factory import NestedFactory
-from models.v5 import materials
+from models.materials import fire
 from .elements import AtomFactory
 from .minerals import CarbonFactory
 from .organics import OrganicFactory
 
 
 class FireFactory(NestedFactory):
-    model = materials.Fire
+    model = fire.Fire
 
     def children(self):
         yield AtomFactory.element_factory('C')
@@ -14,7 +14,7 @@ class FireFactory(NestedFactory):
 
 
 class AshFactory(NestedFactory):
-    model = materials.Ash
+    model = fire.Ash
 
     def children(self):
         yield OrganicFactory.one()

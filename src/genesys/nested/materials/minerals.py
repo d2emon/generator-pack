@@ -1,10 +1,10 @@
 from genesys.nested.factories.nested_factory import NestedFactory
-from models.v5 import materials
+from models import minerals
 from .molecules import MoleculeFactory, SilicaFactory
 
 
 class RockFactory(NestedFactory):
-    model = materials.Rock
+    model = minerals.Rock
 
     def children(self):
         yield SilicaFactory.one()
@@ -16,15 +16,15 @@ class RockFactory(NestedFactory):
 
 
 class CarbonFactory(RockFactory):
-    model = materials.Carbon
+    model = minerals.Carbon
 
     def children(self):
         yield MoleculeFactory.element_factory('C')
 
 
 class DiamondFactory(CarbonFactory):
-    model = materials.Diamond
+    model = minerals.Diamond
 
 
 class MagmaFactory(RockFactory):
-    model = materials.Magma
+    model = minerals.Magma

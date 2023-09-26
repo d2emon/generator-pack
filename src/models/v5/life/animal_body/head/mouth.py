@@ -4,7 +4,7 @@
 - Tongue
 - Mouth
 """
-from ....materials import Molecule
+from models.materials.elements import Molecule
 from ..body_parts import BodyPart
 
 

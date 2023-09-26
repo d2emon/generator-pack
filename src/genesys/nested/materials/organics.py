@@ -1,23 +1,10 @@
 from genesys.nested.factories.nested_factory import NestedFactory
+from models import minerals
+from models.materials import organics
 from models.v5 import materials
 from utils.nested import select_item
 from .molecules import MoleculeFactory, SaltFactory
 from .water import WaterMoleculeFactory
-
-
-# Chitin
-
-
-class ChitinMoleculeFactory(MoleculeFactory):
-    model = materials.Chitin
-    contents = 'C', 'H', 'N', 'O'
-
-
-class ChitinFactory(NestedFactory):
-    model = materials.Chitin
-
-    def children(self):
-        yield ChitinMoleculeFactory.one()
 
 
 # Organic Molecules
@@ -40,12 +27,26 @@ class GlucidsFactory(OrganicMoleculeFactory):
     model = materials.Glucids
 
 
-class AlcoholFactory(GlucidsFactory):
-    model = materials.Alcohol
+class AlcoholFactory(OrganicMoleculeFactory):
+    model = organics.Alcohol
 
 
-class PolymersFactory(GlucidsFactory):
-    model = materials.Polymers
+class PolymersFactory(OrganicMoleculeFactory):
+    model = organics.Polymers
+
+
+# Chitin
+
+
+class ChitinMoleculeFactory(OrganicMoleculeFactory):
+    contents = 'C', 'H', 'N', 'O'
+
+
+class ChitinFactory(NestedFactory):
+    model = organics.Chitin
+
+    def children(self):
+        yield ChitinMoleculeFactory.one()
 
 
 # Organics
@@ -70,7 +71,7 @@ class OrganicFactory(NestedFactory):
 
 
 class OilFactory(OrganicFactory):
-    model = materials.Oil
+    model = minerals.Oil
 
     def children(self):
         yield LipidsFactory.one()
@@ -84,11 +85,11 @@ class PolymericFactory(OrganicFactory):
 
 
 class PlasticFactory(PolymericFactory):
-    model = materials.Plastic
+    model = organics.Plastic
 
 
 class RubberFactory(PolymericFactory):
-    model = materials.Rubber
+    model = organics.Rubber
 
 
 # Future

@@ -24,30 +24,11 @@ sodium
 """
 
 
-from .elements import Nucleus, Atom
-from .fire import Fire, Ash
-from .matter import Molecule, Matter, Gas, Steel
-from .minerals import Ammonia, Salt, Carbon, Iron
-from .organics import OrganicMolecule, Methane, Chitin, Proteins, Lipids, Glucids, Alcohol, Polymers, OrganicMatter, \
-    Polymeric, Plastic, Rubber, Keratin, Sweat
+from ...materials.elements import Nucleus, Atom
 from .particles import Qwubble, Quark, UpQuark, DownQuark, Electron, Particle, Proton, Neutron
 from .portal import Portal
-from .water import Water, Steam, Dew, Ice, Snowflakes, Snow
 
 """
-new Thing("chitin",["carbon", "hydrogen", "oxygen", "nitrogen"]);
-new Thing("salt",["chlorine", "sodium"]);
-new Thing("water",["hydrogen", "oxygen"]);
-new Thing("fire",["oxygen", "carbon"]);
-new Thing("ash",["organic matter", "carbon"]);
-new Thing("dew",["water"]);
-new Thing("ice",["water"]);
-new Thing("snow",["snowflakes"]);
-new Thing("snowflakes",["water"]);
-new Thing("ammonia",["hydrogen", "nitrogen"]);
-new Thing("methane",["hydrogen", "carbon"]);
-new Thing("hydrogen",[".hydrogen atom"]);
-new Thing("hydrogen atom",["proton", "electron"],["atoms"]);
 new Thing("plastic",["polymers"]);
 new Thing("rubber",["polymers"]);
 new Thing("polymers",[".glucids"]);
@@ -70,7 +51,9 @@ new Thing("calcium",[".atom"]);
 new Thing("nitrogen",[".atom"]);
 new Thing("sulfur",[".atom"]);
 new Thing("phosphorus",[".atom"]);
+
 //alright, I'm not doing the whole periodic table.
+
 new Thing("proteins",[".molecule"]);
 new Thing("lipids",[".molecule"]);
 new Thing("glucids",["carbon", "hydrogen", "oxygen"],"glucose");

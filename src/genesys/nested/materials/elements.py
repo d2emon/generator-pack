@@ -1,10 +1,10 @@
 from genesys.nested.factories.nested_factory import NestedFactory
-from models.v5 import materials
+from models.materials import elements
 from .particles import ProtonFactory, NeutronFactory, ElectronFactory
 
 
 class NucleusFactory(NestedFactory):
-    model = materials.Nucleus
+    model = elements.Nucleus
 
     def __init__(
         self,
@@ -23,7 +23,7 @@ class NucleusFactory(NestedFactory):
 
 
 class AtomFactory(NestedFactory):
-    model = materials.Atom
+    model = elements.Atom
 
     electrons = 1
     neutrons = 1
