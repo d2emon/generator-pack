@@ -1,4 +1,4 @@
-from models.tree_model import TreeModel as Model
+from models.nested_model import TreeModel as Model
 from .space import SpaceAnimal, SpaceMonster
 from .sea import SeaMonster
 

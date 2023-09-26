@@ -1,6 +1,6 @@
 """Base nested model."""
 from models.named_model import NamedModel
-from models.tree_model import TreeModel
+from models.nested_model import NestedModel as TreeModel
 
 
 class NestedModel(TreeModel, NamedModel):

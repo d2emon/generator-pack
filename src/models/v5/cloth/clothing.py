@@ -11,7 +11,7 @@
 - Hat
 - Glasses
 """
-from models.tree_model import TreeModel as Model
+from models.nested_model import TreeModel as Model
 from ..materials import Sweat, Plastic
 from models.v5.life.animal_body.skin import DeadSkin
 from .fabric import Cloth

@@ -5,7 +5,7 @@
 - Ammonia
 - Steel
 """
-from models.tree_model import TreeModel as Model
+from models.nested_model import TreeModel as Model
 from .elements import Atom
 
 

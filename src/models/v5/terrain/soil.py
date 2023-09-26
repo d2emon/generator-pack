@@ -3,7 +3,7 @@
 - Mud
 - Sand
 """
-from models.tree_model import TreeModel as Model
+from models.nested_model import TreeModel as Model
 from ..materials import Silica, Water
 
 

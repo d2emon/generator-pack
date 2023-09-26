@@ -1,7 +1,7 @@
 """
 - ClothingSet
 """
-from models.tree_model import TreeModel as Model
+from models.nested_model import TreeModel as Model
 from .clothing import Hat, Glasses, Pants, Shirt, Coat, Socks, Shoes, Underwear
 
 

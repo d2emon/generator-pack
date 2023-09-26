@@ -4,7 +4,7 @@ from factories.factory import Factory
 from .named_model import NamedModel
 
 
-class TreeModel(NamedModel):
+class NestedModel(NamedModel):
     """Model with parent and children."""
 
     def __init__(
@@ -16,7 +16,7 @@ class TreeModel(NamedModel):
         """Initialize tree model.
 
         Args:
-            parent (TreeModel, optional): Parent for model. Defaults to None.
+            parent (NestedModel, optional): Parent for model. Defaults to None.
         """
         super().__init__(**fields)
         self.__children = list(children)

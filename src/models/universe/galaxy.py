@@ -4,7 +4,7 @@
 - GalaxyCenter
 - Galaxy
 """
-from models.tree_model import TreeModel
+from models.nested_model import TreeModel
 # from models.v5.life import Life
 from .black_hole import BlackHole
 from .nebula import Nebula

@@ -1,5 +1,5 @@
 import unittest
-from models.tree_model import TreeModel
+from models.nested_model import TreeModel
 
 
 class TestTreeModel(unittest.TestCase):

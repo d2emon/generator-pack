@@ -3,7 +3,7 @@
 - GodPsyche (Unused)
 - God (Unused)
 """
-from models.tree_model import TreeModel
+from models.nested_model import TreeModel
 
 
 class GodThoughts(TreeModel):

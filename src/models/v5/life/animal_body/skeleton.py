@@ -7,7 +7,7 @@
 - Fat
 - Skeleton
 """
-from models.tree_model import TreeModel as Model
+from models.nested_model import TreeModel as Model
 from ...materials import Molecule, OrganicMatter
 from ..cell import Cell
 

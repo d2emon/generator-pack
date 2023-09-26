@@ -1,7 +1,7 @@
 """
 - Atmosphere
 """
-from models.tree_model import TreeModel
+from models.nested_model import TreeModel
 # from models.v5.materials import Gas
 # from models.v5.life import Life
 
