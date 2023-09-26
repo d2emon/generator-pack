@@ -4,7 +4,7 @@
     - Woman
 - Corpse
 """
-from models.nested_model import NestedModel as Model
+from models.tree_model import TreeModel as Model
 # TODO: Fix circular and remove
 # from ....cloth import ClothingSet
 from ...animals import Animal

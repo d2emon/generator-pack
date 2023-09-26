@@ -4,7 +4,7 @@ Single-celled Organisms
 - Bacteria
 - BacteriaBody
 """
-from models.nested_model import NestedModel as Model
+from models.tree_model import TreeModel as Model
 from ..cell import Cell
 from ...mind import Psyche
 

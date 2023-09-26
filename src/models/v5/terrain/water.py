@@ -8,7 +8,7 @@
 - River
 - Lake
 """
-from models.nested_model import NestedModel as Model
+from models.tree_model import TreeModel as Model
 from ..materials import Ice, Salt, Water
 from ..life import Life
 from .soil import Soil

@@ -1,7 +1,7 @@
 """
 Brain Stuff
 """
-from models.nested_model import NestedModel as Model
+from models.tree_model import TreeModel as Model
 
 
 class PsycheElement(Model):

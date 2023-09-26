@@ -5,7 +5,7 @@
 - Nose
 - Snout ?
 """
-from models.nested_model import NestedModel as Model
+from models.tree_model import TreeModel as Model
 from ....materials import OrganicMatter
 from ..body_parts import BodyPart
 from ..hair import Hair

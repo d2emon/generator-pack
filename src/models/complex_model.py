@@ -36,7 +36,9 @@ class ComplexModel(Model):
         for field, factory in self.children.items():
             if self.data.get(field) is None:
                 child = factory()
-                self.data[field] = child.with_children() \
-                    if isinstance(child, ComplexModel) else child
+                if isinstance(child, ComplexModel):
+                    self.data[field] = child.with_children()
+                else:
+                    self.data[field] = child
 
         return self

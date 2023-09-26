@@ -2,7 +2,7 @@
 - Fire
 - Ash
 """
-from models.nested_model import NestedModel as Model
+from models.tree_model import TreeModel as Model
 from .elements import Atom
 from .matter import Matter
 

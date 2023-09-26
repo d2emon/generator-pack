@@ -1,5 +1,5 @@
 import unittest
-from models.nested_model import NestedModel
+from __unused__.nested_model import NestedModel
 
 
 class TestNestedModel(unittest.TestCase):
