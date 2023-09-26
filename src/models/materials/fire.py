@@ -1,13 +1,9 @@
-"""
-- Fire
-- Ash
-"""
 from .matter import Matter
 
 
 class Fire(Matter):
-    pass
+    state = Matter.GAS
 
 
 class Ash(Matter):
-    pass
+    state = Matter.SOLID

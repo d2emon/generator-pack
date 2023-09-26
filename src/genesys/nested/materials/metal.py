@@ -1,5 +1,5 @@
 from models.materials import metal
-from .molecules import MoleculeFactory
+from .elements import MoleculeFactory
 
 
 class IronFactory(MoleculeFactory):

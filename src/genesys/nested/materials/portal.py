@@ -1,9 +1,9 @@
 from genesys.nested.factories.nested_factory import NestedFactory
-from models.v5 import materials
+from models.materials import portal
 
 
 class PortalFactory(NestedFactory):
-    model = materials.Portal
+    model = portal.Portal
 
     def children(self):
         from ..universe import UniverseFactory

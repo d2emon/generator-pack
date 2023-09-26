@@ -1,7 +1,7 @@
 from genesys.nested.factories.nested_factory import NestedFactory
 from models.universe import planet
 from models.v5 import terrain
-from ...materials import MoleculeFactory
+from genesys.nested.materials.elements import MoleculeFactory
 
 
 class OzoneFactory(MoleculeFactory):

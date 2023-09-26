@@ -89,6 +89,24 @@ class NestedModel(NamedModel):
         return (child for child in self.children if isinstance(child, child_classes))
 
     @classmethod
+    def contents_property(cls, doc=None) -> property:
+        """Property from children.
+
+        Args:
+            doc (str, optional): Property docstring. Defaults to None.
+
+        Returns:
+            property: Property to deal with children.
+        """
+        def get_contents(self) -> Collection:
+            return [item for item in self.children if item]
+
+        def set_contents(self, value: Collection) -> None:
+            self.children = value
+
+        return property(get_contents, set_contents, None, doc)
+
+    @classmethod
     def children_property(cls, *child_classes, doc=None) -> property:
         """Property from children.
 

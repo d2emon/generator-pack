@@ -1,9 +1,5 @@
-"""
-- Nucleus
-- Atom
-"""
 from models.nested_model import NestedModel
-from models.v5.materials.particles import Electron, Proton, Neutron
+from models.materials.particles import Electron, Neutron, Proton
 
 
 class Nucleus(NestedModel):
@@ -23,4 +19,4 @@ class Atom(NestedModel):
 class Molecule(NestedModel):
     default_name = 'molecules'
 
-    atoms = NestedModel.children_property(Atom)
+    atoms = NestedModel.contents_property()

@@ -1,9 +1,9 @@
 from genesys.nested.factories.nested_factory import NestedFactory
-from models import minerals
 from models.materials import organics
 from models.v5 import materials
 from utils.nested import select_item
-from .molecules import MoleculeFactory, SaltFactory
+from .elements import MoleculeFactory
+from .minerals import SaltFactory
 from .water import WaterMoleculeFactory
 
 
@@ -11,20 +11,20 @@ from .water import WaterMoleculeFactory
 
 
 class OrganicMoleculeFactory(MoleculeFactory):
-    model = materials.OrganicMolecule
+    model = organics.OrganicMolecule
     contents = 'C', 'H', 'O'
 
 
 class ProteinsFactory(OrganicMoleculeFactory):
-    model = materials.Proteins
+    model = organics.Proteins
 
 
 class LipidsFactory(OrganicMoleculeFactory):
-    model = materials.Lipids
+    model = organics.Lipids
 
 
 class GlucidsFactory(OrganicMoleculeFactory):
-    model = materials.Glucids
+    model = organics.Glucids
 
 
 class AlcoholFactory(OrganicMoleculeFactory):
@@ -53,34 +53,52 @@ class ChitinFactory(NestedFactory):
 
 
 class OrganicFactory(NestedFactory):
-    model = materials.OrganicMatter
+    model = organics.OrganicMatter
+    has_glucids = True
+    has_lipids = True
+    has_proteins = True
+    salt_probability = 30
+    second_molecule = True
 
     @classmethod
     def organic_molecules(cls, required=False):
-        yield ProteinsFactory.one()
-        yield LipidsFactory.one()
-        yield GlucidsFactory.one()
-
+        if cls.has_glucids:
+            yield GlucidsFactory.one()
+        if cls.has_lipids:
+            yield LipidsFactory.one()
+        if cls.has_proteins:
+            yield ProteinsFactory.one()
         if not required:
             yield None
 
+    @classmethod
+    def salt(cls):
+        if cls.salt_probability:
+            yield SaltFactory.probable(cls.salt_probability)
+
     def children(self):
         yield select_item(self.organic_molecules(True))
-        yield select_item(self.organic_molecules(False))
-        yield SaltFactory.one().probable(30)
+        if self.second_molecule:
+            yield select_item(self.organic_molecules(False))
+        yield from self.salt()
 
 
 class OilFactory(OrganicFactory):
-    model = minerals.Oil
-
-    def children(self):
-        yield LipidsFactory.one()
+    model = organics.Oil
+    has_glucids = False
+    has_lipids = True
+    has_proteins = False
+    salt_probability = 0
+    second_molecule = False
 
 
 class PolymericFactory(OrganicFactory):
-    model = materials.Polymeric
+    model = organics.Polymeric
+    salt_probability = 0
+    second_molecule = False
 
-    def children(self):
+    @classmethod
+    def organic_molecules(cls, required=False):
         yield PolymersFactory.one()
 
 

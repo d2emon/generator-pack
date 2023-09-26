@@ -6,16 +6,6 @@ class Matter(NestedModel):
     LIQUID = 1
     GAS = 2
 
-    state = SOLID
+    state = None
 
-    @property
-    def contents(self):
-        return self.children
-    
-    @contents.setter
-    def contents(self, value):
-        self.children = value
-
-
-class Gas(Matter):
-    state = Matter.GAS
+    contents = NestedModel.contents_property()

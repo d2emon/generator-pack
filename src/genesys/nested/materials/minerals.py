@@ -1,6 +1,16 @@
 from genesys.nested.factories.nested_factory import NestedFactory
-from models import minerals
-from .molecules import MoleculeFactory, SilicaFactory
+from models.materials import minerals
+from .elements import MoleculeFactory
+
+
+class SilicaFactory(MoleculeFactory):
+    model = minerals.Silica
+    contents = 'Si', 'O'
+
+
+class SaltFactory(MoleculeFactory):
+    model = minerals.Salt
+    contents = 'Na', 'Cl'
 
 
 class RockFactory(NestedFactory):
@@ -15,6 +25,10 @@ class RockFactory(NestedFactory):
         yield MoleculeFactory.element_factory('Ca').probable(50)
 
 
+class MagmaFactory(RockFactory):
+    model = minerals.Magma
+
+
 class CarbonFactory(RockFactory):
     model = minerals.Carbon
 
@@ -24,7 +38,3 @@ class CarbonFactory(RockFactory):
 
 class DiamondFactory(CarbonFactory):
     model = minerals.Diamond
-
-
-class MagmaFactory(RockFactory):
-    model = minerals.Magma

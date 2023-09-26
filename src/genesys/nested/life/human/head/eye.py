@@ -1,6 +1,6 @@
 from genesys.nested.factories.nested_factory import NestedFactory
 from models.v5 import life
-from genesys.nested.materials.molecules import SaltFactory
+from genesys.nested.materials.minerals import SaltFactory
 from genesys.nested.materials.water import WaterFactory
 from ...body.blood import BloodVesselsFactory
 from ...body.body_parts import SoftBodyPartFactory

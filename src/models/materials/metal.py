@@ -2,7 +2,7 @@ from .matter import Matter
 
 
 class Metal(Matter):
-    pass
+    state = Matter.SOLID
 
 
 class Iron(Metal):

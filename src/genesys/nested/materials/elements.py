@@ -65,6 +65,22 @@ class AtomFactory(NestedFactory):
         return (cls.element_factory(element) for element in elements)
 
 
+class MoleculeFactory(NestedFactory):
+    contents = []
+    model = elements.Molecule
+
+    @classmethod
+    def element_factory(cls, element):
+        return AtomFactory.element_factory(element)
+
+    @classmethod
+    def element_factories(cls, *elements):
+        return AtomFactory.element_factories(*elements)
+
+    def children(self):
+        yield from self.element_factories(*self.contents)
+
+
 ELEMENTS = {
     'H': AtomFactory.element_class_factory('H', 0, 1),
     'He': AtomFactory.element_class_factory('He'),

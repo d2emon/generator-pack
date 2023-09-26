@@ -1,35 +1,26 @@
-"""
-- Water
-- WaterState
-- Steam
-- Dew
-- Ice
-- Snowflakes
-- Snow
-"""
 from models.nested_model import NestedModel
-from .matter import Matter, Gas
+from .matter import Matter
 
 
 class Water(Matter):
     state = Matter.LIQUID
 
 
-class Steam(Gas):
-    state = Matter.GAS
+class Steam(Water):
+    state = Water.GAS
 
 
 class Dew(Water):
-    state = Matter.LIQUID
+    state = Water.LIQUID
 
 
 class Ice(Water):
-    state = Matter.SOLID
+    state = Water.SOLID
 
 
 class Snowflakes(Water):
-    state = Matter.SOLID
+    state = Water.SOLID
 
 
 class Snow(NestedModel):
-    flakes = NestedModel.child_property(Snowflakes)
+    flakes = NestedModel.contents_property()

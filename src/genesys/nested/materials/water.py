@@ -1,6 +1,6 @@
 from genesys.nested.factories.nested_factory import NestedFactory
 from models.materials import water
-from .molecules import MoleculeFactory
+from .elements import MoleculeFactory
 
 
 class WaterMoleculeFactory(MoleculeFactory):
@@ -12,6 +12,10 @@ class WaterFactory(NestedFactory):
 
     def children(self):
         yield WaterMoleculeFactory.one()
+
+
+class SteamFactory(WaterFactory):
+    model = water.Steam
 
 
 class DewFactory(WaterFactory):
@@ -31,7 +35,3 @@ class SnowFactory(NestedFactory):
 
     def children(self):
         yield SnowflakesFactory.one()
-
-
-class SteamFactory(WaterFactory):
-    model = water.Steam

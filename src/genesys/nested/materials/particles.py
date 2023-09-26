@@ -1,9 +1,9 @@
 from genesys.nested.factories.nested_factory import NestedFactory
-from models.v5 import materials
+from models.materials import particles
 
 
 class QwubbleFactory(NestedFactory):
-    model = materials.Qwubble
+    model = particles.Qwubble
 
     def children(self):
         from ..universe import MultiverseFactory
@@ -15,29 +15,29 @@ class QwubbleFactory(NestedFactory):
 
 
 class QuarkFactory(NestedFactory):
-    model = materials.Quark
+    model = particles.Quark
 
     def children(self):
         yield QwubbleFactory.one()
 
 
 class UpQuarkFactory(QuarkFactory):
-    model = materials.UpQuark
+    model = particles.UpQuark
 
 
 class DownQuarkFactory(QuarkFactory):
-    model = materials.DownQuark
+    model = particles.DownQuark
 
 
 class ElectronFactory(QuarkFactory):
-    model = materials.Electron
+    model = particles.Electron
 
 
 # Particles
 
 
 class ParticleFactory(NestedFactory):
-    model = materials.Particle
+    model = particles.Particle
     up_quarks = 1
     down_quarks = 1
 
@@ -47,12 +47,12 @@ class ParticleFactory(NestedFactory):
 
 
 class ProtonFactory(ParticleFactory):
-    model = materials.Proton
+    model = particles.Proton
     up_quarks = 2
     down_quarks = 1
 
 
 class NeutronFactory(ParticleFactory):
-    model = materials.Neutron
+    model = particles.Neutron
     up_quarks = 1
     down_quarks = 2
