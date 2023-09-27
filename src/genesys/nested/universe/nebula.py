@@ -1,9 +1,11 @@
 from genesys.nested.factories.nested_factory import NestedFactory
 from models.universe import nebula
 from utils.nested import select_item
-from ..materials import ELEMENTS, AmmoniaFactory
+from ..materials.elements import ELEMENTS
+from ..materials.gases import AmmoniaFactory
 from ..materials.water import SteamFactory
 from .star import SingleStarFactory
+
 from ..unsorted_life import GalacticLifeFactory
 
 

@@ -1,5 +1,5 @@
 from genesys.nested.factories.nested_factory import NestedFactory
-from models.universe import planet
+from models.planet import atmosphere
 from models.v5 import terrain
 from genesys.nested.materials.elements import MoleculeFactory
 
@@ -12,7 +12,7 @@ class OzoneFactory(MoleculeFactory):
 
 class AtmosphereFactory(NestedFactory):
     # TODO: Refactor it
-    default_model = planet.atmosphere.Atmosphere
+    default_model = atmosphere.Atmosphere
 
     def life(self):
         yield None

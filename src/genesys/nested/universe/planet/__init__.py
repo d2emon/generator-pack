@@ -1,15 +1,30 @@
 from models import planet
 from ...materials import IceFactory, RockFactory
-from .body import FutureMoonFactory, PlanetFactory, TerraformedMoonFactory
+from .body import FutureMoonFactory, MoonFactory, PlanetLikeFactory, TerraformedMoonFactory
+
 from ...unsorted_life import GalacticLifeFactory
 from ...unsorted_terrain import ContinentFactory, AncientContinentFactory, MedievalContinentFactory, FutureContinentFactory, \
     OceanFactory, SkyFactory, TerraformedSkyFactory, FutureSkyFactory
 from ...unsorted_visitor import VisitorCityFactory, VisitorInstallationFactory
 
 
-class TelluricPlanetFactory(PlanetFactory):
-    model = planet.TelluricPlanet
+class PlanetFactory(PlanetLikeFactory):
+    # .planet composition
+    model = planet.Planet
 
+    def continents(self):
+        yield None
+
+    def oceans(self):
+        yield None
+
+    def moons(self):
+        yield MoonFactory.probable(40)
+        yield MoonFactory.probable(20)
+        yield MoonFactory.probable(10)
+
+
+class TelluricPlanetFactory(PlanetFactory):
     def life(self):
         yield None
 
@@ -31,8 +46,6 @@ class TelluricPlanetFactory(PlanetFactory):
 
 
 class BarrenPlanetFactory(TelluricPlanetFactory):
-    model = planet.BarrenPlanet
-
     def life(self):
         yield GalacticLifeFactory.probable(10)
 
@@ -50,8 +63,6 @@ class BarrenPlanetFactory(TelluricPlanetFactory):
 
 
 class VisitorPlanetFactory(BarrenPlanetFactory):
-    model = planet.BarrenPlanet
-
     def life(self):
         yield GalacticLifeFactory.one()
 

@@ -1,13 +1,7 @@
-"""
-- PlanetCore
-"""
-from models.nested_model import TreeModel
-# from models.v5.materials import Rock
-# from models.v5.life import Life
+from models.materials.matter import Matter
+from models.v5.life import Life
 
 
-class PlanetCore(TreeModel):
-    # life = TreeModel.child_property(Life)
-    # minerals = TreeModel.children_property(Rock)
-
+class PlanetCore(Matter):
     default_name = 'core'
+    life = Matter.child_property(Life)

@@ -1,14 +1,15 @@
 from genesys.nested.factories.nested_factory import NestedFactory
-from models import planet
+from models.planet import body
 from utils.nested import select_item
-from ...materials import IceFactory, RockFactory
+from .core import PlanetCoreFactory
+from .plate import IcePlateFactory, RockPlateFactory
+
 from ...unsorted_life import GhostFactory, SpaceAnimalFactory
 from ...unsorted_terrain import ContinentFactory, OceanFactory, SkyFactory
-from .core import PlanetCoreFactory
 
 
 class PlanetLikeFactory(NestedFactory):
-    model = planet.body.PlanetLike
+    model = body.PlanetLike
 
     def life(self):
         yield None
@@ -17,16 +18,16 @@ class PlanetLikeFactory(NestedFactory):
         yield None
 
     def continents(self):
-        yield None
+        yield RockPlateFactory.one()
 
     def core(self):
-        yield None
+        yield PlanetCoreFactory.one()
 
     def moons(self):
         yield None
 
     def oceans(self):
-        yield None
+        yield IcePlateFactory.probable(30)
 
     def plates(self):
         yield from self.continents()
@@ -49,51 +50,30 @@ class PlanetLikeFactory(NestedFactory):
 
 
 class AsteroidFactory(PlanetLikeFactory):
-    default_model = planet.body.Asteroid
+    model = body.Asteroid
+
+    def core(self):
+        yield None
 
     def life(self):
         yield SpaceAnimalFactory.probable(0.5)
 
-    def continents(self):
-        yield RockFactory.one()
-
-    def oceans(self):
-        yield IceFactory.probable(30)
-
 
 class MoonFactory(PlanetLikeFactory):
-    model = planet.body.Moon
+    model = body.Moon
 
     def life(self):
         yield GhostFactory.probable(0.1)
 
-    def continents(self):
-        # yield MoonPlateFactory()
-        yield RockFactory.one()
-
-    def core(self):
-        yield PlanetCoreFactory.one()
+    def oceans(self):
+        yield None
 
     def name_factory(self, data, *args, **kwargs):
         return f"{select_item(*data.moon)} moon"
 
 
-class PlanetFactory(PlanetLikeFactory):
-    # .planet composition
-    default_name = 'planet'
-    model = planet.Planet
-
-    def core(self):
-        yield PlanetCoreFactory.one()
-
-    def moons(self):
-        yield MoonFactory.probable(40)
-        yield MoonFactory.probable(20)
-        yield MoonFactory.probable(10)
-
-
 class TerraformedMoonFactory(MoonFactory):
-    model = planet.body.TerraformedMoon
+    model = body.TerraformedMoon
 
     def continents(self):
         yield ContinentFactory.multiple(1, 4)

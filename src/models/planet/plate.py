@@ -1,11 +1,16 @@
-"""
-- Plate
-"""
-from models.nested_model import TreeModel
-# from models.v5.materials import Rock, Ice
+from models.nested_model import NestedModel
 
 
-class Plate(TreeModel):
-    # minerals = TreeModel.children_property(Rock)
-    # ice = TreeModel.children_property(Ice)
-    pass
+class Plate(NestedModel):
+    CONTINENT_PLATE = 'CONTINENT'
+    OCEAN_PLATE = 'OCEAN'
+
+    plate_type = None
+
+
+class ContinentPlate(Plate):
+    plate_type = Plate.CONTINENT_PLATE
+
+
+class OceanPlate(Plate):
+    plate_type = Plate.OCEAN_PLATE

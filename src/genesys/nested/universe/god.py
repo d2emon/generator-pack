@@ -1,20 +1,20 @@
 from genesys.nested.factories.nested_factory import NestedFactory
-from models.v5 import universe
+from models.universe import god
 from utils.nested import select_item
 from ..cloth import ClothingSetFactory
-from ..life import BodyFactory
+from ..life.human.body import BodyFactory
 from ..temporary import ComputerFactory
 
 
 class D2emonThoughtsFactory(NestedFactory):
-    model = universe.GodThoughts
+    model = god.GodThoughts
 
     def name_factory(self, data, *args, **kwargs):
         return select_item(*data.d2emon_thoughts)
 
 
 class D2emonPsycheFactory(NestedFactory):
-    model = universe.GodPsyche
+    model = god.GodPsyche
 
     def children(self):
         yield D2emonThoughtsFactory.one()
@@ -22,7 +22,7 @@ class D2emonPsycheFactory(NestedFactory):
 
 class D2emonFactory(NestedFactory):
     default_name = 'D2emon'
-    model = universe.God
+    model = god.God
 
     def children(self):
         yield BodyFactory.one()
@@ -32,5 +32,4 @@ class D2emonFactory(NestedFactory):
 
 
 class GodFactory(D2emonFactory):
-    # TODO: Refactor it
     pass

@@ -1,13 +1,8 @@
-"""
-- Atmosphere
-"""
-from models.nested_model import TreeModel
-# from models.v5.materials import Gas
-# from models.v5.life import Life
+from models.materials.matter import Matter
+from models.v5.life import Life
 
 
-class Atmosphere(TreeModel):
-    # life = TreeModel.child_property(Life)
-    # gases = TreeModel.children_property(Gas)
-
+class Atmosphere(Matter):
     default_name = 'atmosphere'
+    state = Matter.GAS
+    life = Matter.child_property(Life)

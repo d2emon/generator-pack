@@ -1,6 +1,7 @@
 from genesys.nested.factories.nested_factory import NestedFactory
 from models.universe import black_hole
 from utils.nested import select_item
+
 from ..unsorted_life import CrustaceanFactory, PastaFactory
 
 

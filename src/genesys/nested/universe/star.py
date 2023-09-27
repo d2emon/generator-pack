@@ -4,6 +4,7 @@ from utils.nested import select_item
 from ..materials import ELEMENTS
 from .orbit import AncientOrbitFactory, AsteroidBeltFactory, BarrenOrbitFactory, FutureOrbitFactory, GasGiantOrbitFactory, \
     MedievalOrbitFactory, TerraformedOrbitFactory, VisitorOrbitFactory
+
 from ..unsorted_life import GhostFactory, SpaceMonsterFactory
 from ..unsorted_terrain import DysonSurfaceFactory
 
@@ -20,6 +21,7 @@ class StarFactory(NestedFactory):
         yield ELEMENTS['H'].one()
 
     def contents(self):
+        yield from self.life()
         yield from self.matter()
 
     def name_factory(self, data, *args, **kwargs):
@@ -67,8 +69,6 @@ class StarSystemFactory(NestedFactory):
 
 
 class DysonSphereFactory(StarSystemFactory):
-    model = star.DysonSphere
-
     def orbits(self):
         yield DysonSurfaceFactory.one()
 

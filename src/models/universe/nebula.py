@@ -1,19 +1,14 @@
-"""
-- InterstellarCloud
-- Nebula
-"""
-from models.nested_model import TreeModel
-# from models.v5.materials import Gas
-# from models.v5.life import Life
+from models.nested_model import NestedModel
+from models.v5.life import Life
+from models.materials.matter import Matter
 from .star import StarSystem
 
 
-# class InterstellarCloud(Gas):
-class InterstellarCloud:
-    pass
+class InterstellarCloud(Matter):
+    state = Matter.GAS
 
 
-class Nebula(TreeModel):
-    # life = TreeModel.child_property(Life)
-    stars = TreeModel.children_property(StarSystem)
-    clouds = TreeModel.children_property(InterstellarCloud)
+class Nebula(NestedModel):
+    life = NestedModel.child_property(Life)
+    stars = NestedModel.children_property(StarSystem)
+    clouds = NestedModel.children_property(InterstellarCloud)

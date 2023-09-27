@@ -1,23 +1,23 @@
-"""
-- GodThoughts (Unused)
-- GodPsyche (Unused)
-- God (Unused)
-"""
-from models.nested_model import TreeModel
+from models.nested_model import NestedModel
 
 
-class GodThoughts(TreeModel):
+class GodThoughts(NestedModel):
     # Thoughts
     default_name = 'thoughts'
 
 
-class GodPsyche(TreeModel):
+class GodPsyche(NestedModel):
+    # Psyche
     default_name = 'psyche'
-    thoughts = TreeModel.child_property(GodThoughts)
+    thoughts = NestedModel.contents_property()
 
 
-class God(TreeModel):
-    # body = Model.child_property(Body)
-    psyche = TreeModel.child_property(GodPsyche)
-    # clothes = Model.child_property(ClothingSet)
-    # computer = Model.child_property(Computer)
+class God(NestedModel):
+    # body = NestedModel.child_property(Body)
+    psyche = NestedModel.child_property(GodPsyche)
+    # clothes = NestedModel.child_property(ClothingSet)
+    # computer = NestedModel.child_property(Computer)
+
+    @property
+    def thoughts(self):
+        return self.psyche and self.psyche.thoughts

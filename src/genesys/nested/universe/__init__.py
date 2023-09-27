@@ -8,10 +8,10 @@ from .black_hole import Answer42Factory, BlackHoleFactory, EndOfUniverseNoteFact
     WhiteHoleFactory
 from .god import D2emonPsycheFactory, D2emonThoughtsFactory, GodFactory
 from .planet.core import PlanetCoreFactory
-from .planet.body import AsteroidFactory, MoonFactory, PlanetFactory, TerraformedMoonFactory
+from .planet.body import AsteroidFactory, MoonFactory, TerraformedMoonFactory
 from .planet.gas_giant import GasGiantFactory, GasGiantAtmosphereFactory
 from .planet import AncientPlanetFactory, BarrenPlanetFactory, DefaultPlanetFactory, FuturePlanetFactory, MedievalPlanetFactory, \
-    TerraformedPlanetFactory, VisitorPlanetFactory
+    PlanetFactory, TerraformedPlanetFactory, VisitorPlanetFactory
 from .orbit import AsteroidBeltFactory, EarthFactory
 from .star import DysonSphereFactory, StarFactory, StarSystemFactory
 from .nebula import InterstellarCloudFactory, NebulaFactory

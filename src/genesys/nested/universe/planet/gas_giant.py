@@ -1,10 +1,11 @@
 from models import planet
 from ...materials import ELEMENTS, AmmoniaFactory, MethaneFactory
 from ...materials.water import SteamFactory
-from ...unsorted_life import GalacticLifeFactory
 from .atmosphere import AtmosphereFactory
 from .body import MoonFactory, PlanetFactory, TerraformedMoonFactory
 from .core import PlanetCoreFactory
+
+from ...unsorted_life import GalacticLifeFactory
 
 
 class GasGiantAtmosphereFactory(AtmosphereFactory):
@@ -13,7 +14,7 @@ class GasGiantAtmosphereFactory(AtmosphereFactory):
     def life(self):
         yield GalacticLifeFactory.probable(10)
 
-    def children(self):
+    def gases(self):
         yield ELEMENTS['He'].one()
         yield ELEMENTS['H'].one()
         yield SteamFactory.probable(50)

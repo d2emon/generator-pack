@@ -3,10 +3,13 @@ from models.universe import galaxy
 from .black_hole import BlackHoleFactory
 from .nebula import NebulaFactory
 from .star import DysonSphereFactory, StarSystemFactory
+
 from ..unsorted_life import GalacticLifeFactory
 
 
 class GalaxyPartFactory(NestedFactory):
+    model = galaxy.GalaxyPart
+
     dyson_sphere_probabilities = 4, 2
 
     min_star_systems = 20
