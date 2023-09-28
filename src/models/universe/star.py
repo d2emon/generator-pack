@@ -6,8 +6,7 @@ from models.nested_model import NestedModel
 # from models.v5.materials import Atom
 from models.v5.life import Life
 from models.materials.matter import Matter
-from .orbit import Orbit, PlanetOrbit, AsteroidBelt
-from ..planet import Planet
+from .orbit import Orbit
 
 
 class Star(Matter):

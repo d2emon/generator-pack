@@ -6,18 +6,19 @@ from ..hair import HairFactory
 
 
 class BoogersFactory(NestedFactory):
-    model = life.Boogers
+    # model = life.Boogers
 
     def children(self):
         yield OrganicFactory.one()
 
 
 class NostrilHairFactory(HairFactory):
-    model = life.NostrilHair
+    # model = life.NostrilHair
+    pass
 
 
 class NostrilFactory(SoftBodyPartFactory):
-    model = life.Nostril
+    # model = life.Nostril
 
     def children(self):
         yield NostrilHairFactory.one()
@@ -26,7 +27,7 @@ class NostrilFactory(SoftBodyPartFactory):
 
 
 class NoseFactory(BodyPartFactory):
-    model = life.Nose
+    # model = life.Nose
 
     def children(self):
         yield NostrilFactory.multiple(2)
@@ -35,4 +36,5 @@ class NoseFactory(BodyPartFactory):
 
 class SnoutFactory(NoseFactory):
     # TODO: Refactor it
-    default_model = life.Snout
+    # default_model = life.Snout
+    pass

@@ -6,11 +6,12 @@ from ..cell import CellFactory
 
 
 class BoneCellFactory(CellFactory):
-    model = life.BoneCell
+    # model = life.BoneCell
+    pass
 
 
 class BonesFactory(NestedFactory):
-    model = life.Bones
+    # model = life.Bones
 
     def children(self):
         yield BoneCellFactory.one()
@@ -18,22 +19,24 @@ class BonesFactory(NestedFactory):
 
 
 class BoneFactory(BonesFactory):
-    model = life.Bone
+    # model = life.Bone
+    pass
 
 
 class MuscleCellFactory(CellFactory):
-    model = life.MuscleCell
+    # model = life.MuscleCell
+    pass
 
 
 class MuscleFactory(NestedFactory):
-    model = life.Muscles
+    # model = life.Muscles
 
     def children(self):
         yield MuscleCellFactory.one()
 
 
 class FatFactory(NestedFactory):
-    model = life.Fat
+    # model = life.Fat
 
     def children(self):
         yield LipidsFactory.one()
@@ -41,7 +44,7 @@ class FatFactory(NestedFactory):
 
 class SkeletonFactory(NestedFactory):
     # TODO: Refactor it
-    default_model = life.Skeleton
+    # default_model = life.Skeleton
 
     def children(self):
         yield BonesFactory()

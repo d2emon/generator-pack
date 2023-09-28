@@ -2,7 +2,7 @@ from models import planet
 from ...materials import ELEMENTS, AmmoniaFactory, MethaneFactory
 from ...materials.water import SteamFactory
 from .atmosphere import AtmosphereFactory
-from .body import MoonFactory, PlanetFactory, TerraformedMoonFactory
+from .body import MoonFactory, PlanetLikeFactory, TerraformedMoonFactory
 from .core import PlanetCoreFactory
 
 from ...unsorted_life import GalacticLifeFactory
@@ -22,7 +22,7 @@ class GasGiantAtmosphereFactory(AtmosphereFactory):
         yield MethaneFactory.probable(50)
 
 
-class GasGiantFactory(PlanetFactory):
+class GasGiantFactory(PlanetLikeFactory):
     model = planet.GasGiant
 
     def atmosphere(self):

@@ -27,3 +27,7 @@ class PastaFactory(NestedFactory):
 
 class WormFactory(NestedFactory):
     pass
+
+
+class BacteriaFactory(NestedFactory):
+    pass

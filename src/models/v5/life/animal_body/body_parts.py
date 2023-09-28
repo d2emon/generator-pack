@@ -4,7 +4,7 @@
 - SoftFlesh
 - WeirdOrgan
 """
-from models.nested_model import TreeModel as Model
+from models.nested_model import NestedModel as Model
 from ...materials import Sweat
 from ..single_celled import Bacteria
 from .blood import BloodVessels

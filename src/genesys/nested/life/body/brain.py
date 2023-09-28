@@ -3,4 +3,5 @@ from ..cell import CellFactory
 
 
 class BrainCellFactory(CellFactory):
-    model = life.BrainCell
+    # model = life.BrainCell
+    pass

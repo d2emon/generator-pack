@@ -9,11 +9,12 @@ from ..hair import HairFactory
 
 
 class EyelashesFactory(HairFactory):
-    model = life.Eyelashes
+    # model = life.Eyelashes
+    pass
 
 
 class EyeFleshFactory(SoftBodyPartFactory):
-    model = life.EyeFlesh
+    # model = life.EyeFlesh
 
     def children(self):
         yield WaterFactory.one()
@@ -22,7 +23,7 @@ class EyeFleshFactory(SoftBodyPartFactory):
 
 
 class TearFactory(NestedFactory):
-    model = life.Tear
+    # model = life.Tear
 
     def children(self):
         yield WaterFactory.one()
@@ -30,7 +31,7 @@ class TearFactory(NestedFactory):
 
 
 class EyeFactory(SoftBodyPartFactory):
-    model = life.Eye
+    # model = life.Eye
 
     def children(self):
         yield EyelashesFactory.one()
@@ -40,4 +41,5 @@ class EyeFactory(SoftBodyPartFactory):
 
 class SimpleEyeFactory(EyeFleshFactory):
     # TODO: Refactor it
-    default_model = life.SimpleEye
+    # default_model = life.SimpleEye
+    pass

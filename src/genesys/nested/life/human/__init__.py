@@ -1,4 +1,3 @@
-from ...cloth.clothing_set import ClothingSetFactory
 from .hair import HairFactory
 from .head.brain import BrainFactory
 from .head.skull import SkullFactory
@@ -12,6 +11,8 @@ from .arm import ArmFactory, ArmpitFactory, ArmpitHairFactory, ElbowFactory, Fin
 from .leg import FootFactory, KneeFactory, LegFactory, ToeFactory, ToenailFactory
 from .body import BodyFactory
 from .person import CorpseFactory, ManFactory, PersonFactory, WomanFactory
+
+from ...unsorted_cloth import ClothingSetFactory
 
 # from ..animal_body.body_parts import BodyPartFactory, SoftBodyPartFactory, SkinlessBodyPartFactory, \
 #     SkinlessSoftBodyPartFactory

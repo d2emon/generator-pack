@@ -2,7 +2,7 @@
 Cell stuff
 """
 from genesys.nested.factories.nested_factory import NestedFactory
-from models.v5 import life
+from models.v5.life import cell
 from utils.nested import select_item
 from genesys.nested.materials.organics import GlucidsFactory, LipidsFactory, OrganicFactory, OrganicMoleculeFactory, ProteinsFactory
 
@@ -21,7 +21,7 @@ class GeneticCodeFactory(NestedFactory):
 
 
 class DNAFactory(OrganicMoleculeFactory):
-    model = life.DNA
+    model = cell.DNA
     contents = 'H', 'O', 'N', 'C', 'P'
 
     def children(self):
@@ -30,7 +30,7 @@ class DNAFactory(OrganicMoleculeFactory):
 
 
 class NucleusFactory(OrganicFactory):
-    model = life.Nucleus
+    model = cell.Nucleus
 
     def children(self):
         yield DNAFactory.one()
@@ -38,7 +38,7 @@ class NucleusFactory(OrganicFactory):
 
 
 class CytoplasmFactory(OrganicFactory):
-    model = life.Cytoplasm
+    model = cell.Cytoplasm
 
     def children(self):
         yield GlucidsFactory.one()
@@ -46,7 +46,7 @@ class CytoplasmFactory(OrganicFactory):
 
 
 class CellFactory(NestedFactory):
-    model = life.Cell
+    model = cell.Cell
 
     def children(self):
         yield NucleusFactory.one()

@@ -5,7 +5,7 @@ from ...body.skeleton import BonesFactory
 
 
 class SkullFactory(BodyPartFactory):
-    model = life.Skull
+    # model = life.Skull
 
     def children(self):
         yield BrainFactory.one()

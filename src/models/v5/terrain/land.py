@@ -6,7 +6,7 @@
 - Cave
 - Mountain
 """
-from models.nested_model import TreeModel as Model
+from models.nested_model import NestedModel as Model
 from ..materials import Fire, Snow, Rock
 from ..life import Grass, Trees, Life
 from .water import River, Lake

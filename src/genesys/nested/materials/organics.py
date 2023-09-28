@@ -1,6 +1,5 @@
 from genesys.nested.factories.nested_factory import NestedFactory
 from models.materials import organics
-from models.v5 import materials
 from utils.nested import select_item
 from .elements import MoleculeFactory
 from .minerals import SaltFactory
@@ -115,14 +114,14 @@ class RubberFactory(PolymericFactory):
 
 
 class KeratinFactory(OrganicFactory):
-    model = materials.Keratin
+    # model = materials.Keratin
 
     def children(self):
         yield ProteinsFactory.one()
 
 
 class SweatFactory(OrganicFactory):
-    model = materials.Sweat
+    # model = materials.Sweat
 
     def children(self):
         yield WaterMoleculeFactory.one()

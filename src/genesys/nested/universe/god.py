@@ -1,9 +1,10 @@
 from genesys.nested.factories.nested_factory import NestedFactory
 from models.universe import god
 from utils.nested import select_item
-from ..cloth import ClothingSetFactory
 from ..life.human.body import BodyFactory
 from ..temporary import ComputerFactory
+
+from ..unsorted_cloth import ClothingSetFactory
 
 
 class D2emonThoughtsFactory(NestedFactory):

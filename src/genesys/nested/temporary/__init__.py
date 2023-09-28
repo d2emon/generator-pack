@@ -1,4 +1,4 @@
-from models.nested_model import TreeModel as Model
+from models.nested_model import NestedModel as Model
 from factories.thing.nested_factory import NestedFactory as Factory
 
 

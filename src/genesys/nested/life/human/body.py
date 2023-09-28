@@ -8,7 +8,7 @@ from .head import HeadFactory
 
 class BodyFactory(NestedFactory):
     # TODO: Make child of AnimalBodyFactory
-    model = life.Body
+    # model = life.Body
 
     def children(self):
         yield HeadFactory.one()

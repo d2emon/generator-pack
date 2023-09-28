@@ -2,13 +2,13 @@ from genesys.nested.factories.nested_factory import NestedFactory
 from models.v5 import life
 from ..body.skin import DeadSkinFactory
 
-from ...unsorted_organics import KeratinFactory
 # ???
-from ..single_celled import BacteriaFactory
+from ...unsorted_organics import KeratinFactory
+from ...unsorted_life import BacteriaFactory
 
 
 class HairFactory(NestedFactory):
-    model = life.Hair
+    # model = life.Hair
 
     def children(self):
         yield BacteriaFactory.probable(30)
@@ -17,7 +17,7 @@ class HairFactory(NestedFactory):
 
 class FurFactory(HairFactory):
     # TODO: Refactor it
-    default_model = life.Fur
+    # default_model = life.Fur
 
     def children(self):
         yield KeratinFactory()
@@ -25,4 +25,5 @@ class FurFactory(HairFactory):
 
 class WhiskersFactory(FurFactory):
     # TODO: Refactor it
-    default_model = life.Whiskers
+    # default_model = life.Whiskers
+    pass

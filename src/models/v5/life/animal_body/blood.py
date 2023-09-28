@@ -3,7 +3,7 @@
 - Blood
 - BloodVessels
 """
-from models.nested_model import TreeModel as Model
+from models.nested_model import NestedModel as Model
 from ..cell import Cell
 from ..single_celled import Bacteria
 

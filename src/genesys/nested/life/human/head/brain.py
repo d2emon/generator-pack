@@ -3,11 +3,11 @@ from ...body.body_parts import SoftBodyPartFactory
 from ...body.brain import BrainCellFactory
 
 # ???
-from ...single_celled import BacteriaFactory
+from ....unsorted_life import BacteriaFactory
 
 
 class BrainFactory(SoftBodyPartFactory):
-    model = life.Brain
+    # model = life.Brain
 
     def children(self):
         yield BacteriaFactory.probable(20)

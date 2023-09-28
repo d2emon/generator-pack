@@ -1,12 +1,11 @@
 from genesys.nested.factories.nested_factory import NestedFactory
 from models.planet import atmosphere
-from models.v5 import terrain
 from genesys.nested.materials.elements import MoleculeFactory
 
 
 class OzoneFactory(MoleculeFactory):
     # TODO: Refactor it
-    default_model = terrain.Ozone
+    # default_model = terrain.Ozone
     contents = 'O'
 
 

@@ -6,7 +6,8 @@ from ...unsorted_organics import LintFactory, SweatFactory
 
 
 class NaughtyBitsFactory(SoftBodyPartFactory):
-    model = life.NaughtyBits
+    # model = life.NaughtyBits
+    pass
 
 
 class ButtFactory(BodyPartFactory):
@@ -17,7 +18,7 @@ class ButtFactory(BodyPartFactory):
 
 
 class PelvisFactory(BodyPartFactory):
-    model = life.Pelvis
+    # model = life.Pelvis
 
     def children(self):
         yield NaughtyBitsFactory.one()
@@ -26,14 +27,14 @@ class PelvisFactory(BodyPartFactory):
 
 
 class NippleFactory(BodyPartFactory):
-    model = life.Nipple
+    # model = life.Nipple
 
     def children(self):
         yield SkinFactory.one()
 
 
 class BellybuttonFactory(BodyPartFactory):
-    model = life.Bellybutton
+    # model = life.Bellybutton
 
     def children(self):
         yield SkinFactory.one()
@@ -41,7 +42,7 @@ class BellybuttonFactory(BodyPartFactory):
 
 
 class ChestFactory(BodyPartFactory):
-    model = life.Chest
+    # model = life.Chest
 
     def children(self):
         yield NippleFactory.multiple(2)
@@ -50,7 +51,7 @@ class ChestFactory(BodyPartFactory):
 
 
 class TorsoFactory(BodyPartFactory):
-    model = life.Torso
+    # model = life.Torso
 
     def chest(self):
         yield ChestFactory.one()

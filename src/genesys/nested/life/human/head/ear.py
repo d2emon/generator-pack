@@ -3,4 +3,5 @@ from ...body.body_parts import SoftBodyPartFactory
 
 
 class EarFactory(SoftBodyPartFactory):
-    model = life.Ear
+    # model = life.Ear
+    pass

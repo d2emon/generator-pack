@@ -11,7 +11,7 @@ from .skull import SkullFactory
 
 
 class HeadHairFactory(HairFactory):
-    model = life.HeadHair
+    # model = life.HeadHair
 
     def name_factory(self, data, *args, **kwargs):
         return f"{select_item(*data.head_hair)} hair"
@@ -23,7 +23,7 @@ class HeadHairFactory(HairFactory):
 
 class HeadFactory(BodyPartFactory):
     # TODO: Make child of MammalHeadFactory
-    model = life.Head
+    # model = life.Head
 
     def mouth(self):
         yield MouthFactory.one()

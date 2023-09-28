@@ -5,7 +5,7 @@ from ...body.skeleton import MuscleFactory
 
 
 class TeethFactory(BodyPartFactory):
-    default_model = life.Teeth
+    # model = life.Teeth
 
     def children(self):
         yield ELEMENTS['Ca'].one()
@@ -13,14 +13,14 @@ class TeethFactory(BodyPartFactory):
 
 
 class TongueFactory(BodyPartFactory):
-    model = life.Mouth
+    # model = life.Mouth
 
     def children(self):
         yield MuscleFactory.one()
 
 
 class MouthFactory(BodyPartFactory):
-    model = life.Mouth
+    # model = life.Mouth
 
     def children(self):
         yield TeethFactory.one()
@@ -29,7 +29,7 @@ class MouthFactory(BodyPartFactory):
 
 class SimpleMouthFactory(SkinlessSoftBodyPartFactory):
     # TODO: Refactor it
-    default_model = life.SimpleMouth
+    # default_model = life.SimpleMouth
 
     def children(self):
         yield TeethFactory()

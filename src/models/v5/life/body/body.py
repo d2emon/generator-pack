@@ -1,7 +1,7 @@
 """
 - Body
 """
-from models.nested_model import TreeModel as Model
+from models.nested_model import NestedModel as Model
 from ..animals.animal import AnimalBody
 from .torso import Torso
 from .arm import Arm

@@ -2,22 +2,23 @@ from genesys.nested.factories.nested_factory import NestedFactory
 from models.v5 import life
 from ..cell import CellFactory
 # ???
-from ..single_celled import BacteriaFactory
+from ...unsorted_life import BacteriaFactory
 
 
 class BloodCellFactory(CellFactory):
-    model = life.BloodCell
+    # model = life.BloodCell
+    pass
 
 
 class BloodFactory(NestedFactory):
-    model = life.Blood
+    # model = life.Blood
 
     def children(self):
         yield BloodCellFactory.one()
 
 
 class BloodVesselsFactory(NestedFactory):
-    model = life.BloodVessels
+    # model = life.BloodVessels
 
     def children(self):
         yield BacteriaFactory.probable(30)

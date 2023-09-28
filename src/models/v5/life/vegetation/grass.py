@@ -2,7 +2,7 @@
 - GrassBlade
 - Grass
 """
-from models.nested_model import TreeModel as Model
+from models.nested_model import NestedModel as Model
 from ...mind import Psyche
 from .twig import Twig
 

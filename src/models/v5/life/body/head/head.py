@@ -4,7 +4,7 @@
 - HeadHair
 - Dandruff
 """
-from models.nested_model import TreeModel as Model
+from models.nested_model import NestedModel as Model
 from ...animal_body.body_parts import BodyPart
 from ...animal_body.hair import Hair
 from ...animal_body.head import Nose, Ear, Eye, Mouth, Skull

@@ -5,7 +5,7 @@ from ...unsorted_organics import DustFactory, KeratinFactory, SweatFactory
 
 
 class FingernailFactory(BodyPartFactory):
-    model = life.Fingernail
+    # model = life.Fingernail
 
     def children(self):
         yield DustFactory.probable(30)
@@ -13,7 +13,7 @@ class FingernailFactory(BodyPartFactory):
 
 
 class FingerFactory(BodyPartFactory):
-    model = life.Finger
+    # model = life.Finger
 
     def children(self):
         yield FingernailFactory.one()
@@ -21,7 +21,7 @@ class FingerFactory(BodyPartFactory):
 
 
 class HandFactory(BodyPartFactory):
-    model = life.Hand
+    # model = life.Hand
 
     def children(self):
         yield FingerFactory.multiple(5)
@@ -29,15 +29,17 @@ class HandFactory(BodyPartFactory):
 
 
 class ElbowFactory(BodyPartFactory):
-    model = life.Elbow
+    # model = life.Elbow
+    pass
 
 
 class ArmpitHairFactory(HairFactory):
-    model = life.ArmpitHair
+    # model = life.ArmpitHair
+    pass
 
 
 class ArmpitFactory(SoftBodyPartFactory):
-    model = life.Armpit
+    # model = life.Armpit
 
     def children(self):
         yield ArmpitHairFactory.one()
@@ -46,7 +48,7 @@ class ArmpitFactory(SoftBodyPartFactory):
 
 
 class ArmFactory(BodyPartFactory):
-    model = life.Arm
+    # model = life.Arm
 
     def children(self):
         yield HandFactory.one()

@@ -6,11 +6,11 @@ from .skeleton import BonesFactory, MuscleFactory, FatFactory
 from .skin import SkinFactory
 
 # ??? 
-from ..single_celled import BacteriaFactory
+from ...unsorted_life import BacteriaFactory
 
 
 class BodyPartFactory(NestedFactory):
-    model = life.BodyPart
+    # model = life.BodyPart
 
     has_bones = True
     has_skin = True
@@ -62,19 +62,19 @@ class SkinlessSoftBodyPartFactory(BodyPartFactory):
 
 class FleshFactory(SkinlessBodyPartFactory):
     # TODO: Refactor it
-    default_model = life.Flesh
+    # default_model = life.Flesh
     has_bones = True
 
 
 class SoftFleshFactory(FleshFactory):
     # TODO: Refactor it
-    default_model = life.Flesh
+    # default_model = life.Flesh
     has_bones = False
 
 
 class WeirdSoftOrganFactory(SkinlessSoftBodyPartFactory):
     # TODO: Refactor it
-    default_model = life.WeirdOrgan
+    # default_model = life.WeirdOrgan
 
     descriptions = [
         "fleshy", "thick", "slimy", "scaly", "furry", "fuzzy", "feathery", "sharp", "pointy", "thorny", "bulbous",
@@ -93,7 +93,7 @@ class WeirdSoftOrganFactory(SkinlessSoftBodyPartFactory):
 
 class WeirdHardOrganFactory(SkinlessBodyPartFactory):
     # TODO: Refactor it
-    default_model = life.WeirdOrgan
+    # default_model = life.WeirdOrgan
 
     descriptions = [
         "fleshy", "thick", "slimy", "scaly", "furry", "fuzzy", "sharp", "pointy", "thorny", "bulbous", "hidden",

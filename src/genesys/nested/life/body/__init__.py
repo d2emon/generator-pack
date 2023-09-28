@@ -11,28 +11,28 @@ from .body_parts import BodyPartFactory, SkinlessBodyPartFactory, SkinlessSoftBo
 from .brain import BrainCellFactory
 
 # ???
-from ..animals.mollusk.clam import ClamShellFactory
+# from ..animals.mollusk.clam import ClamShellFactory
 # ???
-from ..animals.crustacean import CrustaceanLegFactory, CrustaceanClawFactory, CrustaceanShellFactory
+# from ..animals.crustacean import CrustaceanLegFactory, CrustaceanClawFactory, CrustaceanShellFactory
 # ???
-from ..animals.bird import BirdLimbFactory, BirdWingFactory, BirdLegFactory, BirdTailFactory, BeakFactory, BirdHeadFactory, \
-    BirdBodyFactory
+# from ..animals.bird import BirdLimbFactory, BirdWingFactory, BirdLegFactory, BirdTailFactory, BeakFactory, BirdHeadFactory, \
+#     BirdBodyFactory
 # ???
-from ..animals.cetacean import CetaceanFinFactory, CetaceanFlipperFactory
+# from ..animals.cetacean import CetaceanFinFactory, CetaceanFlipperFactory
 # ???
-from ..animals.fish import FishFinFactory, FishTailFactory, FishSkinFactory
+# from ..animals.fish import FishFinFactory, FishTailFactory, FishSkinFactory
 # ???
-from ..animals.insect import InsectLegFactory, InsectClawFactory, StingerFactory, AntennaFactory, InsectWingFactory
+# from ..animals.insect import InsectLegFactory, InsectClawFactory, StingerFactory, AntennaFactory, InsectWingFactory
 # ???
-from ..animals.jelly import JellyFactory
+# from ..animals.jelly import JellyFactory
 # ???
-from ..animals.limb import WingFactory, TentacleFactory, TailFactory
+# from ..animals.limb import WingFactory, TentacleFactory, TailFactory
 # ???
-from ..animals.mammal import MammalLegFactory, MammalHeadFactory, MammalBodyFactory
+# from ..animals.mammal import MammalLegFactory, MammalHeadFactory, MammalBodyFactory
 # ???
-from ..animals.reptile import ReptileWingFactory, ReptileHeadFactory, ReptileLegFactory, ReptileBodyFactory, SnakeBodyFactory
+# from ..animals.reptile import ReptileWingFactory, ReptileHeadFactory, ReptileLegFactory, ReptileBodyFactory, SnakeBodyFactory
 # ???
-from ..animals.venom import VenomFactory
+# from ..animals.venom import VenomFactory
 
 
 FACTORIES = {

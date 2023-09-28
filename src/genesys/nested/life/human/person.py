@@ -1,9 +1,9 @@
 from genesys.nested.factories.nested_factory import NestedFactory
 from models.v5 import life
-from ...cloth.clothing_set import ClothingSetFactory
-from ...unsorted_life import WormFactory
 from ..body.blood import BloodFactory
 from .body import BodyFactory
+from ...unsorted_life import WormFactory
+from ...unsorted_cloth import ClothingSetFactory
 
 # ???
 from ...mind import PsycheFactory
@@ -12,7 +12,7 @@ from ...mind import PsycheFactory
 class PersonFactory(NestedFactory):
     # TODO: Make child of AnimalFactory
     default_name = '*PERSON*'
-    model = life.Person
+    # model = life.Person
 
     def name_factory(self, data, *args, **kwargs):
         return self.default_name
@@ -41,7 +41,7 @@ class WomanFactory(PersonFactory):
 
 
 class CorpseFactory(PersonFactory):
-    model = life.Corpse
+    # model = life.Corpse
 
     def psyche(self):
         return None
