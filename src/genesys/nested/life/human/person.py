@@ -2,11 +2,10 @@ from genesys.nested.factories.nested_factory import NestedFactory
 from models.v5 import life
 from ..body.blood import BloodFactory
 from .body import BodyFactory
-from ...unsorted_life import WormFactory
-from ...unsorted_cloth import ClothingSetFactory
 
-# ???
-from ...mind import PsycheFactory
+from ...unsorted_cloth import ClothingSetFactory
+from ...unsorted_mind import PsycheFactory
+from ...unsorted_life import WormFactory
 
 
 class PersonFactory(NestedFactory):

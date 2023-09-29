@@ -13,8 +13,7 @@ from ..human.arm import ArmFactory
 from ..human.leg import LegFactory
 
 from ...unsorted_life import CrustaceanClawFactory, StingerFactory
-# ???
-from ...mind import PsycheFactory, ThoughtsFactory, ThoughtFactory
+from ...unsorted_mind import PsycheFactory, ThoughtsFactory, ThoughtFactory
 # ???
 from ..body.body_parts import WeirdSoftOrganFactory, WeirdHardOrganFactory
 
