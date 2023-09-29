@@ -26,6 +26,8 @@ class ModelFactory(Factory):
         Returns:
             list: Args for model
         """
+        self.logger.debug('Use values %s', args)
+
         return [*args]
 
     def data_factory(self, **kwargs):
@@ -37,6 +39,8 @@ class ModelFactory(Factory):
         Returns:
             dict: Data for model
         """
+        self.logger.debug('Use data %s', kwargs)
+
         return {**kwargs}
 
     def build(self, *args, **kwargs):
@@ -49,7 +53,17 @@ class ModelFactory(Factory):
         Returns:
             Model: Resulting model
         """
-        return self.model(*args, **kwargs)
+        self.logger.debug('-'*20)
+        self.logger.debug('Build model %s', self.model)
+        self.logger.debug('\tFactory: %s', self)
+        self.logger.debug('\tValues: %s', args)
+        self.logger.debug('\tData: %s', kwargs)
+
+        result = self.model(*args, **kwargs)
+        self.logger.debug('Result: %s', result)
+        self.logger.debug('-'*20)
+
+        return result
 
     def __call__(
         self,
@@ -68,7 +82,18 @@ class ModelFactory(Factory):
             Model: Generated model
         """
         factory = model or self.build
-        return factory(
+
+        self.logger.debug('='*20)
+        self.logger.debug('With %s', self)
+        self.logger.debug('Build %s', factory)
+        self.logger.debug('-'*20)
+
+        result = factory(
             *self.args_factory(*args),
             **self.data_factory(**kwargs),
         )
+
+        self.logger.debug('Result: %s', result)
+        self.logger.debug('='*20)
+
+        return result

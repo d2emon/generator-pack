@@ -1,26 +1,15 @@
 import random
-from factories.model_factory import ModelFactory
+from .delegator_factory import DelegatorFactory
 
 
-class ProbableFactory(ModelFactory):
+class ProbableFactory(DelegatorFactory):
     """
     Generate probable item
     """
 
-    def __init__(
-        self,
-        factory,
-        probability=100,
-    ):
-        """Constructor for ChildFactory.
-
-        Args:
-            factory (Factory): Factory to build child
-            probability (int, optional): Chance to build child. Defaults to 100.
-        """
-        super().__init__()
-        self.factory = factory
-        self.probability = probability
+    @property
+    def probability(self):
+        return self.options.get('probability', 100)
 
     def probable(self, probability=None):
         """Check if need to build model

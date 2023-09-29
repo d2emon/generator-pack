@@ -1,19 +1,14 @@
-from ..factory import Factory
+from .delegator_factory import DelegatorFactory
 from .multiple import MultipleFactory
 from .probable import ProbableFactory
 
 
-class ProxyFactory(Factory):
-    def __init__(self, factory):
-        super().__init__()
-        self.factory = factory
-
+class ProxyFactory(DelegatorFactory):
     @classmethod
     def nested(cls, factory):
-        def yielder(*args, **kwargs):
-            yield factory(*args, **kwargs)
-        
-        return cls(yielder)
+        return cls(
+            DelegatorFactory(factory)
+        )
 
     def probable(self, probability=100):
         """Create child factory with probability
@@ -24,6 +19,7 @@ class ProxyFactory(Factory):
         Returns:
             Factory: Child factory
         """
+        self.logger.debug('Create probable (%s%%) proxy for instance of %s', probability, self.factory)
         return self.__class__(
             ProbableFactory(self, probability=probability),
         ) 
@@ -38,12 +34,16 @@ class ProxyFactory(Factory):
         Returns:
             Factory: Child factory
         """
+        self.logger.debug('Create proxy for %s-%s instances of %s', min_items, max_items, self.factory)
         return self.__class__(
             MultipleFactory(self, min_count=min_items, max_count=max_items),
         ) 
 
     def __call__(self, *args, **kwargs):
-        return self.factory(
+        self.logger.debug('Redirect call to %s', self.factory)
+        self.logger.debug('\tValues %s', args)
+        self.logger.debug('\tData %s', kwargs)
+        yield from self.factory(
             *args,
             **kwargs,
         )

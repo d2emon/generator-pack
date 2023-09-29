@@ -12,8 +12,9 @@ class Factory:
 
     default_data = None
     __instance = None
+    logger = logging.getLogger('factory')
 
-    def __init__(self, data=None):
+    def __init__(self, data=None, **options):
         """
         Construct factory with data from database.
 
@@ -21,8 +22,11 @@ class Factory:
             data (Database, optional): Database for factory. Defaults to None.
         """
         self.__data = data or self.default_data
-        logger = logging.getLogger('factory')
-        logger.debug('Create factory (%s) with data: %s', self.__class__, self.__data)
+        self.options = options
+
+        self.logger.debug('Create factory %s', self.__class__)
+        self.logger.debug('\tData: %s', self.__data)
+        self.logger.debug('\tOptions: %s', self.options)
 
     @property
     def data(self):

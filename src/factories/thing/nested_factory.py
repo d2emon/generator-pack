@@ -32,9 +32,22 @@ class NestedFactory(ModelFactory):
         Yields:
             Factory: Child factory
         """
-        for factory in self.children():
-            if factory is not None:
-                yield from factory()
+        self.logger.debug('Get children factories')
+        for group in self.children():
+            if group is None:
+                continue
+
+            self.logger.debug('Add factories from %s', group)
+            self.logger.debug('.'*8)
+            factory = group()
+            for children in factory:
+                self.logger.debug('Add children %s', children)
+                self.logger.debug('.'*4)
+                for child in children:
+                    self.logger.debug('Add child %s', child)
+                    yield child
+                self.logger.debug('.'*4)
+            self.logger.debug('.'*8)
 
     def name_factory(self, *args, **kwargs):
         """Generate name
@@ -60,6 +73,7 @@ class NestedFactory(ModelFactory):
             list: Args for model
         """
         if len(args) > 0:
+            self.logger.debug('Use values %s', args)
             return super().args_factory(*args)
 
         return self.children_factories()
@@ -73,6 +87,11 @@ class NestedFactory(ModelFactory):
         Returns:
             dict: Data for model
         """
+        data = {
+            'name': self.name_factory(data=self.data),
+            **kwargs,
+        }
+        self.logger.debug('Create data %s', data)
         return {
             'name': self.name_factory(data=self.data),
             **kwargs,
@@ -101,8 +120,8 @@ class NestedFactory(ModelFactory):
         Returns:
             Factory: Child factory
         """
-        return ProxyFactory\
-            .nested(cls)\
+        return cls\
+            .one()\
             .multiple(min_items, max_items)
 
     @classmethod
@@ -115,6 +134,6 @@ class NestedFactory(ModelFactory):
         Returns:
             Factory: Child factory
         """
-        return ProxyFactory\
-            .nested(cls)\
+        return cls\
+            .one()\
             .probable(probability)

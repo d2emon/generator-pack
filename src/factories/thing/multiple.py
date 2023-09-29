@@ -1,29 +1,19 @@
 import random
-from factories.model_factory import ModelFactory
+from .delegator_factory import DelegatorFactory
 
 
-class MultipleFactory(ModelFactory):
+class MultipleFactory(DelegatorFactory):
     """
     Generate multiple items
     """
 
-    def __init__(
-        self,
-        factory,
-        min_count=1,
-        max_count=None,
-    ):
-        """Constructor for ChildFactory.
+    @property
+    def min_count(self):
+        return self.options.get('min_count', 1)
 
-        Args:
-            factory (Factory): Factory to build child
-            min_count (int, optional): Minimal count of items. Defaults to 1.
-            max_count (int, optional): Maximal count of items. Defaults to None.
-        """
-        super().__init__()
-        self.factory = factory
-        self.min_count = min_count
-        self.max_count = max_count
+    @property
+    def max_count(self):
+        return self.options.get('max_count', None)
 
     def count(self):
         """Get random items count
@@ -52,6 +42,8 @@ class MultipleFactory(ModelFactory):
         """
         if count is None:
             count = self.count()
+
+        self.logger.debug('Create %s instances of %s', count, self.factory)
 
         for _ in range(count):
             yield self.factory(
