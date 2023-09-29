@@ -1,3 +1,6 @@
+import logging
+
+
 class Factory:
     """
     Base factory to build something with data.
@@ -18,6 +21,8 @@ class Factory:
             data (Database, optional): Database for factory. Defaults to None.
         """
         self.__data = data or self.default_data
+        logger = logging.getLogger('factory')
+        logger.debug('Create factory (%s) with data: %s', self.__class__, self.__data)
 
     @property
     def data(self):
