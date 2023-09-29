@@ -21,6 +21,10 @@ class CrustaceanFactory(NestedFactory):
     pass
 
 
+class CrustaceanClawFactory(NestedFactory):
+    pass
+
+
 class PastaFactory(NestedFactory):
     pass
 
@@ -30,4 +34,8 @@ class WormFactory(NestedFactory):
 
 
 class BacteriaFactory(NestedFactory):
+    pass
+
+
+class StingerFactory(NestedFactory):
     pass

@@ -1,7 +1,8 @@
-import random
-from .old_nested_factory import NestedFactory
+# import random
+# from .old_nested_factory import NestedFactory
 
 
+"""
 class Things:
     FACTORIES = {}
 
@@ -38,3 +39,4 @@ class Things:
 
         # return list(filter(lambda item: item is not None, self.type.generators + to_concat))
         return [f for f in get_children_factories(Things.get_thing(name)) if f is not None]
+"""

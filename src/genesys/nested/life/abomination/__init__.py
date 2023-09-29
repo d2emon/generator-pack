@@ -12,10 +12,7 @@ from ..human.head.skull import SkullFactory
 from ..human.arm import ArmFactory
 from ..human.leg import LegFactory
 
-# ???
-from ..animals.insect import StingerFactory
-# ???
-from ..animals.crustacean import CrustaceanClawFactory
+from ...unsorted_life import CrustaceanClawFactory, StingerFactory
 # ???
 from ...mind import PsycheFactory, ThoughtsFactory, ThoughtFactory
 # ???
@@ -23,7 +20,7 @@ from ..body.body_parts import WeirdSoftOrganFactory, WeirdHardOrganFactory
 
 
 class AbominationTorsoFactory(TorsoFactory):
-    model = life.AbominationTorso
+    # model = life.AbominationTorso
 
     @classmethod
     def chest(cls):
@@ -42,7 +39,7 @@ class AbominationTorsoFactory(TorsoFactory):
 
 
 class AbominationHeadFactory(HeadFactory):
-    model = life.AbominationHead
+    # model = life.AbominationHead
 
     @classmethod
     def mouth(cls):
@@ -75,7 +72,7 @@ class AbominationHeadFactory(HeadFactory):
 
 
 class AbominationBodyFactory(BodyFactory):
-    model = life.AbominationBody
+    # model = life.AbominationBody
 
     def children(self):
         yield AbominationHeadFactory.one()
@@ -116,7 +113,7 @@ class AbominationPsycheFactory(PsycheFactory):
 
 
 class AbominationFactory(PersonFactory):
-    model = life.Abomination
+    # model = life.Abomination
     default_name = '*PERSON*| (abomination)'
 
     @property

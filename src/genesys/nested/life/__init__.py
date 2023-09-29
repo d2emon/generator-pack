@@ -2,8 +2,8 @@ from .abomination import FACTORIES as ABOMINATION_FACTORIES
 from .body import FACTORIES as BODY_FACTORIES
 from .cell import FACTORIES as CELL_FACTORIES
 from .human import FACTORIES as HUMAN_FACTORIES
-from .vegetation import *
-from .life import *
+# from .vegetation import *
+# from .life import *
 
 
 FACTORIES = {
