@@ -18,6 +18,10 @@ class NestedModel(NamedModel):
         Args:
             parent (NestedModel, optional): Parent for model. Defaults to None.
         """
+        self.logger.debug('Create %s', self)
+        self.logger.debug('Parent %s', parent)
+        self.logger.debug('Children %s', children)
+        self.logger.debug('Fields %s', fields)
         super().__init__(**fields)
         self.__children = list(children)
         self.__parent = parent
@@ -58,8 +62,7 @@ class NestedModel(NamedModel):
     def build_children(self) -> None:
         """Build unbuilt children."""
         for child_id, child in enumerate(self.__children):
-            if isinstance(child, Factory):
-                self.__children[child_id] = child()
+            self.__children[child_id] = self.check_child(child)
 
     def add_child(self, child: NamedModel) -> None:
         """Add child model.

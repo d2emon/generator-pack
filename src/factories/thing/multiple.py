@@ -26,7 +26,7 @@ class MultipleFactory(DelegatorFactory):
 
         return random.randint(self.min_count, self.max_count)
 
-    def __call__(
+    def build(
         self,
         *args,
         count=None,
@@ -46,7 +46,26 @@ class MultipleFactory(DelegatorFactory):
         self.logger.debug('Create %s instances of %s', count, self.factory)
 
         for _ in range(count):
-            yield self.factory(
+            self.logger.debug('Create from %s', self.factory)
+            self.logger.debug('\tValues %s', args)
+            self.logger.debug('\tData %s', kwargs)
+            yield from self.factory(
                 *args,
                 **kwargs,
             )
+
+    def __call__(
+        self,
+        *args,
+        **kwargs,
+    ):
+        """Build some models
+
+        Args:
+            count (int, optional): Pregenerated models count. Defaults to None.
+
+        Yields:
+            Model: Generated model
+        """
+        return list(self.build(*args, **kwargs))
+

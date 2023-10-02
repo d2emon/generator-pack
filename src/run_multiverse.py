@@ -11,3 +11,7 @@ if __name__ == "__main__":
 
     multiverse = multiverse_factory()
     logging.debug(multiverse)
+    logging.debug(multiverse.data)
+
+    universes = multiverse.universes
+    logging.debug(universes)

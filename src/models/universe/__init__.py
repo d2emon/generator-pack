@@ -20,4 +20,8 @@ class Universe(NestedModel):
 
 
 class Multiverse(NestedModel):
-    contents = NestedModel.contents_property()
+    field_names = [
+        'universes',
+    ]
+
+    universes = NestedModel.field_property('universes')

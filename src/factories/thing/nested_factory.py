@@ -15,6 +15,7 @@ class NestedFactory(ModelFactory):
 
     default_name = None
     default_children = []
+    child_groups = {}
 
     def children(self):
         """Children to build
@@ -61,6 +62,22 @@ class NestedFactory(ModelFactory):
         """
         return self.default_name
 
+    def groups_factory(self, *args, **kwargs):
+        data = {
+            'name': self.name_factory(data=self.data),
+        }
+
+        for group_id, group_factory in self.child_groups.items():
+            self.logger.debug('Add data for group %s', group_id)
+            self.logger.debug('Factory %s', group_factory)
+            items = group_factory(
+                *args,
+                **kwargs,
+            )
+            data[group_id] = group_factory
+
+        return data
+
     # Inherited methods
 
     def args_factory(self, *args):
@@ -87,15 +104,15 @@ class NestedFactory(ModelFactory):
         Returns:
             dict: Data for model
         """
+        groups = self.groups_factory(data=self.data)
         data = {
-            'name': self.name_factory(data=self.data),
+            **groups,
             **kwargs,
         }
+
         self.logger.debug('Create data %s', data)
-        return {
-            'name': self.name_factory(data=self.data),
-            **kwargs,
-        }
+
+        return data
 
     # List generators
 

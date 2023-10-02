@@ -1,5 +1,7 @@
 """Base model class."""
+import logging
 from typing import Any, Collection
+from factories.factory import Factory
 
 
 class Model:
@@ -14,6 +16,7 @@ class Model:
 
     field_names = []
     value_field_name = '_value'
+    logger = logging.getLogger('model')
 
     def __init__(self, *args, built_with=None, **fields):
         """Create data model.
@@ -25,7 +28,16 @@ class Model:
         self.built_with = built_with
         self.values = [*args]
         self.__fields = {}
+        self.__data = None
         self.fill(**fields)
+
+    @classmethod
+    def check_child(cls, child) -> Any:
+        """Build unbuilt children."""
+        if isinstance(child, Factory):
+            return child()
+
+        return child
 
     @classmethod
     def field_property(cls, field_name, default=None) -> property:
@@ -40,7 +52,9 @@ class Model:
         """
 
         def fget(self):
-            return self.data.get(field_name, default)
+            item = self.data.get(field_name, default)
+            return cls.check_child(item)
+
 
         def fset(self, value):
             self.data[field_name] = value
@@ -70,7 +84,12 @@ class Model:
         Returns:
             dict: Model fields.
         """
-        return self.__fields
+        if self.__data is None:
+            self.__data = {}
+            for key, value in self.__fields.items():
+                self.__data[key] = self.check_child(value)
+
+        return self.__data
 
     @data.setter
     def data(self, value: dict) -> None:
@@ -80,6 +99,7 @@ class Model:
             value (dict): Model fields.
         """
         self.__fields = value
+        self.reset_data()
 
     @property
     def _value(self) -> str:
@@ -120,11 +140,17 @@ class Model:
     def fill(self, **fields) -> None:
         """Fill model fields."""
         field_names = list(self.allowed_field_names)
+        self.logger.debug('Fill fields %s', field_names)
+        self.logger.debug('With data %s', fields)
         self.__fields = {
             name: value
             for name, value in fields.items()
             if not field_names or name in field_names
         }
+        self.logger.debug('Filled %s', self.__fields)
+
+    def reset_data(self):
+        self.__data = None
 
     def __getitem__(self, key: str) -> Any:
         """Get field value.

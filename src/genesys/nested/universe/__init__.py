@@ -34,9 +34,9 @@ class UniverseFactory(NestedFactory):
 
 class MultiverseFactory(NestedFactory):
     model = universe.Multiverse
-
-    def children(self):
-        yield UniverseFactory.multiple(10, 30)
+    child_groups = {
+        'universes': UniverseFactory.multiple(10, 30),
+    }
 
     def name_factory(self, data, *args, **kwargs):
         return select_item(*data.multiverse)
