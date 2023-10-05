@@ -1,6 +1,5 @@
 """Base tree model class."""
 from typing import Collection
-from factories.factory import Factory
 from .named_model import NamedModel
 
 
@@ -25,6 +24,9 @@ class NestedModel(NamedModel):
         super().__init__(**fields)
         self.__children = list(children)
         self.__parent = parent
+
+        self.__group_factories = {**fields}
+        self.__groups = {}
 
     @property
     def children(self) -> list:
@@ -138,6 +140,49 @@ class NestedModel(NamedModel):
             return next(self.children_by_class(child_classes), None)
 
         return property(get_child, None, None, doc)
+
+    def fill_group(self, field_name):
+        values = self.__groups.get(field_name)
+
+        if values is not None:
+            return values
+
+        factory = self.__group_factories.get(field_name)
+        return self.check_child(factory)
+
+    @classmethod
+    def group_property(cls, field_name) -> property:
+        """Create property to access fields.
+
+        Args:
+            field_name (str): Field name.
+
+        Returns:
+            property: Field property
+        """
+
+        def fget(self):
+            values = self.__groups.get(field_name)
+
+            if values is not None:
+                return values
+
+            items = [self.check_child(item) for item in self.fill_group(field_name)]
+            self.__groups[field_name] = items
+            self.logger.debug('Get values %s: %s', field_name, items)
+            return items
+
+        def fset(self, value):
+            self.__groups[field_name] = value
+
+        def fdel(self):
+            del self.__groups[field_name]
+
+        return property(
+            fget=fget,
+            fset=fset,
+            fdel=fdel,
+        )
 
     # Search
 

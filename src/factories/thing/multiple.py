@@ -68,4 +68,3 @@ class MultipleFactory(DelegatorFactory):
             Model: Generated model
         """
         return list(self.build(*args, **kwargs))
-
