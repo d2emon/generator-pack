@@ -20,16 +20,16 @@ from .galaxy import GalaxyFactory, GalaxyArmFactory, GalaxyCenterFactory
 
 class SuperclusterFactory(NestedFactory):
     model = universe.Supercluster
-
-    def children(self):
-        yield GalaxyFactory.multiple(10, 30)
+    child_groups = {
+        'galaxies': GalaxyFactory.multiple(10, 30),
+    }
 
 
 class UniverseFactory(NestedFactory):
     model = universe.Universe
-
-    def children(self):
-        yield SuperclusterFactory.multiple(10, 30)
+    child_groups = {
+        'superclusters': SuperclusterFactory.multiple(10, 30),
+    }
 
 
 class MultiverseFactory(NestedFactory):

@@ -26,7 +26,7 @@ class NestedModel(NamedModel):
         self.__parent = parent
 
         self.__group_factories = {**fields}
-        self.__groups = {}
+        self.groups = {}
 
     @property
     def children(self) -> list:
@@ -142,7 +142,7 @@ class NestedModel(NamedModel):
         return property(get_child, None, None, doc)
 
     def fill_group(self, field_name):
-        values = self.__groups.get(field_name)
+        values = self.groups.get(field_name)
 
         if values is not None:
             return values
@@ -162,7 +162,7 @@ class NestedModel(NamedModel):
         """
 
         def fget(self):
-            values = self.__groups.get(field_name)
+            values = self.groups.get(field_name)
 
             if values is not None:
                 return values
@@ -171,15 +171,15 @@ class NestedModel(NamedModel):
                 'parent': self,
             }
             items = [self.check_child(item, **data) for item in self.fill_group(field_name)]
-            self.__groups[field_name] = items
+            self.groups[field_name] = items
             self.logger.debug('Get values %s: %s', field_name, items)
             return items
 
         def fset(self, value):
-            self.__groups[field_name] = value
+            self.groups[field_name] = value
 
         def fdel(self):
-            del self.__groups[field_name]
+            del self.groups[field_name]
 
         return property(
             fget=fget,

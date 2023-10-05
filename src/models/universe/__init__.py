@@ -11,17 +11,12 @@ from models.nested_model import NestedModel
 
 class Supercluster(NestedModel):
     default_name = 'galactic supercluster'
-
-    contents = NestedModel.contents_property()
+    galaxies = NestedModel.group_property('galaxies')
 
 
 class Universe(NestedModel):
-    contents = NestedModel.contents_property()
+    superclusters = NestedModel.group_property('superclusters')
 
 
 class Multiverse(NestedModel):
-    field_names = [
-        'universes',
-    ]
-
-    universes = NestedModel.field_property('universes')
+    universes = NestedModel.group_property('universes')

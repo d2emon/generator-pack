@@ -33,11 +33,11 @@ class GalaxyPartFactory(NestedFactory):
     def nebulas(self):
         yield NebulaFactory.multiple(self.min_nebulas, self.max_nebulas)
 
-    def children(self):
-        yield from self.black_holes()
-        yield from self.life()
-        yield from self.stars()
-        yield from self.nebulas()
+    # def children(self):
+    #     yield from self.black_holes()
+    #     yield from self.life()
+    #     yield from self.stars()
+    #     yield from self.nebulas()
 
 
 class GalaxyArmFactory(GalaxyPartFactory):
@@ -64,6 +64,6 @@ class GalaxyCenterFactory(GalaxyPartFactory):
 class GalaxyFactory(NestedFactory):
     model = galaxy.Galaxy
 
-    def children(self):
-        yield GalaxyCenterFactory.one()
-        yield GalaxyArmFactory.multiple(2, 6)
+    # def children(self):
+    #     yield GalaxyCenterFactory.one()
+    #     yield GalaxyArmFactory.multiple(2, 6)
