@@ -5,9 +5,9 @@ from .probable import ProbableFactory
 
 class ProxyFactory(DelegatorFactory):
     @classmethod
-    def nested(cls, factory):
+    def nested(cls, factory, data=None):
         return cls(
-            DelegatorFactory(factory)
+            DelegatorFactory(factory, data=data)
         )
 
     def probable(self, probability=100):
@@ -21,7 +21,11 @@ class ProxyFactory(DelegatorFactory):
         """
         self.logger.debug('Create probable (%s%%) proxy for instance of %s', probability, self.factory)
         return self.__class__(
-            ProbableFactory(self, probability=probability),
+            ProbableFactory(
+                self,
+                data=self.data,
+                probability=probability,
+            ),
         ) 
 
     def multiple(self, min_items=1, max_items=None):
@@ -36,7 +40,12 @@ class ProxyFactory(DelegatorFactory):
         """
         self.logger.debug('Create proxy for %s-%s instances of %s', min_items, max_items, self.factory)
         return self.__class__(
-            MultipleFactory(self, min_count=min_items, max_count=max_items),
+            MultipleFactory(
+                self,
+                data=self.data,
+                min_count=min_items,
+                max_count=max_items,
+            ),
         ) 
 
     def __call__(self, *args, **kwargs):

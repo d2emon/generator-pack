@@ -2,9 +2,15 @@ from ..factory import Factory
 
 
 class DelegatorFactory(Factory):
-    @property
-    def factory(self):
-        return self.data
+    def __init__(self, factory, **options):
+        """
+        Construct factory with data from database.
+
+        Args:
+            data (Database, optional): Database for factory. Defaults to None.
+        """
+        super().__init__(**options)
+        self.factory = factory
 
     def __call__(
         self,

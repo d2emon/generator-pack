@@ -32,10 +32,10 @@ class Model:
         self.fill(**fields)
 
     @classmethod
-    def check_child(cls, child) -> Any:
+    def check_child(cls, child, *args, **kwargs) -> Any:
         """Build unbuilt children."""
         if isinstance(child, Factory):
-            return child()
+            return child(*args, **kwargs)
 
         return child
 

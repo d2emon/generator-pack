@@ -167,7 +167,10 @@ class NestedModel(NamedModel):
             if values is not None:
                 return values
 
-            items = [self.check_child(item) for item in self.fill_group(field_name)]
+            data = {
+                'parent': self,
+            }
+            items = [self.check_child(item, **data) for item in self.fill_group(field_name)]
             self.__groups[field_name] = items
             self.logger.debug('Get values %s: %s', field_name, items)
             return items

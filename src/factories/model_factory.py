@@ -85,6 +85,7 @@ class ModelFactory(Factory):
 
         self.logger.debug('='*20)
         self.logger.debug('With %s', self)
+        self.logger.debug('Data %s', self.data)
         self.logger.debug('Build %s', factory)
         self.logger.debug('-'*20)
 

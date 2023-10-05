@@ -70,10 +70,6 @@ class NestedFactory(ModelFactory):
         for group_id, group_factory in self.child_groups.items():
             self.logger.debug('Add data for group %s', group_id)
             self.logger.debug('Factory %s', group_factory)
-            items = group_factory(
-                *args,
-                **kwargs,
-            )
             data[group_id] = group_factory
 
         return data
