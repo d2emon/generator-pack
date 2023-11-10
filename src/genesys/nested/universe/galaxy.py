@@ -18,6 +18,13 @@ class GalaxyPartFactory(NestedFactory):
     min_nebulas = 0
     max_nebulas = 12
 
+    child_groups = {
+        'black_holes': [],
+        'life': [],
+        'stars': [],
+        'nebulas': [],
+    }
+
     def black_holes(self):
         yield None
 
@@ -26,44 +33,47 @@ class GalaxyPartFactory(NestedFactory):
 
     def stars(self):
         for probability in self.dyson_sphere_probabilities:
-            yield DysonSphereFactory.probable(probability)
+            yield from DysonSphereFactory.probable(probability)
 
-        yield StarSystemFactory.multiple(self.min_star_systems, self.max_star_systems)
+        yield from StarSystemFactory.multiple(self.min_star_systems, self.max_star_systems)
 
     def nebulas(self):
-        yield NebulaFactory.multiple(self.min_nebulas, self.max_nebulas)
+        yield from NebulaFactory.multiple(self.min_nebulas, self.max_nebulas)
 
-    # def children(self):
-    #     yield from self.black_holes()
-    #     yield from self.life()
-    #     yield from self.stars()
-    #     yield from self.nebulas()
+    def groups_factory(self, *args, **kwargs):
+        data = super().groups_factory(*args, **kwargs)
 
+        data['black_holes'] = list(self.black_holes())
+        data['life'] = list(self.life())
+        data['stars'] = list(self.stars())
+        data['nebulas'] = list(self.nebulas())
+
+        return data
 
 class GalaxyArmFactory(GalaxyPartFactory):
     model = galaxy.GalaxyArm
 
     def black_holes(self):
-        yield BlackHoleFactory.probable(20)
-        yield BlackHoleFactory.probable(20)
+        yield from BlackHoleFactory.probable(20)
+        yield from BlackHoleFactory.probable(20)
 
     def life(self):
-        yield GalacticLifeFactory.probable(5)
+        yield from GalacticLifeFactory.probable(5)
 
 
 class GalaxyCenterFactory(GalaxyPartFactory):
     model = galaxy.GalaxyCenter
 
     def black_holes(self):
-        yield BlackHoleFactory.one()
+        yield from BlackHoleFactory.one()
 
     def life(self):
-        yield GalacticLifeFactory.probable(10)
+        yield from GalacticLifeFactory.probable(10)
 
 
 class GalaxyFactory(NestedFactory):
     model = galaxy.Galaxy
-
-    # def children(self):
-    #     yield GalaxyCenterFactory.one()
-    #     yield GalaxyArmFactory.multiple(2, 6)
+    child_groups = {
+        'center': GalaxyCenterFactory.one(),
+        'arms': GalaxyArmFactory.multiple(2, 6),
+    }
