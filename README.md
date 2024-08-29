@@ -48,3 +48,30 @@ Generators pack for RPG
 ## Gameplay & Skills
 
 * "Generating something"
+
+## Contents
+
+* config
+* data
+* database
+* factories
+* genesys
+* helpers
+* models
+* rpg
+* tests
+* utils
+
+## Steps
+
+1. Run all **tests**
+2. Run selected **genesys**
+3. **Genesys** select factory from **factories**
+  1. **Factory** uses **config**
+  2. **Factory** loads **data**
+  3. **Factory** use **helpers** to generate data
+  4. **Factory** use **utils** to generate data
+  5. **Factory** save generated data to model from **models**
+
+* database
+* rpg
