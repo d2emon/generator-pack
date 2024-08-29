@@ -22,14 +22,25 @@ class WorldFactory(ModelFactory):
     def data_factory(self):
         if self.__data_factory is None:
             self.__data_factory = ComplexFactory.from_factories(
-                name=self.names_factory(),
+                name=self.name_factory,
             )
 
         return self.__data_factory
 
     @property
     def name_factory(self):
-        if self.__name_factory is None:
-            self.__name_factory = ListFactory(self.data.names)
+        def create_name_factory():
+            factory = ListFactory(self.data.names)
 
-        return self.__data_factory
+            def __factory():
+                item = factory()
+                if item is None:
+                    return None
+                return item.get("value")
+
+            return __factory
+
+        if self.__name_factory is None:
+            self.__name_factory = create_name_factory()
+
+        return self.__name_factory

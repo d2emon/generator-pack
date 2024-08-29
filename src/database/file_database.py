@@ -29,7 +29,7 @@ class FileDatabase(DatabaseLoader):
         """
         :return: Data file
         """
-        raise self.source_factory(self.filename, self.fields)
+        return self.source_factory(self.filename, self.fields)
 
 
 class CSVDatabase(FileDatabase):
