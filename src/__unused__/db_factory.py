@@ -4,7 +4,7 @@ from ..factories.model_factory import ModelFactory
 
 class DbFactory(ModelFactory):
     def __init__(self, model, database):
-        self.model = model
+        DbFactory.model = model
         self.database = database
 
     def save(self, model):

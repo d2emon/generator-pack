@@ -8,6 +8,8 @@ from .data import DEFAULT_EVENT_DATA_PROVIDER
 
 
 class EventFactory(ModelFactory):
+    model = Event
+
     def __init__(self, provider=DEFAULT_EVENT_DATA_PROVIDER):
         self.provider = provider
         self.data_group = None
@@ -15,10 +17,6 @@ class EventFactory(ModelFactory):
     @classmethod
     def time(cls):
         raise NotImplementedError()
-
-    @property
-    def model(self):
-        return Event
 
     def encounter_type_factory(self):
         return self.provider.encounter_factory(self.data_group)

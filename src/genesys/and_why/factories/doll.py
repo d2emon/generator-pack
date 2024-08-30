@@ -10,13 +10,11 @@ class Subfactories:
 
 
 class DollFactory(ModelFactory):
+    model = Doll
+
     def __init__(self, data=None):
         super().__init__(data or PROVIDER)
         self.__subfactories = Subfactories(self.data_provider)
-
-    @property
-    def model(self):
-        return Doll
 
     def __call__(self, gender=None, *args, **kwargs):
         if gender is None:

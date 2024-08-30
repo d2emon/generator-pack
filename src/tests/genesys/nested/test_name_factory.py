@@ -20,11 +20,11 @@ class Factory(BaseFactory):
     class ChildrenFactory(BaseFactory.ChildrenFactory):
         default_factory = ['VALUE', 10]
 
-    default_model = ThingModel
+    model = ThingModel
 
 
 class FactoryNoDefault(BaseFactory):
-    default_model = ThingModel
+    model = ThingModel
 
 
 class TestNameFactory(unittest.TestCase):

@@ -6,13 +6,11 @@ class TextFactory(ModelFactory):
     """
     Generate name from data
     """
+    model = Name
+
     def __init__(self, provider):
         super().__init__()
         self.__data = provider
-
-    @property
-    def model(self):
-        return Name
 
     @property
     def data(self):

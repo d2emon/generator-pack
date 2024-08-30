@@ -7,16 +7,13 @@ from .providers import DEFAULT_DATA_PROVIDER
 
 class WorldFactory(ModelFactory):
     default_data = DEFAULT_DATA_PROVIDER
+    model = World
 
     def __init__(self, data=None):
         super().__init__(data)
 
         self.__data_factory = None
         self.__name_factory = None
-
-    @property
-    def model(self):
-        return World
 
     @property
     def data_factory(self):

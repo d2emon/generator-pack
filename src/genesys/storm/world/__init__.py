@@ -8,6 +8,8 @@ from .data import DEFAULT_DATA_PROVIDER, WorldDataProvider
 
 
 class WorldFactory(ModelFactory):
+    model = World
+
     def __init__(self, provider=DEFAULT_DATA_PROVIDER):
         super().__init__()
 
@@ -20,10 +22,6 @@ class WorldFactory(ModelFactory):
         )
         self.size_class_factory = SizeClassFactory(provider)
         self.world_size_factory = SizeFactory
-
-    @property
-    def model(self):
-        return World
 
     def data_factory(self, *args, **kwargs):
         data = self.factory(*args, **kwargs)

@@ -7,6 +7,8 @@ class DiceFactory(ModelFactory):
     Generate dice roll
     """
 
+    model = Roll
+
     def __init__(self, dice):
         """
         Create factory
@@ -15,15 +17,6 @@ class DiceFactory(ModelFactory):
         """
         super().__init__()
         self.dice = dice
-
-    @property
-    def model(self):
-        """Model to build.
-
-        Returns:
-            Model: Model class
-        """
-        return Roll
 
     @property
     def data(self):

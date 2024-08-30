@@ -6,16 +6,7 @@ from .dict_factory import DictFactory
 class ModelFactory(Factory):
     """Generate model"""
 
-    default_model = Model
-
-    @property
-    def model(self):
-        """Model to build.
-
-        Returns:
-            Model: Model class
-        """
-        return self.default_model
+    model = Model
 
     def args_factory(self, *args):
         """Generates args for model

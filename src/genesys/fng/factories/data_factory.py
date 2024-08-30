@@ -3,13 +3,11 @@ from models.name.name import TextModel
 from factories.model_factory import ModelFactory
 
 
-class DataFactory(ModelFactory):
+class TextFactory(ModelFactory):
     """
     Factory for block data
     """
-    @property
-    def model(self):
-        return TextModel
+    model= TextModel
 
 
 class FactoriesBlock:
@@ -18,7 +16,7 @@ class FactoriesBlock:
         self.blocks = blocks
 
     def factory(self, factory_id):
-        return DataFactory(self.blocks.filtered(group_id=factory_id))
+        return TextFactory(self.blocks.filtered(group_id=factory_id))
 
 
 def load_data(data) -> dict:
@@ -28,4 +26,4 @@ def load_data(data) -> dict:
     :param data: Dict with data to load
     :return: Dict with NameBlocks
     """
-    return {item_id: DataFactory(NameBlock.filled(*values)) for item_id, values in data.items()}
+    return {item_id: TextFactory(NameBlock.filled(*values)) for item_id, values in data.items()}

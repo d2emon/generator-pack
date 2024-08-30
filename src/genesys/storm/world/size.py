@@ -28,10 +28,7 @@ class SizeFactory(Factory):
 
 class SizeClassFactory(ModelFactory):
     default_data = DEFAULT_DATA_PROVIDER
-
-    @property
-    def model(self):
-        return WorldSize
+    model = WorldSize
 
     def data_factory(self, size_class=None, *args, **kwargs):
         if size_class is None:

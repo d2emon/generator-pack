@@ -4,6 +4,8 @@ from ..models import Campsite
 
 
 class BaseCampsiteFactory(ModelFactory):
+    model = Campsite
+
     def __init__(self, data=()):
         super().__init__()
         self.__data = data
@@ -11,10 +13,6 @@ class BaseCampsiteFactory(ModelFactory):
     @property
     def data(self):
         return self.__data
-
-    @property
-    def model_class(self):
-        return Campsite
 
     def description_factory(self):
         """
@@ -46,7 +44,7 @@ class BaseCampsiteFactory(ModelFactory):
         return []
 
     def __call__(self, *args, **kwargs):
-        return self.model_class(
+        return self.model(
             description=self.description_factory(),
             resources=self.resource_factory(),
             encounters=self.encounter_factory(),

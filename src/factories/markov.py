@@ -7,6 +7,8 @@ class MarkovFactory(ModelFactory):
     Generate value from markov chain
     """
 
+    model = MarkovChain
+
     def __init__(self, provider, max_length=32):
         super().__init__()
         self.__data = provider
@@ -15,10 +17,6 @@ class MarkovFactory(ModelFactory):
     @property
     def data(self):
         return self.__data
-
-    @property
-    def model(self):
-        return MarkovChain
 
     def fill(self, chain):
         while len(chain) < self.max_length:
@@ -35,7 +33,7 @@ class MarkovFactory(ModelFactory):
         :param kwargs: Chain kwargs
         :return: Markov chain
         """
-        chain = self.model_class(*args, **kwargs)
+        chain = self.model(*args, **kwargs)
         chain.reset()
         self.fill(chain)
         return chain
