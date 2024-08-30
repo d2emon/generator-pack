@@ -52,8 +52,8 @@ class MultipleFactoryNameFactory(BaseNameFactory):
         if factory is None:
             return None
 
-        model_args = factory.build_args(*args, **kwargs)
-        model_kwargs = factory.build_kwargs(*args, **kwargs)
+        model_args = factory.args_factory(*args, **kwargs)
+        model_kwargs = factory.data_factory(*args, **kwargs)
 
         return self.model(*model_args, **model_kwargs)
 

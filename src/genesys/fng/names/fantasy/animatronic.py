@@ -28,7 +28,7 @@ class BaseAnimatronicNameFactory(ComplexFactory):
 
     model = AnimatronicName
 
-    def build_kwargs(self, *args, **kwargs) -> dict:
+    def data_factory(self, *args, **kwargs) -> dict:
         """
         Build data for model.
 

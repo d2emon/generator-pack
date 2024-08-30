@@ -11,66 +11,10 @@ Classes:
 """
 
 import random
-from factories.factory import Factory
 from factories.list_factory import ListFactory
+from factories.model_factory import ModelFactory
 from models.fng.names.name import Name
 from utils.genders import MALE
-
-
-class ModelFactory(Factory):
-    """
-    Base factory to build model.
-
-    Attributes:
-        model (Name): Name model to build.
-        static_args (list): List of static args for model.
-        static_kwargs (dict): Static kwargs for model.
-    """
-
-    model = Name
-    static_args = []
-    static_kwargs = {}
-
-    def build_args(self, *args, **kwargs) -> list:
-        """
-        Build args for model.
-
-        Args:
-            *args (list): Args from factory method.
-            **kwargs (dict): Kwargs from factory method.
-
-        Returns:
-            list: Args for model.
-        """
-        return [*self.static_args]
-
-    def build_kwargs(self, *args, **kwargs) -> dict:
-        """
-        Build data for model.
-
-        Args:
-            *args (list): Args from factory method.
-            **kwargs (dict): Kwargs from factory method.
-
-        Returns:
-            dict: Data for model.
-        """
-        return {**self.static_kwargs}
-
-    def __call__(self, *args, **kwargs):
-        """
-        Build model.
-
-        Args:
-            *args (list): Args for factory method.
-            **kwargs (dict): Kwargs for factory method.
-
-        Returns:
-            Model: Model built with factory.
-        """
-        model_args = self.build_args(*args, **kwargs)
-        model_kwargs = self.build_kwargs(*args, **kwargs)
-        return self.model(*model_args, **model_kwargs)
 
 
 class BaseNameFactory(ModelFactory):
@@ -86,7 +30,7 @@ class BaseNameFactory(ModelFactory):
     model = Name
 
 
-class ComplexFactory(ModelFactory):
+class ComplexFactory(BaseNameFactory):
     """
     Complex Factory.
 
@@ -163,7 +107,7 @@ class ComplexFactory(ModelFactory):
         factory = self.factory(factory_id)
         return factory(*args, **kwargs) if factory is not None else None
 
-    def build_args(self, *args, **kwargs) -> list:
+    def args_factory(self, *args, **kwargs) -> list:
         """
         Build args for model.
 
@@ -194,7 +138,7 @@ class ComplexFactory(ModelFactory):
         ]
 
 
-    def build_kwargs(self, *args, **kwargs) -> dict:
+    def data_factory(self, *args, **kwargs) -> dict:
         """
         Build data for model.
 

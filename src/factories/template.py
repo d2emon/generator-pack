@@ -51,7 +51,7 @@ class TemplateFactory(Factory):
 
         return replaced
 
-    def build_args(self, *args, **kwargs):
+    def args_factory(self, *args, **kwargs):
         """
         Apply providers for templates
 

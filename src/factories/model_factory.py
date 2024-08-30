@@ -7,6 +7,8 @@ class ModelFactory(Factory):
     """Generate model"""
 
     model = Model
+    static_args = []
+    static_kwargs = {}
 
     def args_factory(self, *args):
         """Generates args for model
@@ -17,9 +19,13 @@ class ModelFactory(Factory):
         Returns:
             list: Args for model
         """
+        self.logger.debug('Use static values %s', self.static_args)
         self.logger.debug('Use values %s', args)
 
-        return [*args]
+        return [
+            *self.static_args,
+            *args,
+        ]
 
     def data_factory(self, **kwargs):
         """Generates data for model
@@ -30,9 +36,14 @@ class ModelFactory(Factory):
         Returns:
             dict: Data for model
         """
-        self.logger.debug('Use data %s', kwargs)
+        data = {
+            **self.static_kwargs,
+            **kwargs,
+        }
+        self.logger.debug('Use data %s', data)
 
-        return {**kwargs}
+        return {**data}
+        # return {**self.static_kwargs}
 
     def build(self, *args, **kwargs):
         """Create model
@@ -88,3 +99,7 @@ class ModelFactory(Factory):
         self.logger.debug('='*20)
 
         return result
+        # model_args = self.args_factory(*args, **kwargs)
+        # model_kwargs = self.data_factory(*args, **kwargs
+        # return self.model(*model_args, **model_kwargs)
+

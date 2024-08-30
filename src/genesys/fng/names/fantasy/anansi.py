@@ -42,7 +42,7 @@ class AnansiNameFactory(ComplexFactory):
         'nm5': 8,
     }
 
-    def build_kwargs(self, *args, **kwargs) -> dict:
+    def data_factory(self, *args, **kwargs) -> dict:
         """
         Build data for model.
 

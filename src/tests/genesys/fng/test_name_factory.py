@@ -21,7 +21,7 @@ class NameFactory2(BaseNameFactory):
         ],
     })
 
-    def build_kwargs(self, *args, **kwargs) -> dict:
+    def data_factory(self, *args, **kwargs) -> dict:
         """
         Build data for model.
 
@@ -112,8 +112,8 @@ class TestNameFactory(unittest.TestCase):
     def test_name_factory_db(self):
         self.assertEqual(self.name_factory.data, self.db)
 
-    def test_name_factory_build_kwargs(self):
-        data = self.name_factory.build_kwargs()
+    def test_name_factory_data_factory(self):
+        data = self.name_factory.data_factory()
         self.assertIsInstance(data, dict)
 
     def test_name_factory_run(self):
@@ -167,8 +167,8 @@ class TestNameFactory(unittest.TestCase):
         data = self.complex_name_factory.get_field('not_existing_field')
         self.assertIsNone(data)
 
-    def test_complex_name_factory_build_kwargs(self):
-        data = self.complex_name_factory.build_kwargs()
+    def test_complex_name_factory_data_factory(self):
+        data = self.complex_name_factory.data_factory()
         self.assertIsInstance(data, dict)
         for factory_id, item in data.items():
             if factory_id == 'built_with':
@@ -178,7 +178,7 @@ class TestNameFactory(unittest.TestCase):
                 self.assertIn(item.value, self.data[key])
 
     def test_complex_name_factory_validate_all(self):
-        data = self.complex_name_factory.build_kwargs()
+        data = self.complex_name_factory.data_factory()
 
         valid = self.complex_name_factory.validate(data)
         for item in valid:
