@@ -1,8 +1,19 @@
+from typing import Any
 from genesys.fng.factories.name_factory import ComplexFactory
 from factories.list_factory import ListFactory
 from factories.model_factory import ModelFactory
 from models.world import World
 from .providers import DEFAULT_DATA_PROVIDER
+
+
+class WorldNameFactory(ListFactory):
+    def __call__(self, *args, **kwds):
+        item = super().__call__(*args, **kwds)
+
+        if item is None:
+            return None
+
+        return item.get("value")
 
 
 class WorldFactory(ModelFactory):
@@ -26,18 +37,7 @@ class WorldFactory(ModelFactory):
 
     @property
     def name_factory(self):
-        def create_name_factory():
-            factory = ListFactory(self.data.names)
-
-            def __factory():
-                item = factory()
-                if item is None:
-                    return None
-                return item.get("value")
-
-            return __factory
-
         if self.__name_factory is None:
-            self.__name_factory = create_name_factory()
+            self.__name_factory = WorldNameFactory(self.data.names)
 
         return self.__name_factory
