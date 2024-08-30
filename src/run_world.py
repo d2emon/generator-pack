@@ -1,22 +1,20 @@
+from generator_log import setup
+from show_multiple import build_from_factories
 from genesys.world import WorldFactory
 
 
-def show_multiple(name, generated, factoryClass):
-    print(name)
-    for value in generated:
-        print(f"\t{value}")
+DEBUG = True
+COUNT = 10
 
 
 def build_all():
     factories = [
         WorldFactory,
     ]
-
-    for factoryClass in factories:
-        factory = factoryClass()
-        generated = [factory() for _ in range(10)]
-        show_multiple(factoryClass.__name__, generated, factoryClass)
+    build_from_factories(factories, COUNT)
 
 
 if __name__ == "__main__":
+    if DEBUG:
+        setup()
     build_all()
